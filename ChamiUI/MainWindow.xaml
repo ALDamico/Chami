@@ -1,0 +1,30 @@
+﻿<Window x:Class="ChamiUI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ChamiUI"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Menu Grid.Row="0" Grid.Column="0">
+            <MenuItem Header="File"></MenuItem>
+            <MenuItem Header="?">
+                <MenuItem Header="About Chami..."/>
+                <Separator/>
+                <MenuItem Header="Website"/>
+            </MenuItem>
+        </Menu>
+        <ComboBox Grid.Row="1" Grid.Column="0"></ComboBox>
+    </Grid>
+</Window>
