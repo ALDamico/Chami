@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.DataLayer.Repositories;
 using Xunit;
@@ -27,12 +28,24 @@ namespace ChamiTests
                 Name = "Example"
             };
 
-            var environmentVariable1 = new EnvironmentVariable() {Name = "USER", Value = "TestUser"};
-            var environmentVariable2 = new EnvironmentVariable() {Name = "PASSWORD", Value = "SECRET"};
+            var environmentVariable1 = new EnvironmentVariable() {EnvironmentVariableName = "USER", Value = "TestUser"};
+            var environmentVariable2 = new EnvironmentVariable() {EnvironmentVariableName = "PASSWORD", Value = "SECRET"};
             environment.EnvironmentVariables.Add(environmentVariable1);
             environment.EnvironmentVariables.Add(environmentVariable2);
 
             repository.InsertEnvironment(environment);
+        }
+
+        [Fact]
+        public void GetExistingEnvironment()
+        {
+            var repository = new EnvironmentRepository(connectionString);
+            var environment = repository.GetEnvironmentById(4);
+            Assert.NotNull(environment);
+            Assert.NotEmpty(environment.EnvironmentVariables);
+
+            var environmentVariableId = environment.EnvironmentVariables.First().EnvironmentVariableId;
+            Assert.NotEqual(0, environmentVariableId);
         }
     }
 }

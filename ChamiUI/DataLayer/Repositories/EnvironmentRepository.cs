@@ -1,5 +1,9 @@
 using System;
+using System.Collections.Generic;
 using System.Data.SQLite;
+using System.Linq;
+using System.Threading.Tasks;
+using ChamiUI.DataLayer.Entities;
 using Dapper;
 using Environment = ChamiUI.DataLayer.Entities.Environment;
 
@@ -14,19 +18,74 @@ namespace ChamiUI.DataLayer.Repositories
 
         private string _connectionString;
 
+        public async Task<Environment> GetEnvironmentByIdAsync(int id)
+        {
+            var queryString = @"
+                SELECT *
+                FROM Environments e
+                JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
+                WHERE e.EnvironmentId = ?
+ ";
+            using (var connection = await GetConnectionAsync())
+            {
+                var environmentDictionary = new Dictionary<int, Environment>();
+                try
+                {
+                    var param = new {id};
+                    var result = await connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString,
+                        (e, v) =>
+                        {
+                            Environment env;
+
+                            if (!environmentDictionary.TryGetValue(e.EnvironmentId, out env))
+                            {
+                                env = e;
+                                environmentDictionary[e.EnvironmentId] = e;
+                            }
+
+                            v.Environment = e;
+                            environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
+                            return env;
+                        }, param, splitOn: "EnvironmentVariableId");
+                    return result.FirstOrDefault();
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
+        }
+
         public Environment GetEnvironmentById(int id)
         {
             var queryString = @"
-                SELECT e.EnvironmentId, e.Name, e.AddedOn, ev.EnvironmentVariableId, ev.Name, ev.AddedOn, ev.Value, ev.EnvironmentId
+                SELECT *
                 FROM Environments e
                 JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
                 WHERE e.EnvironmentId = ?
  ";
             using (var connection = GetConnection())
             {
+                var environmentDictionary = new Dictionary<int, Environment>();
                 try
                 {
-                    return connection.QuerySingle<Environment>(queryString, new {id});
+                    var param = new {id};
+                    var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
+                        (e, v) =>
+                        {
+                            Environment env;
+
+                            if (!environmentDictionary.TryGetValue(e.EnvironmentId, out env))
+                            {
+                                env = e;
+                                environmentDictionary[e.EnvironmentId] = e;
+                            }
+
+                            v.Environment = e;
+                            environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
+                            return env;
+                        }, param, splitOn: "EnvironmentVariableId");
+                    return result.FirstOrDefault();
                 }
                 catch (InvalidOperationException)
                 {
@@ -68,7 +127,8 @@ namespace ChamiUI.DataLayer.Repositories
                     connection.Execute(environmentVariableInsertQuery,
                         new
                         {
-                            environmentVariable.Name, environmentVariable.Value, environmentVariable.AddedOn,
+                            Name = environmentVariable.EnvironmentVariableName, environmentVariable.Value,
+                            environmentVariable.AddedOn,
                             environmentVariable.EnvironmentId
                         });
                 }
@@ -80,6 +140,11 @@ namespace ChamiUI.DataLayer.Repositories
         public SQLiteConnection GetConnection()
         {
             return new(_connectionString);
+        }
+
+        public async Task<SQLiteConnection> GetConnectionAsync()
+        {
+            return await new Task<SQLiteConnection>(() => new SQLiteConnection(_connectionString));
         }
 
         public Environment UpdateEnvironment(Environment environment)
@@ -108,7 +173,8 @@ namespace ChamiUI.DataLayer.Repositories
 ";
                     var updObj = new
                     {
-                        environmentVariable.Name, environmentVariable.Value, environmentVariable.EnvironmentId,
+                        Name = environmentVariable.EnvironmentVariableName, environmentVariable.Value,
+                        environmentVariable.EnvironmentId,
                         environmentVariable.EnvironmentVariableId
                     };
 
