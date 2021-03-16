@@ -1,17 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
+using System;
+using System.IO;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using ChamiUI.PresentationLayer;
+using Microsoft.Extensions.Configuration;
 
 namespace ChamiUI
 {
@@ -22,7 +14,31 @@ namespace ChamiUI
     {
         public MainWindow()
         {
+            var dbPath = Directory.GetCurrentDirectory();
+            var dbName = "chami.db";
+            var connString = $"Data Source={dbPath}/{dbName};Version=3";
+            
+            ViewModel = new MainWindowViewModel(connString);
+            DataContext = ViewModel;
             InitializeComponent();
+            
+        }
+        
+        public MainWindowViewModel ViewModel { get; set; }
+
+        private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var result = MessageBox.Show("Are you sure you want to quit?", "Exiting Chami.", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            if (result == MessageBoxResult.OK)
+            {
+                Environment.Exit(0);
+            }
+        }
+
+
+        private void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.ChangeEnvironment();
         }
     }
 }

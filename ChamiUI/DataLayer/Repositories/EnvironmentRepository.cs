@@ -127,7 +127,7 @@ namespace ChamiUI.DataLayer.Repositories
                     connection.Execute(environmentVariableInsertQuery,
                         new
                         {
-                            Name = environmentVariable.EnvironmentVariableName, environmentVariable.Value,
+                            Name = environmentVariable.Name, environmentVariable.Value,
                             environmentVariable.AddedOn,
                             environmentVariable.EnvironmentId
                         });
@@ -173,7 +173,7 @@ namespace ChamiUI.DataLayer.Repositories
 ";
                     var updObj = new
                     {
-                        Name = environmentVariable.EnvironmentVariableName, environmentVariable.Value,
+                        Name = environmentVariable.Name, environmentVariable.Value,
                         environmentVariable.EnvironmentId,
                         environmentVariable.EnvironmentVariableId
                     };
@@ -185,6 +185,82 @@ namespace ChamiUI.DataLayer.Repositories
 
             var updatedEnvironment = GetEnvironmentById(environment.EnvironmentId);
             return updatedEnvironment;
+        }
+
+        public ICollection<Environment> GetEnvironments()
+        {
+            var queryString = @"
+                SELECT *
+                FROM Environments
+                LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
+";
+            using (var connection = GetConnection())
+            {
+                var dict = new Dictionary<int, Environment>();
+                var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
+                {
+                    Environment env;
+
+                    if (!dict.TryGetValue(e.EnvironmentId, out env))
+                    {
+                        env = e;
+                        dict[e.EnvironmentId] = e;
+                    }
+
+                    if (v != null)
+                    {
+                        v.Environment = e;
+                        dict[e.EnvironmentId].EnvironmentVariables.Add(v);
+                    }
+
+
+                    return env;
+                }, splitOn: "EnvironmentVariableId");
+                return dict.Values.ToList();
+            }
+        }
+
+        public Environment GetEnvironmentByName(string name)
+        {
+            var queryString = @"
+                SELECT *
+                FROM Environments e
+                LEFT JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
+                WHERE e.Name = ?
+ ";
+            using (var connection = GetConnection())
+            {
+                var environmentDictionary = new Dictionary<int, Environment>();
+                try
+                {
+                    var param = new {name};
+                    var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
+                        (e, v) =>
+                        {
+                            Environment env;
+
+                            if (!environmentDictionary.TryGetValue(e.EnvironmentId, out env))
+                            {
+                                env = e;
+                                environmentDictionary[e.EnvironmentId] = e;
+                            }
+
+                            if (v != null)
+                            {
+                                v.Environment = e;
+                                environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
+                            }
+                            
+                            
+                            return env;
+                        }, param, splitOn: "EnvironmentVariableId");
+                    return result.FirstOrDefault();
+                }
+                catch (InvalidOperationException)
+                {
+                    return null;
+                }
+            }
         }
     }
 }

@@ -28,8 +28,8 @@ namespace ChamiTests
                 Name = "Example"
             };
 
-            var environmentVariable1 = new EnvironmentVariable() {EnvironmentVariableName = "USER", Value = "TestUser"};
-            var environmentVariable2 = new EnvironmentVariable() {EnvironmentVariableName = "PASSWORD", Value = "SECRET"};
+            var environmentVariable1 = new EnvironmentVariable() {Name = "USER", Value = "TestUser"};
+            var environmentVariable2 = new EnvironmentVariable() {Name = "PASSWORD", Value = "SECRET"};
             environment.EnvironmentVariables.Add(environmentVariable1);
             environment.EnvironmentVariables.Add(environmentVariable2);
 
