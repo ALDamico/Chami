@@ -1,8 +1,11 @@
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.DataLayer.Entities;
+using ChamiUI.PresentationLayer.Progress;
 
 namespace ChamiUI.PresentationLayer
 {
@@ -18,7 +21,7 @@ namespace ChamiUI.PresentationLayer
             }
         }
 
-        public void ChangeEnvironment()
+        public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
         {
             var cmdExecutor = new CmdExecutor();
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
@@ -46,7 +49,13 @@ namespace ChamiUI.PresentationLayer
                 cmdExecutor.AddCommand(newCommand);
             }
             
-            cmdExecutor.Execute();
+            await cmdExecutor.ExecuteAsync(progress);
+            ;
+        }
+
+        public void ChangeEnvironment(IProgress<CmdExecutorProgress> progress = null)
+        {
+            ChangeEnvironmentAsync().GetAwaiter().GetResult();
         }
 
         public ObservableCollection<EnvironmentViewModel> Environments { get; set; }

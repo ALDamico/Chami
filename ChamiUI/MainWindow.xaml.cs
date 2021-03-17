@@ -1,8 +1,12 @@
 ﻿using System.Windows;
 using System;
+using System.ComponentModel;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Documents;
 using ChamiUI.PresentationLayer;
+using ChamiUI.PresentationLayer.Progress;
 using Microsoft.Extensions.Configuration;
 
 namespace ChamiUI
@@ -36,9 +40,29 @@ namespace ChamiUI
         }
 
 
-        private void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
+        private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.ChangeEnvironment();
+            ConsoleTextBox.Text = "";
+            TabControls.SelectedIndex = 1;
+            var progress = new Progress<CmdExecutorProgress>((o) =>
+            {
+
+                if (o.Message != null)
+                {
+                    ConsoleTextBox.Text += o.Message;
+                    ConsoleTextBox.Text += "\n";
+                }
+
+                if (o.OutputStream != null)
+                {
+                    StreamReader reader = new StreamReader(o.OutputStream);
+                    ConsoleTextBox.Text += reader.ReadToEnd();
+                    ConsoleTextBox.Text += "\n";
+                }
+                
+            });
+            await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress)) ;
+            
         }
     }
 }

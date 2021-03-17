@@ -1,5 +1,8 @@
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Threading.Tasks;
+using ChamiUI.PresentationLayer.Progress;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -22,6 +25,19 @@ namespace ChamiUI.BusinessLayer
             {
                 environmentVariable.Execute();
             }
+        }
+
+        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress)
+        {
+            CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, "Starting execution...");
+            progress?.Report(cmdExecutorProgress);
+            var tasks = new List<Task>();
+            foreach (var environmentVariable in EnvironmentVariablesToApply)
+            {
+                await environmentVariable.ExecuteAsync(progress);
+            }
+
+            progress?.Report(new CmdExecutorProgress(100, null, "Execution complete"));
         }
     }
 }

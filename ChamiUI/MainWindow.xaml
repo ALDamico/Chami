@@ -43,11 +43,21 @@
                 <svg:SvgViewbox MaxWidth="30" MaxHeight="30" Source="/ChamiUI;component/Assets/Svg/play.svg"></svg:SvgViewbox>
             </Button>
         </StackPanel>
-        <DataGrid Grid.Row="2" Grid.Column="0" ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="65" Binding="{Binding Name}" Header="Name"/>
-                <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
-            </DataGrid.Columns>
-        </DataGrid>
+        <TabControl Grid.Row="2" Grid.Column="0" x:Name="TabControls">
+            <TabItem Header="Variables">
+                <DataGrid ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="65" Binding="{Binding Name}" Header="Name"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Console">
+                <TextBox x:Name="ConsoleTextBox" Background="Black" Foreground="Lime" FontFamily="Consolas">
+                    
+                </TextBox>
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>
