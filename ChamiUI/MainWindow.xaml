@@ -4,27 +4,60 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChamiUI"
+        xmlns:vm="clr-namespace:ChamiUI.PresentationLayer"
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
+        Title="Chami" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
+
         <Menu Grid.Row="0" Grid.Column="0">
-            <MenuItem Header="File"></MenuItem>
+            <MenuItem Header="File">
+                <MenuItem Header="New Environment" />
+                <MenuItem Header="Import">
+                    <MenuItem Header="From .env..." />
+                    <MenuItem Header="From JSON..." />
+                </MenuItem>
+                <MenuItem Header="Export..." />
+                <Separator />
+                <MenuItem Header="Quit" x:Name="QuitApplicationMenuItem" Click="QuitApplicationMenuItem_OnClick" />
+            </MenuItem>
             <MenuItem Header="?">
-                <MenuItem Header="About Chami..."/>
-                <Separator/>
-                <MenuItem Header="Website"/>
+                <MenuItem Header="About Chami..." />
+                <Separator />
+                <MenuItem Header="Website" />
             </MenuItem>
         </Menu>
-        <ComboBox Grid.Row="1" Grid.Column="0"></ComboBox>
+        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
+            <ComboBox IsEditable="True" Margin="5,5,5,5" ItemsSource="{Binding Environments}" DisplayMemberPath="Name" x:Name="EnvironmentsCombobox" SelectedItem="{Binding SelectedEnvironment}" />
+            <Button ToolTip="Apply" MinWidth="32" x:Name="ApplyEnvironmentButton" Click="ApplyEnvironmentButton_OnClick">
+                <svg:SvgViewbox MaxWidth="30" MaxHeight="30" Source="/ChamiUI;component/Assets/Svg/play.svg"></svg:SvgViewbox>
+            </Button>
+        </StackPanel>
+        <TabControl Grid.Row="2" Grid.Column="0" x:Name="TabControls">
+            <TabItem Header="Variables">
+                <DataGrid ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}" AutoGenerateColumns="False">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="65" Binding="{Binding Name}" Header="Name"/>
+                        <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </TabItem>
+            <TabItem Header="Console">
+                <TextBox x:Name="ConsoleTextBox" Background="Black" Foreground="Lime" FontFamily="Consolas">
+                    
+                </TextBox>
+            </TabItem>
+        </TabControl>
+        
     </Grid>
 </Window>
