@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamiUI", "ChamiUI\ChamiUI.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamiTests", "ChamiTests\ChamiTests.csproj", "{9DE6D3B3-720A-4DC4-A55E-5ACA89AA1D0E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhereAmI", "WhereAmI\WhereAmI.csproj", "{A6EB2788-E8BF-447F-BD40-90C3E1505329}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{9DE6D3B3-720A-4DC4-A55E-5ACA89AA1D0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DE6D3B3-720A-4DC4-A55E-5ACA89AA1D0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DE6D3B3-720A-4DC4-A55E-5ACA89AA1D0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6EB2788-E8BF-447F-BD40-90C3E1505329}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6EB2788-E8BF-447F-BD40-90C3E1505329}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6EB2788-E8BF-447F-BD40-90C3E1505329}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6EB2788-E8BF-447F-BD40-90C3E1505329}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
