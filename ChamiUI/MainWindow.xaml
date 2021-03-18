@@ -37,27 +37,32 @@
                 <MenuItem Header="Website" />
             </MenuItem>
         </Menu>
-        <StackPanel Grid.Row="1" Grid.Column="0" Orientation="Horizontal">
-            <ComboBox IsEditable="True" Margin="5,5,5,5" ItemsSource="{Binding Environments}" DisplayMemberPath="Name" x:Name="EnvironmentsCombobox" SelectedItem="{Binding SelectedEnvironment}" />
-            <Button ToolTip="Apply" MinWidth="32" x:Name="ApplyEnvironmentButton" Click="ApplyEnvironmentButton_OnClick">
-                <svg:SvgViewbox MaxWidth="30" MaxHeight="30" Source="/ChamiUI;component/Assets/Svg/play.svg"></svg:SvgViewbox>
+        <Grid Grid.Row="1" Grid.Column="0" Margin="5, 0, 5, 0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <ComboBox Grid.Column="0" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type ListView}}, Path=ActualWidth}"
+                      IsEditable="True" Margin="5,5,5,5" ItemsSource="{Binding Environments}" DisplayMemberPath="Name"
+                      x:Name="EnvironmentsCombobox" SelectedItem="{Binding SelectedEnvironment}" />
+            <Button Grid.Column="1" ToolTip="Apply" MaxWidth="22" MaxHeight="22" x:Name="ApplyEnvironmentButton"
+                    Click="ApplyEnvironmentButton_OnClick">
+                <svg:SvgViewbox MaxWidth="16" MaxHeight="16" Source="/ChamiUI;component/Assets/Svg/play.svg" />
             </Button>
-        </StackPanel>
+        </Grid>
         <TabControl Grid.Row="2" Grid.Column="0" x:Name="TabControls">
             <TabItem Header="Variables">
                 <DataGrid ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}" AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="65" Binding="{Binding Name}" Header="Name"/>
+                        <DataGridTextColumn Width="65" Binding="{Binding Name}" Header="Name" />
                         <DataGridTextColumn Header="Value" Binding="{Binding Value}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Console">
-                <TextBox x:Name="ConsoleTextBox" Background="Black" Foreground="Lime" FontFamily="Consolas">
-                    
-                </TextBox>
+                <TextBox x:Name="ConsoleTextBox" Background="Black" Foreground="Lime" FontFamily="Consolas" />
             </TabItem>
         </TabControl>
-        
+
     </Grid>
 </Window>
