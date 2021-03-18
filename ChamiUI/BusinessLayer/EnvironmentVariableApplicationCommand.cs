@@ -36,6 +36,7 @@ namespace ChamiUI.BusinessLayer
             ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", arguments);
             processStartInfo.RedirectStandardError = true;
             processStartInfo.RedirectStandardOutput = true;
+            processStartInfo.CreateNoWindow = true;
             Process process = new Process();
             process.StartInfo = processStartInfo;
             process.Start();
