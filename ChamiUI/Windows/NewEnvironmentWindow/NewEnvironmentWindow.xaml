@@ -57,6 +57,8 @@
                     Orientation="Horizontal"
                     Margin="5, 0, 5, 0">
             <Button Content="Save"
+                    x:Name="SaveButton"
+                    Click="SaveButton_OnClick"
                     Margin="5, 5,5,5" />
             <Button Content="Cancel"
                     x:Name="CancelButton"

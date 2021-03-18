@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.DataLayer.Repositories;
 using ChamiUI.PresentationLayer;
@@ -43,6 +44,21 @@ namespace ChamiUI.BusinessLayer
         public Environment GetEnvironmentEntityByName(string name)
         {
             return _repository.GetEnvironmentByName(name);
+        }
+
+        public bool InsertEnvironment(EnvironmentViewModel environmentViewModel)
+        {
+            var validator = new EnvironmentViewModelValidator();
+            var validationResult = validator.Validate(environmentViewModel);
+            if (validationResult.IsValid)
+            {
+                var converter = new EnvironmentConverter();
+                var converted = converter.FromModel(environmentViewModel);
+                var inserted = _repository.InsertEnvironment(converted);
+                return inserted != null;
+            }
+
+            return false;
         }
     }
 }

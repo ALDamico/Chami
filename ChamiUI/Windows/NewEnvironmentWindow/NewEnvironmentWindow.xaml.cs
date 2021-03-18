@@ -42,6 +42,15 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                 Close();
             }
         }
-        
+
+        private void SaveButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var inserted = _viewModel.SaveEnvironment();
+            if (!inserted)
+            {
+                MessageBox.Show("Unable to insert your new environment!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            Close();
+        }
     }
 }

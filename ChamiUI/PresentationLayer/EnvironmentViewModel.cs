@@ -8,6 +8,7 @@ namespace ChamiUI.PresentationLayer
         public EnvironmentViewModel()
         {
             EnvironmentVariables = new ObservableCollection<EnvironmentVariableViewModel>();
+            AddedOn = DateTime.Now;
         }
 
         private int _id;

@@ -25,6 +25,12 @@ namespace ChamiUI
             DispatcherUnhandledException += ShowExceptionMessageBox;
         }
 
+        public static string GetConnectionString()
+        {
+            var chamiDirectory = Environment.CurrentDirectory;
+            return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
+        }
+
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
             var exceptionMessage = args.Exception.Message;

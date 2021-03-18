@@ -1,3 +1,5 @@
+using ChamiUI.BusinessLayer;
+
 namespace ChamiUI.PresentationLayer
 {
     public class NewEnvironmentViewModel : ViewModelBase
@@ -5,8 +7,16 @@ namespace ChamiUI.PresentationLayer
         public NewEnvironmentViewModel()
         {
             Environment = new EnvironmentViewModel();
+            _dataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
         }
+
+        private EnvironmentDataAdapter _dataAdapter;
         private EnvironmentViewModel _environment;
+
+        public bool SaveEnvironment()
+        {
+            return _dataAdapter.InsertEnvironment(Environment);
+        }
 
         public EnvironmentViewModel Environment
         {
