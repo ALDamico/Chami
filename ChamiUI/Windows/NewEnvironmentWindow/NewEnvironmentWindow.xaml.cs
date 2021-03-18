@@ -1,5 +1,7 @@
+using System;
 using System.Windows;
 using ChamiUI.PresentationLayer;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
 {
@@ -50,7 +52,13 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             {
                 MessageBox.Show("Unable to insert your new environment!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else
+            {
+                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(_viewModel.Environment));
+            }
             Close();
         }
+
+        public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
     }
 }

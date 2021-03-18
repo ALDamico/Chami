@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using ChamiUI.PresentationLayer;
+using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 
 namespace ChamiUI.Windows.MainWindow
@@ -64,7 +65,16 @@ namespace ChamiUI.Windows.MainWindow
         private void NewEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow();
+            childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
+        }
+
+        private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
+        {
+            if (args != null)
+            {
+                ViewModel.Environments.Add(args.EnvironmentViewModel);
+            }
         }
     }
 }

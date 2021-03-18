@@ -75,7 +75,8 @@ namespace ChamiUI.PresentationLayer
 
         public ObservableCollection<EnvironmentViewModel> GetEnvironments()
         {
-            return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
+            Environments = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
+            return Environments;
         }
 
         private EnvironmentDataAdapter _dataAdapter;
