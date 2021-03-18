@@ -6,8 +6,10 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Threading;
 using ChamiUI.BusinessLayer;
 using ChamiUI.PresentationLayer;
+using ChamiUI.Windows.MainWindow;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -18,30 +20,22 @@ namespace ChamiUI
     /// </summary>
     public partial class App : Application
     {
-        public IConfiguration AppConfiguration { get; set; }
-        public IServiceProvider ServiceProvider { get; set; }
-
         public App()
         {
-        }
-        
-        private void ConfigureServices(IServiceCollection services)
-        {
-            // ...
- 
-            services.AddTransient(typeof(MainWindow));
+            DispatcherUnhandledException += ShowExceptionMessageBox;
         }
 
-        protected override void OnStartup(StartupEventArgs e)
+        public static string GetConnectionString()
         {
-            var configBuilder = new ConfigurationBuilder().SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json");
+            var chamiDirectory = Environment.CurrentDirectory;
+            return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
+        }
 
-            AppConfiguration = configBuilder.Build();
-            var serviceCollection = new ServiceCollection();
-            ConfigureServices(serviceCollection);
- 
-            this.ServiceProvider = serviceCollection.BuildServiceProvider();
+        public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
+        {
+            var exceptionMessage = args.Exception.Message;
+            args.Handled = true;
+            MessageBox.Show(exceptionMessage, "An exception occurred!", MessageBoxButton.OK, MessageBoxImage.Error);
         }
     }
 }

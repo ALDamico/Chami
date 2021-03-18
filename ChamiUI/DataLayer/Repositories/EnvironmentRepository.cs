@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SQLite;
 using System.Linq;
 using System.Threading.Tasks;
@@ -109,6 +110,7 @@ namespace ChamiUI.DataLayer.Repositories
             var queryString = @"INSERT INTO Environments(Name, AddedON) VALUES (?, ?)";
             using (var connection = GetConnection())
             {
+                var transaction = connection.BeginTransaction();
                 connection.Execute(queryString, new {environment.Name, environment.AddedOn});
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
@@ -116,8 +118,7 @@ namespace ChamiUI.DataLayer.Repositories
 ";
                 var selectQuery = @"
                     SELECT * 
-                    FROM Environments e 
-                    LEFT JOIN EnvironmentVariables ev ON ev.EnvironmentId = e.EnvironmentId 
+                    FROM Environments e
                     WHERE e.AddedOn = ?";
                 var result = connection.QuerySingle<Environment>(selectQuery, new {environment.AddedOn});
                 environment.EnvironmentId = result.EnvironmentId;
@@ -132,14 +133,17 @@ namespace ChamiUI.DataLayer.Repositories
                             environmentVariable.EnvironmentId
                         });
                 }
+                transaction.Commit();
             }
-
+            
             return environment;
         }
 
         public SQLiteConnection GetConnection()
         {
-            return new(_connectionString);
+            var connection =  new SQLiteConnection(_connectionString);
+            connection.Open();
+            return connection;
         }
 
         public async Task<SQLiteConnection> GetConnectionAsync()

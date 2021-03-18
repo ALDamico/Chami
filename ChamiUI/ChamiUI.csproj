@@ -22,10 +22,6 @@
       <Resource Include="DataLayer\Db\chami.db">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       </Resource>
-      <None Remove="appsettings.json" />
-      <Resource Include="appsettings.json">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
       <None Remove="Assets\Svg\play.svg" />
       <Resource Include="Assets\Svg\play.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

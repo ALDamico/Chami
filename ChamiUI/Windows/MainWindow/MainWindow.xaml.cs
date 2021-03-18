@@ -1,15 +1,11 @@
-﻿using System.Windows;
-using System;
-using System.ComponentModel;
+﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Documents;
+using System.Windows;
 using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.Progress;
-using Microsoft.Extensions.Configuration;
 
-namespace ChamiUI
+namespace ChamiUI.Windows.MainWindow
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -63,6 +59,12 @@ namespace ChamiUI
             });
             await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress)) ;
             
+        }
+
+        private void NewEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow();
+            childWindow.ShowDialog();
         }
     }
 }
