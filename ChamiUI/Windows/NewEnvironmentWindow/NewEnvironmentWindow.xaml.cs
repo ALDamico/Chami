@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel;
 using System.Windows;
 using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.Events;
@@ -16,7 +17,14 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
 
         private readonly NewEnvironmentViewModel _viewModel;
 
-        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        protected override void OnClosing(CancelEventArgs e)
+        {
+
+            e.Cancel = !HandleClosing();
+            base.OnClosing(e);
+        }
+
+        private bool HandleClosing()
         {
             if (_viewModel.DetectChanges())
             {
@@ -36,13 +44,20 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                     MessageBoxImage.Question, MessageBoxResult.No);
                 if (result == MessageBoxResult.Yes)
                 {
-                    Close();
+                    return true;
                 }
             }
             else
             {
-                Close();
+                return true;
             }
+
+            return false;
+        }
+
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
 
         private void SaveButton_OnClick(object sender, RoutedEventArgs e)

@@ -19,6 +19,6 @@ namespace ChamiUI.PresentationLayer
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         
-        public bool HasBeenChanged { get; private set; }
+        public bool HasBeenChanged { get; protected set; }
     }
 }

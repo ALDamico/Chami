@@ -8,6 +8,7 @@ namespace ChamiUI.PresentationLayer
         {
             Environment = new EnvironmentViewModel();
             _dataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
+            HasBeenChanged = false;
         }
 
         private EnvironmentDataAdapter _dataAdapter;
