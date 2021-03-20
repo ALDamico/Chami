@@ -1,6 +1,6 @@
 using ChamiUI.BusinessLayer;
 
-namespace ChamiUI.PresentationLayer
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class NewEnvironmentViewModel : ViewModelBase
     {

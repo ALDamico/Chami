@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -124,6 +124,12 @@ namespace ChamiUI.Windows.MainWindow
             {
                 e.CanExecute = false;
             }
+        }
+
+        private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var childWindow = new SettingsWindow.SettingsWindow();
+            childWindow.ShowDialog();
         }
     }
 }

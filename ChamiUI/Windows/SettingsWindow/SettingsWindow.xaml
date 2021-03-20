@@ -1,0 +1,29 @@
+<Window x:Class="ChamiUI.Windows.SettingsWindow.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ChamiUI.Windows.SettingsWindow"
+        mc:Ignorable="d"
+        Title="Chami - Settings" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="5*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TreeView Grid.Row="0" Grid.Column="0" >
+            <TreeViewItem Header="View"></TreeViewItem>
+            <TreeViewItem Header="Safety"></TreeViewItem>
+        </TreeView>
+        <UserControl Grid.Row="0" Grid.Column="1" x:Name="SectionViewport"></UserControl>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
+            <Button Margin="5, 5, 5, 5" Content="OK" Width="65"/>
+            <Button Margin="5, 5, 5, 5" Content="Cancel" Width="65" />
+            <Button Margin="5, 5, 5, 5" Content="Apply" Width="65" />
+        </StackPanel>
+    </Grid>
+</Window>

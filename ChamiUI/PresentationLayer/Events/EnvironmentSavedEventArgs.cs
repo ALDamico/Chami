@@ -1,4 +1,5 @@
 using System;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.PresentationLayer.Events
 {

@@ -1,7 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 
-namespace ChamiUI.PresentationLayer
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class EnvironmentViewModel : ViewModelBase
     {

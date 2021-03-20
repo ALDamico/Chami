@@ -2,7 +2,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using ChamiUI.Annotations;
 
-namespace ChamiUI.PresentationLayer
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class ViewModelBase : INotifyPropertyChanged
     {

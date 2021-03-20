@@ -7,7 +7,7 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Progress;
 
-namespace ChamiUI.PresentationLayer
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChamiUI"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer"
-        d:DataContext="{d:DesignInstance vm:MainWindowViewModel, IsDesignTimeCreatable=True}"
+        d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         Title="Chami" Height="450" Width="800">
     <Window.Resources>
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
@@ -54,6 +55,13 @@
                 <MenuItem Header="Quit"
                           x:Name="QuitApplicationMenuItem"
                           Click="QuitApplicationMenuItem_OnClick" />
+            </MenuItem>
+            <MenuItem Header="Options">
+                <MenuItem Header="Settings" x:Name="SettingsMenuItem" Click="SettingsMenuItem_OnClick">
+                    <MenuItem.Icon>
+                        <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/cog.svg"></svg:SvgViewbox>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="?">
                 <MenuItem Header="About Chami..." />
