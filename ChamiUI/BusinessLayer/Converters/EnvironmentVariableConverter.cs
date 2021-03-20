@@ -10,6 +10,7 @@ namespace ChamiUI.BusinessLayer.Converters
             var environmentVariable = new EnvironmentVariable();
             environmentVariable.Name = model.Name;
             environmentVariable.Value = model.Value;
+            environmentVariable.EnvironmentVariableId = model.Id;
             return environmentVariable;
         }
 
@@ -18,6 +19,7 @@ namespace ChamiUI.BusinessLayer.Converters
             var viewModel = new EnvironmentVariableViewModel();
             viewModel.Name = entity.Name;
             viewModel.Value = entity.Value;
+            viewModel.Id = entity.EnvironmentVariableId;
             return viewModel;
         }
     }

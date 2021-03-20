@@ -170,9 +170,8 @@ namespace ChamiUI.DataLayer.Repositories
                 {
                     var envVarUpdateQuery = @"
                     UPDATE EnvironmentVariables 
-                    SET Name = ?
+                    SET Name = ?,
                         Value = ?
-                        EnvironmentId = ?
                     WHERE EnvironmentVariableId = ?
 ";
                     var updObj = new
@@ -185,7 +184,6 @@ namespace ChamiUI.DataLayer.Repositories
                     connection.Execute(envVarUpdateQuery, updObj);
                 }
             }
-
 
             var updatedEnvironment = GetEnvironmentById(environment.EnvironmentId);
             return updatedEnvironment;

@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
@@ -105,6 +106,23 @@ namespace ChamiUI.Windows.MainWindow
             if (result == MessageBoxResult.OK)
             {
                 ViewModel.DeleteSelectedEnvironment();
+            }
+        }
+
+        private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewModel.SaveCurrentEnvironment();
+        }
+
+        private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (ViewModel.SelectedEnvironment != null && ViewModel.EditingEnabled)
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
             }
         }
     }

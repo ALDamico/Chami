@@ -111,5 +111,11 @@ namespace ChamiUI.PresentationLayer
             Environments.Remove(SelectedEnvironment);
             SelectedEnvironment = null;
         }
+
+        public void SaveCurrentEnvironment()
+        {
+            _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            DisableEditing();
+        }
     }
 }
