@@ -9,6 +9,18 @@
         mc:Ignorable="d"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         Title="Chami" Height="450" Width="800">
+    <Window.Resources>
+        <ContextMenu x:Key="EnvironmentListBoxContextMenu">
+            
+                <MenuItem Header="Edit" />
+                <MenuItem Header="Delete">
+                    <MenuItem.Icon>
+                        <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
+                    </MenuItem.Icon>
+                </MenuItem>
+        </ContextMenu>
+
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -22,15 +34,16 @@
 
         <Menu Grid.Row="0" Grid.Column="0">
             <MenuItem Header="File">
-                <MenuItem Header="New Environment" x:Name="NewEnvironmentMenuItem" Click="NewEnvironmentMenuItem_OnClick" />
+                <MenuItem Header="New Environment" x:Name="NewEnvironmentMenuItem"
+                          Click="NewEnvironmentMenuItem_OnClick" />
                 <MenuItem Header="Import">
                     <MenuItem Header="From .env..." />
                     <MenuItem Header="From JSON..." />
                 </MenuItem>
                 <MenuItem Header="Export..." />
                 <Separator />
-                <MenuItem Header="Quit" 
-                          x:Name="QuitApplicationMenuItem" 
+                <MenuItem Header="Quit"
+                          x:Name="QuitApplicationMenuItem"
                           Click="QuitApplicationMenuItem_OnClick" />
             </MenuItem>
             <MenuItem Header="?">
@@ -39,53 +52,58 @@
                 <MenuItem Header="Website" />
             </MenuItem>
         </Menu>
-        <Grid Grid.Row="1" 
-              Grid.Column="0" 
+        <Grid Grid.Row="1"
+              Grid.Column="0"
               Margin="5, 0, 5, 0">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0" 
-                      Margin="5,5,5,5" 
-                      ItemsSource="{Binding Environments}" 
-                      DisplayMemberPath="Name"
-                      x:Name="EnvironmentsCombobox" 
-                      SelectedItem="{Binding SelectedEnvironment}" />
-            <Button Grid.Column="1" 
-                    ToolTip="Apply" 
-                    MaxWidth="22" 
-                    MaxHeight="22" 
+            <ListBox Grid.Column="0"
+                     Margin="5,5,5,5"
+                     ItemsSource="{Binding Environments}"
+                     DisplayMemberPath="Name"
+                     x:Name="EnvironmentsCombobox"
+                     SelectedItem="{Binding SelectedEnvironment}">
+                <ListBox.ItemContainerStyle>
+                    <Style TargetType="ListBoxItem">
+                        <Setter Property="ContextMenu" Value="{StaticResource EnvironmentListBoxContextMenu}" />
+                    </Style>
+                </ListBox.ItemContainerStyle>
+            </ListBox>
+            <Button Grid.Column="1"
+                    ToolTip="Apply"
+                    MaxWidth="22"
+                    MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
                     Click="ApplyEnvironmentButton_OnClick">
-                <svg:SvgViewbox MaxWidth="16" 
-                                MaxHeight="16" 
+                <svg:SvgViewbox MaxWidth="16"
+                                MaxHeight="16"
                                 Source="/ChamiUI;component/Assets/Svg/play.svg" />
             </Button>
         </Grid>
-        <TabControl Grid.Row="2" 
-                    Grid.Column="0" 
+        <TabControl Grid.Row="2"
+                    Grid.Column="0"
                     x:Name="TabControls">
             <TabItem Header="Variables">
-                <DataGrid ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}" 
+                <DataGrid ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}"
                           AutoGenerateColumns="False">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="65" 
-                                            Binding="{Binding Name}" 
+                        <DataGridTextColumn Width="65"
+                                            Binding="{Binding Name}"
                                             Header="Name" />
-                        <DataGridTextColumn Header="Value" 
+                        <DataGridTextColumn Header="Value"
                                             Binding="{Binding Value}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
             <TabItem Header="Console">
                 <TextBox x:Name="ConsoleTextBox"
-                         Background="Black" 
-                         Foreground="Lime" 
+                         Background="Black"
+                         Foreground="Lime"
                          FontFamily="Consolas"
                          HorizontalScrollBarVisibility="Auto"
-                         VerticalScrollBarVisibility="Visible"
-                />
+                         VerticalScrollBarVisibility="Visible" />
             </TabItem>
         </TabControl>
     </Grid>

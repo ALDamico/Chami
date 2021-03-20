@@ -22,7 +22,9 @@ namespace ChamiUI
     {
         public App()
         {
+#if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
+#endif
         }
 
         public static string GetConnectionString()
