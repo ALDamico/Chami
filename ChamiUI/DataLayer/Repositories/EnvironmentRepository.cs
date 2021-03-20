@@ -189,6 +189,38 @@ namespace ChamiUI.DataLayer.Repositories
             return updatedEnvironment;
         }
 
+        public Environment UpsertEnvironment(Environment environment)
+        {
+            UpdateEnvironment(environment);
+
+            var newVariables = environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0);
+
+            foreach (var environmentVariable in newVariables)
+            {
+                InsertVariable(environmentVariable, environment.EnvironmentId);
+            }
+
+            return GetEnvironmentById(environment.EnvironmentId);
+        }
+
+        protected void InsertVariable(EnvironmentVariable environmentVariable, int environmentId)
+        {
+            var environmentVariableInsertQuery = @"
+                INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
+                VALUES (?, ?, ?, ?)
+";
+            using (var connection = GetConnection())
+            {
+                var updObj = new
+                {
+                    Name = environmentVariable.Name, environmentVariable.Value,
+                    environmentVariable.AddedOn,
+                    environmentId
+                };
+                connection.Execute(environmentVariableInsertQuery, updObj);
+            }
+        }
+
         public ICollection<Environment> GetEnvironments()
         {
             var queryString = @"
