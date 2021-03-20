@@ -81,7 +81,7 @@ namespace ChamiUI.BusinessLayer
         {
             var converter = new EnvironmentConverter();
             var entity = converter.FromModel(environment);
-            _repository.UpdateEnvironment(entity);
+            _repository.UpsertEnvironment(entity);
         }
     }
 }
