@@ -4,12 +4,13 @@ using ChamiUI.Annotations;
 
 namespace ChamiUI.PresentationLayer
 {
-    public class ViewModelBase:INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
         public ViewModelBase()
         {
             HasBeenChanged = false;
         }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
@@ -18,7 +19,7 @@ namespace ChamiUI.PresentationLayer
             HasBeenChanged = true;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        
+
         public bool HasBeenChanged { get; protected set; }
     }
 }

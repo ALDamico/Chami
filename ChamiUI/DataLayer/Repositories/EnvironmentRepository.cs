@@ -170,9 +170,8 @@ namespace ChamiUI.DataLayer.Repositories
                 {
                     var envVarUpdateQuery = @"
                     UPDATE EnvironmentVariables 
-                    SET Name = ?
+                    SET Name = ?,
                         Value = ?
-                        EnvironmentId = ?
                     WHERE EnvironmentVariableId = ?
 ";
                     var updObj = new
@@ -185,7 +184,6 @@ namespace ChamiUI.DataLayer.Repositories
                     connection.Execute(envVarUpdateQuery, updObj);
                 }
             }
-
 
             var updatedEnvironment = GetEnvironmentById(environment.EnvironmentId);
             return updatedEnvironment;
@@ -264,6 +262,25 @@ namespace ChamiUI.DataLayer.Repositories
                 {
                     return null;
                 }
+            }
+        }
+
+        public bool DeleteEnvironmentById(int id)
+        {
+            var queryString = @"
+                DELETE FROM EnvironmentVariables
+                WHERE EnvironmentId = ?
+";
+            using (var connection = GetConnection())
+            {
+                connection.Execute(queryString, new {id});
+
+                queryString = @"
+                    DELETE FROM Environments
+                WHERE EnvironmentId = ?
+";
+                var result = connection.Execute(queryString, new {id});
+                return result > 0;
             }
         }
     }

@@ -26,6 +26,14 @@
       <Resource Include="Assets\Svg\play.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Svg\times.svg" />
+      <Resource Include="Assets\Svg\times.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Svg\edit.svg" />
+      <Resource Include="Assets\Svg\edit.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
 </Project>

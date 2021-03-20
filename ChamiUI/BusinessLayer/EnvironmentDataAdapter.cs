@@ -60,5 +60,28 @@ namespace ChamiUI.BusinessLayer
 
             return false;
         }
+
+        public bool DeleteEnvironment(EnvironmentViewModel selectedEnvironment)
+        {
+            if (selectedEnvironment == null)
+            {
+                return false;
+            }
+            int id = selectedEnvironment.Id;
+            if (id == 0)
+            {
+                return false;
+            }
+
+            var removed = _repository.DeleteEnvironmentById(id);
+            return removed;
+        }
+
+        public void SaveEnvironment(EnvironmentViewModel environment)
+        {
+            var converter = new EnvironmentConverter();
+            var entity = converter.FromModel(environment);
+            _repository.UpdateEnvironment(entity);
+        }
     }
 }

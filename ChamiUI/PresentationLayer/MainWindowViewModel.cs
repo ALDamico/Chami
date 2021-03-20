@@ -11,10 +11,33 @@ namespace ChamiUI.PresentationLayer
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private bool _editingEnabled;
+
+        public bool EditingEnabled
+        {
+            get => _editingEnabled;
+            private set
+            {
+                _editingEnabled = value;
+                OnPropertyChanged(nameof(EditingEnabled));
+            }
+        }
+
+        public void EnableEditing()
+        {
+            EditingEnabled = true;
+        }
+        
+        public void DisableEditing()
+        {
+            EditingEnabled = false;
+        }
+
         public MainWindowViewModel(string connectionString)
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
             Environments = GetEnvironments();
+            EditingEnabled = false;
             if (Environments.Any())
             {
                 SelectedEnvironment = Environments.First();
@@ -44,11 +67,12 @@ namespace ChamiUI.PresentationLayer
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
-                var newCommand = EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableApplicationCommand),
+                var newCommand = EnvironmentVariableCommandFactory.GetCommand(
+                    typeof(EnvironmentVariableApplicationCommand),
                     environmentVariable);
                 cmdExecutor.AddCommand(newCommand);
             }
-            
+
             await cmdExecutor.ExecuteAsync(progress);
             ;
         }
@@ -79,6 +103,19 @@ namespace ChamiUI.PresentationLayer
             return Environments;
         }
 
-        private EnvironmentDataAdapter _dataAdapter;
+        private readonly EnvironmentDataAdapter _dataAdapter;
+
+        public void DeleteSelectedEnvironment()
+        {
+            _dataAdapter.DeleteEnvironment(SelectedEnvironment);
+            Environments.Remove(SelectedEnvironment);
+            SelectedEnvironment = null;
+        }
+
+        public void SaveCurrentEnvironment()
+        {
+            _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            DisableEditing();
+        }
     }
 }

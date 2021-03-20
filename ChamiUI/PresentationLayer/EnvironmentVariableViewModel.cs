@@ -7,6 +7,7 @@ namespace ChamiUI.PresentationLayer
         private string _name;
         private string _value;
         private DateTime _addedOn;
+        public int Id { get; set; }
         private EnvironmentViewModel _environment;
 
         public EnvironmentViewModel Environment
