@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiUI.BusinessLayer;
+using ChamiUI.BusinessLayer.Logger;
 using ChamiUI.PresentationLayer;
 using ChamiUI.Windows.MainWindow;
 using Microsoft.Extensions.Configuration;
@@ -25,7 +26,11 @@ namespace ChamiUI
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
+            Logger = new ChamiLogger();
+            Logger.AddFileSink("chami.log");
         }
+        
+        public ChamiLogger Logger { get; }
 
         public static string GetConnectionString()
         {
@@ -38,6 +43,9 @@ namespace ChamiUI
             var exceptionMessage = args.Exception.Message;
             args.Handled = true;
             MessageBox.Show(exceptionMessage, "An exception occurred!", MessageBoxButton.OK, MessageBoxImage.Error);
+            var logger = Logger.GetLogger();
+            logger.Error(exceptionMessage);
+            logger.Error(args.Exception.StackTrace);
         }
     }
 }
