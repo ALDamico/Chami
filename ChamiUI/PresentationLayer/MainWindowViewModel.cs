@@ -103,7 +103,7 @@ namespace ChamiUI.PresentationLayer
             return Environments;
         }
 
-        private EnvironmentDataAdapter _dataAdapter;
+        private readonly EnvironmentDataAdapter _dataAdapter;
 
         public void DeleteSelectedEnvironment()
         {

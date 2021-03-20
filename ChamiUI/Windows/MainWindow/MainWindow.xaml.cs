@@ -19,18 +19,18 @@ namespace ChamiUI.Windows.MainWindow
             var dbPath = Directory.GetCurrentDirectory();
             var dbName = "chami.db";
             var connString = $"Data Source={dbPath}/{dbName};Version=3";
-            
+
             ViewModel = new MainWindowViewModel(connString);
             DataContext = ViewModel;
             InitializeComponent();
-            
         }
-        
+
         public MainWindowViewModel ViewModel { get; set; }
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to quit?", "Exiting Chami.", MessageBoxButton.OKCancel, MessageBoxImage.Question);
+            var result = MessageBox.Show("Are you sure you want to quit?", "Exiting Chami.", MessageBoxButton.OKCancel,
+                MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
                 Environment.Exit(0);
@@ -44,7 +44,6 @@ namespace ChamiUI.Windows.MainWindow
             TabControls.SelectedIndex = 1;
             var progress = new Progress<CmdExecutorProgress>((o) =>
             {
-
                 if (o.Message != null)
                 {
                     ConsoleTextBox.Text += o.Message;
@@ -57,10 +56,8 @@ namespace ChamiUI.Windows.MainWindow
                     ConsoleTextBox.Text += reader.ReadToEnd();
                     ConsoleTextBox.Text += "\n";
                 }
-                
             });
-            await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress)) ;
-            
+            await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
         }
 
         private void NewEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -103,7 +100,7 @@ namespace ChamiUI.Windows.MainWindow
                     $"Are you sure you want to remove the environment {selectedEnvironmentName} and its {selectedEnvironmentVariableCount} variables?";
             }
 
-            var result = MessageBox.Show( message,"Confirm deletion", MessageBoxButton.OKCancel,
+            var result = MessageBox.Show(message, "Confirm deletion", MessageBoxButton.OKCancel,
                 MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
             {
