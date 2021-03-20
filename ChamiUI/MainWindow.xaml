@@ -84,6 +84,7 @@
                          Background="Black" 
                          Foreground="Lime" 
                          FontFamily="Consolas"
+                         IsReadOnly="True"
                 />
             </TabItem>
         </TabControl>
