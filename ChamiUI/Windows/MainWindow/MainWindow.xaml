@@ -85,6 +85,7 @@
                          FontFamily="Consolas"
                          HorizontalScrollBarVisibility="Auto"
                          VerticalScrollBarVisibility="Visible"
+                         IsReadOnly="True"
                 />
             </TabItem>
         </TabControl>
