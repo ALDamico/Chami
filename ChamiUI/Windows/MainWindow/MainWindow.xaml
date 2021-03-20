@@ -11,13 +11,17 @@
         Title="Chami" Height="450" Width="800">
     <Window.Resources>
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
-            
-                <MenuItem Header="Edit" />
-                <MenuItem Header="Delete">
-                    <MenuItem.Icon>
-                        <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
-                    </MenuItem.Icon>
-                </MenuItem>
+
+            <MenuItem Header="Edit" x:Name="EditEnvironmentMenuItem" Click="EditEnvironmentMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg"></svg:SvgViewbox>
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="Delete" x:Name="DeleteEnvironmentMenuItem" Click="DeleteEnvironmentMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
+                </MenuItem.Icon>
+            </MenuItem>
         </ContextMenu>
 
     </Window.Resources>
@@ -63,8 +67,10 @@
                      Margin="5,5,5,5"
                      ItemsSource="{Binding Environments}"
                      DisplayMemberPath="Name"
-                     x:Name="EnvironmentsCombobox"
-                     SelectedItem="{Binding SelectedEnvironment}">
+                     x:Name="EnvironmentsListbox"
+                     SelectedItem="{Binding SelectedEnvironment}"
+                     SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
+                     >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="ContextMenu" Value="{StaticResource EnvironmentListBoxContextMenu}" />
@@ -87,7 +93,11 @@
                     x:Name="TabControls">
             <TabItem Header="Variables">
                 <DataGrid ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}"
-                          AutoGenerateColumns="False">
+                          AutoGenerateColumns="False"
+                          CanUserAddRows="{Binding EditingEnabled}"
+                          CanUserDeleteRows="{Binding EditingEnabled}"
+                          IsReadOnly="{Binding EditingEnabled}"
+                          IsEnabled="{Binding EditingEnabled}">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="65"
                                             Binding="{Binding Name}"

@@ -266,5 +266,24 @@ namespace ChamiUI.DataLayer.Repositories
                 }
             }
         }
+
+        public bool DeleteEnvironmentById(int id)
+        {
+            var queryString = @"
+                DELETE FROM EnvironmentVariables
+                WHERE EnvironmentId = ?
+";
+            using (var connection = GetConnection())
+            {
+                connection.Execute(queryString, new {id});
+
+                queryString = @"
+                    DELETE FROM Environments
+                WHERE EnvironmentId = ?
+";
+                var result = connection.Execute(queryString, new {id});
+                return result > 0;
+            }
+        }
     }
 }

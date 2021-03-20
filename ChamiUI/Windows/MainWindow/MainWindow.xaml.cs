@@ -2,6 +2,7 @@
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
@@ -74,6 +75,39 @@ namespace ChamiUI.Windows.MainWindow
             if (args != null)
             {
                 ViewModel.Environments.Add(args.EnvironmentViewModel);
+            }
+        }
+
+        private void EditEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.EnableEditing();
+        }
+
+        private void EnvironmentsListbox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModel.DisableEditing();
+        }
+
+        private void DeleteEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var selectedEnvironmentName = ViewModel.SelectedEnvironment.Name;
+            var selectedEnvironmentVariableCount = ViewModel.SelectedEnvironment.EnvironmentVariables.Count;
+            string message;
+            if (selectedEnvironmentVariableCount == 0)
+            {
+                message = $"Are you sure you want to remove the environment {selectedEnvironmentName}?";
+            }
+            else
+            {
+                message =
+                    $"Are you sure you want to remove the environment {selectedEnvironmentName} and its {selectedEnvironmentVariableCount} variables?";
+            }
+
+            var result = MessageBox.Show( message,"Confirm deletion", MessageBoxButton.OKCancel,
+                MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                ViewModel.DeleteSelectedEnvironment();
             }
         }
     }
