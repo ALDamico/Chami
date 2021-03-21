@@ -5,27 +5,85 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ChamiUI.Controls"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
+             xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+             d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="200" d:DesignWidth="405"
+             >
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row="0" Grid.Column="0" Header="Console">
+        <GroupBox Grid.Row="0" 
+                  Grid.Column="0" 
+                  Header="Console">
             <Grid>
-
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition MinWidth="120" Width="Auto"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0">Font</Label>
+                <Label Grid.Row="0" 
+                       Grid.Column="0">Font</Label>
+                <ComboBox Grid.Row="0" 
+                          Grid.Column="1" 
+                          ItemsSource="{Binding FontFamilies}"
+                          SelectedItem="{Binding FontFamily}"
+                          >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label Content="{Binding Source}" FontFamily="{Binding}"></Label>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Grid.Row="0" 
+                       Grid.Column="2">Font size</Label>
+                <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding FontSize}"></TextBox>
+                <Label Grid.Row="1" 
+                       Grid.Column="0" 
+                       Content="Fg color"></Label>
+                <Button HorizontalAlignment="Left" 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        Width="40">
+                    <Button.Content>
+                        <Rectangle Width="30" 
+                                   Height="20" 
+                                   Fill="{Binding ForegroundColor}"></Rectangle>
+                    </Button.Content>
+                </Button>
+                <Label Grid.Row="1" 
+                       Grid.Column="2" 
+                       Content="Bg color"></Label>
+                <Button HorizontalAlignment="Left" 
+                        Grid.Row="1" 
+                        Grid.Column="3" 
+                        Width="40">
+                    <Button.Content>
+                        <Rectangle Width="30" 
+                                   Height="20" 
+                                   Fill="{Binding BackgroundColor}"></Rectangle>
+                    </Button.Content>
+                </Button>
             </Grid>
         </GroupBox>
-        
+        <GroupBox Grid.Row="1" 
+                  Grid.Column="0" 
+                  Header="Preview">
+            <TextBox Background="{Binding BackgroundColor}" 
+                     Foreground="{Binding ForegroundColor}" 
+                     IsReadOnly="True" 
+                     Text="Example text..." FontFamily="{Binding FontFamily}" FontSize="{Binding FontSize}"></TextBox>
+        </GroupBox>
     </Grid>
 </UserControl>

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Controls;
 using ChamiUI.Controls;
 
@@ -10,6 +11,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _controls = new Dictionary<string, UserControl>();
             _controls["View"] = new ConsoleAppearanceEditor();
+            DisplayedControl = _controls.Values.FirstOrDefault();
         }
         private Dictionary<string, UserControl> _controls;
 
