@@ -4,6 +4,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows.SettingsWindow"
+        xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        d:DataContext="{d:DesignInstance vm:SettingsViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Title="Chami - Settings" Height="450" Width="800">
     <Grid>
@@ -15,13 +17,13 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TreeView Grid.Row="0" Grid.Column="0" >
-            <TreeViewItem Header="View"></TreeViewItem>
-            <TreeViewItem Header="Safety"></TreeViewItem>
+        <TreeView Grid.Row="0" Grid.Column="0" x:Name="CategoriesTree" SelectedItemChanged="CategoriesTree_OnSelectedItemChanged">
+            <TreeViewItem Header="View" />
+            <TreeViewItem Header="Safety" />
         </TreeView>
-        <UserControl Grid.Row="0" Grid.Column="1" x:Name="SectionViewport"></UserControl>
+        <UserControl Grid.Row="0" Grid.Column="1" x:Name="SectionViewport" Content="{Binding DisplayedControl}" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
-            <Button Margin="5, 5, 5, 5" Content="OK" Width="65"/>
+            <Button Margin="5, 5, 5, 5" Content="OK" Width="65" />
             <Button Margin="5, 5, 5, 5" Content="Cancel" Width="65" />
             <Button Margin="5, 5, 5, 5" Content="Apply" Width="65" />
         </StackPanel>
