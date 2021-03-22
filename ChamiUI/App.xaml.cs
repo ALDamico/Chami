@@ -13,6 +13,7 @@ using ChamiUI.PresentationLayer;
 using ChamiUI.Windows.MainWindow;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog.Core;
 
 namespace ChamiUI
 {
@@ -46,6 +47,11 @@ namespace ChamiUI
             var logger = Logger.GetLogger();
             logger.Error(exceptionMessage);
             logger.Error(args.Exception.StackTrace);
+        }
+
+        public Logger GetLogger()
+        {
+            return Logger.GetLogger();
         }
     }
 }

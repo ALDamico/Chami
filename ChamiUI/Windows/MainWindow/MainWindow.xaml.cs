@@ -4,9 +4,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
+using Microsoft.Win32;
+using Newtonsoft.Json;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -22,8 +25,18 @@ namespace ChamiUI.Windows.MainWindow
             var connString = $"Data Source={dbPath}/{dbName};Version=3";
 
             ViewModel = new MainWindowViewModel(connString);
+            ViewModel.EnvironmentExists += OnEnvironmentExists;
             DataContext = ViewModel;
             InitializeComponent();
+        }
+
+        private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
+        {
+            if (e.Exists)
+            {
+                MessageBox.Show("The environment you're trying to import already exists!",
+                    "Error importing environment", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         public MainWindowViewModel ViewModel { get; set; }
@@ -123,6 +136,29 @@ namespace ChamiUI.Windows.MainWindow
             else
             {
                 e.CanExecute = false;
+            }
+        }
+
+        private void ImportFromJsonMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = OpenFileDialogFactory.GetOpenFileDialog("Json files|*.json");
+            var fileSelected = openFileDialog.ShowDialog();
+
+            if (fileSelected != null && fileSelected.Value)
+            {
+                var file = openFileDialog.OpenFile();
+                try
+                {
+                    ViewModel.ImportJson(file);
+                }
+                catch (JsonSerializationException ex)
+                {
+                    MessageBox.Show("Unable to deserialize input file!\nSee the log for more details.",
+                        "Deserialization error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    var logger = ((App.Current) as ChamiUI.App).GetLogger();
+                    logger.Error(ex.Message);
+                    logger.Error(ex.StackTrace);
+                }
             }
         }
     }
