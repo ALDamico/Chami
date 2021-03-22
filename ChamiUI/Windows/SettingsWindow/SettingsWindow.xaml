@@ -17,9 +17,13 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TreeView Grid.Row="0" Grid.Column="0" x:Name="CategoriesTree" SelectedItemChanged="CategoriesTree_OnSelectedItemChanged">
+        <TreeView Grid.Row="0" 
+                  Grid.Column="0" 
+                  x:Name="CategoriesTree" 
+                  SelectedItemChanged="CategoriesTree_OnSelectedItemChanged">
             <TreeViewItem Header="View" />
             <TreeViewItem Header="Safety" />
+            <TreeViewItem Header="Logging" />
         </TreeView>
         <UserControl Grid.Row="0" Grid.Column="1" x:Name="SectionViewport" Content="{Binding DisplayedControl}" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
