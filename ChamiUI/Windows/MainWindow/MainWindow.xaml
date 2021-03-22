@@ -47,7 +47,7 @@
                 <MenuItem Header="Save" x:Name="SaveEnvironmentMenuItem" Command="Save"></MenuItem>
                 <MenuItem Header="Import">
                     <MenuItem Header="From .env..." />
-                    <MenuItem Header="From JSON..." />
+                    <MenuItem Header="From JSON..." x:Name="ImportFromJsonMenuItem" Click="ImportFromJsonMenuItem_OnClick" />
                 </MenuItem>
                 <MenuItem Header="Export..." />
                 <Separator />

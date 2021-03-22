@@ -1,10 +1,12 @@
 using System;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.DataLayer.Entities;
+using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 
 namespace ChamiUI.PresentationLayer
@@ -116,6 +118,32 @@ namespace ChamiUI.PresentationLayer
         {
             _dataAdapter.SaveEnvironment(SelectedEnvironment);
             DisableEditing();
+        }
+
+        public event EventHandler<EnvironmentExistingEventArgs> EnvironmentExists;
+
+        public void ImportJson(Stream file)
+        {
+            var environmentJsonProcessor = new EnvironmentJsonReader(file);
+            var environment = environmentJsonProcessor.Process();
+            if (environment == null) return;
+            if (!CheckEnvironmentExists(environment))
+            {
+                Environments.Add(environment);
+                SelectedEnvironment = environment;
+                EnableEditing();
+            }
+        }
+
+        protected bool CheckEnvironmentExists(EnvironmentViewModel environment)
+        {
+            if (Environments.Any(e => e.Name == environment.Name))
+            {
+                EnvironmentExists?.Invoke(this, new EnvironmentExistingEventArgs(environment.Name));
+                return true;
+            }
+
+            return false;
         }
     }
 }

@@ -1,0 +1,7 @@
+{
+	"Name": "SomeName",
+	"EnvironmentVariables": {
+		"USER": "SomeUser",
+		"PASSWORD": "SUPERSECRET!"
+	}
+}
