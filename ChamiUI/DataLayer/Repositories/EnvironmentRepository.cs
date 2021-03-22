@@ -191,6 +191,10 @@ namespace ChamiUI.DataLayer.Repositories
 
         public Environment UpsertEnvironment(Environment environment)
         {
+            if (environment.EnvironmentId == 0)
+            {
+                return InsertEnvironment(environment);
+            }
             UpdateEnvironment(environment);
 
             var newVariables = environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0);
