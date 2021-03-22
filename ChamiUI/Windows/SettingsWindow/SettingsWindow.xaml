@@ -28,7 +28,7 @@
         <UserControl Grid.Row="0" Grid.Column="1" x:Name="SectionViewport" Content="{Binding DisplayedControl}" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="1" Grid.Column="1">
             <Button Margin="5, 5, 5, 5" Content="OK" Width="65" />
-            <Button Margin="5, 5, 5, 5" Content="Cancel" Width="65" />
+            <Button Margin="5, 5, 5, 5" Content="Cancel" Width="65" x:Name="CancelButton" Click="CancelButton_OnClick" />
             <Button Margin="5, 5, 5, 5" Content="Apply" Width="65" />
         </StackPanel>
     </Grid>

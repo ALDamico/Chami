@@ -19,5 +19,10 @@ namespace ChamiUI.Windows.SettingsWindow
             var name = (e.NewValue as TreeViewItem)?.Header.ToString();
             _settingsViewModel.ChangeControl(name);
         }
+
+        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
