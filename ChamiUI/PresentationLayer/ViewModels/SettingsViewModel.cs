@@ -12,6 +12,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _controls = new Dictionary<string, UserControl>();
             _controls["View"] = new ConsoleAppearanceEditor();
             _controls["Logging"] = new LoggingSettingsEditor();
+            _controls["Safety"] = new SafeVariableEditor();
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
         private Dictionary<string, UserControl> _controls;
