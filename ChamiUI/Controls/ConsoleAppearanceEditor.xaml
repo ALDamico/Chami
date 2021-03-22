@@ -6,9 +6,13 @@
              xmlns:local="clr-namespace:ChamiUI.Controls"
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+             xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
              d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="200" d:DesignWidth="405"
              >
+    <UserControl.Resources>
+        <cnv:FontFamilyToNameConverter x:Key="FontFamilyToNameConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -41,14 +45,17 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Label Content="{Binding Source}" FontFamily="{Binding}"></Label>
+                                <Label Content="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}" 
+                                       FontFamily="{Binding}"></Label>
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
                 <Label Grid.Row="0" 
                        Grid.Column="2">Font size</Label>
-                <TextBox Grid.Row="0" Grid.Column="3" Text="{Binding FontSize}"></TextBox>
+                <TextBox Grid.Row="0" 
+                         Grid.Column="3" 
+                         Text="{Binding FontSize}"></TextBox>
                 <Label Grid.Row="1" 
                        Grid.Column="0" 
                        Content="Fg color"></Label>
@@ -83,7 +90,9 @@
             <TextBox Background="{Binding BackgroundColor}" 
                      Foreground="{Binding ForegroundColor}" 
                      IsReadOnly="True" 
-                     Text="Example text..." FontFamily="{Binding FontFamily}" FontSize="{Binding FontSize}"></TextBox>
+                     Text="Example text..." 
+                     FontFamily="{Binding FontFamily}" 
+                     FontSize="{Binding FontSize}"></TextBox>
         </GroupBox>
     </Grid>
 </UserControl>
