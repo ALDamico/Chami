@@ -1,44 +1,15 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Controls;
-using ChamiUI.Controls;
-
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class SettingsViewModel : ViewModelBase
+    public class SettingsViewModel: ViewModelBase
     {
         public SettingsViewModel()
         {
-            _controls = new Dictionary<string, UserControl>();
-            _controls["View"] = new ConsoleAppearanceEditor();
-            _controls["Logging"] = new LoggingSettingsEditor();
-            _controls["Safety"] = new SafeVariableEditor();
-            DisplayedControl = _controls.Values.FirstOrDefault();
+            LoggingSettings = new LoggingSettingsViewModel();
+            SafeVariableSettings = new SafeVariableViewModel();
+            ConsoleAppearanceSettings = new ConsoleAppearanceViewModel();
         }
-        private Dictionary<string, UserControl> _controls;
-
-        public void ChangeControl(string name)
-        {
-            var controlExists = _controls.TryGetValue(name, out var control);
-            if (controlExists)
-            {
-                DisplayedControl = control;
-            }
-            else
-            {
-                DisplayedControl = null;
-            }
-        }
-        private UserControl _displayedControl;
-
-        public UserControl DisplayedControl
-        {
-            get => _displayedControl;
-            set
-            {
-                _displayedControl = value;
-                OnPropertyChanged(nameof(DisplayedControl));
-            }
-        }
+        public LoggingSettingsViewModel LoggingSettings { get; set; }
+        public SafeVariableViewModel SafeVariableSettings { get; set; }
+        public ConsoleAppearanceViewModel ConsoleAppearanceSettings { get; set; }
     }
 }

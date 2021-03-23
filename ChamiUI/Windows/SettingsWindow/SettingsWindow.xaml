@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows.SettingsWindow"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
-        d:DataContext="{d:DesignInstance vm:SettingsViewModel, IsDesignTimeCreatable=True}"
+        d:DataContext="{d:DesignInstance vm:SettingsWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Title="Chami - Settings" Height="250" Width="413" ResizeMode="NoResize">
     <Grid>

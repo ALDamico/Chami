@@ -6,18 +6,18 @@ namespace ChamiUI.Windows.SettingsWindow
 {
     public partial class SettingsWindow : Window
     {
-        private readonly SettingsViewModel _settingsViewModel;
+        private readonly SettingsWindowViewModel _settingsWindowViewModel;
         public SettingsWindow()
         {
-            _settingsViewModel = new SettingsViewModel();
-            DataContext = _settingsViewModel;
+            _settingsWindowViewModel = new SettingsWindowViewModel();
+            DataContext = _settingsWindowViewModel;
             InitializeComponent();
         }
 
         private void CategoriesTree_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var name = (e.NewValue as TreeViewItem)?.Header.ToString();
-            _settingsViewModel.ChangeControl(name);
+            _settingsWindowViewModel.ChangeControl(name);
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
