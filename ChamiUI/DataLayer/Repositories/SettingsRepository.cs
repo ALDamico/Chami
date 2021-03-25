@@ -9,13 +9,13 @@ namespace ChamiUI.DataLayer.Repositories
     {
         public SettingsRepository(string connectionString)
         {
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
         }
 
         public IEnumerable<Setting> GetSettings()
         {
             var queryString = @"
-                SELECT SettingName, ViewModelName, Type, Value
+                SELECT SettingName, ViewModelName, Type, Value, PropertyName, AssemblyName, Converter
                 FROM Settings;
 ";
             using var connection = GetConnection();
@@ -34,6 +34,5 @@ namespace ChamiUI.DataLayer.Repositories
             return setting;
         }
 
-        private string _connectionString;
     }
 }

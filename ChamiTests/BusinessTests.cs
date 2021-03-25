@@ -10,11 +10,20 @@ namespace ChamiTests
 {
     public class BusinessTests
     {
+        private static string connectionString = "Data Source=D:/code/Chami/ChamiUI/bin/Debug/net5.0-windows/chami.db;Version=3;";
         [Fact]
         public void TestEnvironmentDataAdapterInstantiation()
         {
             var dataAdapter = new EnvironmentDataAdapter("Data Source=|DataDirectory|/DataLayer/Db/chami.db;Version=3");
             Assert.NotNull(dataAdapter);
+        }
+
+        [Fact]
+        public void TestRealSettings()
+        {
+            var dataAdapter = new SettingsDataAdapter(connectionString);
+            var viewModel = dataAdapter.GetSettings();
+            Assert.NotNull(viewModel);
         }
 
         [Fact]
@@ -32,7 +41,7 @@ namespace ChamiTests
                     PropertyName = "LoggingSettings"
                 }
             };
-            var dataAdapter = new SettingsDataAdapter();
+            var dataAdapter = new SettingsDataAdapter(connectionString);
             var viewModel = dataAdapter.ToViewModel(settings);
             Assert.NotNull(viewModel);
             Assert.True(viewModel.LoggingSettings.LoggingEnabled);

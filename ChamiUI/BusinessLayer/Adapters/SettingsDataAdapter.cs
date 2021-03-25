@@ -1,13 +1,20 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.DataLayer.Repositories;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
     public class SettingsDataAdapter
     {
+        public SettingsDataAdapter(string connectionString)
+        {
+            _repository = new SettingsRepository(connectionString);
+        }
         public SettingsViewModel ToViewModel(IEnumerable<Setting> settings)
         {
             var viewModel = new SettingsViewModel();
@@ -26,8 +33,40 @@ namespace ChamiUI.BusinessLayer.Adapters
                     throw new NullReferenceException($"The requested property was not found in object {pInfo.Name}");
                 }
 
+                object propertyValue = null;
                 var targetTypeName = setting.Type;
-                object propertyValue = GetBoxedConvertedObject(targetTypeName, setting.Value);
+                try
+                {
+                    propertyValue = GetBoxedConvertedObject(targetTypeName, setting.Value);
+                }
+                catch (InvalidCastException)
+                {
+                    var parts = setting.Type.Split(".");
+                    var typeName = parts.Last();
+                    //var assemblyName = setting.Type.Replace("." + typeName, "");
+                    var assemblyName = setting.AssemblyName;
+                    try
+                    {
+                        var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
+                            BindingFlags.Default, null, args: new[] {setting.Value}, null, null);
+                        if (objectWrapper != null)
+                        {
+                            propertyValue = objectWrapper.Unwrap();
+                        }
+                    }
+                    catch (MissingMethodException ex)
+                    {
+                        var converter = Activator.CreateInstance(nameof(ChamiUI), setting.Converter);
+                        if (converter != null)
+                        {
+                            var unwrappedConverter = converter.Unwrap();
+                            var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
+                            propertyValue = methodInfo.Invoke(unwrappedConverter, new[] {setting});
+                        }
+                    }
+                    
+                    
+                }
 
                 var settingSetMethod = settingPInfo.GetSetMethod();
                 if (settingSetMethod == null)
@@ -43,6 +82,14 @@ namespace ChamiUI.BusinessLayer.Adapters
 
 
             return viewModel;
+        }
+
+        private SettingsRepository _repository;
+
+        public SettingsViewModel GetSettings()
+        {
+            var settingsList = _repository.GetSettings();
+            return ToViewModel(settingsList);
         }
 
         private object GetBoxedConvertedObject(string typeName, string value)

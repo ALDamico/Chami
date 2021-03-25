@@ -7,5 +7,7 @@ namespace ChamiUI.DataLayer.Entities
         public string Type { get; set; }
         public string Value { get; set; } 
         public string PropertyName { get; set; }
+        public string AssemblyName { get; set; }
+        public string Converter { get; set; }
     }
 }
