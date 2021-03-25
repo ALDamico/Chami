@@ -1,8 +1,4 @@
-using System.Configuration;
-using System.Windows;
 using System.Windows.Media;
-using ChamiUI;
-using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.DataLayer.Entities;
 using Xunit;
