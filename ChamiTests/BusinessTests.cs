@@ -1,5 +1,6 @@
 using System.Configuration;
 using System.Windows;
+using System.Windows.Media;
 using ChamiUI;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
@@ -24,6 +25,11 @@ namespace ChamiTests
             var dataAdapter = new SettingsDataAdapter(connectionString);
             var viewModel = dataAdapter.GetSettings();
             Assert.NotNull(viewModel);
+            Assert.Equal(12.0, viewModel.ConsoleAppearanceSettings.FontSize);
+            // Comparison of colors fails if we don't cast to string
+            Assert.Equal(Brushes.Black.ToString(), viewModel.ConsoleAppearanceSettings.BackgroundColor.ToString());
+            Assert.Equal(Brushes.White.ToString(), viewModel.ConsoleAppearanceSettings.ForegroundColor.ToString());
+            Assert.Equal(new FontFamily("Courier New"), viewModel.ConsoleAppearanceSettings.FontFamily);
         }
 
         [Fact]

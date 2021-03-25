@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using ChamiUI.DataLayer.Entities;
@@ -119,7 +120,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                 case "System.Double":
                 case "double":
                 {
-                    var conversionSuccessful = double.TryParse(value, out double tmp);
+                    var conversionSuccessful = double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var tmp);
                     if (conversionSuccessful)
                     {
                         propertyValue = tmp;
