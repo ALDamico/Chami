@@ -13,5 +13,12 @@ namespace ChamiUI.Controls
         }
 
         private SafeVariableViewModel _viewModel;
+
+        public SafeVariableEditor(SafeVariableViewModel settingsSafeVariableSettings)
+        {
+            _viewModel = new SafeVariableViewModel();
+            DataContext = _viewModel;
+            InitializeComponent();
+        }
     }
 }

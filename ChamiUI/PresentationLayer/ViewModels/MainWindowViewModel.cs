@@ -37,12 +37,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public MainWindowViewModel(string connectionString)
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
+            _settingsDataAdapter = new SettingsDataAdapter(connectionString);
             Environments = GetEnvironments();
             EditingEnabled = false;
             if (Environments.Any())
             {
                 SelectedEnvironment = Environments.First();
             }
+        }
+
+        private SettingsDataAdapter _settingsDataAdapter;
+
+        public SettingsViewModel GetSettingsViewModel()
+        {
+            return _settingsDataAdapter.GetSettings();
         }
 
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)

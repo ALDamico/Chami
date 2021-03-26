@@ -14,6 +14,13 @@ namespace ChamiUI.Windows.SettingsWindow
             InitializeComponent();
         }
 
+        public SettingsWindow(SettingsViewModel viewModel)
+        {
+            _settingsWindowViewModel = new SettingsWindowViewModel(viewModel);
+            DataContext = _settingsWindowViewModel;
+            InitializeComponent();
+        }
+
         private void CategoriesTree_OnSelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
         {
             var name = (e.NewValue as TreeViewItem)?.Header.ToString();

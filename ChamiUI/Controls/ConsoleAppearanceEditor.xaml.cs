@@ -12,6 +12,13 @@ namespace ChamiUI.Controls
             InitializeComponent();
         }
 
+        public ConsoleAppearanceEditor(ConsoleAppearanceViewModel viewModel)
+        {
+            _viewModel = viewModel;
+            DataContext = viewModel;
+            InitializeComponent();
+        }
+
         private ConsoleAppearanceViewModel _viewModel;
     }
 }

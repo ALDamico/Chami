@@ -17,11 +17,9 @@ namespace ChamiUI.Windows.MainWindow
     {
         public MainWindow()
         {
-            var dbPath = Directory.GetCurrentDirectory();
-            var dbName = "chami.db";
-            var connString = $"Data Source={dbPath}/{dbName};Version=3";
+            var connectionString =  App.GetConnectionString();
 
-            ViewModel = new MainWindowViewModel(connString);
+            ViewModel = new MainWindowViewModel(connectionString);
             DataContext = ViewModel;
             InitializeComponent();
         }
@@ -128,7 +126,8 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var childWindow = new SettingsWindow.SettingsWindow();
+            var settingsViewModel = ViewModel.GetSettingsViewModel();
+            var childWindow = new SettingsWindow.SettingsWindow(settingsViewModel);
             childWindow.ShowDialog();
         }
     }

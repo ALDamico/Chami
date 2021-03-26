@@ -55,7 +55,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                             propertyValue = objectWrapper.Unwrap();
                         }
                     }
-                    catch (MissingMethodException ex)
+                    catch (MissingMethodException)
                     {
                         var converter = Activator.CreateInstance(nameof(ChamiUI), setting.Converter);
                         if (converter != null)

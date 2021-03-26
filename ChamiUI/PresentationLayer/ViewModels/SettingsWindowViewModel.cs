@@ -7,6 +7,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class SettingsWindowViewModel : ViewModelBase
     {
+        public SettingsWindowViewModel(SettingsViewModel settings) 
+        {
+            _controls = new Dictionary<string, UserControl>();
+            _controls["View"] = new ConsoleAppearanceEditor(settings.ConsoleAppearanceSettings);
+            _controls["Logging"] = new LoggingSettingsEditor(settings.LoggingSettings);
+            _controls["Safety"] = new SafeVariableEditor(settings.SafeVariableSettings);
+            DisplayedControl = _controls.Values.FirstOrDefault();
+        }
+
         public SettingsWindowViewModel()
         {
             _controls = new Dictionary<string, UserControl>();
@@ -15,6 +24,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _controls["Safety"] = new SafeVariableEditor();
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
+
         private Dictionary<string, UserControl> _controls;
 
         public void ChangeControl(string name)
@@ -29,6 +39,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 DisplayedControl = null;
             }
         }
+
         private UserControl _displayedControl;
 
         public UserControl DisplayedControl
@@ -38,6 +49,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _displayedControl = value;
                 OnPropertyChanged(nameof(DisplayedControl));
+            }
+        }
+
+        private SettingsViewModel _settingsViewModel;
+
+        public SettingsViewModel Settings
+        {
+            get => _settingsViewModel;
+            set
+            {
+                _settingsViewModel = value;
+                OnPropertyChanged(nameof(Settings));
             }
         }
     }
