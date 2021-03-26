@@ -39,8 +39,8 @@
                        Grid.Column="0">Font</Label>
                 <ComboBox Grid.Row="0" 
                           Grid.Column="1" 
-                          ItemsSource="{Binding FontFamilies}"
                           SelectedItem="{Binding FontFamily}"
+                          ItemsSource="{Binding FontFamilies}"
                           >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>

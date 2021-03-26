@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiUI.BusinessLayer;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Logger;
 using ChamiUI.PresentationLayer;
+using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.Windows.MainWindow;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -29,8 +31,20 @@ namespace ChamiUI
             Logger = new ChamiLogger();
             Logger.AddFileSink("chami.log");
         }
-        
+
+        static App()
+        {
+            _settings = new SettingsDataAdapter(GetConnectionString()).GetSettings();
+        }
+
         public ChamiLogger Logger { get; }
+
+        private static SettingsViewModel _settings;
+
+        public static SettingsViewModel GetSettings()
+        {
+            return _settings;
+        }
 
         public static string GetConnectionString()
         {
@@ -43,9 +57,12 @@ namespace ChamiUI
             var exceptionMessage = args.Exception.Message;
             args.Handled = true;
             MessageBox.Show(exceptionMessage, "An exception occurred!", MessageBoxButton.OK, MessageBoxImage.Error);
-            var logger = Logger.GetLogger();
-            logger.Error(exceptionMessage);
-            logger.Error(args.Exception.StackTrace);
+            if (_settings.LoggingSettings.LoggingEnabled)
+            {
+                var logger = Logger.GetLogger();
+                logger.Error(exceptionMessage);
+                logger.Error(args.Exception.StackTrace);
+            }
         }
     }
 }
