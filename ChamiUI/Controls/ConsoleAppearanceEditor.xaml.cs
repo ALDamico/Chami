@@ -11,19 +11,22 @@ namespace ChamiUI.Controls
         {
             _viewModel = viewModel;
             DataContext = viewModel;
-            
+
             InitializeComponent();
             SetColors();
         }
 
         private void SetColors()
         {
-            var backgroundColorBrush = (_viewModel.BackgroundColor as SolidColorBrush);
-            if (backgroundColorBrush != null)
+            if (_viewModel.BackgroundColor is SolidColorBrush backgroundColorBrush)
             {
                 BackgroundColorPicker.SelectedColor = backgroundColorBrush.Color;
             }
-            
+
+            if (_viewModel.ForegroundColor is SolidColorBrush foregroundColorBrush)
+            {
+                ForegroundColorPicker.SelectedColor = foregroundColorBrush.Color;
+            }
         }
 
         private ConsoleAppearanceViewModel _viewModel;
@@ -36,10 +39,10 @@ namespace ChamiUI.Controls
                 var brush = new SolidColorBrush(newColor.Value);
                 _viewModel.ChangeBackgroundColor(brush);
             }
-            
         }
 
-        private void ForegroundColorPicker_OnSelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        private void ForegroundColorPicker_OnSelectedColorChanged(object sender,
+            RoutedPropertyChangedEventArgs<Color?> e)
         {
             var newColor = e.NewValue;
             if (newColor != null)
