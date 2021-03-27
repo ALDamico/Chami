@@ -46,15 +46,14 @@ namespace ChamiUI.Windows.MainWindow
                 if (o.Message != null)
                 {
                     ConsoleTextBox.Text += o.Message;
-                    ConsoleTextBox.Text += "\n";
                 }
 
                 if (o.OutputStream != null)
                 {
                     StreamReader reader = new StreamReader(o.OutputStream);
                     ConsoleTextBox.Text += reader.ReadToEnd();
-                    ConsoleTextBox.Text += "\n";
                 }
+                ConsoleTextBox.ScrollToEnd();
             });
             await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
         }
