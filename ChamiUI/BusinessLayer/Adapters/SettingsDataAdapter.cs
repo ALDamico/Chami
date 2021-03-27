@@ -58,12 +58,16 @@ namespace ChamiUI.BusinessLayer.Adapters
                         if (converter != null)
                         {
                             var unwrappedConverter = converter.Unwrap();
-                            var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
-                            propertyValue = methodInfo.Invoke(unwrappedConverter, new[] {setting});
+                            if (unwrappedConverter != null)
+                            {
+                                var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
+                                if (methodInfo != null)
+                                {
+                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new[] {setting});
+                                }
+                            }
                         }
                     }
-                    
-                    
                 }
 
                 var settingSetMethod = settingPInfo.GetSetMethod();
