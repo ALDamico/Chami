@@ -10,14 +10,12 @@ using Environment = ChamiUI.DataLayer.Entities.Environment;
 
 namespace ChamiUI.DataLayer.Repositories
 {
-    public class EnvironmentRepository
+    public class EnvironmentRepository:RepositoryBase
     {
         public EnvironmentRepository(string connectionString)
         {
-            _connectionString = connectionString;
+            ConnectionString = connectionString;
         }
-
-        private string _connectionString;
 
         public async Task<Environment> GetEnvironmentByIdAsync(int id)
         {
@@ -139,17 +137,7 @@ namespace ChamiUI.DataLayer.Repositories
             return environment;
         }
 
-        public SQLiteConnection GetConnection()
-        {
-            var connection =  new SQLiteConnection(_connectionString);
-            connection.Open();
-            return connection;
-        }
-
-        public async Task<SQLiteConnection> GetConnectionAsync()
-        {
-            return await new Task<SQLiteConnection>(() => new SQLiteConnection(_connectionString));
-        }
+        
 
         public Environment UpdateEnvironment(Environment environment)
         {

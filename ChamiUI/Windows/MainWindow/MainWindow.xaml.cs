@@ -10,6 +10,7 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using Microsoft.Win32;
 using Newtonsoft.Json;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -20,11 +21,9 @@ namespace ChamiUI.Windows.MainWindow
     {
         public MainWindow()
         {
-            var dbPath = Directory.GetCurrentDirectory();
-            var dbName = "chami.db";
-            var connString = $"Data Source={dbPath}/{dbName};Version=3";
+            var connectionString =  App.GetConnectionString();
 
-            ViewModel = new MainWindowViewModel(connString);
+            ViewModel = new MainWindowViewModel(connectionString);
             ViewModel.EnvironmentExists += OnEnvironmentExists;
             DataContext = ViewModel;
             InitializeComponent();
@@ -61,15 +60,14 @@ namespace ChamiUI.Windows.MainWindow
                 if (o.Message != null)
                 {
                     ConsoleTextBox.Text += o.Message;
-                    ConsoleTextBox.Text += "\n";
                 }
 
                 if (o.OutputStream != null)
                 {
                     StreamReader reader = new StreamReader(o.OutputStream);
                     ConsoleTextBox.Text += reader.ReadToEnd();
-                    ConsoleTextBox.Text += "\n";
                 }
+                ConsoleTextBox.ScrollToEnd();
             });
             await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
         }
@@ -161,5 +159,17 @@ namespace ChamiUI.Windows.MainWindow
                 }
             }
         }
+        private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            
+            var childWindow = new SettingsWindow.SettingsWindow();
+            childWindow.SettingsSaved += OnSettingsSaved;
+            childWindow.ShowDialog();
+        }
+
+        private void OnSettingsSaved(object sender, SettingsSavedEventArgs args)
+        {
+            ViewModel.Settings = args.Settings;
+        } 
     }
 }

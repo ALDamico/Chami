@@ -4,12 +4,13 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using ChamiUI.BusinessLayer;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 
-namespace ChamiUI.PresentationLayer
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
@@ -35,15 +36,37 @@ namespace ChamiUI.PresentationLayer
             EditingEnabled = false;
         }
 
+        private SettingsViewModel _settings;
+
+        public SettingsViewModel Settings
+        {
+            get => _settings;
+            set
+            {
+                _settings = value;
+                OnPropertyChanged(nameof(Settings));
+            }
+        }
+
         public MainWindowViewModel(string connectionString)
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
+            _settingsDataAdapter = new SettingsDataAdapter(connectionString);
             Environments = GetEnvironments();
             EditingEnabled = false;
             if (Environments.Any())
             {
                 SelectedEnvironment = Environments.First();
             }
+
+            Settings = GetSettingsViewModel();
+        }
+
+        private SettingsDataAdapter _settingsDataAdapter;
+
+        private SettingsViewModel GetSettingsViewModel()
+        {
+            return _settingsDataAdapter.GetSettings();
         }
 
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)

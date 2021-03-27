@@ -1,0 +1,14 @@
+using System;
+using ChamiUI.PresentationLayer.ViewModels;
+
+namespace ChamiUI.PresentationLayer.Events
+{
+    public class SettingsSavedEventArgs:EventArgs
+    {
+        public SettingsSavedEventArgs(SettingsViewModel settings)
+        {
+            Settings = settings;
+        }
+        public SettingsViewModel Settings { get; }
+    }
+}

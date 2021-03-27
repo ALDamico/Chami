@@ -1,5 +1,6 @@
 using System;
 using ChamiUI.PresentationLayer;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Validators
 {

@@ -1,0 +1,96 @@
+<UserControl x:Class="ChamiUI.Controls.ConsoleAppearanceEditor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChamiUI.Controls"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+             xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
+             d:DesignHeight="200" d:DesignWidth="405"
+             >
+    <UserControl.Resources>
+        <cnv:FontFamilyToNameConverter x:Key="FontFamilyToNameConverter" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" 
+                  Grid.Column="0" 
+                  Header="Console">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" 
+                       Grid.Column="0">Font</Label>
+                <ComboBox Grid.Row="0" 
+                          Grid.Column="1" 
+                          SelectedItem="{Binding FontFamily}"
+                          ItemsSource="{Binding FontFamilies}"
+                          >
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <Label Content="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}" 
+                                       FontFamily="{Binding}"></Label>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
+                <Label Grid.Row="0" 
+                       Grid.Column="2">Font size</Label>
+                <TextBox Grid.Row="0" 
+                         Grid.Column="3" 
+                         Text="{Binding FontSize}"></TextBox>
+                <Label Grid.Row="1" 
+                       Grid.Column="0" 
+                       Content="Fg color"></Label>
+                <xctk:ColorPicker HorizontalAlignment="Left" 
+                        Grid.Row="1" 
+                        Grid.Column="1" 
+                        DisplayColorTooltip="True"
+                        x:Name="ForegroundColorPicker"
+                        SelectedColorChanged="ForegroundColorPicker_OnSelectedColorChanged"
+                        >
+                        
+                </xctk:ColorPicker>
+                <Label Grid.Row="1" 
+                       Grid.Column="2" 
+                       Content="Bg color"></Label>
+                <xctk:ColorPicker HorizontalAlignment="Left" 
+                        Grid.Row="1" 
+                        Grid.Column="3"
+                        DisplayColorTooltip="True"
+                        SelectedColorChanged="ColorPicker_OnSelectedColorChanged"
+                        x:Name="BackgroundColorPicker"
+                        >
+                </xctk:ColorPicker>
+            </Grid>
+        </GroupBox>
+        <GroupBox Grid.Row="1" 
+                  Grid.Column="0" 
+                  Header="Preview">
+            <TextBox Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}" 
+                     Foreground="{Binding ForegroundColor}" 
+                     IsReadOnly="True" 
+                     Text="Example text..." 
+                     FontFamily="{Binding FontFamily}" 
+                     FontSize="{Binding FontSize}"></TextBox>
+        </GroupBox>
+    </Grid>
+</UserControl>
