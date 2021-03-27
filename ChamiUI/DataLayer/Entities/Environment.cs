@@ -14,5 +14,6 @@ namespace ChamiUI.DataLayer.Entities
         public string Name { get; set; }
         public DateTime AddedOn { get; set; }
         public ICollection<EnvironmentVariable> EnvironmentVariables { get; }
+        public bool IsBackup { get; set; }
     }
 }

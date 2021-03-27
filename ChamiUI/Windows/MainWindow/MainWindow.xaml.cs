@@ -170,6 +170,11 @@ namespace ChamiUI.Windows.MainWindow
         private void OnSettingsSaved(object sender, SettingsSavedEventArgs args)
         {
             ViewModel.Settings = args.Settings;
-        } 
+        }
+
+        private void BackupEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.BackupEnvironment();
+        }
     }
 }

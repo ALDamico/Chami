@@ -1,6 +1,9 @@
+using System.Linq;
 using System.Windows.Media;
+using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.DataLayer.Entities;
+using ChamiUI.DataLayer.Repositories;
 using Xunit;
 
 namespace ChamiTests
@@ -47,6 +50,22 @@ namespace ChamiTests
             var viewModel = dataAdapter.ToViewModel(settings);
             Assert.NotNull(viewModel);
             Assert.True(viewModel.LoggingSettings.LoggingEnabled);
+        }
+
+        [Fact]
+        public void TestBackup()
+        {
+            var environmentRepository = new EnvironmentRepository(connectionString);
+            EnvironmentBackupper.Backup(environmentRepository);
+
+            var backedUpEnvironment = environmentRepository.GetBackupEnvironments().FirstOrDefault();
+            
+            
+            Assert.NotNull(backedUpEnvironment);
+            Assert.Null(backedUpEnvironment.EnvironmentVariables.FirstOrDefault(v => v.Name == "_CHAMI_ENV"));
+
+            // We remove the environment we just added to make sure we can execute this test again.
+            environmentRepository.DeleteEnvironmentById(backedUpEnvironment.EnvironmentId);
         }
     }
 }

@@ -168,5 +168,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             return false;
         }
+
+        public void BackupEnvironment()
+        {
+            _dataAdapter.BackupEnvironment();
+        }
     }
 }

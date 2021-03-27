@@ -57,6 +57,8 @@
                           Click="QuitApplicationMenuItem_OnClick" />
             </MenuItem>
             <MenuItem Header="Options">
+                <MenuItem Header="Backup current environment" x:Name="BackupEnvironmentMenuItem" Click="BackupEnvironmentMenuItem_OnClick"></MenuItem>
+                <Separator/>
                 <MenuItem Header="Settings" x:Name="SettingsMenuItem" Click="SettingsMenuItem_OnClick">
                     <MenuItem.Icon>
                         <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/cog.svg"></svg:SvgViewbox>

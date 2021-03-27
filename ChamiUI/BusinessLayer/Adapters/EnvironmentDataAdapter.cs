@@ -82,5 +82,10 @@ namespace ChamiUI.BusinessLayer.Adapters
             var entity = converter.FromModel(environment);
             _repository.UpsertEnvironment(entity);
         }
+
+        public void BackupEnvironment()
+        {
+            EnvironmentBackupper.Backup(_repository);
+        }
     }
 }

@@ -105,11 +105,11 @@ namespace ChamiUI.DataLayer.Repositories
                 throw new NotSupportedException("Attempting to insert duplicate item in the database");
             }
 
-            var queryString = @"INSERT INTO Environments(Name, AddedON) VALUES (?, ?)";
+            var queryString = @"INSERT INTO Environments(Name, AddedOn, IsBackup) VALUES (?, ?, ?)";
             using (var connection = GetConnection())
             {
                 var transaction = connection.BeginTransaction();
-                connection.Execute(queryString, new {environment.Name, environment.AddedOn});
+                connection.Execute(queryString, new {environment.Name, environment.AddedOn, environment.IsBackup});
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
                 VALUES (?, ?, ?, ?)
@@ -213,12 +213,47 @@ namespace ChamiUI.DataLayer.Repositories
             }
         }
 
+        public ICollection<Environment> GetBackupEnvironments()
+        {
+            var queryString = @"
+                SELECT *
+                FROM Environments
+                LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
+                WHERE IsBackup = 1
+";
+            using (var connection = GetConnection())
+            {
+                var dict = new Dictionary<int, Environment>();
+                var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
+                {
+                    Environment env;
+
+                    if (!dict.TryGetValue(e.EnvironmentId, out env))
+                    {
+                        env = e;
+                        dict[e.EnvironmentId] = e;
+                    }
+
+                    if (v != null)
+                    {
+                        v.Environment = e;
+                        dict[e.EnvironmentId].EnvironmentVariables.Add(v);
+                    }
+
+
+                    return env;
+                }, splitOn: "EnvironmentVariableId");
+                return dict.Values.ToList();
+            }
+        }
+
         public ICollection<Environment> GetEnvironments()
         {
             var queryString = @"
                 SELECT *
                 FROM Environments
                 LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
+                WHERE IsBackup = 0
 ";
             using (var connection = GetConnection())
             {
