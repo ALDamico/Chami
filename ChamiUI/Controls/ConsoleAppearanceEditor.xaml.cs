@@ -38,5 +38,15 @@ namespace ChamiUI.Controls
             }
             
         }
+
+        private void ForegroundColorPicker_OnSelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
+        {
+            var newColor = e.NewValue;
+            if (newColor != null)
+            {
+                var brush = new SolidColorBrush(newColor.Value);
+                _viewModel.ChangeForegroundColor(brush);
+            }
+        }
     }
 }

@@ -60,16 +60,15 @@
                 <Label Grid.Row="1" 
                        Grid.Column="0" 
                        Content="Fg color"></Label>
-                <Button HorizontalAlignment="Left" 
+                <xctk:ColorPicker HorizontalAlignment="Left" 
                         Grid.Row="1" 
                         Grid.Column="1" 
-                        Width="40">
-                    <Button.Content>
-                        <Rectangle Width="30" 
-                                   Height="20" 
-                                   Fill="{Binding ForegroundColor}"></Rectangle>
-                    </Button.Content>
-                </Button>
+                        DisplayColorTooltip="True"
+                        x:Name="ForegroundColorPicker"
+                        SelectedColorChanged="ForegroundColorPicker_OnSelectedColorChanged"
+                        >
+                        
+                </xctk:ColorPicker>
                 <Label Grid.Row="1" 
                        Grid.Column="2" 
                        Content="Bg color"></Label>
@@ -80,11 +79,6 @@
                         SelectedColorChanged="ColorPicker_OnSelectedColorChanged"
                         x:Name="BackgroundColorPicker"
                         >
-                   <!-- <Button.Content>
-                        <Rectangle Width="30" 
-                                   Height="20" 
-                                   Fill="{Binding BackgroundColor}"></Rectangle>
-                    </Button.Content>-->
                 </xctk:ColorPicker>
             </Grid>
         </GroupBox>

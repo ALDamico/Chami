@@ -14,7 +14,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             FontSize = 12.0;
             BackgroundColor = Brushes.Black;
             ForegroundColor = Brushes.White;
-            FontFamilies = new ObservableCollection<FontFamily>(Fonts.GetFontFamilies("c:/windows/fonts"));
+            FontFamilies = GetInstalledFonts();
+        }
+
+        private ObservableCollection<FontFamily> GetInstalledFonts()
+        {
+            return new ObservableCollection<FontFamily>(Fonts.GetFontFamilies("c:/windows/fonts"));
         }
         
         public ObservableCollection<FontFamily> FontFamilies { get; }
@@ -66,6 +71,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void ChangeBackgroundColor(SolidColorBrush brush)
         {
             BackgroundColor = brush;
+        }
+
+        public void ChangeForegroundColor(SolidColorBrush brush)
+        {
+            ForegroundColor = brush;
         }
     }
 }

@@ -36,15 +36,19 @@ namespace ChamiUI.Windows.SettingsWindow
 
         private void ApplyButton_OnClick(object sender, RoutedEventArgs e)
         {
-            _settingsWindowViewModel.SaveSettings();
-            SettingsSaved?.Invoke(this, new SettingsSavedEventArgs(_settingsWindowViewModel.Settings));
+            HandleSettingsSaved();
         }
 
         private void OkButton_OnClick(object sender, RoutedEventArgs e)
         {
+            HandleSettingsSaved();
+            Close();
+        }
+
+        private void HandleSettingsSaved()
+        {
             _settingsWindowViewModel.SaveSettings();
             SettingsSaved?.Invoke(this, new SettingsSavedEventArgs(_settingsWindowViewModel.Settings));
-            Close();
         }
     }
 }
