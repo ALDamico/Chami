@@ -121,9 +121,10 @@
             </TabItem>
             <TabItem Header="Console">
                 <TextBox x:Name="ConsoleTextBox"
-                         Background="Black"
-                         Foreground="Lime"
-                         FontFamily="Consolas"
+                         Background="{Binding Settings.ConsoleAppearanceSettings.BackgroundColor}"
+                         Foreground="{Binding Settings.ConsoleAppearanceSettings.ForegroundColor}"
+                         FontFamily="{Binding Settings.ConsoleAppearanceSettings.FontFamily}"
+                         FontSize="{Binding Settings.ConsoleAppearanceSettings.FontSize}"
                          HorizontalScrollBarVisibility="Auto"
                          VerticalScrollBarVisibility="Visible"
                          IsReadOnly="True"

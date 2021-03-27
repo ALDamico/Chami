@@ -42,9 +42,6 @@ namespace ChamiUI.BusinessLayer.Adapters
                 }
                 catch (InvalidCastException)
                 {
-                    var parts = setting.Type.Split(".");
-                    var typeName = parts.Last();
-                    //var assemblyName = setting.Type.Replace("." + typeName, "");
                     var assemblyName = setting.AssemblyName;
                     try
                     {
@@ -133,5 +130,23 @@ namespace ChamiUI.BusinessLayer.Adapters
 
             return propertyValue;
         }
+
+        public void SaveSettings(SettingsViewModel settings)
+        {
+            var propertyInfos = settings.GetType().GetProperties();
+            foreach (var propertyInfo in propertyInfos)
+            {
+                var propertiesToSave = propertyInfo.PropertyType.GetProperties();
+                foreach (var property in propertiesToSave)
+                {
+                    var propertyName = property.Name;
+                    var propertyValue = property.GetValue(propertyInfo.GetValue(settings)).ToString();
+                    
+                    _repository.UpdateSetting(propertyName, propertyValue);
+                }
+            }
+        }
+        
+        
     }
 }

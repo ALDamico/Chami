@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using ChamiUI.DataLayer.Entities;
 using Dapper;
 
@@ -20,6 +21,19 @@ namespace ChamiUI.DataLayer.Repositories
 ";
             using var connection = GetConnection();
             return connection.Query<Setting>(queryString);
+        }
+
+        public Setting UpdateSetting(string settingName, string settingValue)
+        {
+            var queryString = @"
+                UPDATE Settings
+                SET Value = ?
+                WHERE SettingName = ?
+";
+            using var connection = GetConnection();
+            connection.Execute(queryString, new {settingValue, settingName});
+            var setting = GetSettings().FirstOrDefault(s => s.SettingName == settingName);
+            return setting;
         }
 
         public Setting UpdateSetting(Setting setting)

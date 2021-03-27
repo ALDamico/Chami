@@ -34,6 +34,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EditingEnabled = false;
         }
 
+        private SettingsViewModel _settings;
+
+        public SettingsViewModel Settings
+        {
+            get => _settings;
+            set
+            {
+                _settings = value;
+                OnPropertyChanged(nameof(Settings));
+            }
+        }
+
         public MainWindowViewModel(string connectionString)
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
@@ -44,11 +56,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironment = Environments.First();
             }
+
+            Settings = GetSettingsViewModel();
         }
 
         private SettingsDataAdapter _settingsDataAdapter;
 
-        public SettingsViewModel GetSettingsViewModel()
+        private SettingsViewModel GetSettingsViewModel()
         {
             return _settingsDataAdapter.GetSettings();
         }

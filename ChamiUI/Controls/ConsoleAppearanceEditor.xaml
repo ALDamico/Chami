@@ -7,6 +7,7 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
              xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="200" d:DesignWidth="405"
              >
@@ -72,22 +73,25 @@
                 <Label Grid.Row="1" 
                        Grid.Column="2" 
                        Content="Bg color"></Label>
-                <Button HorizontalAlignment="Left" 
+                <xctk:ColorPicker HorizontalAlignment="Left" 
                         Grid.Row="1" 
-                        Grid.Column="3" 
-                        Width="40">
-                    <Button.Content>
+                        Grid.Column="3"
+                        DisplayColorTooltip="True"
+                        SelectedColorChanged="ColorPicker_OnSelectedColorChanged"
+                        x:Name="BackgroundColorPicker"
+                        >
+                   <!-- <Button.Content>
                         <Rectangle Width="30" 
                                    Height="20" 
                                    Fill="{Binding BackgroundColor}"></Rectangle>
-                    </Button.Content>
-                </Button>
+                    </Button.Content>-->
+                </xctk:ColorPicker>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1" 
                   Grid.Column="0" 
                   Header="Preview">
-            <TextBox Background="{Binding BackgroundColor}" 
+            <TextBox Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}" 
                      Foreground="{Binding ForegroundColor}" 
                      IsReadOnly="True" 
                      Text="Example text..." 

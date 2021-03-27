@@ -1,3 +1,6 @@
+using System;
+using ChamiUI.PresentationLayer.Events;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class SettingsViewModel: ViewModelBase
@@ -11,5 +14,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public LoggingSettingsViewModel LoggingSettings { get; set; }
         public SafeVariableViewModel SafeVariableSettings { get; set; }
         public ConsoleAppearanceViewModel ConsoleAppearanceSettings { get; set; }
+        
     }
 }

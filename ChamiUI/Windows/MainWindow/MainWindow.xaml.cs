@@ -126,9 +126,15 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var settingsViewModel = ViewModel.GetSettingsViewModel();
-            var childWindow = new SettingsWindow.SettingsWindow(settingsViewModel);
+            
+            var childWindow = new SettingsWindow.SettingsWindow();
+            childWindow.SettingsSaved += OnSettingsSaved;
             childWindow.ShowDialog();
         }
+
+        private void OnSettingsSaved(object sender, SettingsSavedEventArgs args)
+        {
+            ViewModel.Settings = args.Settings;
+        } 
     }
 }

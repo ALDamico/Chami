@@ -1,30 +1,33 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.Controls;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class SettingsWindowViewModel : ViewModelBase
     {
-        public SettingsWindowViewModel(SettingsViewModel settings) 
-        {
-            _controls = new Dictionary<string, UserControl>();
-            _controls["View"] = new ConsoleAppearanceEditor(settings.ConsoleAppearanceSettings);
-            _controls["Logging"] = new LoggingSettingsEditor(settings.LoggingSettings);
-            _controls["Safety"] = new SafeVariableEditor(settings.SafeVariableSettings);
-            DisplayedControl = _controls.Values.FirstOrDefault();
-        }
-
         public SettingsWindowViewModel()
         {
+            var connectionString = App.GetConnectionString();
+            _dataAdapter = new SettingsDataAdapter(connectionString);
+            Settings = _dataAdapter.GetSettings();
             _controls = new Dictionary<string, UserControl>();
-            _controls["View"] = new ConsoleAppearanceEditor();
-            _controls["Logging"] = new LoggingSettingsEditor();
-            _controls["Safety"] = new SafeVariableEditor();
+            _controls["View"] = new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings);
+            _controls["Logging"] = new LoggingSettingsEditor(Settings.LoggingSettings);
+            _controls["Safety"] = new SafeVariableEditor(Settings.SafeVariableSettings);
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
 
+        public void SaveSettings()
+        {
+            _dataAdapter.SaveSettings(Settings);
+        }
+
+        private SettingsDataAdapter _dataAdapter;
         private Dictionary<string, UserControl> _controls;
 
         public void ChangeControl(string name)
@@ -63,5 +66,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(Settings));
             }
         }
+        
     }
 }

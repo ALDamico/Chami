@@ -62,5 +62,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ForegroundColor));
             }
         }
+
+        public void ChangeBackgroundColor(SolidColorBrush brush)
+        {
+            BackgroundColor = brush;
+        }
     }
 }
