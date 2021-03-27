@@ -176,5 +176,16 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.BackupEnvironment();
         }
+
+        private void ImportFromDotenvMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = OpenFileDialogFactory.GetOpenFileDialog("DotEnv files|*.env");
+            var fileSelected = openFileDialog.ShowDialog();
+
+            if (fileSelected != null && fileSelected.Value)
+            {
+                ViewModel.ImportDotEnv(openFileDialog.FileName);
+            }
+        }
     }
 }

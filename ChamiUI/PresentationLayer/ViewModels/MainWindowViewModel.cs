@@ -9,6 +9,7 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
+using dotenv.net;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -172,6 +173,25 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void BackupEnvironment()
         {
             _dataAdapter.BackupEnvironment();
+        }
+
+        public void ImportDotEnv(string filePath)
+        {
+            var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
+            var environmentViewModel = new EnvironmentViewModel();
+            environmentViewModel.Name = filePath;
+            foreach (var variable in newVariables)
+            {
+                var environmentVariable = new EnvironmentVariableViewModel();
+                environmentVariable.Name = variable.Key;
+                environmentVariable.Value = variable.Value;
+                environmentViewModel.EnvironmentVariables.Add(environmentVariable);
+            }
+
+            Environments.Add(environmentViewModel);
+            SelectedEnvironment = environmentViewModel;
+            EnableEditing();
+            _dataAdapter.InsertEnvironment(environmentViewModel);
         }
     }
 }
