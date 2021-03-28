@@ -68,7 +68,7 @@
             <MenuItem Header="?">
                 <MenuItem Header="About Chami..." x:Name="AboutMenuItem" Click="AboutMenuItem_OnClick" />
                 <Separator />
-                <MenuItem Header="Website" />
+                <MenuItem Header="Website" x:Name="WebsiteMenuItem" Click="WebsiteMenuItem_Click" />
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"

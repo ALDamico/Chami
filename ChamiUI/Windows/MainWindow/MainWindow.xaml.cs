@@ -11,6 +11,7 @@ using ChamiUI.PresentationLayer.Progress;
 using Microsoft.Win32;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.ViewModels;
+using System.Diagnostics;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -191,6 +192,17 @@ namespace ChamiUI.Windows.MainWindow
         private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             new AboutBox.AboutBox().ShowDialog();
+        }
+
+        private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            ProcessStartInfo startInfo = new ProcessStartInfo("www.lucianodamico.info");
+            // Required, otherwise the app crashes with a Win32Exception
+            startInfo.UseShellExecute = true;
+            Process process = new Process();
+            process.StartInfo = startInfo;
+            
+            process.Start();
         }
     }
 }
