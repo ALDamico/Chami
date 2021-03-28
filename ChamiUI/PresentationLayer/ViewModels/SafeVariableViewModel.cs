@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class SafeVariableViewModel:ViewModelBase
+    public class SafeVariableViewModel : ViewModelBase
     {
         public SafeVariableViewModel()
         {

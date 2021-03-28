@@ -1,8 +1,8 @@
+using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using ChamiUI.PresentationLayer.Events;
-using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.SettingsWindow
 {

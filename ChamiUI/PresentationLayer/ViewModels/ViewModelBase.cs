@@ -1,6 +1,6 @@
+using ChamiUI.Annotations;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using ChamiUI.Annotations;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

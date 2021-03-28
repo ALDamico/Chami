@@ -1,16 +1,15 @@
+using ChamiUI.DataLayer.Entities;
+using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SQLite;
 using System.Linq;
 using System.Threading.Tasks;
-using ChamiUI.DataLayer.Entities;
-using Dapper;
 using Environment = ChamiUI.DataLayer.Entities.Environment;
 
 namespace ChamiUI.DataLayer.Repositories
 {
-    public class EnvironmentRepository:RepositoryBase
+    public class EnvironmentRepository : RepositoryBase
     {
         public EnvironmentRepository(string connectionString)
         {
@@ -30,7 +29,7 @@ namespace ChamiUI.DataLayer.Repositories
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
                 {
-                    var param = new {id};
+                    var param = new { id };
                     var result = await connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
@@ -68,7 +67,7 @@ namespace ChamiUI.DataLayer.Repositories
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
                 {
-                    var param = new {id};
+                    var param = new { id };
                     var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
@@ -109,7 +108,7 @@ namespace ChamiUI.DataLayer.Repositories
             using (var connection = GetConnection())
             {
                 var transaction = connection.BeginTransaction();
-                connection.Execute(queryString, new {environment.Name, environment.AddedOn, environment.IsBackup});
+                connection.Execute(queryString, new { environment.Name, environment.AddedOn, environment.IsBackup });
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
                 VALUES (?, ?, ?, ?)
@@ -118,7 +117,7 @@ namespace ChamiUI.DataLayer.Repositories
                     SELECT * 
                     FROM Environments e
                     WHERE e.AddedOn = ?";
-                var result = connection.QuerySingle<Environment>(selectQuery, new {environment.AddedOn});
+                var result = connection.QuerySingle<Environment>(selectQuery, new { environment.AddedOn });
                 environment.EnvironmentId = result.EnvironmentId;
                 foreach (var environmentVariable in environment.EnvironmentVariables)
                 {
@@ -126,18 +125,19 @@ namespace ChamiUI.DataLayer.Repositories
                     connection.Execute(environmentVariableInsertQuery,
                         new
                         {
-                            Name = environmentVariable.Name, environmentVariable.Value,
+                            Name = environmentVariable.Name,
+                            environmentVariable.Value,
                             environmentVariable.AddedOn,
                             environmentVariable.EnvironmentId
                         });
                 }
                 transaction.Commit();
             }
-            
+
             return environment;
         }
 
-        
+
 
         public Environment UpdateEnvironment(Environment environment)
         {
@@ -153,7 +153,7 @@ namespace ChamiUI.DataLayer.Repositories
 ";
             using (var connection = GetConnection())
             {
-                connection.Execute(updateQuery, new {environment.Name, environment.EnvironmentId});
+                connection.Execute(updateQuery, new { environment.Name, environment.EnvironmentId });
                 foreach (var environmentVariable in environment.EnvironmentVariables)
                 {
                     var envVarUpdateQuery = @"
@@ -164,7 +164,8 @@ namespace ChamiUI.DataLayer.Repositories
 ";
                     var updObj = new
                     {
-                        Name = environmentVariable.Name, environmentVariable.Value,
+                        Name = environmentVariable.Name,
+                        environmentVariable.Value,
                         environmentVariable.EnvironmentId,
                         environmentVariable.EnvironmentVariableId
                     };
@@ -205,7 +206,8 @@ namespace ChamiUI.DataLayer.Repositories
             {
                 var updObj = new
                 {
-                    Name = environmentVariable.Name, environmentVariable.Value,
+                    Name = environmentVariable.Name,
+                    environmentVariable.Value,
                     environmentVariable.AddedOn,
                     environmentId
                 };
@@ -294,7 +296,7 @@ namespace ChamiUI.DataLayer.Repositories
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
                 {
-                    var param = new {name};
+                    var param = new { name };
                     var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
@@ -311,8 +313,8 @@ namespace ChamiUI.DataLayer.Repositories
                                 v.Environment = e;
                                 environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
                             }
-                            
-                            
+
+
                             return env;
                         }, param, splitOn: "EnvironmentVariableId");
                     return result.FirstOrDefault();
@@ -332,13 +334,13 @@ namespace ChamiUI.DataLayer.Repositories
 ";
             using (var connection = GetConnection())
             {
-                connection.Execute(queryString, new {id});
+                connection.Execute(queryString, new { id });
 
                 queryString = @"
                     DELETE FROM Environments
                 WHERE EnvironmentId = ?
 ";
-                var result = connection.Execute(queryString, new {id});
+                var result = connection.Execute(queryString, new { id });
                 return result > 0;
             }
         }

@@ -1,10 +1,9 @@
 using ChamiUI.DataLayer.Entities;
-using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
-    public class EnvironmentVariableConverter: IConverter<EnvironmentVariable, EnvironmentVariableViewModel>
+    public class EnvironmentVariableConverter : IConverter<EnvironmentVariable, EnvironmentVariableViewModel>
     {
         public EnvironmentVariable FromModel(EnvironmentVariableViewModel model)
         {

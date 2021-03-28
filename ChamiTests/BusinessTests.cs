@@ -1,9 +1,9 @@
-using System.Linq;
-using System.Windows.Media;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.DataLayer.Repositories;
+using System.Linq;
+using System.Windows.Media;
 using Xunit;
 
 namespace ChamiTests
@@ -38,10 +38,10 @@ namespace ChamiTests
             {
                 new Setting()
                 {
-                    
+
                     Type = "System.Boolean",
                     SettingName = "LoggingEnabled",
-                    ViewModelName = "ChamiUI.PresentationLayer.ViewModels.LoggingSettingsViewModel", 
+                    ViewModelName = "ChamiUI.PresentationLayer.ViewModels.LoggingSettingsViewModel",
                     Value = "true",
                     PropertyName = "LoggingSettings"
                 }
@@ -59,8 +59,8 @@ namespace ChamiTests
             EnvironmentBackupper.Backup(environmentRepository);
 
             var backedUpEnvironment = environmentRepository.GetBackupEnvironments().FirstOrDefault();
-            
-            
+
+
             Assert.NotNull(backedUpEnvironment);
             Assert.Null(backedUpEnvironment.EnvironmentVariables.FirstOrDefault(v => v.Name == "_CHAMI_ENV"));
 

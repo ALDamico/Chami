@@ -1,5 +1,5 @@
-using System.Windows.Controls;
 using ChamiUI.PresentationLayer.ViewModels;
+using System.Windows.Controls;
 
 namespace ChamiUI.Controls
 {

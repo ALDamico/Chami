@@ -1,6 +1,5 @@
-using System.IO;
-using System.Net;
 using ChamiUI.BusinessLayer;
+using System.IO;
 using Xunit;
 
 namespace ChamiTests

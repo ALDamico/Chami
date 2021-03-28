@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using ChamiUI.DataLayer.Entities;
 using Dapper;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ChamiUI.DataLayer.Repositories
 {
@@ -31,7 +30,7 @@ namespace ChamiUI.DataLayer.Repositories
                 WHERE SettingName = ?
 ";
             using var connection = GetConnection();
-            connection.Execute(queryString, new {settingValue, settingName});
+            connection.Execute(queryString, new { settingValue, settingName });
             var setting = GetSettings().FirstOrDefault(s => s.SettingName == settingName);
             return setting;
         }
@@ -44,7 +43,7 @@ namespace ChamiUI.DataLayer.Repositories
                 WHERE SettingName = ?
 ";
             using var connection = GetConnection();
-            connection.Execute(queryString, new {setting.Value, setting.SettingName});
+            connection.Execute(queryString, new { setting.Value, setting.SettingName });
             return setting;
         }
 

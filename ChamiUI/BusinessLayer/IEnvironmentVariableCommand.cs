@@ -1,7 +1,7 @@
-using System;
-using System.Threading.Tasks;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Progress;
+using System;
+using System.Threading.Tasks;
 
 namespace ChamiUI.BusinessLayer
 {

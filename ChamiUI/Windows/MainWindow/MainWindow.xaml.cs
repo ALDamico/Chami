@@ -1,17 +1,15 @@
-﻿using System;
+﻿using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.Progress;
+using ChamiUI.PresentationLayer.ViewModels;
+using Newtonsoft.Json;
+using System;
+using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using ChamiUI.BusinessLayer.Factories;
-using ChamiUI.PresentationLayer;
-using ChamiUI.PresentationLayer.Events;
-using ChamiUI.PresentationLayer.Progress;
-using Microsoft.Win32;
-using Newtonsoft.Json;
-using ChamiUI.PresentationLayer.ViewModels;
-using System.Diagnostics;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -22,7 +20,7 @@ namespace ChamiUI.Windows.MainWindow
     {
         public MainWindow()
         {
-            var connectionString =  App.GetConnectionString();
+            var connectionString = App.GetConnectionString();
 
             ViewModel = new MainWindowViewModel(connectionString);
             ViewModel.EnvironmentExists += OnEnvironmentExists;
@@ -162,7 +160,7 @@ namespace ChamiUI.Windows.MainWindow
         }
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            
+
             var childWindow = new SettingsWindow.SettingsWindow();
             childWindow.SettingsSaved += OnSettingsSaved;
             childWindow.ShowDialog();
@@ -201,7 +199,7 @@ namespace ChamiUI.Windows.MainWindow
             startInfo.UseShellExecute = true;
             Process process = new Process();
             process.StartInfo = startInfo;
-            
+
             process.Start();
         }
     }

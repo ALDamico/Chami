@@ -1,15 +1,15 @@
-using System.Collections.Generic;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.DataLayer.Repositories;
 using ChamiUI.PresentationLayer.ViewModels;
+using System.Collections.Generic;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
     public class EnvironmentDataAdapter
     {
-        
+
         public EnvironmentDataAdapter(string connectionString)
         {
             _repository = new EnvironmentRepository(connectionString);
@@ -23,7 +23,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             var environmentConverter = new EnvironmentConverter();
             foreach (var model in models)
             {
-                output.Add(environmentConverter.FromEntity(model));   
+                output.Add(environmentConverter.FromEntity(model));
             }
 
             return output;
@@ -39,7 +39,7 @@ namespace ChamiUI.BusinessLayer.Adapters
 
             return new EnvironmentConverter().FromEntity(environment);
         }
-        
+
         public Environment GetEnvironmentEntityByName(string name)
         {
             return _repository.GetEnvironmentByName(name);

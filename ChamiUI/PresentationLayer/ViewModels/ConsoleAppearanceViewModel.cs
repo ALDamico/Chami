@@ -1,11 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Media;
 using System.Text.RegularExpressions;
+using System.Windows.Media;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class ConsoleAppearanceViewModel: ViewModelBase
+    public class ConsoleAppearanceViewModel : ViewModelBase
     {
         public ConsoleAppearanceViewModel()
         {
@@ -21,9 +21,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             return new ObservableCollection<FontFamily>(Fonts.GetFontFamilies("c:/windows/fonts"));
         }
-        
+
         public ObservableCollection<FontFamily> FontFamilies { get; }
-        
+
         private FontFamily _fontFamily;
         public FontFamily FontFamily
         {

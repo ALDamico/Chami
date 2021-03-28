@@ -1,21 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Logger;
+using ChamiUI.PresentationLayer.ViewModels;
+using Serilog.Core;
+using System;
 using System.Configuration;
-using System.Data;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using ChamiUI.BusinessLayer;
-using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.BusinessLayer.Logger;
-using ChamiUI.PresentationLayer;
-using ChamiUI.PresentationLayer.ViewModels;
-using ChamiUI.Windows.MainWindow;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Serilog.Core;
 
 namespace ChamiUI
 {

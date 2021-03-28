@@ -1,10 +1,8 @@
-using System;
+using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
-using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.Controls;
-using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -66,6 +64,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(Settings));
             }
         }
-        
+
     }
 }

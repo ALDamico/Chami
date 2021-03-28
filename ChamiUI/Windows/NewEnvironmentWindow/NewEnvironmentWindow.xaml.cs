@@ -1,9 +1,8 @@
+using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Windows;
-using ChamiUI.PresentationLayer;
-using ChamiUI.PresentationLayer.Events;
-using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
 {

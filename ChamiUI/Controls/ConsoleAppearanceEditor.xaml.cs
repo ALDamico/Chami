@@ -1,5 +1,5 @@
-using System.Windows;
 using ChamiUI.PresentationLayer.ViewModels;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 

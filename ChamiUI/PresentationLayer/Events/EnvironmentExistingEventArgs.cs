@@ -2,7 +2,7 @@ using System;
 
 namespace ChamiUI.PresentationLayer.Events
 {
-    public class EnvironmentExistingEventArgs:EventArgs
+    public class EnvironmentExistingEventArgs : EventArgs
     {
         public EnvironmentExistingEventArgs(string name)
         {

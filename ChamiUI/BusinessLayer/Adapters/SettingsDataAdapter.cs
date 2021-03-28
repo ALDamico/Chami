@@ -1,12 +1,11 @@
+using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.DataLayer.Entities;
+using ChamiUI.DataLayer.Repositories;
+using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Reflection;
-using ChamiUI.DataLayer.Entities;
-using ChamiUI.PresentationLayer.ViewModels;
-using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.DataLayer.Repositories;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
@@ -46,7 +45,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                     try
                     {
                         var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
-                            BindingFlags.Default, null, args: new[] {setting.Value}, null, null);
+                            BindingFlags.Default, null, args: new[] { setting.Value }, null, null);
                         if (objectWrapper != null)
                         {
                             propertyValue = objectWrapper.Unwrap();
@@ -63,7 +62,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                                 var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
                                 if (methodInfo != null)
                                 {
-                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new[] {setting});
+                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new[] { setting });
                                 }
                             }
                         }
@@ -77,7 +76,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                         $"The requested property {settingPInfo.Name} has no publicly-accessible setter!");
                 }
 
-                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] {propertyValue});
+                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] { propertyValue });
 
                 pInfo.SetValue(viewModel, pInfo.GetValue(viewModel));
             }
@@ -109,26 +108,26 @@ namespace ChamiUI.BusinessLayer.Adapters
                     break;
                 case "System.Int32":
                 case "int":
-                {
-                    var conversionSuccessful = int.TryParse(value, out int tmp);
-                    if (conversionSuccessful)
                     {
-                        propertyValue = tmp;
-                    }
+                        var conversionSuccessful = int.TryParse(value, out int tmp);
+                        if (conversionSuccessful)
+                        {
+                            propertyValue = tmp;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
                 case "System.Double":
                 case "double":
-                {
-                    var conversionSuccessful = double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var tmp);
-                    if (conversionSuccessful)
                     {
-                        propertyValue = tmp;
-                    }
+                        var conversionSuccessful = double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var tmp);
+                        if (conversionSuccessful)
+                        {
+                            propertyValue = tmp;
+                        }
 
-                    break;
-                }
+                        break;
+                    }
                 default: throw new InvalidCastException("Requested type not supported!");
             }
 
@@ -145,12 +144,12 @@ namespace ChamiUI.BusinessLayer.Adapters
                 {
                     var propertyName = property.Name;
                     var propertyValue = property.GetValue(propertyInfo.GetValue(settings)).ToString();
-                    
+
                     _repository.UpdateSetting(propertyName, propertyValue);
                 }
             }
         }
-        
-        
+
+
     }
 }

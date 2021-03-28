@@ -4,9 +4,9 @@ namespace ChamiUI.BusinessLayer.Validators
     {
         public ValidationResult()
         {
-            
+
         }
-        
+
         public ValidationResult(bool isValid, string message)
         {
             IsValid = isValid;

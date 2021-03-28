@@ -1,4 +1,3 @@
-using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 
 namespace ChamiUI.PresentationLayer.ViewModels

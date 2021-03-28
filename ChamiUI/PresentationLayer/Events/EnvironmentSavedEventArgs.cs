@@ -1,9 +1,9 @@
-using System;
 using ChamiUI.PresentationLayer.ViewModels;
+using System;
 
 namespace ChamiUI.PresentationLayer.Events
 {
-    public class EnvironmentSavedEventArgs:EventArgs
+    public class EnvironmentSavedEventArgs : EventArgs
     {
         public EnvironmentSavedEventArgs(EnvironmentViewModel environmentViewModel)
         {

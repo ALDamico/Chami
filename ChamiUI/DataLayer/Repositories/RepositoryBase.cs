@@ -8,7 +8,7 @@ namespace ChamiUI.DataLayer.Repositories
         protected string ConnectionString { get; set; }
         protected SQLiteConnection GetConnection()
         {
-            var connection =  new SQLiteConnection(ConnectionString);
+            var connection = new SQLiteConnection(ConnectionString);
             connection.Open();
             return connection;
         }

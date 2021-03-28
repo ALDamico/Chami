@@ -1,13 +1,12 @@
-using System;
-using System.Diagnostics;
-using System.IO;
-using System.Threading.Tasks;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Progress;
+using System;
+using System.Diagnostics;
+using System.Threading.Tasks;
 
 namespace ChamiUI.BusinessLayer
 {
-    public class EnvironmentVariableApplicationCommand:IEnvironmentVariableCommand
+    public class EnvironmentVariableApplicationCommand : IEnvironmentVariableCommand
     {
         public EnvironmentVariableApplicationCommand(EnvironmentVariable variable)
         {
@@ -29,7 +28,7 @@ namespace ChamiUI.BusinessLayer
 
         public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress)
         {
-            
+
             var arguments = $"/C SETX {EnvironmentVariable.Name} {EnvironmentVariable.Value}";
             var commandLineFull = "cmd.exe " + arguments;
             progress?.Report(new CmdExecutorProgress(0, null, commandLineFull));
@@ -45,7 +44,7 @@ namespace ChamiUI.BusinessLayer
             {
                 progress.Report(new CmdExecutorProgress(0, process.StandardOutput.BaseStream, null));
             }
-            
+
         }
     }
 }

@@ -1,16 +1,14 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.DataLayer.Repositories;
+using System;
+using System.Collections;
 using Environment = ChamiUI.DataLayer.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer
 {
     public static class EnvironmentBackupper
     {
-        private static IDictionary RemoveCurrentChamiVariables(IDictionary environmentVariables, EnvironmentRepository repository) 
+        private static IDictionary RemoveCurrentChamiVariables(IDictionary environmentVariables, EnvironmentRepository repository)
         {
             var currentEnvironmentName = environmentVariables["_CHAMI_ENV"];
             if (currentEnvironmentName != null)
@@ -25,13 +23,13 @@ namespace ChamiUI.BusinessLayer
             environmentVariables.Remove("_CHAMI_ENV");
             return environmentVariables;
         }
-        
+
         public static void Backup(EnvironmentRepository repository)
         {
             var environmentVariables = System.Environment.GetEnvironmentVariables();
 
             environmentVariables = RemoveCurrentChamiVariables(environmentVariables, repository);
-            
+
             var backupEnvironment = new Environment();
 
             var environmentName = $"Backup of {DateTime.Now:s}";
@@ -40,9 +38,9 @@ namespace ChamiUI.BusinessLayer
 
             foreach (DictionaryEntry entry in environmentVariables)
             {
-                var variableName = (string) entry.Key;
-                var variableValue = (string) entry.Value;
-                var environmentVariable = new EnvironmentVariable {Name = variableName, Value = variableValue};
+                var variableName = (string)entry.Key;
+                var variableValue = (string)entry.Value;
+                var environmentVariable = new EnvironmentVariable { Name = variableName, Value = variableValue };
                 backupEnvironment.EnvironmentVariables.Add(environmentVariable);
             }
 

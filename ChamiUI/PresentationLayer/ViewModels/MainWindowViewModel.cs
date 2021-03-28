@@ -1,8 +1,3 @@
-using System;
-using System.Collections.ObjectModel;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
@@ -10,6 +5,11 @@ using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using dotenv.net;
+using System;
+using System.Collections.ObjectModel;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -31,7 +31,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             EditingEnabled = true;
         }
-        
+
         public void DisableEditing()
         {
             EditingEnabled = false;
@@ -89,7 +89,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var newEnvironment = _dataAdapter.GetEnvironmentEntityByName(SelectedEnvironment.Name);
             cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand(
                 typeof(EnvironmentVariableApplicationCommand),
-                new EnvironmentVariable() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
+                new EnvironmentVariable() { Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name }));
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
@@ -177,7 +177,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void ImportDotEnv(string filePath)
         {
-            var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
+            var newVariables = DotEnv.Fluent().WithEnvFiles(new[] { filePath }).Read();
             var environmentViewModel = new EnvironmentViewModel();
             environmentViewModel.Name = filePath;
             foreach (var variable in newVariables)

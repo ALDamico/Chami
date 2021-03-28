@@ -1,10 +1,9 @@
-using System;
-using ChamiUI.PresentationLayer;
 using ChamiUI.PresentationLayer.ViewModels;
+using System;
 
 namespace ChamiUI.BusinessLayer.Validators
 {
-    public class EnvironmentViewModelValidator:IValidator<EnvironmentViewModel>
+    public class EnvironmentViewModelValidator : IValidator<EnvironmentViewModel>
     {
         public IValidationResult Validate(EnvironmentViewModel viewModel)
         {

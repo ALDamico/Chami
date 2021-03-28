@@ -1,7 +1,6 @@
-using System;
-using System.Linq;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.DataLayer.Repositories;
+using System.Linq;
 using Xunit;
 using Environment = ChamiUI.DataLayer.Entities.Environment;
 
@@ -28,8 +27,8 @@ namespace ChamiTests
                 Name = "Example"
             };
 
-            var environmentVariable1 = new EnvironmentVariable() {Name = "USER", Value = "TestUser"};
-            var environmentVariable2 = new EnvironmentVariable() {Name = "PASSWORD", Value = "SECRET"};
+            var environmentVariable1 = new EnvironmentVariable() { Name = "USER", Value = "TestUser" };
+            var environmentVariable2 = new EnvironmentVariable() { Name = "PASSWORD", Value = "SECRET" };
             environment.EnvironmentVariables.Add(environmentVariable1);
             environment.EnvironmentVariables.Add(environmentVariable2);
 
