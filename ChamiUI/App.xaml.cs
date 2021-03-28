@@ -4,6 +4,8 @@ using ChamiUI.PresentationLayer.ViewModels;
 using Serilog.Core;
 using System;
 using System.Configuration;
+using System.Data.SQLite;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -21,21 +23,24 @@ namespace ChamiUI
 #endif
             Logger = new ChamiLogger();
             Logger.AddFileSink("chami.log");
-        }
-
-        static App()
-        {
-            _settings = new SettingsDataAdapter(GetConnectionString()).GetSettings();
+            try
+            {
+                Settings = new SettingsDataAdapter(GetConnectionString()).GetSettings();
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("The application database chami.db hasn't been found!\nThe application will now exit.",
+                    "Unable to find database!", MessageBoxButton.OK, MessageBoxImage.Error);
+                Environment.Exit(-5);
+            }
+            
         }
 
         public ChamiLogger Logger { get; }
 
-        private static SettingsViewModel _settings;
+        public SettingsViewModel Settings { get; set; }
 
-        public static SettingsViewModel GetSettings()
-        {
-            return _settings;
-        }
+        
 
         public static string GetConnectionString()
         {
@@ -48,7 +53,7 @@ namespace ChamiUI
             var exceptionMessage = args.Exception.Message;
             args.Handled = true;
             MessageBox.Show(exceptionMessage, "An exception occurred!", MessageBoxButton.OK, MessageBoxImage.Error);
-            if (_settings.LoggingSettings.LoggingEnabled)
+            if (Settings.LoggingSettings.LoggingEnabled)
             {
                 var logger = Logger.GetLogger();
                 logger.Error(exceptionMessage);
