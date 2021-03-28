@@ -1,0 +1,22 @@
+<Window x:Class="ChamiUI.Windows.AboutBox.AboutBox"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:local="clr-namespace:ChamiUI.Windows.AboutBox"
+        mc:Ignorable="d"
+        Title="AboutBox" Height="200" Width="350"
+        ResizeMode="NoResize"
+        >
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <Label>Chami</Label>
+            <Separator/>
+            <Label>Developed by Andrea Luciano Damico</Label>
+            <Label>Chami Icon by Vitaly Gorbachev</Label>
+            <Label>https://www.flaticon.com/authors/vitaly-gorbachev</Label>
+            <Label>Released under the terms of the MIT License</Label>
+            <Button x:Name="OkButton" Click="OkButton_Click">Ok</Button>
+        </StackPanel>
+    </Grid>
+</Window>

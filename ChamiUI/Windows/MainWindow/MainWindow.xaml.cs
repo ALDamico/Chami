@@ -187,5 +187,10 @@ namespace ChamiUI.Windows.MainWindow
                 ViewModel.ImportDotEnv(openFileDialog.FileName);
             }
         }
+
+        private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            new AboutBox.AboutBox().ShowDialog();
+        }
     }
 }
