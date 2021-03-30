@@ -205,7 +205,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            Clipboard.SetText(ViewModel.SelectedVariable.Value);
         }
 
         private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
