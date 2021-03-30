@@ -120,8 +120,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _selectedEnvironment = value;
                 OnPropertyChanged(nameof(SelectedEnvironment));
+                OnPropertyChanged(nameof(SelectedVariable));
             }
         }
+
+        public EnvironmentVariableViewModel SelectedVariable
+        {
+            get => _selectedVariable;
+            set
+            {
+                _selectedVariable = value;
+                OnPropertyChanged(nameof(SelectedVariable));
+            }
+        }
+
+        private EnvironmentVariableViewModel _selectedVariable;
 
         public ObservableCollection<EnvironmentViewModel> GetEnvironments()
         {
@@ -192,6 +205,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = environmentViewModel;
             EnableEditing();
             _dataAdapter.InsertEnvironment(environmentViewModel);
+        }
+
+        public void DeleteSelectedVariable()
+        {
+            _dataAdapter.DeleteVariable(SelectedVariable);
+            SelectedEnvironment.EnvironmentVariables.Remove(SelectedVariable);
         }
     }
 }

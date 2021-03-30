@@ -23,6 +23,24 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
+        
+        <ContextMenu x:Key="EnvironmentVariablesContextMenu">
+            <MenuItem Header="Copy" 
+                      x:Name="CopyEnvironmentVariableMenuItem" 
+                      Click="CopyEnvironmentVariableMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg"></svg:SvgViewbox>
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator/>
+            <MenuItem Header="Delete" 
+                      x:Name="DeleteEnvironmentVariableMenuItem" 
+                      Click="DeleteEnvironmentVariableMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg"></svg:SvgViewbox>
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding x:Name="SaveCommandBinding" 
@@ -111,8 +129,16 @@
                           AutoGenerateColumns="False"
                           CanUserAddRows="{Binding EditingEnabled}"
                           CanUserDeleteRows="{Binding EditingEnabled}"
-                          IsEnabled="{Binding EditingEnabled}">
+                          IsEnabled="{Binding EditingEnabled}"
+                          SelectedItem="{Binding SelectedVariable}"
+                          >
+                    <DataGrid.ItemContainerStyle>
+                        <Style TargetType="DataGridRow">
+                            <Setter Property="ContextMenu" Value="{StaticResource EnvironmentVariablesContextMenu}" />
+                        </Style>
+                    </DataGrid.ItemContainerStyle>
                     <DataGrid.Columns>
+                        
                         <DataGridTextColumn Width="65"
                                             Binding="{Binding Name}"
                                             Header="Name" />

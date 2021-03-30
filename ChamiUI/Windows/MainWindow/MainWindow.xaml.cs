@@ -202,5 +202,15 @@ namespace ChamiUI.Windows.MainWindow
 
             process.Start();
         }
+
+        private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetText(ViewModel.SelectedVariable.Value);
+        }
+
+        private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.DeleteSelectedVariable();
+        }
     }
 }

@@ -43,6 +43,8 @@
       <Resource Include="Assets\Svg\cog.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Svg\copy.svg" />
+      <Resource Include="Assets\Svg\copy.svg" />
     </ItemGroup>
 
 </Project>

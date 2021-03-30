@@ -87,5 +87,10 @@ namespace ChamiUI.BusinessLayer.Adapters
         {
             EnvironmentBackupper.Backup(_repository);
         }
+
+        public void DeleteVariable(EnvironmentVariableViewModel selectedVariable)
+        {
+            _repository.DeleteVariableById(selectedVariable.Id);
+        }
     }
 }
