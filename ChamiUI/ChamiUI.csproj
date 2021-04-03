@@ -47,4 +47,8 @@
       <Resource Include="Assets\Svg\copy.svg" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="DataLayer\Db\Migrations" />
+    </ItemGroup>
+
 </Project>

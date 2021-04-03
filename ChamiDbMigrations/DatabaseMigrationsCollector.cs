@@ -42,6 +42,8 @@ namespace ChamiDbMigrations
                     dbMigration.Order = order;
                 }
 
+                dbMigration.FullPath = path;
+
                 output.Add(dbMigration);
             }
 

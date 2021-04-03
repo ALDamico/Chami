@@ -4,5 +4,6 @@ namespace ChamiDbMigrations
     {
         public string Filename { get; set; }
         public int Order { get; set; }
+        public string FullPath { get; set; }
     }
 }
