@@ -7,3 +7,4 @@ riderModule.iml
 *DotSettings.user
 .vs/Chami/DesignTimeBuild/.dtbcache.v2
 .vs/Chami/v16/.suo
+ChamiTests/InputFiles/chami.db
