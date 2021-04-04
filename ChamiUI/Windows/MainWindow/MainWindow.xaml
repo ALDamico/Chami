@@ -120,7 +120,10 @@
                     >
                 <svg:SvgViewbox MaxWidth="16"
                                 MaxHeight="16"
-                                Source="/ChamiUI;component/Assets/Svg/play.svg" IsEnabled="{Binding ExecuteButtonEnabled}" />
+                                Source="{Binding ExecuteButtonIcon}" 
+                                IsEnabled="{Binding ExecuteButtonEnabled}" 
+                                
+                                />
             </Button>
         </Grid>
         <TabControl Grid.Row="2"

@@ -127,6 +127,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(SelectedEnvironment));
                 OnPropertyChanged(nameof(SelectedVariable));
                 OnPropertyChanged(nameof(ExecuteButtonEnabled));
+                OnPropertyChanged(nameof(ExecuteButtonIcon));
+            }
+        }
+
+        public string ExecuteButtonIcon
+        {
+            get
+            {
+                if (ExecuteButtonEnabled)
+                {
+                    return "/Assets/Svg/play.svg";
+                }
+
+                return "/Assets/Svg/play_disabled.svg";
             }
         }
 
