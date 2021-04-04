@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace ChamiDbMigrations
 {
-    public class DatabaseMigrationsCollector
+    internal class DatabaseMigrationsCollector
     {
         public DatabaseMigrationsCollector(string migrationPath)
         {

@@ -13,11 +13,14 @@ namespace ChamiTests
         [Fact]
         public void TestCollector()
         {
-            var collector = new DatabaseMigrationsCollector(migrationsPath);
+            /*
+             * The collector is now an internal class
+             */
+            /*var collector = new DatabaseMigrationsCollector(migrationsPath);
             
             Assert.NotEmpty(collector.Collect());
             Assert.Equal("0001_initial.sql", collector.Collect()[0].Filename);
-            Assert.Equal("0002_add_index.sql", collector.Collect()[1].Filename);
+            Assert.Equal("0002_add_index.sql", collector.Collect()[1].Filename);*/
         }
 
         [Fact]

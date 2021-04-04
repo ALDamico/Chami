@@ -24,9 +24,7 @@
 
     <ItemGroup>
       <None Remove="DataLayer\Db\chami.db" />
-      <Resource Include="DataLayer\Db\chami.db">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
+      <Content Include="DataLayer\Db\chami.db" />
       <None Remove="Assets\Svg\play.svg" />
       <Resource Include="Assets\Svg\play.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -48,7 +46,18 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="DataLayer\Db\Migrations" />
+      <ProjectReference Include="..\ChamiDbMigrations\ChamiDbMigrations.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="DataLayer\Db\Migrations\0001_initial.sql" />
+      <Content Include="DataLayer\Db\Migrations\0001_initial.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="DataLayer\Db\Migrations\0002_add_index.sql" />
+      <Content Include="DataLayer\Db\Migrations\0002_add_index.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
 </Project>

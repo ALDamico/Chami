@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Data.SQLite;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
@@ -27,12 +28,9 @@ namespace ChamiDbMigrations
                 _migrations = _collector.Collect();
             }
             
-            if (_connection.State == ConnectionState.Closed)
-            {
-                _connection.Open();                    
-            }
+            OpenConnection();
 
-            int lastAppliedMigration = -1;
+            long lastAppliedMigration = -1;
 
             var migrationsTableExists = CheckMigrationsTableExists();
             if (!migrationsTableExists)
@@ -46,7 +44,7 @@ namespace ChamiDbMigrations
 
             foreach (var migration in _migrations)
             {
-                if (lastAppliedMigration == -1 || migration.Order > lastAppliedMigration)
+                if ( migration.Order <= lastAppliedMigration)
                 {
                     continue;
                 }
@@ -55,6 +53,7 @@ namespace ChamiDbMigrations
                 
                 command.CommandText = sql;
                 var result = command.ExecuteNonQuery();
+                InsertMigration(migration);
             }
         }
 
@@ -93,19 +92,35 @@ namespace ChamiDbMigrations
             }
         }
 
-        private int GetLastMigration()
+        private void InsertMigration(DatabaseMigration migration)
+        {
+            var sql = @"
+                INSERT INTO ChamiMigrations(""Order"", Name)
+                VALUES (?, ?)
+";
+            var command = _connection.CreateCommand();
+            command.CommandText = sql;
+            var orderParameter = SQLiteParameterFactory.Convert(migration.Order);
+            var nameParameter = SQLiteParameterFactory.Convert(migration.Filename);
+            
+            command.Parameters.Add(orderParameter);
+            command.Parameters.Add(nameParameter);
+            command.ExecuteNonQuery();
+        }
+
+        private long GetLastMigration()
         {
             OpenConnection();
             var query = @"
-                SELECT MAX(Order)
+                SELECT MAX(""Order"")
                 FROM ChamiMigrations
 ";
             var command = _connection.CreateCommand();
             command.CommandText = query;
-            int? result = (int?)command.ExecuteScalar();
-            if (result != null)
+            var result = command.ExecuteScalar();
+            if (result != DBNull.Value)
             {
-                return result.Value;
+                return (long) result;
             }
 
             return -1;
