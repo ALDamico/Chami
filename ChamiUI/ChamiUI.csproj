@@ -43,6 +43,10 @@
       </Resource>
       <None Remove="Assets\Svg\copy.svg" />
       <Resource Include="Assets\Svg\copy.svg" />
+      <None Remove="Assets\Svg\play_disabled.svg" />
+      <Content Include="Assets\Svg\play_disabled.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
