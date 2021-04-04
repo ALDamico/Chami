@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamiTests", "ChamiTests\Ch
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhereAmI", "WhereAmI\WhereAmI.csproj", "{A6EB2788-E8BF-447F-BD40-90C3E1505329}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamiDbMigrations", "ChamiDbMigrations\ChamiDbMigrations.csproj", "{F05E3875-7C09-4730-9E62-6885199FE2A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{A6EB2788-E8BF-447F-BD40-90C3E1505329}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6EB2788-E8BF-447F-BD40-90C3E1505329}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6EB2788-E8BF-447F-BD40-90C3E1505329}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F05E3875-7C09-4730-9E62-6885199FE2A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F05E3875-7C09-4730-9E62-6885199FE2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F05E3875-7C09-4730-9E62-6885199FE2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F05E3875-7C09-4730-9E62-6885199FE2A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
