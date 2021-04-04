@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 
@@ -24,19 +26,89 @@ namespace ChamiDbMigrations
             {
                 _migrations = _collector.Collect();
             }
+            
+            if (_connection.State == ConnectionState.Closed)
+            {
+                _connection.Open();                    
+            }
+
+            int lastAppliedMigration = -1;
+
+            var migrationsTableExists = CheckMigrationsTableExists();
+            if (!migrationsTableExists)
+            {
+                CreateMigrationsTable();
+            }
+            else
+            {
+                lastAppliedMigration = GetLastMigration();
+            }
 
             foreach (var migration in _migrations)
             {
-                if (_connection.State == ConnectionState.Closed)
+                if (lastAppliedMigration == -1 || migration.Order > lastAppliedMigration)
                 {
-                    _connection.Open();                    
+                    continue;
                 }
+                var sql = File.OpenText(migration.FullPath).ReadToEnd();
                 var command = _connection.CreateCommand();
-                var fileContent = File.OpenText(migration.FullPath).ReadToEnd();
-
-                command.CommandText = fileContent;
+                
+                command.CommandText = sql;
                 var result = command.ExecuteNonQuery();
             }
+        }
+
+        private void CreateMigrationsTable()
+        {
+            OpenConnection();
+
+            var command = _connection.CreateCommand();
+            command.CommandText = @"CREATE TABLE ChamiMigrations (""Order"" INTEGER NOT NULL, Name TEXT)";
+            command.ExecuteNonQuery();
+        }
+
+        private bool CheckMigrationsTableExists()
+        {
+            OpenConnection();
+
+            var command = _connection.CreateCommand();
+            command.CommandText = @"SELECT 1 FROM ChamiMigrations";
+            try
+            {
+                command.ExecuteReader();
+            }
+            catch (DbException)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private void OpenConnection()
+        {
+            if (_connection.State == ConnectionState.Closed)
+            {
+                _connection.Open();
+            }
+        }
+
+        private int GetLastMigration()
+        {
+            OpenConnection();
+            var query = @"
+                SELECT MAX(Order)
+                FROM ChamiMigrations
+";
+            var command = _connection.CreateCommand();
+            command.CommandText = query;
+            int? result = (int?)command.ExecuteScalar();
+            if (result != null)
+            {
+                return result.Value;
+            }
+
+            return -1;
         }
     }
 }
