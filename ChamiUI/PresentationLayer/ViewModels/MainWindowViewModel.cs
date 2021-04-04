@@ -63,6 +63,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings = GetSettingsViewModel();
         }
 
+        public bool ExecuteButtonEnabled
+        {
+            get => SelectedEnvironment != null;
+        }
+
         private SettingsDataAdapter _settingsDataAdapter;
 
         private SettingsViewModel GetSettingsViewModel()
@@ -121,6 +126,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _selectedEnvironment = value;
                 OnPropertyChanged(nameof(SelectedEnvironment));
                 OnPropertyChanged(nameof(SelectedVariable));
+                OnPropertyChanged(nameof(ExecuteButtonEnabled));
+                OnPropertyChanged(nameof(ExecuteButtonIcon));
+            }
+        }
+
+        public string ExecuteButtonIcon
+        {
+            get
+            {
+                if (ExecuteButtonEnabled)
+                {
+                    return "/Assets/Svg/play.svg";
+                }
+
+                return "/Assets/Svg/play_disabled.svg";
             }
         }
 
