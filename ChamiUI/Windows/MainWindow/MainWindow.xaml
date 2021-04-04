@@ -115,10 +115,12 @@
                     MaxWidth="22"
                     MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
-                    Click="ApplyEnvironmentButton_OnClick">
+                    Click="ApplyEnvironmentButton_OnClick"
+                    IsEnabled="{Binding ExecuteButtonEnabled}"
+                    >
                 <svg:SvgViewbox MaxWidth="16"
                                 MaxHeight="16"
-                                Source="/ChamiUI;component/Assets/Svg/play.svg" />
+                                Source="/ChamiUI;component/Assets/Svg/play.svg" IsEnabled="{Binding ExecuteButtonEnabled}" />
             </Button>
         </Grid>
         <TabControl Grid.Row="2"
