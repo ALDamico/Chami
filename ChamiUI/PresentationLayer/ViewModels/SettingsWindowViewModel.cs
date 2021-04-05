@@ -17,7 +17,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _controls["View"] = new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings);
             _controls["Logging"] = new LoggingSettingsEditor(Settings.LoggingSettings);
             _controls["Safety"] = new SafeVariableEditor(Settings.SafeVariableSettings);
-            _controls["Detector"] = new ApplicationDetectorControl();
+            _controls["Detector"] = new ApplicationDetectorControl(Settings.WatchedApplicationSettings);
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
 
