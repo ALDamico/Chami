@@ -1,6 +1,6 @@
 ﻿INSERT INTO Settings
 (SettingName, ViewModelName, "Type", Value, PropertyName, AssemblyName, Converter)
-VALUES('EnableDetection', 'AppDetectorViewModel', 'bool', 'true', 'DetectionEnabled', NULL, NULL);
+VALUES('IsDetectionEnabled', 'ChamiUI.PresentationLayer.ViewModels.WatchedApplicationControlViewModel', 'bool', 'true', 'WatchedApplicationSettings', NULL, NULL);
 
 CREATE TABLE WatchedApplications (
     Id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,

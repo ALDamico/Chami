@@ -142,10 +142,16 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var propertiesToSave = propertyInfo.PropertyType.GetProperties();
                 foreach (var property in propertiesToSave)
                 {
+                    string valueString = null;
                     var propertyName = property.Name;
-                    var propertyValue = property.GetValue(propertyInfo.GetValue(settings)).ToString();
+                    var propertyValue = property.GetValue(propertyInfo.GetValue(settings));
+                    
+                    if (propertyValue != null)
+                    {
+                        valueString = propertyValue.ToString();
+                    }
 
-                    _repository.UpdateSetting(propertyName, propertyValue);
+                    _repository.UpdateSetting(propertyName, valueString);
                 }
             }
         }
