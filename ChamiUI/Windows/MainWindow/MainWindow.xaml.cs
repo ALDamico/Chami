@@ -6,10 +6,12 @@ using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChamiUI.BusinessLayer;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -66,9 +68,17 @@ namespace ChamiUI.Windows.MainWindow
                     StreamReader reader = new StreamReader(o.OutputStream);
                     ConsoleTextBox.Text += reader.ReadToEnd();
                 }
+
                 ConsoleTextBox.ScrollToEnd();
             });
             await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
+            var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
+            if (watchedApplicationSettings.IsDetectionEnabled)
+            {
+                var message = ViewModel.GetDetectedApplicationsMessage();
+                MessageBox.Show(message, "Restart applications!", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
+            }
         }
 
         private void NewEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -158,9 +168,9 @@ namespace ChamiUI.Windows.MainWindow
                 }
             }
         }
+
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-
             var childWindow = new SettingsWindow.SettingsWindow();
             childWindow.SettingsSaved += OnSettingsSaved;
             childWindow.ShowDialog();

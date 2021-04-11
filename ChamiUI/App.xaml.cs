@@ -3,6 +3,7 @@ using ChamiUI.BusinessLayer.Logger;
 using ChamiUI.PresentationLayer.ViewModels;
 using Serilog.Core;
 using System;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SQLite;
 using System.IO;
@@ -29,6 +30,9 @@ namespace ChamiUI
             try
             {
                 Settings = new SettingsDataAdapter(GetConnectionString()).GetSettings();
+                var watchedApplications =
+                    new WatchedApplicationDataAdapter(GetConnectionString()).GetActiveWatchedApplications();
+                Settings.WatchedApplicationSettings.WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
             }
             catch (SQLiteException)
             {

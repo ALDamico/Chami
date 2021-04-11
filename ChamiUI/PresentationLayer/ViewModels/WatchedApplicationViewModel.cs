@@ -30,5 +30,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(Name));
             }
         }
+
+        private string _processName;
+
+        public string ProcessName
+        {
+            get => _processName;
+            set
+            {
+                _processName = value;
+                OnPropertyChanged(nameof(value));
+            }
+        }
     }
 }
