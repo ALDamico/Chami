@@ -7,10 +7,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             LoggingSettings = new LoggingSettingsViewModel();
             SafeVariableSettings = new SafeVariableViewModel();
             ConsoleAppearanceSettings = new ConsoleAppearanceViewModel();
+            WatchedApplicationSettings = new WatchedApplicationControlViewModel();
         }
         public LoggingSettingsViewModel LoggingSettings { get; set; }
         public SafeVariableViewModel SafeVariableSettings { get; set; }
         public ConsoleAppearanceViewModel ConsoleAppearanceSettings { get; set; }
+        public WatchedApplicationControlViewModel WatchedApplicationSettings { get; set; }
 
     }
 }

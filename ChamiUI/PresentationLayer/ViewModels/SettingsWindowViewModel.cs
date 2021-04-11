@@ -1,6 +1,8 @@
 using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Controls;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 
@@ -12,20 +14,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var connectionString = App.GetConnectionString();
             _dataAdapter = new SettingsDataAdapter(connectionString);
-            Settings = _dataAdapter.GetSettings();
+            _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
+            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter);
             _controls = new Dictionary<string, UserControl>();
             _controls["View"] = new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings);
             _controls["Logging"] = new LoggingSettingsEditor(Settings.LoggingSettings);
             _controls["Safety"] = new SafeVariableEditor(Settings.SafeVariableSettings);
+            _controls["Detector"] = new ApplicationDetectorControl(Settings.WatchedApplicationSettings);
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
 
         public void SaveSettings()
         {
             _dataAdapter.SaveSettings(Settings);
+            _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings.WatchedApplications);
         }
 
         private SettingsDataAdapter _dataAdapter;
+        private WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
         private Dictionary<string, UserControl> _controls;
 
         public void ChangeControl(string name)

@@ -32,7 +32,7 @@ CREATE TABLE Settings (
                           Value TEXT,
                           PropertyName TEXT,
                           AssemblyName TEXT
-    , Converter String);
+    , Converter TEXT);
 
 INSERT INTO Settings (SettingName,ViewModelName,"Type",Value,PropertyName,AssemblyName,Converter) VALUES
 ('LoggingEnabled','ChamiUI.PresentationLayer.ViewModels.LoggingSettingsViewModel','bool','True','LoggingSettings',NULL,NULL),

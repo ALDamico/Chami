@@ -9,6 +9,7 @@ using System;
 using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -53,6 +54,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
             _settingsDataAdapter = new SettingsDataAdapter(connectionString);
+            _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
             Environments = GetEnvironments();
             EditingEnabled = false;
             if (Environments.Any())
@@ -69,10 +71,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private SettingsDataAdapter _settingsDataAdapter;
+        private WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
 
         private SettingsViewModel GetSettingsViewModel()
         {
-            return _settingsDataAdapter.GetSettings();
+            var settings = _settingsDataAdapter.GetSettings();
+            var watchedApplications = _watchedApplicationDataAdapter.GetActiveWatchedApplications();
+            settings.WatchedApplicationSettings.WatchedApplications =
+                new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
+            return settings;
         }
 
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
@@ -94,7 +101,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var newEnvironment = _dataAdapter.GetEnvironmentEntityByName(SelectedEnvironment.Name);
             cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand(
                 typeof(EnvironmentVariableApplicationCommand),
-                new EnvironmentVariable() { Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name }));
+                new EnvironmentVariable() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
@@ -164,6 +171,38 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private readonly EnvironmentDataAdapter _dataAdapter;
 
+        public string GetDetectedApplicationsMessage()
+        {
+            var watchedApplicationSettings = Settings.WatchedApplicationSettings;
+            if (watchedApplicationSettings.IsDetectionEnabled)
+            {
+                var applicationDetector =
+                    new RunningApplicationDetector(watchedApplicationSettings.WatchedApplications);
+                var detectedApplications = applicationDetector.Detect();
+                if (detectedApplications != null && detectedApplications.Count > 0)
+                {
+                    StringBuilder stringBuilder = new StringBuilder();
+                    stringBuilder.AppendLine(
+                        "Chami has detected that the following applications are currently running:");
+                    foreach (var detectedApplication in detectedApplications)
+                    {
+                        var processName = detectedApplication.ProcessName;
+                        if (string.IsNullOrWhiteSpace(processName))
+                        {
+                            processName = detectedApplication.Name;
+                        }
+
+                        stringBuilder.AppendLine(processName);
+                    }
+
+                    stringBuilder.Append("It is recommended that you restart them.");
+                    return stringBuilder.ToString();
+                }
+            }
+
+            return null;
+        }
+
         public void DeleteSelectedEnvironment()
         {
             _dataAdapter.DeleteEnvironment(SelectedEnvironment);
@@ -210,7 +249,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void ImportDotEnv(string filePath)
         {
-            var newVariables = DotEnv.Fluent().WithEnvFiles(new[] { filePath }).Read();
+            var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
             var environmentViewModel = new EnvironmentViewModel();
             environmentViewModel.Name = filePath;
             foreach (var variable in newVariables)
