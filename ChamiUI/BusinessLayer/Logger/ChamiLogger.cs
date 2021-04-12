@@ -19,9 +19,16 @@ namespace ChamiUI.BusinessLayer.Logger
             _loggerConfiguration.WriteTo.File(filename);
         }
 
+        private static Serilog.Core.Logger _logger;
+
         public Serilog.Core.Logger GetLogger()
         {
-            return _loggerConfiguration.CreateLogger();
+            if (_logger == null)
+            {
+                _logger = _loggerConfiguration.CreateLogger();
+            }
+
+            return _logger;
         }
     }
 }
