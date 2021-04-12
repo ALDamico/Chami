@@ -89,12 +89,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (currentEnvironmentName != null)
             {
                 var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
-                foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
+                // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
+                // corresponding entity
+                if (currentOsEnvironment != null)
                 {
-                    var newCommand =
-                        EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
-                            environmentVariable);
-                    cmdExecutor.AddCommand(newCommand);
+                    foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
+                    {
+                        var newCommand =
+                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                                environmentVariable);
+                        cmdExecutor.AddCommand(newCommand);
+                    }
                 }
             }
 
