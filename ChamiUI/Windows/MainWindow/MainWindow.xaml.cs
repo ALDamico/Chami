@@ -76,8 +76,11 @@ namespace ChamiUI.Windows.MainWindow
             if (watchedApplicationSettings.IsDetectionEnabled)
             {
                 var message = ViewModel.GetDetectedApplicationsMessage();
-                MessageBox.Show(message, "Restart applications!", MessageBoxButton.OK,
-                    MessageBoxImage.Information);
+                if (message != null)
+                {
+                    MessageBox.Show(message, "Restart applications!", MessageBoxButton.OK,
+                        MessageBoxImage.Information);
+                }
             }
         }
 
