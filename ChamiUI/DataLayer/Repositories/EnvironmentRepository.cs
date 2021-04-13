@@ -198,6 +198,20 @@ namespace ChamiUI.DataLayer.Repositories
 
         protected void InsertVariable(EnvironmentVariable environmentVariable, int environmentId)
         {
+            if (environmentVariable == null)
+            {
+                return;
+            }
+
+            if (environmentVariable.Name == null)
+            {
+                throw new InvalidOperationException("Attempting to insert an entity with NULL Name");
+            }
+
+            if (environmentVariable.Value == null)
+            {
+                throw new InvalidOperationException("Attempting to insert an entity with NULL Value");
+            }
             var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
                 VALUES (?, ?, ?, ?)

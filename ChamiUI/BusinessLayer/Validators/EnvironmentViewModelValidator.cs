@@ -13,7 +13,6 @@ namespace ChamiUI.BusinessLayer.Validators
             {
                 result.IsValid = false;
                 result.Message = "Must specify a name!";
-                return result;
             }
 
             return result;

@@ -25,6 +25,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _editingEnabled = value;
                 OnPropertyChanged(nameof(EditingEnabled));
+                OnPropertyChanged(nameof(ExecuteButtonEnabled));
+                OnPropertyChanged(nameof(ExecuteButtonIcon));
             }
         }
 
@@ -36,6 +38,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void DisableEditing()
         {
             EditingEnabled = false;
+            // We're using the SelectedVariable property to tell the application that every edit has been completed and
+            // it's okay to try to save
+            SelectedVariable = null;
         }
 
         private SettingsViewModel _settings;
@@ -67,7 +72,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public bool ExecuteButtonEnabled
         {
-            get => SelectedEnvironment != null;
+            get => SelectedEnvironment != null && !EditingEnabled;
         }
 
         private SettingsDataAdapter _settingsDataAdapter;

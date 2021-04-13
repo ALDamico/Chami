@@ -2,7 +2,7 @@ using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Validators
 {
-    public interface IValidator<T> where T : ViewModelBase
+    public interface IValidator<in T>
     {
         IValidationResult Validate(T viewModel);
     }

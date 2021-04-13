@@ -136,6 +136,11 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
+            if (ViewModel.SelectedVariable?.Name == null || ViewModel.SelectedVariable.Value == null)
+            {
+                e.CanExecute = false;
+                return;
+            } 
             if (ViewModel.SelectedEnvironment != null && ViewModel.EditingEnabled)
             {
                 e.CanExecute = true;

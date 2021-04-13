@@ -1,3 +1,4 @@
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.ViewModels;
 
@@ -15,7 +16,12 @@ namespace ChamiUI.BusinessLayer.Converters
             var variableConverter = new EnvironmentVariableConverter();
             foreach (var variable in model.EnvironmentVariables)
             {
-                environment.EnvironmentVariables.Add(variableConverter.FromModel(variable));
+                var variableEntityValidator = new EnvironmentVariableValidator();
+                var isValid = variableEntityValidator.Validate(variable);
+                if (isValid.IsValid)
+                {
+                    environment.EnvironmentVariables.Add(variableConverter.FromModel(variable));
+                }
             }
 
             return environment;
