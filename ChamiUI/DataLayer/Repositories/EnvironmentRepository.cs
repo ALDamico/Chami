@@ -117,7 +117,8 @@ namespace ChamiUI.DataLayer.Repositories
                     SELECT * 
                     FROM Environments e
                     WHERE e.AddedOn = ?";
-                var result = connection.QuerySingle<Environment>(selectQuery, new { environment.AddedOn });
+                var results = connection.Query<Environment>(selectQuery, new { environment.AddedOn });
+                var result = results.FirstOrDefault();
                 environment.EnvironmentId = result.EnvironmentId;
                 foreach (var environmentVariable in environment.EnvironmentVariables)
                 {
@@ -165,9 +166,8 @@ namespace ChamiUI.DataLayer.Repositories
                     var updObj = new
                     {
                         Name = environmentVariable.Name,
-                        environmentVariable.Value,
-                        environmentVariable.EnvironmentId,
-                        environmentVariable.EnvironmentVariableId
+                        Value = environmentVariable.Value,
+                        EnvironmentVariableId = environmentVariable.EnvironmentVariableId
                     };
 
                     connection.Execute(envVarUpdateQuery, updObj);

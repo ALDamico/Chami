@@ -76,11 +76,12 @@ namespace ChamiUI.BusinessLayer.Adapters
             return removed;
         }
 
-        public void SaveEnvironment(EnvironmentViewModel environment)
+        public EnvironmentViewModel SaveEnvironment(EnvironmentViewModel environment)
         {
             var converter = new EnvironmentConverter();
             var entity = converter.FromModel(environment);
-            _repository.UpsertEnvironment(entity);
+            var inserted = _repository.UpsertEnvironment(entity);
+            return converter.FromEntity(inserted);
         }
 
         public void BackupEnvironment()
