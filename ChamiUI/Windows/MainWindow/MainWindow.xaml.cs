@@ -84,13 +84,6 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        private void NewEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow();
-            childWindow.EnvironmentSaved += OnEnvironmentSaved;
-            childWindow.ShowDialog();
-        }
-
         private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
         {
             if (args != null)
@@ -135,6 +128,18 @@ namespace ChamiUI.Windows.MainWindow
         private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             ViewModel.SaveCurrentEnvironment();
+        }
+
+        private void NewEnvironmentCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (ViewModel.EditingEnabled)
+            {
+                e.CanExecute = false;
+            }
+            else
+            {
+                e.CanExecute = true;
+            }
         }
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -229,6 +234,13 @@ namespace ChamiUI.Windows.MainWindow
         private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.DeleteSelectedVariable();
+        }
+
+        private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow();
+            childWindow.EnvironmentSaved += OnEnvironmentSaved;
+            childWindow.ShowDialog();
         }
     }
 }

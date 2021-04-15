@@ -47,6 +47,10 @@
                         Command="Save" 
                         CanExecute="SaveCommandBinding_OnCanExecute" 
                         Executed="SaveCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="NewEnvironmentCommandBinding"
+                        Command="New"
+                        CanExecute="NewEnvironmentCommandBinding_CanExecute"
+                        Executed="NewEnvironmentCommandBinding_Executed"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -62,7 +66,7 @@
         <Menu Grid.Row="0" Grid.Column="0">
             <MenuItem Header="File">
                 <MenuItem Header="New Environment" x:Name="NewEnvironmentMenuItem"
-                          Click="NewEnvironmentMenuItem_OnClick" />
+                          Command="New" />
                 <MenuItem Header="Save" x:Name="SaveEnvironmentMenuItem" Command="Save"></MenuItem>
                 <MenuItem Header="Import">
                     <MenuItem Header="From .env..." x:Name="ImportFromDotenvMenuItem" Click="ImportFromDotenvMenuItem_OnClick"/>
