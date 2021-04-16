@@ -170,9 +170,12 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     MessageBox.Show("Unable to deserialize input file!\nSee the log for more details.",
                         "Deserialization error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    var logger = ((App.Current) as ChamiUI.App).GetLogger();
-                    logger.Error(ex.Message);
-                    logger.Error(ex.StackTrace);
+                    if (ViewModel.Settings.LoggingSettings.LoggingEnabled)
+                    {
+                        var logger = ((App.Current) as ChamiUI.App).GetLogger();
+                        logger.Error(ex.Message);
+                        logger.Error(ex.StackTrace);
+                    }
                 }
             }
         }
