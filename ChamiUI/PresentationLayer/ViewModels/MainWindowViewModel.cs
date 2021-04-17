@@ -287,6 +287,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
         {
+            if (progress != null)
+            {
+                CmdExecutorProgress executorProgress =
+                    new CmdExecutorProgress(0, null, "Reverting back to original environment variables...\n");
+                progress.Report(executorProgress);
+            }
             var cmdExecutor = new CmdExecutor();
             var detector = new EnvironmentVariableRegistryRetriever();
             
@@ -311,6 +317,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
                             chamiEnvVariable);
                     cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
                     await cmdExecutor.ExecuteAsync(progress);
+                }
+            }
+            else
+            {
+                if (progress != null)
+                {
+                    CmdExecutorProgress executorProgress = new CmdExecutorProgress(100, null,
+                        "There's no active Chami environment!\nNothing to do.");
+                    progress.Report(executorProgress);
                 }
             }
         }
