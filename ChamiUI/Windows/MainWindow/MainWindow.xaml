@@ -79,6 +79,7 @@
                           Click="QuitApplicationMenuItem_OnClick" />
             </MenuItem>
             <MenuItem Header="Options">
+                <MenuItem Header="Reset environment variables" x:Name="ResetVarsMenuItem" Click="ResetVarsMenuItem_OnClick"></MenuItem>
                 <MenuItem Header="Backup current environment" x:Name="BackupEnvironmentMenuItem" Click="BackupEnvironmentMenuItem_OnClick"></MenuItem>
                 <Separator/>
                 <MenuItem Header="Settings" x:Name="SettingsMenuItem" Click="SettingsMenuItem_OnClick">

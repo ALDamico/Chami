@@ -284,5 +284,34 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _dataAdapter.DeleteVariable(SelectedVariable);
             SelectedEnvironment.EnvironmentVariables.Remove(SelectedVariable);
         }
+
+        public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
+        {
+            var cmdExecutor = new CmdExecutor();
+            var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
+            if (currentEnvironmentName != null)
+            {
+                var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
+                // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
+                // corresponding entity
+                if (currentOsEnvironment != null)
+                {
+                    foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
+                    {
+                        var newCommand =
+                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                                environmentVariable);
+                        cmdExecutor.AddCommand(newCommand);
+                    }
+                }
+            }
+
+            var chamiEnvVariable = new EnvironmentVariable() {Name = "_CHAMI_ENV"};
+            var chamiEnvVarRemovalCommand =
+                EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                    chamiEnvVariable);
+            cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
+            await cmdExecutor.ExecuteAsync(progress);
+        }
     }
 }

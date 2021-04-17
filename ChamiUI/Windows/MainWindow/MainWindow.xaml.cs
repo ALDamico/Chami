@@ -56,21 +56,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             ConsoleTextBox.Text = "";
             TabControls.SelectedIndex = 1;
-            var progress = new Progress<CmdExecutorProgress>((o) =>
-            {
-                if (o.Message != null)
-                {
-                    ConsoleTextBox.Text += o.Message;
-                }
-
-                if (o.OutputStream != null)
-                {
-                    StreamReader reader = new StreamReader(o.OutputStream);
-                    ConsoleTextBox.Text += reader.ReadToEnd();
-                }
-
-                ConsoleTextBox.ScrollToEnd();
-            });
+            var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
             await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
             var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
             if (watchedApplicationSettings.IsDetectionEnabled)
@@ -82,6 +68,22 @@ namespace ChamiUI.Windows.MainWindow
                         MessageBoxImage.Information);
                 }
             }
+        }
+
+        private void HandleProgressReport(CmdExecutorProgress o)
+        {
+            if (o.Message != null)
+            {
+                ConsoleTextBox.Text += o.Message;
+            }
+
+            if (o.OutputStream != null)
+            {
+                StreamReader reader = new StreamReader(o.OutputStream);
+                ConsoleTextBox.Text += reader.ReadToEnd();
+            }
+
+            ConsoleTextBox.ScrollToEnd();
         }
 
         private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
@@ -241,6 +243,19 @@ namespace ChamiUI.Windows.MainWindow
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow();
             childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
+        }
+
+        private async void ResetVarsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var response =
+                MessageBox.Show(
+                    "This will remove the currently active Chami environment. Are you sure you want to proceed?",
+                    "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Hand, MessageBoxResult.No);
+            if (response == MessageBoxResult.Yes)
+            {
+                var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
+                await ViewModel.ResetEnvironmentAsync(progress);
+            }
         }
     }
 }
