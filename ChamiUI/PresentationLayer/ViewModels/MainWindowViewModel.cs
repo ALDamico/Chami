@@ -222,7 +222,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void SaveCurrentEnvironment()
         {
-            _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            var environment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            SelectedEnvironment = environment;
+            OnPropertyChanged(nameof(Environments));
+            OnPropertyChanged(nameof(SelectedEnvironment));
             DisableEditing();
         }
 
