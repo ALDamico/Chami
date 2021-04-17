@@ -28,7 +28,7 @@ namespace ChamiUI.BusinessLayer
 
         public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress)
         {
-            CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, "Starting execution...");
+            CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, "Starting execution...\n");
             progress?.Report(cmdExecutorProgress);
             var tasks = new List<Task>();
             foreach (var environmentVariable in EnvironmentVariablesToApply)
@@ -36,7 +36,7 @@ namespace ChamiUI.BusinessLayer
                 await environmentVariable.ExecuteAsync(progress);
             }
 
-            progress?.Report(new CmdExecutorProgress(100, null, "Execution complete"));
+            progress?.Report(new CmdExecutorProgress(100, null, "Execution complete\n"));
         }
     }
 }

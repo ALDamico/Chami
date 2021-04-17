@@ -54,8 +54,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            ConsoleTextBox.Text = "";
-            TabControls.SelectedIndex = 1;
+            FocusConsoleTab();
             var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
             await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
             var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
@@ -68,6 +67,16 @@ namespace ChamiUI.Windows.MainWindow
                         MessageBoxImage.Information);
                 }
             }
+        }
+
+        private void FocusConsoleTab(bool clearTextBox = true)
+        {
+            if (clearTextBox)
+            {
+                ConsoleTextBox.Text = "";
+            }
+            
+            TabControls.SelectedIndex = 1;
         }
 
         private void HandleProgressReport(CmdExecutorProgress o)
@@ -254,6 +263,7 @@ namespace ChamiUI.Windows.MainWindow
             if (response == MessageBoxResult.Yes)
             {
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
+                FocusConsoleTab(true);
                 await ViewModel.ResetEnvironmentAsync(progress);
             }
         }
