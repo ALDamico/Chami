@@ -14,11 +14,11 @@
                         CanExecute="CancelCommandBinding_OnCanExecute"
                         Executed="CancelCommandBinding_OnExecuted"
                         >
-            
         </CommandBinding>
     </Window.CommandBindings>
     <Window.InputBindings>
-        <KeyBinding Key="Escape" Command="Close"></KeyBinding>
+        <KeyBinding Key="Escape" 
+                    Command="Close"></KeyBinding>
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -47,7 +47,10 @@
         <ListView Grid.Row="2" 
                   Grid.Column="0" 
                   ItemsSource="{Binding Environments}" 
-                  IsEnabled="{Binding ExportSelected}">
+                  IsEnabled="{Binding ExportSelected}"
+                  x:Name="SelectedEnvironmentListView"
+                  SelectionChanged="SelectedEnvironmentListView_OnSelectionChanged"
+                  >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
@@ -67,7 +70,8 @@
                     Content="Export"/>
             <Button x:Name="CancelButton"
                     MaxWidth="65" Margin="10, 0"
-                    Content="Cancel" Command="Close"/>
+                    Content="Cancel" 
+                    Command="Close"/>
         </StackPanel>
     </Grid>
 </Window>

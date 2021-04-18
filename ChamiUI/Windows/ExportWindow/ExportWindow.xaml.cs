@@ -40,5 +40,10 @@ namespace ChamiUI.Windows.ExportWindow
         {
             Close();
         }
+
+        private void SelectedEnvironmentListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.HandleSelectionChanged(sender, e);
+        }
     }
 }
