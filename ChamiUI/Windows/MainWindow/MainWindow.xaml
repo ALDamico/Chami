@@ -72,7 +72,7 @@
                     <MenuItem Header="From .env..." x:Name="ImportFromDotenvMenuItem" Click="ImportFromDotenvMenuItem_OnClick"/>
                     <MenuItem Header="From JSON..." x:Name="ImportFromJsonMenuItem" Click="ImportFromJsonMenuItem_OnClick" />
                 </MenuItem>
-                <MenuItem Header="Export..." />
+                <MenuItem Header="Export..." x:Name="ExportMenuItem" Click="ExportMenuItem_Click" />
                 <Separator />
                 <MenuItem Header="Quit"
                           x:Name="QuitApplicationMenuItem"
