@@ -10,7 +10,7 @@ namespace ChamiUI.BusinessLayer.Converters
 {
     class WatchedApplicationConverter : IConverter<WatchedApplication, WatchedApplicationViewModel>
     {
-        public WatchedApplicationViewModel FromEntity(WatchedApplication entity)
+        public WatchedApplicationViewModel To(WatchedApplication entity)
         {
             var viewModel = new WatchedApplicationViewModel();
             viewModel.Id = entity.Id;
@@ -19,7 +19,7 @@ namespace ChamiUI.BusinessLayer.Converters
             return viewModel;
         }
 
-        public WatchedApplication FromModel(WatchedApplicationViewModel model)
+        public WatchedApplication From(WatchedApplicationViewModel model)
         {
             var entity = new WatchedApplication();
 

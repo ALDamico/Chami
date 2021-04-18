@@ -8,12 +8,24 @@
         d:DataContext="{d:DesignInstance vm:ExportWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Title="Export environments" Height="450" Width="400">
-   
+    <Window.CommandBindings>
+        <CommandBinding x:Name="CancelCommandBinding"
+                        Command="Close"
+                        CanExecute="CancelCommandBinding_OnCanExecute"
+                        Executed="CancelCommandBinding_OnExecuted"
+                        >
+            
+        </CommandBinding>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="Escape" Command="Close"></KeyBinding>
+    </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0" 
@@ -22,20 +34,40 @@
                Content="Export environment" 
                FontWeight="DemiBold" 
                HorizontalContentAlignment="Center"/>
-        <GroupBox Grid.Row="1" Grid.Column="0" Header="Export settings:">
+        <GroupBox Grid.Row="1" 
+                  Grid.Column="0" 
+                  Header="Export settings:">
             <StackPanel>
-                <RadioButton Content="All environments" IsChecked="{Binding ExportAll}"/>
-                <RadioButton Content="Selected environments" IsChecked="{Binding ExportSelected}"/>
+                <RadioButton Content="All environments" 
+                             IsChecked="{Binding ExportAll}"/>
+                <RadioButton Content="Selected environments" 
+                             IsChecked="{Binding ExportSelected}"/>
             </StackPanel>
         </GroupBox>
-        <ListView Height="200" Grid.Row="2" Grid.Column="0" ItemsSource="{Binding Environments}" IsEnabled="{Binding ExportSelected}">
-            <!--TODO Scrivre l'ItemTemplate-->
+        <ListView Grid.Row="2" 
+                  Grid.Column="0" 
+                  ItemsSource="{Binding Environments}" 
+                  IsEnabled="{Binding ExportSelected}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <Label Content="{Binding Name}"></Label></StackPanel>
+                        <Label Content="{Binding DisplayedName}" 
+                               ToolTip="{Binding DisplayedName}"/>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel HorizontalAlignment="Center" 
+                    Orientation="Horizontal" 
+                    Grid.Row="3" 
+                    Grid.Column="0" 
+                    Margin="0, 5">
+            <Button x:Name="ExportDataButton"
+                    MaxWidth="65" Margin="10, 0" 
+                    Content="Export"/>
+            <Button x:Name="CancelButton"
+                    MaxWidth="65" Margin="10, 0"
+                    Content="Cancel" Command="Close"/>
+        </StackPanel>
     </Grid>
 </Window>

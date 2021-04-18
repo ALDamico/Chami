@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChamiUI.BusinessLayer.Converters;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -11,16 +12,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         public ExportWindowViewModel()
         {
-            Environments = new ObservableCollection<EnvironmentViewModel>();
+            ExportAll = true;
+            ExportSelected = false;
+            Environments = new ObservableCollection<EnvironmentExportWindowViewModel>();
         }
         public ExportWindowViewModel(ICollection<EnvironmentViewModel> environments) : this()
         {
+            var converter = new EnvironmentExportConverter();
             foreach (var environment in environments)
             {
-                Environments.Add(environment);
+                var converted = converter.From(environment);
+                Environments.Add(converted);
             }
         }
-        public ObservableCollection<EnvironmentViewModel> Environments { get; set; }
+        public ObservableCollection<EnvironmentExportWindowViewModel> Environments { get; set; }
         public bool ExportSelected { get => _exportSelected;
             set
             {

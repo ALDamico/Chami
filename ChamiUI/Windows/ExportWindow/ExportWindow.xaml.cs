@@ -29,5 +29,16 @@ namespace ChamiUI.Windows.ExportWindow
         }
 
         private ExportWindowViewModel _viewModel;
+
+        private void CancelCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            //TODO Probably will need to change this
+            e.CanExecute = true;
+        }
+
+        private void CancelCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
