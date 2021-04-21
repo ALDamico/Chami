@@ -28,8 +28,7 @@ namespace ChamiUI.BusinessLayer
 
         public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress)
         {
-
-            var arguments = $"/C SETX {EnvironmentVariable.Name} {EnvironmentVariable.Value}";
+            var arguments = $"/C SETX \"{EnvironmentVariable.Name}\" \"{EnvironmentVariable.Value}\"";
             var commandLineFull = "cmd.exe " + arguments;
             progress?.Report(new CmdExecutorProgress(0, null, commandLineFull));
             ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", arguments);
@@ -44,7 +43,6 @@ namespace ChamiUI.BusinessLayer
             {
                 progress.Report(new CmdExecutorProgress(0, process.StandardOutput.BaseStream, null));
             }
-
         }
     }
 }

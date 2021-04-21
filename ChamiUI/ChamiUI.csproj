@@ -51,6 +51,18 @@
       <Content Include="DataLayer\Db\Migrations\0003_add_detector_settings.sql">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="Assets\chameleon128x128.png" />
+      <Resource Include="Assets\chameleon128x128.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\chameleon256x256.png" />
+      <Content Include="Assets\chameleon256x256.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="Assets\chameleon64x64.png" />
+      <Content Include="Assets\chameleon64x64.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

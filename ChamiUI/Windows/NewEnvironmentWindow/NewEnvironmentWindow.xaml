@@ -36,6 +36,7 @@
         </Label>
         <TextBox Grid.Row="1"
                  Grid.Column="1"
+                 VerticalContentAlignment="Center"
                  Text="{Binding Environment.Name, UpdateSourceTrigger=PropertyChanged}" />
         <DataGrid Grid.Row="2"
                   Grid.Column="0"

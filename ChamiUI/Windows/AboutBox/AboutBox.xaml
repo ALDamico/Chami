@@ -5,18 +5,22 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows.AboutBox"
         mc:Ignorable="d"
-        Title="AboutBox" Height="200" Width="350"
+        Title="About Chami..." Height="300" Width="350"
         ResizeMode="NoResize"
         >
     <Grid>
         <StackPanel Orientation="Vertical">
-            <Label>Chami</Label>
+            <StackPanel Margin="10, 0" Orientation="Horizontal">
+                <Image Width="128" Height="128" Source="/ChamiUI;component/Assets/chameleon128x128.png"></Image>
+                <Label VerticalContentAlignment="Bottom" FontSize="20" FontWeight="DemiBold">Chami</Label>
+            </StackPanel>
+            
             <Separator/>
             <Label>Developed by Andrea Luciano Damico</Label>
             <Label>Chami Icon by Vitaly Gorbachev</Label>
             <Label>https://www.flaticon.com/authors/vitaly-gorbachev</Label>
             <Label>Released under the terms of the MIT License</Label>
-            <Button x:Name="OkButton" Click="OkButton_Click">Ok</Button>
+            <Button MaxWidth="65" x:Name="OkButton" Click="OkButton_Click">Ok</Button>
         </StackPanel>
     </Grid>
 </Window>

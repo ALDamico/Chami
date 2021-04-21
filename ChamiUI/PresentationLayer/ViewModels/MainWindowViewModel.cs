@@ -284,5 +284,50 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _dataAdapter.DeleteVariable(SelectedVariable);
             SelectedEnvironment.EnvironmentVariables.Remove(SelectedVariable);
         }
+
+        public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
+        {
+            if (progress != null)
+            {
+                CmdExecutorProgress executorProgress =
+                    new CmdExecutorProgress(0, null, "Reverting back to original environment variables...\n");
+                progress.Report(executorProgress);
+            }
+            var cmdExecutor = new CmdExecutor();
+            var detector = new EnvironmentVariableRegistryRetriever();
+            
+            var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
+            if (currentEnvironmentName != null)
+            {
+                var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
+                // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
+                // corresponding entity
+                if (currentOsEnvironment != null)
+                {
+                    foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
+                    {
+                        var newCommand =
+                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                                environmentVariable);
+                        cmdExecutor.AddCommand(newCommand);
+                    }
+                    var chamiEnvVariable = new EnvironmentVariable() {Name = "_CHAMI_ENV"};
+                    var chamiEnvVarRemovalCommand =
+                        EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                            chamiEnvVariable);
+                    cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
+                    await cmdExecutor.ExecuteAsync(progress);
+                }
+            }
+            else
+            {
+                if (progress != null)
+                {
+                    CmdExecutorProgress executorProgress = new CmdExecutorProgress(100, null,
+                        "There's no active Chami environment!\nNothing to do.");
+                    progress.Report(executorProgress);
+                }
+            }
+        }
     }
 }
