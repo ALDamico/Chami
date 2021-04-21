@@ -33,6 +33,10 @@ namespace ChamiUI.BusinessLayer.Exporters
             _excelApplication.DisplayAlerts = false;
 
             Worksheet worksheet = (Worksheet) _workbook.Worksheets.FirstOrDefault();
+            if (worksheet == null)
+            {
+                worksheet = (Worksheet) _workbook.Worksheets.Add();
+            }
             int sheetNumber = 1;
             foreach (var environment in _environments)
             {
