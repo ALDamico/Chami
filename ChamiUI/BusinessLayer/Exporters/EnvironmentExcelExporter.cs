@@ -14,11 +14,16 @@ namespace ChamiUI.BusinessLayer.Exporters
             _environments = new List<Environment>();
         }
 
+        public EnvironmentExcelExporter(ICollection<Environment> environments)
+        {
+            _environments = new List<Environment>(environments);
+        }
+
         public void AddEnvironment(Environment environment)
         {
             _environments.Add(environment);
         }
-        private List<Environment> _environments;
+        private readonly List<Environment> _environments;
         private Application _excelApplication;
         private Workbook _workbook;
         public void Export(string filename)
@@ -27,9 +32,19 @@ namespace ChamiUI.BusinessLayer.Exporters
             _workbook = _excelApplication.Workbooks.Add();
             _excelApplication.DisplayAlerts = false;
 
+            Worksheet worksheet = (Worksheet) _workbook.Worksheets.FirstOrDefault();
+            if (worksheet == null)
+            {
+                worksheet = (Worksheet) _workbook.Worksheets.Add();
+            }
+            int sheetNumber = 1;
             foreach (var environment in _environments)
             {
-                var worksheet = (Worksheet) _workbook.Worksheets.Add();
+                
+                if (sheetNumber > 1)
+                {
+                    worksheet = (Worksheet) _workbook.Worksheets.Add();
+                }
                 worksheet.Name = environment.Name;
 
                 var cells = worksheet.Cells;
@@ -47,6 +62,8 @@ namespace ChamiUI.BusinessLayer.Exporters
                     cells[i, 7].Value = environmentVariable.AddedOn;
                     i++;
                 }
+
+                sheetNumber++;
             }
             _workbook.SaveAs(filename);
         }
