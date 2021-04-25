@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ChamiUI.Windows.ExportWindow"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        xmlns:controls="clr-namespace:ChamiUI.Controls"
         d:DataContext="{d:DesignInstance vm:ExportWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         Title="Export environments" Height="450" Width="400">
@@ -22,6 +23,7 @@
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
@@ -44,7 +46,10 @@
                              IsChecked="{Binding ExportSelected}"/>
             </StackPanel>
         </GroupBox>
-        <ListView Grid.Row="2" 
+        <controls:FileInputBox Grid.Row="2" Grid.Column="0" 
+                               Filename="{Binding Filename, Mode=TwoWay}" 
+                               />
+        <ListView Grid.Row="3" 
                   Grid.Column="0" 
                   ItemsSource="{Binding Environments}" 
                   IsEnabled="{Binding ExportSelected}"
@@ -62,7 +67,7 @@
         </ListView>
         <StackPanel HorizontalAlignment="Center" 
                     Orientation="Horizontal" 
-                    Grid.Row="3" 
+                    Grid.Row="4" 
                     Grid.Column="0" 
                     Margin="0, 5">
             <Button x:Name="ExportDataButton"

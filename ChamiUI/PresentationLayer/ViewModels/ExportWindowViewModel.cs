@@ -73,5 +73,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private bool _exportSelected;
         private bool _exportAll;
+
+        private string _filename;
+
+        public string Filename
+        {
+            get => _filename;
+            set
+            {
+                _filename = value;
+                OnPropertyChanged(nameof(Filename));
+            }
+        }
     }
 }

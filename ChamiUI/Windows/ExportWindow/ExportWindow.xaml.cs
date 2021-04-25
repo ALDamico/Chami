@@ -26,6 +26,7 @@ namespace ChamiUI.Windows.ExportWindow
             
             DataContext = _viewModel;
             InitializeComponent();
+            
         }
 
         private ExportWindowViewModel _viewModel;
