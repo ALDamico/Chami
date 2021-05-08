@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.BusinessLayer.Exporters;
+using ChamiUI.DataLayer.Entities;
+using ChamiUI.DataLayer.Repositories;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -17,7 +17,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             ExportSelected = false;
             Environments = new ObservableCollection<EnvironmentExportWindowViewModel>();
             SelectedEnvironments = new ObservableCollection<EnvironmentExportWindowViewModel>();
+            var connectionString = App.GetConnectionString();
+            _repository = new EnvironmentRepository(connectionString);
         }
+
+        private EnvironmentRepository _repository;
 
         public ExportWindowViewModel(ICollection<EnvironmentViewModel> environments) : this()
         {
@@ -51,14 +55,33 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public void Export()
+        public async Task ExportAsync()
         {
+            var environmentList = new List<Environment>();
+            if (ExportAll)
+            {
+                environmentList = _repository.GetEnvironments() as List<Environment>;
+            }
+            else
+            {
+                foreach (var environmentViewModel in SelectedEnvironments)
+                {
+                    var environmentId = environmentViewModel.Environment.Id;
+                    var environment = _repository.GetEnvironmentById(environmentId);
+                    environmentList.Add(environment);
+                }
+            }
+            
+
+            var exporter = new EnvironmentExcelExporter(environmentList);
+            await exporter.ExportAsync(Filename);
         }
 
         public ObservableCollection<EnvironmentExportWindowViewModel> SelectedEnvironments { get; set; }
 
         public void HandleSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
+            e.Handled = true;
             var removedItems = e.RemovedItems;
             foreach (var removedItem in removedItems)
             {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using NetOffice.ExcelApi;
 using NetOffice;
 using Environment = ChamiUI.DataLayer.Entities.Environment;
@@ -26,6 +27,50 @@ namespace ChamiUI.BusinessLayer.Exporters
         private readonly List<Environment> _environments;
         private Application _excelApplication;
         private Workbook _workbook;
+
+        public async Task ExportAsync(string filename)
+        {
+            _excelApplication = new Application();
+            _workbook = _excelApplication.Workbooks.Add();
+            _excelApplication.DisplayAlerts = false;
+
+            Worksheet worksheet = (Worksheet) _workbook.Worksheets.FirstOrDefault();
+            if (worksheet == null)
+            {
+                worksheet = (Worksheet) _workbook.Worksheets.Add();
+            }
+            int sheetNumber = 1;
+            foreach (var environment in _environments)
+            {
+                
+                if (sheetNumber > 1)
+                {
+                    worksheet = (Worksheet) _workbook.Worksheets.Add();
+                }
+                worksheet.Name = environment.Name;
+
+                var cells = worksheet.Cells;
+                PrintHeader(worksheet);
+
+                int i = 2;
+                foreach (var environmentVariable in environment.EnvironmentVariables)
+                {
+                    cells[i, 1].Value = environment.EnvironmentId;
+                    cells[i, 2].Value = environment.Name;
+                    cells[i, 3].Value = environment.AddedOn;
+                    cells[i, 4].Value = environmentVariable.EnvironmentVariableId;
+                    cells[i, 5].Value = environmentVariable.Name;
+                    cells[i, 6].Value = environmentVariable.Value;
+                    cells[i, 7].Value = environmentVariable.AddedOn;
+                    i++;
+                }
+
+                sheetNumber++;
+            }
+
+            await Task.Run(() => _workbook.SaveAs(filename));
+            _excelApplication.Quit();
+        }
         public void Export(string filename)
         {
             _excelApplication = new Application();
@@ -66,6 +111,7 @@ namespace ChamiUI.BusinessLayer.Exporters
                 sheetNumber++;
             }
             _workbook.SaveAs(filename);
+            _excelApplication.Quit();
         }
 
         protected void PrintHeader(Worksheet worksheet)

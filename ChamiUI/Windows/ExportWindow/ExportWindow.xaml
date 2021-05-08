@@ -74,6 +74,7 @@
                     MaxWidth="65" Margin="10, 0" 
                     Content="Export"
                     IsEnabled="{Binding ExportButtonEnabled}"
+                    Click="ExportDataButton_OnClick"
                     />
             <Button x:Name="CancelButton"
                     MaxWidth="65" Margin="10, 0"

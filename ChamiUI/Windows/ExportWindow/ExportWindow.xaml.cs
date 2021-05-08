@@ -46,5 +46,10 @@ namespace ChamiUI.Windows.ExportWindow
         {
             _viewModel.HandleSelectionChanged(sender, e);
         }
+
+        private async void ExportDataButton_OnClick(object sender, RoutedEventArgs e)
+        {
+           await  _viewModel.ExportAsync();
+        }
     }
 }
