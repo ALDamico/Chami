@@ -23,7 +23,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             var environmentConverter = new EnvironmentConverter();
             foreach (var model in models)
             {
-                output.Add(environmentConverter.FromEntity(model));
+                output.Add(environmentConverter.To(model));
             }
 
             return output;
@@ -37,7 +37,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                 return null;
             }
 
-            return new EnvironmentConverter().FromEntity(environment);
+            return new EnvironmentConverter().To(environment);
         }
 
         public Environment GetEnvironmentEntityByName(string name)
@@ -52,7 +52,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             if (validationResult.IsValid)
             {
                 var converter = new EnvironmentConverter();
-                var converted = converter.FromModel(environmentViewModel);
+                var converted = converter.From(environmentViewModel);
                 var inserted = _repository.InsertEnvironment(converted);
                 return inserted != null;
             }
@@ -79,9 +79,9 @@ namespace ChamiUI.BusinessLayer.Adapters
         public EnvironmentViewModel SaveEnvironment(EnvironmentViewModel environment)
         {
             var converter = new EnvironmentConverter();
-            var entity = converter.FromModel(environment);
+            var entity = converter.From(environment);
             var inserted = _repository.UpsertEnvironment(entity);
-            return converter.FromEntity(inserted);
+            return converter.To(inserted);
         }
 
         public void BackupEnvironment()

@@ -25,7 +25,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             var converter = new WatchedApplicationConverter();
             foreach (var watchedApplication in watchedApplications)
             {
-                var viewModel = converter.FromEntity(watchedApplication);
+                var viewModel = converter.To(watchedApplication);
                 output.Add(viewModel);
             }
 
@@ -35,14 +35,14 @@ namespace ChamiUI.BusinessLayer.Adapters
         public void InsertWatchedApplication(WatchedApplicationViewModel watchedApplication)
         {
             var converter = new WatchedApplicationConverter();
-            var entity = converter.FromModel(watchedApplication);
+            var entity = converter.From(watchedApplication);
             _repository.InsertWatchedApplication(entity);
         }
 
         public void UpdateWatchedApplication(WatchedApplicationViewModel watchedApplication)
         {
             var converter = new WatchedApplicationConverter();
-            var entity = converter.FromModel(watchedApplication);
+            var entity = converter.From(watchedApplication);
             _repository.UpdateApplication(entity);
         }
 

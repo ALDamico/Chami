@@ -1,8 +1,8 @@
 namespace ChamiUI.BusinessLayer.Converters
 {
-    public interface IConverter<TEntity, TViewModel>
+    public interface IConverter<TFrom, TTo>
     {
-        TEntity FromModel(TViewModel model);
-        TViewModel FromEntity(TEntity entity);
+        TFrom From(TTo model);
+        TTo To(TFrom entity);
     }
 }

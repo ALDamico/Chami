@@ -267,5 +267,11 @@ namespace ChamiUI.Windows.MainWindow
                 await ViewModel.ResetEnvironmentAsync(progress);
             }
         }
+
+        private void ExportMenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var exportWindow = new ExportWindow.ExportWindow(ViewModel.Environments);
+            exportWindow.ShowDialog();
+        }
     }
 }
