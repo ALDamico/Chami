@@ -72,7 +72,9 @@
                     Margin="0, 5">
             <Button x:Name="ExportDataButton"
                     MaxWidth="65" Margin="10, 0" 
-                    Content="Export"/>
+                    Content="Export"
+                    IsEnabled="{Binding ExportButtonEnabled}"
+                    />
             <Button x:Name="CancelButton"
                     MaxWidth="65" Margin="10, 0"
                     Content="Cancel" 

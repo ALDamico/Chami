@@ -73,7 +73,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private bool _exportSelected;
         private bool _exportAll;
-
         private string _filename;
 
         public string Filename
@@ -83,7 +82,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _filename = value;
                 OnPropertyChanged(nameof(Filename));
+                OnPropertyChanged(nameof(ExportButtonEnabled));
             }
         }
+
+        public bool ExportButtonEnabled => !string.IsNullOrWhiteSpace(Filename);
     }
 }
