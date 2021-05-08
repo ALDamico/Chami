@@ -5,7 +5,7 @@ namespace ChamiUI.BusinessLayer.Converters
 {
     public class EnvironmentVariableConverter : IConverter<EnvironmentVariable, EnvironmentVariableViewModel>
     {
-        public EnvironmentVariable FromModel(EnvironmentVariableViewModel model)
+        public EnvironmentVariable From(EnvironmentVariableViewModel model)
         {
             var environmentVariable = new EnvironmentVariable();
             environmentVariable.Name = model.Name;
@@ -14,7 +14,7 @@ namespace ChamiUI.BusinessLayer.Converters
             return environmentVariable;
         }
 
-        public EnvironmentVariableViewModel FromEntity(EnvironmentVariable entity)
+        public EnvironmentVariableViewModel To(EnvironmentVariable entity)
         {
             var viewModel = new EnvironmentVariableViewModel();
             viewModel.Name = entity.Name;
