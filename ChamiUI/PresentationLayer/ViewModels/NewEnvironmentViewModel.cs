@@ -8,7 +8,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             Environment = new EnvironmentViewModel();
             _dataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
-            HasBeenChanged = false;
         }
 
         private EnvironmentDataAdapter _dataAdapter;
@@ -31,20 +30,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public bool DetectChanges()
         {
-            if (Environment.HasBeenChanged)
-            {
-                return true;
-            }
-
-            foreach (var environmentVariable in Environment.EnvironmentVariables)
-            {
-                if (environmentVariable.HasBeenChanged)
-                {
-                    return true;
-                }
-            }
-
-            return false;
+            return true;
         }
     }
 }

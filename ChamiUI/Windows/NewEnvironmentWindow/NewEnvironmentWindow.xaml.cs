@@ -26,7 +26,7 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
 
         private bool HandleClosing()
         {
-            if (_viewModel.DetectChanges())
+            /*if (_viewModel.DetectChanges())
             {
                 string caption;
                 string environmentName = _viewModel.Environment.Name;
@@ -52,7 +52,8 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                 return true;
             }
 
-            return false;
+            return false;*/
+            return true;
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
