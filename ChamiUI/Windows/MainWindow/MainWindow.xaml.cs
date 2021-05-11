@@ -4,6 +4,7 @@ using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Text;
@@ -247,7 +248,21 @@ namespace ChamiUI.Windows.MainWindow
 
         private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.DeleteSelectedVariable();
+            var selectedEnvironmentVariables = new List<object>();
+            foreach (var envVar in CurrentEnvironmentVariablesDataGrid.SelectedItems)
+            {
+                selectedEnvironmentVariables.Add(envVar);
+            }
+            
+            foreach (var environmentVariable in selectedEnvironmentVariables)
+            {
+                if (environmentVariable is EnvironmentVariableViewModel vm)
+                {
+                    ViewModel.SelectedVariable = vm;
+                    ViewModel.DeleteSelectedVariable();
+                }
+            }
+            
         }
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)

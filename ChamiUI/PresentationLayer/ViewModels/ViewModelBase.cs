@@ -8,7 +8,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         public ViewModelBase()
         {
-            HasBeenChanged = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -16,10 +15,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            HasBeenChanged = true;
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
-        public bool HasBeenChanged { get; protected set; }
     }
 }

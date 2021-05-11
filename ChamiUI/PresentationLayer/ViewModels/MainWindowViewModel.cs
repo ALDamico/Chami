@@ -283,6 +283,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _dataAdapter.DeleteVariable(SelectedVariable);
             SelectedEnvironment.EnvironmentVariables.Remove(SelectedVariable);
+            DisableEditing();
         }
 
         public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)

@@ -141,6 +141,7 @@
                           CanUserDeleteRows="{Binding EditingEnabled}"
                           IsEnabled="{Binding EditingEnabled}"
                           SelectedItem="{Binding SelectedVariable}"
+                          x:Name="CurrentEnvironmentVariablesDataGrid"
                           >
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">

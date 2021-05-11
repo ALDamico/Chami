@@ -8,7 +8,9 @@
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         d:DataContext="{d:DesignInstance viewModels:NewEnvironmentViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="New Environment" Height="450" Width="300" ResizeMode="NoResize">
+        Title="New Environment" Height="450" Width="300" ResizeMode="NoResize"
+        Loaded="NewEnvironmentWindow_OnLoaded"
+        >
     <Grid Margin="5, 5, 5, 5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -37,7 +39,9 @@
         <TextBox Grid.Row="1"
                  Grid.Column="1"
                  VerticalContentAlignment="Center"
-                 Text="{Binding Environment.Name, UpdateSourceTrigger=PropertyChanged}" />
+                 Text="{Binding Environment.Name, UpdateSourceTrigger=PropertyChanged}" 
+                 TabIndex="0"
+                 x:Name="EnvironmentNameTextbox"/>
         <DataGrid Grid.Row="2"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
