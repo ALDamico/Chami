@@ -76,5 +76,10 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
         }
 
         public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
+
+        private void NewEnvironmentWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            EnvironmentNameTextbox.Focus();
+        }
     }
 }
