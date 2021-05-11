@@ -92,7 +92,7 @@ namespace ChamiUI.DataLayer.Repositories
             }
 
             var sql = @"
-                UPDATE WatchedApplication
+                UPDATE WatchedApplications
                 SET Name = ?,
                     IsWatchEnabled = ?
                 WHERE Id = ?
