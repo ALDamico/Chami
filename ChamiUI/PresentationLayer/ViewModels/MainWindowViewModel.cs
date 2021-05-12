@@ -87,9 +87,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return settings;
         }
 
+        private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
+        {
+            ActiveEnvironment = args.NewActiveEnvironment;
+        }
+
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
         {
-            var cmdExecutor = new CmdExecutor();
+            var cmdExecutor = new CmdExecutor(SelectedEnvironment);
+            cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
             if (currentEnvironmentName != null)
             {
@@ -122,7 +128,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             await cmdExecutor.ExecuteAsync(progress);
-            ;
+            
+        }
+
+        private EnvironmentViewModel _activeEnvironment;
+
+        public EnvironmentViewModel ActiveEnvironment
+        {
+            get => _activeEnvironment;
+            set
+            {
+                _activeEnvironment = value;
+                OnPropertyChanged(nameof(ActiveEnvironment));
+            }
         }
 
         public void ChangeEnvironment(IProgress<CmdExecutorProgress> progress = null)
@@ -241,6 +259,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Environments.Add(environment);
                 SelectedEnvironment = environment;
                 EnableEditing();
+            }
+        }
+
+        private string _windowTitle = "Chami";
+
+        public string WindowTitle
+        {
+            get
+            {
+                return _windowTitle;
             }
         }
 
