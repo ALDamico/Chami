@@ -293,5 +293,20 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.DetectCurrentEnvironment();
         }
+
+        private async void ChangeEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            await ViewModel.ChangeEnvironmentAsync();
+        }
+
+        private void ChangeEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private async void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ApplyEnvironmentButton_OnClick(sender, e);
+        }
     }
 }

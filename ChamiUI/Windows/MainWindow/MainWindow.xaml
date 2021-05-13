@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        xmlns:mainWindow="clr-namespace:ChamiUI.Windows.MainWindow"
         Title="{Binding WindowTitle}" 
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800">
@@ -53,6 +54,10 @@
                         Command="New"
                         CanExecute="NewEnvironmentCommandBinding_CanExecute"
                         Executed="NewEnvironmentCommandBinding_Executed"></CommandBinding>
+        <CommandBinding x:Name="ChangeEnvironmentCommandBinding"
+                        Command="NotACommand" 
+                        Executed="ChangeEnvironmentCommandBinding_OnExecuted" 
+                        CanExecute="ChangeEnvironmentCommandBinding_OnCanExecute"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -109,6 +114,7 @@
                      x:Name="EnvironmentsListbox"
                      SelectedItem="{Binding SelectedEnvironment}"
                      SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
+                     MouseDoubleClick="EnvironmentsListbox_OnMouseDoubleClick"
                      >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
@@ -118,7 +124,11 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Label Content="{Binding DisplayName}" 
-                               FontWeight="{Binding TextFontWeight}"></Label>
+                               FontWeight="{Binding TextFontWeight}"
+                               MouseDoubleClick="ApplyEnvironmentButton_OnClick"
+                               Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
+                               >
+                        </Label>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
