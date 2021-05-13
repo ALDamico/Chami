@@ -9,7 +9,9 @@
         mc:Ignorable="d"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
-        Title="Chami" Height="450" Width="800">
+        Title="{Binding WindowTitle}" 
+        Loaded="MainWindow_OnLoaded"
+        Height="450" Width="800">
     <Window.Resources>
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
             <MenuItem Header="Edit" x:Name="EditEnvironmentMenuItem" Click="EditEnvironmentMenuItem_OnClick">
@@ -104,7 +106,6 @@
             <ListBox Grid.Column="0"
                      Margin="5,5,5,5"
                      ItemsSource="{Binding Environments}"
-                     DisplayMemberPath="Name"
                      x:Name="EnvironmentsListbox"
                      SelectedItem="{Binding SelectedEnvironment}"
                      SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
@@ -114,6 +115,12 @@
                         <Setter Property="ContextMenu" Value="{StaticResource EnvironmentListBoxContextMenu}" />
                     </Style>
                 </ListBox.ItemContainerStyle>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Label Content="{Binding DisplayName}" 
+                               FontWeight="{Binding TextFontWeight}"></Label>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
             <Button Grid.Column="1"
                     ToolTip="Apply"

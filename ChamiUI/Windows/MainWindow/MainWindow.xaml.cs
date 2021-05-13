@@ -288,5 +288,10 @@ namespace ChamiUI.Windows.MainWindow
             var exportWindow = new ExportWindow.ExportWindow(ViewModel.Environments);
             exportWindow.ShowDialog();
         }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.DetectCurrentEnvironment();
+        }
     }
 }

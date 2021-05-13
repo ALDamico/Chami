@@ -90,7 +90,26 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
         {
             ActiveEnvironment = args.NewActiveEnvironment;
+           
+            
+            ChangeActiveEnvironment();
+            if (ActiveEnvironment != null)
+            {
+                ActiveEnvironment.IsActive = true;
+            }
         }
+
+        private void ChangeActiveEnvironment()
+        {
+            foreach (var environment in Environments)
+            {
+                environment.IsActive = false;
+                if (ActiveEnvironment != null && ActiveEnvironment.Name == environment.Name)
+                {
+                    environment.IsActive = true;
+                }
+            }
+        } 
 
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
         {
@@ -140,6 +159,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _activeEnvironment = value;
                 OnPropertyChanged(nameof(ActiveEnvironment));
+                OnPropertyChanged(nameof(WindowTitle));
             }
         }
 
@@ -268,6 +288,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
+                if (ActiveEnvironment != null)
+                {
+                    return $"{_windowTitle} - {ActiveEnvironment.Name}";
+                }
                 return _windowTitle;
             }
         }
@@ -357,6 +381,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     progress.Report(executorProgress);
                 }
             }
+        }
+
+        public void DetectCurrentEnvironment()
+        {
+            var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
+            OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
         }
     }
 }

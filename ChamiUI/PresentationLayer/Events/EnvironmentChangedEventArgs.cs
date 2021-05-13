@@ -8,6 +8,10 @@ namespace ChamiUI.PresentationLayer.Events
         public EnvironmentChangedEventArgs(EnvironmentViewModel newActiveEnvironment)
         {
             NewActiveEnvironment = newActiveEnvironment;
+            if (NewActiveEnvironment != null)
+            {
+                NewActiveEnvironment.IsActive = true;
+            }
         }
         public EnvironmentViewModel NewActiveEnvironment { get; }
     }
