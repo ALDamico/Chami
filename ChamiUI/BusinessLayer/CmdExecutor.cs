@@ -65,7 +65,6 @@ namespace ChamiUI.BusinessLayer
             {
                 var converter = new EnvironmentConverter();
                 var convertedViewModel = converter.To(TargetEnvironment);
-                convertedViewModel.IsActive = true;
                 OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(convertedViewModel));
             }
             

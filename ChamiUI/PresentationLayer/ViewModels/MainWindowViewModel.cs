@@ -93,10 +93,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
            
             
             ChangeActiveEnvironment();
-            if (ActiveEnvironment != null)
-            {
-                ActiveEnvironment.IsActive = true;
-            }
         }
 
         private void ChangeActiveEnvironment()
