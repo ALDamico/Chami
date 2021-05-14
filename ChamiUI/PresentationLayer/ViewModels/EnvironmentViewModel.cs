@@ -1,5 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows;
+using System.Windows.Media;
+using SharpVectors.Dom;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -11,6 +14,45 @@ namespace ChamiUI.PresentationLayer.ViewModels
             AddedOn = DateTime.Now;
         }
 
+        private bool _isActive;
+
+        public bool IsActive
+        {
+            get => _isActive;
+            set
+            {
+                _isActive = value;
+                OnPropertyChanged(nameof(IsActive));
+                OnPropertyChanged(nameof(TextFontWeight));
+                OnPropertyChanged(nameof(DisplayName));
+            }
+        }
+
+        public FontWeight TextFontWeight
+        {
+            get
+            {
+                if (IsActive)
+                {
+                    return FontWeights.Bold;
+                }
+                return FontWeights.Regular;
+            }
+        }
+
+        public string DisplayName
+        {
+            get
+            {
+                if (IsActive)
+                {
+                    return $"{Name} *";
+                }
+
+                return Name;
+            }
+        }
+        
         private int _id;
         private DateTime _addedOn;
         private string _name;

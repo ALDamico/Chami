@@ -2,6 +2,9 @@ using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -12,10 +15,32 @@ namespace ChamiUI.BusinessLayer
             EnvironmentVariablesToApply = new List<IEnvironmentVariableCommand>();
         }
 
+        public CmdExecutor(DataLayer.Entities.Environment targetEnvironment) : this()
+        {
+            TargetEnvironment = targetEnvironment;
+        }
+
+        public CmdExecutor(EnvironmentViewModel targetEnvironmentViewModel) : this()
+        {
+            var converter = new EnvironmentConverter();
+            var convertedEnvironment = converter.From(targetEnvironmentViewModel);
+            TargetEnvironment = convertedEnvironment;
+        }
+        
+        public DataLayer.Entities.Environment TargetEnvironment { get; }
+
         public void AddCommand(IEnvironmentVariableCommand command)
         {
             EnvironmentVariablesToApply.Add(command);
         }
+
+        public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
+
+        protected virtual void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
+        {
+            EnvironmentChanged?.Invoke(this, args);
+        }
+
         protected List<IEnvironmentVariableCommand> EnvironmentVariablesToApply { get; }
 
         public void Execute()
@@ -30,13 +55,19 @@ namespace ChamiUI.BusinessLayer
         {
             CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, "Starting execution...\n");
             progress?.Report(cmdExecutorProgress);
-            var tasks = new List<Task>();
             foreach (var environmentVariable in EnvironmentVariablesToApply)
             {
                 await environmentVariable.ExecuteAsync(progress);
             }
 
             progress?.Report(new CmdExecutorProgress(100, null, "Execution complete\n"));
+            if (TargetEnvironment != null)
+            {
+                var converter = new EnvironmentConverter();
+                var convertedViewModel = converter.To(TargetEnvironment);
+                OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(convertedViewModel));
+            }
+            
         }
     }
 }

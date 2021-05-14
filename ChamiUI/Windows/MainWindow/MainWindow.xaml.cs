@@ -288,5 +288,25 @@ namespace ChamiUI.Windows.MainWindow
             var exportWindow = new ExportWindow.ExportWindow(ViewModel.Environments);
             exportWindow.ShowDialog();
         }
+
+        private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            ViewModel.DetectCurrentEnvironment();
+        }
+
+        private async void ChangeEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            await ViewModel.ChangeEnvironmentAsync();
+        }
+
+        private void ChangeEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private async void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ApplyEnvironmentButton_OnClick(sender, e);
+        }
     }
 }
