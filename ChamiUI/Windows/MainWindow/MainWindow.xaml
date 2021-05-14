@@ -54,10 +54,6 @@
                         Command="New"
                         CanExecute="NewEnvironmentCommandBinding_CanExecute"
                         Executed="NewEnvironmentCommandBinding_Executed"></CommandBinding>
-        <CommandBinding x:Name="ChangeEnvironmentCommandBinding"
-                        Command="NotACommand" 
-                        Executed="ChangeEnvironmentCommandBinding_OnExecuted" 
-                        CanExecute="ChangeEnvironmentCommandBinding_OnCanExecute"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
