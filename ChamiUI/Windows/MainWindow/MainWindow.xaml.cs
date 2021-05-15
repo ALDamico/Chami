@@ -77,7 +77,7 @@ namespace ChamiUI.Windows.MainWindow
                 ConsoleTextBox.Text = "";
             }
             
-            TabControls.SelectedIndex = 1;
+            TabControls.SelectedIndex = CONSOLE_TAB_INDEX;
         }
 
         private void HandleProgressReport(CmdExecutorProgress o)
@@ -107,6 +107,15 @@ namespace ChamiUI.Windows.MainWindow
         private void EditEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.EnableEditing();
+            FocusEnvironmentVariablesTab();
+        }
+
+        private const int ENVIRONMENT_VARIABLES_TAB_INDEX = 0;
+        private const int CONSOLE_TAB_INDEX = 1;
+
+        private void FocusEnvironmentVariablesTab()
+        {
+            TabControls.SelectedIndex = ENVIRONMENT_VARIABLES_TAB_INDEX;
         }
 
         private void EnvironmentsListbox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)

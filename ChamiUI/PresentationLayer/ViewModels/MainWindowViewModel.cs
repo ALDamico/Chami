@@ -92,6 +92,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (args != null)
             {
                 ActiveEnvironment = args.NewActiveEnvironment;
+                SelectedEnvironment = ActiveEnvironment;
             }
             else
             {
