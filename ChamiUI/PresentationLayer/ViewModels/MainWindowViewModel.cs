@@ -89,9 +89,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
         {
-            ActiveEnvironment = args.NewActiveEnvironment;
-           
-            
+            if (args != null)
+            {
+                ActiveEnvironment = args.NewActiveEnvironment;
+            }
+            else
+            {
+                ActiveEnvironment = null;
+            }
+
             ChangeActiveEnvironment();
         }
 
@@ -377,6 +383,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     progress.Report(executorProgress);
                 }
             }
+            OnEnvironmentChanged(this, null);
         }
 
         public void DetectCurrentEnvironment()

@@ -298,5 +298,23 @@ namespace ChamiUI.Windows.MainWindow
         {
             ApplyEnvironmentButton_OnClick(sender, e);
         }
+
+        private void CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
+                {
+                    if (row is EnvironmentVariableViewModel environmentVariableViewModel)
+                    {
+
+                        ViewModel.SelectedVariable = environmentVariableViewModel;
+                        ViewModel.DeleteSelectedVariable();
+                    }
+                }
+            }
+
+            e.Handled = true;
+        }
     }
 }
