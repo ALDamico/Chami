@@ -208,6 +208,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _selectedVariable = value;
                 OnPropertyChanged(nameof(SelectedVariable));
+                OnPropertyChanged(nameof(SelectedEnvironment.EnvironmentVariables));
             }
         }
 
@@ -386,10 +387,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
             OnEnvironmentChanged(this, null);
         }
 
+        internal EnvironmentVariableViewModel CreateEnvironmentVariable()
+        {
+            var newVariable = new EnvironmentVariableViewModel();
+            newVariable.Environment = SelectedEnvironment;
+            SelectedVariable = newVariable;
+            //SelectedEnvironment.EnvironmentVariables.Add(newVariable);
+            return newVariable;
+        }
+
         public void DetectCurrentEnvironment()
         {
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
             OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
+        }
+
+        public void ResetCurrentEnvironmentFromDatasource()
+        {
+            if (SelectedEnvironment != null)
+            {
+                SelectedEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
+            }
         }
     }
 }

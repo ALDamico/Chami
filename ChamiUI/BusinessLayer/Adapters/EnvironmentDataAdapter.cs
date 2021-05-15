@@ -16,6 +16,18 @@ namespace ChamiUI.BusinessLayer.Adapters
         }
         private EnvironmentRepository _repository;
 
+        public EnvironmentViewModel GetEnvironmentById(int id)
+        {
+            var result = _repository.GetEnvironmentById(id);
+            if (result == null)
+            {
+                return null;
+            }
+
+            var converter = new EnvironmentConverter();
+            return converter.To(result);
+        }
+
         public ICollection<EnvironmentViewModel> GetEnvironments()
         {
             var models = _repository.GetEnvironments();

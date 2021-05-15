@@ -156,11 +156,6 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.SelectedVariable?.Name == null || ViewModel.SelectedVariable.Value == null)
-            {
-                e.CanExecute = false;
-                return;
-            } 
             if (ViewModel.SelectedEnvironment != null && ViewModel.EditingEnabled)
             {
                 e.CanExecute = true;
@@ -310,11 +305,29 @@ namespace ChamiUI.Windows.MainWindow
 
                         ViewModel.SelectedVariable = environmentVariableViewModel;
                         ViewModel.DeleteSelectedVariable();
+                        e.Handled = true;
                     }
                 }
             }
+        }
+
+        private void UndoEditing_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (ViewModel.EditingEnabled)
+            {
+                e.CanExecute = true;
+            }
+            else
+            {
+                e.CanExecute = false;
+            }
 
             e.Handled = true;
+        }
+
+        private void UndoEditing_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewModel.ResetCurrentEnvironmentFromDatasource();
         }
     }
 }

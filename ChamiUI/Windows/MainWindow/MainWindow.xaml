@@ -10,10 +10,19 @@
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:mainWindow="clr-namespace:ChamiUI.Windows.MainWindow"
+        xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
         Title="{Binding WindowTitle}" 
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800">
+    <Window.InputBindings>
+        <KeyBinding 
+            Key="Escape" 
+            Command="{x:Static commandProvider:CancelEditingCommandProvider.CancelEditingCommand}"
+                
+        ></KeyBinding>
+    </Window.InputBindings>
     <Window.Resources>
+        <CollectionViewSource x:Key="EnvironmentVariablesViewSource" Source="{Binding SelectedEnvironment.EnvironmentVariables}"></CollectionViewSource>
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
             <MenuItem Header="Edit" x:Name="EditEnvironmentMenuItem" Click="EditEnvironmentMenuItem_OnClick">
                 <MenuItem.Icon>
@@ -54,6 +63,11 @@
                         Command="New"
                         CanExecute="NewEnvironmentCommandBinding_CanExecute"
                         Executed="NewEnvironmentCommandBinding_Executed"></CommandBinding>
+        <CommandBinding x:Name="UndoEditing" 
+                        Command="{x:Static commandProvider:CancelEditingCommandProvider.CancelEditingCommand}"
+                        CanExecute="UndoEditing_OnCanExecute"
+                        Executed="UndoEditing_OnExecuted"
+                        ></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -148,7 +162,7 @@
                     Grid.Column="0"
                     x:Name="TabControls">
             <TabItem Header="Variables">
-                <DataGrid ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}"
+                <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="{Binding EditingEnabled}"
                           CanUserDeleteRows="{Binding EditingEnabled}"
