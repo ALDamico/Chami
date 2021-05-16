@@ -135,7 +135,6 @@
                     <DataTemplate>
                         <Label Content="{Binding DisplayName}" 
                                FontWeight="{Binding TextFontWeight}"
-                               MouseDoubleClick="ApplyEnvironmentButton_OnClick"
                                Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
                                >
                         </Label>
