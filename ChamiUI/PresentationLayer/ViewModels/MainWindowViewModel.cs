@@ -87,9 +87,37 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return settings;
         }
 
+        private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
+        {
+            if (args != null)
+            {
+                ActiveEnvironment = args.NewActiveEnvironment;
+                SelectedEnvironment = ActiveEnvironment;
+            }
+            else
+            {
+                ActiveEnvironment = null;
+            }
+
+            ChangeActiveEnvironment();
+        }
+
+        private void ChangeActiveEnvironment()
+        {
+            foreach (var environment in Environments)
+            {
+                environment.IsActive = false;
+                if (ActiveEnvironment != null && ActiveEnvironment.Name == environment.Name)
+                {
+                    environment.IsActive = true;
+                }
+            }
+        } 
+
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
         {
-            var cmdExecutor = new CmdExecutor();
+            var cmdExecutor = new CmdExecutor(SelectedEnvironment);
+            cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
             if (currentEnvironmentName != null)
             {
@@ -122,7 +150,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             await cmdExecutor.ExecuteAsync(progress);
-            ;
+            
+        }
+
+        private EnvironmentViewModel _activeEnvironment;
+
+        public EnvironmentViewModel ActiveEnvironment
+        {
+            get => _activeEnvironment;
+            set
+            {
+                _activeEnvironment = value;
+                OnPropertyChanged(nameof(ActiveEnvironment));
+                OnPropertyChanged(nameof(WindowTitle));
+            }
         }
 
         public void ChangeEnvironment(IProgress<CmdExecutorProgress> progress = null)
@@ -168,6 +209,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _selectedVariable = value;
                 OnPropertyChanged(nameof(SelectedVariable));
+                OnPropertyChanged(nameof(SelectedEnvironment.EnvironmentVariables));
             }
         }
 
@@ -241,6 +283,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Environments.Add(environment);
                 SelectedEnvironment = environment;
                 EnableEditing();
+            }
+        }
+
+        private string _windowTitle = "Chami";
+
+        public string WindowTitle
+        {
+            get
+            {
+                if (ActiveEnvironment != null)
+                {
+                    return $"{_windowTitle} - {ActiveEnvironment.Name}";
+                }
+                return _windowTitle;
             }
         }
 
@@ -328,6 +384,30 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         "There's no active Chami environment!\nNothing to do.");
                     progress.Report(executorProgress);
                 }
+            }
+            OnEnvironmentChanged(this, null);
+        }
+
+        internal EnvironmentVariableViewModel CreateEnvironmentVariable()
+        {
+            var newVariable = new EnvironmentVariableViewModel();
+            newVariable.Environment = SelectedEnvironment;
+            SelectedVariable = newVariable;
+            //SelectedEnvironment.EnvironmentVariables.Add(newVariable);
+            return newVariable;
+        }
+
+        public void DetectCurrentEnvironment()
+        {
+            var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
+            OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
+        }
+
+        public void ResetCurrentEnvironmentFromDatasource()
+        {
+            if (SelectedEnvironment != null)
+            {
+                SelectedEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
             }
         }
     }
