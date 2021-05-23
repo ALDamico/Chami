@@ -136,7 +136,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 }
             }
 
-            var newEnvironment = _dataAdapter.GetEnvironmentEntityByName(SelectedEnvironment.Name);
+            var newEnvironment = _dataAdapter.GetEnvironmentEntityById(SelectedEnvironment.Id);
             cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand(
                 typeof(EnvironmentVariableApplicationCommand),
                 new EnvironmentVariable() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
@@ -409,6 +409,28 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
             }
+        }
+
+        public async Task RenameEnvironment(string argsNewName, Progress<CmdExecutorProgress> progress = null)
+        {
+            SelectedEnvironment.Name = argsNewName;
+            var newSelectedEnvironment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            if (SelectedEnvironment.Equals(ActiveEnvironment))
+            {
+                ActiveEnvironment = newSelectedEnvironment;
+                await ChangeEnvironmentAsync(progress);
+                
+                //TODO Implement method to change the variable _CHAMI_ENV if this happens.
+            }
+
+            var element = Environments.FirstOrDefault(e => e.Equals(newSelectedEnvironment));
+            if (element != null)
+            {
+                Environments.Remove(element);
+                Environments.Add(newSelectedEnvironment);
+            }
+            
+            SelectedEnvironment = newSelectedEnvironment;
         }
     }
 }

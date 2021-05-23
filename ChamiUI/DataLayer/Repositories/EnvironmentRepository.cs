@@ -21,7 +21,7 @@ namespace ChamiUI.DataLayer.Repositories
             var queryString = @"
                 SELECT *
                 FROM Environments e
-                JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
+                LEFT JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
                 WHERE e.EnvironmentId = ?
  ";
             using (var connection = await GetConnectionAsync())
@@ -59,7 +59,7 @@ namespace ChamiUI.DataLayer.Repositories
             var queryString = @"
                 SELECT *
                 FROM Environments e
-                JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
+                LEFT JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
                 WHERE e.EnvironmentId = ?
  ";
             using (var connection = GetConnection())
@@ -79,8 +79,13 @@ namespace ChamiUI.DataLayer.Repositories
                                 environmentDictionary[e.EnvironmentId] = e;
                             }
 
-                            v.Environment = e;
-                            environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
+                            // Can happen if the environment has no variables attached to it.
+                            if (v != null)
+                            {
+                                v.Environment = e;
+                                environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
+                            }
+                            
                             return env;
                         }, param, splitOn: "EnvironmentVariableId");
                     return result.FirstOrDefault();

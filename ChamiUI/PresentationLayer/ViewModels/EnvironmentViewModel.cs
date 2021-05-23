@@ -76,6 +76,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
+                OnPropertyChanged(nameof(DisplayName));
             }
         }
 
@@ -87,6 +88,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _addedOn = value;
                 OnPropertyChanged(nameof(AddedOn));
             }
+        }
+
+        public override bool Equals(object? obj)
+        {
+            var environmentViewModel2 = obj as EnvironmentViewModel;
+            if (environmentViewModel2 == null)
+            {
+                return false;
+            }
+
+            return environmentViewModel2.Id == Id && environmentViewModel2.Name == Name;
         }
     }
 }
