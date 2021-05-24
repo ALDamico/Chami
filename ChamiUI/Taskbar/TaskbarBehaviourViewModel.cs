@@ -9,5 +9,8 @@ namespace ChamiUI.Taskbar
         {
             get => new ShowWindowCommand();
         }
+
+        public ICommand HideWindowCommand => new HideWindowCommand();
+        public ICommand ExitApplicationCommand => new ExitApplicationCommand();
     }
 }

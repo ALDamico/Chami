@@ -341,5 +341,13 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.ResetCurrentEnvironmentFromDatasource();
         }
+
+        private void MainWindow_OnStateChanged(object? sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                Hide();
+            }
+        }
     }
 }
