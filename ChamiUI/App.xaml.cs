@@ -11,6 +11,7 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiDbMigrations;
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace ChamiUI
 {
@@ -21,9 +22,11 @@ namespace ChamiUI
     {
         public App()
         {
+            InitializeComponent();
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
+            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
             Logger = new ChamiLogger();
             Logger.AddFileSink("chami.log");
             MigrateDatabase();
@@ -80,5 +83,7 @@ namespace ChamiUI
         {
             return Logger.GetLogger();
         }
+
+        private TaskbarIcon _taskbarIcon;
     }
 }
