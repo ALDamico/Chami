@@ -70,6 +70,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings = GetSettingsViewModel();
         }
 
+        public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged; 
+
         public bool ExecuteButtonEnabled
         {
             get => SelectedEnvironment != null && !EditingEnabled;
@@ -100,6 +102,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             ChangeActiveEnvironment();
+            EnvironmentChanged?.Invoke(this, args);
         }
 
         private void ChangeActiveEnvironment()
@@ -385,7 +388,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     progress.Report(executorProgress);
                 }
             }
-            OnEnvironmentChanged(this, null);
+            OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(null));
         }
 
         internal EnvironmentVariableViewModel CreateEnvironmentVariable()

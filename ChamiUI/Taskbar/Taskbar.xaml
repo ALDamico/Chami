@@ -12,7 +12,7 @@
     </ContextMenu>
     <tb:TaskbarIcon x:Key="ChamiTaskbarIcon" 
                     IconSource="../Assets/chameleon16x16.ico" 
-                    ToolTipText="Chami"
+                    ToolTipText="{Binding TooltipText}"
                     ContextMenu="{StaticResource ChamiSystemTrayMenu}"
                     DoubleClickCommand="{Binding ShowWindowCommand}"
                     >
