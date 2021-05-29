@@ -20,14 +20,11 @@ namespace ChamiUI.Taskbar
 
         public virtual void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
         {
-            if (args.NewActiveEnvironment != null)
+            if (args?.NewActiveEnvironment?.Name != null)
             {
-                if (args.NewActiveEnvironment.Name != null)
-                {
-                    _currentEnvironmentName = args.NewActiveEnvironment.Name;
-                    OnPropertyChanged(nameof(TooltipText));
-                    return;
-                }
+                _currentEnvironmentName = args.NewActiveEnvironment.Name;
+                OnPropertyChanged(nameof(TooltipText));
+                return;
             }
 
             _currentEnvironmentName = null;

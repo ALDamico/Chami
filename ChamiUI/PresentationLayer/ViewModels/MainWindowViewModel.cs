@@ -402,7 +402,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void DetectCurrentEnvironment()
         {
-            var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
+            var detector = new EnvironmentVariableRegistryRetriever();
+            
+            var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
             OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
         }
 
