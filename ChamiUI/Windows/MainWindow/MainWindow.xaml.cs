@@ -338,5 +338,31 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.ResetCurrentEnvironmentFromDatasource();
         }
+
+        private void RenameEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (!ViewModel.EditingEnabled && ViewModel.SelectedEnvironment != null)
+            {
+                e.CanExecute = true;
+                return;
+            }
+
+            e.CanExecute = false;
+        }
+
+        private async void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs args)
+        {
+            var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
+            FocusConsoleTab();
+            await ViewModel.RenameEnvironment(args.NewName, progress);
+        }
+
+        private void RenameEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var currentName = ViewModel.SelectedEnvironment.Name;
+            var childWindow = new RenameEnvironmentWindow.RenameEnvironmentWindow(currentName);
+            childWindow.EnvironmentRenamed += OnEnvironmentRenamed;
+            childWindow.ShowDialog();
+        }
     }
 }

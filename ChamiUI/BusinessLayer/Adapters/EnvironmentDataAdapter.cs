@@ -52,6 +52,11 @@ namespace ChamiUI.BusinessLayer.Adapters
             return new EnvironmentConverter().To(environment);
         }
 
+        public Environment GetEnvironmentEntityById(int id)
+        {
+            return _repository.GetEnvironmentById(id);
+        }
+
         public Environment GetEnvironmentEntityByName(string name)
         {
             return _repository.GetEnvironmentByName(name);
