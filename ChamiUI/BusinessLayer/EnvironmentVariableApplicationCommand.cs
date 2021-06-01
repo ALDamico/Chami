@@ -37,7 +37,7 @@ namespace ChamiUI.BusinessLayer
             return process;
         }
 
-        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress)
+        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage)
         {
             var arguments = $"/C SETX \"{EnvironmentVariable.Name}\" \"{EnvironmentVariable.Value}\"";
             var commandLineFull = "cmd.exe " + arguments;
@@ -46,7 +46,7 @@ namespace ChamiUI.BusinessLayer
             await process.WaitForExitAsync();
             if (progress != null)
             {
-                progress.Report(new CmdExecutorProgress(0, process.StandardOutput.BaseStream, commandLineFull));
+                progress.Report(new CmdExecutorProgress((int)percentage, process.StandardOutput.BaseStream, commandLineFull));
             }
         }
     }

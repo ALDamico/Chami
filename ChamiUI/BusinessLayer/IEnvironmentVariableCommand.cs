@@ -9,6 +9,6 @@ namespace ChamiUI.BusinessLayer
     {
         EnvironmentVariable EnvironmentVariable { get; set; }
         void Execute();
-        Task ExecuteAsync(IProgress<CmdExecutorProgress> progress);
+        Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage);
     }
 }

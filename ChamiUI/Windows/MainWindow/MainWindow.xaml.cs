@@ -12,7 +12,9 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 using ChamiUI.BusinessLayer;
+using ChamiUI.PresentationLayer.Factories;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -52,9 +54,14 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
+        private void ResetProgressBar()
+        {
+            ConsoleProgressBar.Value = 0.0;
+        }
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
+            ResetProgressBar();
             FocusConsoleTab();
             var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
             await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
@@ -84,7 +91,15 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (o.Message != null)
             {
-                ConsoleTextBox.Text += o.Message;
+                var message = o.Message;
+                message.TrimStart('\n');
+                if (!o.Message.EndsWith("\n"))
+                {
+                    message += "\n";
+                }
+                ConsoleTextBox.Text += message;
+                
+                
             }
 
             if (o.OutputStream != null)
@@ -94,6 +109,10 @@ namespace ChamiUI.Windows.MainWindow
             }
 
             ConsoleTextBox.ScrollToEnd();
+            var duration = DurationFactory.FromMilliseconds(250);
+            DoubleAnimation doubleAnimation = new DoubleAnimation(o.Percentage, duration);
+            ConsoleProgressBar.BeginAnimation(ProgressBar.ValueProperty, doubleAnimation);
+            ConsoleProgressBar.Value = o.Percentage;
         }
 
         private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)

@@ -8,74 +8,71 @@
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
-        Title="{Binding WindowTitle}" 
+        Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800"
-        StateChanged="MainWindow_OnStateChanged"
->
+        StateChanged="MainWindow_OnStateChanged">
     <Window.InputBindings>
-        <KeyBinding 
-            Key="Escape" 
-            Command="{x:Static commandProvider:MainWindowCommandsProvider.CancelEditingCommand}"
-                
-        ></KeyBinding>
-        <KeyBinding Key="F2" Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"></KeyBinding>
+        <KeyBinding
+            Key="Escape"
+            Command="{x:Static commandProvider:MainWindowCommandsProvider.CancelEditingCommand}" />
+
+        <KeyBinding Key="F2" Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}" />
     </Window.InputBindings>
     <Window.Resources>
-        <CollectionViewSource x:Key="EnvironmentVariablesViewSource" Source="{Binding SelectedEnvironment.EnvironmentVariables}"></CollectionViewSource>
+        <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
+                              Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
             <MenuItem Header="Edit" x:Name="EditEnvironmentMenuItem" Click="EditEnvironmentMenuItem_OnClick">
                 <MenuItem.Icon>
-                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg"></svg:SvgViewbox>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Rename" x:Name="RenameEnvironmentMenuItem" 
+            <MenuItem Header="Rename" x:Name="RenameEnvironmentMenuItem"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
-                      InputGestureText="F2"
-                      ></MenuItem>
+                      InputGestureText="F2" />
             <MenuItem Header="Delete" x:Name="DeleteEnvironmentMenuItem" Click="DeleteEnvironmentMenuItem_OnClick">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
-        
+
         <ContextMenu x:Key="EnvironmentVariablesContextMenu">
-            <MenuItem Header="Copy" 
-                      x:Name="CopyEnvironmentVariableMenuItem" 
+            <MenuItem Header="Copy"
+                      x:Name="CopyEnvironmentVariableMenuItem"
                       Click="CopyEnvironmentVariableMenuItem_OnClick">
                 <MenuItem.Icon>
-                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg"></svg:SvgViewbox>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
                 </MenuItem.Icon>
             </MenuItem>
-            <Separator/>
-            <MenuItem Header="Delete" 
-                      x:Name="DeleteEnvironmentVariableMenuItem" 
+            <Separator />
+            <MenuItem Header="Delete"
+                      x:Name="DeleteEnvironmentVariableMenuItem"
                       Click="DeleteEnvironmentVariableMenuItem_OnClick">
                 <MenuItem.Icon>
-                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg"></svg:SvgViewbox>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
     </Window.Resources>
     <Window.CommandBindings>
-        <CommandBinding x:Name="SaveCommandBinding" 
-                        Command="Save" 
-                        CanExecute="SaveCommandBinding_OnCanExecute" 
-                        Executed="SaveCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="SaveCommandBinding"
+                        Command="Save"
+                        CanExecute="SaveCommandBinding_OnCanExecute"
+                        Executed="SaveCommandBinding_OnExecuted" />
         <CommandBinding x:Name="NewEnvironmentCommandBinding"
                         Command="New"
                         CanExecute="NewEnvironmentCommandBinding_CanExecute"
-                        Executed="NewEnvironmentCommandBinding_Executed"></CommandBinding>
-        <CommandBinding x:Name="UndoEditing" 
+                        Executed="NewEnvironmentCommandBinding_Executed" />
+        <CommandBinding x:Name="UndoEditing"
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.CancelEditingCommand}"
                         CanExecute="UndoEditing_OnCanExecute"
-                        Executed="UndoEditing_OnExecuted"
-                        ></CommandBinding>
+                        Executed="UndoEditing_OnExecuted" />
         <CommandBinding x:Name="RenameEnvironmentCommandBinding"
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
                         CanExecute="RenameEnvironmentCommandBinding_OnCanExecute"
-                        Executed="RenameEnvironmentCommandBinding_OnExecuted"></CommandBinding>
+                        Executed="RenameEnvironmentCommandBinding_OnExecuted" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -92,10 +89,12 @@
             <MenuItem Header="File">
                 <MenuItem Header="New Environment" x:Name="NewEnvironmentMenuItem"
                           Command="New" />
-                <MenuItem Header="Save" x:Name="SaveEnvironmentMenuItem" Command="Save"></MenuItem>
+                <MenuItem Header="Save" x:Name="SaveEnvironmentMenuItem" Command="Save" />
                 <MenuItem Header="Import">
-                    <MenuItem Header="From .env..." x:Name="ImportFromDotenvMenuItem" Click="ImportFromDotenvMenuItem_OnClick"/>
-                    <MenuItem Header="From JSON..." x:Name="ImportFromJsonMenuItem" Click="ImportFromJsonMenuItem_OnClick" />
+                    <MenuItem Header="From .env..." x:Name="ImportFromDotenvMenuItem"
+                              Click="ImportFromDotenvMenuItem_OnClick" />
+                    <MenuItem Header="From JSON..." x:Name="ImportFromJsonMenuItem"
+                              Click="ImportFromJsonMenuItem_OnClick" />
                 </MenuItem>
                 <MenuItem Header="Export..." x:Name="ExportMenuItem" Click="ExportMenuItem_Click" />
                 <Separator />
@@ -104,12 +103,14 @@
                           Click="QuitApplicationMenuItem_OnClick" />
             </MenuItem>
             <MenuItem Header="Options">
-                <MenuItem Header="Reset environment variables" x:Name="ResetVarsMenuItem" Click="ResetVarsMenuItem_OnClick"></MenuItem>
-                <MenuItem Header="Backup current environment" x:Name="BackupEnvironmentMenuItem" Click="BackupEnvironmentMenuItem_OnClick"></MenuItem>
-                <Separator/>
+                <MenuItem Header="Reset environment variables" x:Name="ResetVarsMenuItem"
+                          Click="ResetVarsMenuItem_OnClick" />
+                <MenuItem Header="Backup current environment" x:Name="BackupEnvironmentMenuItem"
+                          Click="BackupEnvironmentMenuItem_OnClick" />
+                <Separator />
                 <MenuItem Header="Settings" x:Name="SettingsMenuItem" Click="SettingsMenuItem_OnClick">
                     <MenuItem.Icon>
-                        <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/cog.svg"></svg:SvgViewbox>
+                        <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/cog.svg" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
@@ -132,8 +133,7 @@
                      x:Name="EnvironmentsListbox"
                      SelectedItem="{Binding SelectedEnvironment}"
                      SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
-                     MouseDoubleClick="EnvironmentsListbox_OnMouseDoubleClick"
-                     >
+                     MouseDoubleClick="EnvironmentsListbox_OnMouseDoubleClick">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="ContextMenu" Value="{StaticResource EnvironmentListBoxContextMenu}" />
@@ -141,11 +141,9 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding DisplayName}" 
+                        <Label Content="{Binding DisplayName}"
                                FontWeight="{Binding TextFontWeight}"
-                               Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}"
-                               >
-                        </Label>
+                               Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -155,14 +153,11 @@
                     MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
                     Click="ApplyEnvironmentButton_OnClick"
-                    IsEnabled="{Binding ExecuteButtonEnabled}"
-                    >
+                    IsEnabled="{Binding ExecuteButtonEnabled}">
                 <svg:SvgViewbox MaxWidth="16"
                                 MaxHeight="16"
-                                Source="{Binding ExecuteButtonIcon}" 
-                                IsEnabled="{Binding ExecuteButtonEnabled}" 
-                                
-                                />
+                                Source="{Binding ExecuteButtonIcon}"
+                                IsEnabled="{Binding ExecuteButtonEnabled}" />
             </Button>
         </Grid>
         <TabControl Grid.Row="2"
@@ -176,15 +171,14 @@
                           IsEnabled="{Binding EditingEnabled}"
                           SelectedItem="{Binding SelectedVariable}"
                           PreviewKeyDown="CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown"
-                          x:Name="CurrentEnvironmentVariablesDataGrid"
-                          >
+                          x:Name="CurrentEnvironmentVariablesDataGrid">
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="ContextMenu" Value="{StaticResource EnvironmentVariablesContextMenu}" />
                         </Style>
                     </DataGrid.ItemContainerStyle>
                     <DataGrid.Columns>
-                        
+
                         <DataGridTextColumn Width="65"
                                             Binding="{Binding Name}"
                                             Header="Name" />
@@ -194,15 +188,21 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Console">
-                <TextBox x:Name="ConsoleTextBox"
-                         Background="{Binding Settings.ConsoleAppearanceSettings.BackgroundColor}"
-                         Foreground="{Binding Settings.ConsoleAppearanceSettings.ForegroundColor}"
-                         FontFamily="{Binding Settings.ConsoleAppearanceSettings.FontFamily}"
-                         FontSize="{Binding Settings.ConsoleAppearanceSettings.FontSize}"
-                         HorizontalScrollBarVisibility="Auto"
-                         VerticalScrollBarVisibility="Visible"
-                         IsReadOnly="True"
-                />
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" MaxHeight="22" />
+                    </Grid.RowDefinitions>
+                    <TextBox Grid.Row="0" x:Name="ConsoleTextBox"
+                             Background="{Binding Settings.ConsoleAppearanceSettings.BackgroundColor}"
+                             Foreground="{Binding Settings.ConsoleAppearanceSettings.ForegroundColor}"
+                             FontFamily="{Binding Settings.ConsoleAppearanceSettings.FontFamily}"
+                             FontSize="{Binding Settings.ConsoleAppearanceSettings.FontSize}"
+                             HorizontalScrollBarVisibility="Auto"
+                             VerticalScrollBarVisibility="Visible"
+                             IsReadOnly="True" />
+                    <ProgressBar Grid.Row="1" x:Name="ConsoleProgressBar" MinHeight="16" MaxHeight="22" Minimum="0" Maximum="100" />
+                </Grid>
             </TabItem>
         </TabControl>
     </Grid>

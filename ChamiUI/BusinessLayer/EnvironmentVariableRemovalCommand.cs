@@ -26,7 +26,7 @@ namespace ChamiUI.BusinessLayer
             process.Start();
         }
 
-        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress = null)
+        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage)
         {
             var arguments = $"/C REG delete HKCU\\Environment /F /V {EnvironmentVariable.Name}";
             var fullCmd = "cmd.exe " + arguments;
@@ -39,7 +39,7 @@ namespace ChamiUI.BusinessLayer
             process.StartInfo = processStartInfo;
             process.Start();
             await process.WaitForExitAsync();
-            progress?.Report(new CmdExecutorProgress(0, process.StandardOutput.BaseStream, null));
+            progress?.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream, null));
         }
     }
 }

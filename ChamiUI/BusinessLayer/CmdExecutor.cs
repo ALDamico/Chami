@@ -57,7 +57,9 @@ namespace ChamiUI.BusinessLayer
             progress?.Report(cmdExecutorProgress);
             foreach (var environmentVariable in EnvironmentVariablesToApply)
             {
-                await environmentVariable.ExecuteAsync(progress);
+                var currentIndex = (float)EnvironmentVariablesToApply.IndexOf(environmentVariable);
+                float percentage = 100.0F * currentIndex / EnvironmentVariablesToApply.Count;
+                await environmentVariable.ExecuteAsync(progress, percentage);
             }
 
             progress?.Report(new CmdExecutorProgress(100, null, "Execution complete\n"));
