@@ -98,7 +98,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 return false;
             }
 
-            return environmentViewModel2.Id == Id && environmentViewModel2.Name == Name;
+            return environmentViewModel2.Id == Id;
         }
     }
 }

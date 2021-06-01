@@ -415,22 +415,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             SelectedEnvironment.Name = argsNewName;
             var newSelectedEnvironment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            Environments = GetEnvironments();
+            OnPropertyChanged(nameof(Environments));
+
+            SelectedEnvironment = newSelectedEnvironment;
             if (SelectedEnvironment.Equals(ActiveEnvironment))
             {
                 ActiveEnvironment = newSelectedEnvironment;
                 await ChangeEnvironmentAsync(progress);
-                
-                //TODO Implement method to change the variable _CHAMI_ENV if this happens.
             }
-
-            var element = Environments.FirstOrDefault(e => e.Equals(newSelectedEnvironment));
-            if (element != null)
-            {
-                Environments.Remove(element);
-                Environments.Add(newSelectedEnvironment);
-            }
-            
-            SelectedEnvironment = newSelectedEnvironment;
         }
     }
 }
