@@ -74,7 +74,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public bool ExecuteButtonEnabled
         {
-            get => SelectedEnvironment != null && !EditingEnabled;
+            get => SelectedEnvironment != null && !EditingEnabled && !_isChangeInProgress;
         }
 
         private SettingsDataAdapter _settingsDataAdapter;
@@ -115,10 +115,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     environment.IsActive = true;
                 }
             }
-        } 
+        }
+
+        private bool _isChangeInProgress;
+
+        private void SetIsChangeInProgress(bool value)
+        {
+            _isChangeInProgress = value;
+            OnPropertyChanged(nameof(ExecuteButtonEnabled));
+            OnPropertyChanged(nameof(ExecuteButtonIcon));
+        }
 
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
         {
+            SetIsChangeInProgress(true);
             var cmdExecutor = new CmdExecutor(SelectedEnvironment);
             cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
@@ -153,7 +163,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             await cmdExecutor.ExecuteAsync(progress);
-            
+            SetIsChangeInProgress(false);
         }
 
         private EnvironmentViewModel _activeEnvironment;
