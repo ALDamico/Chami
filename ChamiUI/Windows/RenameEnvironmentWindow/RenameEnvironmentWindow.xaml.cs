@@ -58,5 +58,16 @@ namespace ChamiUI.Windows.RenameEnvironmentWindow
         {
             OkButton_OnClick(sender, e);
         }
+
+        private void CancelRename_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.Handled = true;
+            e.CanExecute = true;
+        }
+
+        private void CancelRename_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

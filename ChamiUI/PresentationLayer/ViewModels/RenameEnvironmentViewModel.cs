@@ -9,6 +9,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         static RenameEnvironmentViewModel()
         {
             RenameEnvironmentCommand = new RoutedCommand();
+            CancelRenamingCommand = new RoutedCommand();
         }
         public RenameEnvironmentViewModel()
         {
@@ -34,7 +35,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         
         public bool IsNameValid => !string.IsNullOrWhiteSpace(Name);
         public static RoutedCommand RenameEnvironmentCommand;
-        
-        
+        public static RoutedCommand CancelRenamingCommand;
+
     }
 }

@@ -10,16 +10,23 @@
         ResizeMode="NoResize"
         d:DataContext="{d:DesignInstance vm:RenameEnvironmentViewModel}"
         SizeToContent="WidthAndHeight"
+        WindowStyle="ToolWindow"
         >
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static vm:RenameEnvironmentViewModel.RenameEnvironmentCommand}" 
                         x:Name="DoRename" 
                         CanExecute="DoRename_OnCanExecute" 
                         Executed="DoRename_OnExecuted"></CommandBinding>
+        <CommandBinding Command="{x:Static vm:RenameEnvironmentViewModel.CancelRenamingCommand}" 
+                        x:Name="CancelRename" 
+                        CanExecute="CancelRename_OnCanExecute" 
+                        Executed="CancelRename_OnExecuted"></CommandBinding>
     </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="{x:Static vm:RenameEnvironmentViewModel.RenameEnvironmentCommand}" 
                     Key="Enter"></KeyBinding>
+        <KeyBinding Command="{x:Static vm:RenameEnvironmentViewModel.CancelRenamingCommand}"
+                    Key="Escape"></KeyBinding>
     </Window.InputBindings>
     <StackPanel Orientation="Horizontal">
         <Label Content="Name"></Label>

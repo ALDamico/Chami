@@ -361,6 +361,8 @@ namespace ChamiUI.Windows.MainWindow
         {
             var currentName = ViewModel.SelectedEnvironment.Name;
             var childWindow = new RenameEnvironmentWindow.RenameEnvironmentWindow(currentName);
+            childWindow.Owner = this;
+            childWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             childWindow.EnvironmentRenamed += OnEnvironmentRenamed;
             childWindow.ShowDialog();
         }
