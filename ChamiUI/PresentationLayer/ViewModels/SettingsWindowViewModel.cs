@@ -2,7 +2,6 @@ using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Controls;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 

@@ -1,12 +1,8 @@
-﻿using ChamiUI.DataLayer.Entities;
-using ChamiUI.PresentationLayer.ViewModels;
-using System;
+﻿using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ChamiUI.BusinessLayer
 {

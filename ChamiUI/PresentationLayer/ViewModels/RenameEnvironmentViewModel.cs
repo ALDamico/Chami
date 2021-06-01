@@ -1,6 +1,4 @@
-using System;
 using System.Windows.Input;
-using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

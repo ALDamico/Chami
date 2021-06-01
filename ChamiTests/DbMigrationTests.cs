@@ -1,5 +1,4 @@
 using System.Data.SQLite;
-using System.IO;
 using ChamiDbMigrations;
 using Xunit;
 

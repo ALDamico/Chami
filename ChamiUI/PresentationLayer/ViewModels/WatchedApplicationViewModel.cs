@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ChamiUI.PresentationLayer.ViewModels
+﻿namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class WatchedApplicationViewModel: ViewModelBase
     {

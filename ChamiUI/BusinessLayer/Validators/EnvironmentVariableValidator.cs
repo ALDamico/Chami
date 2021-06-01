@@ -1,5 +1,4 @@
-﻿using ChamiUI.DataLayer.Entities;
-using ChamiUI.PresentationLayer.ViewModels;
+﻿using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Validators
 {

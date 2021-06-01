@@ -1,5 +1,3 @@
-using ChamiUI.PresentationLayer.ViewModels;
-
 namespace ChamiUI.BusinessLayer.Validators
 {
     public interface IValidator<in T>
