@@ -10,7 +10,9 @@
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
         Title="{Binding WindowTitle}" 
         Loaded="MainWindow_OnLoaded"
-        Height="450" Width="800">
+        Height="450" Width="800"
+        StateChanged="MainWindow_OnStateChanged"
+>
     <Window.InputBindings>
         <KeyBinding 
             Key="Escape" 

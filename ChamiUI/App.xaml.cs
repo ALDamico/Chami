@@ -9,8 +9,12 @@ using System.Data.SQLite;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Navigation;
 using System.Windows.Threading;
 using ChamiDbMigrations;
+using ChamiUI.Taskbar;
+using ChamiUI.Windows.MainWindow;
+using Hardcodet.Wpf.TaskbarNotification;
 
 namespace ChamiUI
 {
@@ -21,9 +25,12 @@ namespace ChamiUI
     {
         public App()
         {
+            InitializeComponent();
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
+            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
+            
             Logger = new ChamiLogger();
             Logger.AddFileSink("chami.log");
             MigrateDatabase();
@@ -79,6 +86,19 @@ namespace ChamiUI
         public Logger GetLogger()
         {
             return Logger.GetLogger();
+        }
+
+        private TaskbarIcon _taskbarIcon;
+
+        private async void App_OnStartup(object sender, StartupEventArgs e)
+        {
+            MainWindow = new MainWindow();
+            if (_taskbarIcon != null)
+            {
+                (MainWindow.DataContext as MainWindowViewModel).EnvironmentChanged +=
+                    (_taskbarIcon.DataContext as TaskbarBehaviourViewModel).OnEnvironmentChanged;
+            }
+            MainWindow.Show();
         }
     }
 }

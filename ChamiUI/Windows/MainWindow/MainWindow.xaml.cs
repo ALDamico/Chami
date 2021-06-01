@@ -191,9 +191,12 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     MessageBox.Show("Unable to deserialize input file!\nSee the log for more details.",
                         "Deserialization error!", MessageBoxButton.OK, MessageBoxImage.Error);
-                    var logger = ((App.Current) as ChamiUI.App).GetLogger();
-                    logger.Error(ex.Message);
-                    logger.Error(ex.StackTrace);
+                    if (ViewModel.Settings.LoggingSettings.LoggingEnabled)
+                    {
+                        var logger = ((App.Current) as ChamiUI.App).GetLogger();
+                        logger.Error(ex.Message);
+                        logger.Error(ex.StackTrace);
+                    }
                 }
             }
         }
@@ -337,6 +340,14 @@ namespace ChamiUI.Windows.MainWindow
         private void UndoEditing_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             ViewModel.ResetCurrentEnvironmentFromDatasource();
+        }
+
+        private void MainWindow_OnStateChanged(object? sender, EventArgs e)
+        {
+            if (WindowState == WindowState.Minimized)
+            {
+                Hide();
+            }
         }
 
         private void RenameEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
