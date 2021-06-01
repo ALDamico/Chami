@@ -39,6 +39,7 @@ namespace ChamiUI.BusinessLayer.Exporters
                 worksheet = (Worksheet) _workbook.Worksheets.Add();
             }
             int sheetNumber = 1;
+            var nameDicts = new Dictionary<string, bool>();
             foreach (var environment in _environments)
             {
                 
@@ -46,7 +47,23 @@ namespace ChamiUI.BusinessLayer.Exporters
                 {
                     worksheet = (Worksheet) _workbook.Worksheets.Add();
                 }
-                worksheet.Name = environment.Name;
+
+                nameDicts.TryGetValue(environment.Name, out bool exists);
+                var newName = environment.Name;
+
+                if (exists)
+                {
+                    var guid = Guid.NewGuid().ToString().Split("-", StringSplitOptions.None)[0];
+                    newName = $"{newName}_{guid}";
+                    
+                }
+                else
+                {
+                    worksheet.Name = environment.Name;
+                }
+                worksheet.Name = newName;
+                nameDicts[newName] = true;
+                
 
                 var cells = worksheet.Cells;
                 PrintHeader(worksheet);
