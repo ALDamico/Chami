@@ -11,6 +11,16 @@
         d:DataContext="{d:DesignInstance vm:RenameEnvironmentViewModel}"
         SizeToContent="WidthAndHeight"
         >
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static vm:RenameEnvironmentViewModel.RenameEnvironmentCommand}" 
+                        x:Name="DoRename" 
+                        CanExecute="DoRename_OnCanExecute" 
+                        Executed="DoRename_OnExecuted"></CommandBinding>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Command="{x:Static vm:RenameEnvironmentViewModel.RenameEnvironmentCommand}" 
+                    Key="Enter"></KeyBinding>
+    </Window.InputBindings>
     <StackPanel Orientation="Horizontal">
         <Label Content="Name"></Label>
         <TextBox MinWidth="150" 

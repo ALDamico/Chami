@@ -1,5 +1,6 @@
 using System;
 using System.Windows;
+using System.Windows.Input;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 
@@ -41,6 +42,21 @@ namespace ChamiUI.Windows.RenameEnvironmentWindow
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void DoRename_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.Handled = true;
+            e.CanExecute = false;
+            if (_viewModel.IsNameValid)
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void DoRename_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            OkButton_OnClick(sender, e);
         }
     }
 }

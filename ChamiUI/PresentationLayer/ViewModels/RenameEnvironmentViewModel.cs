@@ -1,10 +1,15 @@
 using System;
+using System.Windows.Input;
 using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class RenameEnvironmentViewModel : ViewModelBase
     {
+        static RenameEnvironmentViewModel()
+        {
+            RenameEnvironmentCommand = new RoutedCommand();
+        }
         public RenameEnvironmentViewModel()
         {
             
@@ -28,5 +33,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
         
         public bool IsNameValid => !string.IsNullOrWhiteSpace(Name);
+        public static RoutedCommand RenameEnvironmentCommand;
+        
+        
     }
 }
