@@ -7,5 +7,5 @@ CREATE TABLE UiLanguages
 
 
 INSERT INTO Settings (SettingName, ViewModelName, "Type", Value, PropertyName, AssemblyName, Converter)
-VALUES ('ApplicationLanguage', 'ChamiUI.PresentationLayer.ViewModels.LanguageSelectorViewModel',
-        'System.Globalization.CultureInfo', 'en-US', 'LanguageSettings', NULL, NULL);
+VALUES ('CurrentLanguage', 'ChamiUI.PresentationLayer.ViewModels.LanguageSelectorViewModel',
+        'ChamiUI.PresentationLayer.ViewModels.ApplicationLanguageViewModel', 'en-US', 'LanguageSettings', NULL, NULL);

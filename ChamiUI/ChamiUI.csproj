@@ -1103,6 +1103,10 @@
       <Resource Include="Assets\Flags\gn.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="DataLayer\Db\Migrations\0004_language_support.sql" />
+      <Content Include="DataLayer\Db\Migrations\0004_language_support.sql">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

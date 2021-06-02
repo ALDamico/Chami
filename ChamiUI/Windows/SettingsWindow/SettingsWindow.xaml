@@ -31,6 +31,7 @@
             <TreeViewItem Header="Detector" />
             <TreeViewItem Header="Safety" />
             <TreeViewItem Header="Logging" />
+            <TreeViewItem Header="Language"></TreeViewItem>
 
         </TreeView>
         <UserControl
