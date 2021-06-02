@@ -3,6 +3,9 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
+        lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         xmlns:local="clr-namespace:ChamiUI.Windows.AboutBox"
         mc:Ignorable="d"
         Title="About Chami..." Height="300" Width="350"
@@ -16,7 +19,7 @@
             </StackPanel>
             
             <Separator/>
-            <Label>Developed by Andrea Luciano Damico</Label>
+            <Label x:Name="AboutBoxFirstLine" Content="{lex:Loc}"></Label>
             <Label>Chami Icon by Vitaly Gorbachev</Label>
             <Label>https://www.flaticon.com/authors/vitaly-gorbachev</Label>
             <Label>Released under the terms of the MIT License</Label>

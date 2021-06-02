@@ -3,9 +3,11 @@ using ChamiUI.BusinessLayer.Logger;
 using ChamiUI.PresentationLayer.ViewModels;
 using Serilog.Core;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
@@ -13,6 +15,8 @@ using ChamiDbMigrations;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
 using Hardcodet.Wpf.TaskbarNotification;
+using WPFLocalizeExtension.Engine;
+using WPFLocalizeExtension.Providers;
 
 namespace ChamiUI
 {
@@ -28,7 +32,7 @@ namespace ChamiUI
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
             _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
-            
+
             Logger = new ChamiLogger();
             Logger.AddFileSink("chami.log");
             MigrateDatabase();
@@ -37,7 +41,8 @@ namespace ChamiUI
                 Settings = new SettingsDataAdapter(GetConnectionString()).GetSettings();
                 var watchedApplications =
                     new WatchedApplicationDataAdapter(GetConnectionString()).GetActiveWatchedApplications();
-                Settings.WatchedApplicationSettings.WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
+                Settings.WatchedApplicationSettings.WatchedApplications =
+                    new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
             }
             catch (SQLiteException)
             {
@@ -46,7 +51,6 @@ namespace ChamiUI
                 Environment.Exit(-5);*/
                 MigrateDatabase();
             }
-            
         }
 
         private void MigrateDatabase()
@@ -90,13 +94,30 @@ namespace ChamiUI
 
         private async void App_OnStartup(object sender, StartupEventArgs e)
         {
+            InitLocalization();
             MainWindow = new MainWindow();
             if (_taskbarIcon != null)
             {
-                (MainWindow.DataContext as MainWindowViewModel).EnvironmentChanged +=
-                    (_taskbarIcon.DataContext as TaskbarBehaviourViewModel).OnEnvironmentChanged;
+                if (MainWindow.DataContext is MainWindowViewModel viewModel)
+                {
+                    if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
+                    {
+                        viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
+                    }
+                }
             }
+
             MainWindow.Show();
+        }
+
+        private void InitLocalization()
+        {
+            var localizationProvider = ResxLocalizationProvider.Instance;
+            //TODO Handle this more dynamically.
+            localizationProvider.AvailableCultures.Add(CultureInfo.CreateSpecificCulture("it-IT"));
+            localizationProvider.SearchCultures = new List<CultureInfo>()
+                {CultureInfo.InvariantCulture, CultureInfo.CreateSpecificCulture("it-IT")};
+            LocalizeDictionary.Instance.Culture = CultureInfo.CurrentUICulture;
         }
     }
 }

@@ -6,7 +6,7 @@ using System;
 
 namespace ChamiUI.Controls
 {
-    public partial class ApplicationDetectorControl : UserControl
+    public partial class ApplicationDetectorControl 
     {
         public ApplicationDetectorControl(WatchedApplicationControlViewModel viewModel)
         {

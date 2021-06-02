@@ -23,6 +23,7 @@
       <PackageReference Include="Serilog.Sinks.File" Version="4.1.0" />
       <PackageReference Include="SharpVectors" Version="1.7.1" />
       <PackageReference Include="System.Data.SQLite.Core" Version="1.0.113.7" />
+      <PackageReference Include="WPFLocalizeExtension" Version="3.8.0" />
     </ItemGroup>
 
     <ItemGroup>
@@ -85,6 +86,26 @@
       <Content Include="DataLayer\Db\Migrations\0002_add_index.sql">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Update="Localization\ChamiUIStrings.it-IT.resx">
+        <DependentUpon>Localization\ChamiUIStrings.resx</DependentUpon>
+        <SubType>Designer</SubType>
+        <Generator>ResXFileCodeGenerator</Generator>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Localization\ChamiUIStrings.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>ChamiUIStrings.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Localization\ChamiUIStrings.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>ChamiUIStrings.resx</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

@@ -9,7 +9,7 @@ namespace ChamiUI.Windows.ExportWindow
     /// <summary>
     /// Logica di interazione per ExportWindow.xaml
     /// </summary>
-    public partial class ExportWindow : Window
+    public partial class ExportWindow 
     {
         public ExportWindow(ICollection<EnvironmentViewModel> environments)
         {

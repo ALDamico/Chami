@@ -2,7 +2,7 @@ using System.Windows;
 
 namespace ChamiUI.Windows.AboutBox
 {
-    public partial class AboutBox : Window
+    public partial class AboutBox
     {
         public AboutBox()
         {

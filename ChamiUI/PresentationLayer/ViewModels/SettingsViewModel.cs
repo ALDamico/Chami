@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class SettingsViewModel : ViewModelBase
@@ -13,6 +15,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public SafeVariableViewModel SafeVariableSettings { get; set; }
         public ConsoleAppearanceViewModel ConsoleAppearanceSettings { get; set; }
         public WatchedApplicationControlViewModel WatchedApplicationSettings { get; set; }
+        
 
     }
 }
