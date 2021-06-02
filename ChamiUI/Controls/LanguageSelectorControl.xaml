@@ -5,12 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ChamiUI.Controls"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
              lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
              lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
+             d:DataContext="{d:DesignInstance vm:LanguageSelectorViewModel}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <Label x:Name="LanguageSelectorLabel" Content="{lex:Loc}"></Label>
-        <ComboBox x:Name="AvalableLanguagesCombobox"></ComboBox>
+        <ComboBox x:Name="AvalableLanguagesCombobox" ItemsSource="{Binding AvailableLanguages}" SelectedItem="{Binding CurrentLanguage}" SelectionChanged="AvalableLanguagesCombobox_OnSelectionChanged"></ComboBox>
     </StackPanel>
 </UserControl>

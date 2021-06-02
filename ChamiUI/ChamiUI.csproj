@@ -27,10 +27,678 @@
     </ItemGroup>
 
     <ItemGroup>
+      <None Remove="Assets\Flags\aw.svg" />
+      <None Remove="Assets\Flags\dm.svg" />
+      <None Remove="Assets\Flags\gp.svg" />
+      <None Remove="Assets\Flags\gq.svg" />
+      <None Remove="Assets\Flags\gr.svg" />
+      <None Remove="Assets\Flags\gs.svg" />
+      <None Remove="Assets\Flags\gt.svg" />
+      <None Remove="Assets\Flags\gu.svg" />
+      <None Remove="Assets\Flags\gw.svg" />
+      <None Remove="Assets\Flags\gy.svg" />
+      <None Remove="Assets\Flags\hk.svg" />
+      <None Remove="Assets\Flags\hm.svg" />
+      <None Remove="Assets\Flags\hn.svg" />
+      <None Remove="Assets\Flags\hr.svg" />
+      <None Remove="Assets\Flags\ht.svg" />
+      <None Remove="Assets\Flags\hu.svg" />
+      <None Remove="Assets\Flags\id.svg" />
+      <None Remove="Assets\Flags\ie.svg" />
+      <None Remove="Assets\Flags\il.svg" />
+      <None Remove="Assets\Flags\im.svg" />
+      <None Remove="Assets\Flags\in.svg" />
+      <None Remove="Assets\Flags\io.svg" />
+      <None Remove="Assets\Flags\iq.svg" />
+      <None Remove="Assets\Flags\ir.svg" />
+      <None Remove="Assets\Flags\is.svg" />
+      <None Remove="Assets\Flags\it.svg" />
+      <None Remove="Assets\Flags\je.svg" />
+      <None Remove="Assets\Flags\jm.svg" />
+      <None Remove="Assets\Flags\jo.svg" />
+      <None Remove="Assets\Flags\jp.svg" />
+      <None Remove="Assets\Flags\ke.svg" />
+      <None Remove="Assets\Flags\kg.svg" />
+      <None Remove="Assets\Flags\kh.svg" />
+      <None Remove="Assets\Flags\ki.svg" />
+      <None Remove="Assets\Flags\km.svg" />
+      <None Remove="Assets\Flags\kn.svg" />
+      <None Remove="Assets\Flags\kp.svg" />
+      <None Remove="Assets\Flags\kr.svg" />
+      <None Remove="Assets\Flags\kw.svg" />
+      <None Remove="Assets\Flags\ky.svg" />
+      <None Remove="Assets\Flags\kz.svg" />
+      <None Remove="Assets\Flags\la.svg" />
+      <None Remove="Assets\Flags\lb.svg" />
+      <None Remove="Assets\Flags\lc.svg" />
+      <None Remove="Assets\Flags\li.svg" />
+      <None Remove="Assets\Flags\lk.svg" />
+      <None Remove="Assets\Flags\lr.svg" />
+      <None Remove="Assets\Flags\ls.svg" />
+      <None Remove="Assets\Flags\lt.svg" />
+      <None Remove="Assets\Flags\lu.svg" />
+      <None Remove="Assets\Flags\lv.svg" />
+      <None Remove="Assets\Flags\ly.svg" />
+      <None Remove="Assets\Flags\ma.svg" />
+      <None Remove="Assets\Flags\mc.svg" />
+      <None Remove="Assets\Flags\md.svg" />
+      <None Remove="Assets\Flags\me.svg" />
+      <None Remove="Assets\Flags\mf.svg" />
+      <None Remove="Assets\Flags\mg.svg" />
+      <None Remove="Assets\Flags\mh.svg" />
+      <None Remove="Assets\Flags\mk.svg" />
+      <None Remove="Assets\Flags\ml.svg" />
+      <None Remove="Assets\Flags\mm.svg" />
+      <None Remove="Assets\Flags\mn.svg" />
+      <None Remove="Assets\Flags\mo.svg" />
+      <None Remove="Assets\Flags\mp.svg" />
+      <None Remove="Assets\Flags\mq.svg" />
+      <None Remove="Assets\Flags\mr.svg" />
+      <None Remove="Assets\Flags\ms.svg" />
+      <None Remove="Assets\Flags\mt.svg" />
+      <None Remove="Assets\Flags\mu.svg" />
+      <None Remove="Assets\Flags\mv.svg" />
+      <None Remove="Assets\Flags\mw.svg" />
+      <None Remove="Assets\Flags\mx.svg" />
+      <None Remove="Assets\Flags\my.svg" />
+      <None Remove="Assets\Flags\mz.svg" />
+      <None Remove="Assets\Flags\na.svg" />
+      <None Remove="Assets\Flags\nc.svg" />
+      <None Remove="Assets\Flags\ne.svg" />
+      <None Remove="Assets\Flags\nf.svg" />
+      <None Remove="Assets\Flags\ng.svg" />
+      <None Remove="Assets\Flags\ni.svg" />
+      <None Remove="Assets\Flags\nl.svg" />
+      <None Remove="Assets\Flags\no.svg" />
+      <None Remove="Assets\Flags\np.svg" />
+      <None Remove="Assets\Flags\nr.svg" />
+      <None Remove="Assets\Flags\nu.svg" />
+      <None Remove="Assets\Flags\nz.svg" />
+      <None Remove="Assets\Flags\om.svg" />
+      <None Remove="Assets\Flags\pa.svg" />
+      <None Remove="Assets\Flags\pe.svg" />
+      <None Remove="Assets\Flags\pf.svg" />
+      <None Remove="Assets\Flags\pg.svg" />
+      <None Remove="Assets\Flags\ph.svg" />
+      <None Remove="Assets\Flags\pk.svg" />
+      <None Remove="Assets\Flags\pl.svg" />
+      <None Remove="Assets\Flags\pm.svg" />
+      <None Remove="Assets\Flags\pn.svg" />
+      <None Remove="Assets\Flags\pr.svg" />
+      <None Remove="Assets\Flags\ps.svg" />
+      <None Remove="Assets\Flags\pt.svg" />
+      <None Remove="Assets\Flags\pw.svg" />
+      <None Remove="Assets\Flags\py.svg" />
+      <None Remove="Assets\Flags\qa.svg" />
+      <None Remove="Assets\Flags\re.svg" />
+      <None Remove="Assets\Flags\ro.svg" />
+      <None Remove="Assets\Flags\rs.svg" />
+      <None Remove="Assets\Flags\ru.svg" />
+      <None Remove="Assets\Flags\rw.svg" />
+      <None Remove="Assets\Flags\sa.svg" />
+      <None Remove="Assets\Flags\sb.svg" />
+      <None Remove="Assets\Flags\sc.svg" />
+      <None Remove="Assets\Flags\sd.svg" />
+      <None Remove="Assets\Flags\se.svg" />
+      <None Remove="Assets\Flags\sg.svg" />
+      <None Remove="Assets\Flags\sh.svg" />
+      <None Remove="Assets\Flags\si.svg" />
+      <None Remove="Assets\Flags\sj.svg" />
+      <None Remove="Assets\Flags\sk.svg" />
+      <None Remove="Assets\Flags\sl.svg" />
+      <None Remove="Assets\Flags\sm.svg" />
+      <None Remove="Assets\Flags\sn.svg" />
+      <None Remove="Assets\Flags\so.svg" />
+      <None Remove="Assets\Flags\sr.svg" />
+      <None Remove="Assets\Flags\ss.svg" />
+      <None Remove="Assets\Flags\st.svg" />
+      <None Remove="Assets\Flags\sv.svg" />
+      <None Remove="Assets\Flags\sx.svg" />
+      <None Remove="Assets\Flags\sy.svg" />
+      <None Remove="Assets\Flags\sz.svg" />
+      <None Remove="Assets\Flags\tc.svg" />
+      <None Remove="Assets\Flags\td.svg" />
+      <None Remove="Assets\Flags\tf.svg" />
+      <None Remove="Assets\Flags\tg.svg" />
+      <None Remove="Assets\Flags\th.svg" />
+      <None Remove="Assets\Flags\tj.svg" />
+      <None Remove="Assets\Flags\tk.svg" />
+      <None Remove="Assets\Flags\tl.svg" />
+      <None Remove="Assets\Flags\tm.svg" />
+      <None Remove="Assets\Flags\tn.svg" />
+      <None Remove="Assets\Flags\to.svg" />
+      <None Remove="Assets\Flags\tr.svg" />
+      <None Remove="Assets\Flags\tt.svg" />
+      <None Remove="Assets\Flags\tv.svg" />
+      <None Remove="Assets\Flags\tw.svg" />
+      <None Remove="Assets\Flags\tz.svg" />
+      <None Remove="Assets\Flags\ua.svg" />
+      <None Remove="Assets\Flags\ug.svg" />
+      <None Remove="Assets\Flags\um.svg" />
+      <None Remove="Assets\Flags\un.svg" />
+      <None Remove="Assets\Flags\us.svg" />
+      <None Remove="Assets\Flags\uy.svg" />
+      <None Remove="Assets\Flags\uz.svg" />
+      <None Remove="Assets\Flags\va.svg" />
+      <None Remove="Assets\Flags\vc.svg" />
+      <None Remove="Assets\Flags\ve.svg" />
+      <None Remove="Assets\Flags\vg.svg" />
+      <None Remove="Assets\Flags\vi.svg" />
+      <None Remove="Assets\Flags\vn.svg" />
+      <None Remove="Assets\Flags\vu.svg" />
+      <None Remove="Assets\Flags\wf.svg" />
+      <None Remove="Assets\Flags\ws.svg" />
+      <None Remove="Assets\Flags\xk.svg" />
+      <None Remove="Assets\Flags\ye.svg" />
+      <None Remove="Assets\Flags\yt.svg" />
+      <None Remove="Assets\Flags\za.svg" />
+      <None Remove="Assets\Flags\zm.svg" />
+      <None Remove="Assets\Flags\zw.svg" />
       <None Remove="DataLayer\Db\chami.db" />
       <None Remove="DataLayer\Db\Migrations\0003_add_detector_settings.sql" />
       <Content Include="DataLayer\Db\chami.db" />
       <None Remove="Assets\Svg\play.svg" />
+      <Resource Include="Assets\Flags\aw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\dm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gp.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gq.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gs.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gt.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\gy.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\hk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\hm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\hn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\hr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ht.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\hu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\id.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ie.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\il.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\im.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\in.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\io.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\iq.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ir.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\is.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\it.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\je.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\jm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\jo.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\jp.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ke.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\kg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\kh.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ki.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\km.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\kn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\kp.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\kr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\kw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ky.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\kz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\la.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\lb.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\lc.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\li.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\lk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\lr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ls.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\lt.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\lu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\lv.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ly.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ma.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mc.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\md.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\me.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mh.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ml.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mo.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mp.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mq.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ms.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mt.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mv.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mx.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\my.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\mz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\na.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\nc.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ne.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\nf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ng.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ni.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\nl.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\no.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\np.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\nr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\nu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\nz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\om.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pa.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pe.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ph.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pl.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ps.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pt.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\pw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\py.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\qa.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\re.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ro.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\rs.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ru.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\rw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sa.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sb.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sc.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sd.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\se.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sh.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\si.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sj.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sl.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\so.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ss.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\st.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sv.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sx.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sy.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\sz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tc.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\td.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\th.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tj.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tl.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\to.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tt.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tv.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\tz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ua.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ug.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\um.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\un.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\us.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\uy.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\uz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\va.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\vc.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ve.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\vg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\vi.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\vn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\vu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\wf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ws.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\xk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\ye.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\yt.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\za.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\zm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Flags\zw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
       <Resource Include="Assets\Svg\play.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
@@ -71,6 +739,370 @@
       <Resource Include="Assets\chameleon16x16.png" />
       <None Remove="Assets\chameleon16x16.ico" />
       <Resource Include="Assets\chameleon16x16.ico" />
+      <None Remove="Assets\Flags\ad.svg" />
+      <Resource Include="Assets\Flags\ad.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ae.svg" />
+      <Resource Include="Assets\Flags\ae.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\af.svg" />
+      <Resource Include="Assets\Flags\af.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ag.svg" />
+      <Resource Include="Assets\Flags\ag.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ai.svg" />
+      <Resource Include="Assets\Flags\ai.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\al.svg" />
+      <Resource Include="Assets\Flags\al.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\am.svg" />
+      <Resource Include="Assets\Flags\am.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ao.svg" />
+      <Resource Include="Assets\Flags\ao.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\aq.svg" />
+      <Resource Include="Assets\Flags\aq.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ar.svg" />
+      <Resource Include="Assets\Flags\ar.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\as.svg" />
+      <Resource Include="Assets\Flags\as.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\at.svg" />
+      <Resource Include="Assets\Flags\at.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\au.svg" />
+      <Resource Include="Assets\Flags\au.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ax.svg" />
+      <Resource Include="Assets\Flags\ax.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\az.svg" />
+      <Resource Include="Assets\Flags\az.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ba.svg" />
+      <Resource Include="Assets\Flags\ba.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bb.svg" />
+      <Resource Include="Assets\Flags\bb.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bd.svg" />
+      <Resource Include="Assets\Flags\bd.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\be.svg" />
+      <Resource Include="Assets\Flags\be.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bf.svg" />
+      <Resource Include="Assets\Flags\bf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bg.svg" />
+      <Resource Include="Assets\Flags\bg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bh.svg" />
+      <Resource Include="Assets\Flags\bh.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bi.svg" />
+      <Resource Include="Assets\Flags\bi.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bj.svg" />
+      <Resource Include="Assets\Flags\bj.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bl.svg" />
+      <Resource Include="Assets\Flags\bl.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bm.svg" />
+      <Resource Include="Assets\Flags\bm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bn.svg" />
+      <Resource Include="Assets\Flags\bn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bo.svg" />
+      <Resource Include="Assets\Flags\bo.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bq.svg" />
+      <Resource Include="Assets\Flags\bq.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\br.svg" />
+      <Resource Include="Assets\Flags\br.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bs.svg" />
+      <Resource Include="Assets\Flags\bs.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bt.svg" />
+      <Resource Include="Assets\Flags\bt.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bv.svg" />
+      <Resource Include="Assets\Flags\bv.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bw.svg" />
+      <Resource Include="Assets\Flags\bw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\by.svg" />
+      <Resource Include="Assets\Flags\by.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\bz.svg" />
+      <Resource Include="Assets\Flags\bz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ca.svg" />
+      <Resource Include="Assets\Flags\ca.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cc.svg" />
+      <Resource Include="Assets\Flags\cc.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cd.svg" />
+      <Resource Include="Assets\Flags\cd.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cf.svg" />
+      <Resource Include="Assets\Flags\cf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cg.svg" />
+      <Resource Include="Assets\Flags\cg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ch.svg" />
+      <Resource Include="Assets\Flags\ch.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ci.svg" />
+      <Resource Include="Assets\Flags\ci.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ck.svg" />
+      <Resource Include="Assets\Flags\ck.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cl.svg" />
+      <Resource Include="Assets\Flags\cl.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cm.svg" />
+      <Resource Include="Assets\Flags\cm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cn.svg" />
+      <Resource Include="Assets\Flags\cn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\co.svg" />
+      <Resource Include="Assets\Flags\co.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cr.svg" />
+      <Resource Include="Assets\Flags\cr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cu.svg" />
+      <Resource Include="Assets\Flags\cu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cv.svg" />
+      <Resource Include="Assets\Flags\cv.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cw.svg" />
+      <Resource Include="Assets\Flags\cw.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cx.svg" />
+      <Resource Include="Assets\Flags\cx.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cy.svg" />
+      <Resource Include="Assets\Flags\cy.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\cz.svg" />
+      <Resource Include="Assets\Flags\cz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\de.svg" />
+      <Resource Include="Assets\Flags\de.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\dj.svg" />
+      <Resource Include="Assets\Flags\dj.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\dk.svg" />
+      <Resource Include="Assets\Flags\dk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\do.svg" />
+      <Resource Include="Assets\Flags\do.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\dz.svg" />
+      <Resource Include="Assets\Flags\dz.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ec.svg" />
+      <Resource Include="Assets\Flags\ec.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ee.svg" />
+      <Resource Include="Assets\Flags\ee.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\eg.svg" />
+      <Resource Include="Assets\Flags\eg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\eh.svg" />
+      <Resource Include="Assets\Flags\eh.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\er.svg" />
+      <Resource Include="Assets\Flags\er.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\es.svg" />
+      <Resource Include="Assets\Flags\es.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\es-ct.svg" />
+      <Resource Include="Assets\Flags\es-ct.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\es-ga.svg" />
+      <Resource Include="Assets\Flags\es-ga.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\et.svg" />
+      <Resource Include="Assets\Flags\et.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\eu.svg" />
+      <Resource Include="Assets\Flags\eu.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\fi.svg" />
+      <Resource Include="Assets\Flags\fi.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\fj.svg" />
+      <Resource Include="Assets\Flags\fj.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\fk.svg" />
+      <Resource Include="Assets\Flags\fk.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\fm.svg" />
+      <Resource Include="Assets\Flags\fm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\fo.svg" />
+      <Resource Include="Assets\Flags\fo.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\fr.svg" />
+      <Resource Include="Assets\Flags\fr.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ga.svg" />
+      <Resource Include="Assets\Flags\ga.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gb.svg" />
+      <Resource Include="Assets\Flags\gb.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gb-eng.svg" />
+      <Resource Include="Assets\Flags\gb-eng.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gb-nir.svg" />
+      <Resource Include="Assets\Flags\gb-nir.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gb-sct.svg" />
+      <Resource Include="Assets\Flags\gb-sct.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gb-wls.svg" />
+      <Resource Include="Assets\Flags\gb-wls.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gd.svg" />
+      <Resource Include="Assets\Flags\gd.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\ge.svg" />
+      <Resource Include="Assets\Flags\ge.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gf.svg" />
+      <Resource Include="Assets\Flags\gf.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gg.svg" />
+      <Resource Include="Assets\Flags\gg.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gh.svg" />
+      <Resource Include="Assets\Flags\gh.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gi.svg" />
+      <Resource Include="Assets\Flags\gi.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gl.svg" />
+      <Resource Include="Assets\Flags\gl.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gm.svg" />
+      <Resource Include="Assets\Flags\gm.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Flags\gn.svg" />
+      <Resource Include="Assets\Flags\gn.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

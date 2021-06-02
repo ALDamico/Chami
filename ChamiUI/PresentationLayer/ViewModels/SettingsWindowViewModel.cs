@@ -20,6 +20,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _controls["Logging"] = new LoggingSettingsEditor(Settings.LoggingSettings);
             _controls["Safety"] = new SafeVariableEditor(Settings.SafeVariableSettings);
             _controls["Detector"] = new ApplicationDetectorControl(Settings.WatchedApplicationSettings);
+            _controls["Language"] = new LanguageSelectorControl();
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
 

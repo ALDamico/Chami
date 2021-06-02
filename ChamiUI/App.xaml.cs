@@ -43,6 +43,10 @@ namespace ChamiUI
                     new WatchedApplicationDataAdapter(GetConnectionString()).GetActiveWatchedApplications();
                 Settings.WatchedApplicationSettings.WatchedApplications =
                     new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
+                var availableLanguages =
+                    new ApplicationLanguageDataAdapter(GetConnectionString()).GetAllApplicationLanguages();
+                Settings.LanguageSettings.AvailableLanguages =
+                    new ObservableCollection<ApplicationLanguageViewModel>(availableLanguages);
             }
             catch (SQLiteException)
             {

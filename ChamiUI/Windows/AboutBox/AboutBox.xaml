@@ -23,6 +23,7 @@
             <Label>Chami Icon by Vitaly Gorbachev</Label>
             <Label>https://www.flaticon.com/authors/vitaly-gorbachev</Label>
             <Label>Released under the terms of the MIT License</Label>
+            <Label>Flag icons provided by Panayiotis Lipiridis (https://lipis.dev)</Label>
             <Button MaxWidth="65" x:Name="OkButton" Click="OkButton_Click">Ok</Button>
         </StackPanel>
     </Grid>
