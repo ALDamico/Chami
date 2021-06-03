@@ -28,7 +28,7 @@ namespace ChamiUI
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
             _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
-            
+
             Logger = new ChamiLogger();
             Logger.AddFileSink("chami.log");
             MigrateDatabase();
@@ -37,7 +37,8 @@ namespace ChamiUI
                 Settings = new SettingsDataAdapter(GetConnectionString()).GetSettings();
                 var watchedApplications =
                     new WatchedApplicationDataAdapter(GetConnectionString()).GetActiveWatchedApplications();
-                Settings.WatchedApplicationSettings.WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
+                Settings.WatchedApplicationSettings.WatchedApplications =
+                    new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
             }
             catch (SQLiteException)
             {
@@ -46,7 +47,6 @@ namespace ChamiUI
                 Environment.Exit(-5);*/
                 MigrateDatabase();
             }
-            
         }
 
         private void MigrateDatabase()
@@ -96,7 +96,16 @@ namespace ChamiUI
                 (MainWindow.DataContext as MainWindowViewModel).EnvironmentChanged +=
                     (_taskbarIcon.DataContext as TaskbarBehaviourViewModel).OnEnvironmentChanged;
             }
+
             MainWindow.Show();
+        }
+
+        private void App_OnExit(object sender, ExitEventArgs e)
+        {
+            if (!_taskbarIcon.IsDisposed)
+            {
+                _taskbarIcon.Dispose();
+            }
         }
     }
 }
