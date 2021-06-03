@@ -3,16 +3,21 @@ using ChamiUI.BusinessLayer.Logger;
 using ChamiUI.PresentationLayer.ViewModels;
 using Serilog.Core;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Globalization;
 using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiDbMigrations;
+using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
 using Hardcodet.Wpf.TaskbarNotification;
+using WPFLocalizeExtension.Engine;
+using WPFLocalizeExtension.Providers;
 
 namespace ChamiUI
 {
@@ -39,6 +44,10 @@ namespace ChamiUI
                     new WatchedApplicationDataAdapter(GetConnectionString()).GetActiveWatchedApplications();
                 Settings.WatchedApplicationSettings.WatchedApplications =
                     new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
+                var availableLanguages =
+                    new ApplicationLanguageDataAdapter(GetConnectionString()).GetAllApplicationLanguages();
+                Settings.LanguageSettings.AvailableLanguages =
+                    new ObservableCollection<ApplicationLanguageViewModel>(availableLanguages);
             }
             catch (SQLiteException)
             {
@@ -72,7 +81,8 @@ namespace ChamiUI
         {
             var exceptionMessage = args.Exception.Message;
             args.Handled = true;
-            MessageBox.Show(exceptionMessage, "An exception occurred!", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(exceptionMessage, ChamiUIStrings.GenericExceptionMessageBoxCaption, MessageBoxButton.OK,
+                MessageBoxImage.Error);
             if (Settings.LoggingSettings.LoggingEnabled)
             {
                 var logger = Logger.GetLogger();
@@ -90,14 +100,37 @@ namespace ChamiUI
 
         private async void App_OnStartup(object sender, StartupEventArgs e)
         {
+            InitLocalization();
             MainWindow = new MainWindow();
             if (_taskbarIcon != null)
             {
-                (MainWindow.DataContext as MainWindowViewModel).EnvironmentChanged +=
-                    (_taskbarIcon.DataContext as TaskbarBehaviourViewModel).OnEnvironmentChanged;
+                if (MainWindow.DataContext is MainWindowViewModel viewModel)
+                {
+                    if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
+                    {
+                        viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
+                    }
+                }
             }
 
             MainWindow.Show();
+        }
+
+        internal void InitLocalization()
+        {
+            var localizationProvider = ResxLocalizationProvider.Instance;
+            var dataAdapter = new ApplicationLanguageDataAdapter(GetConnectionString());
+            var languages = dataAdapter.GetAllAvailableCultureInfos();
+            localizationProvider.SearchCultures = new List<CultureInfo>();
+            foreach (var cultureInfo in languages)
+            {
+                localizationProvider.SearchCultures.Add(cultureInfo);
+                localizationProvider.AvailableCultures.Add(cultureInfo);
+            }
+
+            var currentCulture = dataAdapter.GetCultureInfoByCode(Settings.LanguageSettings.CurrentLanguage.Code);
+            LocalizeDictionary.Instance.Culture = currentCulture;
+            ChamiUIStrings.Culture = currentCulture;
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)

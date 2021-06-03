@@ -4,9 +4,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
+        lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
+        x:Name="RenameEnvironmentWindowTitle"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         mc:Ignorable="d"
-        Title="Rename environment" 
+        Title="{lex:Loc}" 
         ResizeMode="NoResize"
         d:DataContext="{d:DesignInstance vm:RenameEnvironmentViewModel}"
         SizeToContent="WidthAndHeight"
@@ -29,19 +33,20 @@
                     Key="Escape"></KeyBinding>
     </Window.InputBindings>
     <StackPanel Orientation="Horizontal">
-        <Label Content="Name"></Label>
+        <Label Content="{lex:Loc}" 
+               x:Name="RenameEnvironmentNameLabel"></Label>
         <TextBox MinWidth="150" 
                  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
         <Button MinWidth="64"
                 Margin="2, 0"
-                Content="Ok" 
-                x:Name="OkButton" 
+                Content="{lex:Loc}" 
+                x:Name="RenameEnvironmentOkButton" 
                 Click="OkButton_OnClick" 
                 IsEnabled="{Binding IsNameValid}"/>
         <Button MinWidth="64" 
                 Margin="2, 0"
-                Content="Cancel" 
-                x:Name="CancelButton" 
+                Content="{lex:Loc}" 
+                x:Name="RenameWindowCancelButton" 
                 Click="CancelButton_OnClick"/>
     </StackPanel>
 </Window>

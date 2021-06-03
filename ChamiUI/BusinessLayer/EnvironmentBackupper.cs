@@ -14,10 +14,13 @@ namespace ChamiUI.BusinessLayer
             if (currentEnvironmentName != null)
             {
                 var currentEnvironment = repository.GetEnvironmentByName(currentEnvironmentName.ToString());
-                foreach (var variable in currentEnvironment.EnvironmentVariables)
+                if (currentEnvironment != null)
                 {
-                    var variableName = variable.Name;
-                    environmentVariables.Remove(variableName);
+                    foreach (var variable in currentEnvironment.EnvironmentVariables)
+                    {
+                        var variableName = variable.Name;
+                        environmentVariables.Remove(variableName);
+                    }
                 }
             }
             environmentVariables.Remove("_CHAMI_ENV");

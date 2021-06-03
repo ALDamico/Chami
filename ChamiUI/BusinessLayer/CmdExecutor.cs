@@ -1,10 +1,17 @@
 using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.Resources;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
+using ChamiUI.Windows.MainWindow;
+using WPFLocalizeExtension.Providers;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -53,7 +60,8 @@ namespace ChamiUI.BusinessLayer
 
         public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress)
         {
-            CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, "Starting execution...\n");
+            var message = ChamiUIStrings.StartingExecutionMessage;
+            CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null,  message);
             progress?.Report(cmdExecutorProgress);
             foreach (var environmentVariable in EnvironmentVariablesToApply)
             {
@@ -62,7 +70,7 @@ namespace ChamiUI.BusinessLayer
                 await environmentVariable.ExecuteAsync(progress, percentage);
             }
 
-            progress?.Report(new CmdExecutorProgress(100, null, "Execution complete\n"));
+            progress?.Report(new CmdExecutorProgress(100, null, ChamiUIStrings.ExecutionCompleteMessage));
             if (TargetEnvironment != null)
             {
                 var converter = new EnvironmentConverter();

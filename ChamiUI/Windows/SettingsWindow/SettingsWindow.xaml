@@ -4,9 +4,13 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:ChamiUI.Windows.SettingsWindow"
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
+    lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
-    Title="Chami - Settings"
+    x:Name="SettingsWindowTitle"
+    Title="{lex:Loc}"
     Width="500"
     Height="300"
     d:DataContext="{d:DesignInstance vm:SettingsWindowViewModel,
@@ -27,10 +31,16 @@
             Grid.Row="0"
             Grid.Column="0"
             SelectedItemChanged="CategoriesTree_OnSelectedItemChanged">
-            <TreeViewItem Header="View" />
-            <TreeViewItem Header="Detector" />
-            <TreeViewItem Header="Safety" />
-            <TreeViewItem Header="Logging" />
+            <TreeViewItem x:Name="ViewCategory" 
+                          Header="{lex:Loc Key=ViewCategory}" />
+            <TreeViewItem x:Name="DetectorCategory" 
+                          Header="{lex:Loc Key=DetectorCategory}" />
+            <TreeViewItem x:Name="SafetyCategory" 
+                          Header="{lex:Loc Key=SafetyCategory}" />
+            <TreeViewItem x:Name="LoggingCategory" 
+                          Header="{lex:Loc Key=LoggingCategory}" />
+            <TreeViewItem x:Name="LanguageCategory" 
+                          Header="{lex:Loc Key=LanguageCategory}"/>
 
         </TreeView>
         <UserControl
@@ -44,23 +54,23 @@
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button
-                x:Name="OkButton"
+                x:Name="SettingsWindowOkButton"
                 Width="65"
                 Margin="5,5,5,5"
                 Click="OkButton_OnClick"
-                Content="OK" />
+                Content="{lex:Loc}" />
             <Button
-                x:Name="CancelButton"
+                x:Name="SettingsWindowCancelButton"
                 Width="65"
                 Margin="5,5,5,5"
                 Click="CancelButton_OnClick"
-                Content="Cancel" />
+                Content="{lex:Loc}" />
             <Button
-                x:Name="ApplyButton"
+                x:Name="SettingsWindowApplyButton"
                 Width="65"
                 Margin="5,5,5,5"
                 Click="ApplyButton_OnClick"
-                Content="Apply" />
+                Content="{lex:Loc}" />
         </StackPanel>
     </Grid>
 </Window>

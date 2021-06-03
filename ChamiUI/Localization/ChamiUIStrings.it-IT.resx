@@ -1,0 +1,378 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AboutBoxFirstLine_Content" xml:space="preserve">
+    <value>Sviluppato da Andrea Luciano Damico</value>
+  </data>
+  <data name="LanguageSelectorLabel_Content" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="StartingExecutionMessage" xml:space="preserve">
+    <value>Avvio dell'esecuzione...</value>
+  </data>
+  <data name="AboutBoxApplicationName" xml:space="preserve">
+    <value>Chami</value>
+  </data>
+  <data name="AboutBoxSecondLine_Content" xml:space="preserve">
+    <value>L'icona di Chami è di Vitaly Gorbachev</value>
+  </data>
+  <data name="AboutBoxThirdLine" xml:space="preserve">
+    <value>https://www.flaticon.com/authors/vitaly-gorbachev</value>
+  </data>
+  <data name="AboutBoxLicense" xml:space="preserve">
+    <value>Pubblicato sotto i termini della licenza MIT</value>
+  </data>
+  <data name="AboutBoxFourthLine" xml:space="preserve">
+    <value>Icone delle bandiere fornite da Panayiotis Lipiridis (https://lipis.dev)</value>
+  </data>
+  <data name="AboutBoxOkButton_Content" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ChamiAboutBox_Title" xml:space="preserve">
+    <value>Informazioni su Chami...</value>
+  </data>
+  <data name="ChamiExportWindow_Title" xml:space="preserve">
+    <value>Esporta ambienti</value>
+  </data>
+  <data name="ExportWindowGroupBox_Header" xml:space="preserve">
+    <value>Impostazioni di esportazione</value>
+  </data>
+  <data name="AllEnvironmentsRadioButton" xml:space="preserve">
+    <value>Tutti gli ambienti</value>
+  </data>
+  <data name="SelectedEnvironmentsRadioButton_Content" xml:space="preserve">
+    <value>Ambienti selezionati</value>
+  </data>
+  <data name="ExportDataButton_Content" xml:space="preserve">
+    <value>Esporta</value>
+  </data>
+  <data name="ExportWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="ExportWindowHeaderTitle" xml:space="preserve">
+    <value>Esporta ambienti</value>
+  </data>
+  <data name="EditEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="RenameEnvironmentMenuItem" xml:space="preserve">
+    <value>Rinomina</value>
+  </data>
+  <data name="DeleteEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="CopyEnvironmentVariableMenuItem_Header" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="DeleteEnvironmentVariableMenuItem_Header" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="NewEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Nuovo Ambiente</value>
+  </data>
+  <data name="SaveEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="ImportFromDotenvMenuItem_Header" xml:space="preserve">
+    <value>Da file .env...</value>
+  </data>
+  <data name="ImportMenuItem_Header" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="ImportFromJsonMenuItem_Header" xml:space="preserve">
+    <value>Da file JSON...</value>
+  </data>
+  <data name="ExportMenuItem_Header" xml:space="preserve">
+    <value>Esporta...</value>
+  </data>
+  <data name="QuitApplicationMenuItem_Header" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="OptionsMenuItem_Header" xml:space="preserve">
+    <value>Opzioni</value>
+  </data>
+  <data name="ResetVarsMenuItem_Header" xml:space="preserve">
+    <value>Reimposta le variabili di ambiente</value>
+  </data>
+  <data name="BackupEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Esegui il backup dell'ambiente corrente</value>
+  </data>
+  <data name="SettingsMenuItem_Header" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="AboutMenuItem_Header" xml:space="preserve">
+    <value>Informazioni su Chami...</value>
+  </data>
+  <data name="WebsiteMenuItem_Header" xml:space="preserve">
+    <value>Sito web</value>
+  </data>
+  <data name="ApplyEnvironmentButton_Tooltip" xml:space="preserve">
+    <value>Applica</value>
+  </data>
+  <data name="VariablesTabItem_Header" xml:space="preserve">
+    <value>Variabili</value>
+  </data>
+  <data name="DataGridNameColumn_Header" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="DataGridValueColumn_Header" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="ExportWindowTitle" xml:space="preserve">
+    <value>Nuovo Ambiente</value>
+  </data>
+  <data name="NewEnvironmentWindowHeaderTitle" xml:space="preserve">
+    <value>Nuovo ambiente</value>
+  </data>
+  <data name="NewEnvironmentDataGridNameColumn_Header" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NewEnvironmentFormNameLabel_Content" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NewEnvironmentDataGridValueColumn" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="NewEnvironmentWindowSaveButton_Content" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="NewEnvironmentWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="NewEnvironmentDataGridNameColumn" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="DataGridValueColumn" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="DataGridNameColumn" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="RenameEnvironmentWindowTitle" xml:space="preserve">
+    <value>Rinomina ambiente</value>
+  </data>
+  <data name="RenameEnvironmentNameLabel_Content" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="RenameEnvironmentOkButton_Content" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="RenameWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="SettingsWindowTitle_Title" xml:space="preserve">
+    <value>Chami - Impostazioni</value>
+  </data>
+  <data name="ViewCategory" xml:space="preserve">
+    <value>Visualizzazione</value>
+  </data>
+  <data name="DetectorCategory" xml:space="preserve">
+    <value>Rilevatore</value>
+  </data>
+  <data name="SafetyCategory" xml:space="preserve">
+    <value>Sicurezza</value>
+  </data>
+  <data name="LoggingCategory" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="LanguageCategory" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="SettingsWindowOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SettingsWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="SettingsWindowApplyButton_Content" xml:space="preserve">
+    <value>Applica</value>
+  </data>
+  <data name="TaskbarItemShow_Header" xml:space="preserve">
+    <value>Mostra Chami</value>
+  </data>
+  <data name="TaskbarItemHide" xml:space="preserve">
+    <value>Nascondi Chami</value>
+  </data>
+  <data name="TaskbarItemExit_Header" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="ExistingEnvironmentMessageBoxText" xml:space="preserve">
+    <value>L'ambiente che stai provando a importare non esiste!</value>
+  </data>
+  <data name="ExistingEnvironmentMessageBoxCaption" xml:space="preserve">
+    <value>Errore durante l'importazione dell'ambiente</value>
+  </data>
+  <data name="QuitMessageBoxText" xml:space="preserve">
+    <value>Sei sicuro di voler uscire?</value>
+  </data>
+  <data name="QuitMessageBoxCaption" xml:space="preserve">
+    <value>Uscita da Chami.</value>
+  </data>
+  <data name="DetectorMessageBoxTextPart1" xml:space="preserve">
+    <value>Chami ha rilevato che le seguenti applicazioni sono in esecuzione:</value>
+  </data>
+  <data name="DetectorMessageBoxTextPart2" xml:space="preserve">
+    <value>Si consiglia di riavviarle.</value>
+  </data>
+  <data name="DetectorMessageBoxCaption" xml:space="preserve">
+    <value>Riavvia le applicazioni!</value>
+  </data>
+  <data name="DeleteEnvironmentNoVariablesText" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare l'ambiente {0}?</value>
+  </data>
+  <data name="DeleteEnvironmentWithVariablesText" xml:space="preserve">
+    <value>Sei sicuro di voler eliminare l'ambiente {0} e le sue {1} variabili?</value>
+  </data>
+  <data name="DeleteEnvironmentCaption" xml:space="preserve">
+    <value>Conferma la cancellazione</value>
+  </data>
+  <data name="JsonDeserializationErrorMessageBoxCaption" xml:space="preserve">
+    <value>Errore di deserializzazione!</value>
+  </data>
+  <data name="JsonDeserializationErrorMessageBoxText" xml:space="preserve">
+    <value>Impossibile deserializzare il file di input!\nConsulta il log per maggiori dettagli.</value>
+  </data>
+  <data name="ResetEnvironmentMessageBoxText" xml:space="preserve">
+    <value>L'ambiente attualmente attivo verrà rimosso. Sei sicuro di voler continuare?</value>
+  </data>
+  <data name="ResetEnvironmentMessageBoxCaption" xml:space="preserve">
+    <value>Conferma</value>
+  </data>
+  <data name="UnableToInsertEnvironmentMessageBoxText" xml:space="preserve">
+    <value>Impossibile inserire il nuovo ambiente!</value>
+  </data>
+  <data name="UnableToInsertEnvironmentMessageBoxCaption" xml:space="preserve">
+    <value>Errore!</value>
+  </data>
+  <data name="GenericExceptionMessageBoxCaption" xml:space="preserve">
+    <value>Si è verificata un'eccezione!</value>
+  </data>
+  <data name="RevertToOriginalEnvironmentMessage" xml:space="preserve">
+    <value>Ripristino delle variabili d'ambiente originali...</value>
+  </data>
+  <data name="RevertToOriginalEnvironmentNop" xml:space="preserve">
+    <value>Non è attivo alcun ambiente di Chami!\nNiente da fare.</value>
+  </data>
+  <data name="ExecutionCompleteMessage" xml:space="preserve">
+    <value>Esecuzione completata</value>
+  </data>
+  <data name="EnvironmentExportWindowViewModelDisplayedName" xml:space="preserve">
+    <value>{0} ({1} variabili)</value>
+  </data>
+</root>

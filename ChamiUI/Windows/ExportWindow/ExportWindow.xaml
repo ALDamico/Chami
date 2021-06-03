@@ -6,9 +6,13 @@
         xmlns:local="clr-namespace:ChamiUI.Windows.ExportWindow"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:controls="clr-namespace:ChamiUI.Controls"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
+        lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         d:DataContext="{d:DesignInstance vm:ExportWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="Export environments" Height="450" Width="400">
+        x:Name="ChamiExportWindow"
+        Title="{lex:Loc}" Height="450" Width="400">
     <Window.CommandBindings>
         <CommandBinding x:Name="CancelCommandBinding"
                         Command="Close"
@@ -33,20 +37,25 @@
         <Label Grid.Row="0" 
                Grid.Column="0" 
                FontSize="20" 
-               Content="Export environment" 
+               x:Name="ExportWindowHeaderTitle"
+               Content="{lex:Loc}" 
                FontWeight="DemiBold" 
                HorizontalContentAlignment="Center"/>
         <GroupBox Grid.Row="1" 
                   Grid.Column="0" 
-                  Header="Export settings:">
+                  x:Name="ExportWindowGroupBox"
+                  Header="{lex:Loc}">
             <StackPanel>
-                <RadioButton Content="All environments" 
+                <RadioButton Content="{lex:Loc}" 
+                             x:Name="AllEnvironmentsRadioButton"
                              IsChecked="{Binding ExportAll}"/>
-                <RadioButton Content="Selected environments" 
+                <RadioButton Content="{lex:Loc}" 
+                             x:Name="SelectedEnvironmentsRadioButton"
                              IsChecked="{Binding ExportSelected}"/>
             </StackPanel>
         </GroupBox>
-        <controls:FileInputBox Grid.Row="2" Grid.Column="0" 
+        <controls:FileInputBox Grid.Row="2" 
+                               Grid.Column="0" 
                                Filename="{Binding Filename, Mode=TwoWay}" 
                                />
         <ListView Grid.Row="3" 
@@ -72,13 +81,13 @@
                     Margin="0, 5">
             <Button x:Name="ExportDataButton"
                     MaxWidth="65" Margin="10, 0" 
-                    Content="Export"
+                    Content="{lex:Loc}"
                     IsEnabled="{Binding ExportButtonEnabled}"
                     Click="ExportDataButton_OnClick"
                     />
-            <Button x:Name="CancelButton"
+            <Button x:Name="ExportWindowCancelButton"
                     MaxWidth="65" Margin="10, 0"
-                    Content="Cancel" 
+                    Content="{lex:Loc}" 
                     Command="Close"/>
         </StackPanel>
     </Grid>

@@ -3,24 +3,43 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
+        lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         xmlns:local="clr-namespace:ChamiUI.Windows.AboutBox"
         mc:Ignorable="d"
-        Title="About Chami..." Height="300" Width="350"
+        x:Name="ChamiAboutBox"
+        Title="{lex:Loc}" Height="300" Width="350"
         ResizeMode="NoResize"
         >
     <Grid>
         <StackPanel Orientation="Vertical">
-            <StackPanel Margin="10, 0" Orientation="Horizontal">
-                <Image Width="128" Height="128" Source="/ChamiUI;component/Assets/chameleon128x128.png"></Image>
-                <Label VerticalContentAlignment="Bottom" FontSize="20" FontWeight="DemiBold">Chami</Label>
+            <StackPanel Margin="10, 0" 
+                        Orientation="Horizontal">
+                <Image Width="128" 
+                       Height="128" 
+                       Source="/ChamiUI;component/Assets/chameleon128x128.png"></Image>
+                <Label VerticalContentAlignment="Bottom" 
+                       FontSize="20" 
+                       FontWeight="DemiBold"
+                       x:Name="AboutBoxApplicationName" 
+                       Content="{lex:Loc}"></Label>
             </StackPanel>
             
             <Separator/>
-            <Label>Developed by Andrea Luciano Damico</Label>
-            <Label>Chami Icon by Vitaly Gorbachev</Label>
-            <Label>https://www.flaticon.com/authors/vitaly-gorbachev</Label>
-            <Label>Released under the terms of the MIT License</Label>
-            <Button MaxWidth="65" x:Name="OkButton" Click="OkButton_Click">Ok</Button>
+            <Label x:Name="AboutBoxFirstLine" 
+                   Content="{lex:Loc}"></Label>
+            <Label x:Name="AboutBoxSecondLine" 
+                   Content="{lex:Loc}"></Label>
+            <Label x:Name="AboutBoxThirdLine" 
+                   Content="{lex:Loc}"></Label>
+            <Label x:Name="AboutBoxLicense" 
+                   Content="{lex:Loc}"></Label>
+            <Label x:Name="AboutBoxFourthLine" 
+                   Content="{lex:Loc}"></Label>
+            <Button MaxWidth="65" 
+                    x:Name="AboutBoxOkButton" 
+                    Click="OkButton_Click">Ok</Button>
         </StackPanel>
     </Grid>
 </Window>
