@@ -385,6 +385,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An exception occurred!.
+        /// </summary>
+        public static string GenericExceptionMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("GenericExceptionMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From .env....
         /// </summary>
         public static string ImportFromDotenvMenuItem_Header {

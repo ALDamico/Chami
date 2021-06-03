@@ -360,4 +360,7 @@
   <data name="UnableToInsertEnvironmentMessageBoxCaption" xml:space="preserve">
     <value>Errore!</value>
   </data>
+  <data name="GenericExceptionMessageBoxCaption" xml:space="preserve">
+    <value>Si è verificata un'eccezione!</value>
+  </data>
 </root>

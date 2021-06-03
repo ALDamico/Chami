@@ -81,7 +81,8 @@ namespace ChamiUI
         {
             var exceptionMessage = args.Exception.Message;
             args.Handled = true;
-            MessageBox.Show(exceptionMessage, "An exception occurred!", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(exceptionMessage, ChamiUIStrings.GenericExceptionMessageBoxCaption, MessageBoxButton.OK,
+                MessageBoxImage.Error);
             if (Settings.LoggingSettings.LoggingEnabled)
             {
                 var logger = Logger.GetLogger();
@@ -126,7 +127,8 @@ namespace ChamiUI
                 localizationProvider.SearchCultures.Add(cultureInfo);
                 localizationProvider.AvailableCultures.Add(cultureInfo);
             }
-            var currentCulture =  dataAdapter.GetCultureInfoByCode(Settings.LanguageSettings.CurrentLanguage.Code);
+
+            var currentCulture = dataAdapter.GetCultureInfoByCode(Settings.LanguageSettings.CurrentLanguage.Code);
             LocalizeDictionary.Instance.Culture = currentCulture;
             ChamiUIStrings.Culture = currentCulture;
         }

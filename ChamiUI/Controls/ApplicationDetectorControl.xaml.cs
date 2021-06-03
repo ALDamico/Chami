@@ -3,10 +3,11 @@ using System.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System;
+using ChamiUI.Localization;
 
 namespace ChamiUI.Controls
 {
-    public partial class ApplicationDetectorControl 
+    public partial class ApplicationDetectorControl
     {
         public ApplicationDetectorControl(WatchedApplicationControlViewModel viewModel)
         {
@@ -30,9 +31,9 @@ namespace ChamiUI.Controls
             }
             catch (InvalidOperationException ex)
             {
-                MessageBox.Show(ex.Message, "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ex.Message, ChamiUIStrings.GenericExceptionMessageBoxCaption, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
-            
         }
     }
 }
