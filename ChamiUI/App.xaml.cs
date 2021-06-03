@@ -118,12 +118,17 @@ namespace ChamiUI
         private void InitLocalization()
         {
             var localizationProvider = ResxLocalizationProvider.Instance;
-            //TODO Handle this more dynamically.
-            localizationProvider.AvailableCultures.Add(CultureInfo.CreateSpecificCulture("it-IT"));
-            localizationProvider.SearchCultures = new List<CultureInfo>()
-                {CultureInfo.InvariantCulture, CultureInfo.CreateSpecificCulture("it-IT")};
-            LocalizeDictionary.Instance.Culture = CultureInfo.InvariantCulture;
-            ChamiUIStrings.Culture = CultureInfo.InvariantCulture;
+            var dataAdapter = new ApplicationLanguageDataAdapter(GetConnectionString());
+            var languages = dataAdapter.GetAllAvailableCultureInfos();
+            localizationProvider.SearchCultures = new List<CultureInfo>();
+            foreach (var cultureInfo in languages)
+            {
+                localizationProvider.SearchCultures.Add(cultureInfo);
+                localizationProvider.AvailableCultures.Add(cultureInfo);
+            }
+            var currentCulture =  dataAdapter.GetCultureInfoByCode(Settings.LanguageSettings.CurrentLanguage.Code);
+            LocalizeDictionary.Instance.Culture = currentCulture;
+            ChamiUIStrings.Culture = currentCulture;
         }
     }
 }

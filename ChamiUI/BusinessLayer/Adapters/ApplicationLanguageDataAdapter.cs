@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Globalization;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.DataLayer.Repositories;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -31,6 +32,30 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
 
             return output;
+        }
+
+        public IEnumerable<CultureInfo> GetAllAvailableCultureInfos()
+        {
+            var languages = GetAllApplicationLanguages();
+            var result = new List<CultureInfo>();
+
+            foreach (var language in languages)
+            {
+                CultureInfo ci = CultureInfo.CreateSpecificCulture(language.Code);
+                result.Add(ci);
+            }
+            return result;
+        }
+
+        public CultureInfo GetCultureInfoByCode(string code)
+        {
+            var applicationLanguage = GetApplicationLanguageByCode(code);
+            if (applicationLanguage == null)
+            {
+                return null;
+            }
+
+            return CultureInfo.CreateSpecificCulture(applicationLanguage.Code);
         }
     }
 }
