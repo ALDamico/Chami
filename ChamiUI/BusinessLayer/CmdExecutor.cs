@@ -70,7 +70,7 @@ namespace ChamiUI.BusinessLayer
                 await environmentVariable.ExecuteAsync(progress, percentage);
             }
 
-            progress?.Report(new CmdExecutorProgress(100, null, "Execution complete\n"));
+            progress?.Report(new CmdExecutorProgress(100, null, ChamiUIStrings.ExecutionCompleteMessage));
             if (TargetEnvironment != null)
             {
                 var converter = new EnvironmentConverter();

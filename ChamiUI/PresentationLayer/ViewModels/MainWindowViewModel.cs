@@ -361,7 +361,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (progress != null)
             {
                 CmdExecutorProgress executorProgress =
-                    new CmdExecutorProgress(0, null, "Reverting back to original environment variables...\n");
+                    new CmdExecutorProgress(0, null, ChamiUIStrings.RevertToOriginalEnvironmentMessage);
                 progress.Report(executorProgress);
             }
             var cmdExecutor = new CmdExecutor();
@@ -395,7 +395,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 if (progress != null)
                 {
                     CmdExecutorProgress executorProgress = new CmdExecutorProgress(100, null,
-                        "There's no active Chami environment!\nNothing to do.");
+                        ChamiUIStrings.RevertToOriginalEnvironmentNop);
                     progress.Report(executorProgress);
                 }
             }

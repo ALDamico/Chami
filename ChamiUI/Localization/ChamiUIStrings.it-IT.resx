@@ -363,4 +363,16 @@
   <data name="GenericExceptionMessageBoxCaption" xml:space="preserve">
     <value>Si è verificata un'eccezione!</value>
   </data>
+  <data name="RevertToOriginalEnvironmentMessage" xml:space="preserve">
+    <value>Ripristino delle variabili d'ambiente originali...</value>
+  </data>
+  <data name="RevertToOriginalEnvironmentNop" xml:space="preserve">
+    <value>Non è attivo alcun ambiente di Chami!\nNiente da fare.</value>
+  </data>
+  <data name="ExecutionCompleteMessage" xml:space="preserve">
+    <value>Esecuzione completata</value>
+  </data>
+  <data name="EnvironmentExportWindowViewModelDisplayedName" xml:space="preserve">
+    <value>{0} ({1} variabili)</value>
+  </data>
 </root>

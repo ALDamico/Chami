@@ -1,3 +1,5 @@
+using ChamiUI.Localization;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class EnvironmentExportWindowViewModel: ViewModelBase
@@ -27,7 +29,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 var environmentName = Environment.Name;
                 var numVariables = NumVariables;
-                return $"{environmentName} ({numVariables} variables)";
+
+                return string.Format(ChamiUIStrings.EnvironmentExportWindowViewModelDisplayedName, environmentName, numVariables);
             }
         }
     }

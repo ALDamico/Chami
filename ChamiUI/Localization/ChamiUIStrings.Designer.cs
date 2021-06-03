@@ -313,6 +313,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} ({1} variables).
+        /// </summary>
+        public static string EnvironmentExportWindowViewModelDisplayedName {
+            get {
+                return ResourceManager.GetString("EnvironmentExportWindowViewModelDisplayedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Execution complete.
+        /// </summary>
+        public static string ExecutionCompleteMessage {
+            get {
+                return ResourceManager.GetString("ExecutionCompleteMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error importing environment.
         /// </summary>
         public static string ExistingEnvironmentMessageBoxCaption {
@@ -642,6 +660,24 @@ namespace ChamiUI.Localization {
         public static string ResetVarsMenuItem_Header {
             get {
                 return ResourceManager.GetString("ResetVarsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverting back to original environment variables....
+        /// </summary>
+        public static string RevertToOriginalEnvironmentMessage {
+            get {
+                return ResourceManager.GetString("RevertToOriginalEnvironmentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s no active Chami environment!\nNothing to do..
+        /// </summary>
+        public static string RevertToOriginalEnvironmentNop {
+            get {
+                return ResourceManager.GetString("RevertToOriginalEnvironmentNop", resourceCulture);
             }
         }
         
