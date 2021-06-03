@@ -3,6 +3,7 @@ using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.ComponentModel;
 using System.Windows;
+using ChamiUI.Localization;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
 {
@@ -19,40 +20,12 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
 
         protected override void OnClosing(CancelEventArgs e)
         {
-
             e.Cancel = !HandleClosing();
             base.OnClosing(e);
         }
 
         private bool HandleClosing()
         {
-            /*if (_viewModel.DetectChanges())
-            {
-                string caption;
-                string environmentName = _viewModel.Environment.Name;
-
-                if (!string.IsNullOrWhiteSpace(environmentName))
-                {
-                    caption = $"The environment {environmentName} has been changed. Are you sure you want to cancel?";
-                }
-                else
-                {
-                    caption = "The environment has been changed. Are you sure you want to cancel?";
-                }
-
-                var result = MessageBox.Show(caption, "Are you sure you want to cancel?", MessageBoxButton.YesNo,
-                    MessageBoxImage.Question, MessageBoxResult.No);
-                if (result == MessageBoxResult.Yes)
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                return true;
-            }
-
-            return false;*/
             return true;
         }
 
@@ -66,12 +39,15 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             var inserted = _viewModel.SaveEnvironment();
             if (!inserted)
             {
-                MessageBox.Show("Unable to insert your new environment!", "Error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ChamiUIStrings.UnableToInsertEnvironmentMessageBoxText,
+                    ChamiUIStrings.UnableToInsertEnvironmentMessageBoxCaption, MessageBoxButton.OK,
+                    MessageBoxImage.Error);
             }
             else
             {
                 EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(_viewModel.Environment));
             }
+
             Close();
         }
 

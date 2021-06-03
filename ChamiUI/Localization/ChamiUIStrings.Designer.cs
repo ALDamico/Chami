@@ -745,6 +745,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Error!.
+        /// </summary>
+        public static string UnableToInsertEnvironmentMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("UnableToInsertEnvironmentMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to insert your new environment!.
+        /// </summary>
+        public static string UnableToInsertEnvironmentMessageBoxText {
+            get {
+                return ResourceManager.GetString("UnableToInsertEnvironmentMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Variables.
         /// </summary>
         public static string VariablesTabItem_Header {

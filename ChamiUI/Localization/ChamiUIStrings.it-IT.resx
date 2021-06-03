@@ -354,4 +354,10 @@
   <data name="ResetEnvironmentMessageBoxCaption" xml:space="preserve">
     <value>Conferma</value>
   </data>
+  <data name="UnableToInsertEnvironmentMessageBoxText" xml:space="preserve">
+    <value>Impossibile inserire il nuovo ambiente!</value>
+  </data>
+  <data name="UnableToInsertEnvironmentMessageBoxCaption" xml:space="preserve">
+    <value>Errore!</value>
+  </data>
 </root>
