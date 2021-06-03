@@ -4,6 +4,7 @@ using ChamiUI.Controls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Controls;
+using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -17,11 +18,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
             Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter, _languageDataAdapter);
             _controls = new Dictionary<string, UserControl>();
-            _controls["View"] = new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings);
-            _controls["Logging"] = new LoggingSettingsEditor(Settings.LoggingSettings);
-            _controls["Safety"] = new SafeVariableEditor(Settings.SafeVariableSettings);
-            _controls["Detector"] = new ApplicationDetectorControl(Settings.WatchedApplicationSettings);
-            _controls["Language"] = new LanguageSelectorControl(Settings.LanguageSettings);
+
+            var viewKey = ChamiUIStrings.ViewCategory;
+            _controls[viewKey] = new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings);
+            var loggingKey = ChamiUIStrings.LoggingCategory;
+            _controls[loggingKey] = new LoggingSettingsEditor(Settings.LoggingSettings);
+            var safetyKey = ChamiUIStrings.SafetyCategory;
+            _controls[safetyKey] = new SafeVariableEditor(Settings.SafeVariableSettings);
+            var detectorKey = ChamiUIStrings.DetectorCategory;
+            _controls[detectorKey] = new ApplicationDetectorControl(Settings.WatchedApplicationSettings);
+            var languageKey = ChamiUIStrings.LanguageCategory;
+            _controls[languageKey] = new LanguageSelectorControl(Settings.LanguageSettings);
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
 
@@ -72,6 +79,5 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(Settings));
             }
         }
-
     }
 }
