@@ -5,6 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
+        lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
@@ -23,15 +26,20 @@
         <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                               Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
-            <MenuItem Header="Edit" x:Name="EditEnvironmentMenuItem" Click="EditEnvironmentMenuItem_OnClick">
+            <MenuItem Header="{lex:Loc}" 
+                      x:Name="EditEnvironmentMenuItem" 
+                      Click="EditEnvironmentMenuItem_OnClick">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="Rename" x:Name="RenameEnvironmentMenuItem"
+            <MenuItem Header="{lex:Loc}" 
+                      x:Name="RenameEnvironmentMenuItem"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
                       InputGestureText="F2" />
-            <MenuItem Header="Delete" x:Name="DeleteEnvironmentMenuItem" Click="DeleteEnvironmentMenuItem_OnClick">
+            <MenuItem Header="Delete" 
+                      x:Name="DeleteEnvironmentMenuItem" 
+                      Click="DeleteEnvironmentMenuItem_OnClick">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
                 </MenuItem.Icon>
@@ -39,7 +47,7 @@
         </ContextMenu>
 
         <ContextMenu x:Key="EnvironmentVariablesContextMenu">
-            <MenuItem Header="Copy"
+            <MenuItem Header="{lex:Loc}"
                       x:Name="CopyEnvironmentVariableMenuItem"
                       Click="CopyEnvironmentVariableMenuItem_OnClick">
                 <MenuItem.Icon>
@@ -47,7 +55,7 @@
                 </MenuItem.Icon>
             </MenuItem>
             <Separator />
-            <MenuItem Header="Delete"
+            <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentVariableMenuItem"
                       Click="DeleteEnvironmentVariableMenuItem_OnClick">
                 <MenuItem.Icon>
@@ -87,37 +95,54 @@
 
         <Menu Grid.Row="0" Grid.Column="0">
             <MenuItem Header="File">
-                <MenuItem Header="New Environment" x:Name="NewEnvironmentMenuItem"
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="NewEnvironmentMenuItem"
                           Command="New" />
-                <MenuItem Header="Save" x:Name="SaveEnvironmentMenuItem" Command="Save" />
-                <MenuItem Header="Import">
-                    <MenuItem Header="From .env..." x:Name="ImportFromDotenvMenuItem"
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="SaveEnvironmentMenuItem" 
+                          Command="Save" />
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="ImportMenuItem">
+                    <MenuItem Header="{lex:Loc}" 
+                              x:Name="ImportFromDotenvMenuItem"
                               Click="ImportFromDotenvMenuItem_OnClick" />
-                    <MenuItem Header="From JSON..." x:Name="ImportFromJsonMenuItem"
+                    <MenuItem Header="{lex:Loc}" 
+                              x:Name="ImportFromJsonMenuItem"
                               Click="ImportFromJsonMenuItem_OnClick" />
                 </MenuItem>
-                <MenuItem Header="Export..." x:Name="ExportMenuItem" Click="ExportMenuItem_Click" />
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="ExportMenuItem" 
+                          Click="ExportMenuItem_Click" />
                 <Separator />
-                <MenuItem Header="Quit"
+                <MenuItem Header="{lex:Loc}"
                           x:Name="QuitApplicationMenuItem"
                           Click="QuitApplicationMenuItem_OnClick" />
             </MenuItem>
-            <MenuItem Header="Options">
-                <MenuItem Header="Reset environment variables" x:Name="ResetVarsMenuItem"
+            <MenuItem Header="{lex:Loc}" 
+                      x:Name="OptionsMenuItem">
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="ResetVarsMenuItem"
                           Click="ResetVarsMenuItem_OnClick" />
-                <MenuItem Header="Backup current environment" x:Name="BackupEnvironmentMenuItem"
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="BackupEnvironmentMenuItem"
                           Click="BackupEnvironmentMenuItem_OnClick" />
                 <Separator />
-                <MenuItem Header="Settings" x:Name="SettingsMenuItem" Click="SettingsMenuItem_OnClick">
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="SettingsMenuItem" 
+                          Click="SettingsMenuItem_OnClick">
                     <MenuItem.Icon>
                         <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/cog.svg" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="?">
-                <MenuItem Header="About Chami..." x:Name="AboutMenuItem" Click="AboutMenuItem_OnClick" />
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="AboutMenuItem" 
+                          Click="AboutMenuItem_OnClick" />
                 <Separator />
-                <MenuItem Header="Website" x:Name="WebsiteMenuItem" Click="WebsiteMenuItem_Click" />
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="WebsiteMenuItem" 
+                          Click="WebsiteMenuItem_Click" />
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"
@@ -136,7 +161,8 @@
                      MouseDoubleClick="EnvironmentsListbox_OnMouseDoubleClick">
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
-                        <Setter Property="ContextMenu" Value="{StaticResource EnvironmentListBoxContextMenu}" />
+                        <Setter Property="ContextMenu" 
+                                Value="{StaticResource EnvironmentListBoxContextMenu}" />
                     </Style>
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
@@ -148,7 +174,7 @@
                 </ListBox.ItemTemplate>
             </ListBox>
             <Button Grid.Column="1"
-                    ToolTip="Apply"
+                    ToolTip="{lex:Loc}"
                     MaxWidth="22"
                     MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
@@ -163,7 +189,7 @@
         <TabControl Grid.Row="2"
                     Grid.Column="0"
                     x:Name="TabControls">
-            <TabItem Header="Variables">
+            <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
                 <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="{Binding EditingEnabled}"
@@ -174,15 +200,17 @@
                           x:Name="CurrentEnvironmentVariablesDataGrid">
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
-                            <Setter Property="ContextMenu" Value="{StaticResource EnvironmentVariablesContextMenu}" />
+                            <Setter Property="ContextMenu" 
+                                    Value="{StaticResource EnvironmentVariablesContextMenu}" />
                         </Style>
                     </DataGrid.ItemContainerStyle>
                     <DataGrid.Columns>
-
                         <DataGridTextColumn Width="65"
                                             Binding="{Binding Name}"
-                                            Header="Name" />
-                        <DataGridTextColumn Header="Value"
+                                            x:Name="DataGridNameColumn"
+                                            Header="{lex:Loc Key=DataGridNameColumn}" />
+                        <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
+                                            x:Name="DataGridValueColumn"
                                             Binding="{Binding Value}" />
                     </DataGrid.Columns>
                 </DataGrid>
@@ -191,9 +219,11 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
-                        <RowDefinition Height="Auto" MaxHeight="22" />
+                        <RowDefinition Height="Auto" 
+                                       MaxHeight="22" />
                     </Grid.RowDefinitions>
-                    <TextBox Grid.Row="0" x:Name="ConsoleTextBox"
+                    <TextBox Grid.Row="0" 
+                             x:Name="ConsoleTextBox"
                              Background="{Binding Settings.ConsoleAppearanceSettings.BackgroundColor}"
                              Foreground="{Binding Settings.ConsoleAppearanceSettings.ForegroundColor}"
                              FontFamily="{Binding Settings.ConsoleAppearanceSettings.FontFamily}"
@@ -201,7 +231,12 @@
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              IsReadOnly="True" />
-                    <ProgressBar Grid.Row="1" x:Name="ConsoleProgressBar" MinHeight="16" MaxHeight="22" Minimum="0" Maximum="100" />
+                    <ProgressBar Grid.Row="1" 
+                                 x:Name="ConsoleProgressBar" 
+                                 MinHeight="16" 
+                                 MaxHeight="22" 
+                                 Minimum="0" 
+                                 Maximum="100" />
                 </Grid>
             </TabItem>
         </TabControl>

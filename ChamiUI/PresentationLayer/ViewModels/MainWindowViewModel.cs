@@ -11,6 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -248,7 +249,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.AppendLine(
-                        "Chami has detected that the following applications are currently running:");
+                        ChamiUIStrings.DetectorMessageBoxTextPart1);
                     foreach (var detectedApplication in detectedApplications)
                     {
                         var processName = detectedApplication.ProcessName;
@@ -260,7 +261,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         stringBuilder.AppendLine(processName);
                     }
 
-                    stringBuilder.Append("It is recommended that you restart them.");
+                    stringBuilder.Append(ChamiUIStrings.DetectorMessageBoxTextPart2);
                     return stringBuilder.ToString();
                 }
             }
@@ -360,7 +361,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (progress != null)
             {
                 CmdExecutorProgress executorProgress =
-                    new CmdExecutorProgress(0, null, "Reverting back to original environment variables...\n");
+                    new CmdExecutorProgress(0, null, ChamiUIStrings.RevertToOriginalEnvironmentMessage);
                 progress.Report(executorProgress);
             }
             var cmdExecutor = new CmdExecutor();
@@ -394,7 +395,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 if (progress != null)
                 {
                     CmdExecutorProgress executorProgress = new CmdExecutorProgress(100, null,
-                        "There's no active Chami environment!\nNothing to do.");
+                        ChamiUIStrings.RevertToOriginalEnvironmentNop);
                     progress.Report(executorProgress);
                 }
             }
