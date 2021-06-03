@@ -12,6 +12,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiDbMigrations;
+using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
 using Hardcodet.Wpf.TaskbarNotification;
@@ -121,7 +122,8 @@ namespace ChamiUI
             localizationProvider.AvailableCultures.Add(CultureInfo.CreateSpecificCulture("it-IT"));
             localizationProvider.SearchCultures = new List<CultureInfo>()
                 {CultureInfo.InvariantCulture, CultureInfo.CreateSpecificCulture("it-IT")};
-            LocalizeDictionary.Instance.Culture = CultureInfo.CurrentUICulture;
+            LocalizeDictionary.Instance.Culture = CultureInfo.InvariantCulture;
+            ChamiUIStrings.Culture = CultureInfo.InvariantCulture;
         }
     }
 }

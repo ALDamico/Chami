@@ -77,5 +77,14 @@ namespace ChamiUI.Localization {
                 return ResourceManager.GetString("LanguageSelectorLabel_Content", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting execution...\n.
+        /// </summary>
+        public static string StartingExecutionMessage {
+            get {
+                return ResourceManager.GetString("StartingExecutionMessage", resourceCulture);
+            }
+        }
     }
 }

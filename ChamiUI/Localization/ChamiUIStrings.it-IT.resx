@@ -123,4 +123,7 @@
   <data name="LanguageSelectorLabel_Content" xml:space="preserve">
     <value>Lingua</value>
   </data>
+  <data name="StartingExecutionMessage" xml:space="preserve">
+    <value>Avvio dell'esecuzione...\n</value>
+  </data>
 </root>

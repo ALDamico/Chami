@@ -15,7 +15,7 @@ namespace ChamiUI.DataLayer.Repositories
         {
             var queryString = @"
                 SELECT Code, Name, FlagPath
-                FROM UiLanguage
+                FROM UiLanguages
 ";
             using var connection = GetConnection();
             var result = connection.Query<UiLanguage>(queryString);
@@ -26,7 +26,7 @@ namespace ChamiUI.DataLayer.Repositories
         {
             var queryString = @"
                 SELECT Code, Name, FlagPath
-                FROM UiLanguage
+                FROM UiLanguages
                 WHERE Code = ?
 ";
             using var connection = GetConnection();
