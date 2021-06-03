@@ -303,4 +303,55 @@
   <data name="SettingsWindowApplyButton_Content" xml:space="preserve">
     <value>Apply</value>
   </data>
+  <data name="TaskbarItemShow_Header" xml:space="preserve">
+    <value>Show Chami</value>
+  </data>
+  <data name="TaskbarItemHide" xml:space="preserve">
+    <value>Hide Chami</value>
+  </data>
+  <data name="TaskbarItemExit_Header" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="ExistingEnvironmentMessageBoxText" xml:space="preserve">
+    <value>The environment you're trying to import already exists!</value>
+  </data>
+  <data name="ExistingEnvironmentMessageBoxCaption" xml:space="preserve">
+    <value>Error importing environment</value>
+  </data>
+  <data name="QuitMessageBoxText" xml:space="preserve">
+    <value>Are you sure you want to quit?</value>
+  </data>
+  <data name="QuitMessageBoxCaption" xml:space="preserve">
+    <value>Exiting Chami.</value>
+  </data>
+  <data name="DetectorMessageBoxTextPart1" xml:space="preserve">
+    <value>Chami has detected that the following applications are currently running:</value>
+  </data>
+  <data name="DetectorMessageBoxTextPart2" xml:space="preserve">
+    <value>It is recommended that you restart them.</value>
+  </data>
+  <data name="DetectorMessageBoxCaption" xml:space="preserve">
+    <value>Restart applications!</value>
+  </data>
+  <data name="DeleteEnvironmentNoVariablesText" xml:space="preserve">
+    <value>Are you sure you want to remove the environment {0}?</value>
+  </data>
+  <data name="DeleteEnvironmentWithVariablesText" xml:space="preserve">
+    <value>Are you sure you want to remove the environment {0} and its {1} variables?</value>
+  </data>
+  <data name="DeleteEnvironmentCaption" xml:space="preserve">
+    <value>Confirm deletion</value>
+  </data>
+  <data name="JsonDeserializationErrorMessageBoxText" xml:space="preserve">
+    <value>Unable to deserialize input file!\nSee the log for more details.</value>
+  </data>
+  <data name="JsonDeserializationErrorMessageBoxCaption" xml:space="preserve">
+    <value>Deserialization error!</value>
+  </data>
+  <data name="ResetEnvironmentMessageBoxText" xml:space="preserve">
+    <value>This will remove the currently active Chami environment. Are you sure you want to proceed?</value>
+  </data>
+  <data name="ResetEnvironmentMessageBoxCaption" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

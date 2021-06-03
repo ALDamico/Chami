@@ -14,6 +14,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using ChamiUI.BusinessLayer;
+using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 
 namespace ChamiUI.Windows.MainWindow
@@ -37,8 +38,8 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (e.Exists)
             {
-                MessageBox.Show("The environment you're trying to import already exists!",
-                    "Error importing environment", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(ChamiUIStrings.ExistingEnvironmentMessageBoxText,
+                    ChamiUIStrings.ExistingEnvironmentMessageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -46,7 +47,8 @@ namespace ChamiUI.Windows.MainWindow
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var result = MessageBox.Show("Are you sure you want to quit?", "Exiting Chami.", MessageBoxButton.OKCancel,
+            var result = MessageBox.Show(ChamiUIStrings.QuitMessageBoxText, ChamiUIStrings.QuitMessageBoxCaption,
+                MessageBoxButton.OKCancel,
                 MessageBoxImage.Question);
             if (result == MessageBoxResult.OK)
             {
@@ -71,7 +73,7 @@ namespace ChamiUI.Windows.MainWindow
                 var message = ViewModel.GetDetectedApplicationsMessage();
                 if (message != null)
                 {
-                    MessageBox.Show(message, "Restart applications!", MessageBoxButton.OK,
+                    MessageBox.Show(message, ChamiUIStrings.DetectorMessageBoxCaption, MessageBoxButton.OK,
                         MessageBoxImage.Information);
                 }
             }
@@ -83,7 +85,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 ConsoleTextBox.Text = "";
             }
-            
+
             TabControls.SelectedIndex = CONSOLE_TAB_INDEX;
         }
 
@@ -97,9 +99,8 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     message += "\n";
                 }
+
                 ConsoleTextBox.Text += message;
-                
-                
             }
 
             if (o.OutputStream != null)
@@ -109,6 +110,11 @@ namespace ChamiUI.Windows.MainWindow
             }
 
             ConsoleTextBox.ScrollToEnd();
+            AnimateProgressBar(o);
+        }
+
+        private void AnimateProgressBar(CmdExecutorProgress o)
+        {
             var duration = DurationFactory.FromMilliseconds(250);
             DoubleAnimation doubleAnimation = new DoubleAnimation(o.Percentage, duration);
             ConsoleProgressBar.BeginAnimation(ProgressBar.ValueProperty, doubleAnimation);
@@ -149,15 +155,15 @@ namespace ChamiUI.Windows.MainWindow
             string message;
             if (selectedEnvironmentVariableCount == 0)
             {
-                message = $"Are you sure you want to remove the environment {selectedEnvironmentName}?";
+                message = string.Format(ChamiUIStrings.DeleteEnvironmentNoVariablesText, selectedEnvironmentName);
             }
             else
             {
-                message =
-                    $"Are you sure you want to remove the environment {selectedEnvironmentName} and its {selectedEnvironmentVariableCount} variables?";
+                message = string.Format(ChamiUIStrings.DeleteEnvironmentWithVariablesText, selectedEnvironmentName,
+                    selectedEnvironmentVariableCount);
             }
 
-            var result = MessageBox.Show(message, "Confirm deletion", MessageBoxButton.OKCancel,
+            var result = MessageBox.Show(message, ChamiUIStrings.DeleteEnvironmentCaption, MessageBoxButton.OKCancel,
                 MessageBoxImage.Warning);
             if (result == MessageBoxResult.OK)
             {
@@ -208,8 +214,9 @@ namespace ChamiUI.Windows.MainWindow
                 }
                 catch (JsonSerializationException ex)
                 {
-                    MessageBox.Show("Unable to deserialize input file!\nSee the log for more details.",
-                        "Deserialization error!", MessageBoxButton.OK, MessageBoxImage.Error);
+                    MessageBox.Show(ChamiUIStrings.JsonDeserializationErrorMessageBoxText,
+                        ChamiUIStrings.JsonDeserializationErrorMessageBoxCaption, MessageBoxButton.OK,
+                        MessageBoxImage.Error);
                     if (ViewModel.Settings.LoggingSettings.LoggingEnabled)
                     {
                         var logger = ((App.Current) as ChamiUI.App).GetLogger();
@@ -278,7 +285,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 selectedEnvironmentVariables.Add(envVar);
             }
-            
+
             foreach (var environmentVariable in selectedEnvironmentVariables)
             {
                 if (environmentVariable is EnvironmentVariableViewModel vm)
@@ -287,7 +294,6 @@ namespace ChamiUI.Windows.MainWindow
                     ViewModel.DeleteSelectedVariable();
                 }
             }
-            
         }
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -301,8 +307,9 @@ namespace ChamiUI.Windows.MainWindow
         {
             var response =
                 MessageBox.Show(
-                    "This will remove the currently active Chami environment. Are you sure you want to proceed?",
-                    "Confirm", MessageBoxButton.YesNo, MessageBoxImage.Hand, MessageBoxResult.No);
+                    ChamiUIStrings.ResetEnvironmentMessageBoxText,
+                    ChamiUIStrings.ResetEnvironmentMessageBoxCaption, MessageBoxButton.YesNo, MessageBoxImage.Hand,
+                    MessageBoxResult.No);
             if (response == MessageBoxResult.Yes)
             {
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
@@ -321,7 +328,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.DetectCurrentEnvironment();
         }
-        
+
         private void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ApplyEnvironmentButton_OnClick(sender, e);
@@ -335,7 +342,6 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     if (row is EnvironmentVariableViewModel environmentVariableViewModel)
                     {
-
                         ViewModel.SelectedVariable = environmentVariableViewModel;
                         ViewModel.DeleteSelectedVariable();
                         e.Handled = true;

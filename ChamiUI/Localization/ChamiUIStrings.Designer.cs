@@ -223,11 +223,29 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm deletion.
+        /// </summary>
+        public static string DeleteEnvironmentCaption {
+            get {
+                return ResourceManager.GetString("DeleteEnvironmentCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string DeleteEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("DeleteEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove the environment {0}?.
+        /// </summary>
+        public static string DeleteEnvironmentNoVariablesText {
+            get {
+                return ResourceManager.GetString("DeleteEnvironmentNoVariablesText", resourceCulture);
             }
         }
         
@@ -241,6 +259,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to remove the environment {0} and its {1} variables?.
+        /// </summary>
+        public static string DeleteEnvironmentWithVariablesText {
+            get {
+                return ResourceManager.GetString("DeleteEnvironmentWithVariablesText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detector.
         /// </summary>
         public static string DetectorCategory {
@@ -250,11 +277,56 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Restart applications!.
+        /// </summary>
+        public static string DetectorMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("DetectorMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chami has detected that the following applications are currently running:.
+        /// </summary>
+        public static string DetectorMessageBoxTextPart1 {
+            get {
+                return ResourceManager.GetString("DetectorMessageBoxTextPart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to It is recommended that you restart them..
+        /// </summary>
+        public static string DetectorMessageBoxTextPart2 {
+            get {
+                return ResourceManager.GetString("DetectorMessageBoxTextPart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EditEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("EditEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error importing environment.
+        /// </summary>
+        public static string ExistingEnvironmentMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("ExistingEnvironmentMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment you&apos;re trying to import already exists!.
+        /// </summary>
+        public static string ExistingEnvironmentMessageBoxText {
+            get {
+                return ResourceManager.GetString("ExistingEnvironmentMessageBoxText", resourceCulture);
             }
         }
         
@@ -336,6 +408,24 @@ namespace ChamiUI.Localization {
         public static string ImportMenuItem_Header {
             get {
                 return ResourceManager.GetString("ImportMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deserialization error!.
+        /// </summary>
+        public static string JsonDeserializationErrorMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("JsonDeserializationErrorMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to deserialize input file!\nSee the log for more details..
+        /// </summary>
+        public static string JsonDeserializationErrorMessageBoxText {
+            get {
+                return ResourceManager.GetString("JsonDeserializationErrorMessageBoxText", resourceCulture);
             }
         }
         
@@ -457,6 +547,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Exiting Chami..
+        /// </summary>
+        public static string QuitMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("QuitMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to quit?.
+        /// </summary>
+        public static string QuitMessageBoxText {
+            get {
+                return ResourceManager.GetString("QuitMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Rename.
         /// </summary>
         public static string RenameEnvironmentMenuItem {
@@ -498,6 +606,24 @@ namespace ChamiUI.Localization {
         public static string RenameWindowCancelButton_Content {
             get {
                 return ResourceManager.GetString("RenameWindowCancelButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        public static string ResetEnvironmentMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("ResetEnvironmentMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This will remove the currently active Chami environment. Are you sure you want to proceed?.
+        /// </summary>
+        public static string ResetEnvironmentMessageBoxText {
+            get {
+                return ResourceManager.GetString("ResetEnvironmentMessageBoxText", resourceCulture);
             }
         }
         
@@ -588,6 +714,33 @@ namespace ChamiUI.Localization {
         public static string StartingExecutionMessage {
             get {
                 return ResourceManager.GetString("StartingExecutionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
+        public static string TaskbarItemExit_Header {
+            get {
+                return ResourceManager.GetString("TaskbarItemExit_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide Chami.
+        /// </summary>
+        public static string TaskbarItemHide {
+            get {
+                return ResourceManager.GetString("TaskbarItemHide", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Chami.
+        /// </summary>
+        public static string TaskbarItemShow_Header {
+            get {
+                return ResourceManager.GetString("TaskbarItemShow_Header", resourceCulture);
             }
         }
         
