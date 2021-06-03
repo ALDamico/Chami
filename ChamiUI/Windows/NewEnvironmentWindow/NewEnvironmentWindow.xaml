@@ -5,10 +5,17 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows.NewEnvironmentWindow"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
+        lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         d:DataContext="{d:DesignInstance viewModels:NewEnvironmentViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        Title="New Environment" Height="450" Width="300" ResizeMode="NoResize"
+        x:Name="ExportWindowTitle"
+        Title="{lex:Loc}" 
+        Height="450" 
+        Width="300" 
+        ResizeMode="NoResize"
         Loaded="NewEnvironmentWindow_OnLoaded"
         >
     <Grid Margin="5, 5, 5, 5">
@@ -29,12 +36,16 @@
                Grid.ColumnSpan="2"
                HorizontalContentAlignment="Center"
                FontWeight="DemiBold"
-               FontSize="20">
-            New environment
+               FontSize="20" 
+               x:Name="NewEnvironmentWindowHeaderTitle"
+               Content="{lex:Loc}"
+               >
         </Label>
         <Label Grid.Row="1"
-               Grid.Column="0">
-            Name
+               Grid.Column="0"
+               x:Name="NewEnvironmentFormNameLabel"
+               Content="{lex:Loc}"
+               >
         </Label>
         <TextBox Grid.Row="1"
                  Grid.Column="1"
@@ -49,10 +60,12 @@
                   ItemsSource="{Binding Environment.EnvironmentVariables}">
             <DataGrid.Columns>
                 <DataGridTextColumn Width="100"
-                                    Header="Name"
+                                    x:Name="NewEnvironmentDataGridNameColumn"
+                                    Header="{lex:Loc Key=NewEnvironmentDataGridNameColumn}"
                                     Binding="{Binding Name}" />
                 <DataGridTextColumn Width="150"
-                                    Header="Value"
+                                    x:Name="NewEnvironmentDataGridValueColumn"
+                                    Header="{lex:Loc Key=NewEnvironmentDataGridValueColumn}"
                                     Binding="{Binding Value}" />
             </DataGrid.Columns>
         </DataGrid>
@@ -62,12 +75,12 @@
                     HorizontalAlignment="Center"
                     Orientation="Horizontal"
                     Margin="5, 0, 5, 0">
-            <Button Content="Save"
-                    x:Name="SaveButton"
+            <Button Content="{lex:Loc}"
+                    x:Name="NewEnvironmentWindowSaveButton"
                     Click="SaveButton_OnClick"
                     Margin="5, 5,5,5" />
-            <Button Content="Cancel"
-                    x:Name="CancelButton"
+            <Button Content="{lex:Loc}"
+                    x:Name="NewEnvironmentWindowCancelButton"
                     Click="CancelButton_OnClick" 
                     Margin="5, 5,5,5"
                     />

@@ -61,11 +61,290 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chami.
+        /// </summary>
+        public static string AboutBoxApplicationName {
+            get {
+                return ResourceManager.GetString("AboutBoxApplicationName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Developed by Andrea Luciano Damico.
         /// </summary>
         public static string AboutBoxFirstLine_Content {
             get {
                 return ResourceManager.GetString("AboutBoxFirstLine_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Flag icons provided by Panayiotis Lipiridis (https://lipis.dev).
+        /// </summary>
+        public static string AboutBoxFourthLine {
+            get {
+                return ResourceManager.GetString("AboutBoxFourthLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Released under the terms of the MIT License.
+        /// </summary>
+        public static string AboutBoxLicense {
+            get {
+                return ResourceManager.GetString("AboutBoxLicense", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string AboutBoxOkButton_Content {
+            get {
+                return ResourceManager.GetString("AboutBoxOkButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chami Icon by Vitaly Gorbachev.
+        /// </summary>
+        public static string AboutBoxSecondLine_Content {
+            get {
+                return ResourceManager.GetString("AboutBoxSecondLine_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to https://www.flaticon.com/authors/vitaly-gorbachev.
+        /// </summary>
+        public static string AboutBoxThirdLine {
+            get {
+                return ResourceManager.GetString("AboutBoxThirdLine", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Chami....
+        /// </summary>
+        public static string AboutMenuItem_Header {
+            get {
+                return ResourceManager.GetString("AboutMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All environments.
+        /// </summary>
+        public static string AllEnvironmentsRadioButton {
+            get {
+                return ResourceManager.GetString("AllEnvironmentsRadioButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string ApplyEnvironmentButton_Tooltip {
+            get {
+                return ResourceManager.GetString("ApplyEnvironmentButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backup current environment.
+        /// </summary>
+        public static string BackupEnvironmentMenuItem_Header {
+            get {
+                return ResourceManager.GetString("BackupEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to About Chami....
+        /// </summary>
+        public static string ChamiAboutBox_Title {
+            get {
+                return ResourceManager.GetString("ChamiAboutBox_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export environments.
+        /// </summary>
+        public static string ChamiExportWindow_Title {
+            get {
+                return ResourceManager.GetString("ChamiExportWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string CopyEnvironmentVariableMenuItem_Header {
+            get {
+                return ResourceManager.GetString("CopyEnvironmentVariableMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string DataGridNameColumn {
+            get {
+                return ResourceManager.GetString("DataGridNameColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string DataGridNameColumn_Header {
+            get {
+                return ResourceManager.GetString("DataGridNameColumn_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string DataGridValueColumn {
+            get {
+                return ResourceManager.GetString("DataGridValueColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string DataGridValueColumn_Header {
+            get {
+                return ResourceManager.GetString("DataGridValueColumn_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteEnvironmentMenuItem_Header {
+            get {
+                return ResourceManager.GetString("DeleteEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        public static string DeleteEnvironmentVariableMenuItem_Header {
+            get {
+                return ResourceManager.GetString("DeleteEnvironmentVariableMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detector.
+        /// </summary>
+        public static string DetectorCategory {
+            get {
+                return ResourceManager.GetString("DetectorCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string EditEnvironmentMenuItem_Header {
+            get {
+                return ResourceManager.GetString("EditEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string ExportDataButton_Content {
+            get {
+                return ResourceManager.GetString("ExportDataButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export....
+        /// </summary>
+        public static string ExportMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ExportMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ExportWindowCancelButton_Content {
+            get {
+                return ResourceManager.GetString("ExportWindowCancelButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export settings:.
+        /// </summary>
+        public static string ExportWindowGroupBox_Header {
+            get {
+                return ResourceManager.GetString("ExportWindowGroupBox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export environments.
+        /// </summary>
+        public static string ExportWindowHeaderTitle {
+            get {
+                return ResourceManager.GetString("ExportWindowHeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Environment.
+        /// </summary>
+        public static string ExportWindowTitle {
+            get {
+                return ResourceManager.GetString("ExportWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From .env....
+        /// </summary>
+        public static string ImportFromDotenvMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ImportFromDotenvMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to From JSON....
+        /// </summary>
+        public static string ImportFromJsonMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ImportFromJsonMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import.
+        /// </summary>
+        public static string ImportMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ImportMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        public static string LanguageCategory {
+            get {
+                return ResourceManager.GetString("LanguageCategory", resourceCulture);
             }
         }
         
@@ -79,11 +358,263 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Starting execution...\n.
+        ///   Looks up a localized string similar to Logging.
+        /// </summary>
+        public static string LoggingCategory {
+            get {
+                return ResourceManager.GetString("LoggingCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string NewEnvironmentDataGridNameColumn {
+            get {
+                return ResourceManager.GetString("NewEnvironmentDataGridNameColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string NewEnvironmentDataGridNameColumn_Header {
+            get {
+                return ResourceManager.GetString("NewEnvironmentDataGridNameColumn_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string NewEnvironmentDataGridValueColumn {
+            get {
+                return ResourceManager.GetString("NewEnvironmentDataGridValueColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string NewEnvironmentFormNameLabel_Content {
+            get {
+                return ResourceManager.GetString("NewEnvironmentFormNameLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New Environment.
+        /// </summary>
+        public static string NewEnvironmentMenuItem_Header {
+            get {
+                return ResourceManager.GetString("NewEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string NewEnvironmentWindowCancelButton_Content {
+            get {
+                return ResourceManager.GetString("NewEnvironmentWindowCancelButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New environment.
+        /// </summary>
+        public static string NewEnvironmentWindowHeaderTitle {
+            get {
+                return ResourceManager.GetString("NewEnvironmentWindowHeaderTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string NewEnvironmentWindowSaveButton_Content {
+            get {
+                return ResourceManager.GetString("NewEnvironmentWindowSaveButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Options.
+        /// </summary>
+        public static string OptionsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("OptionsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string QuitApplicationMenuItem_Header {
+            get {
+                return ResourceManager.GetString("QuitApplicationMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename.
+        /// </summary>
+        public static string RenameEnvironmentMenuItem {
+            get {
+                return ResourceManager.GetString("RenameEnvironmentMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string RenameEnvironmentNameLabel_Content {
+            get {
+                return ResourceManager.GetString("RenameEnvironmentNameLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string RenameEnvironmentOkButton_Content {
+            get {
+                return ResourceManager.GetString("RenameEnvironmentOkButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rename environment.
+        /// </summary>
+        public static string RenameEnvironmentWindowTitle {
+            get {
+                return ResourceManager.GetString("RenameEnvironmentWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string RenameWindowCancelButton_Content {
+            get {
+                return ResourceManager.GetString("RenameWindowCancelButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reset environment variables.
+        /// </summary>
+        public static string ResetVarsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ResetVarsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Safety.
+        /// </summary>
+        public static string SafetyCategory {
+            get {
+                return ResourceManager.GetString("SafetyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string SaveEnvironmentMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SaveEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Selected environments.
+        /// </summary>
+        public static string SelectedEnvironmentsRadioButton_Content {
+            get {
+                return ResourceManager.GetString("SelectedEnvironmentsRadioButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string SettingsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SettingsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
+        public static string SettingsWindowApplyButton_Content {
+            get {
+                return ResourceManager.GetString("SettingsWindowApplyButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string SettingsWindowCancelButton_Content {
+            get {
+                return ResourceManager.GetString("SettingsWindowCancelButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to OK.
+        /// </summary>
+        public static string SettingsWindowOkButton {
+            get {
+                return ResourceManager.GetString("SettingsWindowOkButton", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chami - Settings.
+        /// </summary>
+        public static string SettingsWindowTitle_Title {
+            get {
+                return ResourceManager.GetString("SettingsWindowTitle_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Starting execution....
         /// </summary>
         public static string StartingExecutionMessage {
             get {
                 return ResourceManager.GetString("StartingExecutionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        public static string VariablesTabItem_Header {
+            get {
+                return ResourceManager.GetString("VariablesTabItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string ViewCategory {
+            get {
+                return ResourceManager.GetString("ViewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Website.
+        /// </summary>
+        public static string WebsiteMenuItem_Header {
+            get {
+                return ResourceManager.GetString("WebsiteMenuItem_Header", resourceCulture);
             }
         }
     }

@@ -124,6 +124,183 @@
     <value>Lingua</value>
   </data>
   <data name="StartingExecutionMessage" xml:space="preserve">
-    <value>Avvio dell'esecuzione...\n</value>
+    <value>Avvio dell'esecuzione...</value>
+  </data>
+  <data name="AboutBoxApplicationName" xml:space="preserve">
+    <value>Chami</value>
+  </data>
+  <data name="AboutBoxSecondLine_Content" xml:space="preserve">
+    <value>L'icona di Chami è di Vitaly Gorbachev</value>
+  </data>
+  <data name="AboutBoxThirdLine" xml:space="preserve">
+    <value>https://www.flaticon.com/authors/vitaly-gorbachev</value>
+  </data>
+  <data name="AboutBoxLicense" xml:space="preserve">
+    <value>Pubblicato sotto i termini della licenza MIT</value>
+  </data>
+  <data name="AboutBoxFourthLine" xml:space="preserve">
+    <value>Icone delle bandiere fornite da Panayiotis Lipiridis (https://lipis.dev)</value>
+  </data>
+  <data name="AboutBoxOkButton_Content" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="ChamiAboutBox_Title" xml:space="preserve">
+    <value>Informazioni su Chami...</value>
+  </data>
+  <data name="ChamiExportWindow_Title" xml:space="preserve">
+    <value>Esporta ambienti</value>
+  </data>
+  <data name="ExportWindowGroupBox_Header" xml:space="preserve">
+    <value>Impostazioni di esportazione</value>
+  </data>
+  <data name="AllEnvironmentsRadioButton" xml:space="preserve">
+    <value>Tutti gli ambienti</value>
+  </data>
+  <data name="SelectedEnvironmentsRadioButton_Content" xml:space="preserve">
+    <value>Ambienti selezionati</value>
+  </data>
+  <data name="ExportDataButton_Content" xml:space="preserve">
+    <value>Esporta</value>
+  </data>
+  <data name="ExportWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="ExportWindowHeaderTitle" xml:space="preserve">
+    <value>Esporta ambienti</value>
+  </data>
+  <data name="EditEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="RenameEnvironmentMenuItem" xml:space="preserve">
+    <value>Rinomina</value>
+  </data>
+  <data name="DeleteEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="CopyEnvironmentVariableMenuItem_Header" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="DeleteEnvironmentVariableMenuItem_Header" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="NewEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Nuovo Ambiente</value>
+  </data>
+  <data name="SaveEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="ImportFromDotenvMenuItem_Header" xml:space="preserve">
+    <value>Da file .env...</value>
+  </data>
+  <data name="ImportMenuItem_Header" xml:space="preserve">
+    <value>Importa</value>
+  </data>
+  <data name="ImportFromJsonMenuItem_Header" xml:space="preserve">
+    <value>Da file JSON...</value>
+  </data>
+  <data name="ExportMenuItem_Header" xml:space="preserve">
+    <value>Esporta...</value>
+  </data>
+  <data name="QuitApplicationMenuItem_Header" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="OptionsMenuItem_Header" xml:space="preserve">
+    <value>Opzioni</value>
+  </data>
+  <data name="ResetVarsMenuItem_Header" xml:space="preserve">
+    <value>Reimposta le variabili di ambiente</value>
+  </data>
+  <data name="BackupEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Esegui il backup dell'ambiente corrente</value>
+  </data>
+  <data name="SettingsMenuItem_Header" xml:space="preserve">
+    <value>Impostazioni</value>
+  </data>
+  <data name="AboutMenuItem_Header" xml:space="preserve">
+    <value>Informazioni su Chami...</value>
+  </data>
+  <data name="WebsiteMenuItem_Header" xml:space="preserve">
+    <value>Sito web</value>
+  </data>
+  <data name="ApplyEnvironmentButton_Tooltip" xml:space="preserve">
+    <value>Applica</value>
+  </data>
+  <data name="VariablesTabItem_Header" xml:space="preserve">
+    <value>Variabili</value>
+  </data>
+  <data name="DataGridNameColumn_Header" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="DataGridValueColumn_Header" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="ExportWindowTitle" xml:space="preserve">
+    <value>Nuovo Ambiente</value>
+  </data>
+  <data name="NewEnvironmentWindowHeaderTitle" xml:space="preserve">
+    <value>Nuovo ambiente</value>
+  </data>
+  <data name="NewEnvironmentDataGridNameColumn_Header" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NewEnvironmentFormNameLabel_Content" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NewEnvironmentDataGridValueColumn" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="NewEnvironmentWindowSaveButton_Content" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="NewEnvironmentWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="NewEnvironmentDataGridNameColumn" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="DataGridValueColumn" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="DataGridNameColumn" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="RenameEnvironmentWindowTitle" xml:space="preserve">
+    <value>Rinomina ambiente</value>
+  </data>
+  <data name="RenameEnvironmentNameLabel_Content" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="RenameEnvironmentOkButton_Content" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="RenameWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="SettingsWindowTitle_Title" xml:space="preserve">
+    <value>Chami - Impostazioni</value>
+  </data>
+  <data name="ViewCategory" xml:space="preserve">
+    <value>Visualizzazione</value>
+  </data>
+  <data name="DetectorCategory" xml:space="preserve">
+    <value>Rilevatore</value>
+  </data>
+  <data name="SafetyCategory" xml:space="preserve">
+    <value>Sicurezza</value>
+  </data>
+  <data name="LoggingCategory" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="LanguageCategory" xml:space="preserve">
+    <value>Lingua</value>
+  </data>
+  <data name="SettingsWindowOkButton" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="SettingsWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="SettingsWindowApplyButton_Content" xml:space="preserve">
+    <value>Applica</value>
   </data>
 </root>
