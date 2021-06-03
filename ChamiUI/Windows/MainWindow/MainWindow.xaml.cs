@@ -230,6 +230,8 @@ namespace ChamiUI.Windows.MainWindow
         private void OnSettingsSaved(object sender, SettingsSavedEventArgs args)
         {
             ViewModel.Settings = args.Settings;
+            (App.Current as ChamiUI.App).Settings = args.Settings;
+            (App.Current as ChamiUI.App).InitLocalization();
         }
 
         private void BackupEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)

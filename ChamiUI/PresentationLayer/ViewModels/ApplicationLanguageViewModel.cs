@@ -36,5 +36,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(IconPath));
             }
         }
+
+        public override string ToString()
+        {
+            return Code;
+        }
     }
 }

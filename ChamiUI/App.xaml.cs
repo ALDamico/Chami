@@ -115,7 +115,7 @@ namespace ChamiUI
             MainWindow.Show();
         }
 
-        private void InitLocalization()
+        internal void InitLocalization()
         {
             var localizationProvider = ResxLocalizationProvider.Instance;
             var dataAdapter = new ApplicationLanguageDataAdapter(GetConnectionString());

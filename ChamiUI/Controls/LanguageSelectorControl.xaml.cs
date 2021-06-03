@@ -10,13 +10,15 @@ namespace ChamiUI.Controls
         public LanguageSelectorControl()
         {
             _viewModel = new LanguageSelectorViewModel();
+            DataContext = _viewModel;
             InitializeComponent();
         }
 
-        public LanguageSelectorControl(IEnumerable<ApplicationLanguageViewModel> applicationLanguages):this()
+        public LanguageSelectorControl(LanguageSelectorViewModel languageSelectorViewModel)
         {
-            _viewModel.AvailableLanguages =
-                new ObservableCollection<ApplicationLanguageViewModel>(applicationLanguages);
+            _viewModel = languageSelectorViewModel;
+            DataContext = _viewModel;
+            InitializeComponent();
         }
 
         private LanguageSelectorViewModel _viewModel;

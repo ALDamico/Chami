@@ -14,13 +14,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var connectionString = App.GetConnectionString();
             _dataAdapter = new SettingsDataAdapter(connectionString);
             _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
-            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter);
+            _languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
+            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter, _languageDataAdapter);
             _controls = new Dictionary<string, UserControl>();
             _controls["View"] = new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings);
             _controls["Logging"] = new LoggingSettingsEditor(Settings.LoggingSettings);
             _controls["Safety"] = new SafeVariableEditor(Settings.SafeVariableSettings);
             _controls["Detector"] = new ApplicationDetectorControl(Settings.WatchedApplicationSettings);
-            _controls["Language"] = new LanguageSelectorControl(Settings.LanguageSettings.AvailableLanguages);
+            _controls["Language"] = new LanguageSelectorControl(Settings.LanguageSettings);
             DisplayedControl = _controls.Values.FirstOrDefault();
         }
 
@@ -32,6 +33,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private SettingsDataAdapter _dataAdapter;
         private WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
+        private ApplicationLanguageDataAdapter _languageDataAdapter;
         private Dictionary<string, UserControl> _controls;
 
         public void ChangeControl(string name)
