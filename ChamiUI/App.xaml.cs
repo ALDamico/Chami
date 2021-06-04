@@ -131,6 +131,9 @@ namespace ChamiUI
             var currentCulture = dataAdapter.GetCultureInfoByCode(Settings.LanguageSettings.CurrentLanguage.Code);
             LocalizeDictionary.Instance.Culture = currentCulture;
             ChamiUIStrings.Culture = currentCulture;
+
+        }
+
         private void App_OnExit(object sender, ExitEventArgs e)
         {
             if (!_taskbarIcon.IsDisposed)
