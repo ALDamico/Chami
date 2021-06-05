@@ -349,6 +349,25 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chami is already running!.
+        /// </summary>
+        public static string ExistingInstanceMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("ExistingInstanceMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s already another instance of Chami running with PID {0}.
+        ///The application will now close..
+        /// </summary>
+        public static string ExistingInstanceMessageBoxText {
+            get {
+                return ResourceManager.GetString("ExistingInstanceMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Export.
         /// </summary>
         public static string ExportDataButton_Content {
@@ -448,7 +467,8 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unable to deserialize input file!\nSee the log for more details..
+        ///   Looks up a localized string similar to Unable to deserialize input file!
+        ///See the log for more details..
         /// </summary>
         public static string JsonDeserializationErrorMessageBoxText {
             get {
@@ -673,7 +693,8 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to There&apos;s no active Chami environment!\nNothing to do..
+        ///   Looks up a localized string similar to There&apos;s no active Chami environment!
+        ///Nothing to do..
         /// </summary>
         public static string RevertToOriginalEnvironmentNop {
             get {

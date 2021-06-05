@@ -7,8 +7,10 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.SQLite;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiDbMigrations;
@@ -98,9 +100,25 @@ namespace ChamiUI
 
         private TaskbarIcon _taskbarIcon;
 
+        private void DetectOtherInstance()
+        {
+            var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location);
+            var otherInstances = Process.GetProcessesByName(processName)
+                .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
+            if (otherInstances.Length > 1)
+            {
+                var otherInstance = otherInstances[0];
+                var messageBoxText = string.Format(ChamiUIStrings.ExistingInstanceMessageBoxText, otherInstance.Id);
+                var messageBoxCaption = ChamiUIStrings.ExistingEnvironmentMessageBoxCaption;
+                MessageBox.Show(messageBoxText, messageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                Environment.Exit(0);
+            }
+        }
+
         private async void App_OnStartup(object sender, StartupEventArgs e)
         {
             InitLocalization();
+            DetectOtherInstance();
             MainWindow = new MainWindow();
             if (_taskbarIcon != null)
             {
@@ -131,7 +149,6 @@ namespace ChamiUI
             var currentCulture = dataAdapter.GetCultureInfoByCode(Settings.LanguageSettings.CurrentLanguage.Code);
             LocalizeDictionary.Instance.Culture = currentCulture;
             ChamiUIStrings.Culture = currentCulture;
-
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)

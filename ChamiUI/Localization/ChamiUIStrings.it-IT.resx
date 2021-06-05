@@ -346,7 +346,8 @@
     <value>Errore di deserializzazione!</value>
   </data>
   <data name="JsonDeserializationErrorMessageBoxText" xml:space="preserve">
-    <value>Impossibile deserializzare il file di input!\nConsulta il log per maggiori dettagli.</value>
+    <value>Impossibile deserializzare il file di input!
+Consulta il log per maggiori dettagli.</value>
   </data>
   <data name="ResetEnvironmentMessageBoxText" xml:space="preserve">
     <value>L'ambiente attualmente attivo verrà rimosso. Sei sicuro di voler continuare?</value>
@@ -367,12 +368,20 @@
     <value>Ripristino delle variabili d'ambiente originali...</value>
   </data>
   <data name="RevertToOriginalEnvironmentNop" xml:space="preserve">
-    <value>Non è attivo alcun ambiente di Chami!\nNiente da fare.</value>
+    <value>Non è attivo alcun ambiente di Chami!
+Niente da fare.</value>
   </data>
   <data name="ExecutionCompleteMessage" xml:space="preserve">
     <value>Esecuzione completata</value>
   </data>
   <data name="EnvironmentExportWindowViewModelDisplayedName" xml:space="preserve">
     <value>{0} ({1} variabili)</value>
+  </data>
+  <data name="ExistingInstanceMessageBoxText" xml:space="preserve">
+    <value>Esiste un'altra istanza di Chami in esecuzione con PID {0}.
+L'applicazione verrà chiusa.</value>
+  </data>
+  <data name="ExistingInstanceMessageBoxCaption" xml:space="preserve">
+    <value>Chami è già in esecuzione!</value>
   </data>
 </root>
