@@ -8,3 +8,6 @@ riderModule.iml
 .vs/Chami/DesignTimeBuild/.dtbcache.v2
 .vs/Chami/v16/.suo
 ChamiTests/InputFiles/chami.db
+Installer/ChamiInstaller.exe
+Installer/chami-installer.target.nsi
+Installer/MultiLanguage.exe
