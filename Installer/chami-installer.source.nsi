@@ -109,7 +109,7 @@ Section "Chami" SecDummy
     
     ;Create shortcuts
     CreateDirectory "$SMPROGRAMS\$StartMenuFolder"
-    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk" "$INSTDIR\Uninstall.exe"
+    CreateShortcut "$SMPROGRAMS\$StartMenuFolder\Uninstall Chami.lnk" "$INSTDIR\Uninstall.exe"
     CreateShortcut "$SMPROGRAMS\$StartMenuFolder\Chami.lnk" "$INSTDIR\ChamiUI.exe"
   
   !insertmacro MUI_STARTMENU_WRITE_END
@@ -145,10 +145,11 @@ Section "Uninstall"
 
   Delete "$INSTDIR\Uninstall.exe"
 
-  RMDir "$INSTDIR"
+  RMDir /r "$INSTDIR"
 !insertmacro MUI_STARTMENU_GETFOLDER Application $StartMenuFolder
     
-  Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall.lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\Uninstall Chami.lnk"
+  Delete "$SMPROGRAMS\$StartMenuFolder\Chami.lnk"
   RMDir "$SMPROGRAMS\$StartMenuFolder"
 
   DeleteRegKey /ifempty HKCU "Software\Chami"

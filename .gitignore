@@ -11,3 +11,4 @@ ChamiTests/InputFiles/chami.db
 Installer/ChamiInstaller.exe
 Installer/chami-installer.target.nsi
 Installer/MultiLanguage.exe
+Installer/chami-installer.target.nsi
