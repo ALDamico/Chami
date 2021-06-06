@@ -1,4 +1,5 @@
 using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Validators;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -8,14 +9,46 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             Environment = new EnvironmentViewModel();
             _dataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
+            _validator = new EnvironmentViewModelValidator();
         }
+
+        private EnvironmentViewModelValidator _validator;
 
         private EnvironmentDataAdapter _dataAdapter;
         private EnvironmentViewModel _environment;
 
+        public EnvironmentViewModel GetInsertedEnvironment()
+        {
+            Environment = _dataAdapter.GetEnvironmentByName(EnvironmentName);
+            return Environment;
+        }
+
         public bool SaveEnvironment()
         {
             return _dataAdapter.InsertEnvironment(Environment);
+        }
+
+        private bool _isSaveButtonEnabled;
+
+        public bool IsSaveButtonEnabled
+        {
+            get
+            {
+                var validationResult = _validator.Validate(Environment);
+                return validationResult.IsValid;
+            }
+        }
+
+
+        public string EnvironmentName
+        {
+            get => Environment.Name;
+            set
+            {
+                Environment.Name = value;
+                OnPropertyChanged(nameof(EnvironmentName));
+                OnPropertyChanged(nameof(IsSaveButtonEnabled));
+            }
         }
 
         public EnvironmentViewModel Environment
@@ -26,11 +59,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _environment = value;
                 OnPropertyChanged(nameof(Environment));
             }
-        }
-
-        public bool DetectChanges()
-        {
-            return true;
         }
     }
 }

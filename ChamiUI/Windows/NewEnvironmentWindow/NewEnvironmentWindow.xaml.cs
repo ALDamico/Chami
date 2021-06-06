@@ -45,7 +45,8 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             }
             else
             {
-                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(_viewModel.Environment));
+                var insertedEnvironment = _viewModel.GetInsertedEnvironment();
+                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(insertedEnvironment));
             }
 
             Close();
