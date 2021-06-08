@@ -390,4 +390,14 @@ L'applicazione verrà chiusa.</value>
   <data name="EnvironmentVariableNameNotNullErrorMessage" xml:space="preserve">
     <value>Devi specificare il nome della variabile di ambiente!</value>
   </data>
+  <data name="EnvironmentVariableNameInvalidCharactersErrorMessage" xml:space="preserve">
+    <value>Il nome della variabile di ambiente contiene dei caratteri non validi alle posizioni {0}.</value>
+  </data>
+  <data name="EnvironmentVariableNameInvalidCharactersErrorMessageSingular" xml:space="preserve">
+    <value>Il nome della variabile di ambiente contiene un carattere non valido alla posizione {0}.</value>
+  </data>
+  <data name="EnvironmentVariableNameLengthErrorMessage" xml:space="preserve">
+    <value>Il nome delle variabili di ambiente ha una lunghezza massima di {0} caratteri.
+Lunghezza corrente: {1}</value>
+  </data>
 </root>

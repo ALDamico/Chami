@@ -390,4 +390,14 @@ The application will now close.</value>
   <data name="EnvironmentVariableNameNotNullErrorMessage" xml:space="preserve">
     <value>You must specify a name for the environment variable!</value>
   </data>
+  <data name="EnvironmentVariableNameInvalidCharactersErrorMessage" xml:space="preserve">
+    <value>The environment variable name contains invalid characters at positions {0}.</value>
+  </data>
+  <data name="EnvironmentVariableNameInvalidCharactersErrorMessageSingular" xml:space="preserve">
+    <value>The environment variable name contains an invalid character at position {0}.</value>
+  </data>
+  <data name="EnvironmentVariableNameLengthErrorMessage" xml:space="preserve">
+    <value>An environment variable name has a maximum length of {0} characters.
+Current length: {1}</value>
+  </data>
 </root>

@@ -331,6 +331,34 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The environment variable name contains invalid characters at positions {0}..
+        /// </summary>
+        public static string EnvironmentVariableNameInvalidCharactersErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameInvalidCharactersErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment variable name contains an invalid character at position {0}..
+        /// </summary>
+        public static string EnvironmentVariableNameInvalidCharactersErrorMessageSingular {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameInvalidCharactersErrorMessageSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An environment variable name has a maximum length of {0} characters.
+        ///Current length: {1}.
+        /// </summary>
+        public static string EnvironmentVariableNameLengthErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameLengthErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to You must specify a name for the environment variable!.
         /// </summary>
         public static string EnvironmentVariableNameNotNullErrorMessage {

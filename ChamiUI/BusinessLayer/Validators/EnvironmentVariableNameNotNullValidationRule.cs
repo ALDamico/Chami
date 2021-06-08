@@ -10,16 +10,13 @@ namespace ChamiUI.BusinessLayer.Validators
     {
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (value is BindingGroup bindingGroup)
+            var environmentVariable = ValidationUtils.ConvertObjectToValidate(value);
+            if (environmentVariable != null)
             {
-                var environmentVariable = bindingGroup.Items[0] as EnvironmentVariableViewModel;
-                if (environmentVariable != null)
+                if (string.IsNullOrWhiteSpace(environmentVariable.Name))
                 {
-                    if (string.IsNullOrWhiteSpace(environmentVariable.Name))
-                    {
-                        return new System.Windows.Controls.ValidationResult(false,
-                            ChamiUIStrings.EnvironmentVariableNameNotNullErrorMessage);
-                    }
+                    return new System.Windows.Controls.ValidationResult(false,
+                        ChamiUIStrings.EnvironmentVariableNameNotNullErrorMessage);
                 }
             }
             return System.Windows.Controls.ValidationResult.ValidResult;
