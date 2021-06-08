@@ -9,6 +9,7 @@
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        xmlns:vr="clr-namespace:ChamiUI.BusinessLayer.Validators"
         d:DataContext="{d:DesignInstance viewModels:NewEnvironmentViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         x:Name="ExportWindowTitle"
@@ -18,6 +19,31 @@
         ResizeMode="NoResize"
         Loaded="NewEnvironmentWindow_OnLoaded"
         >
+    <Window.Resources>
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                        Path=(Validation.Errors)/ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        <Style x:Key="errorStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Padding" Value="-2"/>
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="2"></Setter>
+                    <Setter Property="ToolTip" 
+                            Value="{Binding RelativeSource={RelativeSource Self},
+            Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+    </Window.Resources>
     <Grid Margin="5, 5, 5, 5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -50,19 +76,34 @@
         <TextBox Grid.Row="1"
                  Grid.Column="1"
                  VerticalContentAlignment="Center"
-                 Text="{Binding EnvironmentName, UpdateSourceTrigger=PropertyChanged}" 
                  TabIndex="0"
-                 x:Name="EnvironmentNameTextbox"/>
+                 Style="{StaticResource textBoxInError}"
+                 x:Name="EnvironmentNameTextbox">
+            <TextBox.Text>
+                <Binding Path="EnvironmentName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <vr:EnvironmentNameValidationRule/>
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <DataGrid Grid.Row="2"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Environment.EnvironmentVariables}">
+                  ItemsSource="{Binding Environment.EnvironmentVariables}"
+                 
+                  RowStyle="{StaticResource errorStyle}"
+                  >
+            <DataGrid.RowValidationRules>
+                <vr:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue"></vr:EnvironmentVariableNameNotNullValidationRule>
+            </DataGrid.RowValidationRules>
+            
             <DataGrid.Columns>
                 <DataGridTextColumn Width="100"
                                     x:Name="NewEnvironmentDataGridNameColumn"
                                     Header="{lex:Loc Key=NewEnvironmentDataGridNameColumn}"
-                                    Binding="{Binding Name}" />
+                                    Binding="{Binding Name, ValidatesOnExceptions=True}" />
                 <DataGridTextColumn Width="150"
                                     x:Name="NewEnvironmentDataGridValueColumn"
                                     Header="{lex:Loc Key=NewEnvironmentDataGridValueColumn}"

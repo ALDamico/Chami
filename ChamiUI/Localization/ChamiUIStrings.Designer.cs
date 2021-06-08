@@ -322,6 +322,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must specify an environment name!.
+        /// </summary>
+        public static string EnvironmentNameValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentNameValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must specify a name for the environment variable!.
+        /// </summary>
+        public static string EnvironmentVariableNameNotNullErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameNotNullErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Execution complete.
         /// </summary>
         public static string ExecutionCompleteMessage {

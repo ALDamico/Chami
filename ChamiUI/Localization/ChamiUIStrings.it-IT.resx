@@ -384,4 +384,10 @@ L'applicazione verrà chiusa.</value>
   <data name="ExistingInstanceMessageBoxCaption" xml:space="preserve">
     <value>Chami è già in esecuzione!</value>
   </data>
+  <data name="EnvironmentNameValidationErrorMessage" xml:space="preserve">
+    <value>Devi specificare il nome dell'ambiente!</value>
+  </data>
+  <data name="EnvironmentVariableNameNotNullErrorMessage" xml:space="preserve">
+    <value>Devi specificare il nome della variabile di ambiente!</value>
+  </data>
 </root>
