@@ -368,6 +368,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There&apos;s already an environment variable with the name {0} in environment {1}..
+        /// </summary>
+        public static string EnvironmentVariableNameNotUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameNotUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An environment variable name may not start with a digit..
         /// </summary>
         public static string EnvironmentVariableNameNumberFirstCharacterErrorMessage {

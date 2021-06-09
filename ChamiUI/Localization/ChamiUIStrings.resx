@@ -403,4 +403,7 @@ Current length: {1}</value>
   <data name="EnvironmentVariableNameNumberFirstCharacterErrorMessage" xml:space="preserve">
     <value>An environment variable name may not start with a digit.</value>
   </data>
+  <data name="EnvironmentVariableNameNotUniqueErrorMessage" xml:space="preserve">
+    <value>There's already an environment variable with the name {0} in environment {1}.</value>
+  </data>
 </root>

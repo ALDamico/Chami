@@ -19,6 +19,7 @@
         ResizeMode="NoResize"
         Loaded="NewEnvironmentWindow_OnLoaded">
     <Window.Resources>
+        <CollectionViewSource x:Key="EnvironmentVariablesViewSource"  Source="{Binding Path=Environment.EnvironmentVariables}"></CollectionViewSource>
         <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="true">
@@ -94,6 +95,7 @@
                 <vr:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
                 <vr:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
                 <vr:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue"/>
+                <vr:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue" EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}"/>
             </DataGrid.RowValidationRules>
 
             <DataGrid.Columns>

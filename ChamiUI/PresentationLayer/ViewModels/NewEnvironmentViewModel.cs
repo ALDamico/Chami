@@ -1,3 +1,4 @@
+using System.Windows.Data;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Validators;
 
@@ -10,6 +11,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Environment = new EnvironmentViewModel();
             _dataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
             _validator = new EnvironmentViewModelValidator();
+        
         }
 
         private EnvironmentViewModelValidator _validator;

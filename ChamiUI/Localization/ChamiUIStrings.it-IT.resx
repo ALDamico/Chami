@@ -403,4 +403,7 @@ Lunghezza corrente: {1}</value>
   <data name="EnvironmentVariableNameNumberFirstCharacterErrorMessage" xml:space="preserve">
     <value>Il nome di una variabile di ambiente non può cominciare con una cifra.</value>
   </data>
+  <data name="EnvironmentVariableNameNotUniqueErrorMessage" xml:space="preserve">
+    <value>Esiste già una variable di ambiente con nome {0} nell'ambiente {1}.</value>
+  </data>
 </root>
