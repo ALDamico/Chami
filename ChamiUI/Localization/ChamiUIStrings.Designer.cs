@@ -368,6 +368,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An environment variable name may not start with a digit..
+        /// </summary>
+        public static string EnvironmentVariableNameNumberFirstCharacterErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameNumberFirstCharacterErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Execution complete.
         /// </summary>
         public static string ExecutionCompleteMessage {

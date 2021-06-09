@@ -93,6 +93,7 @@
                 <vr:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
                 <vr:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
                 <vr:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
+                <vr:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue"/>
             </DataGrid.RowValidationRules>
 
             <DataGrid.Columns>

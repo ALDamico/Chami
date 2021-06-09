@@ -400,4 +400,7 @@ The application will now close.</value>
     <value>An environment variable name has a maximum length of {0} characters.
 Current length: {1}</value>
   </data>
+  <data name="EnvironmentVariableNameNumberFirstCharacterErrorMessage" xml:space="preserve">
+    <value>An environment variable name may not start with a digit.</value>
+  </data>
 </root>

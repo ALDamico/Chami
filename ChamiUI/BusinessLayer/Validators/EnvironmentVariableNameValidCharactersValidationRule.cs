@@ -34,7 +34,7 @@ namespace ChamiUI.BusinessLayer.Validators
                 string errorMessage;
                 if (positions.Count == 1)
                 {
-                    errorMessage = Strings.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessageSingular, positionString);
+                    errorMessage = string.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessageSingular, positionString);
                 }
                 else
                 {

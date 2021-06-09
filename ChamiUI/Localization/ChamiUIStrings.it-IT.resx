@@ -400,4 +400,7 @@ L'applicazione verrà chiusa.</value>
     <value>Il nome delle variabili di ambiente ha una lunghezza massima di {0} caratteri.
 Lunghezza corrente: {1}</value>
   </data>
+  <data name="EnvironmentVariableNameNumberFirstCharacterErrorMessage" xml:space="preserve">
+    <value>Il nome di una variabile di ambiente non può cominciare con una cifra.</value>
+  </data>
 </root>
