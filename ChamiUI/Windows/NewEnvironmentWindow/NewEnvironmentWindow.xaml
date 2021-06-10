@@ -3,8 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:ChamiUI.Windows.NewEnvironmentWindow"
-        xmlns:vm="clr-namespace:ChamiUI.PresentationLayer"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
@@ -19,29 +17,19 @@
         ResizeMode="NoResize"
         Loaded="NewEnvironmentWindow_OnLoaded">
     <Window.Resources>
-        <CollectionViewSource x:Key="EnvironmentVariablesViewSource"  Source="{Binding Path=Environment.EnvironmentVariables}"></CollectionViewSource>
-        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="true">
-                    <Setter Property="ToolTip"
-                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
-                        Path=(Validation.Errors)/ErrorContent}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
 
-        <Style x:Key="errorStyle" TargetType="{x:Type DataGridRow}">
-            <Setter Property="Padding" Value="-2" />
-            <Style.Triggers>
-                <Trigger Property="Validation.HasError" Value="True">
-                    <Setter Property="BorderBrush" Value="Red" />
-                    <Setter Property="BorderThickness" Value="2" />
-                    <Setter Property="ToolTip"
-                            Value="{Binding RelativeSource={RelativeSource Self},
-            Path=(Validation.Errors)[0].ErrorContent}" />
-                </Trigger>
-            </Style.Triggers>
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary 
+                                    Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
+                <ResourceDictionary>
+                    <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
+                                          Source="{Binding Path=Environment.EnvironmentVariables}" />
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
 
     </Window.Resources>
     <Grid Margin="5, 5, 5, 5">
@@ -73,7 +61,7 @@
                  Grid.Column="1"
                  VerticalContentAlignment="Center"
                  TabIndex="0"
-                 Style="{StaticResource textBoxInError}"
+                 Style="{StaticResource TextBoxInError}"
                  x:Name="EnvironmentNameTextbox">
             <TextBox.Text>
                 <Binding Path="EnvironmentName" UpdateSourceTrigger="PropertyChanged">
@@ -88,14 +76,14 @@
                   Grid.ColumnSpan="2"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding Environment.EnvironmentVariables}"
-
-                  RowStyle="{StaticResource errorStyle}">
+                  RowStyle="{StaticResource ErrorStyle}">
             <DataGrid.RowValidationRules>
                 <vr:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
                 <vr:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
                 <vr:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
-                <vr:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue"/>
-                <vr:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue" EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}"/>
+                <vr:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" />
+                <vr:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
+                                                                EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
             </DataGrid.RowValidationRules>
 
             <DataGrid.Columns>

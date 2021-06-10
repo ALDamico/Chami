@@ -11,6 +11,7 @@
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
+        xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800"
@@ -23,46 +24,55 @@
         <KeyBinding Key="F2" Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}" />
     </Window.InputBindings>
     <Window.Resources>
-        <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
-                              Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
-        <ContextMenu x:Key="EnvironmentListBoxContextMenu">
-            <MenuItem Header="{lex:Loc}" 
-                      x:Name="EditEnvironmentMenuItem" 
-                      Click="EditEnvironmentMenuItem_OnClick">
-                <MenuItem.Icon>
-                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="{lex:Loc}" 
-                      x:Name="RenameEnvironmentMenuItem"
-                      Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
-                      InputGestureText="F2" />
-            <MenuItem Header="Delete" 
-                      x:Name="DeleteEnvironmentMenuItem" 
-                      Click="DeleteEnvironmentMenuItem_OnClick">
-                <MenuItem.Icon>
-                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </ContextMenu>
+        <ResourceDictionary x:Key="Dictionary">
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
+                                          Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
+                    <ContextMenu x:Key="EnvironmentListBoxContextMenu">
+                        <MenuItem Header="{lex:Loc}" 
+                                  x:Name="EditEnvironmentMenuItem" 
+                                  Click="EditEnvironmentMenuItem_OnClick">
+                            <MenuItem.Icon>
+                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem Header="{lex:Loc}" 
+                                  x:Name="RenameEnvironmentMenuItem"
+                                  Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
+                                  InputGestureText="F2" />
+                        <MenuItem Header="Delete" 
+                                  x:Name="DeleteEnvironmentMenuItem" 
+                                  Click="DeleteEnvironmentMenuItem_OnClick">
+                            <MenuItem.Icon>
+                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
 
-        <ContextMenu x:Key="EnvironmentVariablesContextMenu">
-            <MenuItem Header="{lex:Loc}"
-                      x:Name="CopyEnvironmentVariableMenuItem"
-                      Click="CopyEnvironmentVariableMenuItem_OnClick">
-                <MenuItem.Icon>
-                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
-                </MenuItem.Icon>
-            </MenuItem>
-            <Separator />
-            <MenuItem Header="{lex:Loc}"
-                      x:Name="DeleteEnvironmentVariableMenuItem"
-                      Click="DeleteEnvironmentVariableMenuItem_OnClick">
-                <MenuItem.Icon>
-                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
-                </MenuItem.Icon>
-            </MenuItem>
-        </ContextMenu>
+                    <ContextMenu x:Key="EnvironmentVariablesContextMenu">
+                        <MenuItem Header="{lex:Loc}"
+                                  x:Name="CopyEnvironmentVariableMenuItem"
+                                  Click="CopyEnvironmentVariableMenuItem_OnClick">
+                            <MenuItem.Icon>
+                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem Header="{lex:Loc}"
+                                  x:Name="DeleteEnvironmentVariableMenuItem"
+                                  Click="DeleteEnvironmentVariableMenuItem_OnClick">
+                            <MenuItem.Icon>
+                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </ResourceDictionary>
+                <ResourceDictionary Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml"></ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+        
+        
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding x:Name="SaveCommandBinding"
@@ -197,7 +207,17 @@
                           IsEnabled="{Binding EditingEnabled}"
                           SelectedItem="{Binding SelectedVariable}"
                           PreviewKeyDown="CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown"
-                          x:Name="CurrentEnvironmentVariablesDataGrid">
+                          RowStyle="{StaticResource ErrorStyle}"
+                          x:Name="CurrentEnvironmentVariablesDataGrid"
+                >
+                    <DataGrid.RowValidationRules>
+                        <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
+                        <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
+                        <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
+                        <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" />
+                        <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
+                                                                        EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
+                    </DataGrid.RowValidationRules>
                     <DataGrid.ItemContainerStyle>
                         <Style TargetType="DataGridRow">
                             <Setter Property="ContextMenu" 
@@ -206,12 +226,13 @@
                     </DataGrid.ItemContainerStyle>
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="65"
-                                            Binding="{Binding Name}"
+                                            Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
                                             x:Name="DataGridNameColumn"
-                                            Header="{lex:Loc Key=DataGridNameColumn}" />
+                                            Header="{lex:Loc Key=DataGridNameColumn}"
+                        />
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
                                             x:Name="DataGridValueColumn"
-                                            Binding="{Binding Value}" />
+                                            Binding="{Binding Value, NotifyOnValidationError=True}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
