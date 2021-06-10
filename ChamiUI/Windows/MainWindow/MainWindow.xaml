@@ -211,11 +211,11 @@
                           x:Name="CurrentEnvironmentVariablesDataGrid"
                 >
                     <DataGrid.RowValidationRules>
-                        <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
-                        <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
-                        <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
-                        <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" />
-                        <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
+                        <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" ValidatesOnTargetUpdated="True" />
+                        <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue"  ValidatesOnTargetUpdated="True"/>
+                        <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" ValidatesOnTargetUpdated="True" />
+                        <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" ValidatesOnTargetUpdated="True" />
+                        <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue" ValidatesOnTargetUpdated="True"
                                                                         EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
                     </DataGrid.RowValidationRules>
                     <DataGrid.ItemContainerStyle>

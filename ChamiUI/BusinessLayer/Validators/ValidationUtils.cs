@@ -9,7 +9,11 @@ namespace ChamiUI.BusinessLayer.Validators
         {
             if (value is BindingGroup bindingGroup)
             {
-                return (bindingGroup.Items[0] as EnvironmentVariableViewModel);
+                if (bindingGroup.Items.Count > 0)
+                {
+                    return (bindingGroup.Items[0] as EnvironmentVariableViewModel);                    
+                }
+                
             }
 
             if (value is EnvironmentVariableViewModel viewModel)
