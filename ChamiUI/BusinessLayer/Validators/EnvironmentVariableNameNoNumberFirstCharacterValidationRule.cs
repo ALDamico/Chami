@@ -13,6 +13,10 @@ namespace ChamiUI.BusinessLayer.Validators
             if (environmentVariableViewModel != null)
             {
                 var name = environmentVariableViewModel.Name;
+                if (name == null)
+                {
+                    return  System.Windows.Controls.ValidationResult.ValidResult;
+                }
                 if (Regex.IsMatch(name, "^[0-9]"))
                 {
                     return new System.Windows.Controls.ValidationResult(false,

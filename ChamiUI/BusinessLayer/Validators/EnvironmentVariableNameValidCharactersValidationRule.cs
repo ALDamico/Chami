@@ -15,6 +15,10 @@ namespace ChamiUI.BusinessLayer.Validators
             if (environmentVariable != null)
             {
                 var environmentVariableName = environmentVariable.Name;
+                if (environmentVariableName == null)
+                {
+                    return System.Windows.Controls.ValidationResult.ValidResult;
+                }
                 if (Regex.IsMatch(environmentVariableName, "^[A-Za-z0-9_]*$"))
                 {
                     return System.Windows.Controls.ValidationResult.ValidResult;
