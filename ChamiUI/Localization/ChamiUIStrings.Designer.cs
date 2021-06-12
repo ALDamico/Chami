@@ -322,6 +322,70 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must specify an environment name!.
+        /// </summary>
+        public static string EnvironmentNameValidationErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentNameValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment variable name contains invalid characters at positions {0}..
+        /// </summary>
+        public static string EnvironmentVariableNameInvalidCharactersErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameInvalidCharactersErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment variable name contains an invalid character at position {0}..
+        /// </summary>
+        public static string EnvironmentVariableNameInvalidCharactersErrorMessageSingular {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameInvalidCharactersErrorMessageSingular", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An environment variable name has a maximum length of {0} characters.
+        ///Current length: {1}.
+        /// </summary>
+        public static string EnvironmentVariableNameLengthErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameLengthErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must specify a name for the environment variable!.
+        /// </summary>
+        public static string EnvironmentVariableNameNotNullErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameNotNullErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There&apos;s already an environment variable with the name {0} in environment {1}..
+        /// </summary>
+        public static string EnvironmentVariableNameNotUniqueErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameNotUniqueErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An environment variable name may not start with a digit..
+        /// </summary>
+        public static string EnvironmentVariableNameNumberFirstCharacterErrorMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameNumberFirstCharacterErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Execution complete.
         /// </summary>
         public static string ExecutionCompleteMessage {
@@ -825,6 +889,25 @@ namespace ChamiUI.Localization {
         public static string UnableToInsertEnvironmentMessageBoxText {
             get {
                 return ResourceManager.GetString("UnableToInsertEnvironmentMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Validation error!.
+        /// </summary>
+        public static string ValidationFailedMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("ValidationFailedMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The variables in the environment you&apos;re trying to save didn&apos;t pass validation.
+        ///Fix the issues and try saving again..
+        /// </summary>
+        public static string ValidationFailedMessageBoxText {
+            get {
+                return ResourceManager.GetString("ValidationFailedMessageBoxText", resourceCulture);
             }
         }
         

@@ -2,7 +2,9 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
+using System.Windows.Input;
 using ChamiUI.Localization;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
@@ -34,7 +36,14 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             Close();
         }
 
-        private void SaveButton_OnClick(object sender, RoutedEventArgs e)
+        public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
+
+        private void NewEnvironmentWindow_OnLoaded(object sender, RoutedEventArgs e)
+        {
+            EnvironmentNameTextbox.Focus();
+        }
+
+        private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var inserted = _viewModel.SaveEnvironment();
             if (!inserted)
@@ -45,17 +54,28 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             }
             else
             {
-                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(_viewModel.Environment));
+                var insertedEnvironment = _viewModel.GetInsertedEnvironment();
+                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(insertedEnvironment));
             }
 
             Close();
         }
 
-        public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
-
-        private void NewEnvironmentWindow_OnLoaded(object sender, RoutedEventArgs e)
+        private void NewEnvironmentWindowSaveButton_OnClick(object sender, RoutedEventArgs e)
         {
-            EnvironmentNameTextbox.Focus();
+            if (_viewModel.IsSaveButtonEnabled &&
+                _viewModel.Environment.EnvironmentVariables.All(v => v.IsValid == null || v.IsValid == true)
+                && !string.IsNullOrWhiteSpace(_viewModel.EnvironmentName)
+            )
+            {
+                _viewModel.SaveEnvironment();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show(ChamiUIStrings.ValidationFailedMessageBoxText,
+                    ChamiUIStrings.ValidationFailedMessageBoxCaption);
+            }
         }
     }
 }

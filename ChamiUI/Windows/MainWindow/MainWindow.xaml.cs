@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -190,7 +191,9 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.SelectedEnvironment != null && ViewModel.EditingEnabled)
+            if (ViewModel.SelectedEnvironment != null && 
+                ViewModel.EditingEnabled &&
+                ViewModel.AreSelectedEnvironmentVariablesValid())
             {
                 e.CanExecute = true;
             }

@@ -1,4 +1,5 @@
-﻿using ChamiUI.PresentationLayer.ViewModels;
+﻿using System.Text.RegularExpressions;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Validators
 {
@@ -13,8 +14,10 @@ namespace ChamiUI.BusinessLayer.Validators
             {
                 result.IsValid = false;
                 result.Message = "The object was null!";
+                return result;
             }
-            else if (string.IsNullOrWhiteSpace(viewModel.Name))
+
+            if (string.IsNullOrWhiteSpace(viewModel.Name))
             {
                 result.IsValid = false;
                 result.Message = "The name was null!";
@@ -24,6 +27,13 @@ namespace ChamiUI.BusinessLayer.Validators
                 result.IsValid = false;
                 result.Message = "The value was null!";
             }
+
+            if (!Regex.IsMatch(viewModel.Name, "^[A-Za-z_][A-Za-z0-9_]*$"))
+            {
+                result.IsValid = false;
+                result.Message = "The name contained invalid characters";
+            }
+
 
             return result;
         }

@@ -3,21 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:local="clr-namespace:ChamiUI.Windows.NewEnvironmentWindow"
-        xmlns:vm="clr-namespace:ChamiUI.PresentationLayer"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        xmlns:vr="clr-namespace:ChamiUI.BusinessLayer.Validators"
         d:DataContext="{d:DesignInstance viewModels:NewEnvironmentViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
         x:Name="ExportWindowTitle"
-        Title="{lex:Loc}" 
-        Height="450" 
-        Width="300" 
+        Title="{lex:Loc}"
+        Height="450"
+        Width="300"
         ResizeMode="NoResize"
-        Loaded="NewEnvironmentWindow_OnLoaded"
-        >
+        Loaded="NewEnvironmentWindow_OnLoaded">
+    <Window.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary 
+                                    Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
+                <ResourceDictionary>
+                    <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
+                                          Source="{Binding Path=Environment.EnvironmentVariables}" />
+                </ResourceDictionary>
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid Margin="5, 5, 5, 5">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -36,37 +48,52 @@
                Grid.ColumnSpan="2"
                HorizontalContentAlignment="Center"
                FontWeight="DemiBold"
-               FontSize="20" 
+               FontSize="20"
                x:Name="NewEnvironmentWindowHeaderTitle"
-               Content="{lex:Loc}"
-               >
-        </Label>
+               Content="{lex:Loc}" />
         <Label Grid.Row="1"
                Grid.Column="0"
                x:Name="NewEnvironmentFormNameLabel"
-               Content="{lex:Loc}"
-               >
-        </Label>
+               Content="{lex:Loc}" />
         <TextBox Grid.Row="1"
                  Grid.Column="1"
                  VerticalContentAlignment="Center"
-                 Text="{Binding Environment.Name, UpdateSourceTrigger=PropertyChanged}" 
                  TabIndex="0"
-                 x:Name="EnvironmentNameTextbox"/>
+                 Style="{StaticResource TextBoxInError}"
+                 x:Name="EnvironmentNameTextbox">
+            <TextBox.Text>
+                <Binding Path="EnvironmentName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <vr:EnvironmentNameValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <DataGrid Grid.Row="2"
+                  x:Name="VariablesDatagrid"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
                   AutoGenerateColumns="False"
-                  ItemsSource="{Binding Environment.EnvironmentVariables}">
+                  ItemsSource="{Binding Environment.EnvironmentVariables}"
+                  RowStyle="{StaticResource ErrorStyle}">
+            <DataGrid.RowValidationRules>
+                <vr:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
+                <vr:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
+                <vr:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
+                <vr:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" />
+                <vr:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
+                                                                EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
+            </DataGrid.RowValidationRules>
+
             <DataGrid.Columns>
                 <DataGridTextColumn Width="100"
                                     x:Name="NewEnvironmentDataGridNameColumn"
                                     Header="{lex:Loc Key=NewEnvironmentDataGridNameColumn}"
-                                    Binding="{Binding Name}" />
+                                    Binding="{Binding Name, ValidatesOnExceptions=True, NotifyOnSourceUpdated=True}" />
                 <DataGridTextColumn Width="150"
                                     x:Name="NewEnvironmentDataGridValueColumn"
                                     Header="{lex:Loc Key=NewEnvironmentDataGridValueColumn}"
-                                    Binding="{Binding Value}" />
+                                    Binding="{Binding Value, NotifyOnSourceUpdated=True}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="3"
@@ -77,13 +104,12 @@
                     Margin="5, 0, 5, 0">
             <Button Content="{lex:Loc}"
                     x:Name="NewEnvironmentWindowSaveButton"
-                    Click="SaveButton_OnClick"
+                    Click="NewEnvironmentWindowSaveButton_OnClick"
                     Margin="5, 5,5,5" />
             <Button Content="{lex:Loc}"
                     x:Name="NewEnvironmentWindowCancelButton"
-                    Click="CancelButton_OnClick" 
-                    Margin="5, 5,5,5"
-                    />
+                    Click="CancelButton_OnClick"
+                    Margin="5, 5,5,5" />
         </StackPanel>
     </Grid>
 </Window>

@@ -384,4 +384,33 @@ The application will now close.</value>
   <data name="ExistingInstanceMessageBoxCaption" xml:space="preserve">
     <value>Chami is already running!</value>
   </data>
+  <data name="EnvironmentNameValidationErrorMessage" xml:space="preserve">
+    <value>You must specify an environment name!</value>
+  </data>
+  <data name="EnvironmentVariableNameNotNullErrorMessage" xml:space="preserve">
+    <value>You must specify a name for the environment variable!</value>
+  </data>
+  <data name="EnvironmentVariableNameInvalidCharactersErrorMessage" xml:space="preserve">
+    <value>The environment variable name contains invalid characters at positions {0}.</value>
+  </data>
+  <data name="EnvironmentVariableNameInvalidCharactersErrorMessageSingular" xml:space="preserve">
+    <value>The environment variable name contains an invalid character at position {0}.</value>
+  </data>
+  <data name="EnvironmentVariableNameLengthErrorMessage" xml:space="preserve">
+    <value>An environment variable name has a maximum length of {0} characters.
+Current length: {1}</value>
+  </data>
+  <data name="EnvironmentVariableNameNumberFirstCharacterErrorMessage" xml:space="preserve">
+    <value>An environment variable name may not start with a digit.</value>
+  </data>
+  <data name="EnvironmentVariableNameNotUniqueErrorMessage" xml:space="preserve">
+    <value>There's already an environment variable with the name {0} in environment {1}.</value>
+  </data>
+  <data name="ValidationFailedMessageBoxText" xml:space="preserve">
+    <value>The variables in the environment you're trying to save didn't pass validation.
+Fix the issues and try saving again.</value>
+  </data>
+  <data name="ValidationFailedMessageBoxCaption" xml:space="preserve">
+    <value>Validation error!</value>
+  </data>
 </root>

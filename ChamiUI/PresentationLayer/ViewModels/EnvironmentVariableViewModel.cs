@@ -7,15 +7,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private string _name;
         private string _value;
         private DateTime _addedOn;
+        private bool? _isValid;
+
+        public bool? IsValid
+        {
+            get => _isValid;
+            set
+            {
+                _isValid = value;
+                OnPropertyChanged(nameof(_isValid));
+            }
+        }
         public int Id { get; set; }
         private EnvironmentViewModel _environment;
 
         public EnvironmentViewModel Environment
         {
-            get
-            {
-                return _environment;
-            }
+            get => _environment;
             set
             {
                 _environment = value;
