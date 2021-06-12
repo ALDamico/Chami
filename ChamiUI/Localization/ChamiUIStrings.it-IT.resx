@@ -416,4 +416,16 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="GithubLinkMenuItem_Header" xml:space="preserve">
     <value>Chami su Github</value>
   </data>
+  <data name="FindWindowSearchTextLabel_Content" xml:space="preserve">
+    <value>Trova</value>
+  </data>
+  <data name="FindWindowSearchButton_Content" xml:space="preserve">
+    <value>Trova successivo</value>
+  </data>
+  <data name="FindWindowWhereToSearchLabel_Content" xml:space="preserve">
+    <value>Cerca in:</value>
+  </data>
+  <data name="FindWindowSearchInEnvironmentNameComboBoxItem_Content" xml:space="preserve">
+    <value>Negli ambienti</value>
+  </data>
 </root>

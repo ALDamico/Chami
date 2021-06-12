@@ -416,4 +416,16 @@ Fix the issues and try saving again.</value>
   <data name="GithubLinkMenuItem_Header" xml:space="preserve">
     <value>Chami on Github</value>
   </data>
+  <data name="FindWindowSearchTextLabel_Content" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FindWindowSearchButton_Content" xml:space="preserve">
+    <value>Find next</value>
+  </data>
+  <data name="FindWindowWhereToSearchLabel_Content" xml:space="preserve">
+    <value>Search in:</value>
+  </data>
+  <data name="FindWindowSearchInEnvironmentNameComboBoxItem_Content" xml:space="preserve">
+    <value>In environments</value>
+  </data>
 </root>

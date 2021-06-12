@@ -407,5 +407,22 @@ namespace ChamiUI.Windows.MainWindow
         {
             ProcessUtils.OpenLinkInBrowser("https://github.com/ALDamico/Chami");
         }
+
+        private void ShowFindWindowCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (!ViewModel.EditingEnabled)
+            {
+                e.CanExecute = true;
+                return;
+            }
+
+            e.CanExecute = false;
+        }
+
+        private void ShowFindWindowCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var findWindow = new FindWindow.FindWindow();
+            findWindow.Show();
+        }
     }
 }

@@ -486,6 +486,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find next.
+        /// </summary>
+        public static string FindWindowSearchButton_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In environments.
+        /// </summary>
+        public static string FindWindowSearchInEnvironmentNameComboBoxItem_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchInEnvironmentNameComboBoxItem_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find.
+        /// </summary>
+        public static string FindWindowSearchTextLabel_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchTextLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search in:.
+        /// </summary>
+        public static string FindWindowWhereToSearchLabel_Content {
+            get {
+                return ResourceManager.GetString("FindWindowWhereToSearchLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An exception occurred!.
         /// </summary>
         public static string GenericExceptionMessageBoxCaption {
