@@ -8,7 +8,26 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
-        Title="FindWindow" Height="450" Width="800">
+        x:Name="ChamiFindWindow"
+        WindowStyle="ToolWindow"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        Title="{lex:Loc}">
+    <Window.Resources>
+        <Style TargetType="TextBox">
+            <Setter  Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="Label">
+            <Setter  Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="Button">
+            <Setter  Property="Margin" Value="2"></Setter>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter  Property="Margin" Value="2"></Setter>
+        </Style>
+        
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -21,9 +40,9 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" x:Name="FindWindowSearchTextLabel" Content="{lex:Loc}" />
-        <TextBox Grid.Row="0" Grid.Column="1" />
+        <TextBox Grid.Row="0" Grid.Column="1" MinWidth="150" VerticalContentAlignment="Center" />
         <Button Grid.Row="0" Grid.Column="2" x:Name="FindWindowSearchButton" Content="{lex:Loc}" />
-        <Label Grid.Row="1" Grid.Column="0" x:Name="FindWindowWhereToSearchLabel"></Label>
+        <Label Grid.Row="1" Grid.Column="0" x:Name="FindWindowWhereToSearchLabel" Content="{lex:Loc}"></Label>
         <ComboBox Grid.Row="1" Grid.Column="1">
             <ComboBoxItem Content="{lex:Loc}" x:Name="FindWindowSearchInEnvironmentNameComboBoxItem"></ComboBoxItem>
             <ComboBoxItem Content="{lex:Loc}" x:Name="FindWindowSearchInEnvironmentVariablesComboBoxItem"></ComboBoxItem>

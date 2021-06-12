@@ -434,4 +434,13 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="MainWindowFindMenuItem_Header" xml:space="preserve">
     <value>Trova</value>
   </data>
+  <data name="FindWindowWhereToSearchLabel" xml:space="preserve">
+    <value>Cerca in:</value>
+  </data>
+  <data name="ChamiFindWindow_Title" xml:space="preserve">
+    <value>Trova...</value>
+  </data>
+  <data name="FindWindowSearchInEnvironmentVariablesComboBoxItem_Content" xml:space="preserve">
+    <value>Nelle variabili di ambiente</value>
+  </data>
 </root>

@@ -178,6 +178,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find....
+        /// </summary>
+        public static string ChamiFindWindow_Title {
+            get {
+                return ResourceManager.GetString("ChamiFindWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string CopyEnvironmentVariableMenuItem_Header {
@@ -504,11 +513,29 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In environment variables.
+        /// </summary>
+        public static string FindWindowSearchInEnvironmentVariablesComboBoxItem_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchInEnvironmentVariablesComboBoxItem_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Find.
         /// </summary>
         public static string FindWindowSearchTextLabel_Content {
             get {
                 return ResourceManager.GetString("FindWindowSearchTextLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search in:.
+        /// </summary>
+        public static string FindWindowWhereToSearchLabel {
+            get {
+                return ResourceManager.GetString("FindWindowWhereToSearchLabel", resourceCulture);
             }
         }
         
