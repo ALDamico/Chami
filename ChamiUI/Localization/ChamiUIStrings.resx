@@ -428,4 +428,10 @@ Fix the issues and try saving again.</value>
   <data name="FindWindowSearchInEnvironmentNameComboBoxItem_Content" xml:space="preserve">
     <value>In environments</value>
   </data>
+  <data name="MainWindowEditMenuItem_Header" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="MainWindowFindMenuItem_Header" xml:space="preserve">
+    <value>Find</value>
+  </data>
 </root>

@@ -428,4 +428,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="FindWindowSearchInEnvironmentNameComboBoxItem_Content" xml:space="preserve">
     <value>Negli ambienti</value>
   </data>
+  <data name="MainWindowEditMenuItem_Header" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="MainWindowFindMenuItem_Header" xml:space="preserve">
+    <value>Trova</value>
+  </data>
 </root>

@@ -613,6 +613,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string MainWindowEditMenuItem_Header {
+            get {
+                return ResourceManager.GetString("MainWindowEditMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find.
+        /// </summary>
+        public static string MainWindowFindMenuItem_Header {
+            get {
+                return ResourceManager.GetString("MainWindowFindMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NewEnvironmentDataGridNameColumn {

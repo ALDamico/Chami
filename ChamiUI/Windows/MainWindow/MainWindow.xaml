@@ -21,10 +21,9 @@
             Key="Escape"
             Command="{x:Static commandProvider:MainWindowCommandsProvider.CancelEditingCommand}" />
 
-        <KeyBinding Key="F2" 
+        <KeyBinding Key="F2"
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}" />
-        <!-- TODO Implement command-->
-        <KeyBinding Key="F" 
+        <KeyBinding Key="F"
                     Modifiers="Control"
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}" />
     </Window.InputBindings>
@@ -99,8 +98,8 @@
         <CommandBinding x:Name="ShowFindWindowCommandBinding"
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}"
                         CanExecute="ShowFindWindowCommandBinding_OnCanExecute"
-                        Executed="ShowFindWindowCommandBinding_OnExecuted"
-                        ></CommandBinding>
+                        Executed="ShowFindWindowCommandBinding_OnExecuted" 
+        />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -137,6 +136,16 @@
                 <MenuItem Header="{lex:Loc}"
                           x:Name="QuitApplicationMenuItem"
                           Click="QuitApplicationMenuItem_OnClick" />
+            </MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="MainWindowEditMenuItem">
+                <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
+                          Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}"
+                          InputGestureText="Ctrl+F"
+                >
+                    <MenuItem.Icon>
+                        <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/search.svg" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
                       x:Name="OptionsMenuItem">

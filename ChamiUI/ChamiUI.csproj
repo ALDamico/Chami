@@ -1111,6 +1111,10 @@
       <Resource Include="Assets\Svg\github.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Svg\search.svg" />
+      <Resource Include="Assets\Svg\search.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
