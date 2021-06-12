@@ -28,6 +28,9 @@
         </Style>
         
     </Window.Resources>
+    <Window.CommandBindings>
+        
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

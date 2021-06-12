@@ -12,6 +12,7 @@
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
         xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
+        xmlns:local="clr-namespace:ChamiUI.Windows"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800"
@@ -28,50 +29,62 @@
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}" />
     </Window.InputBindings>
     <Window.Resources>
-        <ResourceDictionary x:Key="Dictionary">
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
-                                          Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
-                    <ContextMenu x:Key="EnvironmentListBoxContextMenu">
-                        <MenuItem Header="{lex:Loc}"
-                                  x:Name="EditEnvironmentMenuItem"
-                                  Click="EditEnvironmentMenuItem_OnClick">
-                            <MenuItem.Icon>
-                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <MenuItem Header="{lex:Loc}"
-                                  x:Name="RenameEnvironmentMenuItem"
-                                  Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
-                                  InputGestureText="F2" />
-                        <MenuItem Header="Delete"
-                                  x:Name="DeleteEnvironmentMenuItem"
-                                  Click="DeleteEnvironmentMenuItem_OnClick">
-                            <MenuItem.Icon>
-                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                    </ContextMenu>
+        <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}" />
 
-                    <ContextMenu x:Key="EnvironmentVariablesContextMenu">
-                        <MenuItem Header="{lex:Loc}"
-                                  x:Name="CopyEnvironmentVariableMenuItem"
-                                  Click="CopyEnvironmentVariableMenuItem_OnClick">
-                            <MenuItem.Icon>
-                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                        <Separator />
-                        <MenuItem Header="{lex:Loc}"
-                                  x:Name="DeleteEnvironmentVariableMenuItem"
-                                  Click="DeleteEnvironmentVariableMenuItem_OnClick">
-                            <MenuItem.Icon>
-                                <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
-                            </MenuItem.Icon>
-                        </MenuItem>
-                    </ContextMenu>
-                </ResourceDictionary>
+        <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
+                              Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
+        <ContextMenu x:Key="EnvironmentListBoxContextMenu">
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="EditEnvironmentMenuItem"
+                      Click="EditEnvironmentMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="RenameEnvironmentMenuItem"
+                      Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
+                      InputGestureText="F2" />
+            <MenuItem Header="Delete"
+                      x:Name="DeleteEnvironmentMenuItem"
+                      Click="DeleteEnvironmentMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+
+        <ContextMenu x:Key="EnvironmentVariablesContextMenu">
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="CopyEnvironmentVariableMenuItem"
+                      Click="CopyEnvironmentVariableMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <Separator />
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="DeleteEnvironmentVariableMenuItem"
+                      Click="DeleteEnvironmentVariableMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <Style x:Key="ErrorStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Padding" Value="-2" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        <ResourceDictionary x:Key="ExternalResources">
+            <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
@@ -98,8 +111,7 @@
         <CommandBinding x:Name="ShowFindWindowCommandBinding"
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}"
                         CanExecute="ShowFindWindowCommandBinding_OnCanExecute"
-                        Executed="ShowFindWindowCommandBinding_OnExecuted" 
-        />
+                        Executed="ShowFindWindowCommandBinding_OnExecuted" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -140,11 +152,18 @@
             <MenuItem Header="{lex:Loc}" x:Name="MainWindowEditMenuItem">
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}"
-                          InputGestureText="Ctrl+F"
-                >
+                          InputGestureText="Ctrl+F">
+                    
                     <MenuItem.Icon>
                         <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/search.svg" />
                     </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="{lex:Loc}" x:Name="SortingOptionsMenuItem">
+                    <MenuItem Header="{lex:Loc}" x:Name="SortByIdMenuItem" />
+                    <MenuItem Header="{lex:Loc}" x:Name="SortByNameMenuItem" />
+                    <MenuItem Header="{lex:Loc}" x:Name="SortByDateMenuItem" />
+                    <Separator />
+                    <MenuItem Header="{lex:Loc}" x:Name="SortDescendingMenuItem" IsCheckable="True" />
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
@@ -190,7 +209,7 @@
             </Grid.ColumnDefinitions>
             <ListBox Grid.Column="0"
                      Margin="5,5,5,5"
-                     ItemsSource="{Binding Environments}"
+                     ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
                      x:Name="EnvironmentsListbox"
                      SelectedItem="{Binding SelectedEnvironment}"
                      SelectionChanged="EnvironmentsListbox_OnSelectionChanged"

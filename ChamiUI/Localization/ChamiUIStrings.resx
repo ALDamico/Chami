@@ -443,4 +443,19 @@ Fix the issues and try saving again.</value>
   <data name="FindWindowSearchInEnvironmentVariablesComboBoxItem_Content" xml:space="preserve">
     <value>In environment variables</value>
   </data>
+  <data name="SortingOptionsMenuItem_Header" xml:space="preserve">
+    <value>Sorting...</value>
+  </data>
+  <data name="SortByIdMenuItem_Header" xml:space="preserve">
+    <value>By Id</value>
+  </data>
+  <data name="SortByNameMenuItem_Header" xml:space="preserve">
+    <value>By name</value>
+  </data>
+  <data name="SortByDateMenuItem_Header" xml:space="preserve">
+    <value>By date added</value>
+  </data>
+  <data name="SortDescendingMenuItem" xml:space="preserve">
+    <value>Descending</value>
+  </data>
 </root>

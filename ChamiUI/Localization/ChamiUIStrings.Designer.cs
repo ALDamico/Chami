@@ -929,6 +929,51 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By date added.
+        /// </summary>
+        public static string SortByDateMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortByDateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By Id.
+        /// </summary>
+        public static string SortByIdMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortByIdMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By name.
+        /// </summary>
+        public static string SortByNameMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortByNameMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        public static string SortDescendingMenuItem {
+            get {
+                return ResourceManager.GetString("SortDescendingMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting....
+        /// </summary>
+        public static string SortingOptionsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortingOptionsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Starting execution....
         /// </summary>
         public static string StartingExecutionMessage {

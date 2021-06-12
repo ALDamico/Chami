@@ -443,4 +443,19 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="FindWindowSearchInEnvironmentVariablesComboBoxItem_Content" xml:space="preserve">
     <value>Nelle variabili di ambiente</value>
   </data>
+  <data name="SortingOptionsMenuItem_Header" xml:space="preserve">
+    <value>Ordinamento...</value>
+  </data>
+  <data name="SortByIdMenuItem_Header" xml:space="preserve">
+    <value>Per Id</value>
+  </data>
+  <data name="SortByNameMenuItem_Header" xml:space="preserve">
+    <value>Per nome</value>
+  </data>
+  <data name="SortByDateMenuItem_Header" xml:space="preserve">
+    <value>Per data di aggiunta</value>
+  </data>
+  <data name="SortDescendingMenuItem" xml:space="preserve">
+    <value>Discendente</value>
+  </data>
 </root>
