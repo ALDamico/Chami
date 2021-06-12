@@ -413,4 +413,7 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="ValidationFailedMessageBoxCaption" xml:space="preserve">
     <value>Errore di validazione!</value>
   </data>
+  <data name="GithubLinkMenuItem_Header" xml:space="preserve">
+    <value>Chami su Github</value>
+  </data>
 </root>

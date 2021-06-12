@@ -495,6 +495,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chami on Github.
+        /// </summary>
+        public static string GithubLinkMenuItem_Header {
+            get {
+                return ResourceManager.GetString("GithubLinkMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From .env....
         /// </summary>
         public static string ImportFromDotenvMenuItem_Header {

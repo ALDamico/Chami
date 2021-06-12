@@ -153,6 +153,14 @@
                 <MenuItem Header="{lex:Loc}" 
                           x:Name="WebsiteMenuItem" 
                           Click="WebsiteMenuItem_Click" />
+                <MenuItem Header="{lex:Loc}"
+                          x:Name="GithubLinkMenuItem"
+                          Click="GithubLinkMenuItem_OnClick"
+                          >
+                    <MenuItem.Icon>
+                        <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/github.svg" />
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
         <Grid Grid.Row="1"

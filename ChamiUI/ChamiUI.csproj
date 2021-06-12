@@ -1107,6 +1107,10 @@
       <Content Include="DataLayer\Db\Migrations\0004_language_support.sql">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="Assets\Svg\github.svg" />
+      <Resource Include="Assets\Svg\github.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

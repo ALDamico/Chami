@@ -17,6 +17,7 @@ using System.Windows.Media.Animation;
 using ChamiUI.BusinessLayer;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -267,13 +268,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo("www.lucianodamico.info");
-            // Required, otherwise the app crashes with a Win32Exception
-            startInfo.UseShellExecute = true;
-            Process process = new Process();
-            process.StartInfo = startInfo;
-
-            process.Start();
+           ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
         }
 
         private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -406,6 +401,11 @@ namespace ChamiUI.Windows.MainWindow
             childWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
             childWindow.EnvironmentRenamed += OnEnvironmentRenamed;
             childWindow.ShowDialog();
+        }
+
+        private void GithubLinkMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ProcessUtils.OpenLinkInBrowser("https://github.com/ALDamico/Chami");
         }
     }
 }

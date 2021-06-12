@@ -413,4 +413,7 @@ Fix the issues and try saving again.</value>
   <data name="ValidationFailedMessageBoxCaption" xml:space="preserve">
     <value>Validation error!</value>
   </data>
+  <data name="GithubLinkMenuItem_Header" xml:space="preserve">
+    <value>Chami on Github</value>
+  </data>
 </root>
