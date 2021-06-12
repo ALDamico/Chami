@@ -29,8 +29,6 @@
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-
-
     </Window.Resources>
     <Grid Margin="5, 5, 5, 5">
         <Grid.RowDefinitions>
@@ -72,6 +70,7 @@
             </TextBox.Text>
         </TextBox>
         <DataGrid Grid.Row="2"
+                  x:Name="VariablesDatagrid"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
                   AutoGenerateColumns="False"
@@ -90,11 +89,11 @@
                 <DataGridTextColumn Width="100"
                                     x:Name="NewEnvironmentDataGridNameColumn"
                                     Header="{lex:Loc Key=NewEnvironmentDataGridNameColumn}"
-                                    Binding="{Binding Name, ValidatesOnExceptions=True}" />
+                                    Binding="{Binding Name, ValidatesOnExceptions=True, NotifyOnSourceUpdated=True}" />
                 <DataGridTextColumn Width="150"
                                     x:Name="NewEnvironmentDataGridValueColumn"
                                     Header="{lex:Loc Key=NewEnvironmentDataGridValueColumn}"
-                                    Binding="{Binding Value}" />
+                                    Binding="{Binding Value, NotifyOnSourceUpdated=True}" />
             </DataGrid.Columns>
         </DataGrid>
         <StackPanel Grid.Row="3"
@@ -105,8 +104,7 @@
                     Margin="5, 0, 5, 0">
             <Button Content="{lex:Loc}"
                     x:Name="NewEnvironmentWindowSaveButton"
-                    IsEnabled="{Binding IsSaveButtonEnabled}"
-                    Click="SaveButton_OnClick"
+                    Click="NewEnvironmentWindowSaveButton_OnClick"
                     Margin="5, 5,5,5" />
             <Button Content="{lex:Loc}"
                     x:Name="NewEnvironmentWindowCancelButton"

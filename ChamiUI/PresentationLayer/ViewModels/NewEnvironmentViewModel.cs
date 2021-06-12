@@ -30,8 +30,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return _dataAdapter.InsertEnvironment(Environment);
         }
 
-        private bool _isSaveButtonEnabled;
-
         public bool IsSaveButtonEnabled
         {
             get

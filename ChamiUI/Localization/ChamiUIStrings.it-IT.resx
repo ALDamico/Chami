@@ -406,4 +406,11 @@ Lunghezza corrente: {1}</value>
   <data name="EnvironmentVariableNameNotUniqueErrorMessage" xml:space="preserve">
     <value>Esiste già una variable di ambiente con nome {0} nell'ambiente {1}.</value>
   </data>
+  <data name="ValidationFailedMessageBoxText" xml:space="preserve">
+    <value>Le variabili dell'ambiente che stai cercando di salvare non hanno superato la validazione.
+Risolvi i problemi e riprova il salvataggio.</value>
+  </data>
+  <data name="ValidationFailedMessageBoxCaption" xml:space="preserve">
+    <value>Errore di validazione!</value>
+  </data>
 </root>

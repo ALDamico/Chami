@@ -17,11 +17,13 @@ namespace ChamiUI.BusinessLayer.Validators
             var environmentVariableCollection = EnvironmentVariables.Source as IEnumerable<EnvironmentVariableViewModel>;
             if (environmentVariable != null)
             {
+                environmentVariable.IsValid = true;
                 if (environmentVariableCollection?.Count(v => v.Name == environmentVariable.Name) > 1)
                 {
                     var errorMessage = ChamiUIStrings.EnvironmentVariableNameNotUniqueErrorMessage;
                     var environmentName = environmentVariable.Environment?.Name;
                     errorMessage = string.Format(errorMessage, environmentVariable.Name, environmentName);
+                    environmentVariable.IsValid = false;
                     return new System.Windows.Controls.ValidationResult(false, errorMessage);
                 }
             }

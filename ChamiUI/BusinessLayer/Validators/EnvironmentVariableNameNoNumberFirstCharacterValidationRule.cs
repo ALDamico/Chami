@@ -12,9 +12,11 @@ namespace ChamiUI.BusinessLayer.Validators
             var environmentVariableViewModel =  ValidationUtils.ConvertObjectToValidate(value);
             if (environmentVariableViewModel != null)
             {
+                environmentVariableViewModel.IsValid = false;
                 var name = environmentVariableViewModel.Name;
                 if (name == null)
                 {
+                    environmentVariableViewModel.IsValid = true;
                     return  System.Windows.Controls.ValidationResult.ValidResult;
                 }
                 if (Regex.IsMatch(name, "^[0-9]"))

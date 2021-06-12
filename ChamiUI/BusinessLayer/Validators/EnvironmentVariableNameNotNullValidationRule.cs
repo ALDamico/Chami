@@ -13,8 +13,10 @@ namespace ChamiUI.BusinessLayer.Validators
             var environmentVariable = ValidationUtils.ConvertObjectToValidate(value);
             if (environmentVariable != null)
             {
+                environmentVariable.IsValid = true;
                 if (string.IsNullOrWhiteSpace(environmentVariable.Name))
                 {
+                    environmentVariable.IsValid = false;
                     return new System.Windows.Controls.ValidationResult(false,
                         ChamiUIStrings.EnvironmentVariableNameNotNullErrorMessage);
                 }

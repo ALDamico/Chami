@@ -15,6 +15,7 @@ namespace ChamiUI.BusinessLayer.Validators
             if (environmentVariable != null)
             {
                 var environmentVariableName = environmentVariable.Name;
+                environmentVariable.IsValid = true;
                 if (environmentVariableName == null)
                 {
                     return System.Windows.Controls.ValidationResult.ValidResult;
@@ -23,6 +24,8 @@ namespace ChamiUI.BusinessLayer.Validators
                 {
                     return System.Windows.Controls.ValidationResult.ValidResult;
                 }
+
+                environmentVariable.IsValid = false;
 
                 // Regex explanation
                 // Match one or more characters not matching the characters in the intervals A-Z, a-z, 0-9 and the

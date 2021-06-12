@@ -189,16 +189,11 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        private void Datagrid_OnError(object sender, ValidationErrorEventArgs args)
-        {
-            
-        }
-
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-      
-            
-            if (ViewModel.SelectedEnvironment != null && ViewModel.EditingEnabled)
+            if (ViewModel.SelectedEnvironment != null && 
+                ViewModel.EditingEnabled &&
+                ViewModel.AreSelectedEnvironmentVariablesValid())
             {
                 e.CanExecute = true;
             }

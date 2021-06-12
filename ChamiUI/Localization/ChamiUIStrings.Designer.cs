@@ -893,6 +893,25 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Validation error!.
+        /// </summary>
+        public static string ValidationFailedMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("ValidationFailedMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The variables in the environment you&apos;re trying to save didn&apos;t pass validation.
+        ///Fix the issues and try saving again..
+        /// </summary>
+        public static string ValidationFailedMessageBoxText {
+            get {
+                return ResourceManager.GetString("ValidationFailedMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Variables.
         /// </summary>
         public static string VariablesTabItem_Header {

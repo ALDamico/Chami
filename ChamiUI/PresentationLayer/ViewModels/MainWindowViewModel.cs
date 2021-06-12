@@ -71,7 +71,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings = GetSettingsViewModel();
         }
 
-        public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged; 
+        public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
 
         public bool ExecuteButtonEnabled
         {
@@ -125,6 +125,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _isChangeInProgress = value;
             OnPropertyChanged(nameof(ExecuteButtonEnabled));
             OnPropertyChanged(nameof(ExecuteButtonIcon));
+        }
+
+        public bool AreSelectedEnvironmentVariablesValid()
+        {
+            return SelectedEnvironment.EnvironmentVariables.All(envVar =>
+                envVar.IsValid == null || envVar.IsValid == true);
         }
 
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
@@ -416,7 +422,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var detector = new EnvironmentVariableRegistryRetriever();
             
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
-            OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
+            OnEnvironmentChanged(this,
+                new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
         }
 
         public void ResetCurrentEnvironmentFromDatasource()
