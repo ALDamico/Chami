@@ -167,8 +167,7 @@
                     <MenuItem Header="{lex:Loc}" x:Name="SortDescendingMenuItem" IsCheckable="True"
                               IsChecked="{Binding IsDescendingSorting}"
                               Checked="SortDescendingMenuItem_OnChecked"
-                              Unchecked="SortDescendingMenuItem_OnUnchecked"
-                              />
+                              Unchecked="SortDescendingMenuItem_OnUnchecked" />
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
@@ -206,20 +205,23 @@
             </MenuItem>
         </Menu>
         <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
-            <Label Content="{lex:Loc}" x:Name="MainWindowFilterLabel"></Label>
-            <TextBox MinWidth="120" MaxHeight="22" MaxLines="1" VerticalContentAlignment="Center"></TextBox>
+            <Label Content="{lex:Loc}" x:Name="MainWindowFilterLabel" />
+            <TextBox MinWidth="120" MaxHeight="22" MaxLines="1" VerticalContentAlignment="Center" />
             <Expander Header="{lex:Loc}" x:Name="SortingOptionsExpander" ExpandDirection="Down" ToolTip="{lex:Loc}">
                 <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
                     <StackPanel>
-                        <RadioButton Content="{lex:Loc}" x:Name="SortByIdRadioButton"></RadioButton>
-                        <RadioButton Content="{lex:Loc}" x:Name="SortByNameRadioButton"></RadioButton>
-                        <RadioButton Content="{lex:Loc}" x:Name="SortByDateAddedRadioButton"></RadioButton>
-                        <CheckBox Content="{lex:Loc}" 
-                                  x:Name="DescendingSortingCheckBox" 
-                                  IsChecked="{Binding IsDescendingSorting}" 
-                                  Checked="SortDescendingMenuItem_OnChecked"></CheckBox>
+                        <RadioButton Content="{lex:Loc}" x:Name="SortByIdRadioButton"
+                                     Checked="SortByIdMenuItem_OnClick" />
+                        <RadioButton Content="{lex:Loc}" x:Name="SortByNameRadioButton"
+                                     Checked="SortByNameMenuItem_OnClick" />
+                        <RadioButton Content="{lex:Loc}" x:Name="SortByDateAddedRadioButton"
+                                     Checked="SortByDateMenuItem_OnClick" />
+                        <CheckBox Content="{lex:Loc}"
+                                  x:Name="DescendingSortingCheckBox"
+                                  IsChecked="{Binding IsDescendingSorting}"
+                                  Checked="SortDescendingMenuItem_OnChecked" />
                     </StackPanel>
-                    
+
                 </GroupBox>
             </Expander>
         </StackPanel>
