@@ -205,6 +205,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear filter.
+        /// </summary>
+        public static string ClearFilterButton_Tooltip {
+            get {
+                return ResourceManager.GetString("ClearFilterButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string CopyEnvironmentVariableMenuItem_Header {
@@ -354,6 +363,15 @@ namespace ChamiUI.Localization {
         public static string EnvironmentExportWindowViewModelDisplayedName {
             get {
                 return ResourceManager.GetString("EnvironmentExportWindowViewModelDisplayedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In environment name.
+        /// </summary>
+        public static string EnvironmentNameFilterStrategyName {
+            get {
+                return ResourceManager.GetString("EnvironmentNameFilterStrategyName", resourceCulture);
             }
         }
         

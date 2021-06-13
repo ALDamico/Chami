@@ -487,5 +487,24 @@ namespace ChamiUI.Windows.MainWindow
         {
             ToggleSortDirection();
         }
+
+        private void EnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            ViewModel.FilterStrategy.OnFilter(sender, e);
+        }
+
+        private void FilterTextbox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                collectionViewSource.Filter += ViewModel.FilterStrategy.OnFilter;
+            }
+        }
+
+        private void ClearFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.FilterText = null;
+        }
     }
 }

@@ -488,4 +488,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="FilterTextBoxWatermark_Content" xml:space="preserve">
     <value>Digita per filtrare...</value>
   </data>
+  <data name="EnvironmentNameFilterStrategyName" xml:space="preserve">
+    <value>Nel nome dell'ambiente</value>
+  </data>
+  <data name="ClearFilterButton_Tooltip" xml:space="preserve">
+    <value>Cancella filtro</value>
+  </data>
 </root>

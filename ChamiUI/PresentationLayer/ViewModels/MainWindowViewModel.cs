@@ -14,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Filtering;
 using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -48,6 +49,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedVariable = null;
         }
 
+        private IFilterStrategy _filterStrategy;
+
+        public IFilterStrategy FilterStrategy
+        {
+            get => _filterStrategy;
+            set
+            {
+                _filterStrategy = value;
+                OnPropertyChanged(nameof(FilterStrategy));
+            }
+        }
+
         private SettingsViewModel _settings;
 
         public SettingsViewModel Settings
@@ -57,6 +70,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _settings = value;
                 OnPropertyChanged(nameof(Settings));
+            }
+        }
+
+        public bool IsClearFilterButtonEnabled => FilterStrategy.SearchedText != null;
+
+        private string _filterText;
+
+        public string FilterText
+        {
+            get => _filterText;
+            set
+            {
+                _filterText = value;
+                FilterStrategy.SearchedText = value;
+                OnPropertyChanged(nameof(FilterText));
+                OnPropertyChanged(nameof(IsClearFilterButtonEnabled));
+                OnPropertyChanged(nameof(ClearFilterTextButtonIcon));
             }
         }
 
@@ -82,6 +112,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings = GetSettingsViewModel();
             EnvironmentsViewSource = new CollectionViewSource();
             EnvironmentsViewSource.Source = Environments;
+            FilterStrategy = new EnvironmentNameFilterStrategy();
         }
 
         private bool _isDescendingSorting;
@@ -249,6 +280,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 }
 
                 return "/Assets/Svg/play_disabled.svg";
+            }
+        }
+        
+        public string ClearFilterTextButtonIcon
+        {
+            get
+            {
+                if (IsClearFilterButtonEnabled)
+                {
+                    return "/Assets/Svg/times.svg";
+                }
+
+                return "/Assets/Svg/times_disabled.svg";
             }
         }
 

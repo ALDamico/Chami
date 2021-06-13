@@ -488,4 +488,10 @@ Fix the issues and try saving again.</value>
   <data name="FilterTextBoxWatermark_Content" xml:space="preserve">
     <value>Type to filter...</value>
   </data>
+  <data name="EnvironmentNameFilterStrategyName" xml:space="preserve">
+    <value>In environment name</value>
+  </data>
+  <data name="ClearFilterButton_Tooltip" xml:space="preserve">
+    <value>Clear filter</value>
+  </data>
 </root>

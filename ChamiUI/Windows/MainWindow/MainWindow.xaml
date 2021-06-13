@@ -29,7 +29,9 @@
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}" />
     </Window.InputBindings>
     <Window.Resources>
-        <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}"
+                              Filter="EnvironmentsViewSource_OnFilter" />
 
         <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                               Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
@@ -127,7 +129,7 @@
             <ColumnDefinition MaxWidth="300" Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <Menu Grid.Row="0" Grid.Column="0" >
+        <Menu Grid.Row="0" Grid.Column="0">
             <MenuItem Header="File">
                 <MenuItem Header="{lex:Loc}"
                           x:Name="NewEnvironmentMenuItem"
@@ -206,32 +208,37 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <StackPanel Grid.Row="1" 
-                    Grid.Column="0" 
+        <StackPanel Grid.Row="1"
+                    Grid.Column="0"
                     Grid.ColumnSpan="2"
-                    HorizontalAlignment="Right" 
+                    HorizontalAlignment="Right"
                     Orientation="Horizontal"
-                    VerticalAlignment="Top"
-                    
-                    >
-            <Label Content="{lex:Loc}" 
+                    VerticalAlignment="Top">
+            <Label Content="{lex:Loc}"
                    x:Name="MainWindowFilterLabel" VerticalAlignment="Center" />
-            <svg:SvgViewbox MaxHeight="16" Source="/ChamiUI;component/Assets/Svg/filter.svg" Margin="2, 0, 2, 0"/>
-            <xctk:WatermarkTextBox MinWidth="120" 
+            <svg:SvgViewbox MaxHeight="16" Source="/ChamiUI;component/Assets/Svg/filter.svg" Margin="2, 0, 2, 0" />
+            <xctk:WatermarkTextBox MinWidth="120"
                                    MaxWidth="120"
-                     MaxHeight="24" 
-                     MaxLines="1" 
-                     VerticalContentAlignment="Center"
-                     VerticalAlignment="Center"
-                     x:Name="FilterTextbox"
+                                   MaxHeight="24"
+                                   MaxLines="1"
+                                   VerticalContentAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   x:Name="FilterTextbox"
                                    Watermark="{lex:Loc}"
-                     >
-
-            </xctk:WatermarkTextBox>
-            <Expander Header="{lex:Loc}" 
-                      x:Name="AdvancedSortAndFilterOptionsExpander" 
-                      ExpandDirection="Down"  
-                      ToolTip="{lex:Loc}" >
+                                   TextChanged="FilterTextbox_OnTextChanged"
+                                   Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
+            <Button x:Name="ClearFilterButton"
+                    MaxHeight="24" Width="24"
+                    IsEnabled="{Binding IsClearFilterButtonEnabled}" 
+                    Click="ClearFilterButton_OnClick"
+                    ToolTip="{lex:Loc}"
+                    >
+                <svg:SvgViewbox Source="{Binding ClearFilterTextButtonIcon}" />
+            </Button>
+            <Expander Header="{lex:Loc}"
+                      x:Name="AdvancedSortAndFilterOptionsExpander"
+                      ExpandDirection="Down"
+                      ToolTip="{lex:Loc}">
                 <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
                     <StackPanel>
                         <RadioButton Content="{lex:Loc}" x:Name="SortByIdRadioButton"
@@ -243,7 +250,8 @@
                         <CheckBox Content="{lex:Loc}"
                                   x:Name="DescendingSortingCheckBox"
                                   IsChecked="{Binding IsDescendingSorting}"
-                                  Checked="SortDescendingMenuItem_OnChecked" />
+                                  Checked="SortDescendingMenuItem_OnChecked"
+                                  Unchecked="SortDescendingMenuItem_OnUnchecked" />
                     </StackPanel>
 
                 </GroupBox>
