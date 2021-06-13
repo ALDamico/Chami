@@ -30,13 +30,14 @@ namespace ChamiUI.Windows.MainWindow
 
             ViewModel = new MainWindowViewModel(connectionString);
             ViewModel.EnvironmentExists += OnEnvironmentExists;
+            
+            DataContext = ViewModel;
+            InitializeComponent();
             Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
             if (collectionViewSource != null)
             {
                 collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
             }
-            DataContext = ViewModel;
-            InitializeComponent();
         }
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)

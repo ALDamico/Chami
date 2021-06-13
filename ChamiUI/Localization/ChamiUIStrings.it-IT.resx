@@ -458,4 +458,28 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="SortDescendingMenuItem" xml:space="preserve">
     <value>Discendente</value>
   </data>
+  <data name="MainWindowFilterLabel_Content" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="SortingGroupBox_Header" xml:space="preserve">
+    <value>Ordinamento</value>
+  </data>
+  <data name="SortByIdRadioButton_Content" xml:space="preserve">
+    <value>Per Id</value>
+  </data>
+  <data name="SortingOptionsExpander_Header" xml:space="preserve">
+    <value>Ordinamento</value>
+  </data>
+  <data name="SortingOptionsExpander_Tooltip" xml:space="preserve">
+    <value>Fare clic per visualizzare le opzioni di ordinamento avanzate.</value>
+  </data>
+  <data name="SortByNameRadioButton_Content" xml:space="preserve">
+    <value>Per nome</value>
+  </data>
+  <data name="SortByDateAddedRadioButton_Content" xml:space="preserve">
+    <value>Per data di aggiunta</value>
+  </data>
+  <data name="DescendingSortingCheckBox_Content" xml:space="preserve">
+    <value>Discendente</value>
+  </data>
 </root>

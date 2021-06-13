@@ -277,6 +277,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        public static string DescendingSortingCheckBox_Content {
+            get {
+                return ResourceManager.GetString("DescendingSortingCheckBox_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detector.
         /// </summary>
         public static string DetectorCategory {
@@ -649,6 +658,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string MainWindowFilterLabel_Content {
+            get {
+                return ResourceManager.GetString("MainWindowFilterLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Find.
         /// </summary>
         public static string MainWindowFindMenuItem_Header {
@@ -931,6 +949,15 @@ namespace ChamiUI.Localization {
         /// <summary>
         ///   Looks up a localized string similar to By date added.
         /// </summary>
+        public static string SortByDateAddedRadioButton_Content {
+            get {
+                return ResourceManager.GetString("SortByDateAddedRadioButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By date added.
+        /// </summary>
         public static string SortByDateMenuItem_Header {
             get {
                 return ResourceManager.GetString("SortByDateMenuItem_Header", resourceCulture);
@@ -947,6 +974,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By Id.
+        /// </summary>
+        public static string SortByIdRadioButton_Content {
+            get {
+                return ResourceManager.GetString("SortByIdRadioButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By name.
         /// </summary>
         public static string SortByNameMenuItem_Header {
@@ -956,11 +992,47 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By name.
+        /// </summary>
+        public static string SortByNameRadioButton_Content {
+            get {
+                return ResourceManager.GetString("SortByNameRadioButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Descending.
         /// </summary>
         public static string SortDescendingMenuItem {
             get {
                 return ResourceManager.GetString("SortDescendingMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string SortingGroupBox_Header {
+            get {
+                return ResourceManager.GetString("SortingGroupBox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string SortingOptionsExpander_Header {
+            get {
+                return ResourceManager.GetString("SortingOptionsExpander_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to show advanced sorting options..
+        /// </summary>
+        public static string SortingOptionsExpander_Tooltip {
+            get {
+                return ResourceManager.GetString("SortingOptionsExpander_Tooltip", resourceCulture);
             }
         }
         

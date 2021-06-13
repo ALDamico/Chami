@@ -115,6 +115,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="3*" />
             <RowDefinition Height="Auto" />
@@ -203,7 +205,25 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
-        <Grid Grid.Row="1"
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" Orientation="Horizontal">
+            <Label Content="{lex:Loc}" x:Name="MainWindowFilterLabel"></Label>
+            <TextBox MinWidth="120" MaxHeight="22" MaxLines="1" VerticalContentAlignment="Center"></TextBox>
+            <Expander Header="{lex:Loc}" x:Name="SortingOptionsExpander" ExpandDirection="Down" ToolTip="{lex:Loc}">
+                <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
+                    <StackPanel>
+                        <RadioButton Content="{lex:Loc}" x:Name="SortByIdRadioButton"></RadioButton>
+                        <RadioButton Content="{lex:Loc}" x:Name="SortByNameRadioButton"></RadioButton>
+                        <RadioButton Content="{lex:Loc}" x:Name="SortByDateAddedRadioButton"></RadioButton>
+                        <CheckBox Content="{lex:Loc}" 
+                                  x:Name="DescendingSortingCheckBox" 
+                                  IsChecked="{Binding IsDescendingSorting}" 
+                                  Checked="SortDescendingMenuItem_OnChecked"></CheckBox>
+                    </StackPanel>
+                    
+                </GroupBox>
+            </Expander>
+        </StackPanel>
+        <Grid Grid.Row="3"
               Grid.Column="0"
               Margin="5, 0, 5, 0">
             <Grid.ColumnDefinitions>
@@ -244,7 +264,7 @@
                                 IsEnabled="{Binding ExecuteButtonEnabled}" />
             </Button>
         </Grid>
-        <TabControl Grid.Row="2"
+        <TabControl Grid.Row="4"
                     Grid.Column="0"
                     x:Name="TabControls">
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
