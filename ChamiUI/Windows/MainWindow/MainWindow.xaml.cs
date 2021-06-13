@@ -5,19 +5,17 @@ using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using ChamiUI.BusinessLayer;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
+using System.Windows.Data;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -32,6 +30,11 @@ namespace ChamiUI.Windows.MainWindow
 
             ViewModel = new MainWindowViewModel(connectionString);
             ViewModel.EnvironmentExists += OnEnvironmentExists;
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
+            }
             DataContext = ViewModel;
             InitializeComponent();
         }
@@ -423,6 +426,65 @@ namespace ChamiUI.Windows.MainWindow
         {
             var findWindow = new FindWindow.FindWindow();
             findWindow.Show();
+        }
+
+        private void ChangeSorting(SortDescription sortDescription)
+        {
+            if (Resources["EnvironmentsViewSource"] is CollectionViewSource collectionViewSource)
+            {
+                collectionViewSource.SortDescriptions.Clear();
+                collectionViewSource.SortDescriptions.Add(sortDescription);
+            }
+        }
+
+        private void SortByNameMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsDescendingSorting)
+            {
+                ChangeSorting(SortDescriptionUtils.SortByNameDescending);
+                return;
+            }
+            ChangeSorting(SortDescriptionUtils.SortByNameAscending);
+        }
+
+        private void SortByIdMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsDescendingSorting)
+            {
+                ChangeSorting(SortDescriptionUtils.SortByIdDescending);
+                return;
+            }
+            ChangeSorting(SortDescriptionUtils.SortByIdAscending);
+        }
+
+        private void SortDescendingMenuItem_OnChecked(object sender, RoutedEventArgs e)
+        {
+            ToggleSortDirection();
+        }
+
+        private void ToggleSortDirection()
+        {
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                var sortDescription = SortDescriptionUtils.GetOppositeSorting(collectionViewSource.SortDescriptions[0]);
+                ChangeSorting(sortDescription);
+            }
+        }
+
+        private void SortByDateMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsDescendingSorting)
+            {
+                ChangeSorting(SortDescriptionUtils.SortByDateAddedDescending);
+                return;
+            }
+            ChangeSorting(SortDescriptionUtils.SortByDateAddedAscending);
+        }
+
+        private void SortDescendingMenuItem_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            ToggleSortDirection();
         }
     }
 }

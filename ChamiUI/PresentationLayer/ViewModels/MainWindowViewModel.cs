@@ -7,17 +7,21 @@ using ChamiUI.PresentationLayer.Progress;
 using dotenv.net;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using ChamiUI.Localization;
+using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         private bool _editingEnabled;
+        public CollectionViewSource EnvironmentsViewSource { get; }
 
         public bool EditingEnabled
         {
@@ -65,10 +69,36 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EditingEnabled = false;
             if (Environments.Any())
             {
-                SelectedEnvironment = Environments.First();
+                if (ActiveEnvironment != null)
+                {
+                    SelectedEnvironment = ActiveEnvironment;
+                }
+                else
+                {
+                    SelectedEnvironment = Environments.First();
+                }
             }
 
             Settings = GetSettingsViewModel();
+            EnvironmentsViewSource = new CollectionViewSource();
+            EnvironmentsViewSource.Source = Environments;
+        }
+
+        private bool _isDescendingSorting;
+        public bool IsDescendingSorting
+        {
+            get => _isDescendingSorting;
+            set
+            {
+                _isDescendingSorting = value;
+                OnPropertyChanged(nameof(IsDescendingSorting));
+            }
+        }
+
+        public void SetSortDescription(SortDescription sortDescription)
+        {
+            EnvironmentsViewSource.SortDescriptions.Clear();
+            EnvironmentsViewSource.SortDescriptions.Add(sortDescription);
         }
 
         public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;

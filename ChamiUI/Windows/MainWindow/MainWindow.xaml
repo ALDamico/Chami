@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=True}"
+        d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=False}"
         mc:Ignorable="d"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
@@ -12,7 +12,6 @@
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
         xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
-        xmlns:local="clr-namespace:ChamiUI.Windows"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800"
@@ -153,17 +152,21 @@
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}"
                           InputGestureText="Ctrl+F">
-                    
+
                     <MenuItem.Icon>
                         <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/search.svg" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="{lex:Loc}" x:Name="SortingOptionsMenuItem">
-                    <MenuItem Header="{lex:Loc}" x:Name="SortByIdMenuItem" />
-                    <MenuItem Header="{lex:Loc}" x:Name="SortByNameMenuItem" />
-                    <MenuItem Header="{lex:Loc}" x:Name="SortByDateMenuItem" />
+                    <MenuItem Header="{lex:Loc}" x:Name="SortByIdMenuItem" Click="SortByIdMenuItem_OnClick" />
+                    <MenuItem Header="{lex:Loc}" x:Name="SortByNameMenuItem" Click="SortByNameMenuItem_OnClick" />
+                    <MenuItem Header="{lex:Loc}" x:Name="SortByDateMenuItem" Click="SortByDateMenuItem_OnClick" />
                     <Separator />
-                    <MenuItem Header="{lex:Loc}" x:Name="SortDescendingMenuItem" IsCheckable="True" />
+                    <MenuItem Header="{lex:Loc}" x:Name="SortDescendingMenuItem" IsCheckable="True"
+                              IsChecked="{Binding IsDescendingSorting}"
+                              Checked="SortDescendingMenuItem_OnChecked"
+                              Unchecked="SortDescendingMenuItem_OnUnchecked"
+                              />
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
