@@ -467,10 +467,10 @@ Fix the issues and try saving again.</value>
   <data name="SortByIdRadioButton_Content" xml:space="preserve">
     <value>By Id</value>
   </data>
-  <data name="SortingOptionsExpander_Header" xml:space="preserve">
+  <data name="AdvancedSortAndFilterOptionsExpander_Header" xml:space="preserve">
     <value>Sorting</value>
   </data>
-  <data name="SortingOptionsExpander_Tooltip" xml:space="preserve">
+  <data name="AdvancedSortAndFilterOptionsExpander_Tooltip" xml:space="preserve">
     <value>Click to show advanced sorting options.</value>
   </data>
   <data name="SortByNameRadioButton_Content" xml:space="preserve">
@@ -481,5 +481,11 @@ Fix the issues and try saving again.</value>
   </data>
   <data name="DescendingSortingCheckBox_Content" xml:space="preserve">
     <value>Descending</value>
+  </data>
+  <data name="FilterTextbox_Watermark" xml:space="preserve">
+    <value>Type to filter...</value>
+  </data>
+  <data name="FilterTextBoxWatermark_Content" xml:space="preserve">
+    <value>Type to filter...</value>
   </data>
 </root>

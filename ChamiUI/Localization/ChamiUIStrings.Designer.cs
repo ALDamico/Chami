@@ -133,6 +133,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string AdvancedSortAndFilterOptionsExpander_Header {
+            get {
+                return ResourceManager.GetString("AdvancedSortAndFilterOptionsExpander_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to show advanced sorting options..
+        /// </summary>
+        public static string AdvancedSortAndFilterOptionsExpander_Tooltip {
+            get {
+                return ResourceManager.GetString("AdvancedSortAndFilterOptionsExpander_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All environments.
         /// </summary>
         public static string AllEnvironmentsRadioButton {
@@ -500,6 +518,24 @@ namespace ChamiUI.Localization {
         public static string ExportWindowTitle {
             get {
                 return ResourceManager.GetString("ExportWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type to filter....
+        /// </summary>
+        public static string FilterTextbox_Watermark {
+            get {
+                return ResourceManager.GetString("FilterTextbox_Watermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type to filter....
+        /// </summary>
+        public static string FilterTextBoxWatermark_Content {
+            get {
+                return ResourceManager.GetString("FilterTextBoxWatermark_Content", resourceCulture);
             }
         }
         
@@ -1015,24 +1051,6 @@ namespace ChamiUI.Localization {
         public static string SortingGroupBox_Header {
             get {
                 return ResourceManager.GetString("SortingGroupBox_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorting.
-        /// </summary>
-        public static string SortingOptionsExpander_Header {
-            get {
-                return ResourceManager.GetString("SortingOptionsExpander_Header", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Click to show advanced sorting options..
-        /// </summary>
-        public static string SortingOptionsExpander_Tooltip {
-            get {
-                return ResourceManager.GetString("SortingOptionsExpander_Tooltip", resourceCulture);
             }
         }
         

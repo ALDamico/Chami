@@ -1115,6 +1115,10 @@
       <Resource Include="Assets\Svg\search.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Svg\filter.svg" />
+      <Resource Include="Assets\Svg\filter.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

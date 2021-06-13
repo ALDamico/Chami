@@ -467,10 +467,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="SortByIdRadioButton_Content" xml:space="preserve">
     <value>Per Id</value>
   </data>
-  <data name="SortingOptionsExpander_Header" xml:space="preserve">
+  <data name="AdvancedSortAndFilterOptionsExpander_Header" xml:space="preserve">
     <value>Ordinamento</value>
   </data>
-  <data name="SortingOptionsExpander_Tooltip" xml:space="preserve">
+  <data name="AdvancedSortAndFilterOptionsExpander_Tooltip" xml:space="preserve">
     <value>Fare clic per visualizzare le opzioni di ordinamento avanzate.</value>
   </data>
   <data name="SortByNameRadioButton_Content" xml:space="preserve">
@@ -481,5 +481,11 @@ Risolvi i problemi e riprova il salvataggio.</value>
   </data>
   <data name="DescendingSortingCheckBox_Content" xml:space="preserve">
     <value>Discendente</value>
+  </data>
+  <data name="FilterTextbox_Watermark" xml:space="preserve">
+    <value>Digita per filtrare...</value>
+  </data>
+  <data name="FilterTextBoxWatermark_Content" xml:space="preserve">
+    <value>Digita per filtrare...</value>
   </data>
 </root>
