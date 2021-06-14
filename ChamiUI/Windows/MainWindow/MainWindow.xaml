@@ -27,7 +27,7 @@
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}" />
         <KeyBinding Key="F"
                     Modifiers="Control"
-                    Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}" />
+                    Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}" />
     </Window.InputBindings>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -113,9 +113,9 @@
                         CanExecute="RenameEnvironmentCommandBinding_OnCanExecute"
                         Executed="RenameEnvironmentCommandBinding_OnExecuted" />
         <CommandBinding x:Name="ShowFindWindowCommandBinding"
-                        Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}"
-                        CanExecute="ShowFindWindowCommandBinding_OnCanExecute"
-                        Executed="ShowFindWindowCommandBinding_OnExecuted" />
+                        Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
+                        CanExecute="FocusFilterTextboxCommandBinding_OnCanExecute"
+                        Executed="FocusFilterTextboxCommandBinding_OnExecuted" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -158,7 +158,7 @@
             </MenuItem>
             <MenuItem Header="{lex:Loc}" x:Name="MainWindowEditMenuItem">
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
-                          Command="{x:Static commandProvider:MainWindowCommandsProvider.ShowFindWindow}"
+                          Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                           InputGestureText="Ctrl+F">
 
                     <MenuItem.Icon>
@@ -238,7 +238,7 @@
             </Button>
             <Expander Header="{lex:Loc}"
                       x:Name="AdvancedSortAndFilterOptionsExpander"
-                      ExpandDirection="Down"
+                      ExpandDirection="Down" 
                       ToolTip="{lex:Loc}">
                 <StackPanel Orientation="Horizontal">
                     <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
