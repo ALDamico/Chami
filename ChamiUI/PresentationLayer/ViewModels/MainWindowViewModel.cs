@@ -7,17 +7,22 @@ using ChamiUI.PresentationLayer.Progress;
 using dotenv.net;
 using System;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Filtering;
+using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         private bool _editingEnabled;
+        public CollectionViewSource EnvironmentsViewSource { get; }
 
         public bool EditingEnabled
         {
@@ -30,6 +35,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
             }
         }
+        public ObservableCollection<IFilterStrategy> FilterStrategies { get; }
 
         public void EnableEditing()
         {
@@ -44,6 +50,26 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedVariable = null;
         }
 
+        public void ChangeFilterStrategy(IFilterStrategy filterStrategy)
+        {
+            var currentFilterStrategy = FilterStrategy;
+            filterStrategy.SearchedText = currentFilterStrategy.SearchedText;
+            filterStrategy.Comparison = currentFilterStrategy.Comparison;
+            FilterStrategy = filterStrategy;
+        }
+
+        private IFilterStrategy _filterStrategy;
+
+        public IFilterStrategy FilterStrategy
+        {
+            get => _filterStrategy;
+            set
+            {
+                _filterStrategy = value;
+                OnPropertyChanged(nameof(FilterStrategy));
+            }
+        }
+
         private SettingsViewModel _settings;
 
         public SettingsViewModel Settings
@@ -56,6 +82,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        public bool IsClearFilterButtonEnabled => FilterStrategy.SearchedText != null;
+
+        private string _filterText;
+
+        public string FilterText
+        {
+            get => _filterText;
+            set
+            {
+                _filterText = value;
+                FilterStrategy.SearchedText = value;
+                OnPropertyChanged(nameof(FilterText));
+                OnPropertyChanged(nameof(IsClearFilterButtonEnabled));
+                OnPropertyChanged(nameof(ClearFilterTextButtonIcon));
+            }
+        }
+
         public MainWindowViewModel(string connectionString)
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
@@ -65,10 +108,48 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EditingEnabled = false;
             if (Environments.Any())
             {
-                SelectedEnvironment = Environments.First();
+                if (ActiveEnvironment != null)
+                {
+                    SelectedEnvironment = ActiveEnvironment;
+                }
+                else
+                {
+                    SelectedEnvironment = Environments.First();
+                }
             }
 
             Settings = GetSettingsViewModel();
+            EnvironmentsViewSource = new CollectionViewSource();
+            EnvironmentsViewSource.Source = Environments;
+            
+            FilterStrategies = new ObservableCollection<IFilterStrategy>();
+            InitFilterStrategies();
+            
+        }
+
+        private void InitFilterStrategies()
+        {
+            FilterStrategy = new EnvironmentNameFilterStrategy();
+            FilterStrategies.Add(FilterStrategy);
+            FilterStrategies.Add(new EnvironmentAndVariableNameFilterStrategy());
+            FilterStrategies.Add(new EnvironmentAndVariableNameAndValueFilterStrategy());
+        }
+
+        private bool _isDescendingSorting;
+        public bool IsDescendingSorting
+        {
+            get => _isDescendingSorting;
+            set
+            {
+                _isDescendingSorting = value;
+                OnPropertyChanged(nameof(IsDescendingSorting));
+            }
+        }
+
+        public void SetSortDescription(SortDescription sortDescription)
+        {
+            EnvironmentsViewSource.SortDescriptions.Clear();
+            EnvironmentsViewSource.SortDescriptions.Add(sortDescription);
         }
 
         public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
@@ -219,6 +300,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 }
 
                 return "/Assets/Svg/play_disabled.svg";
+            }
+        }
+        
+        public string ClearFilterTextButtonIcon
+        {
+            get
+            {
+                if (IsClearFilterButtonEnabled)
+                {
+                    return "/Assets/Svg/times.svg";
+                }
+
+                return "/Assets/Svg/times_disabled.svg";
             }
         }
 

@@ -133,6 +133,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string AdvancedSortAndFilterOptionsExpander_Header {
+            get {
+                return ResourceManager.GetString("AdvancedSortAndFilterOptionsExpander_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to show advanced sorting options..
+        /// </summary>
+        public static string AdvancedSortAndFilterOptionsExpander_Tooltip {
+            get {
+                return ResourceManager.GetString("AdvancedSortAndFilterOptionsExpander_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All environments.
         /// </summary>
         public static string AllEnvironmentsRadioButton {
@@ -174,6 +192,24 @@ namespace ChamiUI.Localization {
         public static string ChamiExportWindow_Title {
             get {
                 return ResourceManager.GetString("ChamiExportWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find....
+        /// </summary>
+        public static string ChamiFindWindow_Title {
+            get {
+                return ResourceManager.GetString("ChamiFindWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear filter.
+        /// </summary>
+        public static string ClearFilterButton_Tooltip {
+            get {
+                return ResourceManager.GetString("ClearFilterButton_Tooltip", resourceCulture);
             }
         }
         
@@ -268,6 +304,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        public static string DescendingSortingCheckBox_Content {
+            get {
+                return ResourceManager.GetString("DescendingSortingCheckBox_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detector.
         /// </summary>
         public static string DetectorCategory {
@@ -313,11 +358,38 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In environment name and variable names and values.
+        /// </summary>
+        public static string EnvironmentAndVariableNameAndValueFilterStrategyName {
+            get {
+                return ResourceManager.GetString("EnvironmentAndVariableNameAndValueFilterStrategyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In environment and variable names.
+        /// </summary>
+        public static string EnvironmentAndVariableNameFilterStrategyName {
+            get {
+                return ResourceManager.GetString("EnvironmentAndVariableNameFilterStrategyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} ({1} variables).
         /// </summary>
         public static string EnvironmentExportWindowViewModelDisplayedName {
             get {
                 return ResourceManager.GetString("EnvironmentExportWindowViewModelDisplayedName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In environment name.
+        /// </summary>
+        public static string EnvironmentNameFilterStrategyName {
+            get {
+                return ResourceManager.GetString("EnvironmentNameFilterStrategyName", resourceCulture);
             }
         }
         
@@ -486,6 +558,105 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string FilteringAdvancedOptionsGroupBox_Header {
+            get {
+                return ResourceManager.GetString("FilteringAdvancedOptionsGroupBox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case sensitive.
+        /// </summary>
+        public static string FilteringCaseSensitivityLabel_Content {
+            get {
+                return ResourceManager.GetString("FilteringCaseSensitivityLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find in:.
+        /// </summary>
+        public static string FilteringStrategyLabel_Content {
+            get {
+                return ResourceManager.GetString("FilteringStrategyLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type to filter....
+        /// </summary>
+        public static string FilterTextbox_Watermark {
+            get {
+                return ResourceManager.GetString("FilterTextbox_Watermark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Type to filter....
+        /// </summary>
+        public static string FilterTextBoxWatermark_Content {
+            get {
+                return ResourceManager.GetString("FilterTextBoxWatermark_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find next.
+        /// </summary>
+        public static string FindWindowSearchButton_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In environments.
+        /// </summary>
+        public static string FindWindowSearchInEnvironmentNameComboBoxItem_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchInEnvironmentNameComboBoxItem_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In environment variables.
+        /// </summary>
+        public static string FindWindowSearchInEnvironmentVariablesComboBoxItem_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchInEnvironmentVariablesComboBoxItem_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find.
+        /// </summary>
+        public static string FindWindowSearchTextLabel_Content {
+            get {
+                return ResourceManager.GetString("FindWindowSearchTextLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search in:.
+        /// </summary>
+        public static string FindWindowWhereToSearchLabel {
+            get {
+                return ResourceManager.GetString("FindWindowWhereToSearchLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Search in:.
+        /// </summary>
+        public static string FindWindowWhereToSearchLabel_Content {
+            get {
+                return ResourceManager.GetString("FindWindowWhereToSearchLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An exception occurred!.
         /// </summary>
         public static string GenericExceptionMessageBoxCaption {
@@ -573,6 +744,33 @@ namespace ChamiUI.Localization {
         public static string LoggingCategory {
             get {
                 return ResourceManager.GetString("LoggingCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Edit.
+        /// </summary>
+        public static string MainWindowEditMenuItem_Header {
+            get {
+                return ResourceManager.GetString("MainWindowEditMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string MainWindowFilterLabel_Content {
+            get {
+                return ResourceManager.GetString("MainWindowFilterLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find.
+        /// </summary>
+        public static string MainWindowFindMenuItem_Header {
+            get {
+                return ResourceManager.GetString("MainWindowFindMenuItem_Header", resourceCulture);
             }
         }
         
@@ -844,6 +1042,87 @@ namespace ChamiUI.Localization {
         public static string SettingsWindowTitle_Title {
             get {
                 return ResourceManager.GetString("SettingsWindowTitle_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By date added.
+        /// </summary>
+        public static string SortByDateAddedRadioButton_Content {
+            get {
+                return ResourceManager.GetString("SortByDateAddedRadioButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By date added.
+        /// </summary>
+        public static string SortByDateMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortByDateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By Id.
+        /// </summary>
+        public static string SortByIdMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortByIdMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By Id.
+        /// </summary>
+        public static string SortByIdRadioButton_Content {
+            get {
+                return ResourceManager.GetString("SortByIdRadioButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By name.
+        /// </summary>
+        public static string SortByNameMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortByNameMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By name.
+        /// </summary>
+        public static string SortByNameRadioButton_Content {
+            get {
+                return ResourceManager.GetString("SortByNameRadioButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Descending.
+        /// </summary>
+        public static string SortDescendingMenuItem {
+            get {
+                return ResourceManager.GetString("SortDescendingMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting.
+        /// </summary>
+        public static string SortingGroupBox_Header {
+            get {
+                return ResourceManager.GetString("SortingGroupBox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sorting....
+        /// </summary>
+        public static string SortingOptionsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("SortingOptionsMenuItem_Header", resourceCulture);
             }
         }
         

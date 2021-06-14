@@ -5,19 +5,19 @@ using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using ChamiUI.BusinessLayer;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
+using System.Windows.Data;
+using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -32,8 +32,14 @@ namespace ChamiUI.Windows.MainWindow
 
             ViewModel = new MainWindowViewModel(connectionString);
             ViewModel.EnvironmentExists += OnEnvironmentExists;
+
             DataContext = ViewModel;
             InitializeComponent();
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
+            }
         }
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
@@ -192,7 +198,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.SelectedEnvironment != null && 
+            if (ViewModel.SelectedEnvironment != null &&
                 ViewModel.EditingEnabled &&
                 ViewModel.AreSelectedEnvironmentVariablesValid())
             {
@@ -268,7 +274,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
         {
-           ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
+            ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
         }
 
         private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -406,6 +412,124 @@ namespace ChamiUI.Windows.MainWindow
         private void GithubLinkMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ProcessUtils.OpenLinkInBrowser("https://github.com/ALDamico/Chami");
+        }
+
+        private void FocusFilterTextboxCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (!ViewModel.EditingEnabled)
+            {
+                e.CanExecute = true;
+                return;
+            }
+
+            e.CanExecute = false;
+        }
+
+        private void FocusFilterTextboxCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            FilterTextbox.Focus();
+        }
+
+        private void ChangeSorting(SortDescription sortDescription)
+        {
+            if (Resources["EnvironmentsViewSource"] is CollectionViewSource collectionViewSource)
+            {
+                collectionViewSource.SortDescriptions.Clear();
+                collectionViewSource.SortDescriptions.Add(sortDescription);
+            }
+        }
+
+        private void SortByNameMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsDescendingSorting)
+            {
+                ChangeSorting(SortDescriptionUtils.SortByNameDescending);
+                return;
+            }
+
+            ChangeSorting(SortDescriptionUtils.SortByNameAscending);
+        }
+
+        private void SortByIdMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsDescendingSorting)
+            {
+                ChangeSorting(SortDescriptionUtils.SortByIdDescending);
+                return;
+            }
+
+            ChangeSorting(SortDescriptionUtils.SortByIdAscending);
+        }
+
+        private void SortDescendingMenuItem_OnChecked(object sender, RoutedEventArgs e)
+        {
+            ToggleSortDirection();
+        }
+
+        private void ToggleSortDirection()
+        {
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                var sortDescription = SortDescriptionUtils.GetOppositeSorting(collectionViewSource.SortDescriptions[0]);
+                ChangeSorting(sortDescription);
+            }
+        }
+
+        private void SortByDateMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (ViewModel.IsDescendingSorting)
+            {
+                ChangeSorting(SortDescriptionUtils.SortByDateAddedDescending);
+                return;
+            }
+
+            ChangeSorting(SortDescriptionUtils.SortByDateAddedAscending);
+        }
+
+        private void SortDescendingMenuItem_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            ToggleSortDirection();
+        }
+
+        private void EnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            ViewModel.FilterStrategy.OnFilter(sender, e);
+        }
+
+        private void FilterTextbox_OnTextChanged(object sender, TextChangedEventArgs e)
+        {
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                collectionViewSource.Filter += ViewModel.FilterStrategy.OnFilter;
+            }
+        }
+
+        private void ClearFilterButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            ViewModel.FilterText = null;
+        }
+
+        private void CaseSensitivityCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            RefreshEnvironmentViewSource();
+        }
+
+        private void RefreshEnvironmentViewSource()
+        {
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                collectionViewSource.View.Refresh();
+            }
+        }
+
+        private void FilterStrategySelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var newStrategy = e.AddedItems[0] as IFilterStrategy;
+            ViewModel.ChangeFilterStrategy(newStrategy);
+            RefreshEnvironmentViewSource();
         }
     }
 }

@@ -1111,6 +1111,17 @@
       <Resource Include="Assets\Svg\github.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Svg\search.svg" />
+      <Resource Include="Assets\Svg\search.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Svg\filter.svg" />
+      <Resource Include="Assets\Svg\filter.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <Resource Include="Assets\Svg\times_disabled.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

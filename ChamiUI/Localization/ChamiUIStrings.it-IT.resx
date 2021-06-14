@@ -416,4 +416,97 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="GithubLinkMenuItem_Header" xml:space="preserve">
     <value>Chami su Github</value>
   </data>
+  <data name="FindWindowSearchTextLabel_Content" xml:space="preserve">
+    <value>Trova</value>
+  </data>
+  <data name="FindWindowSearchButton_Content" xml:space="preserve">
+    <value>Trova successivo</value>
+  </data>
+  <data name="FindWindowWhereToSearchLabel_Content" xml:space="preserve">
+    <value>Cerca in:</value>
+  </data>
+  <data name="FindWindowSearchInEnvironmentNameComboBoxItem_Content" xml:space="preserve">
+    <value>Negli ambienti</value>
+  </data>
+  <data name="MainWindowEditMenuItem_Header" xml:space="preserve">
+    <value>Modifica</value>
+  </data>
+  <data name="MainWindowFindMenuItem_Header" xml:space="preserve">
+    <value>Trova</value>
+  </data>
+  <data name="FindWindowWhereToSearchLabel" xml:space="preserve">
+    <value>Cerca in:</value>
+  </data>
+  <data name="ChamiFindWindow_Title" xml:space="preserve">
+    <value>Trova...</value>
+  </data>
+  <data name="FindWindowSearchInEnvironmentVariablesComboBoxItem_Content" xml:space="preserve">
+    <value>Nelle variabili di ambiente</value>
+  </data>
+  <data name="SortingOptionsMenuItem_Header" xml:space="preserve">
+    <value>Ordinamento...</value>
+  </data>
+  <data name="SortByIdMenuItem_Header" xml:space="preserve">
+    <value>Per Id</value>
+  </data>
+  <data name="SortByNameMenuItem_Header" xml:space="preserve">
+    <value>Per nome</value>
+  </data>
+  <data name="SortByDateMenuItem_Header" xml:space="preserve">
+    <value>Per data di aggiunta</value>
+  </data>
+  <data name="SortDescendingMenuItem" xml:space="preserve">
+    <value>Discendente</value>
+  </data>
+  <data name="MainWindowFilterLabel_Content" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="SortingGroupBox_Header" xml:space="preserve">
+    <value>Ordinamento</value>
+  </data>
+  <data name="SortByIdRadioButton_Content" xml:space="preserve">
+    <value>Per Id</value>
+  </data>
+  <data name="AdvancedSortAndFilterOptionsExpander_Header" xml:space="preserve">
+    <value>Ordinamento</value>
+  </data>
+  <data name="AdvancedSortAndFilterOptionsExpander_Tooltip" xml:space="preserve">
+    <value>Fare clic per visualizzare le opzioni di ordinamento avanzate.</value>
+  </data>
+  <data name="SortByNameRadioButton_Content" xml:space="preserve">
+    <value>Per nome</value>
+  </data>
+  <data name="SortByDateAddedRadioButton_Content" xml:space="preserve">
+    <value>Per data di aggiunta</value>
+  </data>
+  <data name="DescendingSortingCheckBox_Content" xml:space="preserve">
+    <value>Discendente</value>
+  </data>
+  <data name="FilterTextbox_Watermark" xml:space="preserve">
+    <value>Digita per filtrare...</value>
+  </data>
+  <data name="FilterTextBoxWatermark_Content" xml:space="preserve">
+    <value>Digita per filtrare...</value>
+  </data>
+  <data name="EnvironmentNameFilterStrategyName" xml:space="preserve">
+    <value>Nel nome dell'ambiente</value>
+  </data>
+  <data name="ClearFilterButton_Tooltip" xml:space="preserve">
+    <value>Cancella filtro</value>
+  </data>
+  <data name="FilteringAdvancedOptionsGroupBox_Header" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="FilteringStrategyLabel_Content" xml:space="preserve">
+    <value>Cerca in:</value>
+  </data>
+  <data name="FilteringCaseSensitivityLabel_Content" xml:space="preserve">
+    <value>Maiuscole/minuscole</value>
+  </data>
+  <data name="EnvironmentAndVariableNameFilterStrategyName" xml:space="preserve">
+    <value>Nei nomi dell'ambiente e delle variabili</value>
+  </data>
+  <data name="EnvironmentAndVariableNameAndValueFilterStrategyName" xml:space="preserve">
+    <value>Nel nome dell'ambiente e nei nomi e nei valori delle variabili</value>
+  </data>
 </root>

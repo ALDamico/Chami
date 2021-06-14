@@ -416,4 +416,97 @@ Fix the issues and try saving again.</value>
   <data name="GithubLinkMenuItem_Header" xml:space="preserve">
     <value>Chami on Github</value>
   </data>
+  <data name="FindWindowSearchTextLabel_Content" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FindWindowSearchButton_Content" xml:space="preserve">
+    <value>Find next</value>
+  </data>
+  <data name="FindWindowWhereToSearchLabel_Content" xml:space="preserve">
+    <value>Search in:</value>
+  </data>
+  <data name="FindWindowSearchInEnvironmentNameComboBoxItem_Content" xml:space="preserve">
+    <value>In environments</value>
+  </data>
+  <data name="MainWindowEditMenuItem_Header" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="MainWindowFindMenuItem_Header" xml:space="preserve">
+    <value>Find</value>
+  </data>
+  <data name="FindWindowWhereToSearchLabel" xml:space="preserve">
+    <value>Search in:</value>
+  </data>
+  <data name="ChamiFindWindow_Title" xml:space="preserve">
+    <value>Find...</value>
+  </data>
+  <data name="FindWindowSearchInEnvironmentVariablesComboBoxItem_Content" xml:space="preserve">
+    <value>In environment variables</value>
+  </data>
+  <data name="SortingOptionsMenuItem_Header" xml:space="preserve">
+    <value>Sorting...</value>
+  </data>
+  <data name="SortByIdMenuItem_Header" xml:space="preserve">
+    <value>By Id</value>
+  </data>
+  <data name="SortByNameMenuItem_Header" xml:space="preserve">
+    <value>By name</value>
+  </data>
+  <data name="SortByDateMenuItem_Header" xml:space="preserve">
+    <value>By date added</value>
+  </data>
+  <data name="SortDescendingMenuItem" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="MainWindowFilterLabel_Content" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="SortingGroupBox_Header" xml:space="preserve">
+    <value>Sorting</value>
+  </data>
+  <data name="SortByIdRadioButton_Content" xml:space="preserve">
+    <value>By Id</value>
+  </data>
+  <data name="AdvancedSortAndFilterOptionsExpander_Header" xml:space="preserve">
+    <value>Sorting</value>
+  </data>
+  <data name="AdvancedSortAndFilterOptionsExpander_Tooltip" xml:space="preserve">
+    <value>Click to show advanced sorting options.</value>
+  </data>
+  <data name="SortByNameRadioButton_Content" xml:space="preserve">
+    <value>By name</value>
+  </data>
+  <data name="SortByDateAddedRadioButton_Content" xml:space="preserve">
+    <value>By date added</value>
+  </data>
+  <data name="DescendingSortingCheckBox_Content" xml:space="preserve">
+    <value>Descending</value>
+  </data>
+  <data name="FilterTextbox_Watermark" xml:space="preserve">
+    <value>Type to filter...</value>
+  </data>
+  <data name="FilterTextBoxWatermark_Content" xml:space="preserve">
+    <value>Type to filter...</value>
+  </data>
+  <data name="EnvironmentNameFilterStrategyName" xml:space="preserve">
+    <value>In environment name</value>
+  </data>
+  <data name="ClearFilterButton_Tooltip" xml:space="preserve">
+    <value>Clear filter</value>
+  </data>
+  <data name="FilteringAdvancedOptionsGroupBox_Header" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="FilteringStrategyLabel_Content" xml:space="preserve">
+    <value>Find in:</value>
+  </data>
+  <data name="FilteringCaseSensitivityLabel_Content" xml:space="preserve">
+    <value>Case sensitive</value>
+  </data>
+  <data name="EnvironmentAndVariableNameFilterStrategyName" xml:space="preserve">
+    <value>In environment and variable names</value>
+  </data>
+  <data name="EnvironmentAndVariableNameAndValueFilterStrategyName" xml:space="preserve">
+    <value>In environment name and variable names and values</value>
+  </data>
 </root>
