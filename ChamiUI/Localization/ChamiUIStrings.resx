@@ -494,4 +494,16 @@ Fix the issues and try saving again.</value>
   <data name="ClearFilterButton_Tooltip" xml:space="preserve">
     <value>Clear filter</value>
   </data>
+  <data name="FilteringAdvancedOptionsGroupBox_Header" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="FilteringStrategyLabel_Content" xml:space="preserve">
+    <value>Find in:</value>
+  </data>
+  <data name="FilteringCaseSensitivityLabel_Content" xml:space="preserve">
+    <value>Case sensitive</value>
+  </data>
+  <data name="EnvironmentAndVariableNameFilterStrategyName" xml:space="preserve">
+    <value>In environment and variable names</value>
+  </data>
 </root>

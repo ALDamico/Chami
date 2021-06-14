@@ -13,6 +13,7 @@
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
         xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800"
@@ -30,6 +31,7 @@
     </Window.InputBindings>
     <Window.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+        <converters:BooleanToStringComparisonConverter x:Key="BooleanToStringComparisonConverter" />
         <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}"
                               Filter="EnvironmentsViewSource_OnFilter" />
 
@@ -229,32 +231,60 @@
                                    Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
             <Button x:Name="ClearFilterButton"
                     MaxHeight="24" Width="24"
-                    IsEnabled="{Binding IsClearFilterButtonEnabled}" 
+                    IsEnabled="{Binding IsClearFilterButtonEnabled}"
                     Click="ClearFilterButton_OnClick"
-                    ToolTip="{lex:Loc}"
-                    >
+                    ToolTip="{lex:Loc}">
                 <svg:SvgViewbox Source="{Binding ClearFilterTextButtonIcon}" />
             </Button>
             <Expander Header="{lex:Loc}"
                       x:Name="AdvancedSortAndFilterOptionsExpander"
                       ExpandDirection="Down"
                       ToolTip="{lex:Loc}">
-                <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
-                    <StackPanel>
-                        <RadioButton Content="{lex:Loc}" x:Name="SortByIdRadioButton"
-                                     Checked="SortByIdMenuItem_OnClick" />
-                        <RadioButton Content="{lex:Loc}" x:Name="SortByNameRadioButton"
-                                     Checked="SortByNameMenuItem_OnClick" />
-                        <RadioButton Content="{lex:Loc}" x:Name="SortByDateAddedRadioButton"
-                                     Checked="SortByDateMenuItem_OnClick" />
-                        <CheckBox Content="{lex:Loc}"
-                                  x:Name="DescendingSortingCheckBox"
-                                  IsChecked="{Binding IsDescendingSorting}"
-                                  Checked="SortDescendingMenuItem_OnChecked"
-                                  Unchecked="SortDescendingMenuItem_OnUnchecked" />
-                    </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
+                        <StackPanel>
+                            <RadioButton Content="{lex:Loc}" x:Name="SortByIdRadioButton"
+                                         Checked="SortByIdMenuItem_OnClick" />
+                            <RadioButton Content="{lex:Loc}" x:Name="SortByNameRadioButton"
+                                         Checked="SortByNameMenuItem_OnClick" />
+                            <RadioButton Content="{lex:Loc}" x:Name="SortByDateAddedRadioButton"
+                                         Checked="SortByDateMenuItem_OnClick" />
+                            <CheckBox Content="{lex:Loc}"
+                                      x:Name="DescendingSortingCheckBox"
+                                      IsChecked="{Binding IsDescendingSorting}"
+                                      Checked="SortDescendingMenuItem_OnChecked"
+                                      Unchecked="SortDescendingMenuItem_OnUnchecked" />
+                        </StackPanel>
 
-                </GroupBox>
+                    </GroupBox>
+                    <GroupBox Header="{lex:Loc}" x:Name="FilteringAdvancedOptionsGroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" x:Name="FilteringStrategyLabel" Content="{lex:Loc}" />
+                            <Label Grid.Row="1" Grid.Column="0" x:Name="FilteringCaseSensitivityLabel"
+                                   Content="{lex:Loc}" />
+                            <ComboBox Grid.Row="0" 
+                                      Grid.Column="1" 
+                                      ItemsSource="{Binding FilterStrategies}" SelectedIndex="{Binding FilterStrategy}" DisplayMemberPath="Name" />
+                            <CheckBox Grid.Row="1" Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      x:Name="CaseSensitivityCheckBox"
+                                      Checked="CaseSensitivityCheckBox_OnChecked"
+                                      Unchecked="CaseSensitivityCheckBox_OnChecked"
+                                      IsChecked="{Binding FilterStrategy.Comparison, Converter={StaticResource BooleanToStringComparisonConverter}}" />
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+
             </Expander>
         </StackPanel>
         <Grid Grid.Row="3"

@@ -494,4 +494,16 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="ClearFilterButton_Tooltip" xml:space="preserve">
     <value>Cancella filtro</value>
   </data>
+  <data name="FilteringAdvancedOptionsGroupBox_Header" xml:space="preserve">
+    <value>Filtro</value>
+  </data>
+  <data name="FilteringStrategyLabel_Content" xml:space="preserve">
+    <value>Cerca in:</value>
+  </data>
+  <data name="FilteringCaseSensitivityLabel_Content" xml:space="preserve">
+    <value>Maiuscole/minuscole</value>
+  </data>
+  <data name="EnvironmentAndVariableNameFilterStrategyName" xml:space="preserve">
+    <value>Nei nomi dell'ambiente e delle variabili</value>
+  </data>
 </root>

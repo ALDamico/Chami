@@ -5,6 +5,7 @@ using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
+using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -505,6 +507,17 @@ namespace ChamiUI.Windows.MainWindow
         private void ClearFilterButton_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.FilterText = null;
+        }
+        
+        public ObservableCollection<IFilterStrategy> FilterStrategies { get; }
+
+        private void CaseSensitivityCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            if (collectionViewSource != null)
+            {
+                collectionViewSource.View.Refresh();
+            }
         }
     }
 }

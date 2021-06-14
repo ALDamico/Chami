@@ -358,6 +358,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In environment and variable names.
+        /// </summary>
+        public static string EnvironmentAndVariableNameFilterStrategyName {
+            get {
+                return ResourceManager.GetString("EnvironmentAndVariableNameFilterStrategyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} ({1} variables).
         /// </summary>
         public static string EnvironmentExportWindowViewModelDisplayedName {
@@ -536,6 +545,33 @@ namespace ChamiUI.Localization {
         public static string ExportWindowTitle {
             get {
                 return ResourceManager.GetString("ExportWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Filter.
+        /// </summary>
+        public static string FilteringAdvancedOptionsGroupBox_Header {
+            get {
+                return ResourceManager.GetString("FilteringAdvancedOptionsGroupBox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case sensitive.
+        /// </summary>
+        public static string FilteringCaseSensitivityLabel_Content {
+            get {
+                return ResourceManager.GetString("FilteringCaseSensitivityLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Find in:.
+        /// </summary>
+        public static string FilteringStrategyLabel_Content {
+            get {
+                return ResourceManager.GetString("FilteringStrategyLabel_Content", resourceCulture);
             }
         }
         

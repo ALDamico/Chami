@@ -38,7 +38,7 @@ namespace ChamiUI.PresentationLayer.Filtering
                 {
                     args.Accepted = true;
                 }
-                else if (viewModel.Name.Contains(SearchedText))
+                else if (viewModel.Name.Contains(SearchedText, Comparison))
                 {
                     args.Accepted = true;
                 }

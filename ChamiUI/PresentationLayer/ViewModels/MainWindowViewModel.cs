@@ -35,6 +35,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
             }
         }
+        public ObservableCollection<IFilterStrategy> FilterStrategies { get; }
 
         public void EnableEditing()
         {
@@ -113,6 +114,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EnvironmentsViewSource = new CollectionViewSource();
             EnvironmentsViewSource.Source = Environments;
             FilterStrategy = new EnvironmentNameFilterStrategy();
+            FilterStrategies = new ObservableCollection<IFilterStrategy>();
+            FilterStrategies.Add(FilterStrategy);
+            FilterStrategies.Add(new EnvironmentAndVariableNameFilterStrategy());
+            
         }
 
         private bool _isDescendingSorting;
