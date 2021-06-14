@@ -506,4 +506,7 @@ Fix the issues and try saving again.</value>
   <data name="EnvironmentAndVariableNameFilterStrategyName" xml:space="preserve">
     <value>In environment and variable names</value>
   </data>
+  <data name="EnvironmentAndVariableNameAndValueFilterStrategyName" xml:space="preserve">
+    <value>In environment name and variable names and values</value>
+  </data>
 </root>

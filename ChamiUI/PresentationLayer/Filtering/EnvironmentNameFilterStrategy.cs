@@ -15,7 +15,7 @@ namespace ChamiUI.PresentationLayer.Filtering
             Name = ChamiUIStrings.EnvironmentNameFilterStrategyName;
         }
 
-        public string Name { get; set; }
+        public string Name { get;  }
 
         public string SearchedText
         {

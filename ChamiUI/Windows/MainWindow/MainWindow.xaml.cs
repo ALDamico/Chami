@@ -32,7 +32,7 @@ namespace ChamiUI.Windows.MainWindow
 
             ViewModel = new MainWindowViewModel(connectionString);
             ViewModel.EnvironmentExists += OnEnvironmentExists;
-            
+
             DataContext = ViewModel;
             InitializeComponent();
             Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
@@ -198,7 +198,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.SelectedEnvironment != null && 
+            if (ViewModel.SelectedEnvironment != null &&
                 ViewModel.EditingEnabled &&
                 ViewModel.AreSelectedEnvironmentVariablesValid())
             {
@@ -274,7 +274,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
         {
-           ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
+            ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
         }
 
         private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -447,6 +447,7 @@ namespace ChamiUI.Windows.MainWindow
                 ChangeSorting(SortDescriptionUtils.SortByNameDescending);
                 return;
             }
+
             ChangeSorting(SortDescriptionUtils.SortByNameAscending);
         }
 
@@ -457,6 +458,7 @@ namespace ChamiUI.Windows.MainWindow
                 ChangeSorting(SortDescriptionUtils.SortByIdDescending);
                 return;
             }
+
             ChangeSorting(SortDescriptionUtils.SortByIdAscending);
         }
 
@@ -482,6 +484,7 @@ namespace ChamiUI.Windows.MainWindow
                 ChangeSorting(SortDescriptionUtils.SortByDateAddedDescending);
                 return;
             }
+
             ChangeSorting(SortDescriptionUtils.SortByDateAddedAscending);
         }
 
@@ -508,16 +511,26 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.FilterText = null;
         }
-        
-        public ObservableCollection<IFilterStrategy> FilterStrategies { get; }
 
         private void CaseSensitivityCheckBox_OnChecked(object sender, RoutedEventArgs e)
+        {
+            RefreshEnvironmentViewSource();
+        }
+
+        private void RefreshEnvironmentViewSource()
         {
             Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
             if (collectionViewSource != null)
             {
                 collectionViewSource.View.Refresh();
             }
+        }
+
+        private void FilterStrategySelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var newStrategy = e.AddedItems[0] as IFilterStrategy;
+            ViewModel.ChangeFilterStrategy(newStrategy);
+            RefreshEnvironmentViewSource();
         }
     }
 }

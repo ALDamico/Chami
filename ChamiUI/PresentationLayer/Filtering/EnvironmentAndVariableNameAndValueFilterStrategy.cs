@@ -1,15 +1,15 @@
-using System;
+﻿using System;
 using System.Windows.Data;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.PresentationLayer.Filtering
 {
-    public class EnvironmentAndVariableNameFilterStrategy:IFilterStrategy
+    public class EnvironmentAndVariableNameAndValueFilterStrategy:IFilterStrategy
     {
-        public EnvironmentAndVariableNameFilterStrategy()
+        public EnvironmentAndVariableNameAndValueFilterStrategy()
         {
-            Name = ChamiUIStrings.EnvironmentAndVariableNameFilterStrategyName;
+            Name = ChamiUIStrings.EnvironmentAndVariableNameAndValueFilterStrategyName;
         }
         public string Name { get; }
         public string SearchedText { get; set; }
@@ -27,10 +27,16 @@ namespace ChamiUI.PresentationLayer.Filtering
                 {
                     args.Accepted = true;
                 }
-
                 foreach (var environmentVariable in viewModel.EnvironmentVariables)
                 {
-                    if (environmentVariable.Name.Contains(SearchedText, Comparison))
+                    string variableName = environmentVariable.Name;
+                    if (variableName.Contains(SearchedText, Comparison))
+                    {
+                        args.Accepted = true;
+                    }
+
+                    string variableValue = environmentVariable.Value;
+                    if (variableValue.Contains(SearchedText, Comparison))
                     {
                         args.Accepted = true;
                     }

@@ -50,6 +50,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedVariable = null;
         }
 
+        public void ChangeFilterStrategy(IFilterStrategy filterStrategy)
+        {
+            var currentFilterStrategy = FilterStrategy;
+            filterStrategy.SearchedText = currentFilterStrategy.SearchedText;
+            filterStrategy.Comparison = currentFilterStrategy.Comparison;
+            FilterStrategy = filterStrategy;
+        }
+
         private IFilterStrategy _filterStrategy;
 
         public IFilterStrategy FilterStrategy
@@ -113,11 +121,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings = GetSettingsViewModel();
             EnvironmentsViewSource = new CollectionViewSource();
             EnvironmentsViewSource.Source = Environments;
-            FilterStrategy = new EnvironmentNameFilterStrategy();
+            
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
+            InitFilterStrategies();
+            
+        }
+
+        private void InitFilterStrategies()
+        {
+            FilterStrategy = new EnvironmentNameFilterStrategy();
             FilterStrategies.Add(FilterStrategy);
             FilterStrategies.Add(new EnvironmentAndVariableNameFilterStrategy());
-            
+            FilterStrategies.Add(new EnvironmentAndVariableNameAndValueFilterStrategy());
         }
 
         private bool _isDescendingSorting;

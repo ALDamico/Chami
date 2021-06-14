@@ -358,6 +358,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In environment name and variable names and values.
+        /// </summary>
+        public static string EnvironmentAndVariableNameAndValueFilterStrategyName {
+            get {
+                return ResourceManager.GetString("EnvironmentAndVariableNameAndValueFilterStrategyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In environment and variable names.
         /// </summary>
         public static string EnvironmentAndVariableNameFilterStrategyName {

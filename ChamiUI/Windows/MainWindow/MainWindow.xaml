@@ -273,7 +273,7 @@
                                    Content="{lex:Loc}" />
                             <ComboBox Grid.Row="0" 
                                       Grid.Column="1" 
-                                      ItemsSource="{Binding FilterStrategies}" SelectedIndex="{Binding FilterStrategy}" DisplayMemberPath="Name" />
+                                      ItemsSource="{Binding FilterStrategies}" SelectedItem="{Binding FilterStrategy}" DisplayMemberPath="Name" x:Name="FilterStrategySelector" SelectionChanged="FilterStrategySelector_OnSelectionChanged" />
                             <CheckBox Grid.Row="1" Grid.Column="1"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"

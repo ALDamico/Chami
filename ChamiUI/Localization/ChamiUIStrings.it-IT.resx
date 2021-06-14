@@ -506,4 +506,7 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="EnvironmentAndVariableNameFilterStrategyName" xml:space="preserve">
     <value>Nei nomi dell'ambiente e delle variabili</value>
   </data>
+  <data name="EnvironmentAndVariableNameAndValueFilterStrategyName" xml:space="preserve">
+    <value>Nel nome dell'ambiente e nei nomi e nei valori delle variabili</value>
+  </data>
 </root>
