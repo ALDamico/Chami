@@ -443,10 +443,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 environmentViewModel.EnvironmentVariables.Add(environmentVariable);
             }
 
-            Environments.Add(environmentViewModel);
-            SelectedEnvironment = environmentViewModel;
             EnableEditing();
-            _dataAdapter.InsertEnvironment(environmentViewModel);
+            var inserted = _dataAdapter.InsertEnvironment(environmentViewModel);
+            Environments.Add(inserted);
+            SelectedEnvironment = inserted;
         }
 
         public void DeleteSelectedVariable()
@@ -530,8 +530,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public async Task RenameEnvironment(string argsNewName, Progress<CmdExecutorProgress> progress = null)
         {
-            SelectedEnvironment.Name = argsNewName;
-            var newSelectedEnvironment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            //SelectedEnvironment.Name = argsNewName;
+            var environmentToSave = SelectedEnvironment;
+            environmentToSave.Name = argsNewName;
+            var newSelectedEnvironment = _dataAdapter.SaveEnvironment(environmentToSave);
             Environments = GetEnvironments();
             OnPropertyChanged(nameof(Environments));
 
@@ -541,6 +543,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 ActiveEnvironment = newSelectedEnvironment;
                 await ChangeEnvironmentAsync(progress);
             }
+            SelectedEnvironment.Name = argsNewName;
         }
     }
 }

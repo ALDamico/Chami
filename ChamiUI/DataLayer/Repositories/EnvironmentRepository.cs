@@ -56,7 +56,7 @@ namespace ChamiUI.DataLayer.Repositories
         public Environment GetEnvironmentById(int id)
         {
             var queryString = @"
-                SELECT *
+                SELECT DISTINCT *
                 FROM Environments e
                 LEFT JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
                 WHERE e.EnvironmentId = ?
