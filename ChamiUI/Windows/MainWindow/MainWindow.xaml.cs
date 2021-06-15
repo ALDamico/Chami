@@ -20,6 +20,7 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using ChamiUI.PresentationLayer.Filtering;
+using dotenv.net;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -68,6 +69,8 @@ namespace ChamiUI.Windows.MainWindow
 
         private void ResetProgressBar()
         {
+            //Avoids animating the progressbar when its value is reset to zero.
+            ConsoleProgressBar.BeginAnimation(ProgressBar.ValueProperty, null);
             ConsoleProgressBar.Value = 0.0;
         }
 
@@ -265,7 +268,31 @@ namespace ChamiUI.Windows.MainWindow
 
             if (fileSelected != null && fileSelected.Value)
             {
-                ViewModel.ImportDotEnv(openFileDialog.FileName);
+                var newEnvironmentWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
+                newEnvironmentWindow.EnvironmentSaved += OnEnvironmentSaved;
+                var newEnvironments = new List<EnvironmentViewModel>();
+                foreach (var filePath in openFileDialog.FileNames)
+                {
+                    var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
+                    var environmentViewModel = new EnvironmentViewModel();
+                    environmentViewModel.Name = filePath;
+                    foreach (var variable in newVariables)
+                    {
+                        var environmentVariable = new EnvironmentVariableViewModel();
+                        environmentVariable.Name = variable.Key;
+                        environmentVariable.Value = variable.Value;
+                        environmentViewModel.EnvironmentVariables.Add(environmentVariable);
+                    }
+                
+                    newEnvironments.Add(environmentViewModel);
+
+                
+                    // newEnvironmentWindow.SetEnvironment(environmentViewModel);
+                
+                }
+                newEnvironmentWindow.SetEnvironments(newEnvironments);
+                newEnvironmentWindow.ShowDialog();
+                //ViewModel.ImportDotEnvMultiple(openFileDialog.FileNames);
             }
         }
 

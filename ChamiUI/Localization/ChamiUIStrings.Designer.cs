@@ -675,6 +675,33 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import environments.
+        /// </summary>
+        public static string ImportEnvironmentWindowHeaderTitle_Content {
+            get {
+                return ResourceManager.GetString("ImportEnvironmentWindowHeaderTitle_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ImportEnvironmentWindowSaveButton_Content {
+            get {
+                return ResourceManager.GetString("ImportEnvironmentWindowSaveButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import environments.
+        /// </summary>
+        public static string ImportEnvironmentWindowTitle_Title {
+            get {
+                return ResourceManager.GetString("ImportEnvironmentWindowTitle_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From .env....
         /// </summary>
         public static string ImportFromDotenvMenuItem_Header {

@@ -7,7 +7,7 @@ namespace ChamiUI.BusinessLayer.Factories
         public static OpenFileDialog GetOpenFileDialog(string extensions)
         {
             var openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = false;
+            openFileDialog.Multiselect = true;
             openFileDialog.AddExtension = true;
             openFileDialog.Filter = extensions;
             openFileDialog.CheckPathExists = true;

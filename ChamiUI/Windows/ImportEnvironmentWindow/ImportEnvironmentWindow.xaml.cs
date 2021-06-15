@@ -1,17 +1,37 @@
-using ChamiUI.PresentationLayer.Events;
-using ChamiUI.PresentationLayer.ViewModels;
-using System;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.ViewModels;
 
-namespace ChamiUI.Windows.NewEnvironmentWindow
+namespace ChamiUI.Windows.ImportEnvironmentWindow
 {
-    public partial class NewEnvironmentWindow : Window
+    public partial class ImportEnvironmentWindow : Window
     {
-        public NewEnvironmentWindow()
+        public ImportEnvironmentWindow()
+        {
+            _viewModel = new ImportEnvironmentWindowViewModel();
+            DataContext = _viewModel;
+            InitializeComponent();
+        }
+
+        private ImportEnvironmentWindowViewModel _viewModel;
+        
+        
+
+        public void SetEnvironments(IEnumerable<EnvironmentViewModel> viewModels)
+        {
+            foreach (var viewModel in viewModels)
+            {
+                _viewModel.NewEnvironments.Add(viewModel);
+            }
+        }
+        /*public NewEnvironmentWindow()
         {
             _viewModel = new NewEnvironmentViewModel();
             DataContext = _viewModel;
@@ -24,7 +44,7 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             _viewModel.EnvironmentName = environmentViewModel.Name;
         }
 
-        private readonly NewEnvironmentViewModel _viewModel;
+        private readonly NewEnvironmentViewModel _viewModel;*/
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -49,6 +69,7 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             EnvironmentNameTextbox.Focus();
         }
 
+/*
         private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var inserted = _viewModel.SaveEnvironment();
@@ -74,14 +95,52 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                 && !string.IsNullOrWhiteSpace(_viewModel.EnvironmentName)
             )
             {
-                var inserted = _viewModel.SaveEnvironment();
-                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(inserted));
+                _viewModel.SaveEnvironment();
                 Close();
             }
             else
             {
                 MessageBox.Show(ChamiUIStrings.ValidationFailedMessageBoxText,
                     ChamiUIStrings.ValidationFailedMessageBoxCaption);
+            }
+        }*/
+
+        private void ImportEnvironmentWindowSaveButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            bool canSave = true;
+            if (_viewModel.IsSaveButtonEnabled)
+            {
+                foreach (var environment in _viewModel.NewEnvironments)
+                {
+                    if (!(environment.EnvironmentVariables.All(v => v.IsValid == null || v.IsValid == true) &&
+                          !string.IsNullOrWhiteSpace(environment.Name)))
+                    {
+                        canSave = false;
+                    }
+                    else
+                    {
+                    }
+                }
+
+                if (canSave)
+                {
+                    var inserted = _viewModel.SaveEnvironments();
+                    
+                    foreach (var environment in inserted)
+                    {
+                        EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(environment));                        
+                    }
+                }
+                else
+                {
+                    // TODO use a more descriptive message
+                    MessageBox.Show(ChamiUIStrings.ValidationFailedMessageBoxText,
+                        ChamiUIStrings.ValidationFailedMessageBoxCaption);
+                }
+                
+                
+
+                Close();
             }
         }
     }

@@ -509,4 +509,13 @@ Fix the issues and try saving again.</value>
   <data name="EnvironmentAndVariableNameAndValueFilterStrategyName" xml:space="preserve">
     <value>In environment name and variable names and values</value>
   </data>
+  <data name="ImportEnvironmentWindowHeaderTitle_Content" xml:space="preserve">
+    <value>Import environments</value>
+  </data>
+  <data name="ImportEnvironmentWindowTitle_Title" xml:space="preserve">
+    <value>Import environments</value>
+  </data>
+  <data name="ImportEnvironmentWindowSaveButton_Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
 </root>

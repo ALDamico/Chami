@@ -6,6 +6,7 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using dotenv.net;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -15,6 +16,8 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Filtering;
+using ChamiUI.Windows.ImportEnvironmentWindow;
+using ChamiUI.Windows.NewEnvironmentWindow;
 using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -443,10 +446,45 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 environmentViewModel.EnvironmentVariables.Add(environmentVariable);
             }
 
+            var newEnvironmentWindow = new ImportEnvironmentWindow();
+           // newEnvironmentWindow.SetEnvironment(environmentViewModel);
+            newEnvironmentWindow.ShowDialog();
+
+            /*
             EnableEditing();
             var inserted = _dataAdapter.InsertEnvironment(environmentViewModel);
             Environments.Add(inserted);
             SelectedEnvironment = inserted;
+            */
+        }
+        
+        public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
+
+        public void ImportDotEnvMultiple(IEnumerable<string> filepaths)
+        {
+            var newEnvironmentWindow = new ImportEnvironmentWindow();
+            var newEnvironments = new List<EnvironmentViewModel>();
+            foreach (var filePath in filepaths)
+            {
+                var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
+                var environmentViewModel = new EnvironmentViewModel();
+                environmentViewModel.Name = filePath;
+                foreach (var variable in newVariables)
+                {
+                    var environmentVariable = new EnvironmentVariableViewModel();
+                    environmentVariable.Name = variable.Key;
+                    environmentVariable.Value = variable.Value;
+                    environmentViewModel.EnvironmentVariables.Add(environmentVariable);
+                }
+                
+                newEnvironments.Add(environmentViewModel);
+
+                
+                // newEnvironmentWindow.SetEnvironment(environmentViewModel);
+                
+            }
+            newEnvironmentWindow.SetEnvironments(newEnvironments);
+            newEnvironmentWindow.ShowDialog();
         }
 
         public void DeleteSelectedVariable()
