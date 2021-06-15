@@ -309,7 +309,7 @@
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Label Content="{Binding DisplayName}"
+                        <TextBlock Text="{Binding DisplayName}"
                                FontWeight="{Binding TextFontWeight}"
                                Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
                     </DataTemplate>
