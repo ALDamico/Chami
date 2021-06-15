@@ -25,7 +25,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return Environment;
         }
 
-        public bool SaveEnvironment()
+        public EnvironmentViewModel SaveEnvironment()
         {
             return _dataAdapter.InsertEnvironment(Environment);
         }

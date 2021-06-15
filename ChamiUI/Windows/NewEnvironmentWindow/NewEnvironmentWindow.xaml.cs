@@ -46,7 +46,7 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
         private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var inserted = _viewModel.SaveEnvironment();
-            if (!inserted)
+            if (inserted == null)
             {
                 MessageBox.Show(ChamiUIStrings.UnableToInsertEnvironmentMessageBoxText,
                     ChamiUIStrings.UnableToInsertEnvironmentMessageBoxCaption, MessageBoxButton.OK,

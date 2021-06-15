@@ -62,7 +62,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             return _repository.GetEnvironmentByName(name);
         }
 
-        public bool InsertEnvironment(EnvironmentViewModel environmentViewModel)
+        public EnvironmentViewModel InsertEnvironment(EnvironmentViewModel environmentViewModel)
         {
             var validator = new EnvironmentViewModelValidator();
             var validationResult = validator.Validate(environmentViewModel);
@@ -71,10 +71,10 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var converter = new EnvironmentConverter();
                 var converted = converter.From(environmentViewModel);
                 var inserted = _repository.InsertEnvironment(converted);
-                return inserted != null;
+                return converter.To(inserted);
             }
 
-            return false;
+            return null;
         }
 
         public bool DeleteEnvironment(EnvironmentViewModel selectedEnvironment)
