@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -530,6 +532,20 @@ namespace ChamiUI.Windows.MainWindow
             var newStrategy = e.AddedItems[0] as IFilterStrategy;
             ViewModel.ChangeFilterStrategy(newStrategy);
             RefreshEnvironmentViewSource();
+        }
+        
+        private void MainWindow_OnDrop(object sender, DragEventArgs e)
+        {
+            var paths = e.Data.GetData(DataFormats.FileDrop) as string[];
+            foreach (var path in paths)
+            {
+                if (Regex.IsMatch(path, @"\.env$"))
+                {
+                    Debug.Print("Is env");
+                }
+
+                Debug.Print(path);
+            }
         }
     }
 }

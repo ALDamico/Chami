@@ -17,7 +17,10 @@
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800"
-        StateChanged="MainWindow_OnStateChanged">
+        StateChanged="MainWindow_OnStateChanged"
+        AllowDrop="True"
+        Drop="MainWindow_OnDrop"
+        >
     <Window.InputBindings>
         <KeyBinding
             Key="Escape"
