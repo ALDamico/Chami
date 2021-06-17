@@ -574,5 +574,29 @@ namespace ChamiUI.Windows.MainWindow
                 Debug.Print(path);
             }
         }
+
+        private void ImportCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            if (ViewModel.EditingEnabled)
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        private void ImportCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var fileFilter = "DotEnv Files|*.env|JSON Files|*.json|All supported files|*.env;*.json";
+            var dialog = OpenFileDialogFactory.GetOpenFileDialog(fileFilter, true);
+            var result = dialog.ShowDialog();
+            if (result.HasValue && result == true)
+            {
+                foreach (var fileName in dialog.FileNames)
+                {
+                    FileInfo fInfo = new FileInfo(fileName);
+                    
+                }
+            }
+        }
     }
 }

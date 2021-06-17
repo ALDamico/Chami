@@ -4,10 +4,10 @@ namespace ChamiUI.BusinessLayer.Factories
 {
     public static class OpenFileDialogFactory
     {
-        public static OpenFileDialog GetOpenFileDialog(string extensions)
+        public static OpenFileDialog GetOpenFileDialog(string extensions, bool multiSelect = false)
         {
             var openFileDialog = new OpenFileDialog();
-            openFileDialog.Multiselect = true;
+            openFileDialog.Multiselect = multiSelect;
             openFileDialog.AddExtension = true;
             openFileDialog.Filter = extensions;
             openFileDialog.CheckPathExists = true;
