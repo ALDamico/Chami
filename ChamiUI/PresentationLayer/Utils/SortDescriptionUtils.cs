@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -18,21 +17,23 @@ namespace ChamiUI.PresentationLayer.Utils
                 new SortDescription(nameof(EnvironmentViewModel.AddedOn), ListSortDirection.Ascending);
             SortByDateAddedDescending =
                 new SortDescription(nameof(EnvironmentViewModel.AddedOn), ListSortDirection.Descending);
-            _opposites = new Dictionary<SortDescription, SortDescription>();
-            _opposites[SortByIdAscending] = SortByIdDescending;
-            _opposites[SortByIdDescending] = SortByIdAscending;
-            _opposites[SortByNameAscending] = SortByNameDescending;
-            _opposites[SortByNameDescending] = SortByNameAscending;
-            _opposites[SortByDateAddedAscending] = SortByDateAddedDescending;
-            _opposites[SortByDateAddedDescending] = SortByDateAddedAscending;
+            Opposites = new Dictionary<SortDescription, SortDescription>
+            {
+                [SortByIdAscending] = SortByIdDescending,
+                [SortByIdDescending] = SortByIdAscending,
+                [SortByNameAscending] = SortByNameDescending,
+                [SortByNameDescending] = SortByNameAscending,
+                [SortByDateAddedAscending] = SortByDateAddedDescending,
+                [SortByDateAddedDescending] = SortByDateAddedAscending
+            };
         }
 
         public static SortDescription GetOppositeSorting(SortDescription sortDescription)
         {
-            return _opposites[sortDescription];
+            return Opposites[sortDescription];
         }
 
-        private static Dictionary<SortDescription, SortDescription> _opposites;
+        private static readonly Dictionary<SortDescription, SortDescription> Opposites;
         public static SortDescription SortByNameAscending { get; }
         public static SortDescription SortByNameDescending { get; }
         public static SortDescription SortByIdAscending { get; }

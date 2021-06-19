@@ -2,17 +2,14 @@
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.PresentationLayer.ViewModels;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.IO;
-using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 using ChamiUI.Localization;
@@ -20,14 +17,13 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using ChamiUI.PresentationLayer.Filtering;
-using dotenv.net;
 
 namespace ChamiUI.Windows.MainWindow
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         public MainWindow()
         {
@@ -54,7 +50,7 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        public MainWindowViewModel ViewModel { get; set; }
+        private MainWindowViewModel ViewModel { get; set; }
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
@@ -70,7 +66,7 @@ namespace ChamiUI.Windows.MainWindow
         private void ResetProgressBar()
         {
             //Avoids animating the progressbar when its value is reset to zero.
-            ConsoleProgressBar.BeginAnimation(ProgressBar.ValueProperty, null);
+            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, null);
             ConsoleProgressBar.Value = 0.0;
         }
 
@@ -130,7 +126,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             var duration = DurationFactory.FromMilliseconds(250);
             DoubleAnimation doubleAnimation = new DoubleAnimation(o.Percentage, duration);
-            ConsoleProgressBar.BeginAnimation(ProgressBar.ValueProperty, doubleAnimation);
+            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, doubleAnimation);
             ConsoleProgressBar.Value = o.Percentage;
         }
 
@@ -191,14 +187,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void NewEnvironmentCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.EditingEnabled)
-            {
-                e.CanExecute = false;
-            }
-            else
-            {
-                e.CanExecute = true;
-            }
+            e.CanExecute = !ViewModel.EditingEnabled;
         }
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -215,33 +204,6 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        private void ImportFromJsonMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var openFileDialog = OpenFileDialogFactory.GetOpenFileDialog("Json files|*.json");
-            var fileSelected = openFileDialog.ShowDialog();
-
-            if (fileSelected != null && fileSelected.Value)
-            {
-                var file = openFileDialog.OpenFile();
-                try
-                {
-                    ViewModel.ImportJson(file);
-                }
-                catch (JsonSerializationException ex)
-                {
-                    MessageBox.Show(ChamiUIStrings.JsonDeserializationErrorMessageBoxText,
-                        ChamiUIStrings.JsonDeserializationErrorMessageBoxCaption, MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                    if (ViewModel.Settings.LoggingSettings.LoggingEnabled)
-                    {
-                        var logger = ((App.Current) as ChamiUI.App).GetLogger();
-                        logger.Error(ex.Message);
-                        logger.Error(ex.StackTrace);
-                    }
-                }
-            }
-        }
-
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             var childWindow = new SettingsWindow.SettingsWindow();
@@ -252,48 +214,14 @@ namespace ChamiUI.Windows.MainWindow
         private void OnSettingsSaved(object sender, SettingsSavedEventArgs args)
         {
             ViewModel.Settings = args.Settings;
-            (App.Current as ChamiUI.App).Settings = args.Settings;
-            (App.Current as ChamiUI.App).InitLocalization();
+
+            ((App) Application.Current).Settings = args.Settings;
+            ((App) Application.Current)?.InitLocalization();
         }
 
         private void BackupEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.BackupEnvironment();
-        }
-
-        private void ImportFromDotenvMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var openFileDialog = OpenFileDialogFactory.GetOpenFileDialog("DotEnv files|*.env");
-            var fileSelected = openFileDialog.ShowDialog();
-
-            if (fileSelected != null && fileSelected.Value)
-            {
-                var newEnvironmentWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
-                newEnvironmentWindow.EnvironmentSaved += OnEnvironmentSaved;
-                var newEnvironments = new List<EnvironmentViewModel>();
-                foreach (var filePath in openFileDialog.FileNames)
-                {
-                    var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
-                    var environmentViewModel = new EnvironmentViewModel();
-                    environmentViewModel.Name = filePath;
-                    foreach (var variable in newVariables)
-                    {
-                        var environmentVariable = new EnvironmentVariableViewModel();
-                        environmentVariable.Name = variable.Key;
-                        environmentVariable.Value = variable.Value;
-                        environmentViewModel.EnvironmentVariables.Add(environmentVariable);
-                    }
-                
-                    newEnvironments.Add(environmentViewModel);
-
-                
-                    // newEnvironmentWindow.SetEnvironment(environmentViewModel);
-                
-                }
-                newEnvironmentWindow.SetEnvironments(newEnvironments);
-                newEnvironmentWindow.ShowDialog();
-                //ViewModel.ImportDotEnvMultiple(openFileDialog.FileNames);
-            }
         }
 
         private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -346,7 +274,7 @@ namespace ChamiUI.Windows.MainWindow
             if (response == MessageBoxResult.Yes)
             {
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
-                FocusConsoleTab(true);
+                FocusConsoleTab();
                 await ViewModel.ResetEnvironmentAsync(progress);
             }
         }
@@ -385,14 +313,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void UndoEditing_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.EditingEnabled)
-            {
-                e.CanExecute = true;
-            }
-            else
-            {
-                e.CanExecute = false;
-            }
+            e.CanExecute = ViewModel.EditingEnabled;
 
             e.Handled = true;
         }
@@ -402,7 +323,7 @@ namespace ChamiUI.Windows.MainWindow
             ViewModel.ResetCurrentEnvironmentFromDatasource();
         }
 
-        private void MainWindow_OnStateChanged(object? sender, EventArgs e)
+        private void MainWindow_OnStateChanged(object sender, EventArgs e)
         {
             if (WindowState == WindowState.Minimized)
             {
@@ -431,9 +352,10 @@ namespace ChamiUI.Windows.MainWindow
         private void RenameEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var currentName = ViewModel.SelectedEnvironment.Name;
-            var childWindow = new RenameEnvironmentWindow.RenameEnvironmentWindow(currentName);
-            childWindow.Owner = this;
-            childWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            var childWindow = new RenameEnvironmentWindow.RenameEnvironmentWindow(currentName)
+            {
+                Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner
+            };
             childWindow.EnvironmentRenamed += OnEnvironmentRenamed;
             childWindow.ShowDialog();
         }
@@ -560,26 +482,16 @@ namespace ChamiUI.Windows.MainWindow
             ViewModel.ChangeFilterStrategy(newStrategy);
             RefreshEnvironmentViewSource();
         }
-        
+
         private void MainWindow_OnDrop(object sender, DragEventArgs e)
         {
             var data = e.Data.GetData(DataFormats.FileDrop) as string[];
             DoEnvironmentImporting(data);
         }
 
-        private void ImportCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-            if (ViewModel.EditingEnabled)
-            {
-                e.CanExecute = false;
-            }
-        }
-
         private void DoEnvironmentImporting(string[] filenames)
         {
-            List<EnvironmentViewModel> viewModels = new List<EnvironmentViewModel>();
-            viewModels = ViewModel.StartImportFiles(filenames);
+            List<EnvironmentViewModel> viewModels = ViewModel.StartImportFiles(filenames);
 
             var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
             importWindow.EnvironmentSaved += OnEnvironmentSaved;
@@ -599,9 +511,8 @@ namespace ChamiUI.Windows.MainWindow
 
         private void ImportEnvironmentsCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            string allowedExtensions = string.Format("{0}|*.env|{1}|*.json|{2}|*.env;*.json",
-                ChamiUIStrings.DotEnvFileDialogDescription, ChamiUIStrings.JsonFileDialogDescription,
-                ChamiUIStrings.AllSupportedFilesFileDialogDescription);
+            string allowedExtensions =
+                $"{ChamiUIStrings.DotEnvFileDialogDescription}|*.env|{ChamiUIStrings.JsonFileDialogDescription}|*.json|{ChamiUIStrings.AllSupportedFilesFileDialogDescription}|*.env;*.json";
             var dialog = OpenFileDialogFactory.GetOpenFileDialog(allowedExtensions, true);
             dialog.ShowDialog(this);
             DoEnvironmentImporting(dialog.FileNames);
