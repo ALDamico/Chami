@@ -563,16 +563,8 @@ namespace ChamiUI.Windows.MainWindow
         
         private void MainWindow_OnDrop(object sender, DragEventArgs e)
         {
-            var paths = e.Data.GetData(DataFormats.FileDrop) as string[];
-            foreach (var path in paths)
-            {
-                if (Regex.IsMatch(path, @"\.env$"))
-                {
-                    Debug.Print("Is env");
-                }
-
-                Debug.Print(path);
-            }
+            var data = e.Data.GetData(DataFormats.FileDrop) as string[];
+            DoEnvironmentImporting(data);
         }
 
         private void ImportCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -584,20 +576,17 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        private void ImportCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        private void DoEnvironmentImporting(string[] filenames)
         {
-            var fileFilter = "DotEnv Files|*.env|JSON Files|*.json|All supported files|*.env;*.json";
-            var dialog = OpenFileDialogFactory.GetOpenFileDialog(fileFilter, true);
-            var result = dialog.ShowDialog();
-            if (result.HasValue && result == true)
-            {
-                foreach (var fileName in dialog.FileNames)
-                {
-                    FileInfo fInfo = new FileInfo(fileName);
-                    
-                }
-            }
+            List<EnvironmentViewModel> viewModels = new List<EnvironmentViewModel>();
+            viewModels = ViewModel.StartImportFiles(filenames);
+
+            var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
+            importWindow.EnvironmentSaved += OnEnvironmentSaved;
+            importWindow.SetEnvironments(viewModels);
+            importWindow.ShowDialog();
         }
+
 
         private void ImportEnvironmentsCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -615,16 +604,7 @@ namespace ChamiUI.Windows.MainWindow
                 ChamiUIStrings.AllSupportedFilesFileDialogDescription);
             var dialog = OpenFileDialogFactory.GetOpenFileDialog(allowedExtensions, true);
             dialog.ShowDialog(this);
-            List<EnvironmentViewModel> viewModels = new List<EnvironmentViewModel>();
-            if (dialog.FileNames.Length > 0)
-            {
-                viewModels = ViewModel.StartImportFiles(dialog.FileNames);
-            }
-
-            var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
-            importWindow.EnvironmentSaved += OnEnvironmentSaved;
-            importWindow.SetEnvironments(viewModels);
-            importWindow.ShowDialog();
+            DoEnvironmentImporting(dialog.FileNames);
         }
     }
 }
