@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using NetOffice.ExcelApi;
+using NetOffice.Exceptions;
 using Environment = ChamiUI.DataLayer.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer.Exporters
@@ -146,7 +147,14 @@ namespace ChamiUI.BusinessLayer.Exporters
         {
             if (_workbook != null)
             {
-                _workbook.Close();
+                try
+                {
+                    _workbook.Close();
+                }
+                catch (MethodCOMException ex)
+                {
+                    // The workbook was already closed
+                }
             }
             
             _excelApplication.Quit();

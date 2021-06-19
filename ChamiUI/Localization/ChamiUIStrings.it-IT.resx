@@ -509,4 +509,28 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="EnvironmentAndVariableNameAndValueFilterStrategyName" xml:space="preserve">
     <value>Nel nome dell'ambiente e nei nomi e nei valori delle variabili</value>
   </data>
+  <data name="ImportEnvironmentWindowHeaderTitle_Content" xml:space="preserve">
+    <value>Importa ambienti</value>
+  </data>
+  <data name="ImportEnvironmentWindowTitle_Title" xml:space="preserve">
+    <value>Importa ambienti</value>
+  </data>
+  <data name="ImportEnvironmentWindowSaveButton_Content" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="DotEnvFileDialogDescription" xml:space="preserve">
+    <value>File dotEnv</value>
+  </data>
+  <data name="JsonFileDialogDescription" xml:space="preserve">
+    <value>File Json</value>
+  </data>
+  <data name="AllSupportedFilesFileDialogDescription" xml:space="preserve">
+    <value>Tutti i formati supportati</value>
+  </data>
+  <data name="FeatureNotSupportedExceptionMessage" xml:space="preserve">
+    <value>Funzionalità non supportata!</value>
+  </data>
+  <data name="EnvironmentReaderFactoryNotSupportedMessage" xml:space="preserve">
+    <value>La conversione dal formato {0} non è supportata.</value>
+  </data>
 </root>

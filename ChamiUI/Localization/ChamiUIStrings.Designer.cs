@@ -160,6 +160,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All supported formats.
+        /// </summary>
+        public static string AllSupportedFilesFileDialogDescription {
+            get {
+                return ResourceManager.GetString("AllSupportedFilesFileDialogDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string ApplyEnvironmentButton_Tooltip {
@@ -349,6 +358,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to dotEnv files.
+        /// </summary>
+        public static string DotEnvFileDialogDescription {
+            get {
+                return ResourceManager.GetString("DotEnvFileDialogDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EditEnvironmentMenuItem_Header {
@@ -399,6 +417,15 @@ namespace ChamiUI.Localization {
         public static string EnvironmentNameValidationErrorMessage {
             get {
                 return ResourceManager.GetString("EnvironmentNameValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conversion from format {0} is not supported..
+        /// </summary>
+        public static string EnvironmentReaderFactoryNotSupportedMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentReaderFactoryNotSupportedMessage", resourceCulture);
             }
         }
         
@@ -558,6 +585,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Feature not supported!.
+        /// </summary>
+        public static string FeatureNotSupportedExceptionMessage {
+            get {
+                return ResourceManager.GetString("FeatureNotSupportedExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string FilteringAdvancedOptionsGroupBox_Header {
@@ -675,6 +711,33 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Import environments.
+        /// </summary>
+        public static string ImportEnvironmentWindowHeaderTitle_Content {
+            get {
+                return ResourceManager.GetString("ImportEnvironmentWindowHeaderTitle_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string ImportEnvironmentWindowSaveButton_Content {
+            get {
+                return ResourceManager.GetString("ImportEnvironmentWindowSaveButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Import environments.
+        /// </summary>
+        public static string ImportEnvironmentWindowTitle_Title {
+            get {
+                return ResourceManager.GetString("ImportEnvironmentWindowTitle_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to From .env....
         /// </summary>
         public static string ImportFromDotenvMenuItem_Header {
@@ -717,6 +780,15 @@ namespace ChamiUI.Localization {
         public static string JsonDeserializationErrorMessageBoxText {
             get {
                 return ResourceManager.GetString("JsonDeserializationErrorMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Json Files.
+        /// </summary>
+        public static string JsonFileDialogDescription {
+            get {
+                return ResourceManager.GetString("JsonFileDialogDescription", resourceCulture);
             }
         }
         

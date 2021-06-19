@@ -18,6 +18,12 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             InitializeComponent();
         }
 
+        public void SetEnvironment(EnvironmentViewModel environmentViewModel)
+        {
+            _viewModel.Environment = environmentViewModel;
+            _viewModel.EnvironmentName = environmentViewModel.Name;
+        }
+
         private readonly NewEnvironmentViewModel _viewModel;
 
         protected override void OnClosing(CancelEventArgs e)
@@ -68,7 +74,8 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                 && !string.IsNullOrWhiteSpace(_viewModel.EnvironmentName)
             )
             {
-                _viewModel.SaveEnvironment();
+                var inserted = _viewModel.SaveEnvironment();
+                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(inserted));
                 Close();
             }
             else

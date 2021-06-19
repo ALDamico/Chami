@@ -1,0 +1,7 @@
+{
+  "name": "Test environment",
+  "environmentVariables": {
+    "USER": "ChamiUser",
+    "PASSWORD": "Passw0rd!"
+  }
+}

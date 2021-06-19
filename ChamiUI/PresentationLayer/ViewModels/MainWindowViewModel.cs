@@ -6,6 +6,7 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using dotenv.net;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
@@ -15,6 +16,8 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Filtering;
+using ChamiUI.Windows.ImportEnvironmentWindow;
+using ChamiUI.Windows.NewEnvironmentWindow;
 using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -389,6 +392,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void ImportJson(Stream file)
         {
+            /*
             var environmentJsonProcessor = new EnvironmentJsonReader(file);
             var environment = environmentJsonProcessor.Process();
             if (environment == null) return;
@@ -397,7 +401,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Environments.Add(environment);
                 SelectedEnvironment = environment;
                 EnableEditing();
-            }
+            }*/
         }
 
         private string _windowTitle = "Chami";
@@ -432,21 +436,33 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void ImportDotEnv(string filePath)
         {
-            var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
-            var environmentViewModel = new EnvironmentViewModel();
-            environmentViewModel.Name = filePath;
-            foreach (var variable in newVariables)
-            {
-                var environmentVariable = new EnvironmentVariableViewModel();
-                environmentVariable.Name = variable.Key;
-                environmentVariable.Value = variable.Value;
-                environmentViewModel.EnvironmentVariables.Add(environmentVariable);
-            }
+            var newEnvironmentWindow = new ImportEnvironmentWindow();
+            newEnvironmentWindow.ShowDialog();
+        }
+        
+        public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
 
-            EnableEditing();
-            var inserted = _dataAdapter.InsertEnvironment(environmentViewModel);
-            Environments.Add(inserted);
-            SelectedEnvironment = inserted;
+        public void ImportDotEnvMultiple(IEnumerable<string> filepaths)
+        {
+            var newEnvironmentWindow = new ImportEnvironmentWindow();
+            var newEnvironments = new List<EnvironmentViewModel>();
+            foreach (var filePath in filepaths)
+            {
+                var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
+                var environmentViewModel = new EnvironmentViewModel();
+                environmentViewModel.Name = filePath;
+                foreach (var variable in newVariables)
+                {
+                    var environmentVariable = new EnvironmentVariableViewModel();
+                    environmentVariable.Name = variable.Key;
+                    environmentVariable.Value = variable.Value;
+                    environmentViewModel.EnvironmentVariables.Add(environmentVariable);
+                }
+                
+                newEnvironments.Add(environmentViewModel);
+            }
+            newEnvironmentWindow.SetEnvironments(newEnvironments);
+            newEnvironmentWindow.ShowDialog();
         }
 
         public void DeleteSelectedVariable()
@@ -544,6 +560,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 await ChangeEnvironmentAsync(progress);
             }
             SelectedEnvironment.Name = argsNewName;
+        }
+
+        public List<EnvironmentViewModel> StartImportFiles(string[] dialogFileNames)
+        {
+            List<EnvironmentViewModel> output = new List<EnvironmentViewModel>();
+            foreach (var fileName in dialogFileNames)
+            {
+                var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
+                var viewModel = reader.Process();
+                output.Add(viewModel);
+            }
+
+            return output;
         }
     }
 }

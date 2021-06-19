@@ -33,6 +33,18 @@
       <Content Include="InputFiles\Migrations\0002_add_index.sql">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="InputFiles\chami-sample.json" />
+      <Content Include="InputFiles\chami-sample.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="InputFiles\chami-sample-multiple.json" />
+      <Content Include="InputFiles\chami-sample-multiple.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="OutputFiles" />
     </ItemGroup>
 
 </Project>

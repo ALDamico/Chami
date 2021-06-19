@@ -7,7 +7,9 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Diagnostics;
 using System.IO;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,6 +20,7 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using ChamiUI.PresentationLayer.Filtering;
+using dotenv.net;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -265,7 +268,31 @@ namespace ChamiUI.Windows.MainWindow
 
             if (fileSelected != null && fileSelected.Value)
             {
-                ViewModel.ImportDotEnv(openFileDialog.FileName);
+                var newEnvironmentWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
+                newEnvironmentWindow.EnvironmentSaved += OnEnvironmentSaved;
+                var newEnvironments = new List<EnvironmentViewModel>();
+                foreach (var filePath in openFileDialog.FileNames)
+                {
+                    var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
+                    var environmentViewModel = new EnvironmentViewModel();
+                    environmentViewModel.Name = filePath;
+                    foreach (var variable in newVariables)
+                    {
+                        var environmentVariable = new EnvironmentVariableViewModel();
+                        environmentVariable.Name = variable.Key;
+                        environmentVariable.Value = variable.Value;
+                        environmentViewModel.EnvironmentVariables.Add(environmentVariable);
+                    }
+                
+                    newEnvironments.Add(environmentViewModel);
+
+                
+                    // newEnvironmentWindow.SetEnvironment(environmentViewModel);
+                
+                }
+                newEnvironmentWindow.SetEnvironments(newEnvironments);
+                newEnvironmentWindow.ShowDialog();
+                //ViewModel.ImportDotEnvMultiple(openFileDialog.FileNames);
             }
         }
 
@@ -532,6 +559,52 @@ namespace ChamiUI.Windows.MainWindow
             var newStrategy = e.AddedItems[0] as IFilterStrategy;
             ViewModel.ChangeFilterStrategy(newStrategy);
             RefreshEnvironmentViewSource();
+        }
+        
+        private void MainWindow_OnDrop(object sender, DragEventArgs e)
+        {
+            var data = e.Data.GetData(DataFormats.FileDrop) as string[];
+            DoEnvironmentImporting(data);
+        }
+
+        private void ImportCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            if (ViewModel.EditingEnabled)
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        private void DoEnvironmentImporting(string[] filenames)
+        {
+            List<EnvironmentViewModel> viewModels = new List<EnvironmentViewModel>();
+            viewModels = ViewModel.StartImportFiles(filenames);
+
+            var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
+            importWindow.EnvironmentSaved += OnEnvironmentSaved;
+            importWindow.SetEnvironments(viewModels);
+            importWindow.ShowDialog();
+        }
+
+
+        private void ImportEnvironmentsCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            if (ViewModel.EditingEnabled)
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        private void ImportEnvironmentsCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            string allowedExtensions = string.Format("{0}|*.env|{1}|*.json|{2}|*.env;*.json",
+                ChamiUIStrings.DotEnvFileDialogDescription, ChamiUIStrings.JsonFileDialogDescription,
+                ChamiUIStrings.AllSupportedFilesFileDialogDescription);
+            var dialog = OpenFileDialogFactory.GetOpenFileDialog(allowedExtensions, true);
+            dialog.ShowDialog(this);
+            DoEnvironmentImporting(dialog.FileNames);
         }
     }
 }

@@ -17,7 +17,10 @@
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         Height="450" Width="800"
-        StateChanged="MainWindow_OnStateChanged">
+        StateChanged="MainWindow_OnStateChanged"
+        AllowDrop="True"
+        Drop="MainWindow_OnDrop"
+        >
     <Window.InputBindings>
         <KeyBinding
             Key="Escape"
@@ -116,6 +119,11 @@
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                         CanExecute="FocusFilterTextboxCommandBinding_OnCanExecute"
                         Executed="FocusFilterTextboxCommandBinding_OnExecuted" />
+        <CommandBinding x:Name="ImportEnvironmentsCommandBinding" 
+                        Command="Open"
+                        CanExecute="ImportEnvironmentsCommandBinding_OnCanExecute"
+                        Executed="ImportEnvironmentsCommandBinding_OnExecuted"
+                        ></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -140,13 +148,10 @@
                           x:Name="SaveEnvironmentMenuItem"
                           Command="Save" />
                 <MenuItem Header="{lex:Loc}"
-                          x:Name="ImportMenuItem">
-                    <MenuItem Header="{lex:Loc}"
-                              x:Name="ImportFromDotenvMenuItem"
-                              Click="ImportFromDotenvMenuItem_OnClick" />
-                    <MenuItem Header="{lex:Loc}"
-                              x:Name="ImportFromJsonMenuItem"
-                              Click="ImportFromJsonMenuItem_OnClick" />
+                          x:Name="ImportMenuItem"
+                          Command="Open"
+                          >
+                    
                 </MenuItem>
                 <MenuItem Header="{lex:Loc}"
                           x:Name="ExportMenuItem"

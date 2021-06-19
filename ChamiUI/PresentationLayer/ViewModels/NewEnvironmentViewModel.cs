@@ -4,37 +4,34 @@ using ChamiUI.BusinessLayer.Validators;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class NewEnvironmentViewModel : ViewModelBase
+    public class NewEnvironmentViewModel : NewEnvironmentViewModelBase
     {
-        public NewEnvironmentViewModel()
+        public NewEnvironmentViewModel():base()
         {
             Environment = new EnvironmentViewModel();
-            _dataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
-            _validator = new EnvironmentViewModelValidator();
-        
         }
 
-        private EnvironmentViewModelValidator _validator;
+        
 
-        private EnvironmentDataAdapter _dataAdapter;
+        
         private EnvironmentViewModel _environment;
 
         public EnvironmentViewModel GetInsertedEnvironment()
         {
-            Environment = _dataAdapter.GetEnvironmentByName(EnvironmentName);
+            Environment = DataAdapter.GetEnvironmentByName(EnvironmentName);
             return Environment;
         }
 
         public EnvironmentViewModel SaveEnvironment()
         {
-            return _dataAdapter.InsertEnvironment(Environment);
+            return DataAdapter.InsertEnvironment(Environment);
         }
 
-        public bool IsSaveButtonEnabled
+        public override bool IsSaveButtonEnabled
         {
             get
             {
-                var validationResult = _validator.Validate(Environment);
+                var validationResult = Validator.Validate(Environment);
                 return validationResult.IsValid;
             }
         }
