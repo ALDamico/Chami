@@ -518,4 +518,13 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="ImportEnvironmentWindowSaveButton_Content" xml:space="preserve">
     <value>Salva</value>
   </data>
+  <data name="DotEnvFileDialogDescription" xml:space="preserve">
+    <value>File dotEnv</value>
+  </data>
+  <data name="JsonFileDialogDescription" xml:space="preserve">
+    <value>File Json</value>
+  </data>
+  <data name="AllSupportedFilesFileDialogDescription" xml:space="preserve">
+    <value>Tutti i formati supportati</value>
+  </data>
 </root>

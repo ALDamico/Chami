@@ -119,10 +119,10 @@
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                         CanExecute="FocusFilterTextboxCommandBinding_OnCanExecute"
                         Executed="FocusFilterTextboxCommandBinding_OnExecuted" />
-        <CommandBinding x:Name="ImportCommandBinding"
-                        CanExecute="ImportCommandBinding_OnCanExecute"
-                        Executed="ImportCommandBinding_OnExecuted"
+        <CommandBinding x:Name="ImportEnvironmentsCommandBinding" 
                         Command="Open"
+                        CanExecute="ImportEnvironmentsCommandBinding_OnCanExecute"
+                        Executed="ImportEnvironmentsCommandBinding_OnExecuted"
                         ></CommandBinding>
     </Window.CommandBindings>
     <Grid>
@@ -148,7 +148,9 @@
                           x:Name="SaveEnvironmentMenuItem"
                           Command="Save" />
                 <MenuItem Header="{lex:Loc}"
-                          x:Name="ImportMenuItem" Command="Open">
+                          x:Name="ImportMenuItem"
+                          Command="Open"
+                          >
                     
                 </MenuItem>
                 <MenuItem Header="{lex:Loc}"

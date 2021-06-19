@@ -160,6 +160,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All supported formats.
+        /// </summary>
+        public static string AllSupportedFilesFileDialogDescription {
+            get {
+                return ResourceManager.GetString("AllSupportedFilesFileDialogDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string ApplyEnvironmentButton_Tooltip {
@@ -345,6 +354,15 @@ namespace ChamiUI.Localization {
         public static string DetectorMessageBoxTextPart2 {
             get {
                 return ResourceManager.GetString("DetectorMessageBoxTextPart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to dotEnv files.
+        /// </summary>
+        public static string DotEnvFileDialogDescription {
+            get {
+                return ResourceManager.GetString("DotEnvFileDialogDescription", resourceCulture);
             }
         }
         
@@ -744,6 +762,15 @@ namespace ChamiUI.Localization {
         public static string JsonDeserializationErrorMessageBoxText {
             get {
                 return ResourceManager.GetString("JsonDeserializationErrorMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Json Files.
+        /// </summary>
+        public static string JsonFileDialogDescription {
+            get {
+                return ResourceManager.GetString("JsonFileDialogDescription", resourceCulture);
             }
         }
         

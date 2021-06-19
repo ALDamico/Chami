@@ -598,5 +598,27 @@ namespace ChamiUI.Windows.MainWindow
                 }
             }
         }
+
+        private void ImportEnvironmentsCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+            if (ViewModel.EditingEnabled)
+            {
+                e.CanExecute = false;
+            }
+        }
+
+        private void ImportEnvironmentsCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            string allowedExtensions = string.Format("{0}|*.env|{1}|*.json|{2}|*.env;*.json",
+                ChamiUIStrings.DotEnvFileDialogDescription, ChamiUIStrings.JsonFileDialogDescription,
+                ChamiUIStrings.AllSupportedFilesFileDialogDescription);
+            var dialog = OpenFileDialogFactory.GetOpenFileDialog(allowedExtensions, true);
+            dialog.ShowDialog(this);
+            if (dialog.FileNames.Length > 0)
+            {
+                ViewModel.StartImportFiles(dialog.FileNames);
+            }
+        }
     }
 }

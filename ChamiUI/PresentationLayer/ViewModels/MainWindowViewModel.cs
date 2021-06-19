@@ -583,5 +583,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
             SelectedEnvironment.Name = argsNewName;
         }
+
+        public void StartImportFiles(string[] dialogFileNames)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

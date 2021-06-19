@@ -39,8 +39,16 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Row="2" Grid.Column="0" Margin="0, 0, 5, 0" ItemsSource="{Binding NewEnvironments}"
-                 SelectedItem="{Binding SelectedEnvironment}" DisplayMemberPath="Name" />
+        <ListBox Grid.Row="2" 
+                 Grid.Column="0" Margin="0, 0, 5, 0" 
+                 ItemsSource="{Binding NewEnvironments}"
+                 SelectedItem="{Binding SelectedEnvironment}" >
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock ToolTip="{Binding DisplayName}" Text="{Binding Name}" />
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
         <Label Grid.Row="0"
                Grid.Column="0"

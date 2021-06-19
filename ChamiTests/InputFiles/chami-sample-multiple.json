@@ -1,0 +1,23 @@
+[
+  {
+    "Name": "SomeName",
+    "EnvironmentVariables": {
+      "USER": "SomeUser",
+      "PASSWORD": "SUPERSECRET!"
+    }
+  },
+  {
+    "Name": "SomeName2",
+    "EnvironmentVariables": {
+      "USER": "SomeUser2",
+      "PASSWORD": "SUPERSECRET!"
+    }
+  },
+  {
+    "Name": "SomeName3",
+    "EnvironmentVariables": {
+      "USER": "SomeUser3",
+      "PASSWORD": "SUPERSECRET!"
+    }
+  }
+]

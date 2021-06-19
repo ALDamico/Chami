@@ -30,21 +30,12 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
             {
                 _viewModel.NewEnvironments.Add(viewModel);
             }
-        }
-        /*public NewEnvironmentWindow()
-        {
-            _viewModel = new NewEnvironmentViewModel();
-            DataContext = _viewModel;
-            InitializeComponent();
-        }
 
-        public void SetEnvironment(EnvironmentViewModel environmentViewModel)
-        {
-            _viewModel.Environment = environmentViewModel;
-            _viewModel.EnvironmentName = environmentViewModel.Name;
+            if (_viewModel.SelectedEnvironment == null)
+            {
+                _viewModel.SelectedEnvironment = _viewModel.NewEnvironments[0];
+            }
         }
-
-        private readonly NewEnvironmentViewModel _viewModel;*/
 
         protected override void OnClosing(CancelEventArgs e)
         {
@@ -59,6 +50,7 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
+            
             Close();
         }
 
@@ -68,42 +60,6 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
         {
             EnvironmentNameTextbox.Focus();
         }
-
-/*
-        private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            var inserted = _viewModel.SaveEnvironment();
-            if (inserted == null)
-            {
-                MessageBox.Show(ChamiUIStrings.UnableToInsertEnvironmentMessageBoxText,
-                    ChamiUIStrings.UnableToInsertEnvironmentMessageBoxCaption, MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-            else
-            {
-                var insertedEnvironment = _viewModel.GetInsertedEnvironment();
-                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(insertedEnvironment));
-            }
-
-            Close();
-        }
-
-        private void NewEnvironmentWindowSaveButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (_viewModel.IsSaveButtonEnabled &&
-                _viewModel.Environment.EnvironmentVariables.All(v => v.IsValid == null || v.IsValid == true)
-                && !string.IsNullOrWhiteSpace(_viewModel.EnvironmentName)
-            )
-            {
-                _viewModel.SaveEnvironment();
-                Close();
-            }
-            else
-            {
-                MessageBox.Show(ChamiUIStrings.ValidationFailedMessageBoxText,
-                    ChamiUIStrings.ValidationFailedMessageBoxCaption);
-            }
-        }*/
 
         private void ImportEnvironmentWindowSaveButton_OnClick(object sender, RoutedEventArgs e)
         {
@@ -116,9 +72,6 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
                           !string.IsNullOrWhiteSpace(environment.Name)))
                     {
                         canSave = false;
-                    }
-                    else
-                    {
                     }
                 }
 
@@ -137,8 +90,6 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
                     MessageBox.Show(ChamiUIStrings.ValidationFailedMessageBoxText,
                         ChamiUIStrings.ValidationFailedMessageBoxCaption);
                 }
-                
-                
 
                 Close();
             }
