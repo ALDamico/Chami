@@ -533,4 +533,19 @@ Fix the issues and try saving again.</value>
   <data name="EnvironmentReaderFactoryNotSupportedMessage" xml:space="preserve">
     <value>Conversion from format {0} is not supported.</value>
   </data>
+  <data name="DetectAppplicationsGroupbox_Header" xml:space="preserve">
+    <value>Detect applications</value>
+  </data>
+  <data name="DetectApplicationsCheckboxLabel_Content" xml:space="preserve">
+    <value>Enable detecting the following applications are running</value>
+  </data>
+  <data name="AddApplicationButton_Content" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AppNameLabel_Content" xml:space="preserve">
+    <value>App name</value>
+  </data>
+  <data name="AddWatchedApplicationNullApplicationNameErrorMessage" xml:space="preserve">
+    <value>Specify an application to watch for!</value>
+  </data>
 </root>

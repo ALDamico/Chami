@@ -533,4 +533,19 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="EnvironmentReaderFactoryNotSupportedMessage" xml:space="preserve">
     <value>La conversione dal formato {0} non è supportata.</value>
   </data>
+  <data name="DetectAppplicationsGroupbox_Header" xml:space="preserve">
+    <value>Rileva applicazioni</value>
+  </data>
+  <data name="DetectApplicationsCheckboxLabel_Content" xml:space="preserve">
+    <value>Abilita il rilevamento dell'esecuzione delle seguenti applicazioni</value>
+  </data>
+  <data name="AddApplicationButton_Content" xml:space="preserve">
+    <value>Aggiungi</value>
+  </data>
+  <data name="AppNameLabel_Content" xml:space="preserve">
+    <value>Nome app</value>
+  </data>
+  <data name="AddWatchedApplicationNullApplicationNameErrorMessage" xml:space="preserve">
+    <value>Occorre specificare un'applicazione da rilevare!</value>
+  </data>
 </root>

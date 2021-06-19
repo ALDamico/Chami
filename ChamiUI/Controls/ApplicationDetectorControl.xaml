@@ -6,6 +6,7 @@
     xmlns:local="clr-namespace:ChamiUI.Controls"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+    xmlns:lex="http://wpflocalizeextension.codeplex.com"
     d:DataContext="{d:DesignInstance vm:WatchedApplicationControlViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
@@ -23,7 +24,8 @@
         <GroupBox
             Grid.Row="0"
             Grid.Column="0"
-            Header="Detect applications">
+            x:Name="DetectAppplicationsGroupbox"
+            Header="{lex:Loc}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -41,7 +43,8 @@
                         <Label
                             Margin="0,-5,0,0"
                             HorizontalContentAlignment="Center"
-                            Content="Enable detecting the following applications are running" />
+                            x:Name="DetectApplicationsCheckboxLabel"
+                            Content="{lex:Loc}" />
                     </CheckBox>
 
                 </StackPanel>
@@ -49,9 +52,10 @@
                     Grid.Row="1"
                     Grid.Column="0"
                     Orientation="Horizontal">
-                    <Label Content="App name" />
+                    <Label x:Name="AppNameLabel" Content="{lex:Loc}" />
                     <TextBox
                         Width="150"
+                        VerticalContentAlignment="Center"
                         IsEnabled="{Binding ControlsEnabled}"
                         Text="{Binding NewApplicationName, UpdateSourceTrigger=PropertyChanged}" />
                     <Button
@@ -59,7 +63,7 @@
                         MinWidth="55"
                         Margin="10,0,0,0"
                         Click="AddApplicationButton_OnClick"
-                        Content="Add"
+                        Content="{lex:Loc}"
                         IsEnabled="{Binding ControlsEnabled}" />
                 </StackPanel>
                 <ListBox

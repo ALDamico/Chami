@@ -133,6 +133,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddApplicationButton_Content {
+            get {
+                return ResourceManager.GetString("AddApplicationButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify an application to watch for!.
+        /// </summary>
+        public static string AddWatchedApplicationNullApplicationNameErrorMessage {
+            get {
+                return ResourceManager.GetString("AddWatchedApplicationNullApplicationNameErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorting.
         /// </summary>
         public static string AdvancedSortAndFilterOptionsExpander_Header {
@@ -174,6 +192,15 @@ namespace ChamiUI.Localization {
         public static string ApplyEnvironmentButton_Tooltip {
             get {
                 return ResourceManager.GetString("ApplyEnvironmentButton_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to App name.
+        /// </summary>
+        public static string AppNameLabel_Content {
+            get {
+                return ResourceManager.GetString("AppNameLabel_Content", resourceCulture);
             }
         }
         
@@ -318,6 +345,24 @@ namespace ChamiUI.Localization {
         public static string DescendingSortingCheckBox_Content {
             get {
                 return ResourceManager.GetString("DescendingSortingCheckBox_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable detecting the following applications are running.
+        /// </summary>
+        public static string DetectApplicationsCheckboxLabel_Content {
+            get {
+                return ResourceManager.GetString("DetectApplicationsCheckboxLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detect applications.
+        /// </summary>
+        public static string DetectAppplicationsGroupbox_Header {
+            get {
+                return ResourceManager.GetString("DetectAppplicationsGroupbox_Header", resourceCulture);
             }
         }
         
