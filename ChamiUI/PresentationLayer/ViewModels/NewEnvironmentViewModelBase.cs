@@ -16,6 +16,5 @@ namespace ChamiUI.PresentationLayer.ViewModels
         protected EnvironmentDataAdapter DataAdapter { get; }
         
         public abstract bool IsSaveButtonEnabled { get;  }
-        public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
     }
 }

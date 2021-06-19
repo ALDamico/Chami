@@ -4,7 +4,6 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
-using dotenv.net;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,16 +15,13 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Filtering;
-using ChamiUI.Windows.ImportEnvironmentWindow;
-using ChamiUI.Windows.NewEnvironmentWindow;
-using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
         private bool _editingEnabled;
-        public CollectionViewSource EnvironmentsViewSource { get; }
+        private CollectionViewSource EnvironmentsViewSource { get; }
 
         public bool EditingEnabled
         {
@@ -111,20 +107,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EditingEnabled = false;
             if (Environments.Any())
             {
-                if (ActiveEnvironment != null)
-                {
-                    SelectedEnvironment = ActiveEnvironment;
-                }
-                else
-                {
-                    SelectedEnvironment = Environments.First();
-                }
+                SelectedEnvironment = ActiveEnvironment ?? Environments.First();
             }
 
             Settings = GetSettingsViewModel();
-            EnvironmentsViewSource = new CollectionViewSource();
-            EnvironmentsViewSource.Source = Environments;
-            
+            EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
+
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
             
@@ -157,13 +145,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
 
-        public bool ExecuteButtonEnabled
-        {
-            get => SelectedEnvironment != null && !EditingEnabled && !_isChangeInProgress;
-        }
+        public bool ExecuteButtonEnabled => SelectedEnvironment != null && !EditingEnabled && !_isChangeInProgress;
 
-        private SettingsDataAdapter _settingsDataAdapter;
-        private WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
+        private readonly SettingsDataAdapter _settingsDataAdapter;
+        private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
 
         private SettingsViewModel GetSettingsViewModel()
         {
@@ -194,11 +179,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             foreach (var environment in Environments)
             {
-                environment.IsActive = false;
-                if (ActiveEnvironment != null && ActiveEnvironment.Name == environment.Name)
-                {
-                    environment.IsActive = true;
-                }
+                environment.IsActive = ActiveEnvironment != null && ActiveEnvironment.Name == environment.Name;
             }
         }
 
@@ -332,7 +313,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private EnvironmentVariableViewModel _selectedVariable;
 
-        public ObservableCollection<EnvironmentViewModel> GetEnvironments()
+        private ObservableCollection<EnvironmentViewModel> GetEnvironments()
         {
             Environments = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
             return Environments;
@@ -348,7 +329,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var applicationDetector =
                     new RunningApplicationDetector(watchedApplicationSettings.WatchedApplications);
                 var detectedApplications = applicationDetector.Detect();
-                if (detectedApplications != null && detectedApplications.Count > 0)
+                if (detectedApplications is {Count: > 0})
                 {
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.AppendLine(
@@ -390,20 +371,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public event EventHandler<EnvironmentExistingEventArgs> EnvironmentExists;
 
-        public void ImportJson(Stream file)
-        {
-            /*
-            var environmentJsonProcessor = new EnvironmentJsonReader(file);
-            var environment = environmentJsonProcessor.Process();
-            if (environment == null) return;
-            if (!CheckEnvironmentExists(environment))
-            {
-                Environments.Add(environment);
-                SelectedEnvironment = environment;
-                EnableEditing();
-            }*/
-        }
-
         private string _windowTitle = "Chami";
 
         public string WindowTitle
@@ -432,37 +399,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void BackupEnvironment()
         {
             _dataAdapter.BackupEnvironment();
-        }
-
-        public void ImportDotEnv(string filePath)
-        {
-            var newEnvironmentWindow = new ImportEnvironmentWindow();
-            newEnvironmentWindow.ShowDialog();
-        }
-        
-        public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
-
-        public void ImportDotEnvMultiple(IEnumerable<string> filepaths)
-        {
-            var newEnvironmentWindow = new ImportEnvironmentWindow();
-            var newEnvironments = new List<EnvironmentViewModel>();
-            foreach (var filePath in filepaths)
-            {
-                var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
-                var environmentViewModel = new EnvironmentViewModel();
-                environmentViewModel.Name = filePath;
-                foreach (var variable in newVariables)
-                {
-                    var environmentVariable = new EnvironmentVariableViewModel();
-                    environmentVariable.Name = variable.Key;
-                    environmentVariable.Value = variable.Value;
-                    environmentViewModel.EnvironmentVariables.Add(environmentVariable);
-                }
-                
-                newEnvironments.Add(environmentViewModel);
-            }
-            newEnvironmentWindow.SetEnvironments(newEnvironments);
-            newEnvironmentWindow.ShowDialog();
         }
 
         public void DeleteSelectedVariable()
@@ -520,8 +456,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         internal EnvironmentVariableViewModel CreateEnvironmentVariable()
         {
-            var newVariable = new EnvironmentVariableViewModel();
-            newVariable.Environment = SelectedEnvironment;
+            var newVariable = new EnvironmentVariableViewModel {Environment = SelectedEnvironment};
             SelectedVariable = newVariable;
             //SelectedEnvironment.EnvironmentVariables.Add(newVariable);
             return newVariable;
