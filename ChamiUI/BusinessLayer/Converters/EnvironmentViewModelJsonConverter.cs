@@ -56,16 +56,6 @@ namespace ChamiUI.BusinessLayer.Converters
             return viewModel;
         }
 
-        private bool IsNameValuePair(JObject jObject)
-        {
-            if (jObject.GetValue("name") != null && jObject.GetValue("value", StringComparison.InvariantCultureIgnoreCase) != null)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(EnvironmentViewModel) ||
