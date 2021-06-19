@@ -88,7 +88,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public override bool Equals(object? obj)
+        public override bool Equals(object obj)
         {
             var environmentViewModel2 = obj as EnvironmentViewModel;
             if (environmentViewModel2 == null)

@@ -1,7 +1,5 @@
 using System;
-using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
-using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -19,8 +17,8 @@ namespace ChamiUI.BusinessLayer.Converters
             {
                 return;
             }
-            JObject jObjectToWrite = new JObject();
-            jObjectToWrite.Add("name", viewModel.Name);
+
+            JObject jObjectToWrite = new JObject {{"name", viewModel.Name}};
             var environmentVariablesObject = new JObject();
             jObjectToWrite.Add("environmentVariables", environmentVariablesObject);
             foreach (var environmentVariable in viewModel.EnvironmentVariables)
@@ -34,20 +32,20 @@ namespace ChamiUI.BusinessLayer.Converters
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);
-            var viewModel = new EnvironmentViewModel();
-            viewModel.Name = jObject.GetValue("name", StringComparison.InvariantCultureIgnoreCase).ToString();
-            var environmentVariablesJObject =
-                jObject.GetValue("environmentvariables", StringComparison.InvariantCultureIgnoreCase) as JObject;
-            if (environmentVariablesJObject != null)
+            var viewModel = new EnvironmentViewModel
             {
-                bool isNameValuePair = true;
-                //var isNameValuePair = IsNameValuePair(environmentVariablesJObject[0])
+                Name = jObject.GetValue("name", StringComparison.InvariantCultureIgnoreCase).ToString()
+            };
+            if (jObject.GetValue("environmentvariables", StringComparison.InvariantCultureIgnoreCase) is JObject environmentVariablesJObject)
+            {
                 foreach (var environmentVariable in environmentVariablesJObject)
                 {
-                    var environmentVariableViewModel = new EnvironmentVariableViewModel();
-                    environmentVariableViewModel.Environment = viewModel;
-                    environmentVariableViewModel.Name = environmentVariable.Key;
-                    environmentVariableViewModel.Value = environmentVariable.Value.ToString();
+                    var environmentVariableViewModel = new EnvironmentVariableViewModel
+                    {
+                        Environment = viewModel,
+                        Name = environmentVariable.Key,
+                        Value = environmentVariable.Value.ToString()
+                    };
                     viewModel.EnvironmentVariables.Add(environmentVariableViewModel);
                 }
             }

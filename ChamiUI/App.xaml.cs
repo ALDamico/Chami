@@ -26,7 +26,7 @@ namespace ChamiUI
     /// <summary>
     /// Interaction logic for App.xaml
     /// </summary>
-    public partial class App : Application
+    public partial class App
     {
         public App()
         {
@@ -69,7 +69,7 @@ namespace ChamiUI
             migrationExecutor.Migrate();
         }
 
-        public ChamiLogger Logger { get; }
+        private ChamiLogger Logger { get; }
 
         public SettingsViewModel Settings { get; set; }
 
@@ -88,8 +88,8 @@ namespace ChamiUI
             if (Settings.LoggingSettings.LoggingEnabled)
             {
                 var logger = Logger.GetLogger();
-                logger.Error(exceptionMessage);
-                logger.Error(args.Exception.StackTrace);
+                logger.Error("{Message}",exceptionMessage);
+                logger.Error("{Message}", args.Exception.StackTrace);
             }
         }
 
@@ -98,11 +98,11 @@ namespace ChamiUI
             return Logger.GetLogger();
         }
 
-        private TaskbarIcon _taskbarIcon;
+        private readonly TaskbarIcon _taskbarIcon;
 
         private void DetectOtherInstance()
         {
-            var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly().Location);
+            var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly()?.Location);
             var otherInstances = Process.GetProcessesByName(processName)
                 .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
             if (otherInstances.Length > 1)
@@ -115,7 +115,7 @@ namespace ChamiUI
             }
         }
 
-        private async void App_OnStartup(object sender, StartupEventArgs e)
+        private void App_OnStartup(object sender, StartupEventArgs e)
         {
             InitLocalization();
             DetectOtherInstance();

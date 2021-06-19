@@ -151,7 +151,7 @@ namespace ChamiUI.BusinessLayer.Exporters
                 {
                     _workbook.Close();
                 }
-                catch (MethodCOMException ex)
+                catch (MethodCOMException)
                 {
                     // The workbook was already closed
                 }

@@ -6,13 +6,13 @@ namespace ChamiUI.Taskbar.Commands
 {
     public class HideWindowCommand:ICommand
     {
-        public bool CanExecute(object? parameter)
+        public bool CanExecute(object parameter)
         {
             return Application.Current.MainWindow != null &&
                    Application.Current.MainWindow.Visibility.Equals(Visibility.Visible);
         }
 
-        public void Execute(object? parameter)
+        public void Execute(object parameter)
         {
             var mainWindow = Application.Current.MainWindow;
 

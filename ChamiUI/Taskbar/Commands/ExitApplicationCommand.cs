@@ -5,12 +5,12 @@ namespace ChamiUI.Taskbar.Commands
 {
     public class ExitApplicationCommand : ICommand
     {
-        public bool CanExecute(object? parameter)
+        public bool CanExecute(object parameter)
         {
             return true;
         }
 
-        public void Execute(object? parameter)
+        public void Execute(object parameter)
         {
             Environment.Exit(0);
         }

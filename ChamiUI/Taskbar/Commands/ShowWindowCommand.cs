@@ -7,13 +7,13 @@ namespace ChamiUI.Taskbar.Commands
 {
     public class ShowWindowCommand:ICommand
     {
-        public bool CanExecute(object? parameter)
+        public bool CanExecute(object parameter)
         {
             return Application.Current.MainWindow == null ||
                    Application.Current.MainWindow.Visibility.Equals(Visibility.Hidden);
         }
 
-        public void Execute(object? parameter)
+        public void Execute(object parameter)
         {
             var mainWindow = new MainWindow();
             Application.Current.MainWindow = mainWindow;
