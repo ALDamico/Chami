@@ -1,6 +1,7 @@
 using System;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
+using Microsoft.Extensions.FileSystemGlobbing.Internal.PathSegments;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -8,16 +9,30 @@ namespace ChamiUI.BusinessLayer.Converters
 {
     public class EnvironmentViewModelJsonConverter:JsonConverter
     {
-        public override bool CanWrite => false;
+        public override bool CanWrite => true;
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            throw new NotImplementedException();
+            var viewModel = value as EnvironmentViewModel;
+            
+            if (viewModel == null)
+            {
+                return;
+            }
+            JObject jObjectToWrite = new JObject();
+            jObjectToWrite.Add("name", viewModel.Name);
+            var environmentVariablesObject = new JObject();
+            jObjectToWrite.Add("environmentVariables", environmentVariablesObject);
+            foreach (var environmentVariable in viewModel.EnvironmentVariables)
+            {
+                environmentVariablesObject.Add(environmentVariable.Name, environmentVariable.Value);
+            }
+
+            jObjectToWrite.WriteTo(writer);
         }
 
         public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
         {
-           // JToken rootObject = JToken.Load(reader);
             JObject jObject = JObject.Load(reader);
             var viewModel = new EnvironmentViewModel();
             viewModel.Name = jObject.GetValue("name", StringComparison.InvariantCultureIgnoreCase).ToString();
@@ -29,18 +44,11 @@ namespace ChamiUI.BusinessLayer.Converters
                 //var isNameValuePair = IsNameValuePair(environmentVariablesJObject[0])
                 foreach (var environmentVariable in environmentVariablesJObject)
                 {
-                    if (isNameValuePair)
-                    {
-                        var environmentVariableViewModel = new EnvironmentVariableViewModel();
-                        environmentVariableViewModel.Environment = viewModel;
-                        environmentVariableViewModel.Name = environmentVariable.Key;
-                        environmentVariableViewModel.Value = environmentVariable.Value.ToString();
-                        viewModel.EnvironmentVariables.Add(environmentVariableViewModel);
-                    }
-                    else
-                    {
-                        
-                    }
+                    var environmentVariableViewModel = new EnvironmentVariableViewModel();
+                    environmentVariableViewModel.Environment = viewModel;
+                    environmentVariableViewModel.Name = environmentVariable.Key;
+                    environmentVariableViewModel.Value = environmentVariable.Value.ToString();
+                    viewModel.EnvironmentVariables.Add(environmentVariableViewModel);
                 }
             }
             
@@ -56,11 +64,6 @@ namespace ChamiUI.BusinessLayer.Converters
             }
 
             return false;
-        }
-
-        public EnvironmentViewModel ReadJsonAsEnvironmentViewModel(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
-        {
-            return ReadJson(reader, objectType, existingValue, serializer) as EnvironmentViewModel;
         }
 
         public override bool CanConvert(Type objectType)
