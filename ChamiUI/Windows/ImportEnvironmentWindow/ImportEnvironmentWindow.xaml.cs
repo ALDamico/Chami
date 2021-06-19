@@ -3,15 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.ImportEnvironmentWindow
 {
-    public partial class ImportEnvironmentWindow : Window
+    public partial class ImportEnvironmentWindow
     {
         public ImportEnvironmentWindow()
         {
@@ -20,9 +18,7 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
             InitializeComponent();
         }
 
-        private ImportEnvironmentWindowViewModel _viewModel;
-        
-        
+        private readonly ImportEnvironmentWindowViewModel _viewModel;
 
         public void SetEnvironments(IEnumerable<EnvironmentViewModel> viewModels)
         {
@@ -31,10 +27,7 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
                 _viewModel.NewEnvironments.Add(viewModel);
             }
 
-            if (_viewModel.SelectedEnvironment == null)
-            {
-                _viewModel.SelectedEnvironment = _viewModel.NewEnvironments[0];
-            }
+            _viewModel.SelectedEnvironment ??= _viewModel.NewEnvironments[0];
         }
 
         protected override void OnClosing(CancelEventArgs e)

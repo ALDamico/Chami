@@ -4,12 +4,11 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
-using System.Windows.Input;
 using ChamiUI.Localization;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
 {
-    public partial class NewEnvironmentWindow : Window
+    public partial class NewEnvironmentWindow
     {
         public NewEnvironmentWindow()
         {
@@ -47,24 +46,6 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
         private void NewEnvironmentWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             EnvironmentNameTextbox.Focus();
-        }
-
-        private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            var inserted = _viewModel.SaveEnvironment();
-            if (inserted == null)
-            {
-                MessageBox.Show(ChamiUIStrings.UnableToInsertEnvironmentMessageBoxText,
-                    ChamiUIStrings.UnableToInsertEnvironmentMessageBoxCaption, MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-            else
-            {
-                var insertedEnvironment = _viewModel.GetInsertedEnvironment();
-                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(insertedEnvironment));
-            }
-
-            Close();
         }
 
         private void NewEnvironmentWindowSaveButton_OnClick(object sender, RoutedEventArgs e)

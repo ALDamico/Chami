@@ -6,7 +6,7 @@ using System.Windows.Controls;
 
 namespace ChamiUI.Windows.SettingsWindow
 {
-    public partial class SettingsWindow : Window
+    public partial class SettingsWindow
     {
         private readonly SettingsWindowViewModel _settingsWindowViewModel;
 
