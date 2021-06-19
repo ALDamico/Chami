@@ -527,4 +527,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="AllSupportedFilesFileDialogDescription" xml:space="preserve">
     <value>Tutti i formati supportati</value>
   </data>
+  <data name="FeatureNotSupportedExceptionMessage" xml:space="preserve">
+    <value>Funzionalità non supportata!</value>
+  </data>
+  <data name="EnvironmentReaderFactoryNotSupportedMessage" xml:space="preserve">
+    <value>La conversione dal formato {0} non è supportata.</value>
+  </data>
 </root>

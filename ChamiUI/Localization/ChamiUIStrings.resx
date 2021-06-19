@@ -527,4 +527,10 @@ Fix the issues and try saving again.</value>
   <data name="AllSupportedFilesFileDialogDescription" xml:space="preserve">
     <value>All supported formats</value>
   </data>
+  <data name="FeatureNotSupportedExceptionMessage" xml:space="preserve">
+    <value>Feature not supported!</value>
+  </data>
+  <data name="EnvironmentReaderFactoryNotSupportedMessage" xml:space="preserve">
+    <value>Conversion from format {0} is not supported.</value>
+  </data>
 </root>

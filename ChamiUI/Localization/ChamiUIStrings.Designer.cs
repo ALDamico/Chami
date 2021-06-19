@@ -421,6 +421,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conversion from format {0} is not supported..
+        /// </summary>
+        public static string EnvironmentReaderFactoryNotSupportedMessage {
+            get {
+                return ResourceManager.GetString("EnvironmentReaderFactoryNotSupportedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The environment variable name contains invalid characters at positions {0}..
         /// </summary>
         public static string EnvironmentVariableNameInvalidCharactersErrorMessage {
@@ -572,6 +581,15 @@ namespace ChamiUI.Localization {
         public static string ExportWindowTitle {
             get {
                 return ResourceManager.GetString("ExportWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Feature not supported!.
+        /// </summary>
+        public static string FeatureNotSupportedExceptionMessage {
+            get {
+                return ResourceManager.GetString("FeatureNotSupportedExceptionMessage", resourceCulture);
             }
         }
         

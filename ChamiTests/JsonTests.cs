@@ -34,8 +34,7 @@ namespace ChamiTests
         public void TestReading()
         {
             var inputFile = "D:/code/Chami/ChamiTests/InputFiles/chami-sample.json";
-            var stream = File.Open(inputFile, FileMode.Open);
-            var environmentJsonReader = new EnvironmentJsonReader(stream);
+            var environmentJsonReader = new EnvironmentJsonReader(inputFile);
             var readDocument = environmentJsonReader.Process();
             Assert.NotNull(readDocument.Name);
             Assert.NotEmpty(readDocument.Name);
@@ -45,9 +44,8 @@ namespace ChamiTests
         public void TestReadingMultiple()
         {
             var inputFile = "D:/code/Chami/ChamiTests/InputFiles/chami-sample-multiple.json";
-            var stream = File.Open(inputFile, FileMode.Open);
-            var environmentJsonReader = new EnvironmentJsonReader(stream);
-            List<EnvironmentViewModel> readDocuments = environmentJsonReader.ProcessMultiple();
+            var environmentJsonReader = new EnvironmentJsonReader(inputFile);
+            List<EnvironmentViewModel> readDocuments = environmentJsonReader.ProcessMultiple() as List<EnvironmentViewModel>;
             foreach (var readDocument in readDocuments)
             {
                 Assert.NotNull(readDocument.Name);

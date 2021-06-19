@@ -392,6 +392,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void ImportJson(Stream file)
         {
+            /*
             var environmentJsonProcessor = new EnvironmentJsonReader(file);
             var environment = environmentJsonProcessor.Process();
             if (environment == null) return;
@@ -400,7 +401,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Environments.Add(environment);
                 SelectedEnvironment = environment;
                 EnableEditing();
-            }
+            }*/
         }
 
         private string _windowTitle = "Chami";
@@ -435,27 +436,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void ImportDotEnv(string filePath)
         {
-            var newVariables = DotEnv.Fluent().WithEnvFiles(new[] {filePath}).Read();
-            var environmentViewModel = new EnvironmentViewModel();
-            environmentViewModel.Name = filePath;
-            foreach (var variable in newVariables)
-            {
-                var environmentVariable = new EnvironmentVariableViewModel();
-                environmentVariable.Name = variable.Key;
-                environmentVariable.Value = variable.Value;
-                environmentViewModel.EnvironmentVariables.Add(environmentVariable);
-            }
-
             var newEnvironmentWindow = new ImportEnvironmentWindow();
-           // newEnvironmentWindow.SetEnvironment(environmentViewModel);
             newEnvironmentWindow.ShowDialog();
-
-            /*
-            EnableEditing();
-            var inserted = _dataAdapter.InsertEnvironment(environmentViewModel);
-            Environments.Add(inserted);
-            SelectedEnvironment = inserted;
-            */
         }
         
         public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
@@ -478,10 +460,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 }
                 
                 newEnvironments.Add(environmentViewModel);
-
-                
-                // newEnvironmentWindow.SetEnvironment(environmentViewModel);
-                
             }
             newEnvironmentWindow.SetEnvironments(newEnvironments);
             newEnvironmentWindow.ShowDialog();
@@ -584,9 +562,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment.Name = argsNewName;
         }
 
-        public void StartImportFiles(string[] dialogFileNames)
+        public List<EnvironmentViewModel> StartImportFiles(string[] dialogFileNames)
         {
-            throw new NotImplementedException();
+            List<EnvironmentViewModel> output = new List<EnvironmentViewModel>();
+            foreach (var fileName in dialogFileNames)
+            {
+                var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
+                var viewModel = reader.Process();
+                output.Add(viewModel);
+            }
+
+            return output;
         }
     }
 }

@@ -615,10 +615,16 @@ namespace ChamiUI.Windows.MainWindow
                 ChamiUIStrings.AllSupportedFilesFileDialogDescription);
             var dialog = OpenFileDialogFactory.GetOpenFileDialog(allowedExtensions, true);
             dialog.ShowDialog(this);
+            List<EnvironmentViewModel> viewModels = new List<EnvironmentViewModel>();
             if (dialog.FileNames.Length > 0)
             {
-                ViewModel.StartImportFiles(dialog.FileNames);
+                viewModels = ViewModel.StartImportFiles(dialog.FileNames);
             }
+
+            var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
+            importWindow.EnvironmentSaved += OnEnvironmentSaved;
+            importWindow.SetEnvironments(viewModels);
+            importWindow.ShowDialog();
         }
     }
 }
