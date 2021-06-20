@@ -475,6 +475,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable logging.
+        /// </summary>
+        public static string EnableLoggingLabel_Content {
+            get {
+                return ResourceManager.GetString("EnableLoggingLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In environment name and variable names and values.
         /// </summary>
         public static string EnvironmentAndVariableNameAndValueFilterStrategyName {
@@ -987,6 +996,15 @@ namespace ChamiUI.Localization {
         public static string LoggingCategory {
             get {
                 return ResourceManager.GetString("LoggingCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logging.
+        /// </summary>
+        public static string LoggingGroupBox_Header {
+            get {
+                return ResourceManager.GetString("LoggingGroupBox_Header", resourceCulture);
             }
         }
         

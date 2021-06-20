@@ -590,4 +590,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="BackgroundColorPicker_StandardTabHeader" xml:space="preserve">
     <value>Standard</value>
   </data>
+  <data name="LoggingGroupBox_Header" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="EnableLoggingLabel_Content" xml:space="preserve">
+    <value>Abilita il log</value>
+  </data>
 </root>

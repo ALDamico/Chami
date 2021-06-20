@@ -590,4 +590,10 @@ Fix the issues and try saving again.</value>
   <data name="BackgroundColorPicker_StandardTabHeader" xml:space="preserve">
     <value>Standard</value>
   </data>
+  <data name="LoggingGroupBox_Header" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="EnableLoggingLabel_Content" xml:space="preserve">
+    <value>Enable logging</value>
+  </data>
 </root>

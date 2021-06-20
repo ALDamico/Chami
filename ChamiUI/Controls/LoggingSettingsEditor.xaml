@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:ChamiUI.Controls"
              xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
              d:DataContext="{d:DesignInstance vm:LoggingSettingsViewModel, IsDesignTimeCreatable=True}"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
@@ -15,7 +16,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <GroupBox Header="Logging">
+        <GroupBox x:Name="LoggingGroupBox" Header="{lex:Loc}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
@@ -24,8 +25,13 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Content="Enable logging"/>
-                <CheckBox Grid.Row="0" Grid.Column="1" IsChecked="{Binding LoggingEnabled}"></CheckBox>
+                <Label Grid.Row="0" 
+                       Grid.Column="0" 
+                       x:Name="EnableLoggingLabel"
+                       Content="{lex:Loc}"/>
+                <CheckBox Grid.Row="0" 
+                          Grid.Column="1" 
+                          IsChecked="{Binding LoggingEnabled}"></CheckBox>
             </Grid>
         </GroupBox>
     </Grid>
