@@ -6,35 +6,43 @@
              xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
              d:DataContext="{d:DesignInstance vm:SafeVariableViewModel, IsDesignTimeCreatable=True}"
              xmlns:local="clr-namespace:ChamiUI.Controls"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">
-    <Grid IsEnabled="False" ToolTip="This feature is currently unavailable.">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <GroupBox Header="Safety">
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-                <Label Grid.Row="0" 
-                       Grid.Column="0" 
-                       Content="Enable safety features"/>
-                <CheckBox Grid.Row="0" 
-                          Grid.Column="1" 
-                          IsChecked="{Binding EnableSafeVars}"></CheckBox>
-                <Label Grid.Row="1" Grid.Column="0" Content="Variables"></Label>
-                <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ForbiddenVariables}"></DataGrid>
-            </Grid>
-        </GroupBox>
-    </Grid>
+    <StackPanel x:Name="DisabledSafetyFeatureStackPanel" ToolTip="{lex:Loc}">
+        <Grid IsEnabled="False">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <GroupBox x:Name="SafetyGroupbox" Header="{lex:Loc}">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Row="0" 
+                           Grid.Column="0" 
+                           x:Name="EnableSafetyFeaturesLabel"
+                           Content="{lex:Loc}"/>
+                    <CheckBox Grid.Row="0" 
+                              Grid.Column="1" 
+                              IsChecked="{Binding EnableSafeVars}"></CheckBox>
+                    <Label Grid.Row="1" 
+                           Grid.Column="0" 
+                           x:Name="SafetyFeaturesVariablesLabel"
+                           Content="{lex:Loc}"></Label>
+                    <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ForbiddenVariables}"></DataGrid>
+                </Grid>
+            </GroupBox>
+        </Grid>
+    </StackPanel>
+    
 </UserControl>

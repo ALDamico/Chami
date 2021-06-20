@@ -596,4 +596,16 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="EnableLoggingLabel_Content" xml:space="preserve">
     <value>Abilita il log</value>
   </data>
+  <data name="DisabledSafetyFeatureStackPanel_ToolTip" xml:space="preserve">
+    <value>Questa caratteristica non è al momento disponibile.</value>
+  </data>
+  <data name="SafetyGroupbox_Header" xml:space="preserve">
+    <value>Sicurezza</value>
+  </data>
+  <data name="EnableSafetyFeaturesLabel_Content" xml:space="preserve">
+    <value>Abilita le caratteristiche di sicurezza</value>
+  </data>
+  <data name="SafetyFeaturesVariablesLabel_Content" xml:space="preserve">
+    <value>Variabili</value>
+  </data>
 </root>

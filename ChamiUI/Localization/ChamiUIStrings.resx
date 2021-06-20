@@ -596,4 +596,16 @@ Fix the issues and try saving again.</value>
   <data name="EnableLoggingLabel_Content" xml:space="preserve">
     <value>Enable logging</value>
   </data>
+  <data name="DisabledSafetyFeatureStackPanel_ToolTip" xml:space="preserve">
+    <value>This feature is currently unavailable.</value>
+  </data>
+  <data name="SafetyGroupbox_Header" xml:space="preserve">
+    <value>Safety</value>
+  </data>
+  <data name="EnableSafetyFeaturesLabel_Content" xml:space="preserve">
+    <value>Enable safety features</value>
+  </data>
+  <data name="SafetyFeaturesVariablesLabel_Content" xml:space="preserve">
+    <value>Variables</value>
+  </data>
 </root>

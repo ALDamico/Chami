@@ -457,6 +457,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This feature is currently unavailable..
+        /// </summary>
+        public static string DisabledSafetyFeatureStackPanel_ToolTip {
+            get {
+                return ResourceManager.GetString("DisabledSafetyFeatureStackPanel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dotEnv files.
         /// </summary>
         public static string DotEnvFileDialogDescription {
@@ -480,6 +489,15 @@ namespace ChamiUI.Localization {
         public static string EnableLoggingLabel_Content {
             get {
                 return ResourceManager.GetString("EnableLoggingLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable safety features.
+        /// </summary>
+        public static string EnableSafetyFeaturesLabel_Content {
+            get {
+                return ResourceManager.GetString("EnableSafetyFeaturesLabel_Content", resourceCulture);
             }
         }
         
@@ -1240,6 +1258,24 @@ namespace ChamiUI.Localization {
         public static string SafetyCategory {
             get {
                 return ResourceManager.GetString("SafetyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        public static string SafetyFeaturesVariablesLabel_Content {
+            get {
+                return ResourceManager.GetString("SafetyFeaturesVariablesLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Safety.
+        /// </summary>
+        public static string SafetyGroupbox_Header {
+            get {
+                return ResourceManager.GetString("SafetyGroupbox_Header", resourceCulture);
             }
         }
         
