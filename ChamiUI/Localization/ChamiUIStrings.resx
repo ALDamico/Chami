@@ -533,4 +533,79 @@ Fix the issues and try saving again.</value>
   <data name="EnvironmentReaderFactoryNotSupportedMessage" xml:space="preserve">
     <value>Conversion from format {0} is not supported.</value>
   </data>
+  <data name="DetectAppplicationsGroupbox_Header" xml:space="preserve">
+    <value>Detect applications</value>
+  </data>
+  <data name="DetectApplicationsCheckboxLabel_Content" xml:space="preserve">
+    <value>Enable detecting the following applications are running</value>
+  </data>
+  <data name="AddApplicationButton_Content" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="AppNameLabel_Content" xml:space="preserve">
+    <value>App name</value>
+  </data>
+  <data name="AddWatchedApplicationNullApplicationNameErrorMessage" xml:space="preserve">
+    <value>Specify an application to watch for!</value>
+  </data>
+  <data name="FgColorLabel_Content" xml:space="preserve">
+    <value>FgColor</value>
+  </data>
+  <data name="FontSizeLabel_Content" xml:space="preserve">
+    <value>Font size</value>
+  </data>
+  <data name="ExampleTextTextBox_Text" xml:space="preserve">
+    <value>Example text...</value>
+  </data>
+  <data name="BgColorLabel_Content" xml:space="preserve">
+    <value>Bg Color</value>
+  </data>
+  <data name="FontLabel_Content" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="ForegroundColorPicker_StandardColorsHeader" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="ForegroundColorPicker_AvailableColorsHeader" xml:space="preserve">
+    <value>Available colors</value>
+  </data>
+  <data name="AppearanceSettingsGroupbox_Header" xml:space="preserve">
+    <value>Console</value>
+  </data>
+  <data name="ForegroundColorPicker_AdvancedTabHeader" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="ForegroundColorPicker_StandardTabHeader" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="BackgroundColorPicker_AvailableColorsHeader" xml:space="preserve">
+    <value>Available colors</value>
+  </data>
+  <data name="BackgroundColorPicker_StandardColorsHeader" xml:space="preserve">
+    <value>Standard colors</value>
+  </data>
+  <data name="BackgroundColorPicker_AdvancedTabHeader" xml:space="preserve">
+    <value>Advanced</value>
+  </data>
+  <data name="BackgroundColorPicker_StandardTabHeader" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="LoggingGroupBox_Header" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="EnableLoggingLabel_Content" xml:space="preserve">
+    <value>Enable logging</value>
+  </data>
+  <data name="DisabledSafetyFeatureStackPanel_ToolTip" xml:space="preserve">
+    <value>This feature is currently unavailable.</value>
+  </data>
+  <data name="SafetyGroupbox_Header" xml:space="preserve">
+    <value>Safety</value>
+  </data>
+  <data name="EnableSafetyFeaturesLabel_Content" xml:space="preserve">
+    <value>Enable safety features</value>
+  </data>
+  <data name="SafetyFeaturesVariablesLabel_Content" xml:space="preserve">
+    <value>Variables</value>
+  </data>
 </root>

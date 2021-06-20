@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System;
+using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -30,7 +31,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             if (string.IsNullOrWhiteSpace(NewApplicationName))
             {
-                throw new InvalidOperationException("Specify an application to watch for!");
+                throw new InvalidOperationException(ChamiUIStrings.AddWatchedApplicationNullApplicationNameErrorMessage);
             }
             var name = NewApplicationName;
             if (WatchedApplications.Any(wa => wa.Name == name))

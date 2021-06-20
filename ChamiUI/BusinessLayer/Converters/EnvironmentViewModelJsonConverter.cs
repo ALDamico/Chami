@@ -5,14 +5,14 @@ using Newtonsoft.Json.Linq;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
-    public class EnvironmentViewModelJsonConverter:JsonConverter
+    public class EnvironmentViewModelJsonConverter : JsonConverter
     {
         public override bool CanWrite => true;
 
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
             var viewModel = value as EnvironmentViewModel;
-            
+
             if (viewModel == null)
             {
                 return;
@@ -29,14 +29,16 @@ namespace ChamiUI.BusinessLayer.Converters
             jObjectToWrite.WriteTo(writer);
         }
 
-        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue,
+            JsonSerializer serializer)
         {
             JObject jObject = JObject.Load(reader);
             var viewModel = new EnvironmentViewModel
             {
                 Name = jObject.GetValue("name", StringComparison.InvariantCultureIgnoreCase).ToString()
             };
-            if (jObject.GetValue("environmentvariables", StringComparison.InvariantCultureIgnoreCase) is JObject environmentVariablesJObject)
+            if (jObject.GetValue("environmentvariables", StringComparison.InvariantCultureIgnoreCase) is JObject
+                environmentVariablesJObject)
             {
                 foreach (var environmentVariable in environmentVariablesJObject)
                 {
@@ -49,8 +51,8 @@ namespace ChamiUI.BusinessLayer.Converters
                     viewModel.EnvironmentVariables.Add(environmentVariableViewModel);
                 }
             }
-            
-            
+
+
             return viewModel;
         }
 

@@ -133,6 +133,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        public static string AddApplicationButton_Content {
+            get {
+                return ResourceManager.GetString("AddApplicationButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specify an application to watch for!.
+        /// </summary>
+        public static string AddWatchedApplicationNullApplicationNameErrorMessage {
+            get {
+                return ResourceManager.GetString("AddWatchedApplicationNullApplicationNameErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorting.
         /// </summary>
         public static string AdvancedSortAndFilterOptionsExpander_Header {
@@ -169,6 +187,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Console.
+        /// </summary>
+        public static string AppearanceSettingsGroupbox_Header {
+            get {
+                return ResourceManager.GetString("AppearanceSettingsGroupbox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string ApplyEnvironmentButton_Tooltip {
@@ -178,11 +205,65 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to App name.
+        /// </summary>
+        public static string AppNameLabel_Content {
+            get {
+                return ResourceManager.GetString("AppNameLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string BackgroundColorPicker_AdvancedTabHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_AdvancedTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available colors.
+        /// </summary>
+        public static string BackgroundColorPicker_AvailableColorsHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_AvailableColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard colors.
+        /// </summary>
+        public static string BackgroundColorPicker_StandardColorsHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_StandardColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        public static string BackgroundColorPicker_StandardTabHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_StandardTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup current environment.
         /// </summary>
         public static string BackupEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("BackupEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bg Color.
+        /// </summary>
+        public static string BgColorLabel_Content {
+            get {
+                return ResourceManager.GetString("BgColorLabel_Content", resourceCulture);
             }
         }
         
@@ -322,6 +403,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enable detecting the following applications are running.
+        /// </summary>
+        public static string DetectApplicationsCheckboxLabel_Content {
+            get {
+                return ResourceManager.GetString("DetectApplicationsCheckboxLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detect applications.
+        /// </summary>
+        public static string DetectAppplicationsGroupbox_Header {
+            get {
+                return ResourceManager.GetString("DetectAppplicationsGroupbox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detector.
         /// </summary>
         public static string DetectorCategory {
@@ -358,6 +457,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This feature is currently unavailable..
+        /// </summary>
+        public static string DisabledSafetyFeatureStackPanel_ToolTip {
+            get {
+                return ResourceManager.GetString("DisabledSafetyFeatureStackPanel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dotEnv files.
         /// </summary>
         public static string DotEnvFileDialogDescription {
@@ -372,6 +480,24 @@ namespace ChamiUI.Localization {
         public static string EditEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("EditEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable logging.
+        /// </summary>
+        public static string EnableLoggingLabel_Content {
+            get {
+                return ResourceManager.GetString("EnableLoggingLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable safety features.
+        /// </summary>
+        public static string EnableSafetyFeaturesLabel_Content {
+            get {
+                return ResourceManager.GetString("EnableSafetyFeaturesLabel_Content", resourceCulture);
             }
         }
         
@@ -485,6 +611,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Example text....
+        /// </summary>
+        public static string ExampleTextTextBox_Text {
+            get {
+                return ResourceManager.GetString("ExampleTextTextBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Execution complete.
         /// </summary>
         public static string ExecutionCompleteMessage {
@@ -594,6 +729,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FgColor.
+        /// </summary>
+        public static string FgColorLabel_Content {
+            get {
+                return ResourceManager.GetString("FgColorLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string FilteringAdvancedOptionsGroupBox_Header {
@@ -689,6 +833,60 @@ namespace ChamiUI.Localization {
         public static string FindWindowWhereToSearchLabel_Content {
             get {
                 return ResourceManager.GetString("FindWindowWhereToSearchLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        public static string FontLabel_Content {
+            get {
+                return ResourceManager.GetString("FontLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font size.
+        /// </summary>
+        public static string FontSizeLabel_Content {
+            get {
+                return ResourceManager.GetString("FontSizeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string ForegroundColorPicker_AdvancedTabHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_AdvancedTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available colors.
+        /// </summary>
+        public static string ForegroundColorPicker_AvailableColorsHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_AvailableColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        public static string ForegroundColorPicker_StandardColorsHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_StandardColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        public static string ForegroundColorPicker_StandardTabHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_StandardTabHeader", resourceCulture);
             }
         }
         
@@ -816,6 +1014,15 @@ namespace ChamiUI.Localization {
         public static string LoggingCategory {
             get {
                 return ResourceManager.GetString("LoggingCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Logging.
+        /// </summary>
+        public static string LoggingGroupBox_Header {
+            get {
+                return ResourceManager.GetString("LoggingGroupBox_Header", resourceCulture);
             }
         }
         
@@ -1051,6 +1258,24 @@ namespace ChamiUI.Localization {
         public static string SafetyCategory {
             get {
                 return ResourceManager.GetString("SafetyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        public static string SafetyFeaturesVariablesLabel_Content {
+            get {
+                return ResourceManager.GetString("SafetyFeaturesVariablesLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Safety.
+        /// </summary>
+        public static string SafetyGroupbox_Header {
+            get {
+                return ResourceManager.GetString("SafetyGroupbox_Header", resourceCulture);
             }
         }
         

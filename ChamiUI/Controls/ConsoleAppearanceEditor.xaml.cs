@@ -1,7 +1,9 @@
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
 using System.Windows.Media;
+using ChamiUI.Localization;
 
 namespace ChamiUI.Controls
 {
@@ -11,7 +13,7 @@ namespace ChamiUI.Controls
         {
             _viewModel = viewModel;
             DataContext = viewModel;
-
+            
             InitializeComponent();
             SetColors();
         }
