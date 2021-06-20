@@ -187,6 +187,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Console.
+        /// </summary>
+        public static string AppearanceSettingsGroupbox_Header {
+            get {
+                return ResourceManager.GetString("AppearanceSettingsGroupbox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string ApplyEnvironmentButton_Tooltip {
@@ -205,11 +214,56 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string BackgroundColorPicker_AdvancedTabHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_AdvancedTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available colors.
+        /// </summary>
+        public static string BackgroundColorPicker_AvailableColorsHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_AvailableColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard colors.
+        /// </summary>
+        public static string BackgroundColorPicker_StandardColorsHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_StandardColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        public static string BackgroundColorPicker_StandardTabHeader {
+            get {
+                return ResourceManager.GetString("BackgroundColorPicker_StandardTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup current environment.
         /// </summary>
         public static string BackupEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("BackupEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bg Color.
+        /// </summary>
+        public static string BgColorLabel_Content {
+            get {
+                return ResourceManager.GetString("BgColorLabel_Content", resourceCulture);
             }
         }
         
@@ -530,6 +584,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Example text....
+        /// </summary>
+        public static string ExampleTextTextBox_Text {
+            get {
+                return ResourceManager.GetString("ExampleTextTextBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Execution complete.
         /// </summary>
         public static string ExecutionCompleteMessage {
@@ -639,6 +702,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to FgColor.
+        /// </summary>
+        public static string FgColorLabel_Content {
+            get {
+                return ResourceManager.GetString("FgColorLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string FilteringAdvancedOptionsGroupBox_Header {
@@ -734,6 +806,60 @@ namespace ChamiUI.Localization {
         public static string FindWindowWhereToSearchLabel_Content {
             get {
                 return ResourceManager.GetString("FindWindowWhereToSearchLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        public static string FontLabel_Content {
+            get {
+                return ResourceManager.GetString("FontLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font size.
+        /// </summary>
+        public static string FontSizeLabel_Content {
+            get {
+                return ResourceManager.GetString("FontSizeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced.
+        /// </summary>
+        public static string ForegroundColorPicker_AdvancedTabHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_AdvancedTabHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Available colors.
+        /// </summary>
+        public static string ForegroundColorPicker_AvailableColorsHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_AvailableColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        public static string ForegroundColorPicker_StandardColorsHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_StandardColorsHeader", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Standard.
+        /// </summary>
+        public static string ForegroundColorPicker_StandardTabHeader {
+            get {
+                return ResourceManager.GetString("ForegroundColorPicker_StandardTabHeader", resourceCulture);
             }
         }
         

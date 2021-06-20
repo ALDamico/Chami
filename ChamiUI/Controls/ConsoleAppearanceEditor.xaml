@@ -8,90 +8,104 @@
              xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
              xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
              d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
-             d:DesignHeight="200" d:DesignWidth="405"
-             >
+             d:DesignHeight="200" d:DesignWidth="405">
     <UserControl.Resources>
         <cnv:FontFamilyToNameConverter x:Key="FontFamilyToNameConverter" />
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <GroupBox Grid.Row="0" 
-                  Grid.Column="0" 
+        <GroupBox Grid.Row="0"
+                  Grid.Column="0"
+                  x:Name="AppearanceSettingsGroupbox"
                   Header="Console">
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="Auto"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" 
-                       Grid.Column="0">Font</Label>
-                <ComboBox Grid.Row="0" 
-                          Grid.Column="1" 
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       x:Name="FontLabel"
+                       Content="{lex:Loc}"
+                       >
+                </Label>
+                <ComboBox Grid.Row="0"
+                          Grid.Column="1"
                           SelectedItem="{Binding FontFamily}"
-                          ItemsSource="{Binding FontFamilies}"
-                          >
+                          ItemsSource="{Binding FontFamilies}">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <Label Height="24" Content="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}" 
-                                       FontFamily="{Binding}"></Label>
+                                <TextBlock Height="24"
+                                           Text="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}"
+                                           FontFamily="{Binding}" />
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
                 </ComboBox>
-                <Label Grid.Row="0" 
-                       Grid.Column="2">Font size</Label>
-                <TextBox Grid.Row="0" 
-                         Grid.Column="3" 
+                <Label Grid.Row="0"
+                       x:Name="FontSizeLabel"
+                       Content="{lex:Loc}"
+                       Grid.Column="2" />
+                <TextBox Grid.Row="0"
+                         Grid.Column="3"
                          VerticalContentAlignment="Center"
-                         Text="{Binding FontSize}"></TextBox>
-                <Label Grid.Row="1" 
-                       Grid.Column="0" 
-                       Content="Fg color"></Label>
-                <xctk:ColorPicker HorizontalAlignment="Left" 
-                        Grid.Row="1" 
-                        Grid.Column="1" 
-                        DisplayColorTooltip="True"
-                        x:Name="ForegroundColorPicker"
-                        SelectedColorChanged="ForegroundColorPicker_OnSelectedColorChanged"
-                        >
-                        
-                </xctk:ColorPicker>
-                <Label Grid.Row="1" 
-                       Grid.Column="2" 
-                       Content="Bg color"></Label>
-                <xctk:ColorPicker HorizontalAlignment="Left" 
-                        Grid.Row="1" 
-                        Grid.Column="3"
-                        DisplayColorTooltip="True"
-                        SelectedColorChanged="ColorPicker_OnSelectedColorChanged"
-                        x:Name="BackgroundColorPicker"
-                        >
-                </xctk:ColorPicker>
+                         Text="{Binding FontSize}" />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Content="{lex:Loc}"
+                       x:Name="FgColorLabel" />
+                <xctk:ColorPicker HorizontalAlignment="Left"
+                                  Grid.Row="1"
+                                  Grid.Column="1"
+                                  DisplayColorTooltip="True"
+                                  x:Name="ForegroundColorPicker"
+                                  SelectedColorChanged="ForegroundColorPicker_OnSelectedColorChanged" 
+                                  AvailableColorsHeader="{lex:Loc}"
+                                  StandardColorsHeader="{lex:Loc}"
+                                  AdvancedTabHeader="{lex:Loc}"
+                                  StandardTabHeader="{lex:Loc}"
+                                  />
+                <Label Grid.Row="1"
+                       Grid.Column="2"
+                       x:Name="BgColorLabel"
+                       Content="{lex:Loc}" />
+                <xctk:ColorPicker HorizontalAlignment="Left"
+                                  Grid.Row="1"
+                                  Grid.Column="3"
+                                  DisplayColorTooltip="True"
+                                  SelectedColorChanged="ColorPicker_OnSelectedColorChanged"
+                                  AvailableColorsHeader="{lex:Loc}"
+                                  StandardColorsHeader="{lex:Loc}"
+                                  AdvancedTabHeader="{lex:Loc}"
+                                  StandardTabHeader="{lex:Loc}"
+                                  x:Name="BackgroundColorPicker" />
             </Grid>
         </GroupBox>
-        <GroupBox Grid.Row="1" 
-                  Grid.Column="0" 
+        <GroupBox Grid.Row="1"
+                  Grid.Column="0"
                   Header="Preview">
-            <TextBox Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}" 
-                     Foreground="{Binding ForegroundColor}" 
-                     IsReadOnly="True" 
-                     Text="Example text..." 
-                     FontFamily="{Binding FontFamily}" 
-                     FontSize="{Binding FontSize}"></TextBox>
+            <TextBox Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
+                     Foreground="{Binding ForegroundColor}"
+                     IsReadOnly="True"
+                     x:Name="ExampleTextTextBox"
+                     Text="{lex:Loc}"
+                     FontFamily="{Binding FontFamily}"
+                     FontSize="{Binding FontSize}" />
         </GroupBox>
     </Grid>
 </UserControl>

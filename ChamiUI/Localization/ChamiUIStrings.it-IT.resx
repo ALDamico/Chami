@@ -548,4 +548,46 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="AddWatchedApplicationNullApplicationNameErrorMessage" xml:space="preserve">
     <value>Occorre specificare un'applicazione da rilevare!</value>
   </data>
+  <data name="FgColorLabel_Content" xml:space="preserve">
+    <value>Colore font</value>
+  </data>
+  <data name="FontSizeLabel_Content" xml:space="preserve">
+    <value>Dim. carattere</value>
+  </data>
+  <data name="ExampleTextTextBox_Text" xml:space="preserve">
+    <value>Testo di esempio...</value>
+  </data>
+  <data name="BgColorLabel_Content" xml:space="preserve">
+    <value>Colore sfondo</value>
+  </data>
+  <data name="FontLabel_Content" xml:space="preserve">
+    <value>Carattere</value>
+  </data>
+  <data name="ForegroundColorPicker_StandardColorsHeader" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="ForegroundColorPicker_AvailableColorsHeader" xml:space="preserve">
+    <value>Colori disponibili</value>
+  </data>
+  <data name="AppearanceSettingsGroupbox_Header" xml:space="preserve">
+    <value>Console</value>
+  </data>
+  <data name="ForegroundColorPicker_AdvancedTabHeader" xml:space="preserve">
+    <value>Avanzate</value>
+  </data>
+  <data name="ForegroundColorPicker_StandardTabHeader" xml:space="preserve">
+    <value>Standard</value>
+  </data>
+  <data name="BackgroundColorPicker_AvailableColorsHeader" xml:space="preserve">
+    <value>Colori disponibili</value>
+  </data>
+  <data name="BackgroundColorPicker_StandardColorsHeader" xml:space="preserve">
+    <value>Colori standard</value>
+  </data>
+  <data name="BackgroundColorPicker_AdvancedTabHeader" xml:space="preserve">
+    <value>Avanzate</value>
+  </data>
+  <data name="BackgroundColorPicker_StandardTabHeader" xml:space="preserve">
+    <value>Standard</value>
+  </data>
 </root>
