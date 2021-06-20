@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Resources;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,7 +59,7 @@ namespace ChamiUI.BusinessLayer
             }
         }
 
-        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress)
+        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, CancellationToken cancellationToken)
         {
             var message = ChamiUIStrings.StartingExecutionMessage;
             CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null,  message);
@@ -67,7 +68,7 @@ namespace ChamiUI.BusinessLayer
             {
                 var currentIndex = (float)EnvironmentVariablesToApply.IndexOf(environmentVariable);
                 float percentage = 100.0F * currentIndex / EnvironmentVariablesToApply.Count;
-                await environmentVariable.ExecuteAsync(progress, percentage);
+                await environmentVariable.ExecuteAsync(progress, percentage, cancellationToken);
             }
 
             progress?.Report(new CmdExecutorProgress(100, null, ChamiUIStrings.ExecutionCompleteMessage));

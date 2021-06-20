@@ -1,6 +1,7 @@
 using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Progress;
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChamiUI.BusinessLayer
@@ -9,6 +10,6 @@ namespace ChamiUI.BusinessLayer
     {
         EnvironmentVariable EnvironmentVariable { get; set; }
         void Execute();
-        Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage);
+        Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage, CancellationToken cancellationToken);
     }
 }

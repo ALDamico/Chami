@@ -19,8 +19,7 @@
         Height="450" Width="800"
         StateChanged="MainWindow_OnStateChanged"
         AllowDrop="True"
-        Drop="MainWindow_OnDrop"
-        >
+        Drop="MainWindow_OnDrop">
     <Window.InputBindings>
         <KeyBinding
             Key="Escape"
@@ -119,11 +118,10 @@
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                         CanExecute="FocusFilterTextboxCommandBinding_OnCanExecute"
                         Executed="FocusFilterTextboxCommandBinding_OnExecuted" />
-        <CommandBinding x:Name="ImportEnvironmentsCommandBinding" 
+        <CommandBinding x:Name="ImportEnvironmentsCommandBinding"
                         Command="Open"
                         CanExecute="ImportEnvironmentsCommandBinding_OnCanExecute"
-                        Executed="ImportEnvironmentsCommandBinding_OnExecuted"
-                        ></CommandBinding>
+                        Executed="ImportEnvironmentsCommandBinding_OnExecuted" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -149,10 +147,7 @@
                           Command="Save" />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="ImportMenuItem"
-                          Command="Open"
-                          >
-                    
-                </MenuItem>
+                          Command="Open" />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="ExportMenuItem"
                           Click="ExportMenuItem_Click" />
@@ -243,7 +238,7 @@
             </Button>
             <Expander Header="{lex:Loc}"
                       x:Name="AdvancedSortAndFilterOptionsExpander"
-                      ExpandDirection="Down" 
+                      ExpandDirection="Down"
                       ToolTip="{lex:Loc}">
                 <StackPanel Orientation="Horizontal">
                     <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
@@ -276,9 +271,11 @@
                             <Label Grid.Row="0" Grid.Column="0" x:Name="FilteringStrategyLabel" Content="{lex:Loc}" />
                             <Label Grid.Row="1" Grid.Column="0" x:Name="FilteringCaseSensitivityLabel"
                                    Content="{lex:Loc}" />
-                            <ComboBox Grid.Row="0" 
-                                      Grid.Column="1" 
-                                      ItemsSource="{Binding FilterStrategies}" SelectedItem="{Binding FilterStrategy}" DisplayMemberPath="Name" x:Name="FilterStrategySelector" SelectionChanged="FilterStrategySelector_OnSelectionChanged" />
+                            <ComboBox Grid.Row="0"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding FilterStrategies}" SelectedItem="{Binding FilterStrategy}"
+                                      DisplayMemberPath="Name" x:Name="FilterStrategySelector"
+                                      SelectionChanged="FilterStrategySelector_OnSelectionChanged" />
                             <CheckBox Grid.Row="1" Grid.Column="1"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
@@ -315,8 +312,8 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding DisplayName}"
-                               FontWeight="{Binding TextFontWeight}"
-                               Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
+                                   FontWeight="{Binding TextFontWeight}"
+                                   Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
@@ -325,13 +322,12 @@
                     MaxWidth="22"
                     MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
-                    Click="ApplyEnvironmentButton_OnClick"
-                    IsEnabled="{Binding ExecuteButtonEnabled}">
+                    Click="ApplyEnvironmentButton_OnClick">
                 <svg:SvgViewbox MaxWidth="16"
                                 MaxHeight="16"
-                                Source="{Binding ExecuteButtonIcon}"
-                                IsEnabled="{Binding ExecuteButtonEnabled}" />
+                                Source="{Binding ExecuteButtonIcon}" />
             </Button>
+
         </Grid>
         <TabControl Grid.Row="4"
                     Grid.Column="0"

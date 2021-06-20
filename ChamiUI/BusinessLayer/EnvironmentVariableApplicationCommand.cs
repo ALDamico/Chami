@@ -2,6 +2,7 @@ using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChamiUI.BusinessLayer
@@ -37,13 +38,13 @@ namespace ChamiUI.BusinessLayer
             return process;
         }
 
-        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage)
+        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage, CancellationToken cancellationToken)
         {
             var arguments = $"/C SETX \"{EnvironmentVariable.Name}\" \"{EnvironmentVariable.Value}\"";
             var commandLineFull = "cmd.exe " + arguments;
             var process = PrepareProcess(arguments);
             process.Start();
-            await process.WaitForExitAsync();
+            await process.WaitForExitAsync(cancellationToken);
             if (progress != null)
             {
                 progress.Report(new CmdExecutorProgress((int)percentage, process.StandardOutput.BaseStream, commandLineFull));

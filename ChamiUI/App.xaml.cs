@@ -69,7 +69,7 @@ namespace ChamiUI
             migrationExecutor.Migrate();
         }
 
-        private ChamiLogger Logger { get; }
+        public ChamiLogger Logger { get; }
 
         public SettingsViewModel Settings { get; set; }
 

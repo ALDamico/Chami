@@ -1122,6 +1122,8 @@
       <Resource Include="Assets\Svg\times_disabled.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Svg\stop.svg" />
+      <Resource Include="Assets\Svg\stop.svg" />
     </ItemGroup>
 
     <ItemGroup>

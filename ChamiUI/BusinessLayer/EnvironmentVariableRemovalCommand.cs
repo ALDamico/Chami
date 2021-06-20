@@ -2,6 +2,7 @@ using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace ChamiUI.BusinessLayer
@@ -26,7 +27,7 @@ namespace ChamiUI.BusinessLayer
             process.Start();
         }
 
-        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage)
+        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage, CancellationToken cancellationToken)
         {
             var arguments = $"/C REG delete HKCU\\Environment /F /V {EnvironmentVariable.Name}";
             var fullCmd = "cmd.exe " + arguments;
@@ -38,7 +39,7 @@ namespace ChamiUI.BusinessLayer
             Process process = new Process();
             process.StartInfo = processStartInfo;
             process.Start();
-            await process.WaitForExitAsync();
+            await process.WaitForExitAsync(cancellationToken);
             progress?.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream, null));
         }
     }

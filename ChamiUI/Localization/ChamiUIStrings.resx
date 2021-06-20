@@ -608,4 +608,12 @@ Fix the issues and try saving again.</value>
   <data name="SafetyFeaturesVariablesLabel_Content" xml:space="preserve">
     <value>Variables</value>
   </data>
+  <data name="OperationCanceledMessage" xml:space="preserve">
+    <value>An operation was cancelled!
+</value>
+  </data>
+  <data name="OperationCanceledRevertMessage" xml:space="preserve">
+    <value>Reverting back to previous environment.
+</value>
+  </data>
 </root>

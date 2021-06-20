@@ -608,4 +608,12 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="SafetyFeaturesVariablesLabel_Content" xml:space="preserve">
     <value>Variabili</value>
   </data>
+  <data name="OperationCanceledMessage" xml:space="preserve">
+    <value>L'operazione è stata annullata!
+</value>
+  </data>
+  <data name="OperationCanceledRevertMessage" xml:space="preserve">
+    <value>Ripristino dell'ambiente precedente in corso.
+</value>
+  </data>
 </root>

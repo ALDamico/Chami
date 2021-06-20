@@ -1126,6 +1126,26 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An operation was cancelled!
+        ///.
+        /// </summary>
+        public static string OperationCanceledMessage {
+            get {
+                return ResourceManager.GetString("OperationCanceledMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reverting back to previous environment.
+        ///.
+        /// </summary>
+        public static string OperationCanceledRevertMessage {
+            get {
+                return ResourceManager.GetString("OperationCanceledRevertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string OptionsMenuItem_Header {

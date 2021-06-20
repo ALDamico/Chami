@@ -11,6 +11,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
 using ChamiUI.Localization;
@@ -20,6 +21,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        public void CancelActiveTask()
+        {
+            CancellationTokenSource.Cancel();
+        }
         private bool _editingEnabled;
         private CollectionViewSource EnvironmentsViewSource { get; }
 
@@ -115,7 +120,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
-            
+            CancellationTokenSource = new CancellationTokenSource();
         }
 
         private void InitFilterStrategies()
@@ -198,12 +203,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 envVar.IsValid == null || envVar.IsValid == true);
         }
 
-        public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
+        private CancellationToken GetNewCancellationToken()
+        {
+            CancellationTokenSource = new CancellationTokenSource();
+            return CancellationTokenSource.Token;
+        }
+
+        public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress)
         {
             SetIsChangeInProgress(true);
             var cmdExecutor = new CmdExecutor(SelectedEnvironment);
             cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
+            var cancellationToken = GetNewCancellationToken();
             if (currentEnvironmentName != null)
             {
                 var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
@@ -234,9 +246,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 cmdExecutor.AddCommand(newCommand);
             }
 
-            await cmdExecutor.ExecuteAsync(progress);
+            await cmdExecutor.ExecuteAsync(progress, cancellationToken);
             SetIsChangeInProgress(false);
         }
+        
+        public CancellationTokenSource CancellationTokenSource { get; set; }
 
         private EnvironmentViewModel _activeEnvironment;
 
@@ -251,9 +265,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public void ChangeEnvironment(IProgress<CmdExecutorProgress> progress = null)
+        public void ChangeEnvironment(IProgress<CmdExecutorProgress> progress)
         {
-            ChangeEnvironmentAsync().GetAwaiter().GetResult();
+            ChangeEnvironmentAsync(progress).GetAwaiter().GetResult();
         }
 
         public ObservableCollection<EnvironmentViewModel> Environments { get; set; }
@@ -283,7 +297,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     return "/Assets/Svg/play.svg";
                 }
 
-                return "/Assets/Svg/play_disabled.svg";
+                return "/Assets/Svg/stop.svg";
             }
         }
         
@@ -408,7 +422,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             DisableEditing();
         }
 
-        public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress = null)
+        public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress, CancellationToken cancellationToken)
         {
             if (progress != null)
             {
@@ -439,7 +453,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
                             chamiEnvVariable);
                     cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
-                    await cmdExecutor.ExecuteAsync(progress);
+                    await cmdExecutor.ExecuteAsync(progress, cancellationToken);
                 }
             }
             else
@@ -479,7 +493,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public async Task RenameEnvironment(string argsNewName, Progress<CmdExecutorProgress> progress = null)
+        public async Task RenameEnvironment(string argsNewName, Progress<CmdExecutorProgress> progress)
         {
             //SelectedEnvironment.Name = argsNewName;
             var environmentToSave = SelectedEnvironment;

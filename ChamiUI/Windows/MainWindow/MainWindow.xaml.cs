@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Media;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,6 +53,8 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private MainWindowViewModel ViewModel { get; set; }
+        
+        
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
@@ -68,24 +72,55 @@ namespace ChamiUI.Windows.MainWindow
             //Avoids animating the progressbar when its value is reset to zero.
             ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, null);
             ConsoleProgressBar.Value = 0.0;
+            //06b025
+
+            ConsoleProgressBar.Foreground = ResourceUtils.DefaultProgressBarColor;
         }
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            ResetProgressBar();
-            FocusConsoleTab();
-            var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
-            await Task.Run(() => ViewModel.ChangeEnvironmentAsync(progress));
-            var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
-            if (watchedApplicationSettings.IsDetectionEnabled)
+            if (ViewModel.ExecuteButtonEnabled)
             {
-                var message = ViewModel.GetDetectedApplicationsMessage();
-                if (message != null)
+                ResetProgressBar();
+                FocusConsoleTab();
+                var previousEnvironment = ViewModel.ActiveEnvironment;
+                var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
+                try
                 {
-                    MessageBox.Show(message, ChamiUIStrings.DetectorMessageBoxCaption, MessageBoxButton.OK,
-                        MessageBoxImage.Information);
+                    await ViewModel.ChangeEnvironmentAsync(progress);
+                    var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
+                    if (watchedApplicationSettings.IsDetectionEnabled)
+                    {
+                        var message = ViewModel.GetDetectedApplicationsMessage();
+                        if (message != null)
+                        {
+                            MessageBox.Show(message, ChamiUIStrings.DetectorMessageBoxCaption, MessageBoxButton.OK,
+                                MessageBoxImage.Information);
+                        }
+                    }
+                }
+                catch (TaskCanceledException ex)
+                {
+                    (Application.Current as App)?.Logger.GetLogger().Information("{Message}", ex.Message);
+                    (Application.Current as App)?.Logger.GetLogger().Information("{StackTrace}", ex.StackTrace);
+                    PrintTaskCancelledMessageToConsole();
+                    ViewModel.SelectedEnvironment = previousEnvironment;
+                    await ViewModel.ChangeEnvironmentAsync(progress);
+                    //MessageBox.Show(ex.Message);
                 }
             }
+            else
+            {
+                ViewModel.CancelActiveTask();
+            }
+        }
+
+        private void PrintTaskCancelledMessageToConsole()
+        {
+            SystemSounds.Exclamation.Play();
+            ConsoleTextBox.Text += ChamiUIStrings.OperationCanceledMessage;
+            ConsoleTextBox.Text += "Reverting back to previous environment.";
+            ConsoleProgressBar.Foreground = System.Windows.Media.Brushes.Red;
         }
 
         private void FocusConsoleTab(bool clearTextBox = true)
@@ -275,7 +310,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
                 FocusConsoleTab();
-                await ViewModel.ResetEnvironmentAsync(progress);
+                await ViewModel.ResetEnvironmentAsync(progress, CancellationToken.None);
             }
         }
 
