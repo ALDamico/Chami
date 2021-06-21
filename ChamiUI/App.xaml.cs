@@ -123,7 +123,7 @@ namespace ChamiUI
             var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly()?.Location);
             var otherInstances = Process.GetProcessesByName(processName)
                 .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
-            if (otherInstances.Length > 1)
+            if (otherInstances.Length >= 1)
             {
                 var otherInstance = otherInstances[0];
                 var messageBoxText = string.Format(ChamiUIStrings.ExistingInstanceMessageBoxText, otherInstance.Id);
