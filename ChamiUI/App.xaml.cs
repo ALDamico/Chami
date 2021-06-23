@@ -14,10 +14,15 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiDbMigrations;
+using ChamiDbMigrations.Migrations;
 using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
+using FluentMigrator.Runner;
+using FluentMigrator.Runner.Logging;
 using Hardcodet.Wpf.TaskbarNotification;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 
@@ -30,6 +35,7 @@ namespace ChamiUI
     {
         public App()
         {
+            _serviceProvider = CreateServices();
             InitializeComponent();
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
@@ -60,13 +66,29 @@ namespace ChamiUI
             }
         }
 
+        private IServiceProvider _serviceProvider;
+
+        private IServiceProvider CreateServices()
+        {
+            return new ServiceCollection()
+                .AddFluentMigratorCore()
+                .ConfigureRunner(r =>
+                    r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
+                        .Migrations())
+                .AddLogging(l => l.AddFluentMigratorConsole()).BuildServiceProvider();
+        }
+
         private void MigrateDatabase()
         {
+            var runner = _serviceProvider.GetRequiredService<IMigrationRunner>();
+            runner.MigrateUp();
+            /*
             var connection = new SQLiteConnection(GetConnectionString());
             var currentDirectory = Directory.GetCurrentDirectory();
             currentDirectory += "/DataLayer/Db/Migrations";
             var migrationExecutor = new DatabaseMigrationExecutor(connection, currentDirectory);
             migrationExecutor.Migrate();
+            */
         }
 
         public ChamiLogger Logger { get; }
@@ -88,7 +110,7 @@ namespace ChamiUI
             if (Settings.LoggingSettings.LoggingEnabled)
             {
                 var logger = Logger.GetLogger();
-                logger.Error("{Message}",exceptionMessage);
+                logger.Error("{Message}", exceptionMessage);
                 logger.Error("{Message}", args.Exception.StackTrace);
             }
         }

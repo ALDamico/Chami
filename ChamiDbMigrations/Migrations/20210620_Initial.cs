@@ -5,6 +5,7 @@ using FluentMigrator;
 
 namespace ChamiDbMigrations.Migrations
 {
+    [Migration(20210620)]
     public class Initial :Migration
     {
         public override void Up()
@@ -22,7 +23,7 @@ namespace ChamiDbMigrations.Migrations
                 .WithColumn("EnvironmentId").AsInt64().PrimaryKey().Identity()
                 .WithColumn("Name").AsString().NotNullable()
                 .WithColumn("AddedOn").AsDateTime().WithDefaultValue(DateTime.Now)
-                .WithColumn("EnvironmentType").AsInt64().WithDefaultValue(0)
+                .WithColumn("IsBackup").AsInt64().WithDefaultValue(0)
                 .ForeignKey("EnvironmentTypes", "EnvironmentTypeId");
 
             Create.Table("EnvironmentVariables")
@@ -34,15 +35,15 @@ namespace ChamiDbMigrations.Migrations
                     .OnDelete(Rule.Cascade).Indexed("ix_environment_variables_environment_id");
 
             Create.Table("Settings")
-                .WithColumn("SettingName").AsString().PrimaryKey().Identity()
+                .WithColumn("SettingName").AsString().PrimaryKey()
                 .WithColumn("ViewModelName").AsString()
                 .WithColumn("Type").AsString()
                 .WithColumn("Value").AsString()
-                .WithColumn("PropertyName").AsString()
-                .WithColumn("AssemblyName").AsString()
-                .WithColumn("Converter").AsString();
+                .WithColumn("PropertyName").AsString().Nullable()
+                .WithColumn("AssemblyName").AsString().Nullable()
+                .WithColumn("Converter").AsString().Nullable();
 
-            
+            InsertSettings();
 
         }
 
@@ -100,7 +101,11 @@ namespace ChamiDbMigrations.Migrations
 
             var fontSizeSetting = new Setting()
             {
-
+                SettingName = "FontSize",
+                ViewModelName = "ChamiUI.PresentationLayer.ViewModels.ConsoleAppearanceViewModel",
+                Type = "double",
+                Value = "12",
+                PropertyName = "ConsoleAppearanceSettings"
             };
             Insert.IntoTable("Settings")
                 .Row(loggingEnabledSetting)
