@@ -1,4 +1,4 @@
-using ChamiUI.DataLayer.Entities;
+using ChamiDbMigrations.Entities;
 
 namespace ChamiUI.BusinessLayer.Converters
 {

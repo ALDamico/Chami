@@ -1,9 +1,9 @@
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Validators;
-using ChamiUI.DataLayer.Entities;
-using ChamiUI.DataLayer.Repositories;
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
+using ChamiDbMigrations.Entities;
+using ChamiDbMigrations.Repositories;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {

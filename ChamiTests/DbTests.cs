@@ -1,8 +1,8 @@
-using ChamiUI.DataLayer.Entities;
-using ChamiUI.DataLayer.Repositories;
 using System.Linq;
+using ChamiDbMigrations.Entities;
+using ChamiDbMigrations.Repositories;
 using Xunit;
-using Environment = ChamiUI.DataLayer.Entities.Environment;
+using Environment = ChamiDbMigrations.Entities.Environment;
 
 namespace ChamiTests
 {

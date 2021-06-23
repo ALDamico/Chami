@@ -2,7 +2,6 @@ using System.Collections.Generic;
 using ChamiUI.BusinessLayer;
 using System.IO;
 using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 using Xunit;

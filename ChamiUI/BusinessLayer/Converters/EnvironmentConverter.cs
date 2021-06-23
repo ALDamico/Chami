@@ -1,5 +1,5 @@
+using ChamiDbMigrations.Entities;
 using ChamiUI.BusinessLayer.Validators;
-using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Converters

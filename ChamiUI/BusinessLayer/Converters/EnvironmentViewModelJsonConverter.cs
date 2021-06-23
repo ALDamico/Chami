@@ -2,6 +2,7 @@ using System;
 using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using Environment = ChamiDbMigrations.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
@@ -59,7 +60,7 @@ namespace ChamiUI.BusinessLayer.Converters
         public override bool CanConvert(Type objectType)
         {
             return objectType == typeof(EnvironmentViewModel) ||
-                   objectType == typeof(ChamiUI.DataLayer.Entities.Environment);
+                   objectType == typeof(Environment);
         }
 
         public override bool CanRead => true;

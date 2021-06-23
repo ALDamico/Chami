@@ -8,7 +8,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Dapper" Version="2.0.78" />
       <PackageReference Include="dotenv.net" Version="3.0.0" />
       <PackageReference Include="Extended.Wpf.Toolkit" Version="4.0.2" />
       <PackageReference Include="Hardcodet.NotifyIcon.Wpf.NetCore" Version="1.0.18" />
@@ -1159,6 +1158,11 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>ChamiUIStrings.resx</DependentUpon>
       </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="DataLayer\Entities" />
+      <Folder Include="DataLayer\Repositories" />
     </ItemGroup>
 
 </Project>

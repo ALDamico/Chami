@@ -1,7 +1,6 @@
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
-using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using System;
@@ -14,6 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
+using ChamiDbMigrations.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Filtering;
 

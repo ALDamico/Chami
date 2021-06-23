@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
+using ChamiDbMigrations.Entities;
 using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.DataLayer.Entities;
-using ChamiUI.DataLayer.Repositories;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Converters

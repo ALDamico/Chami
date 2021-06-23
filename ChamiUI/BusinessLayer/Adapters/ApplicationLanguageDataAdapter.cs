@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Globalization;
+using ChamiDbMigrations.Repositories;
 using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.DataLayer.Repositories;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Adapters

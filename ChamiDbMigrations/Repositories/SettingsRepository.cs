@@ -1,9 +1,9 @@
-using ChamiUI.DataLayer.Entities;
-using Dapper;
 using System.Collections.Generic;
 using System.Linq;
+using ChamiDbMigrations.Entities;
+using Dapper;
 
-namespace ChamiUI.DataLayer.Repositories
+namespace ChamiDbMigrations.Repositories
 {
     public class SettingsRepository : RepositoryBase
     {

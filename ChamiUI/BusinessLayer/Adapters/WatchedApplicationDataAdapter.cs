@@ -1,11 +1,11 @@
 ﻿using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.DataLayer.Repositories;
 using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ChamiDbMigrations.Repositories;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {

@@ -2,10 +2,10 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using ChamiDbMigrations.Entities;
+using ChamiDbMigrations.Repositories;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exporters;
-using ChamiUI.DataLayer.Entities;
-using ChamiUI.DataLayer.Repositories;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

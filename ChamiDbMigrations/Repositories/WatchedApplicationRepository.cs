@@ -1,9 +1,9 @@
-﻿using ChamiUI.DataLayer.Entities;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using ChamiDbMigrations.Entities;
 using Dapper;
 
-namespace ChamiUI.DataLayer.Repositories
+namespace ChamiDbMigrations.Repositories
 {
     public class WatchedApplicationRepository: RepositoryBase
     {

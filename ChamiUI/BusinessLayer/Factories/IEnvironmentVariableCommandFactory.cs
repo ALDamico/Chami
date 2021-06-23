@@ -1,6 +1,6 @@
-using ChamiUI.DataLayer.Entities;
 using System;
 using System.Reflection;
+using ChamiDbMigrations.Entities;
 
 namespace ChamiUI.BusinessLayer.Factories
 {

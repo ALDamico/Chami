@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using ChamiUI.DataLayer.Entities;
+using ChamiDbMigrations.Entities;
 using Dapper;
 
-namespace ChamiUI.DataLayer.Repositories
+namespace ChamiDbMigrations.Repositories
 {
     public class UiLanguageRepository : RepositoryBase
     {

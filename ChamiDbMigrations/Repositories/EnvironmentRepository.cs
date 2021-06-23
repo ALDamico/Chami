@@ -1,12 +1,12 @@
-using ChamiUI.DataLayer.Entities;
-using Dapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Environment = ChamiUI.DataLayer.Entities.Environment;
+using ChamiDbMigrations.Entities;
+using Dapper;
+using Environment = ChamiDbMigrations.Entities.Environment;
 
-namespace ChamiUI.DataLayer.Repositories
+namespace ChamiDbMigrations.Repositories
 {
     public class EnvironmentRepository : RepositoryBase
     {

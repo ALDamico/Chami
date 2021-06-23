@@ -1,6 +1,6 @@
 using System;
 
-namespace ChamiUI.DataLayer.Entities
+namespace ChamiDbMigrations.Entities
 {
     public class EnvironmentVariable
     {

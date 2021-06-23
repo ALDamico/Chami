@@ -1,4 +1,4 @@
-﻿namespace ChamiUI.DataLayer.Entities
+﻿namespace ChamiDbMigrations.Entities
 {
     public class WatchedApplication
     {

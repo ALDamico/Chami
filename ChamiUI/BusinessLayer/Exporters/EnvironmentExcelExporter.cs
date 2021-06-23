@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using NetOffice.ExcelApi;
 using NetOffice.Exceptions;
-using Environment = ChamiUI.DataLayer.Entities.Environment;
+using Environment = ChamiDbMigrations.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer.Exporters
 {

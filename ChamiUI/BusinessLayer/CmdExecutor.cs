@@ -13,6 +13,7 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.Windows.MainWindow;
 using WPFLocalizeExtension.Providers;
+using Environment = ChamiDbMigrations.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -23,7 +24,7 @@ namespace ChamiUI.BusinessLayer
             EnvironmentVariablesToApply = new List<IEnvironmentVariableCommand>();
         }
 
-        public CmdExecutor(DataLayer.Entities.Environment targetEnvironment) : this()
+        public CmdExecutor(Environment targetEnvironment) : this()
         {
             TargetEnvironment = targetEnvironment;
         }
@@ -35,7 +36,7 @@ namespace ChamiUI.BusinessLayer
             TargetEnvironment = convertedEnvironment;
         }
         
-        public DataLayer.Entities.Environment TargetEnvironment { get; }
+        public Environment TargetEnvironment { get; }
 
         public void AddCommand(IEnvironmentVariableCommand command)
         {

@@ -1,9 +1,9 @@
-using ChamiUI.DataLayer.Entities;
 using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
+using ChamiDbMigrations.Entities;
 
 namespace ChamiUI.BusinessLayer
 {
