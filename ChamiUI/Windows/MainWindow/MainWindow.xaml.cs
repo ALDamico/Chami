@@ -79,7 +79,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.ExecuteButtonEnabled)
+            if (ViewModel.ExecuteButtonPlayEnabled)
             {
                 ResetProgressBar();
                 FocusConsoleTab();

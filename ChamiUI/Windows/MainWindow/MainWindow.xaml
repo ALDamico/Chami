@@ -330,7 +330,9 @@
                     MaxWidth="22"
                     MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
-                    Click="ApplyEnvironmentButton_OnClick">
+                    Click="ApplyEnvironmentButton_OnClick"
+                    IsEnabled="{Binding ExecuteButtonPlayEnabled}"
+                    >
                 <svg:SvgViewbox MaxWidth="16"
                                 MaxHeight="16"
                                 Source="{Binding ExecuteButtonIcon}" />
