@@ -122,6 +122,10 @@
                         Command="Open"
                         CanExecute="ImportEnvironmentsCommandBinding_OnCanExecute"
                         Executed="ImportEnvironmentsCommandBinding_OnExecuted" />
+        <CommandBinding x:Name="CreateTemplateCommandBinding"
+                        Command="{x:Static commandProvider:MainWindowCommandsProvider.CreateTemplateEnvironmentCommand}"
+                        CanExecute="CreateTemplateCommandBinding_OnCanExecute"
+                        Executed="CreateTemplateCommandBinding_OnExecuted"></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -138,10 +142,13 @@
         </Grid.ColumnDefinitions>
 
         <Menu Grid.Row="0" Grid.Column="0">
-            <MenuItem Header="File">
+            <MenuItem Header="{lex:Loc}" x:Name="FileMenuItem">
                 <MenuItem Header="{lex:Loc}"
                           x:Name="NewEnvironmentMenuItem"
                           Command="New" />
+                <MenuItem x:Name="NewTemplateMenuItem" 
+                          Header="{lex:Loc}" 
+                          Command="{x:Static commandProvider:MainWindowCommandsProvider.CreateTemplateEnvironmentCommand}"></MenuItem>
                 <MenuItem Header="{lex:Loc}"
                           x:Name="SaveEnvironmentMenuItem"
                           Command="Save" />
@@ -156,6 +163,7 @@
                           x:Name="QuitApplicationMenuItem"
                           Click="QuitApplicationMenuItem_OnClick" />
             </MenuItem>
+            
             <MenuItem Header="{lex:Loc}" x:Name="MainWindowEditMenuItem">
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"

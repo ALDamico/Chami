@@ -10,7 +10,7 @@
         xmlns:vr="clr-namespace:ChamiUI.BusinessLayer.Validators"
         d:DataContext="{d:DesignInstance viewModels:NewEnvironmentViewModel, IsDesignTimeCreatable=True}"
         mc:Ignorable="d"
-        x:Name="ExportWindowTitle"
+        x:Name="NewEnvironmentWindowTitle"
         Title="{lex:Loc}"
         Height="450"
         Width="300"

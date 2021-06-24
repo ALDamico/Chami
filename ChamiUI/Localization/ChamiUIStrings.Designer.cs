@@ -738,6 +738,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to File.
+        /// </summary>
+        public static string FileMenuItem {
+            get {
+                return ResourceManager.GetString("FileMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Filter.
         /// </summary>
         public static string FilteringAdvancedOptionsGroupBox_Header {
@@ -1122,6 +1131,42 @@ namespace ChamiUI.Localization {
         public static string NewEnvironmentWindowSaveButton_Content {
             get {
                 return ResourceManager.GetString("NewEnvironmentWindowSaveButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New environment.
+        /// </summary>
+        public static string NewEnvironmentWindowTitle_Title {
+            get {
+                return ResourceManager.GetString("NewEnvironmentWindowTitle_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New template.
+        /// </summary>
+        public static string NewTemplateMenuItem_Header {
+            get {
+                return ResourceManager.GetString("NewTemplateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New template.
+        /// </summary>
+        public static string NewTemplateWindowHeaderTitle_Content {
+            get {
+                return ResourceManager.GetString("NewTemplateWindowHeaderTitle_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New template.
+        /// </summary>
+        public static string NewTemplateWindowTitle_Title {
+            get {
+                return ResourceManager.GetString("NewTemplateWindowTitle_Title", resourceCulture);
             }
         }
         

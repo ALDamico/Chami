@@ -552,5 +552,18 @@ namespace ChamiUI.Windows.MainWindow
             dialog.ShowDialog(this);
             DoEnvironmentImporting(dialog.FileNames);
         }
+
+        private void CreateTemplateCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = !ViewModel.EditingEnabled;
+        }
+
+        private void CreateTemplateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            // TODO Implement
+            var newTemplateWindow = new NewTemplateWindow.NewTemplateWindow();
+            newTemplateWindow.Owner = this;
+            newTemplateWindow.ShowDialog();
+        }
     }
 }

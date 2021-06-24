@@ -37,7 +37,7 @@ namespace ChamiUI.BusinessLayer
 
             var environmentName = $"Backup of {DateTime.Now:s}";
             backupEnvironment.Name = environmentName;
-            backupEnvironment.IsBackup = true;
+            backupEnvironment.EnvironmentType = EnvironmentType.BackupEnvironment;
 
             foreach (DictionaryEntry entry in environmentVariables)
             {

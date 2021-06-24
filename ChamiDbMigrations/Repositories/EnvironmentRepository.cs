@@ -108,11 +108,11 @@ namespace Chami.Db.Repositories
                 throw new NotSupportedException("Attempting to insert duplicate item in the database");
             }
 
-            var queryString = @"INSERT INTO Environments(Name, AddedOn, IsBackup) VALUES (?, ?, ?)";
+            var queryString = @"INSERT INTO Environments(Name, AddedOn, EnvironmentType) VALUES (?, ?, ?)";
             using (var connection = GetConnection())
             {
                 var transaction = connection.BeginTransaction();
-                connection.Execute(queryString, new { environment.Name, environment.AddedOn, environment.IsBackup });
+                connection.Execute(queryString, new { environment.Name, environment.AddedOn, environment.EnvironmentType });
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
                 VALUES (?, ?, ?, ?)
@@ -239,7 +239,7 @@ namespace Chami.Db.Repositories
                 SELECT *
                 FROM Environments
                 LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
-                WHERE IsBackup = 1
+                WHERE EnvironmentType = 1
 ";
             using (var connection = GetConnection())
             {
@@ -273,7 +273,7 @@ namespace Chami.Db.Repositories
                 SELECT *
                 FROM Environments
                 LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
-                WHERE IsBackup = 0
+                WHERE EnvironmentType = 0
 ";
             using (var connection = GetConnection())
             {

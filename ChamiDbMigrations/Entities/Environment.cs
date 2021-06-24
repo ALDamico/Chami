@@ -14,6 +14,7 @@ namespace Chami.Db.Entities
         public string Name { get; set; }
         public DateTime AddedOn { get; set; }
         public ICollection<EnvironmentVariable> EnvironmentVariables { get; }
-        public bool IsBackup { get; set; }
+        public EnvironmentType EnvironmentType { get; set; }
+        //public bool IsBackup { get; set; }
     }
 }

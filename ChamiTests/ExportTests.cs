@@ -13,11 +13,11 @@ namespace ChamiTests
         {
             using (var exporter = new EnvironmentExcelExporter())
             {
-                var environment1 = new Environment() {Name = "Test", AddedOn = DateTime.Now, IsBackup = false};
+                var environment1 = new Environment() {Name = "Test", AddedOn = DateTime.Now, EnvironmentType = 0};
                 environment1.EnvironmentVariables.Add(new EnvironmentVariable(){Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
                 environment1.EnvironmentVariables.Add(new EnvironmentVariable(){Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
                 environment1.EnvironmentVariables.Add(new EnvironmentVariable(){Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
-                var environment2 = new Environment(){Name = "Test2", AddedOn = DateTime.Now, IsBackup = false};
+                var environment2 = new Environment(){Name = "Test2", AddedOn = DateTime.Now, EnvironmentType = 0};
                 environment2.EnvironmentVariables.Add(new EnvironmentVariable(){Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
                 environment2.EnvironmentVariables.Add(new EnvironmentVariable(){Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
                 environment2.EnvironmentVariables.Add(new EnvironmentVariable(){Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});

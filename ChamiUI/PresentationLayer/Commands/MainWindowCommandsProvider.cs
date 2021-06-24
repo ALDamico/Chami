@@ -9,10 +9,12 @@ namespace ChamiUI.PresentationLayer.Commands
             CancelEditingCommand = new RoutedCommand();
             RenameEnvironmentCommand = new RoutedCommand();
             FocusFilterTextbox = new RoutedCommand();
+            CreateTemplateEnvironmentCommand = new RoutedCommand();
         }
 
         public static RoutedCommand CancelEditingCommand;
         public static RoutedCommand RenameEnvironmentCommand;
         public static RoutedCommand FocusFilterTextbox;
+        public static RoutedCommand CreateTemplateEnvironmentCommand;
     }
 }

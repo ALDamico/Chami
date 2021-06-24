@@ -58,14 +58,11 @@ namespace ChamiUI
             }
             catch (SQLiteException)
             {
-                /*MessageBox.Show("The application database chami.db hasn't been found!\nThe application will now exit.",
-                    "Unable to find database!", MessageBoxButton.OK, MessageBoxImage.Error);
-                Environment.Exit(-5);*/
                 MigrateDatabase();
             }
         }
 
-        private IServiceProvider _serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
 
         private IServiceProvider CreateServices()
         {
