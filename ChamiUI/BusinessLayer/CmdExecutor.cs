@@ -13,7 +13,7 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.Windows.MainWindow;
 using WPFLocalizeExtension.Providers;
-using Environment = ChamiDbMigrations.Entities.Environment;
+using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer
 {

@@ -1,12 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamiUI", "ChamiUI\ChamiUI.csproj", "{DDF90B2D-2EBD-48F4-A1B9-3B421EC6EE3E}"
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31321.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChamiUI", "ChamiUI\ChamiUI.csproj", "{DDF90B2D-2EBD-48F4-A1B9-3B421EC6EE3E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamiTests", "ChamiTests\ChamiTests.csproj", "{9DE6D3B3-720A-4DC4-A55E-5ACA89AA1D0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChamiTests", "ChamiTests\ChamiTests.csproj", "{9DE6D3B3-720A-4DC4-A55E-5ACA89AA1D0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhereAmI", "WhereAmI\WhereAmI.csproj", "{A6EB2788-E8BF-447F-BD40-90C3E1505329}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhereAmI", "WhereAmI\WhereAmI.csproj", "{A6EB2788-E8BF-447F-BD40-90C3E1505329}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChamiDbMigrations", "ChamiDbMigrations\ChamiDbMigrations.csproj", "{F05E3875-7C09-4730-9E62-6885199FE2A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chami.Db", "ChamiDbMigrations\Chami.Db.csproj", "{F05E3875-7C09-4730-9E62-6885199FE2A3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,5 +33,11 @@ Global
 		{F05E3875-7C09-4730-9E62-6885199FE2A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F05E3875-7C09-4730-9E62-6885199FE2A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F05E3875-7C09-4730-9E62-6885199FE2A3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A871EC2A-022A-406D-AB86-DD51F7DEB4B2}
 	EndGlobalSection
 EndGlobal

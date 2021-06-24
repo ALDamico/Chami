@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer
 {

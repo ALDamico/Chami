@@ -13,16 +13,14 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
-using ChamiDbMigrations;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
 using FluentMigrator.Runner;
-using FluentMigrator.Runner.Logging;
 using Hardcodet.Wpf.TaskbarNotification;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
+using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 
@@ -35,6 +33,8 @@ namespace ChamiUI
     {
         public App()
         {
+            Logger = new ChamiLogger();
+            Logger.AddFileSink("chami.log");
             _serviceProvider = CreateServices();
             InitializeComponent();
 #if !DEBUG
@@ -42,8 +42,7 @@ namespace ChamiUI
 #endif
             _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
 
-            Logger = new ChamiLogger();
-            Logger.AddFileSink("chami.log");
+            
             MigrateDatabase();
             try
             {
@@ -75,7 +74,7 @@ namespace ChamiUI
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations())
-                .AddLogging(l => l.AddFluentMigratorConsole()).BuildServiceProvider();
+                .AddLogging(l => l.AddSerilog(GetLogger())).BuildServiceProvider();
         }
 
         private void MigrateDatabase()

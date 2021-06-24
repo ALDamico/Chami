@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ChamiDbMigrations.Entities
+namespace Chami.Db.Entities
 {
     public class Environment
     {

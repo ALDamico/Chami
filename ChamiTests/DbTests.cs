@@ -1,8 +1,8 @@
 using System.Linq;
-using ChamiDbMigrations.Entities;
-using ChamiDbMigrations.Repositories;
+using Chami.Db.Entities;
+using Chami.Db.Repositories;
 using Xunit;
-using Environment = ChamiDbMigrations.Entities.Environment;
+using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiTests
 {

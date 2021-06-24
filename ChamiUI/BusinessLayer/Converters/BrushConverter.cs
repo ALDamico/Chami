@@ -1,5 +1,5 @@
 using System.Windows.Media;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer.Converters
 {

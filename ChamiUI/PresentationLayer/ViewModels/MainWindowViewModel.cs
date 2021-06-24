@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Data;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Filtering;
 

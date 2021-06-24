@@ -1,6 +1,5 @@
-﻿using System.Data.SqlServerCe;
-using System.IO;
-using ChamiDbMigrations.Entities;
+﻿using System.IO;
+using Chami.Db.Entities;
 using FluentMigrator;
 
 namespace ChamiDbMigrations.Migrations

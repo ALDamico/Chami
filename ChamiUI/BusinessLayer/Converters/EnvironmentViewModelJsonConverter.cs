@@ -2,7 +2,7 @@ using System;
 using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using Environment = ChamiDbMigrations.Entities.Environment;
+using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer.Converters
 {

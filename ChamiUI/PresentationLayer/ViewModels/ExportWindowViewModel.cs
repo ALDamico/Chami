@@ -2,8 +2,8 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using ChamiDbMigrations.Entities;
-using ChamiDbMigrations.Repositories;
+using Chami.Db.Entities;
+using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exporters;
 

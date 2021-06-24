@@ -1,4 +1,4 @@
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.PresentationLayer.ViewModels;
 

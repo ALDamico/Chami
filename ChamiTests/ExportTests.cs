@@ -1,8 +1,8 @@
 using System;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exporters;
 using Xunit;
-using Environment = ChamiDbMigrations.Entities.Environment;
+using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiTests
 {

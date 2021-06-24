@@ -1,4 +1,4 @@
-namespace ChamiDbMigrations.Entities
+namespace Chami.Db.Entities
 {
     public class Setting
     {

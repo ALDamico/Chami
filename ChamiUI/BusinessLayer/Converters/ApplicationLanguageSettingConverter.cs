@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Globalization;
 using System.Windows.Data;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.PresentationLayer.ViewModels;
 

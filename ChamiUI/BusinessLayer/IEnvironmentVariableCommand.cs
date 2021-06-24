@@ -2,7 +2,7 @@ using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer
 {

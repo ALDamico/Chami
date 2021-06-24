@@ -1,6 +1,6 @@
 using System;
 using System.Data;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 using FluentMigrator;
 
 namespace ChamiDbMigrations.Migrations

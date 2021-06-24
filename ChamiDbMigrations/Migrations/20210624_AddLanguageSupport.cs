@@ -1,4 +1,4 @@
-﻿using ChamiDbMigrations.Entities;
+﻿using Chami.Db.Entities;
 using FluentMigrator;
 
 namespace ChamiDbMigrations.Migrations
@@ -27,7 +27,7 @@ namespace ChamiDbMigrations.Migrations
 
             _italianLanguage = new UiLanguage()
             {
-                Code = "en-IT",
+                Code = "it-IT",
                 Name = "Italiano",
                 FlagPath = "/ChamiUI;component/Assets/Flags/it.svg"
             };

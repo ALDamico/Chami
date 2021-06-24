@@ -2,8 +2,8 @@ using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 using System.Linq;
 using System.Windows.Media;
-using ChamiDbMigrations.Entities;
-using ChamiDbMigrations.Repositories;
+using Chami.Db.Entities;
+using Chami.Db.Repositories;
 using Xunit;
 
 namespace ChamiTests

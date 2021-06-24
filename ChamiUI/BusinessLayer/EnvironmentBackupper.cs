@@ -1,8 +1,8 @@
 using System;
 using System.Collections;
-using ChamiDbMigrations.Entities;
-using ChamiDbMigrations.Repositories;
-using Environment = ChamiDbMigrations.Entities.Environment;
+using Chami.Db.Entities;
+using Chami.Db.Repositories;
+using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer
 {

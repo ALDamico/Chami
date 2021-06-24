@@ -1,7 +1,7 @@
 using System.Data.SQLite;
 using System.Threading.Tasks;
 
-namespace ChamiDbMigrations.Repositories
+namespace Chami.Db.Repositories
 {
     public class RepositoryBase
     {

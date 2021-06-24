@@ -20,7 +20,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\ChamiDbMigrations\ChamiDbMigrations.csproj" />
+      <ProjectReference Include="..\ChamiDbMigrations\Chami.Db.csproj" />
       <ProjectReference Include="..\ChamiUI\ChamiUI.csproj" />
     </ItemGroup>
 

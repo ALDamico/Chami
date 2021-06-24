@@ -4,8 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Reflection;
-using ChamiDbMigrations.Entities;
-using ChamiDbMigrations.Repositories;
+using Chami.Db.Entities;
+using Chami.Db.Repositories;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {

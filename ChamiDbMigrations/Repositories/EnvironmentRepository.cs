@@ -2,11 +2,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using ChamiDbMigrations.Entities;
+using Chami.Db.Entities;
 using Dapper;
-using Environment = ChamiDbMigrations.Entities.Environment;
+using Environment = Chami.Db.Entities.Environment;
 
-namespace ChamiDbMigrations.Repositories
+namespace Chami.Db.Repositories
 {
     public class EnvironmentRepository : RepositoryBase
     {
