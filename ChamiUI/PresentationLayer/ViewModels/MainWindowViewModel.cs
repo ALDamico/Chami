@@ -35,7 +35,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _editingEnabled = value;
                 OnPropertyChanged(nameof(EditingEnabled));
-                OnPropertyChanged(nameof(ExecuteButtonEnabled));
+                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
             }
         }
@@ -150,7 +150,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
 
-        public bool ExecuteButtonEnabled => SelectedEnvironment != null && !EditingEnabled && !_isChangeInProgress;
+        public bool ExecuteButtonPlayEnabled => !EditingEnabled && !_isChangeInProgress;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
@@ -193,7 +193,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private void SetIsChangeInProgress(bool value)
         {
             _isChangeInProgress = value;
-            OnPropertyChanged(nameof(ExecuteButtonEnabled));
+            OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
             OnPropertyChanged(nameof(ExecuteButtonIcon));
         }
 
@@ -283,7 +283,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _selectedEnvironment = value;
                 OnPropertyChanged(nameof(SelectedEnvironment));
                 OnPropertyChanged(nameof(SelectedVariable));
-                OnPropertyChanged(nameof(ExecuteButtonEnabled));
+                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
             }
         }
@@ -292,10 +292,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
-                if (ExecuteButtonEnabled)
+                if (SelectedEnvironment == null)
+                {
+                    return "/Assets/Svg/play_disabled.svg";
+                }
+                
+                if (ExecuteButtonPlayEnabled)
                 {
                     return "/Assets/Svg/play.svg";
                 }
+
+                
 
                 return "/Assets/Svg/stop.svg";
             }
