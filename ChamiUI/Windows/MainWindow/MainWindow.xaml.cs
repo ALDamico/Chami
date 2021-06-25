@@ -423,11 +423,13 @@ namespace ChamiUI.Windows.MainWindow
             {
                 collectionViewSource.SortDescriptions.Clear();
                 collectionViewSource.SortDescriptions.Add(sortDescription);
+                collectionViewSource.View.Refresh();
             }
         }
 
         private void SortByNameMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            SortByNameRadioButton.IsChecked = true;
             if (ViewModel.IsDescendingSorting)
             {
                 ChangeSorting(SortDescriptionUtils.SortByNameDescending);
@@ -439,6 +441,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SortByIdMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            SortByIdRadioButton.IsChecked = true;
             if (ViewModel.IsDescendingSorting)
             {
                 ChangeSorting(SortDescriptionUtils.SortByIdDescending);
@@ -450,6 +453,10 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SortDescendingMenuItem_OnChecked(object sender, RoutedEventArgs e)
         {
+            if (sender is MenuItem)
+            {
+                return;
+            }
             ToggleSortDirection();
         }
 
@@ -465,6 +472,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SortByDateMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            SortByDateAddedRadioButton.IsChecked = true;
             if (ViewModel.IsDescendingSorting)
             {
                 ChangeSorting(SortDescriptionUtils.SortByDateAddedDescending);
@@ -476,6 +484,10 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SortDescendingMenuItem_OnUnchecked(object sender, RoutedEventArgs e)
         {
+            if (sender is MenuItem)
+            {
+                return;
+            }
             ToggleSortDirection();
         }
 
