@@ -2,7 +2,7 @@ using System.Collections.ObjectModel;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class LanguageSelectorViewModel:ViewModelBase
+    public class LanguageSelectorViewModel:SettingCategoryViewModelBase
     {
         public LanguageSelectorViewModel()
         {

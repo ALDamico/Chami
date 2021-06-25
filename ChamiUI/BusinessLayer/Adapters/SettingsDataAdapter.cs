@@ -139,6 +139,14 @@ namespace ChamiUI.BusinessLayer.Adapters
             var propertyInfos = settings.GetType().GetProperties();
             foreach (var propertyInfo in propertyInfos)
             {
+                // We don't want to save some settings every time, because they depend on something other than the 
+                // settings window.
+                // For example, we don't want to update the settings related to the main window's state, because 
+                // those are updated explicitly by a dedicated method
+                if ((propertyInfo.GetValue(settings) is SettingCategoryViewModelBase {IsExplicitSaveOnly: true}))
+                {
+                    continue;
+                }
                 var propertiesToSave = propertyInfo.PropertyType.GetProperties();
                 foreach (var property in propertiesToSave)
                 {

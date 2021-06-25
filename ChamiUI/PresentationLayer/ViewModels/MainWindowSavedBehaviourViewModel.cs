@@ -1,6 +1,6 @@
 ﻿namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class MainWindowSavedBehaviourViewModel:ViewModelBase
+    public class MainWindowSavedBehaviourViewModel:SettingCategoryViewModelBase
     {
         private bool _isCaseSensitiveSearch;
 
@@ -13,5 +13,7 @@
                 OnPropertyChanged(nameof(IsCaseSensitiveSearch));
             }
         }
+
+        public override bool IsExplicitSaveOnly => true;
     }
 }
