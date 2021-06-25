@@ -1,4 +1,7 @@
-﻿namespace ChamiUI.PresentationLayer.ViewModels
+﻿using System.ComponentModel;
+using ChamiUI.PresentationLayer.Filtering;
+
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowSavedBehaviourViewModel:SettingCategoryViewModelBase
     {
@@ -15,5 +18,12 @@
         }
 
         public override bool IsExplicitSaveOnly => true;
+        
+        public double Height { get; set; }
+        public double Width { get; set; }
+        public double XPosition { get; set; }
+        public double YPosition { get; set; }
+        public IFilterStrategy SearchPath { get; set; }
+        public SortDescription SortDescription { get; set; }
     }
 }

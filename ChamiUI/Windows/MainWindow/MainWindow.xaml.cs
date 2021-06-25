@@ -323,6 +323,19 @@ namespace ChamiUI.Windows.MainWindow
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.DetectCurrentEnvironment();
+            ResumeState();
+            
+        }
+
+        private void ResumeState()
+        {
+            var settings = ViewModel.Settings.MainWindowBehaviourSettings;
+            Width = settings.Width;
+            Height = settings.Height;
+            Top = settings.YPosition;
+            Left = settings.XPosition;
+            ViewModel.FilterStrategy = settings.SearchPath;
+            ViewModel.SetSortDescription(settings.SortDescription);
         }
 
         private void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -362,7 +375,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (WindowState == WindowState.Minimized)
             {
-                ViewModel.SaveWindowState();
+                ViewModel.SaveWindowState(Width, Height, Left, Top);
                 Hide();
             }
         }
@@ -581,7 +594,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            ViewModel.SaveWindowState();
+            ViewModel.SaveWindowState(Width, Height, Left, Top);
             e.Cancel = false;
         }
     }

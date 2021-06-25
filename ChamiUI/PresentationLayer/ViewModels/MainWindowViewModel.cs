@@ -558,10 +558,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return output;
         }
 
-        public void SaveWindowState()
+        public void SaveWindowState(double width, double height, double xPosition, double yPosition)
         {
-            Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch = IsCaseSensitiveSearch;
-            _settingsDataAdapter.SaveIsCaseSensitiveSearch(Settings);
+            var settings = Settings.MainWindowBehaviourSettings; 
+            settings.IsCaseSensitiveSearch = IsCaseSensitiveSearch;
+            settings.Height = height;
+            settings.Width = width;
+            settings.XPosition = xPosition;
+            settings.YPosition = yPosition;
+            settings.SearchPath = FilterStrategy;
+            _settingsDataAdapter.SaveMainWindowState(Settings);
+            
         }
     }
 }

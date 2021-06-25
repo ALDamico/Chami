@@ -15,6 +15,7 @@ namespace ChamiUI.BusinessLayer.Adapters
         {
             _repository = new SettingsRepository(connectionString);
         }
+
         public SettingsViewModel ToViewModel(IEnumerable<Setting> settings)
         {
             var viewModel = new SettingsViewModel();
@@ -45,7 +46,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                     try
                     {
                         var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
-                            BindingFlags.Default, null, args: new[] { setting.Value }, null, null);
+                            BindingFlags.Default, null, args: new[] {setting.Value}, null, null);
                         if (objectWrapper != null)
                         {
                             propertyValue = objectWrapper.Unwrap();
@@ -62,7 +63,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                                 var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
                                 if (methodInfo != null)
                                 {
-                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new[] { setting });
+                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new[] {setting});
                                 }
                             }
                         }
@@ -76,7 +77,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                         $"The requested property {settingPInfo.Name} has no publicly-accessible setter!");
                 }
 
-                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] { propertyValue });
+                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] {propertyValue});
 
                 pInfo.SetValue(viewModel, pInfo.GetValue(viewModel));
             }
@@ -108,26 +109,27 @@ namespace ChamiUI.BusinessLayer.Adapters
                     break;
                 case "System.Int32":
                 case "int":
+                {
+                    var conversionSuccessful = int.TryParse(value, out int tmp);
+                    if (conversionSuccessful)
                     {
-                        var conversionSuccessful = int.TryParse(value, out int tmp);
-                        if (conversionSuccessful)
-                        {
-                            propertyValue = tmp;
-                        }
-
-                        break;
+                        propertyValue = tmp;
                     }
+
+                    break;
+                }
                 case "System.Double":
                 case "double":
+                {
+                    var conversionSuccessful =
+                        double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var tmp);
+                    if (conversionSuccessful)
                     {
-                        var conversionSuccessful = double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var tmp);
-                        if (conversionSuccessful)
-                        {
-                            propertyValue = tmp;
-                        }
-
-                        break;
+                        propertyValue = tmp;
                     }
+
+                    break;
+                }
                 default: throw new InvalidCastException("Requested type not supported!");
             }
 
@@ -147,13 +149,14 @@ namespace ChamiUI.BusinessLayer.Adapters
                 {
                     continue;
                 }
+
                 var propertiesToSave = propertyInfo.PropertyType.GetProperties();
                 foreach (var property in propertiesToSave)
                 {
                     string valueString = null;
                     var propertyName = property.Name;
                     var propertyValue = property.GetValue(propertyInfo.GetValue(settings));
-                    
+
                     if (propertyValue != null)
                     {
                         valueString = propertyValue.ToString();
@@ -164,12 +167,27 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
         }
 
-        public void SaveIsCaseSensitiveSearch(SettingsViewModel settings)
+        public void SaveMainWindowState(SettingsViewModel settings)
         {
+            var mainWinSettings = settings.MainWindowBehaviourSettings;
             _repository.UpdateSetting("IsCaseSensitiveSearch",
-                settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch.ToString());
+                mainWinSettings.IsCaseSensitiveSearch.ToString());
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.Height),
+                mainWinSettings.Height.ToString(CultureInfo.InvariantCulture));
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.Width),
+                mainWinSettings.Width.ToString(CultureInfo.InvariantCulture));
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.XPosition),
+                mainWinSettings.XPosition.ToString(CultureInfo.InvariantCulture));
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.YPosition),
+                mainWinSettings.YPosition.ToString(CultureInfo.InvariantCulture));
+            var filterStrategyConverter = new FilterStrategyConverter();
+            var filterStrategyValue = filterStrategyConverter.GetSettingValue(mainWinSettings.SearchPath);
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.SearchPath),
+                filterStrategyValue);
+            var sortDescriptionConverter = new SortDescriptionConverter();
+            var sortDescriptionValue = sortDescriptionConverter.GetSettingValue(mainWinSettings.SortDescription);
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.SortDescription),
+                sortDescriptionValue);
         }
-
-
     }
 }
