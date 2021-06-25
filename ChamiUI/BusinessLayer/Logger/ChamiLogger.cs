@@ -15,7 +15,6 @@ namespace ChamiUI.BusinessLayer.Logger
 
         public void AddFileSink(string filename)
         {
-            var type = typeof(LoggerSinkConfiguration);
             _loggerConfiguration.WriteTo.File(filename);
         }
 
