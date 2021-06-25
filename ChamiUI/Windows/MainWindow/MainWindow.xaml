@@ -19,7 +19,9 @@
         Height="450" Width="800"
         StateChanged="MainWindow_OnStateChanged"
         AllowDrop="True"
-        Drop="MainWindow_OnDrop">
+        Drop="MainWindow_OnDrop"
+        Closing="MainWindow_OnClosing"
+>
     <Window.InputBindings>
         <KeyBinding
             Key="Escape"
@@ -290,7 +292,7 @@
                                       x:Name="CaseSensitivityCheckBox"
                                       Checked="CaseSensitivityCheckBox_OnChecked"
                                       Unchecked="CaseSensitivityCheckBox_OnChecked"
-                                      IsChecked="{Binding FilterStrategy.Comparison, Converter={StaticResource BooleanToStringComparisonConverter}}" />
+                                      IsChecked="{Binding IsCaseSensitiveSearch}" />
                         </Grid>
                     </GroupBox>
                 </StackPanel>

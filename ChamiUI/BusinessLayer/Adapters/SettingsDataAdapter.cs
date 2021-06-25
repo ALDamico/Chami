@@ -156,6 +156,12 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
         }
 
+        public void SaveIsCaseSensitiveSearch(SettingsViewModel settings)
+        {
+            _repository.UpdateSetting("IsCaseSensitiveSearch",
+                settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch.ToString());
+        }
+
 
     }
 }

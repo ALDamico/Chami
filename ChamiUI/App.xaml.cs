@@ -123,6 +123,8 @@ namespace ChamiUI
             var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly()?.Location);
             var otherInstances = Process.GetProcessesByName(processName)
                 .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
+            // We don't want this to happen when we're developing (An official release of Chami may be running)
+#if !DEBUG
             if (otherInstances.Length >= 1)
             {
                 var otherInstance = otherInstances[0];
@@ -131,6 +133,7 @@ namespace ChamiUI
                 MessageBox.Show(messageBoxText, messageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 Environment.Exit(0);
             }
+#endif
         }
 
         private void App_OnStartup(object sender, StartupEventArgs e)

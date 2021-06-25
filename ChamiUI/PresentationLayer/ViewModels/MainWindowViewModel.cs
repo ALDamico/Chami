@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Windows.Data;
 using Chami.Db.Entities;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -116,6 +117,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             Settings = GetSettingsViewModel();
+            IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
@@ -139,6 +141,31 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _isDescendingSorting = value;
                 OnPropertyChanged(nameof(IsDescendingSorting));
+            }
+        }
+
+        private bool _isCaseSensitiveSearch;
+
+        public bool IsCaseSensitiveSearch
+        {
+            get => _isCaseSensitiveSearch;
+            set
+            {
+                _isCaseSensitiveSearch = value;
+
+                var converter = new BooleanToStringComparisonConverter();
+                var stringComparisonObject = converter.ConvertBack(value, typeof(StringComparison), null, CultureInfo.CurrentUICulture);
+
+                if (stringComparisonObject is StringComparison stringComparison)
+                {
+                    if (FilterStrategy != null)
+                    {
+                        FilterStrategy.Comparison = stringComparison;
+                    }
+                    OnPropertyChanged(nameof(FilterStrategy));
+                }
+                OnPropertyChanged(nameof(IsCaseSensitiveSearch));
+                
             }
         }
 
@@ -529,6 +556,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             return output;
+        }
+
+        public void SaveWindowState()
+        {
+            Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch = IsCaseSensitiveSearch;
+            _settingsDataAdapter.SaveIsCaseSensitiveSearch(Settings);
         }
     }
 }

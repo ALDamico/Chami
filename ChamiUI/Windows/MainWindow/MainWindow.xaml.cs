@@ -362,6 +362,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (WindowState == WindowState.Minimized)
             {
+                ViewModel.SaveWindowState();
                 Hide();
             }
         }
@@ -564,6 +565,12 @@ namespace ChamiUI.Windows.MainWindow
             var newTemplateWindow = new NewTemplateWindow.NewTemplateWindow();
             newTemplateWindow.Owner = this;
             newTemplateWindow.ShowDialog();
+        }
+
+        private void MainWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            ViewModel.SaveWindowState();
+            e.Cancel = false;
         }
     }
 }
