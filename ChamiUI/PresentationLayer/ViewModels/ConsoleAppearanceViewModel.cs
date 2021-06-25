@@ -5,7 +5,7 @@ using System.Windows.Media;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class ConsoleAppearanceViewModel : ViewModelBase
+    public class ConsoleAppearanceViewModel : SettingCategoryViewModelBase
     {
         public ConsoleAppearanceViewModel()
         {

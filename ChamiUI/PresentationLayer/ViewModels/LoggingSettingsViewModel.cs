@@ -1,6 +1,6 @@
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class LoggingSettingsViewModel : ViewModelBase
+    public class LoggingSettingsViewModel : SettingCategoryViewModelBase
     {
         private bool _loggingEnabled;
 

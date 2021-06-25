@@ -5,7 +5,7 @@ using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class WatchedApplicationControlViewModel : ViewModelBase
+    public class WatchedApplicationControlViewModel : SettingCategoryViewModelBase
     {
         public WatchedApplicationControlViewModel()
         {
