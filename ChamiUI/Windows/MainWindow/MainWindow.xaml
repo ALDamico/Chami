@@ -280,8 +280,12 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" x:Name="FilteringStrategyLabel" Content="{lex:Loc}" />
-                            <Label Grid.Row="1" Grid.Column="0" x:Name="FilteringCaseSensitivityLabel"
-                                   Content="{lex:Loc}" />
+                            <svg:SvgViewbox MaxHeight="16" MaxWidth="16" Grid.Row="1" Grid.Column="0" ToolTip="{lex:Loc}" x:Name="FilteringCaseSensitivityIcon" Source="/ChamiUI;component/Assets/Svg/font.svg">
+                                
+                            </svg:SvgViewbox>
+                            
+                           <!-- <Label Grid.Row="1" Grid.Column="0" x:Name="FilteringCaseSensitivityLabel"
+                                   Content="{lex:Loc}" />-->
                             <ComboBox Grid.Row="0"
                                       Grid.Column="1"
                                       ItemsSource="{Binding FilterStrategies}" SelectedItem="{Binding FilterStrategy}"

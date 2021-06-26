@@ -634,4 +634,7 @@ Fix the issues and try saving again.</value>
   <data name="ConsoleTabItem_Header" xml:space="preserve">
     <value>Console</value>
   </data>
+  <data name="FilteringCaseSensitivityIcon_ToolTip" xml:space="preserve">
+    <value>Case sensitive</value>
+  </data>
 </root>

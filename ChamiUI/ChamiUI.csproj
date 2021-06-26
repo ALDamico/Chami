@@ -1127,6 +1127,10 @@
       </Resource>
       <None Remove="Assets\Svg\stop.svg" />
       <Resource Include="Assets\Svg\stop.svg" />
+      <None Remove="Assets\Svg\font.svg" />
+      <Resource Include="Assets\Svg\font.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

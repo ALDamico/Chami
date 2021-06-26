@@ -767,6 +767,15 @@ namespace ChamiUI.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Case sensitive.
         /// </summary>
+        public static string FilteringCaseSensitivityIcon_ToolTip {
+            get {
+                return ResourceManager.GetString("FilteringCaseSensitivityIcon_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Case sensitive.
+        /// </summary>
         public static string FilteringCaseSensitivityLabel_Content {
             get {
                 return ResourceManager.GetString("FilteringCaseSensitivityLabel_Content", resourceCulture);

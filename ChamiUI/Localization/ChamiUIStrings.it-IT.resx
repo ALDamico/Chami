@@ -634,4 +634,7 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="ConsoleTabItem_Header" xml:space="preserve">
     <value>Console</value>
   </data>
+  <data name="FilteringCaseSensitivityIcon_ToolTip" xml:space="preserve">
+    <value>Maiuscole/minuscole</value>
+  </data>
 </root>
