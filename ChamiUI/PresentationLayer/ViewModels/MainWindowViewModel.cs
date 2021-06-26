@@ -71,6 +71,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _filterStrategy = value;
                 OnPropertyChanged(nameof(FilterStrategy));
+                OnPropertyChanged(nameof(FilterStrategyComboboxToolTip));
             }
         }
 
@@ -270,6 +271,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             await cmdExecutor.ExecuteAsync(progress, cancellationToken);
             SetIsChangeInProgress(false);
         }
+
+        public string FilterStrategyComboboxToolTip => FilterStrategy.Name;
         
         public CancellationTokenSource CancellationTokenSource { get; set; }
 

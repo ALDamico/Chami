@@ -304,6 +304,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Console.
+        /// </summary>
+        public static string ConsoleTabItem_Header {
+            get {
+                return ResourceManager.GetString("ConsoleTabItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         public static string CopyEnvironmentVariableMenuItem_Header {

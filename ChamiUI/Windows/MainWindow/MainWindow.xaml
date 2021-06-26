@@ -263,7 +263,8 @@
                                       x:Name="DescendingSortingCheckBox"
                                       IsChecked="{Binding IsDescendingSorting}"
                                       Checked="SortDescendingMenuItem_OnChecked"
-                                      Unchecked="SortDescendingMenuItem_OnUnchecked" />
+                                      Unchecked="SortDescendingMenuItem_OnUnchecked" 
+                                      />
                         </StackPanel>
 
                     </GroupBox>
@@ -284,8 +285,19 @@
                             <ComboBox Grid.Row="0"
                                       Grid.Column="1"
                                       ItemsSource="{Binding FilterStrategies}" SelectedItem="{Binding FilterStrategy}"
-                                      DisplayMemberPath="Name" x:Name="FilterStrategySelector"
-                                      SelectionChanged="FilterStrategySelector_OnSelectionChanged" />
+                                      x:Name="FilterStrategySelector"
+                                      SelectionChanged="FilterStrategySelector_OnSelectionChanged"
+                                      Width="150"
+                                      MaxWidth="150"
+                                      ToolTip="{Binding FilterStrategyComboboxToolTip}"
+                                      >
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}" 
+                                                   ToolTip="{Binding Name}"></TextBlock>
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
                             <CheckBox Grid.Row="1" Grid.Column="1"
                                       HorizontalAlignment="Center"
                                       VerticalAlignment="Center"
@@ -384,7 +396,7 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
-            <TabItem Header="Console">
+            <TabItem x:Name="ConsoleTabItem" Header="{lex:Loc}">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
@@ -399,6 +411,7 @@
                              FontSize="{Binding Settings.ConsoleAppearanceSettings.FontSize}"
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
+                             TextWrapping="Wrap"
                              IsReadOnly="True" />
                     <ProgressBar Grid.Row="1"
                                  x:Name="ConsoleProgressBar"
