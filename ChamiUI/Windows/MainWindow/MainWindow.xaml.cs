@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Linq;
 using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
@@ -323,6 +324,43 @@ namespace ChamiUI.Windows.MainWindow
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.DetectCurrentEnvironment();
+            ResumeState();
+            
+        }
+
+        private void ResumeState()
+        {
+            var settings = ViewModel.Settings.MainWindowBehaviourSettings;
+            Width = settings.Width;
+            Height = settings.Height;
+            Top = settings.YPosition;
+            Left = settings.XPosition;
+            //ViewModel.FilterStrategy = settings.SearchPath;
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            var sortDescription = ViewModel.Settings.MainWindowBehaviourSettings.SortDescription;
+            collectionViewSource.SortDescriptions.Add(sortDescription);
+            switch (sortDescription.PropertyName)
+            {
+                default:
+                case "Id":
+                    SortByIdRadioButton.IsChecked = true;
+                    break;
+                case "Name":
+                    SortByNameRadioButton.IsChecked = true;
+                    break;
+                case "AddedOn":
+                    SortByDateAddedRadioButton.IsChecked = true;
+                    break;
+            }
+            if (sortDescription.PropertyName == "Id")
+            {
+                SortByIdRadioButton.IsChecked = true;
+            }
+
+            ViewModel.IsDescendingSorting = sortDescription.Direction == ListSortDirection.Descending;
+            ViewModel.FilterStrategy = ViewModel.FilterStrategies.Where(fs => fs.GetType().FullName == settings.SearchPath.GetType().FullName).FirstOrDefault(); //TODO
+
+            //ViewModel.SetSortDescription(settings.SortDescription);
         }
 
         private void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -362,9 +400,27 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (WindowState == WindowState.Minimized)
             {
-                ViewModel.SaveWindowState();
+                var sortDescription = GetCurrentSortDescriptionOrDefault();
+
+                ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
                 Hide();
             }
+        }
+
+        private SortDescription GetCurrentSortDescriptionOrDefault()
+        {
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            SortDescription sortDescription;
+            if (collectionViewSource != null && collectionViewSource.SortDescriptions.Count > 0)
+            {
+                sortDescription = collectionViewSource.SortDescriptions[0];
+            }
+            else
+            {
+                sortDescription = new SortDescription("Name", ListSortDirection.Ascending);
+            }
+
+            return sortDescription;
         }
 
         private void RenameEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -581,8 +637,9 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            ViewModel.SaveWindowState();
-            e.Cancel = false;
+            var sortDescription = GetCurrentSortDescriptionOrDefault();
+            ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
+            e.Cancel = false; // If it's missing, the app won't shutdown.
         }
     }
 }
