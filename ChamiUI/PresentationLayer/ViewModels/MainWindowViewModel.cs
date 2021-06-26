@@ -27,7 +27,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             CancellationTokenSource.Cancel();
         }
         private bool _editingEnabled;
-        private CollectionViewSource EnvironmentsViewSource { get; }
 
         public bool EditingEnabled
         {
@@ -118,7 +117,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             Settings = GetSettingsViewModel();
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
-            EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
+            //EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
@@ -169,11 +168,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public void SetSortDescription(SortDescription sortDescription)
-        {
-            EnvironmentsViewSource.SortDescriptions.Clear();
-            EnvironmentsViewSource.SortDescriptions.Add(sortDescription);
-        }
 
         public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
 
@@ -558,7 +552,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return output;
         }
 
-        public void SaveWindowState(double width, double height, double xPosition, double yPosition)
+        public void SaveWindowState(double width, double height, double xPosition, double yPosition, SortDescription sortDescription)
         {
             var settings = Settings.MainWindowBehaviourSettings; 
             settings.IsCaseSensitiveSearch = IsCaseSensitiveSearch;
@@ -567,6 +561,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             settings.XPosition = xPosition;
             settings.YPosition = yPosition;
             settings.SearchPath = FilterStrategy;
+            settings.SortDescription = sortDescription;
             _settingsDataAdapter.SaveMainWindowState(Settings);
             
         }
