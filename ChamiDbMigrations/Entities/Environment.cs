@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using Chami.Db.Annotation;
 
 namespace Chami.Db.Entities
 {
-    public class Environment
+    [TableName("Environments")]
+    public class Environment : IChamiEntity
     {
         public Environment()
         {

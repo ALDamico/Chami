@@ -1,6 +1,6 @@
 ﻿namespace Chami.Db.Entities
 {
-    public class WatchedApplication
+    public class WatchedApplication : IChamiEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

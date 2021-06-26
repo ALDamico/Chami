@@ -2,7 +2,7 @@ using System;
 
 namespace Chami.Db.Entities
 {
-    public class EnvironmentVariable
+    public class EnvironmentVariable : IChamiEntity
     {
         public EnvironmentVariable()
         {

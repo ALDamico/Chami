@@ -17,11 +17,23 @@ using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
+using ChamiUI.PresentationLayer.Minimizing;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private IMinimizationStrategy _minimizationStrategy;
+
+        public IMinimizationStrategy MinimizationStrategy
+        {
+            get => _minimizationStrategy;
+            set
+            {
+                _minimizationStrategy = value;
+                OnPropertyChanged(nameof(MinimizationStrategy));
+            }
+        }
         public void CancelActiveTask()
         {
             CancellationTokenSource.Cancel();

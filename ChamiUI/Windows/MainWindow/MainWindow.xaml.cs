@@ -401,9 +401,8 @@ namespace ChamiUI.Windows.MainWindow
             if (WindowState == WindowState.Minimized)
             {
                 var sortDescription = GetCurrentSortDescriptionOrDefault();
-
-                ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
-                Hide();
+                
+                ViewModel.MinimizationStrategy.Minimize(this, () => {ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);});
             }
         }
 

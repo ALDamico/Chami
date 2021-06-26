@@ -1,6 +1,6 @@
 namespace Chami.Db.Entities
 {
-    public class Setting
+    public class Setting : IChamiEntity
     {
         public string SettingName { get; set; }
         public string ViewModelName { get; set; }
