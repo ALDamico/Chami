@@ -1,8 +1,10 @@
 using System;
+using Chami.Db.Annotation;
 
 namespace Chami.Db.Entities
 {
-    public class EnvironmentVariable
+    [TableName("EnvironmentVariables")]
+    public class EnvironmentVariable : IChamiEntity
     {
         public EnvironmentVariable()
         {

@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using ChamiUI.PresentationLayer.Filtering;
+using ChamiUI.PresentationLayer.Minimizing;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -25,5 +26,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public double YPosition { get; set; }
         public IFilterStrategy SearchPath { get; set; }
         public SortDescription SortDescription { get; set; }
+        public IMinimizationStrategy MinimizationStrategy { get; set; }
     }
 }

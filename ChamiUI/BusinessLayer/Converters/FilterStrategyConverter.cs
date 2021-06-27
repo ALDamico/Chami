@@ -5,23 +5,9 @@ using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
-    public class FilterStrategyConverter
+    public class FilterStrategyConverter : UnwrappingConverter<IFilterStrategy>
     {
-        public IFilterStrategy Convert(Setting setting)
-        {
-            if (setting.SettingName == "SearchPath")
-            {
-                var filterStrategyName = setting.Value;
-                var wrappedInstance =
-                    Activator.CreateInstance(Assembly.GetExecutingAssembly().FullName, filterStrategyName);
-                if (wrappedInstance != null)
-                {
-                    return wrappedInstance.Unwrap() as IFilterStrategy;
-                }
-            }
-
-            return null;
-        }
+        
 
         public string GetSettingValue(IFilterStrategy filterStrategy)
         {

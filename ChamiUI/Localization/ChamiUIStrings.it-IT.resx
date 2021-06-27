@@ -636,5 +636,17 @@ Risolvi i problemi e riprova il salvataggio.</value>
   </data>
   <data name="FilteringCaseSensitivityIcon_ToolTip" xml:space="preserve">
     <value>Maiuscole/minuscole</value>
+    </data>
+  <data name="MinimizationBehaviourControlLabel_Content" xml:space="preserve">
+    <value>Quando ridotto a icona:</value>
+  </data>
+  <data name="MinimizeToTaskbarStrategyName" xml:space="preserve">
+    <value>Riduci nella barra delle applicazioni</value>
+  </data>
+  <data name="MinimizeToTrayStrategyName" xml:space="preserve">
+    <value>Riduci nell'area di notifica</value>
+  </data>
+  <data name="MinimizationCategory" xml:space="preserve">
+    <value>Riduzione a icona</value>
   </data>
 </root>

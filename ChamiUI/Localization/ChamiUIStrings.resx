@@ -634,6 +634,18 @@ Fix the issues and try saving again.</value>
   <data name="ConsoleTabItem_Header" xml:space="preserve">
     <value>Console</value>
   </data>
+  <data name="MinimizationBehaviourControlLabel_Content" xml:space="preserve">
+    <value>When minimized:</value>
+  </data>
+  <data name="MinimizeToTaskbarStrategyName" xml:space="preserve">
+    <value>Minimize to Taskbar</value>
+  </data>
+  <data name="MinimizeToTrayStrategyName" xml:space="preserve">
+    <value>Minimize to Tray</value>
+  </data>
+  <data name="MinimizationCategory" xml:space="preserve">
+    <value>Minimization</value>
+    </data>
   <data name="FilteringCaseSensitivityIcon_ToolTip" xml:space="preserve">
     <value>Case sensitive</value>
   </data>
