@@ -13,10 +13,10 @@ namespace ChamiDbMigrations.Migrations
         {
             _minimizeBehaviourSetting = new Setting()
             {
-                SettingName = "SortDescription",
-                ViewModelName = "ChamiUI.PresentationLayer.ViewModels.MainWindowSavedBehaviourViewModel",
-                PropertyName = "MainWindowBehaviourSettings",
-                Type = "System.ComponentModel.SortDescription",
+                SettingName = "MinimizationStrategy",
+                ViewModelName = "ChamiUI.PresentationLayer.ViewModels.MinimizationBehaviourViewModel",
+                PropertyName = "MinimizationBehaviour",
+                Type = "ChamiUI.PresentationLayer.Minimizing.IMinimizationStrategy",
                 Value = "Name#Ascending",
                Converter = "ChamiUI.BusinessLayer.Converters.SortDescriptionConverter"
             };

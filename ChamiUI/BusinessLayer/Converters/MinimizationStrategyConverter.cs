@@ -6,20 +6,8 @@ using ChamiUI.PresentationLayer.Minimizing;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
-    public class MinimizationStrategyConverter
+    public class MinimizationStrategyConverter : UnwrappingConverter<IMinimizationStrategy>
     {
-        public IMinimizationStrategy Convert(Setting setting)
-        {
-            if (setting.SettingName == "MinimizationStrategy")
-            {
-                var wrappedObject = Activator.CreateInstance(Assembly.GetExecutingAssembly().FullName, setting.Value);
-                if (wrappedObject != null)
-                {
-                    return wrappedObject.Unwrap() as IMinimizationStrategy;
-                }
-            }
-
-            return null;
-        }
+        
     }
 }
