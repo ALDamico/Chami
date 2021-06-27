@@ -638,7 +638,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             var sortDescription = GetCurrentSortDescriptionOrDefault();
             ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
-            e.Cancel = false; // If it's missing, the app won't shutdown.
+            App.Current.Shutdown(0); // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
         }
     }
 }
