@@ -1072,6 +1072,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to When minimized:.
+        /// </summary>
+        public static string MinimizationBehaviourControlLabel_Content {
+            get {
+                return ResourceManager.GetString("MinimizationBehaviourControlLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimization.
+        /// </summary>
+        public static string MinimizationCategory {
+            get {
+                return ResourceManager.GetString("MinimizationCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize to Taskbar.
+        /// </summary>
+        public static string MinimizeToTaskbarStrategyName {
+            get {
+                return ResourceManager.GetString("MinimizeToTaskbarStrategyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimize to Tray.
+        /// </summary>
+        public static string MinimizeToTrayStrategyName {
+            get {
+                return ResourceManager.GetString("MinimizeToTrayStrategyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NewEnvironmentDataGridNameColumn {

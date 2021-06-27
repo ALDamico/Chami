@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="ChamiUI.Controls.MinimizationBehaviourControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChamiUI.Controls"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance viewModels:MinimizationBehaviourViewModel, IsDesignTimeCreatable=True}"
+             >
+    <Grid Margin="5, 5, 5, 5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        
+        <Label Grid.Column="0" Grid.Row="0" Content="{lex:Loc}" x:Name="MinimizationBehaviourControlLabel"></Label>
+        <ComboBox Grid.Column="1" 
+                  Grid.Row="0" 
+                  ItemsSource="{Binding AvailableStrategies}" 
+                  DisplayMemberPath="Name" 
+                  SelectedItem="{Binding MinimizationStrategy}"
+                  >
+            
+        </ComboBox>
+    </Grid>
+</UserControl>

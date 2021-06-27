@@ -25,7 +25,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                 if (pInfo == null)
                 {
                     throw new NullReferenceException(
-                        $"The requested property was not found in type {viewModel.GetType().ToString()}");
+                        $"The requested property was not found in type {viewModel.GetType()}");
                 }
 
                 var settingPInfo = pInfo.PropertyType.GetProperty(setting.SettingName);
@@ -46,7 +46,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                     try
                     {
                         var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
-                            BindingFlags.Default, null, args: new[] {setting.Value}, null, null);
+                            BindingFlags.Default, null, args: new object[] {setting.Value}, null, null);
                         if (objectWrapper != null)
                         {
                             propertyValue = objectWrapper.Unwrap();
@@ -63,7 +63,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                                 var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
                                 if (methodInfo != null)
                                 {
-                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new[] {setting});
+                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new object[] {setting});
                                 }
                             }
                         }
@@ -86,7 +86,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             return viewModel;
         }
 
-        private SettingsRepository _repository;
+        private readonly SettingsRepository _repository;
 
         public SettingsViewModel GetSettings()
         {

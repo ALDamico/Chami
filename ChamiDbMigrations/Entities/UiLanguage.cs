@@ -1,5 +1,8 @@
+using Chami.Db.Annotation;
+
 namespace Chami.Db.Entities
 {
+    [TableName("UiLanguages")]
     public class UiLanguage : IChamiEntity
     {
         public string Code { get; set; }

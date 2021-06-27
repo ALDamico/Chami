@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.Minimizing
 {
@@ -13,6 +14,22 @@ namespace ChamiUI.PresentationLayer.Minimizing
             }
             
             window.Hide();
+        }
+
+        private static IMinimizationStrategy _instance;
+
+        public string Name => ChamiUIStrings.MinimizeToTrayStrategyName;
+        public static IMinimizationStrategy Instance
+        {
+            get
+            {
+                if (_instance == null)
+                {
+                    _instance = new MinimizeToTrayStrategy();
+                }
+
+                return _instance;
+            }
         }
     }
 }

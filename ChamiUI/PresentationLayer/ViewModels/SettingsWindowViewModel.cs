@@ -30,6 +30,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var languageKey = ChamiUIStrings.LanguageCategory;
             _controls[languageKey] = new LanguageSelectorControl(Settings.LanguageSettings);
             DisplayedControl = _controls.Values.FirstOrDefault();
+            var minimizationKey = ChamiUIStrings.MinimizationCategory;
+            _controls[minimizationKey] = new MinimizationBehaviourControl(Settings.MinimizationBehaviour);
         }
 
         public void SaveSettings()

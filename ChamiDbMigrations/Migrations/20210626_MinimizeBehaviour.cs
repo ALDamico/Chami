@@ -4,6 +4,13 @@ using FluentMigrator;
 
 namespace ChamiDbMigrations.Migrations
 {
+    /// <summary>
+    /// Adds support for customizing the behaviour of the application when minimizing the main window.
+    /// It allows the user to either:
+    /// Minimize the application to the taskbar
+    /// Minimize the application to the tray. The user can then restore the window by double-clicking the Chami icon
+    /// on the taskbar.
+    /// </summary>
     [Migration(20210626)]
     public class MinimizeBehaviour : Migration
     {
@@ -17,8 +24,8 @@ namespace ChamiDbMigrations.Migrations
                 ViewModelName = "ChamiUI.PresentationLayer.ViewModels.MinimizationBehaviourViewModel",
                 PropertyName = "MinimizationBehaviour",
                 Type = "ChamiUI.PresentationLayer.Minimizing.IMinimizationStrategy",
-                Value = "Name#Ascending",
-               Converter = "ChamiUI.BusinessLayer.Converters.SortDescriptionConverter"
+                Value = "ChamiUI.PresentationLayer.Minimizing.MinimizeToTaskbarStrategy",
+               Converter = "ChamiUI.BusinessLayer.Converters.MinimizationStrategyConverter"
             };
         }
         

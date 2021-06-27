@@ -23,16 +23,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private IMinimizationStrategy _minimizationStrategy;
 
         public IMinimizationStrategy MinimizationStrategy
         {
-            get => _minimizationStrategy;
-            set
-            {
-                _minimizationStrategy = value;
-                OnPropertyChanged(nameof(MinimizationStrategy));
-            }
+            get => _settings.MinimizationBehaviour.MinimizationStrategy;
         }
         public void CancelActiveTask()
         {
@@ -96,6 +90,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _settings = value;
                 OnPropertyChanged(nameof(Settings));
+                OnPropertyChanged(nameof(MinimizationStrategy));
             }
         }
 

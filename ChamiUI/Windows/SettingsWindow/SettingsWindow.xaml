@@ -41,6 +41,8 @@
                           Header="{lex:Loc Key=LoggingCategory}" />
             <TreeViewItem x:Name="LanguageCategory" 
                           Header="{lex:Loc Key=LanguageCategory}"/>
+            <TreeViewItem x:Name="MinimizationCategory" 
+                          Header="{lex:Loc Key=MinimizationCategory}"/>
 
         </TreeView>
         <UserControl

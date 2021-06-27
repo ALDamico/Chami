@@ -1,5 +1,8 @@
-﻿namespace Chami.Db.Entities
+﻿using Chami.Db.Annotation;
+
+namespace Chami.Db.Entities
 {
+    [TableName("WatchedApplications")]
     public class WatchedApplication : IChamiEntity
     {
         public int Id { get; set; }
