@@ -1,4 +1,4 @@
-﻿using Chami.Db.Annotation;
+﻿using Chami.Db.Annotations;
 using Chami.Db.Entities;
 using FluentMigrator;
 

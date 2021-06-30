@@ -1,5 +1,5 @@
 using System;
-using Chami.Db.Annotation;
+using Chami.Db.Annotations;
 
 namespace Chami.Db.Entities
 {

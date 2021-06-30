@@ -1,7 +1,7 @@
 ﻿using System;
 using Chami.Db.Entities;
 
-namespace Chami.Db.Annotation
+namespace Chami.Db.Annotations
 {
     public static class AnnotationUtils
     {

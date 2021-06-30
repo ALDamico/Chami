@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Chami.Db.Annotation
+namespace Chami.Db.Annotations
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class TableNameAttribute : Attribute
