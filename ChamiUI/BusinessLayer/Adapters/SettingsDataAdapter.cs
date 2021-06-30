@@ -6,6 +6,7 @@ using System.Globalization;
 using System.Reflection;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
+using ChamiUI.BusinessLayer.Annotations;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
@@ -145,7 +146,9 @@ namespace ChamiUI.BusinessLayer.Adapters
                 // settings window.
                 // For example, we don't want to update the settings related to the main window's state, because 
                 // those are updated explicitly by a dedicated method
-                if ((propertyInfo.GetValue(settings) is SettingCategoryViewModelBase {IsExplicitSaveOnly: true}))
+                var isExplicitSaveOnlyAttribute =
+                    propertyInfo.PropertyType.GetCustomAttribute<ExplicitSaveOnlyAttribute>();
+                if (isExplicitSaveOnlyAttribute is {IsExplicitSaveOnly: true})
                 {
                     continue;
                 }

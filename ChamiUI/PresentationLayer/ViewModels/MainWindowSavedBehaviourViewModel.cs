@@ -1,9 +1,11 @@
 ﻿using System.ComponentModel;
+using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    [ExplicitSaveOnly]
     public class MainWindowSavedBehaviourViewModel:SettingCategoryViewModelBase
     {
         private bool _isCaseSensitiveSearch;
@@ -17,8 +19,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(IsCaseSensitiveSearch));
             }
         }
-
-        public override bool IsExplicitSaveOnly => true;
         
         public double Height { get; set; }
         public double Width { get; set; }
