@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System;
+using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -25,6 +26,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public bool ControlsEnabled => IsDetectionEnabled;
 
+        [NonPersistentSetting]
         public ObservableCollection<WatchedApplicationViewModel> WatchedApplications { get; set; }
 
         public bool AddWatchedApplication()
@@ -46,6 +48,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private string _newApplicationName;
+        [NonPersistentSetting]
         public string NewApplicationName
         {
             get => _newApplicationName;

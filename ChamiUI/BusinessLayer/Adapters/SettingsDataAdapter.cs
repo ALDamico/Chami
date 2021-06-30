@@ -156,6 +156,11 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var propertiesToSave = propertyInfo.PropertyType.GetProperties();
                 foreach (var property in propertiesToSave)
                 {
+                    var isNonPersistent = property.GetCustomAttribute<NonPersistentSettingAttribute>();
+                    if (isNonPersistent is {IsNonPersistent: true})
+                    {
+                        continue;
+                    }
                     string valueString = null;
                     var propertyName = property.Name;
                     var propertyValue = property.GetValue(propertyInfo.GetValue(settings));

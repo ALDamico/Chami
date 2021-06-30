@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using ChamiUI.BusinessLayer.Annotations;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -8,6 +9,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             AvailableLanguages = new ObservableCollection<ApplicationLanguageViewModel>();
         }
+        [NonPersistentSetting]
         public ObservableCollection<ApplicationLanguageViewModel> AvailableLanguages { get; set;   }
         private ApplicationLanguageViewModel _currentLanguage;
 

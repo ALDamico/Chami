@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Minimizing;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -24,6 +25,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        [NonPersistentSetting]
         public ObservableCollection<IMinimizationStrategy> AvailableStrategies { get; }
     }
 }
