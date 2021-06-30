@@ -13,6 +13,10 @@ namespace Chami.Db.Annotations
         /// </summary>
         public string TableName { get; }
 
+        /// <summary>
+        /// Constructs a new <see cref="TableNameAttribute"/> object.
+        /// </summary>
+        /// <param name="tableName">The name of the table (mandatory).</param>
         public TableNameAttribute(string tableName)
         {
             TableName = tableName;

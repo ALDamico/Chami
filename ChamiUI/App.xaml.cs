@@ -78,13 +78,6 @@ namespace ChamiUI
         {
             var runner = _serviceProvider.GetRequiredService<IMigrationRunner>();
             runner.MigrateUp();
-            /*
-            var connection = new SQLiteConnection(GetConnectionString());
-            var currentDirectory = Directory.GetCurrentDirectory();
-            currentDirectory += "/DataLayer/Db/Migrations";
-            var migrationExecutor = new DatabaseMigrationExecutor(connection, currentDirectory);
-            migrationExecutor.Migrate();
-            */
         }
 
         public ChamiLogger Logger { get; }

@@ -8,13 +8,25 @@ using Environment = Chami.Db.Entities.Environment;
 
 namespace Chami.Db.Repositories
 {
+    /// <summary>
+    /// Performs CRUD operations on the Environment aggregate.
+    /// </summary>
     public class EnvironmentRepository : RepositoryBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="EnvironmentRepository"/> object and sets the appropriate connection string.
+        /// </summary>
+        /// <param name="connectionString"></param>
         public EnvironmentRepository(string connectionString)
         {
             ConnectionString = connectionString;
         }
 
+        /// <summary>
+        /// Retrieves the <see cref="Environment"/> with the specified id and its <see cref="EnvironmentVariable"/>s asynchronously.
+        /// </summary>
+        /// <param name="id">The id of the <see cref="Environment"/> to retrieve.</param>
+        /// <returns>If a match is found, returns the corresponding <see cref="Environment"/>, otherwise null.</returns>
         public async Task<Environment> GetEnvironmentByIdAsync(int id)
         {
             var queryString = @"
@@ -54,7 +66,7 @@ namespace Chami.Db.Repositories
         }
 
         /// <summary>
-        /// Get the environment with the specified Id.
+        /// Gets the environment with the specified Id and its corresponding <see cref="EnvironmentVariable"/>s.
         /// </summary>
         /// <param name="id">The id of the <see cref="Environment"/> to retrieve.</param>
         /// <returns>The <see cref="Environment"/> with the Id specified. If none is found, returns null.</returns>
@@ -341,7 +353,7 @@ namespace Chami.Db.Repositories
         }
 
         /// <summary>
-        /// Get the <see cref="Environment"/> with the specified name.
+        /// Get the <see cref="Environment"/> with the specified name and its associated <see cref="EnvironmentVariable"/>s.
         /// </summary>
         /// <param name="name">The name of the <see cref="Environment"/> to retrieve</param>
         /// <returns>An <see cref="Environment"/> with the specified name. If none is found, null.</returns>
@@ -389,7 +401,7 @@ namespace Chami.Db.Repositories
         }
 
         /// <summary>
-        /// Deletes the <see cref="Environment"/> with the specified id from the database.
+        /// Deletes the <see cref="Environment"/> with the specified id from the database and cascades the delete to its corresponsing <see cref="EnvironmentVariable"/>s.
         /// </summary>
         /// <param name="id">The Id of the <see cref="Environment"/> to delete.</param>
         /// <returns>True if the deletion was successful, false if no <see cref="Environment"/> with the requested id was found.</returns>
