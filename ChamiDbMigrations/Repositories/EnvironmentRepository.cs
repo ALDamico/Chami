@@ -28,7 +28,7 @@ namespace Chami.Db.Repositories
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
                 {
-                    var param = new { id };
+                    var param = new {id};
                     var result = await connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
@@ -53,6 +53,11 @@ namespace Chami.Db.Repositories
             }
         }
 
+        /// <summary>
+        /// Get the environment with the specified Id.
+        /// </summary>
+        /// <param name="id">The id of the <see cref="Environment"/> to retrieve.</param>
+        /// <returns>The <see cref="Environment"/> with the Id specified. If none is found, returns null.</returns>
         public Environment GetEnvironmentById(int id)
         {
             var queryString = @"
@@ -66,7 +71,7 @@ namespace Chami.Db.Repositories
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
                 {
-                    var param = new { id };
+                    var param = new {id};
                     var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
@@ -84,7 +89,7 @@ namespace Chami.Db.Repositories
                                 v.Environment = e;
                                 environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
                             }
-                            
+
                             return env;
                         }, param, splitOn: "EnvironmentVariableId");
                     return result.FirstOrDefault();
@@ -96,6 +101,12 @@ namespace Chami.Db.Repositories
             }
         }
 
+        /// <summary>
+        /// Inserts an <see cref="Environment"/> object in the datastore and its associated <ses cref="EnvironmentVariable"/>s.
+        /// </summary>
+        /// <param name="environment">The <see cref="Environment"/> object to insert into the datastore.</param>
+        /// <returns>The newly-inserted environment, with its EnvironmentId set. If the parameter is null, returns null.</returns>
+        /// <exception cref="NotSupportedException">If the EnvironmentId is greater than 0 (i.e., if the <see cref="Environment"/> is already persisted to the datastore), a <see cref="NotSupportedException"/> is thrown.</exception>
         public Environment InsertEnvironment(Environment environment)
         {
             if (environment == null)
@@ -112,7 +123,8 @@ namespace Chami.Db.Repositories
             using (var connection = GetConnection())
             {
                 var transaction = connection.BeginTransaction();
-                connection.Execute(queryString, new { environment.Name, environment.AddedOn, environment.EnvironmentType });
+                connection.Execute(queryString,
+                    new {environment.Name, environment.AddedOn, environment.EnvironmentType});
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
                 VALUES (?, ?, ?, ?)
@@ -121,7 +133,7 @@ namespace Chami.Db.Repositories
                     SELECT * 
                     FROM Environments e
                     WHERE e.AddedOn = ?";
-                var results = connection.Query<Environment>(selectQuery, new { environment.AddedOn });
+                var results = connection.Query<Environment>(selectQuery, new {environment.AddedOn});
                 var result = results.FirstOrDefault();
                 environment.EnvironmentId = result.EnvironmentId;
                 foreach (var environmentVariable in environment.EnvironmentVariables)
@@ -136,6 +148,7 @@ namespace Chami.Db.Repositories
                             environmentVariable.EnvironmentId
                         });
                 }
+
                 transaction.Commit();
             }
 
@@ -143,7 +156,12 @@ namespace Chami.Db.Repositories
         }
 
 
-
+        /// <summary>
+        /// Updates the data associated with an <see cref="Environment"/> in the datastore.
+        /// </summary>
+        /// <param name="environment">The <see cref="Environment"/> to update.</param>
+        /// <returns>The updated <see cref="Environment"/> entity.</returns>
+        /// <exception cref="NotSupportedException">If the <see cref="Environment"/> is not yet persisted (i.e., its EnvironmentId is 0), a <see cref="NotSupportedException"/> is thrown.</exception>
         public Environment UpdateEnvironment(Environment environment)
         {
             if (environment.EnvironmentId == 0)
@@ -158,7 +176,7 @@ namespace Chami.Db.Repositories
 ";
             using (var connection = GetConnection())
             {
-                connection.Execute(updateQuery, new { environment.Name, environment.EnvironmentId });
+                connection.Execute(updateQuery, new {environment.Name, environment.EnvironmentId});
                 foreach (var environmentVariable in environment.EnvironmentVariables)
                 {
                     var envVarUpdateQuery = @"
@@ -182,12 +200,18 @@ namespace Chami.Db.Repositories
             return updatedEnvironment;
         }
 
+        /// <summary>
+        /// Inserts an <see cref="Environment"/> in the datastore, or updates it if it's already present.
+        /// </summary>
+        /// <param name="environment">The <see cref="Environment"/> to persist in the datastore.</param>
+        /// <returns>The newly-inserted or updated <see cref="Environment"/></returns>
         public Environment UpsertEnvironment(Environment environment)
         {
             if (environment.EnvironmentId == 0)
             {
                 return InsertEnvironment(environment);
             }
+
             UpdateEnvironment(environment);
 
             var newVariables = environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0);
@@ -200,6 +224,12 @@ namespace Chami.Db.Repositories
             return GetEnvironmentById(environment.EnvironmentId);
         }
 
+        /// <summary>
+        /// Inserts a new <see cref="EnvironmentVariable"/> object in the datastore.
+        /// </summary>
+        /// <param name="environmentVariable">The <see cref="EnvironmentVariable"/> to insert.</param>
+        /// <param name="environmentId">The Id of the <see cref="Environment"/> to attach the new variable to.</param>
+        /// <exception cref="InvalidOperationException">If the <see cref="EnvironmentVariable"/> object's Name or Value attributes is null, an <see cref="InvalidOperationException"/> is thrown to preserve the consistency of the datastore.</exception>
         protected void InsertVariable(EnvironmentVariable environmentVariable, int environmentId)
         {
             if (environmentVariable == null)
@@ -216,6 +246,7 @@ namespace Chami.Db.Repositories
             {
                 throw new InvalidOperationException("Attempting to insert an entity with NULL Value");
             }
+
             var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
                 VALUES (?, ?, ?, ?)
@@ -233,6 +264,10 @@ namespace Chami.Db.Repositories
             }
         }
 
+        /// <summary>
+        /// Gets all the <see cref="Environment"/> objects in the datastore marked as "Backup environments".
+        /// </summary>
+        /// <returns>An <see cref="ICollection{T}"/> of <see cref="Environment"/> objects.</returns>
         public ICollection<Environment> GetBackupEnvironments()
         {
             var queryString = @"
@@ -267,6 +302,10 @@ namespace Chami.Db.Repositories
             }
         }
 
+        /// <summary>
+        /// Get all the environments marked as normal environments in the datastore.
+        /// </summary>
+        /// <returns>An <see cref="ICollection{Environment}"/> containing all the environments in the datastore.</returns>
         public ICollection<Environment> GetEnvironments()
         {
             var queryString = @"
@@ -301,6 +340,11 @@ namespace Chami.Db.Repositories
             }
         }
 
+        /// <summary>
+        /// Get the <see cref="Environment"/> with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the <see cref="Environment"/> to retrieve</param>
+        /// <returns>An <see cref="Environment"/> with the specified name. If none is found, null.</returns>
         public Environment GetEnvironmentByName(string name)
         {
             var queryString = @"
@@ -314,7 +358,7 @@ namespace Chami.Db.Repositories
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
                 {
-                    var param = new { name };
+                    var param = new {name};
                     var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
@@ -344,6 +388,11 @@ namespace Chami.Db.Repositories
             }
         }
 
+        /// <summary>
+        /// Deletes the <see cref="Environment"/> with the specified id from the database.
+        /// </summary>
+        /// <param name="id">The Id of the <see cref="Environment"/> to delete.</param>
+        /// <returns>True if the deletion was successful, false if no <see cref="Environment"/> with the requested id was found.</returns>
         public bool DeleteEnvironmentById(int id)
         {
             var queryString = @"
@@ -352,17 +401,21 @@ namespace Chami.Db.Repositories
 ";
             using (var connection = GetConnection())
             {
-                connection.Execute(queryString, new { id });
+                connection.Execute(queryString, new {id});
 
                 queryString = @"
                     DELETE FROM Environments
                 WHERE EnvironmentId = ?
 ";
-                var result = connection.Execute(queryString, new { id });
+                var result = connection.Execute(queryString, new {id});
                 return result > 0;
             }
         }
 
+        /// <summary>
+        /// Deletes the <see cref="EnvironmentVariable"/> with the specified id from the datastore.
+        /// </summary>
+        /// <param name="selectedVariableId">The id of the <see cref="EnvironmentVariable"/> to delete.</param>
         public void DeleteVariableById(int selectedVariableId)
         {
             var queryString = @"

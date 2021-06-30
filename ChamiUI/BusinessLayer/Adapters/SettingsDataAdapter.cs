@@ -89,12 +89,23 @@ namespace ChamiUI.BusinessLayer.Adapters
 
         private readonly SettingsRepository _repository;
 
+        /// <summary>
+        /// Retrieves settings from the datastore.
+        /// </summary>
+        /// <returns>A <see cref="SettingsViewModel"/> containing all application settings.</returns>
         public SettingsViewModel GetSettings()
         {
             var settingsList = _repository.GetSettings();
             return ToViewModel(settingsList);
         }
 
+        /// <summary>
+        /// Tries to perform some basic conversions on the values retrieved from the datastore.
+        /// </summary>
+        /// <param name="typeName">Name of the target type</param>
+        /// <param name="value">Value to convert</param>
+        /// <returns>A converted object, usually of a "primitive" type.</returns>
+        /// <exception cref="InvalidCastException">If no cast can be performed, throws an InvalidCastException</exception>
         private object GetBoxedConvertedObject(string typeName, string value)
         {
             object propertyValue = null;
@@ -175,6 +186,10 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
         }
 
+        /// <summary>
+        /// Saves all settings related to the state of <see cref="MainWindow"/> to the datastore.
+        /// </summary>
+        /// <param name="settings">The modified application settings.</param>
         public void SaveMainWindowState(SettingsViewModel settings)
         {
             var mainWinSettings = settings.MainWindowBehaviourSettings;

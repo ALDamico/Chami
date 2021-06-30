@@ -1,13 +1,21 @@
 using System.Collections.Generic;
 using System.Globalization;
+using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
+    /// <summary>
+    /// Data adapter for <see cref="UiLanguage"/> entities.
+    /// </summary>
     public class ApplicationLanguageDataAdapter
     {
+        /// <summary>
+        /// Constructs a new <see cref="ApplicationLanguageDataAdapter"/> object.
+        /// </summary>
+        /// <param name="connectionString"></param>
         public ApplicationLanguageDataAdapter(string connectionString)
         {
             _repository = new UiLanguageRepository(connectionString);

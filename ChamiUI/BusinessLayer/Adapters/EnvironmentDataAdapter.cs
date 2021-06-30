@@ -9,13 +9,22 @@ namespace ChamiUI.BusinessLayer.Adapters
 {
     public class EnvironmentDataAdapter
     {
-
+        /// <summary>
+        /// Constructs a new <see cref="EnvironmentDataAdapter"/> object.
+        /// </summary>
+        /// <param name="connectionString">The connection string to connect to the datastore.</param>
         public EnvironmentDataAdapter(string connectionString)
         {
             _repository = new EnvironmentRepository(connectionString);
         }
+
         private EnvironmentRepository _repository;
 
+        /// <summary>
+        /// Get the <see cref="EnvironmentViewModel"/> with the specified id.
+        /// </summary>
+        /// <param name="id">The id of the <see cref="EnvironmentViewModel"/> to retrieve.</param>
+        /// <returns>If an <see cref="Environment"/> with the specified id is found, converts it to an <see cref="EnvironmentViewModel"/>. If not, returns null.</returns>
         public EnvironmentViewModel GetEnvironmentById(int id)
         {
             var result = _repository.GetEnvironmentById(id);
@@ -28,6 +37,10 @@ namespace ChamiUI.BusinessLayer.Adapters
             return converter.To(result);
         }
 
+        /// <summary>
+        /// Gets all the <see cref="EnvironmentViewModel"/>s marked as normal environments in the datastore.
+        /// </summary>
+        /// <returns>A <see cref="ICollection{T}"/> of <see cref="EnvironmentViewModel"/>s.</returns>
         public ICollection<EnvironmentViewModel> GetEnvironments()
         {
             var models = _repository.GetEnvironments();
@@ -41,6 +54,11 @@ namespace ChamiUI.BusinessLayer.Adapters
             return output;
         }
 
+        /// <summary>
+        /// Gets the <see cref="EnvironmentViewModel"/> with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the <see cref="EnvironmentViewModel"/> to retrieve.</param>
+        /// <returns>If a match is found, returns it. Otherwise, returns null.</returns>
         public EnvironmentViewModel GetEnvironmentByName(string name)
         {
             var environment = _repository.GetEnvironmentByName(name);
@@ -52,16 +70,31 @@ namespace ChamiUI.BusinessLayer.Adapters
             return new EnvironmentConverter().To(environment);
         }
 
+        /// <summary>
+        /// Gets the <see cref="Environment"/> with the specified id.
+        /// </summary>
+        /// <param name="id">If a match is found, returns it. Otherwise, returns null.</param>
+        /// <returns>The <see cref="Environment"/> with the specified id.</returns>
         public Environment GetEnvironmentEntityById(int id)
         {
             return _repository.GetEnvironmentById(id);
         }
 
+        /// <summary>
+        /// Gets the <see cref="Environment"/> with the specified name.
+        /// </summary>
+        /// <param name="name">The name of the <see cref="Environment"/> to retrieve.</param>
+        /// <returns>The <see cref="Environment"/> with the specified name, if found. Otherwise, null.</returns>
         public Environment GetEnvironmentEntityByName(string name)
         {
             return _repository.GetEnvironmentByName(name);
         }
 
+        /// <summary>
+        /// Validates the supplied <see cref="EnvironmentViewModel"/>. If the validation is successful, converts to an <see cref="Environment"/> entity and inserts it in the datastore.
+        /// </summary>
+        /// <param name="environmentViewModel">The <see cref="EnvironmentViewModel"/> to insert.</param>
+        /// <returns>If the validation is successful, return a new instance of the <see cref="EnvironmentViewModel"/> with its id updated. Otherwise, returns null.</returns>
         public EnvironmentViewModel InsertEnvironment(EnvironmentViewModel environmentViewModel)
         {
             var validator = new EnvironmentViewModelValidator();
@@ -77,12 +110,18 @@ namespace ChamiUI.BusinessLayer.Adapters
             return null;
         }
 
+        /// <summary>
+        /// Deletes the <see cref="Environment"/> corresponding to the supplied <see cref="EnvironmentViewModel"/> from the datastore.
+        /// </summary>
+        /// <param name="selectedEnvironment">The <see cref="EnvironmentViewModel"/> to delete from the datastore.</param>
+        /// <returns>If the <see cref="EnvironmentViewModel"/> is null or its id is 0, returns false. Otherwise, returns whether the deletion was successful or not.</returns>
         public bool DeleteEnvironment(EnvironmentViewModel selectedEnvironment)
         {
             if (selectedEnvironment == null)
             {
                 return false;
             }
+
             int id = selectedEnvironment.Id;
             if (id == 0)
             {
