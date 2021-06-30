@@ -181,6 +181,11 @@ namespace ChamiUI.BusinessLayer.Adapters
             return propertyValue;
         }
 
+        /// <summary>
+        /// Converts every property in the <see cref="SettingsViewModel"/> to a <see cref="Setting"/> entity and updates it in the datastore.
+        /// Not every property is guaranteed to be saved. For performance reasons, some classes are marked as "explicit save only" and are only updated when strictly necessary. Others are marked as "non persistent" and they're never going to be saved.
+        /// </summary>
+        /// <param name="settings">The <see cref="SettingsViewModel"/> to convert and save.</param>
         public void SaveSettings(SettingsViewModel settings)
         {
             var propertyInfos = settings.GetType().GetProperties();
@@ -221,6 +226,7 @@ namespace ChamiUI.BusinessLayer.Adapters
 
         /// <summary>
         /// Saves all settings related to the state of <see cref="MainWindow"/> to the datastore.
+        /// This is used to allow hiding or closing the main window and then restoring its state at a later time.
         /// </summary>
         /// <param name="settings">The modified application settings.</param>
         public void SaveMainWindowState(SettingsViewModel settings)
