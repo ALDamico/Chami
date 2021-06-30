@@ -122,11 +122,11 @@ If all fails, the conversion is considered impossible.  </li>
 <tr class="memitem:a2dc31d2d0a7f50da15986b4416c51abc"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html">SettingsViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a2dc31d2d0a7f50da15986b4416c51abc">GetSettings</a> ()</td></tr>
 <tr class="memdesc:a2dc31d2d0a7f50da15986b4416c51abc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves settings from the datastore and converts them to an instance of SettingsViewModel  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a2dc31d2d0a7f50da15986b4416c51abc">More...</a><br /></td></tr>
 <tr class="separator:a2dc31d2d0a7f50da15986b4416c51abc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3a7260ddbf402312b64ed87c5e804f6a"><td class="memItemLeft" align="right" valign="top"><a id="a3a7260ddbf402312b64ed87c5e804f6a"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SaveSettings</b> (<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html">SettingsViewModel</a> settings)</td></tr>
+<tr class="memitem:a3a7260ddbf402312b64ed87c5e804f6a"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a3a7260ddbf402312b64ed87c5e804f6a">SaveSettings</a> (<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html">SettingsViewModel</a> settings)</td></tr>
+<tr class="memdesc:a3a7260ddbf402312b64ed87c5e804f6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts every property in the SettingsViewModel to a Setting entity and updates it in the datastore. Not every property is guaranteed to be saved. For performance reasons, some classes are marked as "explicit save only" and are only updated when strictly necessary. Others are marked as "non persistent" and they're never going to be saved.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a3a7260ddbf402312b64ed87c5e804f6a">More...</a><br /></td></tr>
 <tr class="separator:a3a7260ddbf402312b64ed87c5e804f6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abd8c2db2e069e8587ee82830ef22f516"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#abd8c2db2e069e8587ee82830ef22f516">SaveMainWindowState</a> (<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html">SettingsViewModel</a> settings)</td></tr>
-<tr class="memdesc:abd8c2db2e069e8587ee82830ef22f516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all settings related to the state of MainWindow to the datastore.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#abd8c2db2e069e8587ee82830ef22f516">More...</a><br /></td></tr>
+<tr class="memdesc:abd8c2db2e069e8587ee82830ef22f516"><td class="mdescLeft">&#160;</td><td class="mdescRight">Saves all settings related to the state of MainWindow to the datastore. This is used to allow hiding or closing the main window and then restoring its state at a later time.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#abd8c2db2e069e8587ee82830ef22f516">More...</a><br /></td></tr>
 <tr class="separator:abd8c2db2e069e8587ee82830ef22f516"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Function Documentation</h2>
@@ -175,10 +175,36 @@ Here is the call graph for this function:</div>
       </table>
 </div><div class="memdoc">
 
-<p>Saves all settings related to the state of MainWindow to the datastore. </p>
+<p>Saves all settings related to the state of MainWindow to the datastore. This is used to allow hiding or closing the main window and then restoring its state at a later time. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">settings</td><td>The modified application settings.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3a7260ddbf402312b64ed87c5e804f6a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3a7260ddbf402312b64ed87c5e804f6a">&#9670;&nbsp;</a></span>SaveSettings()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter.SaveSettings </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html">SettingsViewModel</a>&#160;</td>
+          <td class="paramname"><em>settings</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts every property in the SettingsViewModel to a Setting entity and updates it in the datastore. Not every property is guaranteed to be saved. For performance reasons, some classes are marked as "explicit save only" and are only updated when strictly necessary. Others are marked as "non persistent" and they're never going to be saved. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">settings</td><td>The SettingsViewModel to convert and save.</td></tr>
   </table>
   </dd>
 </dl>

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['collectionaccesstype_800',['CollectionAccessType',['../namespace_chami_u_i_1_1_annotations.html#a75b51ab3495c9a82af4fbd6934d7d316',1,'ChamiUI::Annotations']]]
+  ['collectionaccesstype_802',['CollectionAccessType',['../namespace_chami_u_i_1_1_annotations.html#a75b51ab3495c9a82af4fbd6934d7d316',1,'ChamiUI::Annotations']]]
 ];
