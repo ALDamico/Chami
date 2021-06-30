@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.WatchedApplicationRepository.GetWatchedApplicationByName" name="Chami.Db.Repositories.WatchedApplicationRepository.GetWatchedApplicationByName">
+<area shape="rect" id="node1" title="Gets the WatchedApplication with the specified name." alt="" coords="289,5,515,61"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#a76bafe1db158bb6a0e96fcd189849234" title="Inserts a new WatchedApplication object in the database." alt="" coords="5,5,241,61"/>
+</map>

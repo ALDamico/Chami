@@ -1,0 +1,5 @@
+<map id="Chami.Db.Repositories.UiLanguageRepository.GetUiLanguageByCode" name="Chami.Db.Repositories.UiLanguageRepository.GetUiLanguageByCode">
+<area shape="rect" id="node1" title="Gets a UiLanguage with the requested code." alt="" coords="579,5,812,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#a7b2d68aad14d93caa2d36cfc5629b5b4" title="Gets an ApplicationLanguageViewModel by its ISO&#45;639 code." alt="" coords="292,5,531,61"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#a7a46d13592c83ca652c1c3b2a73d73fe" title="Gets an ApplicationLanguageViewModel, converts them to a CultureInfo, and returns it." alt="" coords="5,5,244,61"/>
+</map>

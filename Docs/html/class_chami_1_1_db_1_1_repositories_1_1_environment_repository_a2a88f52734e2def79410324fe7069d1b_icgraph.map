@@ -1,0 +1,7 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentById" name="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentById">
+<area shape="rect" id="node1" title="Gets the environment with the specified Id and its corresponding EnvironmentVariables." alt="" coords="619,116,849,157"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a51f163e7319ae29c1f5afde5e9984523" title="Get the EnvironmentViewModel with the specified id." alt="" coords="284,5,571,47"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a84cee0a4430a1ffaf20733c34f5f6eab" title="Gets the Environment with the specified id." alt="" coords="297,71,558,127"/>
+<area shape="rect" id="node4" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a7f1e717e64ddc444dfc6ca15d7e52b7d" title="Updates the data associated with an Environment in the datastore." alt="" coords="312,152,543,193"/>
+<area shape="rect" id="node5" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a083fc406339cecc488cb8aee86748e47" title="Inserts an Environment in the datastore, or updates it if it&#39;s already present." alt="" coords="5,181,236,223"/>
+</map>

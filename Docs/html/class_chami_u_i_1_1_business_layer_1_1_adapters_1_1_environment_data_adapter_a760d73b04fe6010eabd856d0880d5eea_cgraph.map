@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.InsertEnvironment" name="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.InsertEnvironment">
+<area shape="rect" id="node1" title="Validates the supplied EnvironmentViewModel. If the validation is successful, converts to an Environm..." alt="" coords="5,5,277,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a74e8079264f86aeb0fd2613ba72eb583" title="Inserts an Environment object in the datastore and its associated &lt;ses cref=&quot;EnvironmentVariable&quot;&gt;s." alt="" coords="325,5,556,47"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="604,5,825,47"/>
+</map>

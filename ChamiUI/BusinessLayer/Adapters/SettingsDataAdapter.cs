@@ -17,6 +17,39 @@ namespace ChamiUI.BusinessLayer.Adapters
             _repository = new SettingsRepository(connectionString);
         }
 
+        /// <summary>
+        /// Converts the <see cref="Setting"/> entities to a suitable <see cref="SettingsViewModel"/> that the presentation layer can use by performing various conversions.
+        /// The algorithm for performing these conversions is as follows:
+        /// <list type="number">
+        ///     <item>
+        ///         At first, it attempts to perform a series of trivial conversions based on the Type property of the <see cref="Setting"/> entity. If no such conversion can be performed, an <see cref="InvalidCastException"/> is thrown.
+        ///         The following types are supported:
+        ///         <list type="bullet">
+        ///             <item>string</item>
+        ///             <item>System.Boolean or bool</item>
+        ///             <item>System.Int32 or int</item>
+        ///             <item>System.Double or double</item>
+        ///         </list>
+        ///         Other types could be added, but are probably not needed.
+        ///     </item>
+        ///     <item>
+        ///         If the previous attempt failed, tries to invoke the constructor of the target type by using the CreateInstance of <see cref="Activator"/> and passing the Value property of the setting.
+        ///         In practice, this means that the algorithm attempts to invoke a constructor that takes a string as a parameter.
+        ///         If such a constructor doesn't exist, a <see cref="MissingMethodException"/> is raised.
+        ///     </item>
+        ///     <item>
+        ///         If the previous step failed, it tries to instantiate the Converter specified in the Setting by invoking its parameterless constructor.
+        ///         If that succeeds, it invokes its Convert method.
+        ///     </item>
+        ///     <item>
+        ///         If all fails, the conversion is considered impossible.
+        ///     </item>
+        /// </list>
+        /// </summary>
+        /// <param name="settings">The full list of settings available to the Chami application.</param>
+        /// <returns>A <see cref="SettingsViewModel"/> object for use by the presentation layer.</returns>
+        /// <exception cref="NullReferenceException">The method isn't able to find a property whose name corresponds to Setting.PropertyName, or inside this it cannot find a property named after Setting.SettingName.</exception>
+        /// <exception cref="InvalidOperationException">The value conversion was successful, but the target property lacks a publicly-accessible setter.</exception>
         public SettingsViewModel ToViewModel(IEnumerable<Setting> settings)
         {
             var viewModel = new SettingsViewModel();
@@ -90,7 +123,7 @@ namespace ChamiUI.BusinessLayer.Adapters
         private readonly SettingsRepository _repository;
 
         /// <summary>
-        /// Retrieves settings from the datastore.
+        /// Retrieves settings from the datastore and converts them to an instance of <see cref="SettingsViewModel"/>
         /// </summary>
         /// <returns>A <see cref="SettingsViewModel"/> containing all application settings.</returns>
         public SettingsViewModel GetSettings()

@@ -1,0 +1,5 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.InsertEnvironment" name="Chami.Db.Repositories.EnvironmentRepository.InsertEnvironment">
+<area shape="rect" id="node1" title="Inserts an Environment object in the datastore and its associated &lt;ses cref=&quot;EnvironmentVariable&quot;&gt;s." alt="" coords="325,39,556,80"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a760d73b04fe6010eabd856d0880d5eea" title="Validates the supplied EnvironmentViewModel. If the validation is successful, converts to an Environm..." alt="" coords="5,5,277,47"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a083fc406339cecc488cb8aee86748e47" title="Inserts an Environment in the datastore, or updates it if it&#39;s already present." alt="" coords="26,71,257,112"/>
+</map>

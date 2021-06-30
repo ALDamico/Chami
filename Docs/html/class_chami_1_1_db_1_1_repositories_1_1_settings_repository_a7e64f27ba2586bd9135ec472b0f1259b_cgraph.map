@@ -1,0 +1,5 @@
+<map id="Chami.Db.Repositories.SettingsRepository.UpdateSetting" name="Chami.Db.Repositories.SettingsRepository.UpdateSetting">
+<area shape="rect" id="node1" title="Updates the value of a Setting." alt="" coords="5,5,212,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="515,5,736,47"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_settings_repository.html#a551dc1fd5b089ae49c0e1781ed9f7e84" title="Retrieves all the Settings object associated with the Chami application." alt="" coords="260,35,467,76"/>
+</map>

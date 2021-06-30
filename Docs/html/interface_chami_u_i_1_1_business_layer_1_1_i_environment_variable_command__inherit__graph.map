@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.IEnvironmentVariableCommand" name="ChamiUI.BusinessLayer.IEnvironmentVariableCommand">
+<area shape="rect" id="node1" title=" " alt="" coords="5,39,244,80"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html" title=" " alt="" coords="292,5,528,47"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command.html" title=" " alt="" coords="292,71,528,112"/>
+</map>

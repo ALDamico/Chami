@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.GetEnvironments" name="Chami.Db.Repositories.EnvironmentRepository.GetEnvironments">
+<area shape="rect" id="node1" title="Get all the environments marked as normal environments in the datastore." alt="" coords="321,5,552,47"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#acb8314617a74856547db3f24f01d5538" title="Gets all the EnvironmentViewModels marked as normal environments in the datastore." alt="" coords="5,5,273,47"/>
+</map>

@@ -1,0 +1,5 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.GetBackupEnvironments" name="Chami.Db.Repositories.EnvironmentRepository.GetBackupEnvironments">
+<area shape="rect" id="node1" title="Gets all the Environment objects in the datastore marked as &quot;Backup environments&quot;." alt="" coords="5,39,236,80"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_entities_1_1_environment.html#a2a45d4326b4cf2fabc0f4e5ae3ce5efd" title="Constructs a new Environment object with default values. These are: AddedOn: Current date and time...." alt="" coords="291,5,498,47"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="284,71,505,112"/>
+</map>

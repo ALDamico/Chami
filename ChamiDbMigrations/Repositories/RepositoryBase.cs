@@ -23,6 +23,10 @@ namespace Chami.Db.Repositories
             return connection;
         }
 
+        /// <summary>
+        /// Creates a new database connection asynchronously.
+        /// </summary>
+        /// <returns>The newly-created connection.</returns>
         protected async Task<SQLiteConnection> GetConnectionAsync()
         {
             return await new Task<SQLiteConnection>(() => new SQLiteConnection(ConnectionString));

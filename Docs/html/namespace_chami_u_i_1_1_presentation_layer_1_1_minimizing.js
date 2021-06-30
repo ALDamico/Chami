@@ -1,0 +1,6 @@
+var namespace_chami_u_i_1_1_presentation_layer_1_1_minimizing =
+[
+    [ "IMinimizationStrategy", "interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy.html", "interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy" ],
+    [ "MinimizeToTaskbarStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_taskbar_strategy.html", "class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_taskbar_strategy" ],
+    [ "MinimizeToTrayStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_tray_strategy.html", "class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_tray_strategy" ]
+];

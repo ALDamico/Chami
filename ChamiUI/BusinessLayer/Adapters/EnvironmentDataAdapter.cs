@@ -7,6 +7,9 @@ using Chami.Db.Repositories;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
+    /// <summary>
+    /// A data adapter to bridge between the repository layer and the presentation layer with regard to the Environment aggregate.
+    /// </summary>
     public class EnvironmentDataAdapter
     {
         /// <summary>

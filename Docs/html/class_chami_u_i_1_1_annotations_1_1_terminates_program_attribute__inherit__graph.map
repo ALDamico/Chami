@@ -1,0 +1,4 @@
+<map id="ChamiUI.Annotations.TerminatesProgramAttribute" name="ChamiUI.Annotations.TerminatesProgramAttribute">
+<area shape="rect" id="node1" title="Indicates that the marked method unconditionally terminates control flow execution...." alt="" coords="5,80,217,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="76,5,147,32"/>
+</map>

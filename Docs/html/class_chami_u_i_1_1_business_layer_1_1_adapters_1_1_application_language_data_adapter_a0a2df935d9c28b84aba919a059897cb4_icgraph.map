@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter.GetAllApplicationLanguages" name="ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter.GetAllApplicationLanguages">
+<area shape="rect" id="node1" title="Gets all the available UiLanguage entities from the database, converts them to ApplicationLanguageVie..." alt="" coords="292,5,531,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#ae84588fcc07cfba0d2842c22aa6ede75" title="Gets all the ApplicationLanguageViewModels, converts them to CultureInfo objects, and returns them as..." alt="" coords="5,5,244,61"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.SettingsRepository.GetSettings" name="Chami.Db.Repositories.SettingsRepository.GetSettings">
+<area shape="rect" id="node1" title="Retrieves all the Settings object associated with the Chami application." alt="" coords="260,5,467,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_settings_repository.html#a7e64f27ba2586bd9135ec472b0f1259b" title="Updates the value of a Setting." alt="" coords="5,5,212,47"/>
+</map>

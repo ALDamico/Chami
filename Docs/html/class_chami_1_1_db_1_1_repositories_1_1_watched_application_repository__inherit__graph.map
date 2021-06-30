@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.WatchedApplicationRepository" name="Chami.Db.Repositories.WatchedApplicationRepository">
+<area shape="rect" id="node1" title="Performs CRUD operations on the WatchedApplication aggregate." alt="" coords="5,80,216,121"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html" title="Base class for all repositories in the Chami application." alt="" coords="53,5,168,32"/>
+</map>

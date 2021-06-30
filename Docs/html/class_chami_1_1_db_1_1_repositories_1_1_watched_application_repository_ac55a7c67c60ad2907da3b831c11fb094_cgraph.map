@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.WatchedApplicationRepository.UpdateApplication" name="Chami.Db.Repositories.WatchedApplicationRepository.UpdateApplication">
+<area shape="rect" id="node1" title="Updates an existing WatchedApplication object in the database." alt="" coords="5,5,263,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="311,5,532,47"/>
+</map>

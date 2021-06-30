@@ -1,0 +1,7 @@
+var namespace_chami_u_i_1_1_presentation_layer_1_1_filtering =
+[
+    [ "EnvironmentAndVariableNameAndValueFilterStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy.html", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy" ],
+    [ "EnvironmentAndVariableNameFilterStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_filter_strategy.html", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_filter_strategy" ],
+    [ "EnvironmentNameFilterStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy" ],
+    [ "IFilterStrategy", "interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html", "interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy" ]
+];

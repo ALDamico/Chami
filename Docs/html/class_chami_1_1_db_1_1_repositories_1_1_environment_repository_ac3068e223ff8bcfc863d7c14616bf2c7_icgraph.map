@@ -1,0 +1,5 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentByName" name="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentByName">
+<area shape="rect" id="node1" title="Get the Environment with the specified name and its associated EnvironmentVariables." alt="" coords="364,43,595,84"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a88cb36efabf423fe44dddcaae8428f53" title="Gets the EnvironmentViewModel with the specified name." alt="" coords="5,5,316,47"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a79c4c7178bc72866e68df59fd3028684" title="Gets the Environment with the specified name." alt="" coords="30,71,291,127"/>
+</map>
