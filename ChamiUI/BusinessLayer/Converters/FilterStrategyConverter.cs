@@ -7,8 +7,6 @@ namespace ChamiUI.BusinessLayer.Converters
 {
     public class FilterStrategyConverter : UnwrappingConverter<IFilterStrategy>
     {
-        
-
         public string GetSettingValue(IFilterStrategy filterStrategy)
         {
             if (filterStrategy == null)

@@ -13,7 +13,7 @@ namespace Chami.Db.Entities
         /// </summary>
         public string SettingName { get; set; }
         /// <summary>
-        /// The fully-qualified class name of the ViewModel inside the <seealso cref="SettingsViewModel"/>
+        /// The fully-qualified class name of the ViewModel inside the <see cref="SettingsViewModel"/>.
         /// </summary>
         public string ViewModelName { get; set; }
         /// <summary>
@@ -35,7 +35,7 @@ namespace Chami.Db.Entities
         public string AssemblyName { get; set; }
         /// <summary>
         /// The class to use to convert the object to and from a format (i.e., string) that can be saved in the database.
-        /// It can be NULL if the <seealso cref="Type"/> property is a CLR type (e.g., bool, string, or a numeric type.
+        /// It can be NULL if the <see cref="Type"/> property is a CLR type (e.g., bool, string, or a numeric type.
         /// </summary>
         public string Converter { get; set; }
     }
