@@ -8,18 +8,32 @@ using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer.Exporters
 {
+    /// <summary>
+    /// Exports a list of <see cref="Environment"/> entities to an Excel spreadsheet.
+    /// Requires the NetOffice package.
+    /// </summary>
     public class EnvironmentExcelExporter:IChamiExporter, IDisposable
     {
+        /// <summary>
+        /// Constructs a new <see cref="EnvironmentExcelExporter"/> and inizializes its list of environments to process.
+        /// </summary>
         public EnvironmentExcelExporter()
         {
             _environments = new List<Environment>();
         }
-
+        /// <summary>
+        /// Constructs a new <see cref="EnvironmentExcelExporter"/> and initializes its list with the elements in the parameter.
+        /// </summary>
+        /// <param name="environments">The initial <see cref="Environment"/> entities to add to the list of entities to process.</param>
         public EnvironmentExcelExporter(ICollection<Environment> environments)
         {
             _environments = new List<Environment>(environments);
         }
 
+        /// <summary>
+        /// Adds a new <see cref="Environment"/> entity to the list of elements to process.
+        /// </summary>
+        /// <param name="environment">An <see cref="Environment"/> entity to export in the spreadsheet.</param>
         public void AddEnvironment(Environment environment)
         {
             _environments.Add(environment);
@@ -28,6 +42,10 @@ namespace ChamiUI.BusinessLayer.Exporters
         private Application _excelApplication;
         private Workbook _workbook;
 
+        /// <summary>
+        /// Exports a new Excel spreadsheet asynchronously
+        /// </summary>
+        /// <param name="filename"></param>
         public async Task ExportAsync(string filename)
         {
             _excelApplication = new Application();
@@ -143,6 +161,10 @@ namespace ChamiUI.BusinessLayer.Exporters
             cells[1, 7].Value = "AddedOn";
         }
 
+        /// <summary>
+        /// Implements the <see cref="IDisposable"/> interface.
+        /// </summary>
+        /// <seealso cref="IDisposable"/>
         public void Dispose()
         {
             if (_workbook != null)
