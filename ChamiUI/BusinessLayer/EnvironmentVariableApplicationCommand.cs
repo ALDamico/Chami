@@ -7,16 +7,9 @@ using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer
 {
-    public class EnvironmentVariableApplicationCommand : IEnvironmentVariableCommand
+    public class EnvironmentVariableApplicationCommand : EnvironmentVariableCommandBase
     {
-        public EnvironmentVariableApplicationCommand(EnvironmentVariable variable)
-        {
-            EnvironmentVariable = variable;
-        }
-
-        public EnvironmentVariable EnvironmentVariable { get; set; }
-
-        public void Execute()
+        public override void Execute()
         {
             var arguments = $"/C SETX {EnvironmentVariable.Name} {EnvironmentVariable.Value}";
             var process = PrepareProcess(arguments);
@@ -24,7 +17,7 @@ namespace ChamiUI.BusinessLayer
         }
 
         private Process PrepareProcess(string arguments)
-        {   
+        {
             ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", arguments)
             {
                 RedirectStandardError = true,
@@ -38,7 +31,8 @@ namespace ChamiUI.BusinessLayer
             return process;
         }
 
-        public async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage, CancellationToken cancellationToken)
+        public override async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage,
+            CancellationToken cancellationToken)
         {
             var arguments = $"/C SETX \"{EnvironmentVariable.Name}\" \"{EnvironmentVariable.Value}\"";
             var commandLineFull = "cmd.exe " + arguments;
@@ -47,8 +41,14 @@ namespace ChamiUI.BusinessLayer
             await process.WaitForExitAsync(cancellationToken);
             if (progress != null)
             {
-                progress.Report(new CmdExecutorProgress((int)percentage, process.StandardOutput.BaseStream, commandLineFull));
+                progress.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream,
+                    commandLineFull));
             }
+        }
+
+        public EnvironmentVariableApplicationCommand(EnvironmentVariable environmentVariable) : base(
+            environmentVariable)
+        {
         }
     }
 }

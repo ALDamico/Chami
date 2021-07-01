@@ -43,69 +43,21 @@ namespace ChamiUI.BusinessLayer.Exporters
         private Workbook _workbook;
 
         /// <summary>
-        /// Exports a new Excel spreadsheet asynchronously
+        /// Exports a new Excel spreadsheet asynchronously.
         /// </summary>
-        /// <param name="filename"></param>
+        /// <param name="filename">The name of the output file.</param>
+        /// <seealso cref="Export"/>
         public async Task ExportAsync(string filename)
         {
-            _excelApplication = new Application();
-            _workbook = _excelApplication.Workbooks.Add();
-            _excelApplication.DisplayAlerts = false;
-
-            Worksheet worksheet = (Worksheet) _workbook.Worksheets.FirstOrDefault();
-            if (worksheet == null)
-            {
-                worksheet = (Worksheet) _workbook.Worksheets.Add();
-            }
-            int sheetNumber = 1;
-            var nameDicts = new Dictionary<string, bool>();
-            foreach (var environment in _environments)
-            {
-                
-                if (sheetNumber > 1)
-                {
-                    worksheet = (Worksheet) _workbook.Worksheets.Add();
-                }
-
-                nameDicts.TryGetValue(environment.Name, out bool exists);
-                var newName = environment.Name;
-
-                if (exists)
-                {
-                    var guid = Guid.NewGuid().ToString().Split("-", StringSplitOptions.None)[0];
-                    newName = $"{newName}_{guid}";
-                    
-                }
-                else
-                {
-                    worksheet.Name = environment.Name;
-                }
-                worksheet.Name = newName;
-                nameDicts[newName] = true;
-                
-
-                var cells = worksheet.Cells;
-                PrintHeader(worksheet);
-
-                int i = 2;
-                foreach (var environmentVariable in environment.EnvironmentVariables)
-                {
-                    cells[i, 1].Value = environment.EnvironmentId;
-                    cells[i, 2].Value = environment.Name;
-                    cells[i, 3].Value = environment.AddedOn;
-                    cells[i, 4].Value = environmentVariable.EnvironmentVariableId;
-                    cells[i, 5].Value = environmentVariable.Name;
-                    cells[i, 6].Value = environmentVariable.Value;
-                    cells[i, 7].Value = environmentVariable.AddedOn;
-                    i++;
-                }
-
-                sheetNumber++;
-            }
-
-            await Task.Run(() => _workbook.SaveAs(filename));
-            _excelApplication.Quit();
+            await Task.Run(() => Export(filename));
         }
+        
+        /// <summary>
+        /// Exports an Excel spreadsheet synchronously.
+        /// Each environment in the list of elements to process gets its own worksheet.
+        /// </summary>
+        /// <param name="filename">The name of the output file.</param>
+        /// <seealso cref="ExportAsync"/>
         public void Export(string filename)
         {
             _excelApplication = new Application();
@@ -149,6 +101,11 @@ namespace ChamiUI.BusinessLayer.Exporters
             _excelApplication.Quit();
         }
 
+        /// <summary>
+        /// Prints a header row in a worksheet.
+        /// Column names are currently hard-coded.
+        /// </summary>
+        /// <param name="worksheet">The worksheet to write the header to.</param>
         protected void PrintHeader(Worksheet worksheet)
         {
             var cells = worksheet.Cells;

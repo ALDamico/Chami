@@ -5,8 +5,17 @@ using ChamiUI.Localization;
 
 namespace ChamiUI.BusinessLayer.Validators
 {
+    /// <summary>
+    /// Validates that an environment variable name doesn't start with a number.
+    /// </summary>
     public class EnvironmentVariableNameNoNumberFirstCharacterValidationRule:ValidationRule
     {
+        /// <summary>
+        /// Validates that an environment variable name doesn't start with a number.
+        /// </summary>
+        /// <param name="value">The environment variable to validate.</param>
+        /// <param name="cultureInfo">Unused.</param>
+        /// <returns>A <see cref="System.Windows.Controls.ValidationResult.ValidResult"/> if the environment variable name doesn't start with a number, otherwise an invalid result.</returns>
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             var environmentVariableViewModel =  ValidationUtils.ConvertObjectToValidate(value);
