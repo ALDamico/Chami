@@ -135,6 +135,11 @@ namespace ChamiUI.BusinessLayer.Adapters
             return removed;
         }
 
+        /// <summary>
+        /// Converts an <see cref="EnvironmentViewModel"/> to an <see cref="Environment"/> entity and inserts it if it's not been persisted yet. If it has, updates it.
+        /// </summary>
+        /// <param name="environment">The <see cref="EnvironmentViewModel"/> to save or update.</param>
+        /// <returns>The newly-inserted or updated <see cref="Environment"/>, converted to an <see cref="EnvironmentViewModel"/></returns>
         public EnvironmentViewModel SaveEnvironment(EnvironmentViewModel environment)
         {
             var converter = new EnvironmentConverter();
@@ -143,11 +148,18 @@ namespace ChamiUI.BusinessLayer.Adapters
             return converter.To(inserted);
         }
 
+        /// <summary>
+        /// Performs a backup of the current state of environment variables, excluding those that belong to a Chami environment.
+        /// </summary>
         public void BackupEnvironment()
         {
             EnvironmentBackupper.Backup(_repository);
         }
 
+        /// <summary>
+        /// Deletes an <see cref="EnvironmentVariableViewModel"/> object from the datastore.
+        /// </summary>
+        /// <param name="selectedVariable"></param>
         public void DeleteVariable(EnvironmentVariableViewModel selectedVariable)
         {
             _repository.DeleteVariableById(selectedVariable.Id);

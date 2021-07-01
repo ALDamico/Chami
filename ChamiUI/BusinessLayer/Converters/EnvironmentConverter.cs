@@ -4,8 +4,16 @@ using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
+    /// <summary>
+    /// Converts to and from <see cref="Environment"/>s and <see cref="EnvironmentViewModel"/>s.
+    /// </summary>
     public class EnvironmentConverter : IConverter<Environment, EnvironmentViewModel>
     {
+        /// <summary>
+        /// Converts an <see cref="EnvironmentViewModel"/> to an <see cref="Environment"/> entity.
+        /// </summary>
+        /// <param name="model">The <see cref="EnvironmentViewModel"/> to convert.</param>
+        /// <returns>A converted <see cref="Environment"/> entity.</returns>
         public Environment From(EnvironmentViewModel model)
         {
             var environment = new Environment();
@@ -27,6 +35,11 @@ namespace ChamiUI.BusinessLayer.Converters
             return environment;
         }
 
+        /// <summary>
+        /// Converts an <see cref="Environment"/> to an <see cref="EnvironmentViewModel"/>.
+        /// </summary>
+        /// <param name="entity">The <see cref="Environment"/> entity to convert.</param>
+        /// <returns>A converted <see cref="EnvironmentViewModel"/></returns>
         public EnvironmentViewModel To(Environment entity)
         {
             var viewModel = new EnvironmentViewModel();

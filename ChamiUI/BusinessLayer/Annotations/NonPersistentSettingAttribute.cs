@@ -12,6 +12,9 @@ namespace ChamiUI.BusinessLayer.Annotations
         {
             IsNonPersistent = true;
         }
+        /// <summary>
+        /// The marked property is non persistent and the data adapter won't try to save it.
+        /// </summary>
         public bool IsNonPersistent { get; set; }
     }
 }
