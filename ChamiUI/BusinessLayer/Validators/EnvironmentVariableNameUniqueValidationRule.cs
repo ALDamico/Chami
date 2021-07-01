@@ -8,6 +8,9 @@ using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Validators
 {
+    /// <summary>
+    /// Validates that an environment variable name is unique in an environment.
+    /// </summary>
     public class EnvironmentVariableNameUniqueValidationRule:ValidationRule 
     {
         public CollectionViewSource EnvironmentVariables { get; set; }
