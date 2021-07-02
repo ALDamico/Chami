@@ -4,11 +4,19 @@ using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer
 {
+    /// <summary>
+    /// A command that creates (persistently) a new environment variable or updates its value if it already exists.
+    /// </summary>
     public class EnvironmentVariableApplicationCommand : ShellCommandBase
     {
+        public EnvironmentVariableViewModel EnvironmentVariable { get; set; }
+        /// <summary>
+        /// Execute the shell command.
+        /// </summary>
         public override void Execute()
         {
             var arguments = $"/C SETX {EnvironmentVariable.Name} {EnvironmentVariable.Value}";
@@ -16,21 +24,14 @@ namespace ChamiUI.BusinessLayer
             process.Start();
         }
 
-        private Process PrepareProcess(string arguments)
-        {
-            ProcessStartInfo processStartInfo = new ProcessStartInfo("cmd.exe", arguments)
-            {
-                RedirectStandardError = true,
-                RedirectStandardOutput = true,
-                CreateNoWindow = true
-            };
-            Process process = new Process()
-            {
-                StartInfo = processStartInfo
-            };
-            return process;
-        }
-
+        /// <summary>
+        /// Executes the shell command asynchronously.
+        /// Optionally reports progress.
+        /// Can be canceled.
+        /// </summary>
+        /// <param name="progress">Notifies caller of progress.</param>
+        /// <param name="percentage">The progress percentage.</param>
+        /// <param name="cancellationToken">Allows task cancellation.</param>
         public override async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage,
             CancellationToken cancellationToken)
         {
@@ -44,11 +45,6 @@ namespace ChamiUI.BusinessLayer
                 progress.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream,
                     commandLineFull));
             }
-        }
-
-        public EnvironmentVariableApplicationCommand(EnvironmentVariable environmentVariable) : base(
-            environmentVariable)
-        {
         }
     }
 }
