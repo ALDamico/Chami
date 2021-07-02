@@ -26,6 +26,9 @@ namespace ChamiUI.BusinessLayer
         /// </summary>
         public EnvironmentVariable EnvironmentVariable { get; set; }
 
+        /// <summary>
+        /// Executes the shell command synchronously by deleting the registry key corresponding to the variable we want to remove.
+        /// </summary>
         public override void Execute()
         {
             var arguments = $"/C REG delete HKCU\\Environment /F /V {EnvironmentVariable.Name}";
