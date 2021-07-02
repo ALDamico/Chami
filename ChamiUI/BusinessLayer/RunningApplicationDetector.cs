@@ -6,14 +6,29 @@ using System.Text.RegularExpressions;
 
 namespace ChamiUI.BusinessLayer
 {
+    /// <summary>
+    /// Detects if one or more application are running.
+    /// </summary>
     public class RunningApplicationDetector
     {
+        /// <summary>
+        /// Constructs a new <see cref="RunningApplicationDetector"/> object and initializes its list of watched applications.
+        /// </summary>
+        /// <param name="watchedApplications">A list of <see cref="WatchedApplicationViewModel"/> objects.</param>
         public RunningApplicationDetector(IEnumerable<WatchedApplicationViewModel> watchedApplications)
         {
             WatchedApplications = new List<WatchedApplicationViewModel>(watchedApplications);
         }
+        
+        /// <summary>
+        /// The list of <see cref="WatchedApplicationViewModel"/>s to observe.
+        /// </summary>
         public List<WatchedApplicationViewModel> WatchedApplications { get;  set; }
 
+        /// <summary>
+        /// Start detecting running applications.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of <see cref="WatchedApplicationViewModel"/> objects.</returns>
         public List<WatchedApplicationViewModel> Detect()
         {
             var processes = Process.GetProcesses();
