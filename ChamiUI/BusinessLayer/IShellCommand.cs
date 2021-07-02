@@ -8,7 +8,6 @@ namespace ChamiUI.BusinessLayer
 {
     public interface IShellCommand
     {
-        EnvironmentVariable EnvironmentVariable { get; set; }
         void Execute();
         Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage, CancellationToken cancellationToken);
     }

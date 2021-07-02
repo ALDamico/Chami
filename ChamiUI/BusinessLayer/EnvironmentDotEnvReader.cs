@@ -6,13 +6,26 @@ using dotenv.net;
 
 namespace ChamiUI.BusinessLayer
 {
-    public class EnvironmentDotEnvReader:IEnvironmentReader<EnvironmentViewModel>
+    /// <summary>
+    /// Reads an environment from a dotEnv file.
+    /// </summary>
+    public class EnvironmentDotEnvReader : IEnvironmentReader<EnvironmentViewModel>
     {
         private string _inputFile;
+
+        /// <summary>
+        /// Constructs a new <see cref="EnvironmentDotEnvReader"/> object.
+        /// </summary>
+        /// <param name="inputFile"></param>
         public EnvironmentDotEnvReader(string inputFile)
         {
             _inputFile = inputFile;
         }
+
+        /// <summary>
+        /// Reads the file and returns a new <see cref="EnvironmentViewModel"/>.
+        /// </summary>
+        /// <returns>An <see cref="EnvironmentViewModel"/> with variables read from the dotEnv file.</returns>
         public EnvironmentViewModel Process()
         {
             var newVariables = DotEnv.Fluent().WithEnvFiles(_inputFile).Read();
@@ -37,6 +50,11 @@ namespace ChamiUI.BusinessLayer
             return environmentViewModel;
         }
 
+        /// <summary>
+        /// Not supported.
+        /// </summary>
+        /// <returns>N/A</returns>
+        /// <exception cref="NotSupportedException">This action is not supported when reading dotEnv files.</exception>
         public ICollection<EnvironmentViewModel> ProcessMultiple()
         {
             throw new NotSupportedException(ChamiUIStrings.FeatureNotSupportedExceptionMessage);
