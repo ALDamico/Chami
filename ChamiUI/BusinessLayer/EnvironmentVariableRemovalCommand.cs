@@ -7,7 +7,7 @@ using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer
 {
-    public class EnvironmentVariableRemovalCommand : IEnvironmentVariableCommand
+    public class EnvironmentVariableRemovalCommand : IShellCommand
     {
         public EnvironmentVariableRemovalCommand(EnvironmentVariable variable)
         {

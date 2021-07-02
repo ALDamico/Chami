@@ -6,9 +6,9 @@ using ChamiUI.PresentationLayer.Progress;
 
 namespace ChamiUI.BusinessLayer
 {
-    public abstract class EnvironmentVariableCommandBase : IEnvironmentVariableCommand
+    public abstract class ShellCommandBase : IShellCommand
     {
-        public EnvironmentVariableCommandBase(EnvironmentVariable environmentVariable)
+        public ShellCommandBase(EnvironmentVariable environmentVariable)
         {
             EnvironmentVariable = environmentVariable;
         }

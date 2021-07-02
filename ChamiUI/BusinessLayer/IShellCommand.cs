@@ -6,7 +6,7 @@ using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer
 {
-    public interface IEnvironmentVariableCommand
+    public interface IShellCommand
     {
         EnvironmentVariable EnvironmentVariable { get; set; }
         void Execute();

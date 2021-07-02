@@ -7,7 +7,7 @@ using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer
 {
-    public class EnvironmentVariableApplicationCommand : EnvironmentVariableCommandBase
+    public class EnvironmentVariableApplicationCommand : ShellCommandBase
     {
         public override void Execute()
         {
