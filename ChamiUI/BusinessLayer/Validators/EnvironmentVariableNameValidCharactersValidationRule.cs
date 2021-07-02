@@ -3,12 +3,23 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.ViewModels;
 using Microsoft.VisualBasic;
 
 namespace ChamiUI.BusinessLayer.Validators
 {
+    /// <summary>
+    /// Validates that there are no invalid characters in an environment variable name.
+    /// </summary>
     public class EnvironmentVariableNameValidCharactersValidationRule : ValidationRule
     {
+        /// <summary>
+        /// Validates that there are no invalid characters in an environment variable name.
+        /// If the validation fails, the error message contains the list of invalid character positions.
+        /// </summary>
+        /// <param name="value">The <see cref="EnvironmentVariableViewModel"/> to validate.</param>
+        /// <param name="cultureInfo">Unused.</param>
+        /// <returns></returns>
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             var environmentVariable = ValidationUtils.ConvertObjectToValidate(value);

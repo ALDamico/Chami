@@ -13,7 +13,16 @@ namespace ChamiUI.BusinessLayer.Validators
     /// </summary>
     public class EnvironmentVariableNameUniqueValidationRule:ValidationRule 
     {
+        /// <summary>
+        /// The set of <see cref="EnvironmentVariableViewModel"/>s to validate the target against.
+        /// </summary>
         public CollectionViewSource EnvironmentVariables { get; set; }
+        /// <summary>
+        /// Validates that an environment variable name is unique in an environment.
+        /// </summary>
+        /// <param name="value">The <see cref="EnvironmentVariableViewModel"/> to validate.</param>
+        /// <param name="cultureInfo">Unused</param>
+        /// <returns>If there are no other environment variables in <see cref="EnvironmentVariables"/>, returns a valid result. Otherwise, returns an invalid result.</returns>
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             var environmentVariable = ValidationUtils.ConvertObjectToValidate(value);
