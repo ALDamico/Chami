@@ -87,7 +87,16 @@ namespace ChamiUI
         public static string GetConnectionString()
         {
             var chamiDirectory = Environment.CurrentDirectory;
-            return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
+            try
+            {
+                return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
+            }
+            catch (NullReferenceException)
+            {
+                // A unit test is running. Use its connection string instead
+                return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
+            }
+            
         }
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)

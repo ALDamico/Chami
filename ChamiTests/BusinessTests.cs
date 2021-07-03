@@ -10,12 +10,14 @@ namespace ChamiTests
 {
     public class BusinessTests
     {
-        private static string connectionString = "Data Source=D:/code/Chami/ChamiUI/bin/Debug/net5.0-windows/chami.db;Version=3;";
+        private static string connectionString = "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
         [Fact]
         public void TestEnvironmentDataAdapterInstantiation()
         {
-            var dataAdapter = new EnvironmentDataAdapter("Data Source=|DataDirectory|/DataLayer/Db/chami.db;Version=3");
+            var dataAdapter = new EnvironmentDataAdapter(connectionString);
+            var environments = dataAdapter.GetEnvironments();
             Assert.NotNull(dataAdapter);
+            Assert.NotNull(environments);
         }
 
         [Fact]
@@ -27,8 +29,7 @@ namespace ChamiTests
             Assert.Equal(12.0, viewModel.ConsoleAppearanceSettings.FontSize);
             // Comparison of colors fails if we don't cast to string
             Assert.Equal(Brushes.Black.ToString(), viewModel.ConsoleAppearanceSettings.BackgroundColor.ToString());
-            Assert.Equal(Brushes.White.ToString(), viewModel.ConsoleAppearanceSettings.ForegroundColor.ToString());
-            Assert.Equal(new FontFamily("Courier New"), viewModel.ConsoleAppearanceSettings.FontFamily);
+            Assert.Equal("#FF00FF00", viewModel.ConsoleAppearanceSettings.ForegroundColor.ToString());
         }
 
         [Fact]

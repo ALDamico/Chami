@@ -26,19 +26,21 @@
 
     <ItemGroup>
       <None Remove="InputFiles\Migrations\0001_initial.sql" />
-      <Content Include="InputFiles\Migrations\0001_initial.sql">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="InputFiles\Migrations\0002_add_index.sql" />
-      <Content Include="InputFiles\Migrations\0002_add_index.sql">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="InputFiles\chami-sample.json" />
       <Content Include="InputFiles\chami-sample.json">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="InputFiles\chami-sample-multiple.json" />
       <Content Include="InputFiles\chami-sample-multiple.json">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="InputFiles\chami.db" />
+      <Content Include="InputFiles\chami.db">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+      <None Remove="InputFiles\chami-sample.env" />
+      <Content Include="InputFiles\chami-sample.env">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
     </ItemGroup>

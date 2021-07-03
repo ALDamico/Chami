@@ -8,7 +8,7 @@ namespace ChamiTests
 {
     public class DbTests
     {
-        private static string connectionString = "Data Source=C:/Users/aldam/RiderProjects/Chami/ChamiUI/DataLayer/Db/chami.db;Version=3;";
+        private static string connectionString = "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
         [Fact]
         public void GetNotExistingEnvironment()
         {
@@ -39,7 +39,7 @@ namespace ChamiTests
         public void GetExistingEnvironment()
         {
             var repository = new EnvironmentRepository(connectionString);
-            var environment = repository.GetEnvironmentById(4);
+            var environment = repository.GetEnvironmentById(1);
             Assert.NotNull(environment);
             Assert.NotEmpty(environment.EnvironmentVariables);
 

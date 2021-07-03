@@ -21,14 +21,14 @@ namespace ChamiDbMigrations.Migrations
                 
             Create.Table("Environments")
                 .WithColumn("EnvironmentId").AsInt64().PrimaryKey().Identity()
-                .WithColumn("Name").AsString().NotNullable()
+                .WithColumn("Name").AsString().NotNullable().Unique()
                 .WithColumn("AddedOn").AsDateTime().WithDefaultValue(DateTime.Now)
                 .WithColumn("IsBackup").AsInt64().WithDefaultValue(0)
                 .ForeignKey("EnvironmentTypes", "EnvironmentTypeId");
 
             Create.Table("EnvironmentVariables")
                 .WithColumn("EnvironmentVariableId").AsInt64().PrimaryKey().Identity()
-                .WithColumn("Name").AsString().NotNullable().Unique()
+                .WithColumn("Name").AsString().NotNullable()
                 .WithColumn("Value").AsString().NotNullable()
                 .WithColumn("AddedOn").AsDateTime().WithDefaultValue(DateTime.Now)
                 .WithColumn("EnvironmentId").AsInt64().ForeignKey("Environments", "EnvironmentId")
