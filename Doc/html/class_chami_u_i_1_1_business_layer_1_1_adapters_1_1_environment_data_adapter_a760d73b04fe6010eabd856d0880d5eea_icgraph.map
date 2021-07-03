@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.InsertEnvironment" name="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.InsertEnvironment">
+<area shape="rect" id="node1" title="Validates the supplied EnvironmentViewModel. If the validation is successful, converts to an Environm..." alt="" coords="312,13,584,54"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model.html#a85f350549855006d9655928174ab5b8d" title=" " alt="" coords="5,5,264,61"/>
+</map>

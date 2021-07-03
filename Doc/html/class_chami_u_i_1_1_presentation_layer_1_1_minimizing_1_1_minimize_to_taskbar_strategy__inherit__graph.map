@@ -1,0 +1,4 @@
+<map id="ChamiUI.PresentationLayer.Minimizing.MinimizeToTaskbarStrategy" name="ChamiUI.PresentationLayer.Minimizing.MinimizeToTaskbarStrategy">
+<area shape="rect" id="node1" title="Represents the act of minimizing a window to the task bar. It&#39;s for all intents and purposes a NOP." alt="" coords="5,80,255,121"/>
+<area shape="rect" id="node2" href="$interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy.html" title="Interface that describes how a Window should behave when minimized." alt="" coords="57,5,203,32"/>
+</map>

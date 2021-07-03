@@ -28,6 +28,9 @@ namespace ChamiUI.Windows.MainWindow
     /// </summary>
     public partial class MainWindow
     {
+        /// <summary>
+        /// Constructs a new <see cref="MainWindow"/> and sets its DataContext, plus registering event handlers.
+        /// </summary>
         public MainWindow()
         {
             var connectionString = App.GetConnectionString();

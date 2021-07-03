@@ -1,0 +1,6 @@
+<map id="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.GetEnvironmentEntityById" name="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.GetEnvironmentEntityById">
+<area shape="rect" id="node1" title="Gets the Environment with the specified id." alt="" coords="576,45,837,101"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a1110ef9223794a210295d568db55776a" title=" " alt="" coords="291,45,528,101"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a2473a863e87208858e84253fc61e8f2d" title=" " alt="" coords="5,5,243,61"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aaa056c4e9054aaec3a04f71fa04997ba" title=" " alt="" coords="5,85,243,141"/>
+</map>

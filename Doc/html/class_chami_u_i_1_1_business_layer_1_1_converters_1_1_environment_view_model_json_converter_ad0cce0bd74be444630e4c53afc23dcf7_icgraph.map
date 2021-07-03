@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter.CanConvert" name="ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter.CanConvert">
+<area shape="rect" id="node1" title="Determines if the Type can be serialized or deserialized using this JsonConverter." alt="" coords="352,5,616,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter.html#a1e5e0cd0b75727474d79fb7a1c984050" title="Custom logic for reading a JSON object and converting it to an EnvironmentViewModel." alt="" coords="5,13,304,54"/>
+</map>

@@ -1,0 +1,213 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter}\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+
+
+Exports a list of \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entities to an Excel spreadsheet. Requires the Net\+Office package.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=252pt]{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+Excel\+Exporter} ()
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Environment\+Excel\+Exporter}{p.}{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter} and inizializes its list of environments to process. \end{DoxyCompactList}\item 
+\textbf{ Environment\+Excel\+Exporter} (ICollection$<$ \textbf{ Environment} $>$ environments)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Environment\+Excel\+Exporter}{p.}{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter} and initializes its list with the elements in the parameter. \end{DoxyCompactList}\item 
+void \textbf{ Add\+Environment} (\textbf{ Environment} environment)
+\begin{DoxyCompactList}\small\item\em Adds a new \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity to the list of elements to process. \end{DoxyCompactList}\item 
+async Task \textbf{ Export\+Async} (string filename)
+\begin{DoxyCompactList}\small\item\em Exports a new Excel spreadsheet asynchronously. \end{DoxyCompactList}\item 
+void \textbf{ Export} (string filename)
+\begin{DoxyCompactList}\small\item\em Exports an Excel spreadsheet synchronously. Each environment in the list of elements to process gets its own worksheet. \end{DoxyCompactList}\item 
+void \textbf{ Dispose} ()
+\begin{DoxyCompactList}\small\item\em Implements the IDisposable interface. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Print\+Header} (Worksheet worksheet)
+\begin{DoxyCompactList}\small\item\em Prints a header row in a worksheet. Column names are currently hard-\/coded. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Exports a list of \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entities to an Excel spreadsheet. Requires the Net\+Office package. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_a5d0ab169309bfd2127b2614cb026819f}} 
+\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}!EnvironmentExcelExporter@{EnvironmentExcelExporter}}
+\index{EnvironmentExcelExporter@{EnvironmentExcelExporter}!ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+\doxysubsubsection{EnvironmentExcelExporter()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter.\+Environment\+Excel\+Exporter (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Environment\+Excel\+Exporter}{p.}{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter} and inizializes its list of environments to process. 
+
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_a7d4792ac02a285aa9e255086dbfeb6a2}} 
+\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}!EnvironmentExcelExporter@{EnvironmentExcelExporter}}
+\index{EnvironmentExcelExporter@{EnvironmentExcelExporter}!ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+\doxysubsubsection{EnvironmentExcelExporter()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter.\+Environment\+Excel\+Exporter (\begin{DoxyParamCaption}\item[{ICollection$<$ \textbf{ Environment} $>$}]{environments }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Environment\+Excel\+Exporter}{p.}{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter} and initializes its list with the elements in the parameter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environments} & The initial \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entities to add to the list of entities to process.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_a678e0c7a053e047a0df365737aeadb5d}} 
+\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}!AddEnvironment@{AddEnvironment}}
+\index{AddEnvironment@{AddEnvironment}!ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+\doxysubsubsection{AddEnvironment()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter.\+Add\+Environment (\begin{DoxyParamCaption}\item[{\textbf{ Environment}}]{environment }\end{DoxyParamCaption})}
+
+
+
+Adds a new \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity to the list of elements to process. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & An \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity to export in the spreadsheet.\\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_a01a6629710a7a9e582c426c11768d85e}} 
+\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}!Dispose@{Dispose}}
+\index{Dispose@{Dispose}!ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+\doxysubsubsection{Dispose()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter.\+Dispose (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Implements the IDisposable interface. 
+
+\begin{DoxySeeAlso}{See also}
+IDisposable
+
+
+\end{DoxySeeAlso}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_aa55ca80dfffd3c983737bdaae2b14c7b}} 
+\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}!Export@{Export}}
+\index{Export@{Export}!ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+\doxysubsubsection{Export()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter.\+Export (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Exports an Excel spreadsheet synchronously. Each environment in the list of elements to process gets its own worksheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the output file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxyref{Export\+Async}{p.}{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_aa63ff05fab30df0e04a7993448b8a5d4}
+
+
+\end{DoxySeeAlso}
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+Exporters.\+IChami\+Exporter} \doxyref{}{p.}{interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter_a88262f22e45235392766f93b999a1c02}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_aa55ca80dfffd3c983737bdaae2b14c7b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_aa55ca80dfffd3c983737bdaae2b14c7b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_aa63ff05fab30df0e04a7993448b8a5d4}} 
+\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}!ExportAsync@{ExportAsync}}
+\index{ExportAsync@{ExportAsync}!ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+\doxysubsubsection{ExportAsync()}
+{\footnotesize\ttfamily async Task Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter.\+Export\+Async (\begin{DoxyParamCaption}\item[{string}]{filename }\end{DoxyParamCaption})}
+
+
+
+Exports a new Excel spreadsheet asynchronously. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em filename} & The name of the output file.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\doxyref{Export}{p.}{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_aa55ca80dfffd3c983737bdaae2b14c7b}
+
+
+\end{DoxySeeAlso}
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+Exporters.\+IChami\+Exporter} \doxyref{}{p.}{interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter_afc15a57f5b9a5337eedc7ab8a23a1ceb}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_aa63ff05fab30df0e04a7993448b8a5d4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_af020d5899b91ea73921de1dae70df4c6}} 
+\index{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}!PrintHeader@{PrintHeader}}
+\index{PrintHeader@{PrintHeader}!ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter@{ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter}}
+\doxysubsubsection{PrintHeader()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Exporters.\+Environment\+Excel\+Exporter.\+Print\+Header (\begin{DoxyParamCaption}\item[{Worksheet}]{worksheet }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Prints a header row in a worksheet. Column names are currently hard-\/coded. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em worksheet} & The worksheet to write the header to.\\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter_af020d5899b91ea73921de1dae70df4c6_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Exporters/\textbf{ Environment\+Excel\+Exporter.\+cs}\end{DoxyCompactItemize}

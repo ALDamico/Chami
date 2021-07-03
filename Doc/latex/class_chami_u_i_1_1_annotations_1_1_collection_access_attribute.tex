@@ -1,0 +1,88 @@
+\doxysection{Chami\+UI.\+Annotations.\+Collection\+Access\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute}\index{ChamiUI.Annotations.CollectionAccessAttribute@{ChamiUI.Annotations.CollectionAccessAttribute}}
+
+
+Indicates how method, constructor invocation, or property access over collection type affects the contents of the collection. Use \doxyref{Collection\+Access\+Type}{p.}{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute_a9ce861044304ca2011628f102a2615a8} to specify the access type.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Collection\+Access\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Collection\+Access\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=234pt]{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Collection\+Access\+Attribute} (\textbf{ Collection\+Access\+Type} collection\+Access\+Type)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Collection\+Access\+Type} \textbf{ Collection\+Access\+Type}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Indicates how method, constructor invocation, or property access over collection type affects the contents of the collection. Use \doxyref{Collection\+Access\+Type}{p.}{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute_a9ce861044304ca2011628f102a2615a8} to specify the access type. 
+
+Using this attribute only makes sense if all collection methods are marked with this attribute. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }MyStringCollection : List<string>}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  [CollectionAccess(CollectionAccessType.Read)]}
+\DoxyCodeLine{  \textcolor{keyword}{public} \textcolor{keywordtype}{string} GetFirstString()}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{keywordflow}{return} this.ElementAt(0);}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keyword}{class }Test}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{public} \textcolor{keywordtype}{void} Foo()}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{comment}{// Warning: Contents of the collection is never updated}}
+\DoxyCodeLine{    var col = \textcolor{keyword}{new} MyStringCollection();}
+\DoxyCodeLine{    \textcolor{keywordtype}{string} x = col.GetFirstString();}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute_ae74cd3c28c2eb29d4346d3ba1a0e8dfc}} 
+\index{ChamiUI.Annotations.CollectionAccessAttribute@{ChamiUI.Annotations.CollectionAccessAttribute}!CollectionAccessAttribute@{CollectionAccessAttribute}}
+\index{CollectionAccessAttribute@{CollectionAccessAttribute}!ChamiUI.Annotations.CollectionAccessAttribute@{ChamiUI.Annotations.CollectionAccessAttribute}}
+\doxysubsubsection{CollectionAccessAttribute()}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Collection\+Access\+Attribute.\+Collection\+Access\+Attribute (\begin{DoxyParamCaption}\item[{\textbf{ Collection\+Access\+Type}}]{collection\+Access\+Type }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute_a9ce861044304ca2011628f102a2615a8}} 
+\index{ChamiUI.Annotations.CollectionAccessAttribute@{ChamiUI.Annotations.CollectionAccessAttribute}!CollectionAccessType@{CollectionAccessType}}
+\index{CollectionAccessType@{CollectionAccessType}!ChamiUI.Annotations.CollectionAccessAttribute@{ChamiUI.Annotations.CollectionAccessAttribute}}
+\doxysubsubsection{CollectionAccessType}
+{\footnotesize\ttfamily \textbf{ Collection\+Access\+Type} Chami\+UI.\+Annotations.\+Collection\+Access\+Attribute.\+Collection\+Access\+Type\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

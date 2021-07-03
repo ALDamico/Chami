@@ -1,0 +1,339 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter}\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+
+
+A data adapter to bridge between the repository layer and the presentation layer with regard to the Environment aggregate.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+Data\+Adapter} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Environment\+Data\+Adapter}{p.}{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter} object. \end{DoxyCompactList}\item 
+\textbf{ Environment\+View\+Model} \textbf{ Get\+Environment\+By\+Id} (int id)
+\begin{DoxyCompactList}\small\item\em Get the Environment\+View\+Model with the specified id. \end{DoxyCompactList}\item 
+ICollection$<$ \textbf{ Environment\+View\+Model} $>$ \textbf{ Get\+Environments} ()
+\begin{DoxyCompactList}\small\item\em Gets all the Environment\+View\+Models marked as normal environments in the datastore. \end{DoxyCompactList}\item 
+\textbf{ Environment\+View\+Model} \textbf{ Get\+Environment\+By\+Name} (string name)
+\begin{DoxyCompactList}\small\item\em Gets the Environment\+View\+Model with the specified name. \end{DoxyCompactList}\item 
+\textbf{ Environment} \textbf{ Get\+Environment\+Entity\+By\+Id} (int id)
+\begin{DoxyCompactList}\small\item\em Gets the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id. \end{DoxyCompactList}\item 
+\textbf{ Environment} \textbf{ Get\+Environment\+Entity\+By\+Name} (string name)
+\begin{DoxyCompactList}\small\item\em Gets the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified name. \end{DoxyCompactList}\item 
+\textbf{ Environment\+View\+Model} \textbf{ Insert\+Environment} (\textbf{ Environment\+View\+Model} environment\+View\+Model)
+\begin{DoxyCompactList}\small\item\em Validates the supplied Environment\+View\+Model. If the validation is successful, converts to an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity and inserts it in the datastore. \end{DoxyCompactList}\item 
+bool \textbf{ Delete\+Environment} (\textbf{ Environment\+View\+Model} selected\+Environment)
+\begin{DoxyCompactList}\small\item\em Deletes the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} corresponding to the supplied Environment\+View\+Model from the datastore. \end{DoxyCompactList}\item 
+\textbf{ Environment\+View\+Model} \textbf{ Save\+Environment} (\textbf{ Environment\+View\+Model} environment)
+\begin{DoxyCompactList}\small\item\em Converts an Environment\+View\+Model to an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity and inserts it if it\textquotesingle{}s not been persisted yet. If it has, updates it. \end{DoxyCompactList}\item 
+void \textbf{ Backup\+Environment} ()
+\begin{DoxyCompactList}\small\item\em Performs a backup of the current state of environment variables, excluding those that belong to a \doxyref{Chami}{p.}{namespace_chami} environment. \end{DoxyCompactList}\item 
+void \textbf{ Delete\+Variable} (\textbf{ Environment\+Variable\+View\+Model} selected\+Variable)
+\begin{DoxyCompactList}\small\item\em Deletes an Environment\+Variable\+View\+Model object from the datastore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+A data adapter to bridge between the repository layer and the presentation layer with regard to the Environment aggregate. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a632b0d7a07fcdf76e5f3389115fa7ff9}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!EnvironmentDataAdapter@{EnvironmentDataAdapter}}
+\index{EnvironmentDataAdapter@{EnvironmentDataAdapter}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{EnvironmentDataAdapter()}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Environment\+Data\+Adapter (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Environment\+Data\+Adapter}{p.}{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & The connection string to connect to the datastore.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a8eb78eb9c798111d916439a4e91f6663}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!BackupEnvironment@{BackupEnvironment}}
+\index{BackupEnvironment@{BackupEnvironment}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{BackupEnvironment()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Backup\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Performs a backup of the current state of environment variables, excluding those that belong to a \doxyref{Chami}{p.}{namespace_chami} environment. 
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a8eb78eb9c798111d916439a4e91f6663_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_ab7836010876d1ce6ae26210b3e750a6f}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!DeleteEnvironment@{DeleteEnvironment}}
+\index{DeleteEnvironment@{DeleteEnvironment}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{DeleteEnvironment()}
+{\footnotesize\ttfamily bool Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Delete\+Environment (\begin{DoxyParamCaption}\item[{\textbf{ Environment\+View\+Model}}]{selected\+Environment }\end{DoxyParamCaption})}
+
+
+
+Deletes the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} corresponding to the supplied Environment\+View\+Model from the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+Environment} & The Environment\+View\+Model to delete from the datastore.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the Environment\+View\+Model is null or its id is 0, returns false. Otherwise, returns whether the deletion was successful or not.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_ab7836010876d1ce6ae26210b3e750a6f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a3f129b1be8228ee1a9ca83106b9dbdcc}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!DeleteVariable@{DeleteVariable}}
+\index{DeleteVariable@{DeleteVariable}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{DeleteVariable()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Delete\+Variable (\begin{DoxyParamCaption}\item[{\textbf{ Environment\+Variable\+View\+Model}}]{selected\+Variable }\end{DoxyParamCaption})}
+
+
+
+Deletes an Environment\+Variable\+View\+Model object from the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+Variable} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a3f129b1be8228ee1a9ca83106b9dbdcc_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a51f163e7319ae29c1f5afde5e9984523}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!GetEnvironmentById@{GetEnvironmentById}}
+\index{GetEnvironmentById@{GetEnvironmentById}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{GetEnvironmentById()}
+{\footnotesize\ttfamily \textbf{ Environment\+View\+Model} Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Get\+Environment\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Get the Environment\+View\+Model with the specified id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the Environment\+View\+Model to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id is found, converts it to an Environment\+View\+Model. If not, returns null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a51f163e7319ae29c1f5afde5e9984523_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a88cb36efabf423fe44dddcaae8428f53}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!GetEnvironmentByName@{GetEnvironmentByName}}
+\index{GetEnvironmentByName@{GetEnvironmentByName}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{GetEnvironmentByName()}
+{\footnotesize\ttfamily \textbf{ Environment\+View\+Model} Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Get\+Environment\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Gets the Environment\+View\+Model with the specified name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the Environment\+View\+Model to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If a match is found, returns it. Otherwise, returns null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a88cb36efabf423fe44dddcaae8428f53_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a88cb36efabf423fe44dddcaae8428f53_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a84cee0a4430a1ffaf20733c34f5f6eab}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!GetEnvironmentEntityById@{GetEnvironmentEntityById}}
+\index{GetEnvironmentEntityById@{GetEnvironmentEntityById}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{GetEnvironmentEntityById()}
+{\footnotesize\ttfamily \textbf{ Environment} Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Get\+Environment\+Entity\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & If a match is found, returns it. Otherwise, returns null.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a84cee0a4430a1ffaf20733c34f5f6eab_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a84cee0a4430a1ffaf20733c34f5f6eab_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a79c4c7178bc72866e68df59fd3028684}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!GetEnvironmentEntityByName@{GetEnvironmentEntityByName}}
+\index{GetEnvironmentEntityByName@{GetEnvironmentEntityByName}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{GetEnvironmentEntityByName()}
+{\footnotesize\ttfamily \textbf{ Environment} Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Get\+Environment\+Entity\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Gets the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified name, if found. Otherwise, null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a79c4c7178bc72866e68df59fd3028684_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a79c4c7178bc72866e68df59fd3028684_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_acb8314617a74856547db3f24f01d5538}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!GetEnvironments@{GetEnvironments}}
+\index{GetEnvironments@{GetEnvironments}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{GetEnvironments()}
+{\footnotesize\ttfamily ICollection$<$\textbf{ Environment\+View\+Model}$>$ Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Get\+Environments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the Environment\+View\+Models marked as normal environments in the datastore. 
+
+\begin{DoxyReturn}{Returns}
+A ICollection$<$\+T$>$ of Environment\+View\+Models.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_acb8314617a74856547db3f24f01d5538_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a760d73b04fe6010eabd856d0880d5eea}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!InsertEnvironment@{InsertEnvironment}}
+\index{InsertEnvironment@{InsertEnvironment}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{InsertEnvironment()}
+{\footnotesize\ttfamily \textbf{ Environment\+View\+Model} Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Insert\+Environment (\begin{DoxyParamCaption}\item[{\textbf{ Environment\+View\+Model}}]{environment\+View\+Model }\end{DoxyParamCaption})}
+
+
+
+Validates the supplied Environment\+View\+Model. If the validation is successful, converts to an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity and inserts it in the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment\+View\+Model} & The Environment\+View\+Model to insert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the validation is successful, return a new instance of the Environment\+View\+Model with its id updated. Otherwise, returns null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a760d73b04fe6010eabd856d0880d5eea_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_a760d73b04fe6010eabd856d0880d5eea_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_abc9ba90c35e14c2e275e102291503a88}} 
+\index{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}!SaveEnvironment@{SaveEnvironment}}
+\index{SaveEnvironment@{SaveEnvironment}!ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter@{ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter}}
+\doxysubsubsection{SaveEnvironment()}
+{\footnotesize\ttfamily \textbf{ Environment\+View\+Model} Chami\+UI.\+Business\+Layer.\+Adapters.\+Environment\+Data\+Adapter.\+Save\+Environment (\begin{DoxyParamCaption}\item[{\textbf{ Environment\+View\+Model}}]{environment }\end{DoxyParamCaption})}
+
+
+
+Converts an Environment\+View\+Model to an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity and inserts it if it\textquotesingle{}s not been persisted yet. If it has, updates it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & The Environment\+View\+Model to save or update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The newly-\/inserted or updated \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1}, converted to an Environment\+View\+Model
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter_abc9ba90c35e14c2e275e102291503a88_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Adapters/\textbf{ Environment\+Data\+Adapter.\+cs}\end{DoxyCompactItemize}

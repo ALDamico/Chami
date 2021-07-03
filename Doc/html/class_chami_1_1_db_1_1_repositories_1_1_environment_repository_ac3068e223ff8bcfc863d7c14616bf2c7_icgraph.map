@@ -1,0 +1,9 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentByName" name="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentByName">
+<area shape="rect" id="node1" title="Get the Environment with the specified name and its associated EnvironmentVariables." alt="" coords="956,54,1187,95"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a88cb36efabf423fe44dddcaae8428f53" title="Gets the EnvironmentViewModel with the specified name." alt="" coords="597,15,908,57"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a79c4c7178bc72866e68df59fd3028684" title="Gets the Environment with the specified name." alt="" coords="622,83,883,139"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model.html#a22fff72c51fecf9b92b2a7f141a65370" title=" " alt="" coords="291,5,549,61"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a1110ef9223794a210295d568db55776a" title=" " alt="" coords="301,85,539,141"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a2473a863e87208858e84253fc61e8f2d" title=" " alt="" coords="5,45,243,101"/>
+<area shape="rect" id="node7" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aaa056c4e9054aaec3a04f71fa04997ba" title=" " alt="" coords="5,125,243,181"/>
+</map>

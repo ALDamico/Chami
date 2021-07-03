@@ -1,0 +1,5 @@
+<map id="ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel.StartImportFiles" name="ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel.StartImportFiles">
+<area shape="rect" id="node1" title=" " alt="" coords="5,43,243,99"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_reader_factory.html#abdea8b512cdda7575544eccaf61c5d6c" title="Returns the appropriate IEnvironmentReader&lt;TOut&gt; based on the extension of the input file." alt="" coords="291,5,565,61"/>
+<area shape="rect" id="node3" href="$interface_chami_u_i_1_1_business_layer_1_1_i_environment_reader.html#a8d626ea80194222b4927c0a9d418efa5" title="Process a single environment." alt="" coords="309,86,547,127"/>
+</map>

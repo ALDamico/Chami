@@ -1,0 +1,156 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Adapters.\+Settings\+Data\+Adapter Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter}\index{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Settings\+Data\+Adapter} (string connection\+String)
+\item 
+\textbf{ Settings\+View\+Model} \textbf{ To\+View\+Model} (IEnumerable$<$ \textbf{ Setting} $>$ settings)
+\begin{DoxyCompactList}\small\item\em Converts the Setting entities to a suitable Settings\+View\+Model that the presentation layer can use by performing various conversions. The algorithm for performing these conversions is as follows\+: 
+\begin{DoxyEnumerate}
+\item At first, it attempts to perform a series of trivial conversions based on the Type property of the Setting entity. If no such conversion can be performed, an Invalid\+Cast\+Exception is thrown. The following types are supported\+: 
+\begin{DoxyItemize}
+\item string 
+\item System.\+Boolean or bool 
+\item System.\+Int32 or int 
+\item System.\+Double or double 
+\end{DoxyItemize}Other types could be added, but are probably not needed.  
+\item If the previous attempt failed, tries to invoke the constructor of the target type by using the Create\+Instance of Activator and passing the Value property of the setting. In practice, this means that the algorithm attempts to invoke a constructor that takes a string as a parameter. If such a constructor doesn\textquotesingle{}t exist, a Missing\+Method\+Exception is raised.  
+\item If the previous step failed, it tries to instantiate the Converter specified in the Setting by invoking its parameterless constructor. If that succeeds, it invokes its Convert method.  
+\item If all fails, the conversion is considered impossible.  
+\end{DoxyEnumerate}\end{DoxyCompactList}\item 
+\textbf{ Settings\+View\+Model} \textbf{ Get\+Settings} ()
+\begin{DoxyCompactList}\small\item\em Retrieves settings from the datastore and converts them to an instance of Settings\+View\+Model \end{DoxyCompactList}\item 
+void \textbf{ Save\+Settings} (\textbf{ Settings\+View\+Model} settings)
+\begin{DoxyCompactList}\small\item\em Converts every property in the Settings\+View\+Model to a Setting entity and updates it in the datastore. Not every property is guaranteed to be saved. For performance reasons, some classes are marked as \char`\"{}explicit save only\char`\"{} and are only updated when strictly necessary. Others are marked as \char`\"{}non persistent\char`\"{} and they\textquotesingle{}re never going to be saved. \end{DoxyCompactList}\item 
+void \textbf{ Save\+Main\+Window\+State} (\textbf{ Settings\+View\+Model} settings)
+\begin{DoxyCompactList}\small\item\em Saves all settings related to the state of Main\+Window to the datastore. This is used to allow hiding or closing the main window and then restoring its state at a later time. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_ae031bc2479d2a6942c1317ac5c325658}} 
+\index{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}!SettingsDataAdapter@{SettingsDataAdapter}}
+\index{SettingsDataAdapter@{SettingsDataAdapter}!ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}}
+\doxysubsubsection{SettingsDataAdapter()}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Adapters.\+Settings\+Data\+Adapter.\+Settings\+Data\+Adapter (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_a2dc31d2d0a7f50da15986b4416c51abc}} 
+\index{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}!GetSettings@{GetSettings}}
+\index{GetSettings@{GetSettings}!ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}}
+\doxysubsubsection{GetSettings()}
+{\footnotesize\ttfamily \textbf{ Settings\+View\+Model} Chami\+UI.\+Business\+Layer.\+Adapters.\+Settings\+Data\+Adapter.\+Get\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves settings from the datastore and converts them to an instance of Settings\+View\+Model 
+
+\begin{DoxyReturn}{Returns}
+A Settings\+View\+Model containing all application settings.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_a2dc31d2d0a7f50da15986b4416c51abc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_a2dc31d2d0a7f50da15986b4416c51abc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_abd8c2db2e069e8587ee82830ef22f516}} 
+\index{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}!SaveMainWindowState@{SaveMainWindowState}}
+\index{SaveMainWindowState@{SaveMainWindowState}!ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}}
+\doxysubsubsection{SaveMainWindowState()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Adapters.\+Settings\+Data\+Adapter.\+Save\+Main\+Window\+State (\begin{DoxyParamCaption}\item[{\textbf{ Settings\+View\+Model}}]{settings }\end{DoxyParamCaption})}
+
+
+
+Saves all settings related to the state of Main\+Window to the datastore. This is used to allow hiding or closing the main window and then restoring its state at a later time. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em settings} & The modified application settings.\\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_a3a7260ddbf402312b64ed87c5e804f6a}} 
+\index{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}!SaveSettings@{SaveSettings}}
+\index{SaveSettings@{SaveSettings}!ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}}
+\doxysubsubsection{SaveSettings()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Adapters.\+Settings\+Data\+Adapter.\+Save\+Settings (\begin{DoxyParamCaption}\item[{\textbf{ Settings\+View\+Model}}]{settings }\end{DoxyParamCaption})}
+
+
+
+Converts every property in the Settings\+View\+Model to a Setting entity and updates it in the datastore. Not every property is guaranteed to be saved. For performance reasons, some classes are marked as \char`\"{}explicit save only\char`\"{} and are only updated when strictly necessary. Others are marked as \char`\"{}non persistent\char`\"{} and they\textquotesingle{}re never going to be saved. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em settings} & The Settings\+View\+Model to convert and save.\\
+\hline
+\end{DoxyParams}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_a3a7260ddbf402312b64ed87c5e804f6a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_a5b018162e225a69ee2cc15a38f1eda9c}} 
+\index{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}!ToViewModel@{ToViewModel}}
+\index{ToViewModel@{ToViewModel}!ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter@{ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter}}
+\doxysubsubsection{ToViewModel()}
+{\footnotesize\ttfamily \textbf{ Settings\+View\+Model} Chami\+UI.\+Business\+Layer.\+Adapters.\+Settings\+Data\+Adapter.\+To\+View\+Model (\begin{DoxyParamCaption}\item[{IEnumerable$<$ \textbf{ Setting} $>$}]{settings }\end{DoxyParamCaption})}
+
+
+
+Converts the Setting entities to a suitable Settings\+View\+Model that the presentation layer can use by performing various conversions. The algorithm for performing these conversions is as follows\+: 
+\begin{DoxyEnumerate}
+\item At first, it attempts to perform a series of trivial conversions based on the Type property of the Setting entity. If no such conversion can be performed, an Invalid\+Cast\+Exception is thrown. The following types are supported\+: 
+\begin{DoxyItemize}
+\item string 
+\item System.\+Boolean or bool 
+\item System.\+Int32 or int 
+\item System.\+Double or double 
+\end{DoxyItemize}Other types could be added, but are probably not needed.  
+\item If the previous attempt failed, tries to invoke the constructor of the target type by using the Create\+Instance of Activator and passing the Value property of the setting. In practice, this means that the algorithm attempts to invoke a constructor that takes a string as a parameter. If such a constructor doesn\textquotesingle{}t exist, a Missing\+Method\+Exception is raised.  
+\item If the previous step failed, it tries to instantiate the Converter specified in the Setting by invoking its parameterless constructor. If that succeeds, it invokes its Convert method.  
+\item If all fails, the conversion is considered impossible.  
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em settings} & The full list of settings available to the \doxyref{Chami}{p.}{namespace_chami} application.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Settings\+View\+Model object for use by the presentation layer.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Null\+Reference\+Exception} & The method isn\textquotesingle{}t able to find a property whose name corresponds to Setting.\+Property\+Name, or inside this it cannot find a property named after Setting.\+Setting\+Name.\\
+\hline
+{\em Invalid\+Operation\+Exception} & The value conversion was successful, but the target property lacks a publicly-\/accessible setter.\\
+\hline
+\end{DoxyExceptions}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter_a5b018162e225a69ee2cc15a38f1eda9c_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Adapters/\textbf{ Settings\+Data\+Adapter.\+cs}\end{DoxyCompactItemize}

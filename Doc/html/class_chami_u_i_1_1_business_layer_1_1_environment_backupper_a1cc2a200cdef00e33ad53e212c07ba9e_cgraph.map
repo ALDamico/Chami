@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.EnvironmentBackupper.Backup" name="ChamiUI.BusinessLayer.EnvironmentBackupper.Backup">
+<area shape="rect" id="node1" title="Backs up the current environment to the datastore, excluding the environment variables added by Chami..." alt="" coords="5,5,241,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a74e8079264f86aeb0fd2613ba72eb583" title="Inserts an Environment object in the datastore and its associated &lt;ses cref=&quot;EnvironmentVariable&quot;&gt;s." alt="" coords="289,5,520,47"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="568,5,789,47"/>
+</map>

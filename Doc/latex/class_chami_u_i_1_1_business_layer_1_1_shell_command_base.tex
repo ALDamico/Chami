@@ -1,0 +1,126 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_shell_command_base}\index{ChamiUI.BusinessLayer.ShellCommandBase@{ChamiUI.BusinessLayer.ShellCommandBase}}
+
+
+Base class that provides common protected methods for classes that implement \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command}.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_shell_command_base__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_chami_u_i_1_1_business_layer_1_1_shell_command_base__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+abstract void \textbf{ Execute} ()
+\begin{DoxyCompactList}\small\item\em Derived classes must implement the \doxyref{Execute}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_a90dfdd0a479cb8c11b708eb49c554fbe} method. \end{DoxyCompactList}\item 
+abstract Task \textbf{ Execute\+Async} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress, float percentage, Cancellation\+Token cancellation\+Token)
+\begin{DoxyCompactList}\small\item\em Derived classes must implement the \doxyref{Execute\+Async}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ac03c3d91fa58422eed187405d33a2ff7} method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual Process \textbf{ Prepare\+Process} (string arguments)
+\begin{DoxyCompactList}\small\item\em Creates a new Process object that can be started by an inheritor. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class that provides common protected methods for classes that implement \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_a90dfdd0a479cb8c11b708eb49c554fbe}} 
+\index{ChamiUI.BusinessLayer.ShellCommandBase@{ChamiUI.BusinessLayer.ShellCommandBase}!Execute@{Execute}}
+\index{Execute@{Execute}!ChamiUI.BusinessLayer.ShellCommandBase@{ChamiUI.BusinessLayer.ShellCommandBase}}
+\doxysubsubsection{Execute()}
+{\footnotesize\ttfamily abstract void Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base.\+Execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Derived classes must implement the \doxyref{Execute}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_a90dfdd0a479cb8c11b708eb49c554fbe} method. 
+
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+IShell\+Command} \doxyref{}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command_a6dcb9c9ac2e678896175cc0bccbc3f9c}.
+
+
+
+Implemented in \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_a25a9d6eca966c8d3de79fe5e4b25611e}, and \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_af9f4f966515963abe6518003df3b5225}.
+
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ac03c3d91fa58422eed187405d33a2ff7}} 
+\index{ChamiUI.BusinessLayer.ShellCommandBase@{ChamiUI.BusinessLayer.ShellCommandBase}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!ChamiUI.BusinessLayer.ShellCommandBase@{ChamiUI.BusinessLayer.ShellCommandBase}}
+\doxysubsubsection{ExecuteAsync()}
+{\footnotesize\ttfamily abstract Task Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base.\+Execute\+Async (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress,  }\item[{float}]{percentage,  }\item[{Cancellation\+Token}]{cancellation\+Token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Derived classes must implement the \doxyref{Execute\+Async}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ac03c3d91fa58422eed187405d33a2ff7} method. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em progress} & Notifies the caller of progress.\\
+\hline
+{\em percentage} & Percentage of overall completion\\
+\hline
+{\em cancellation\+Token} & Allows cancelling the task.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+IShell\+Command} \doxyref{}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command_a2a8f4b146a27d3332688388844bfe67a}.
+
+
+
+Implemented in \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_ae09c4ec22e8ee3b4c27bda38f6e69ab1}, and \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_ac4fac2aa8ba53e57f0704cd6dd233a7d}.
+
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ad80c4f522777c87251d049389f8ecc30}} 
+\index{ChamiUI.BusinessLayer.ShellCommandBase@{ChamiUI.BusinessLayer.ShellCommandBase}!PrepareProcess@{PrepareProcess}}
+\index{PrepareProcess@{PrepareProcess}!ChamiUI.BusinessLayer.ShellCommandBase@{ChamiUI.BusinessLayer.ShellCommandBase}}
+\doxysubsubsection{PrepareProcess()}
+{\footnotesize\ttfamily virtual Process Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base.\+Prepare\+Process (\begin{DoxyParamCaption}\item[{string}]{arguments }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Creates a new Process object that can be started by an inheritor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em arguments} & The command line to execute by the process.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A Process object for use by an \doxyref{Cmd\+Executor\+Base}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base}.
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ad80c4f522777c87251d049389f8ecc30_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\textbf{ Shell\+Command\+Base.\+cs}\end{DoxyCompactItemize}

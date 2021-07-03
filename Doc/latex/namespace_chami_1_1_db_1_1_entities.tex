@@ -1,0 +1,62 @@
+\doxysection{Chami.\+Db.\+Entities Namespace Reference}
+\label{namespace_chami_1_1_db_1_1_entities}\index{Chami.Db.Entities@{Chami.Db.Entities}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Environment}
+\begin{DoxyCompactList}\small\item\em Represents a set of \doxyref{Environment\+Variables}{p.}{class_chami_1_1_db_1_1_entities_1_1_environment_a4ceb339715f30f599a8ea9682b20bc75} that belong together. \end{DoxyCompactList}\item 
+class \textbf{ Environment\+Variable}
+\begin{DoxyCompactList}\small\item\em Represents a single \doxyref{Environment\+Variable}{p.}{class_chami_1_1_db_1_1_entities_1_1_environment_variable} in an \doxyref{Environment}{p.}{class_chami_1_1_db_1_1_entities_1_1_environment} \end{DoxyCompactList}\item 
+interface \textbf{ IChami\+Entity}
+\begin{DoxyCompactList}\small\item\em Marker interface for all \doxyref{Chami}{p.}{namespace_chami} entities. \end{DoxyCompactList}\item 
+class \textbf{ Setting}
+\begin{DoxyCompactList}\small\item\em Represents a configurable aspect of the \doxyref{Chami}{p.}{namespace_chami} application. \end{DoxyCompactList}\item 
+class \textbf{ Ui\+Language}
+\begin{DoxyCompactList}\small\item\em Represents a localization language for the \doxyref{Chami}{p.}{namespace_chami} user interface. \end{DoxyCompactList}\item 
+class \textbf{ Watched\+Application}
+\begin{DoxyCompactList}\small\item\em Represents a row in the Watched\+Applications table. These are the names of the applications that \doxyref{Chami}{p.}{namespace_chami} will notify the user, if they so choose, when they change the current environment and the application detects they are running. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \textbf{ Environment\+Type} \{ \textbf{ Normal\+Environment} = 0
+, \textbf{ Backup\+Environment} = 1
+, \textbf{ Template\+Environment} = 2
+ \}
+\begin{DoxyCompactList}\small\item\em Clarifies what type an environment is. These are\+: 
+\begin{DoxyEnumerate}
+\item Normal environment\+: this is an environment that was created by the user and can be customized.  
+\item Backup environment\+: this is an environment that was created based on the current set of Environment\+Variables on the user\textquotesingle{}s machine. 
+\item Template environment\+: this is an environment that was created by the user in order to create other Normal\+Environment environments. 
+\end{DoxyEnumerate}\end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\label{namespace_chami_1_1_db_1_1_entities_a1f3c7007c7886e97ffd17766008e3e51}} 
+\index{Chami.Db.Entities@{Chami.Db.Entities}!EnvironmentType@{EnvironmentType}}
+\index{EnvironmentType@{EnvironmentType}!Chami.Db.Entities@{Chami.Db.Entities}}
+\doxysubsubsection{EnvironmentType}
+{\footnotesize\ttfamily enum \textbf{ Chami.\+Db.\+Entities.\+Environment\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Clarifies what type an environment is. These are\+: 
+\begin{DoxyEnumerate}
+\item Normal environment\+: this is an environment that was created by the user and can be customized.  
+\item Backup environment\+: this is an environment that was created based on the current set of \doxyref{Environment\+Variable}{p.}{class_chami_1_1_db_1_1_entities_1_1_environment_variable}s on the user\textquotesingle{}s machine. 
+\item Template environment\+: this is an environment that was created by the user in order to create other Normal\+Environment environments. 
+\end{DoxyEnumerate}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{NormalEnvironment@{NormalEnvironment}!Chami.Db.Entities@{Chami.Db.Entities}}\index{Chami.Db.Entities@{Chami.Db.Entities}!NormalEnvironment@{NormalEnvironment}}}\mbox{\label{namespace_chami_1_1_db_1_1_entities_a1f3c7007c7886e97ffd17766008e3e51afa3abdb095e6b327dd6b2ee412506d19}} 
+Normal\+Environment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BackupEnvironment@{BackupEnvironment}!Chami.Db.Entities@{Chami.Db.Entities}}\index{Chami.Db.Entities@{Chami.Db.Entities}!BackupEnvironment@{BackupEnvironment}}}\mbox{\label{namespace_chami_1_1_db_1_1_entities_a1f3c7007c7886e97ffd17766008e3e51ae4044032ee90a75f69bf2b0dd814e94d}} 
+Backup\+Environment&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{TemplateEnvironment@{TemplateEnvironment}!Chami.Db.Entities@{Chami.Db.Entities}}\index{Chami.Db.Entities@{Chami.Db.Entities}!TemplateEnvironment@{TemplateEnvironment}}}\mbox{\label{namespace_chami_1_1_db_1_1_entities_a1f3c7007c7886e97ffd17766008e3e51a7b24b3ce02091eda14707f12b4838d54}} 
+Template\+Environment&\\
+\hline
+
+\end{DoxyEnumFields}

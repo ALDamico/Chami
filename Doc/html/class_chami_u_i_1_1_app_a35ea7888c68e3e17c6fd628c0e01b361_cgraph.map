@@ -1,0 +1,4 @@
+<map id="ChamiUI.App.ShowExceptionMessageBox" name="ChamiUI.App.ShowExceptionMessageBox">
+<area shape="rect" id="node1" title=" " alt="" coords="5,5,197,47"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger.html#aea988cfd1c4f6fa0edfb253521b508bc" title="Gets the Serilog Logger object." alt="" coords="245,5,453,47"/>
+</map>

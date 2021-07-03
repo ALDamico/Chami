@@ -1,0 +1,264 @@
+\doxysection{Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository Class Reference}
+\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository}\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+
+
+Performs CRUD operations on the Watched\+Application aggregate.  
+
+
+
+
+Inheritance diagram for Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=238pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Watched\+Application\+Repository} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Watched\+Application\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository} object with the specified connection string. \end{DoxyCompactList}\item 
+IEnumerable$<$ \textbf{ Watched\+Application} $>$ \textbf{ Get\+Watched\+Applications} ()
+\begin{DoxyCompactList}\small\item\em Gets all the Watched\+Application objects available to the \doxyref{Chami}{p.}{namespace_chami} application. \end{DoxyCompactList}\item 
+\textbf{ Watched\+Application} \textbf{ Get\+Watched\+Application\+By\+Id} (int id)
+\begin{DoxyCompactList}\small\item\em Gets a Watched\+Application object with the specified id. \end{DoxyCompactList}\item 
+IEnumerable$<$ \textbf{ Watched\+Application} $>$ \textbf{ Get\+Active\+Watched\+Applications} ()
+\begin{DoxyCompactList}\small\item\em Gets all the Watched\+Application objects that \doxyref{Chami}{p.}{namespace_chami} is currently listening to. \end{DoxyCompactList}\item 
+\textbf{ Watched\+Application} \textbf{ Insert\+Watched\+Application} (\textbf{ Watched\+Application} application)
+\begin{DoxyCompactList}\small\item\em Inserts a new Watched\+Application object in the database. \end{DoxyCompactList}\item 
+\textbf{ Watched\+Application} \textbf{ Update\+Application} (\textbf{ Watched\+Application} application)
+\begin{DoxyCompactList}\small\item\em Updates an existing Watched\+Application object in the database. \end{DoxyCompactList}\item 
+\textbf{ Watched\+Application} \textbf{ Get\+Watched\+Application\+By\+Name} (string name)
+\begin{DoxyCompactList}\small\item\em Gets the Watched\+Application with the specified name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Performs CRUD operations on the Watched\+Application aggregate. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_aa67264befd46c9d4ddf5b29a8aeda6d0}} 
+\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}!WatchedApplicationRepository@{WatchedApplicationRepository}}
+\index{WatchedApplicationRepository@{WatchedApplicationRepository}!Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+\doxysubsubsection{WatchedApplicationRepository()}
+{\footnotesize\ttfamily Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository.\+Watched\+Application\+Repository (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Watched\+Application\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository} object with the specified connection string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & The connection string to initialize the object with.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a8e249c1f527e576165abc27a9a46041f}} 
+\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}!GetActiveWatchedApplications@{GetActiveWatchedApplications}}
+\index{GetActiveWatchedApplications@{GetActiveWatchedApplications}!Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+\doxysubsubsection{GetActiveWatchedApplications()}
+{\footnotesize\ttfamily IEnumerable$<$\textbf{ Watched\+Application}$>$ Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository.\+Get\+Active\+Watched\+Applications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the Watched\+Application objects that \doxyref{Chami}{p.}{namespace_chami} is currently listening to. 
+
+\begin{DoxyReturn}{Returns}
+A (possibly empty) IEnumerable$<$\+T$>$ of Watched\+Application objects.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a8e249c1f527e576165abc27a9a46041f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a8e249c1f527e576165abc27a9a46041f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_ae102e940f466e24dc8553cd8686b6da6}} 
+\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}!GetWatchedApplicationById@{GetWatchedApplicationById}}
+\index{GetWatchedApplicationById@{GetWatchedApplicationById}!Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+\doxysubsubsection{GetWatchedApplicationById()}
+{\footnotesize\ttfamily \textbf{ Watched\+Application} Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository.\+Get\+Watched\+Application\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets a Watched\+Application object with the specified id. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the object to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If a matching Watched\+Application is found, returns it. Otherwise, null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_ae102e940f466e24dc8553cd8686b6da6_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a335525bdb6cf16e6dadd1b4ae31d28a0}} 
+\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}!GetWatchedApplicationByName@{GetWatchedApplicationByName}}
+\index{GetWatchedApplicationByName@{GetWatchedApplicationByName}!Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+\doxysubsubsection{GetWatchedApplicationByName()}
+{\footnotesize\ttfamily \textbf{ Watched\+Application} Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository.\+Get\+Watched\+Application\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Gets the Watched\+Application with the specified name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the application to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If a suitable object exists in the database, returns it. Otherwise, null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a335525bdb6cf16e6dadd1b4ae31d28a0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a335525bdb6cf16e6dadd1b4ae31d28a0_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_aedd6a3b9e8ebbe148078b9b0c9f798c2}} 
+\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}!GetWatchedApplications@{GetWatchedApplications}}
+\index{GetWatchedApplications@{GetWatchedApplications}!Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+\doxysubsubsection{GetWatchedApplications()}
+{\footnotesize\ttfamily IEnumerable$<$\textbf{ Watched\+Application}$>$ Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository.\+Get\+Watched\+Applications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the Watched\+Application objects available to the \doxyref{Chami}{p.}{namespace_chami} application. 
+
+\begin{DoxyReturn}{Returns}
+An IEnumerable$<$\+T$>$ containing all the Watched\+Application objects.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_aedd6a3b9e8ebbe148078b9b0c9f798c2_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a76bafe1db158bb6a0e96fcd189849234}} 
+\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}!InsertWatchedApplication@{InsertWatchedApplication}}
+\index{InsertWatchedApplication@{InsertWatchedApplication}!Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+\doxysubsubsection{InsertWatchedApplication()}
+{\footnotesize\ttfamily \textbf{ Watched\+Application} Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository.\+Insert\+Watched\+Application (\begin{DoxyParamCaption}\item[{\textbf{ Watched\+Application}}]{application }\end{DoxyParamCaption})}
+
+
+
+Inserts a new Watched\+Application object in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em application} & The new Watched\+Application to insert.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the parameter was null, returns null. If the insertion operation was successful, returns the newly-\/inserted Watched\+Application object.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Supported\+Exception} & If the Watched\+Application\textquotesingle{}s Id is greater than 0 (i.\+e., if it\textquotesingle{}s already been persisted, throws a Not\+Supported\+Exception.\\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a76bafe1db158bb6a0e96fcd189849234_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_a76bafe1db158bb6a0e96fcd189849234_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_ac55a7c67c60ad2907da3b831c11fb094}} 
+\index{Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}!UpdateApplication@{UpdateApplication}}
+\index{UpdateApplication@{UpdateApplication}!Chami.Db.Repositories.WatchedApplicationRepository@{Chami.Db.Repositories.WatchedApplicationRepository}}
+\doxysubsubsection{UpdateApplication()}
+{\footnotesize\ttfamily \textbf{ Watched\+Application} Chami.\+Db.\+Repositories.\+Watched\+Application\+Repository.\+Update\+Application (\begin{DoxyParamCaption}\item[{\textbf{ Watched\+Application}}]{application }\end{DoxyParamCaption})}
+
+
+
+Updates an existing Watched\+Application object in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em application} & The application object to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If the parameter is null, returns null. Otherwise, returns the updated entity.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Supported\+Exception} & The Watched\+Application has not yet been persisted.\\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_ac55a7c67c60ad2907da3b831c11fb094_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository_ac55a7c67c60ad2907da3b831c11fb094_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+Db\+Migrations/\+Repositories/\textbf{ Watched\+Application\+Repository.\+cs}\end{DoxyCompactItemize}

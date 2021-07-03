@@ -1,0 +1,133 @@
+\doxysection{Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy Class Reference}
+\label{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy}\index{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}}
+
+
+An \doxyref{IFilter\+Strategy}{p.}{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy} that filters based on environment names and environment variable names and values.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_valued71d7d54f3f07fb548748f80baf29954}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=240pt]{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy} ()
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy} object and sets its \doxyref{Name}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_abb4647396b1d2e442dbf0f937b558c4b} property. \end{DoxyCompactList}\item 
+void \textbf{ On\+Filter} (object sender, Filter\+Event\+Args args)
+\begin{DoxyCompactList}\small\item\em Filters a Collection\+View\+Source. An Environment\+View\+Model is accepted if it matches any of the following criteria\+: 
+\begin{DoxyEnumerate}
+\item The \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28} property is null (i.\+e., no filtering is being performed). 
+\item The Environment\+View\+Model\textquotesingle{}s Name property contains the \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28}. 
+\item Any of the Environment\+Variable\+View\+Models\textquotesingle{} Name property in the environment contains the \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28}. 
+\item Any of the Environment\+Variable\+View\+Models\textquotesingle{} Value property in the environment contains the \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28}. 
+\end{DoxyEnumerate}\end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Name}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+string \textbf{ Searched\+Text}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+String\+Comparison \textbf{ Comparison}\hspace{0.3cm}{\ttfamily  [get, set]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+An \doxyref{IFilter\+Strategy}{p.}{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy} that filters based on environment names and environment variable names and values. 
+
+\begin{DoxySeeAlso}{See also}
+\doxyref{IFilter\+Strategy}{p.}{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy}
+
+
+\end{DoxySeeAlso}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_a07acced7a1c5f0fe67ce7b5d17575357}} 
+\index{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}!EnvironmentAndVariableNameAndValueFilterStrategy@{EnvironmentAndVariableNameAndValueFilterStrategy}}
+\index{EnvironmentAndVariableNameAndValueFilterStrategy@{EnvironmentAndVariableNameAndValueFilterStrategy}!ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}}
+\doxysubsubsection{EnvironmentAndVariableNameAndValueFilterStrategy()}
+{\footnotesize\ttfamily Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy} object and sets its \doxyref{Name}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_abb4647396b1d2e442dbf0f937b558c4b} property. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_a9adfb9a563bf3929f87440e6bf2c2d0d}} 
+\index{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}!OnFilter@{OnFilter}}
+\index{OnFilter@{OnFilter}!ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}}
+\doxysubsubsection{OnFilter()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy.\+On\+Filter (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Filter\+Event\+Args}]{args }\end{DoxyParamCaption})}
+
+
+
+Filters a Collection\+View\+Source. An Environment\+View\+Model is accepted if it matches any of the following criteria\+: 
+\begin{DoxyEnumerate}
+\item The \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28} property is null (i.\+e., no filtering is being performed). 
+\item The Environment\+View\+Model\textquotesingle{}s Name property contains the \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28}. 
+\item Any of the Environment\+Variable\+View\+Models\textquotesingle{} Name property in the environment contains the \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28}. 
+\item Any of the Environment\+Variable\+View\+Models\textquotesingle{} Value property in the environment contains the \doxyref{Searched\+Text}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28}. 
+\end{DoxyEnumerate}
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & The object that initiated the Filter event.\\
+\hline
+{\em args} & Determines if an item is accepted or rejected by the Filter event.\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+Collection\+View\+Source
+
+
+\end{DoxySeeAlso}
+
+
+Implements \textbf{ Chami\+UI.\+Presentation\+Layer.\+Filtering.\+IFilter\+Strategy} \doxyref{}{p.}{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy_a40ba6aafb3b39ea44b34dee779192c3c}.
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_a84523df280bc8aecc2548b2e188d0fd3}} 
+\index{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}!Comparison@{Comparison}}
+\index{Comparison@{Comparison}!ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}}
+\doxysubsubsection{Comparison}
+{\footnotesize\ttfamily String\+Comparison Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy.\+Comparison\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_abb4647396b1d2e442dbf0f937b558c4b}} 
+\index{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}!Name@{Name}}
+\index{Name@{Name}!ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}}
+\doxysubsubsection{Name}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy.\+Name\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_acafff8554cc252152e5946f15d214b28}} 
+\index{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}!SearchedText@{SearchedText}}
+\index{SearchedText@{SearchedText}!ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy@{ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy}}
+\doxysubsubsection{SearchedText}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy.\+Searched\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Presentation\+Layer/\+Filtering/\textbf{ Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.EnvironmentJsonReader" name="ChamiUI.BusinessLayer.EnvironmentJsonReader">
+<area shape="rect" id="node1" title="Reads environments from a JSON file." alt="" coords="5,95,241,136"/>
+<area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_i_environment_reader.html" title=" " alt="" coords="33,5,213,47"/>
+</map>

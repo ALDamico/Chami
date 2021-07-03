@@ -1,0 +1,6 @@
+<map id="ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter.GetAllAvailableCultureInfos" name="ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter.GetAllAvailableCultureInfos">
+<area shape="rect" id="node1" title="Gets all the ApplicationLanguageViewModels, converts them to CultureInfo objects, and returns them as..." alt="" coords="5,5,244,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#a0a2df935d9c28b84aba919a059897cb4" title="Gets all the available UiLanguage entities from the database, converts them to ApplicationLanguageVie..." alt="" coords="292,5,531,61"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository.html#ad6bd095e3d28210168a6c5ef2ac6b2bf" title="Gets all the UiLanguages available to the Chami application." alt="" coords="579,13,833,54"/>
+<area shape="rect" id="node4" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="881,13,1103,54"/>
+</map>

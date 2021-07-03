@@ -1,0 +1,139 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command}\index{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}}
+
+
+Executes a shell command that removes an environment variable from the registry.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+Variable\+Removal\+Command} (\textbf{ Environment\+Variable} variable)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Environment\+Variable\+Removal\+Command}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command} object and sets the variable it applies to. \end{DoxyCompactList}\item 
+override void \textbf{ Execute} ()
+\begin{DoxyCompactList}\small\item\em Executes the shell command synchronously by deleting the registry key corresponding to the variable we want to remove. \end{DoxyCompactList}\item 
+override async Task \textbf{ Execute\+Async} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress, float percentage, Cancellation\+Token cancellation\+Token)
+\begin{DoxyCompactList}\small\item\em Executes the shell command asynchronously by deleting the registry key corresponding to the variable we want to remove. Optionally reports progress. Can be canceled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+Variable} \textbf{ Environment\+Variable}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em The environment variable to apply the command to. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Executes a shell command that removes an environment variable from the registry. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_ad3cbc610dd25ec3d6a02631f2845c3f8}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}!EnvironmentVariableRemovalCommand@{EnvironmentVariableRemovalCommand}}
+\index{EnvironmentVariableRemovalCommand@{EnvironmentVariableRemovalCommand}!ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}}
+\doxysubsubsection{EnvironmentVariableRemovalCommand()}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command.\+Environment\+Variable\+Removal\+Command (\begin{DoxyParamCaption}\item[{\textbf{ Environment\+Variable}}]{variable }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Environment\+Variable\+Removal\+Command}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command} object and sets the variable it applies to. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em variable} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_a25a9d6eca966c8d3de79fe5e4b25611e}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}!Execute@{Execute}}
+\index{Execute@{Execute}!ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}}
+\doxysubsubsection{Execute()}
+{\footnotesize\ttfamily override void Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command.\+Execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the shell command synchronously by deleting the registry key corresponding to the variable we want to remove. 
+
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_a90dfdd0a479cb8c11b708eb49c554fbe}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_a25a9d6eca966c8d3de79fe5e4b25611e_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_ae09c4ec22e8ee3b4c27bda38f6e69ab1}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}}
+\doxysubsubsection{ExecuteAsync()}
+{\footnotesize\ttfamily override async Task Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command.\+Execute\+Async (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress,  }\item[{float}]{percentage,  }\item[{Cancellation\+Token}]{cancellation\+Token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the shell command asynchronously by deleting the registry key corresponding to the variable we want to remove. Optionally reports progress. Can be canceled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em progress} & Notifies the caller of progress.\\
+\hline
+{\em percentage} & Used for progress notification\\
+\hline
+{\em cancellation\+Token} & Enables cancelling the task.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ac03c3d91fa58422eed187405d33a2ff7}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_ae09c4ec22e8ee3b4c27bda38f6e69ab1_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_a125c29031acddcc032b2e6d840bbde43}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}!EnvironmentVariable@{EnvironmentVariable}}
+\index{EnvironmentVariable@{EnvironmentVariable}!ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand@{ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand}}
+\doxysubsubsection{EnvironmentVariable}
+{\footnotesize\ttfamily \textbf{ Environment\+Variable} Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command.\+Environment\+Variable\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The environment variable to apply the command to. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\textbf{ Environment\+Variable\+Removal\+Command.\+cs}\end{DoxyCompactItemize}

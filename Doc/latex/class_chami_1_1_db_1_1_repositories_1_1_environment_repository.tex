@@ -1,0 +1,448 @@
+\doxysection{Chami.\+Db.\+Repositories.\+Environment\+Repository Class Reference}
+\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository}\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+
+
+Performs CRUD operations on the Environment aggregate.  
+
+
+
+
+Inheritance diagram for Chami.\+Db.\+Repositories.\+Environment\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami.\+Db.\+Repositories.\+Environment\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=253pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+Repository} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Environment\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_environment_repository} object and sets the appropriate connection string. \end{DoxyCompactList}\item 
+async Task$<$ \textbf{ Environment} $>$ \textbf{ Get\+Environment\+By\+Id\+Async} (int id)
+\begin{DoxyCompactList}\small\item\em Retrieves the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id and its Environment\+Variables asynchronously. \end{DoxyCompactList}\item 
+\textbf{ Environment} \textbf{ Get\+Environment\+By\+Id} (int id)
+\begin{DoxyCompactList}\small\item\em Gets the environment with the specified Id and its corresponding Environment\+Variables. \end{DoxyCompactList}\item 
+\textbf{ Environment} \textbf{ Insert\+Environment} (\textbf{ Environment} environment)
+\begin{DoxyCompactList}\small\item\em Inserts an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} object in the datastore and its associated $<$ses cref=\char`\"{}\+Environment\+Variable\char`\"{}$>$s. \end{DoxyCompactList}\item 
+\textbf{ Environment} \textbf{ Update\+Environment} (\textbf{ Environment} environment)
+\begin{DoxyCompactList}\small\item\em Updates the data associated with an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} in the datastore. \end{DoxyCompactList}\item 
+\textbf{ Environment} \textbf{ Upsert\+Environment} (\textbf{ Environment} environment)
+\begin{DoxyCompactList}\small\item\em Inserts an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} in the datastore, or updates it if it\textquotesingle{}s already present. \end{DoxyCompactList}\item 
+ICollection$<$ \textbf{ Environment} $>$ \textbf{ Get\+Backup\+Environments} ()
+\begin{DoxyCompactList}\small\item\em Gets all the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} objects in the datastore marked as \char`\"{}\+Backup environments\char`\"{}. \end{DoxyCompactList}\item 
+ICollection$<$ \textbf{ Environment} $>$ \textbf{ Get\+Environments} ()
+\begin{DoxyCompactList}\small\item\em Get all the environments marked as normal environments in the datastore. \end{DoxyCompactList}\item 
+\textbf{ Environment} \textbf{ Get\+Environment\+By\+Name} (string name)
+\begin{DoxyCompactList}\small\item\em Get the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified name and its associated Environment\+Variables. \end{DoxyCompactList}\item 
+bool \textbf{ Delete\+Environment\+By\+Id} (int id)
+\begin{DoxyCompactList}\small\item\em Deletes the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id from the database and cascades the delete to its corresponsing Environment\+Variables. \end{DoxyCompactList}\item 
+void \textbf{ Delete\+Variable\+By\+Id} (int selected\+Variable\+Id)
+\begin{DoxyCompactList}\small\item\em Deletes the Environment\+Variable with the specified id from the datastore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Insert\+Variable} (\textbf{ Environment\+Variable} environment\+Variable, int environment\+Id)
+\begin{DoxyCompactList}\small\item\em Inserts a new Environment\+Variable object in the datastore. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Performs CRUD operations on the Environment aggregate. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a6c70479c31f85c359eec72b5fcc56fd9}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!EnvironmentRepository@{EnvironmentRepository}}
+\index{EnvironmentRepository@{EnvironmentRepository}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{EnvironmentRepository()}
+{\footnotesize\ttfamily Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Environment\+Repository (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Environment\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_environment_repository} object and sets the appropriate connection string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a8344bbc0e74f851295394ea6fb16069f}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!DeleteEnvironmentById@{DeleteEnvironmentById}}
+\index{DeleteEnvironmentById@{DeleteEnvironmentById}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{DeleteEnvironmentById()}
+{\footnotesize\ttfamily bool Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Delete\+Environment\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Deletes the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id from the database and cascades the delete to its corresponsing Environment\+Variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The Id of the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to delete.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+True if the deletion was successful, false if no \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the requested id was found.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a8344bbc0e74f851295394ea6fb16069f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a8344bbc0e74f851295394ea6fb16069f_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a3b8fcf2c0767e6261c5bda561aae7818}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!DeleteVariableById@{DeleteVariableById}}
+\index{DeleteVariableById@{DeleteVariableById}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{DeleteVariableById()}
+{\footnotesize\ttfamily void Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Delete\+Variable\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{selected\+Variable\+Id }\end{DoxyParamCaption})}
+
+
+
+Deletes the Environment\+Variable with the specified id from the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em selected\+Variable\+Id} & The id of the Environment\+Variable to delete.\\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a3b8fcf2c0767e6261c5bda561aae7818_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a3b8fcf2c0767e6261c5bda561aae7818_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_ad749262af686d327b9c08b793e8357a4}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!GetBackupEnvironments@{GetBackupEnvironments}}
+\index{GetBackupEnvironments@{GetBackupEnvironments}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{GetBackupEnvironments()}
+{\footnotesize\ttfamily ICollection$<$\textbf{ Environment}$>$ Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Get\+Backup\+Environments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} objects in the datastore marked as \char`\"{}\+Backup environments\char`\"{}. 
+
+\begin{DoxyReturn}{Returns}
+An ICollection$<$\+T$>$ of \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} objects.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_ad749262af686d327b9c08b793e8357a4_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a2a88f52734e2def79410324fe7069d1b}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!GetEnvironmentById@{GetEnvironmentById}}
+\index{GetEnvironmentById@{GetEnvironmentById}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{GetEnvironmentById()}
+{\footnotesize\ttfamily \textbf{ Environment} Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Get\+Environment\+By\+Id (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Gets the environment with the specified Id and its corresponding Environment\+Variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the Id specified. If none is found, returns null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a2a88f52734e2def79410324fe7069d1b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a2a88f52734e2def79410324fe7069d1b_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a6195c02991d5158b1cec423a352a4e6f}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!GetEnvironmentByIdAsync@{GetEnvironmentByIdAsync}}
+\index{GetEnvironmentByIdAsync@{GetEnvironmentByIdAsync}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{GetEnvironmentByIdAsync()}
+{\footnotesize\ttfamily async Task$<$\textbf{ Environment}$>$ Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Get\+Environment\+By\+Id\+Async (\begin{DoxyParamCaption}\item[{int}]{id }\end{DoxyParamCaption})}
+
+
+
+Retrieves the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified id and its Environment\+Variables asynchronously. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id} & The id of the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If a match is found, returns the corresponding \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1}, otherwise null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a6195c02991d5158b1cec423a352a4e6f_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_ac3068e223ff8bcfc863d7c14616bf2c7}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!GetEnvironmentByName@{GetEnvironmentByName}}
+\index{GetEnvironmentByName@{GetEnvironmentByName}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{GetEnvironmentByName()}
+{\footnotesize\ttfamily \textbf{ Environment} Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Get\+Environment\+By\+Name (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Get the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified name and its associated Environment\+Variables. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to retrieve\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} with the specified name. If none is found, null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_ac3068e223ff8bcfc863d7c14616bf2c7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_ac3068e223ff8bcfc863d7c14616bf2c7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a48b014b7255c5d5b13940ad6e8de64ea}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!GetEnvironments@{GetEnvironments}}
+\index{GetEnvironments@{GetEnvironments}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{GetEnvironments()}
+{\footnotesize\ttfamily ICollection$<$\textbf{ Environment}$>$ Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Get\+Environments (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Get all the environments marked as normal environments in the datastore. 
+
+\begin{DoxyReturn}{Returns}
+An ICollection$<$\+Environment$>$ containing all the environments in the datastore.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a48b014b7255c5d5b13940ad6e8de64ea_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a48b014b7255c5d5b13940ad6e8de64ea_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a74e8079264f86aeb0fd2613ba72eb583}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!InsertEnvironment@{InsertEnvironment}}
+\index{InsertEnvironment@{InsertEnvironment}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{InsertEnvironment()}
+{\footnotesize\ttfamily \textbf{ Environment} Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Insert\+Environment (\begin{DoxyParamCaption}\item[{\textbf{ Environment}}]{environment }\end{DoxyParamCaption})}
+
+
+
+Inserts an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} object in the datastore and its associated $<$ses cref=\char`\"{}\+Environment\+Variable\char`\"{}$>$s. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & The \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} object to insert into the datastore.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The newly-\/inserted environment, with its Environment\+Id set. If the parameter is null, returns null.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Supported\+Exception} & If the Environment\+Id is greater than 0 (i.\+e., if the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} is already persisted to the datastore), a Not\+Supported\+Exception is thrown.\\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a74e8079264f86aeb0fd2613ba72eb583_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a74e8079264f86aeb0fd2613ba72eb583_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a890bff10c65cf4b0f5d5db5d8d43ebbc}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!InsertVariable@{InsertVariable}}
+\index{InsertVariable@{InsertVariable}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{InsertVariable()}
+{\footnotesize\ttfamily void Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Insert\+Variable (\begin{DoxyParamCaption}\item[{\textbf{ Environment\+Variable}}]{environment\+Variable,  }\item[{int}]{environment\+Id }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Inserts a new Environment\+Variable object in the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment\+Variable} & The Environment\+Variable to insert.\\
+\hline
+{\em environment\+Id} & The Id of the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to attach the new variable to.\\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Invalid\+Operation\+Exception} & If the Environment\+Variable object\textquotesingle{}s Name or Value attributes is null, an Invalid\+Operation\+Exception is thrown to preserve the consistency of the datastore.\\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a890bff10c65cf4b0f5d5db5d8d43ebbc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a890bff10c65cf4b0f5d5db5d8d43ebbc_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a7f1e717e64ddc444dfc6ca15d7e52b7d}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!UpdateEnvironment@{UpdateEnvironment}}
+\index{UpdateEnvironment@{UpdateEnvironment}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{UpdateEnvironment()}
+{\footnotesize\ttfamily \textbf{ Environment} Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Update\+Environment (\begin{DoxyParamCaption}\item[{\textbf{ Environment}}]{environment }\end{DoxyParamCaption})}
+
+
+
+Updates the data associated with an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} in the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & The \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The updated \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} entity.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Not\+Supported\+Exception} & If the \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} is not yet persisted (i.\+e., its Environment\+Id is 0), a Not\+Supported\+Exception is thrown.\\
+\hline
+\end{DoxyExceptions}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a7f1e717e64ddc444dfc6ca15d7e52b7d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a7f1e717e64ddc444dfc6ca15d7e52b7d_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a083fc406339cecc488cb8aee86748e47}} 
+\index{Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}!UpsertEnvironment@{UpsertEnvironment}}
+\index{UpsertEnvironment@{UpsertEnvironment}!Chami.Db.Repositories.EnvironmentRepository@{Chami.Db.Repositories.EnvironmentRepository}}
+\doxysubsubsection{UpsertEnvironment()}
+{\footnotesize\ttfamily \textbf{ Environment} Chami.\+Db.\+Repositories.\+Environment\+Repository.\+Upsert\+Environment (\begin{DoxyParamCaption}\item[{\textbf{ Environment}}]{environment }\end{DoxyParamCaption})}
+
+
+
+Inserts an \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} in the datastore, or updates it if it\textquotesingle{}s already present. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em environment} & The \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1} to persist in the datastore.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The newly-\/inserted or updated \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1}
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a083fc406339cecc488cb8aee86748e47_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_environment_repository_a083fc406339cecc488cb8aee86748e47_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+Db\+Migrations/\+Repositories/\textbf{ Environment\+Repository.\+cs}\end{DoxyCompactItemize}

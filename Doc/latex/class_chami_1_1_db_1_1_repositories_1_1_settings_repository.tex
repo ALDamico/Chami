@@ -1,0 +1,153 @@
+\doxysection{Chami.\+Db.\+Repositories.\+Settings\+Repository Class Reference}
+\label{class_chami_1_1_db_1_1_repositories_1_1_settings_repository}\index{Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}}
+
+
+Performs CRUD operations on the Settings aggregate.  
+
+
+
+
+Inheritance diagram for Chami.\+Db.\+Repositories.\+Settings\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{class_chami_1_1_db_1_1_repositories_1_1_settings_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami.\+Db.\+Repositories.\+Settings\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{class_chami_1_1_db_1_1_repositories_1_1_settings_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Settings\+Repository} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Settings\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_settings_repository} object with the provided connection string. \end{DoxyCompactList}\item 
+IEnumerable$<$ \textbf{ Setting} $>$ \textbf{ Get\+Settings} ()
+\begin{DoxyCompactList}\small\item\em Retrieves all the Settings object associated with the \doxyref{Chami}{p.}{namespace_chami} application. \end{DoxyCompactList}\item 
+\textbf{ Setting} \textbf{ Update\+Setting} (string setting\+Name, string setting\+Value)
+\begin{DoxyCompactList}\small\item\em Updates the value of a Setting. \end{DoxyCompactList}\item 
+\textbf{ Setting} \textbf{ Update\+Setting} (\textbf{ Setting} setting)
+\begin{DoxyCompactList}\small\item\em Updates the value of a Setting. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Performs CRUD operations on the Settings aggregate. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_af859ae369ffc3d7b2fa112b9f0110cdc}} 
+\index{Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}!SettingsRepository@{SettingsRepository}}
+\index{SettingsRepository@{SettingsRepository}!Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}}
+\doxysubsubsection{SettingsRepository()}
+{\footnotesize\ttfamily Chami.\+Db.\+Repositories.\+Settings\+Repository.\+Settings\+Repository (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Settings\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_settings_repository} object with the provided connection string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & The connection string for the database to connect to.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_a551dc1fd5b089ae49c0e1781ed9f7e84}} 
+\index{Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}!GetSettings@{GetSettings}}
+\index{GetSettings@{GetSettings}!Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}}
+\doxysubsubsection{GetSettings()}
+{\footnotesize\ttfamily IEnumerable$<$\textbf{ Setting}$>$ Chami.\+Db.\+Repositories.\+Settings\+Repository.\+Get\+Settings (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Retrieves all the Settings object associated with the \doxyref{Chami}{p.}{namespace_chami} application. 
+
+\begin{DoxyReturn}{Returns}
+An IEnumerable$<$\+T$>$ containing all the Settings objects.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_a551dc1fd5b089ae49c0e1781ed9f7e84_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_a551dc1fd5b089ae49c0e1781ed9f7e84_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_a2dd2cabd57c03881dd15e18cabde4748}} 
+\index{Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}!UpdateSetting@{UpdateSetting}}
+\index{UpdateSetting@{UpdateSetting}!Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}}
+\doxysubsubsection{UpdateSetting()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \textbf{ Setting} Chami.\+Db.\+Repositories.\+Settings\+Repository.\+Update\+Setting (\begin{DoxyParamCaption}\item[{\textbf{ Setting}}]{setting }\end{DoxyParamCaption})}
+
+
+
+Updates the value of a Setting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em setting} & The Setting to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the setting with the requested name if it exists, otherwise null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_a2dd2cabd57c03881dd15e18cabde4748_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_a7e64f27ba2586bd9135ec472b0f1259b}} 
+\index{Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}!UpdateSetting@{UpdateSetting}}
+\index{UpdateSetting@{UpdateSetting}!Chami.Db.Repositories.SettingsRepository@{Chami.Db.Repositories.SettingsRepository}}
+\doxysubsubsection{UpdateSetting()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \textbf{ Setting} Chami.\+Db.\+Repositories.\+Settings\+Repository.\+Update\+Setting (\begin{DoxyParamCaption}\item[{string}]{setting\+Name,  }\item[{string}]{setting\+Value }\end{DoxyParamCaption})}
+
+
+
+Updates the value of a Setting. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em setting\+Name} & The name of the Setting to update.\\
+\hline
+{\em setting\+Value} & The new value for the Setting to update.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Returns the setting with the requested name if it exists, otherwise null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_settings_repository_a7e64f27ba2586bd9135ec472b0f1259b_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+Db\+Migrations/\+Repositories/\textbf{ Settings\+Repository.\+cs}\end{DoxyCompactItemize}

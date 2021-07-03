@@ -1,0 +1,5 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.InsertVariable" name="Chami.Db.Repositories.EnvironmentRepository.InsertVariable">
+<area shape="rect" id="node1" title="Inserts a new EnvironmentVariable object in the datastore." alt="" coords="600,5,831,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a083fc406339cecc488cb8aee86748e47" title="Inserts an Environment in the datastore, or updates it if it&#39;s already present." alt="" coords="321,5,552,47"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#abc9ba90c35e14c2e275e102291503a88" title="Converts an EnvironmentViewModel to an Environment entity and inserts it if it&#39;s not been persisted y..." alt="" coords="5,5,273,47"/>
+</map>

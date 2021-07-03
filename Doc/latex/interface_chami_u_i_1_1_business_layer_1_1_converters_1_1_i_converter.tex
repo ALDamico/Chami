@@ -1,0 +1,70 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Converters.\+IConverter$<$ TFrom, TTo $>$ Interface Template Reference}
+\label{interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter}\index{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$@{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$}}
+
+
+Interface for the converters used by the \doxyref{Chami}{p.}{namespace_chami} application to convert between entities and viewmodels.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+TFrom \textbf{ From} (TTo model)
+\begin{DoxyCompactList}\small\item\em Converts from a viewmodel to an entity. \end{DoxyCompactList}\item 
+TTo \textbf{ To} (TFrom entity)
+\begin{DoxyCompactList}\small\item\em Converts from an entity to a viewmodel. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for the converters used by the \doxyref{Chami}{p.}{namespace_chami} application to convert between entities and viewmodels. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em TFrom} & The entity type.\\
+\hline
+{\em TTo} & The viewmodel type.\\
+\hline
+\end{DoxyTemplParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter_a1b26177fdf0183fb7cd713ca9e9f43e9}} 
+\index{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$@{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$}!From@{From}}
+\index{From@{From}!ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$@{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$}}
+\doxysubsubsection{From()}
+{\footnotesize\ttfamily TFrom \textbf{ Chami\+UI.\+Business\+Layer.\+Converters.\+IConverter}$<$ TFrom, TTo $>$.From (\begin{DoxyParamCaption}\item[{TTo}]{model }\end{DoxyParamCaption})}
+
+
+
+Converts from a viewmodel to an entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em model} & The viewmodel to convert from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A converted entity.
+\end{DoxyReturn}
+\mbox{\label{interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter_ac326fedee074a7d12338fe3beb2ed9fc}} 
+\index{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$@{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$}!To@{To}}
+\index{To@{To}!ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$@{ChamiUI.BusinessLayer.Converters.IConverter$<$ TFrom, TTo $>$}}
+\doxysubsubsection{To()}
+{\footnotesize\ttfamily TTo \textbf{ Chami\+UI.\+Business\+Layer.\+Converters.\+IConverter}$<$ TFrom, TTo $>$.To (\begin{DoxyParamCaption}\item[{TFrom}]{entity }\end{DoxyParamCaption})}
+
+
+
+Converts from an entity to a viewmodel. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em entity} & The entity to convert from.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A converted viewmodel.
+\end{DoxyReturn}
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Converters/\textbf{ IConverter.\+cs}\end{DoxyCompactItemize}

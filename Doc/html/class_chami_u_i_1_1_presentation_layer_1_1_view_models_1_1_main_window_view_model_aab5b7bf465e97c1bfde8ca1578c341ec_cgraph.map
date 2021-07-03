@@ -1,0 +1,5 @@
+<map id="ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel.ResetEnvironmentAsync" name="ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel.ResetEnvironmentAsync">
+<area shape="rect" id="node1" title=" " alt="" coords="5,35,243,91"/>
+<area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html#a2a8f4b146a27d3332688388844bfe67a" title="Execute a shell command asynchronously. Can optionally report progress to caller. Can be cancelled." alt="" coords="315,5,513,47"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory.html#ab74228007aa9d62590bd232be8036040" title="Creates an appropriate IShellCommand based on the requested type. The IShellCommand must implement a ..." alt="" coords="291,71,537,127"/>
+</map>

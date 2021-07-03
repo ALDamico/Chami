@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Validators.EnvironmentNameValidationRule.Validate" name="ChamiUI.BusinessLayer.Validators.EnvironmentNameValidationRule.Validate">
+<area shape="rect" id="node1" title="Validates the name of an environment. Such a name can&#39;t be null, an empty string or a string composed..." alt="" coords="5,5,267,47"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html#a3dc7cad6f03ab25c8f5c39ae4ff878b5" title="Constructs a new ValidationResult object with the IsValid property set to false and the Message prope..." alt="" coords="315,5,541,47"/>
+</map>

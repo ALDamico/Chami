@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.DeleteVariable" name="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.DeleteVariable">
+<area shape="rect" id="node1" title="Deletes an EnvironmentVariableViewModel object from the datastore." alt="" coords="5,5,259,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a3b8fcf2c0767e6261c5bda561aae7818" title="Deletes the EnvironmentVariable with the specified id from the datastore." alt="" coords="307,5,537,47"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="585,5,807,47"/>
+</map>

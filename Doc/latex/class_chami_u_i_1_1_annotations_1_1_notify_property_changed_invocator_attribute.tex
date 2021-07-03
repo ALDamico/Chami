@@ -1,0 +1,105 @@
+\doxysection{Chami\+UI.\+Annotations.\+Notify\+Property\+Changed\+Invocator\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_notify_property_changed_invocator_attribute}\index{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute@{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute}}
+
+
+Indicates that the method is contained in a type that implements {\ttfamily System.\+Component\+Model.\+INotify\+Property\+Changed} interface and this method is used to notify that some property value changed.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Notify\+Property\+Changed\+Invocator\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{class_chami_u_i_1_1_annotations_1_1_notify_property_changed_invocator_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Notify\+Property\+Changed\+Invocator\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=247pt]{class_chami_u_i_1_1_annotations_1_1_notify_property_changed_invocator_attribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Notify\+Property\+Changed\+Invocator\+Attribute} ()
+\item 
+\textbf{ Notify\+Property\+Changed\+Invocator\+Attribute} ([Not\+Null] string parameter\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Parameter\+Name}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Indicates that the method is contained in a type that implements {\ttfamily System.\+Component\+Model.\+INotify\+Property\+Changed} interface and this method is used to notify that some property value changed. 
+
+The method should be non-\/static and conform to one of the supported signatures\+: 
+\begin{DoxyItemize}
+\item {\ttfamily Notify\+Changed(string)} 
+\item {\ttfamily Notify\+Changed(params string[$\,$])} 
+\item {\ttfamily Notify\+Changed\{T\}(Expression\{Func\{T\}\})} 
+\item {\ttfamily Notify\+Changed\{T,U\}(Expression\{Func\{T,U\}\})} 
+\item {\ttfamily Set\+Property\{T\}(ref T, T, string)} 
+\end{DoxyItemize}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{class }Foo : INotifyPropertyChanged \{}
+\DoxyCodeLine{  \textcolor{keyword}{public} \textcolor{keyword}{event} PropertyChangedEventHandler PropertyChanged;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  [NotifyPropertyChangedInvocator]}
+\DoxyCodeLine{  \textcolor{keyword}{protected} \textcolor{keyword}{virtual} \textcolor{keywordtype}{void} NotifyChanged(\textcolor{keywordtype}{string} propertyName) \{ ... \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordtype}{string} \_name;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{public} \textcolor{keywordtype}{string} Name \{}
+\DoxyCodeLine{    \textcolor{keyword}{get} \{ \textcolor{keywordflow}{return} \_name; \}}
+\DoxyCodeLine{    \textcolor{keyword}{set} \{ \_name = value; NotifyChanged(\textcolor{stringliteral}{"{}LastName"{}}); \textcolor{comment}{/* Warning *\&zwj;/ \}}}
+\DoxyCodeLine{\textcolor{comment}{  \}}}
+\DoxyCodeLine{\textcolor{comment}{\}}}
+
+\end{DoxyCode}
+ Examples of generated notifications\+: 
+\begin{DoxyItemize}
+\item {\ttfamily Notify\+Changed(\char`\"{}\+Property\char`\"{})} 
+\item {\ttfamily Notify\+Changed(() =$>$ Property)} 
+\item {\ttfamily Notify\+Changed((VM x) =$>$ x.\+Property)} 
+\item {\ttfamily Set\+Property(ref my\+Field, value, \char`\"{}\+Property\char`\"{})} 
+\end{DoxyItemize}
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_notify_property_changed_invocator_attribute_ab46643bdb98eb84d24e52263d170b541}} 
+\index{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute@{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute}!NotifyPropertyChangedInvocatorAttribute@{NotifyPropertyChangedInvocatorAttribute}}
+\index{NotifyPropertyChangedInvocatorAttribute@{NotifyPropertyChangedInvocatorAttribute}!ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute@{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute}}
+\doxysubsubsection{NotifyPropertyChangedInvocatorAttribute()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Notify\+Property\+Changed\+Invocator\+Attribute.\+Notify\+Property\+Changed\+Invocator\+Attribute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_notify_property_changed_invocator_attribute_aa5319c50998da2284e5f343ac9cf9200}} 
+\index{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute@{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute}!NotifyPropertyChangedInvocatorAttribute@{NotifyPropertyChangedInvocatorAttribute}}
+\index{NotifyPropertyChangedInvocatorAttribute@{NotifyPropertyChangedInvocatorAttribute}!ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute@{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute}}
+\doxysubsubsection{NotifyPropertyChangedInvocatorAttribute()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Notify\+Property\+Changed\+Invocator\+Attribute.\+Notify\+Property\+Changed\+Invocator\+Attribute (\begin{DoxyParamCaption}\item[{[\+Not\+Null] string}]{parameter\+Name }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_notify_property_changed_invocator_attribute_a7dc9635bf1800a2ac5b03b5de2393a02}} 
+\index{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute@{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute}!ParameterName@{ParameterName}}
+\index{ParameterName@{ParameterName}!ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute@{ChamiUI.Annotations.NotifyPropertyChangedInvocatorAttribute}}
+\doxysubsubsection{ParameterName}
+{\footnotesize\ttfamily string Chami\+UI.\+Annotations.\+Notify\+Property\+Changed\+Invocator\+Attribute.\+Parameter\+Name\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,80 @@
+\doxysection{Chami\+UI.\+Annotations.\+String\+Format\+Method\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_string_format_method_attribute}\index{ChamiUI.Annotations.StringFormatMethodAttribute@{ChamiUI.Annotations.StringFormatMethodAttribute}}
+
+
+Indicates that the marked method builds string by the format pattern and (optional) arguments. The parameter, which contains the format string, should be given in constructor. The format string should be in string.\+Format(\+IFormat\+Provider,string,object[$\,$])-\/like form.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+String\+Format\+Method\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{class_chami_u_i_1_1_annotations_1_1_string_format_method_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+String\+Format\+Method\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{class_chami_u_i_1_1_annotations_1_1_string_format_method_attribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ String\+Format\+Method\+Attribute} ([Not\+Null] string format\+Parameter\+Name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Format\+Parameter\+Name}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Indicates that the marked method builds string by the format pattern and (optional) arguments. The parameter, which contains the format string, should be given in constructor. The format string should be in string.\+Format(\+IFormat\+Provider,string,object[$\,$])-\/like form. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[StringFormatMethod(\textcolor{stringliteral}{"{}message"{}})]}
+\DoxyCodeLine{\textcolor{keywordtype}{void} ShowError(\textcolor{keywordtype}{string} message, params \textcolor{keywordtype}{object}[] args) \{ \textcolor{comment}{/* do something *\&zwj;/ \}}}
+\DoxyCodeLine{\textcolor{comment}{}}
+\DoxyCodeLine{\textcolor{comment}{void Foo() \{}}
+\DoxyCodeLine{\textcolor{comment}{  ShowError("{}Failed: \{0\}"{}); // Warning: Non-\/existing argument in format string}}
+\DoxyCodeLine{\textcolor{comment}{\}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_string_format_method_attribute_ae0cd206d2d1b5883d2de61ee2ad4b7da}} 
+\index{ChamiUI.Annotations.StringFormatMethodAttribute@{ChamiUI.Annotations.StringFormatMethodAttribute}!StringFormatMethodAttribute@{StringFormatMethodAttribute}}
+\index{StringFormatMethodAttribute@{StringFormatMethodAttribute}!ChamiUI.Annotations.StringFormatMethodAttribute@{ChamiUI.Annotations.StringFormatMethodAttribute}}
+\doxysubsubsection{StringFormatMethodAttribute()}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+String\+Format\+Method\+Attribute.\+String\+Format\+Method\+Attribute (\begin{DoxyParamCaption}\item[{[\+Not\+Null] string}]{format\+Parameter\+Name }\end{DoxyParamCaption})}
+
+
+\begin{DoxyParams}{Parameters}
+{\em format\+Parameter\+Name} & Specifies which parameter of an annotated method should be treated as the format string \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_string_format_method_attribute_ad7604af19a76959ea1ea6c5c03d28a9b}} 
+\index{ChamiUI.Annotations.StringFormatMethodAttribute@{ChamiUI.Annotations.StringFormatMethodAttribute}!FormatParameterName@{FormatParameterName}}
+\index{FormatParameterName@{FormatParameterName}!ChamiUI.Annotations.StringFormatMethodAttribute@{ChamiUI.Annotations.StringFormatMethodAttribute}}
+\doxysubsubsection{FormatParameterName}
+{\footnotesize\ttfamily string Chami\+UI.\+Annotations.\+String\+Format\+Method\+Attribute.\+Format\+Parameter\+Name\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

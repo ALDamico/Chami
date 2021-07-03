@@ -21,6 +21,19 @@ namespace ChamiUI.PresentationLayer.Filtering
         }
         public string Name { get; }
         public string SearchedText { get; set; }
+        /// <summary>
+        /// Filters a <see cref="CollectionViewSource"/>.
+        /// An <see cref="EnvironmentViewModel"/> is accepted if it matches any of the following criteria:
+        /// <list type="number">
+        ///     <item>The <see cref="SearchedText"/> property is null (i.e., no filtering is being performed).</item>
+        ///     <item>The <see cref="EnvironmentViewModel"/>'s Name property contains the <see cref="SearchedText"/>.</item>
+        ///     <item>Any of the <see cref="EnvironmentVariableViewModel"/>s' Name property in the environment
+        ///     contains the <see cref="SearchedText"/>.</item>
+        /// </list>
+        /// </summary>
+        /// <param name="sender">The object that initiated the Filter event.</param>
+        /// <param name="args">Determines if an item is accepted or rejected by the Filter event.</param>
+        /// <seealso cref="CollectionViewSource"/>
         public void OnFilter(object sender, FilterEventArgs args)
         {
             args.Accepted = false;

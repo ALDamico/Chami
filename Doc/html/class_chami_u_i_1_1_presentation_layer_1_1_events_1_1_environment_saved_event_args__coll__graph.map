@@ -1,0 +1,4 @@
+<map id="ChamiUI.PresentationLayer.Events.EnvironmentSavedEventArgs" name="ChamiUI.PresentationLayer.Events.EnvironmentSavedEventArgs">
+<area shape="rect" id="node1" title="Subclass of EventArgs used for handling the EnvironmentSaved event." alt="" coords="5,80,236,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="80,5,161,32"/>
+</map>

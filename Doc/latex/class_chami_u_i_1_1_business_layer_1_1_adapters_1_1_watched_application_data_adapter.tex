@@ -1,0 +1,173 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Adapters.\+Watched\+Application\+Data\+Adapter Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter}\index{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}}
+
+
+Data adapter for the Watched\+Application\+View\+Model class.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Watched\+Application\+Data\+Adapter} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Watched\+Application\+Data\+Adapter}{p.}{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter} object with the provided connection string. \end{DoxyCompactList}\item 
+IEnumerable$<$ \textbf{ Watched\+Application\+View\+Model} $>$ \textbf{ Get\+Active\+Watched\+Applications} ()
+\begin{DoxyCompactList}\small\item\em Gets all the Watched\+Application objects whose state is active and converts them to Watched\+Application\+View\+Models. \end{DoxyCompactList}\item 
+void \textbf{ Insert\+Watched\+Application} (\textbf{ Watched\+Application\+View\+Model} watched\+Application)
+\begin{DoxyCompactList}\small\item\em Converts a Watched\+Application\+View\+Model to Watched\+Application and inserts it in the datastore. \end{DoxyCompactList}\item 
+void \textbf{ Update\+Watched\+Application} (\textbf{ Watched\+Application\+View\+Model} watched\+Application)
+\begin{DoxyCompactList}\small\item\em Converts a Watched\+Application\+View\+Model object to a Watched\+Application entity and updates the corresponding object in the datastore. \end{DoxyCompactList}\item 
+void \textbf{ Save\+Watched\+Applications} (IEnumerable$<$ \textbf{ Watched\+Application\+View\+Model} $>$ watched\+Applications)
+\begin{DoxyCompactList}\small\item\em Converts a Watched\+Application\+View\+Model to a Watched\+Application entity and inserts it if it\textquotesingle{}s not yet been persisted. Otherwise, updates the existing entity. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data adapter for the Watched\+Application\+View\+Model class. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_ad225c422917798dc3cc69fbf4e6b3e35}} 
+\index{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}!WatchedApplicationDataAdapter@{WatchedApplicationDataAdapter}}
+\index{WatchedApplicationDataAdapter@{WatchedApplicationDataAdapter}!ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}}
+\doxysubsubsection{WatchedApplicationDataAdapter()}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Adapters.\+Watched\+Application\+Data\+Adapter.\+Watched\+Application\+Data\+Adapter (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Watched\+Application\+Data\+Adapter}{p.}{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter} object with the provided connection string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_a98c3ae6226161d73a916e57b88a654b2}} 
+\index{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}!GetActiveWatchedApplications@{GetActiveWatchedApplications}}
+\index{GetActiveWatchedApplications@{GetActiveWatchedApplications}!ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}}
+\doxysubsubsection{GetActiveWatchedApplications()}
+{\footnotesize\ttfamily IEnumerable$<$\textbf{ Watched\+Application\+View\+Model}$>$ Chami\+UI.\+Business\+Layer.\+Adapters.\+Watched\+Application\+Data\+Adapter.\+Get\+Active\+Watched\+Applications (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the Watched\+Application objects whose state is active and converts them to Watched\+Application\+View\+Models. 
+
+\begin{DoxyReturn}{Returns}
+A List$<$\+T$>$ of all Watched\+Application\+View\+Models.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_a98c3ae6226161d73a916e57b88a654b2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_a98c3ae6226161d73a916e57b88a654b2_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_a348990258517fe1502725f57c0316828}} 
+\index{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}!InsertWatchedApplication@{InsertWatchedApplication}}
+\index{InsertWatchedApplication@{InsertWatchedApplication}!ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}}
+\doxysubsubsection{InsertWatchedApplication()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Adapters.\+Watched\+Application\+Data\+Adapter.\+Insert\+Watched\+Application (\begin{DoxyParamCaption}\item[{\textbf{ Watched\+Application\+View\+Model}}]{watched\+Application }\end{DoxyParamCaption})}
+
+
+
+Converts a Watched\+Application\+View\+Model to Watched\+Application and inserts it in the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em watched\+Application} & The Watched\+Application\+View\+Model to convert and insert.\\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_a348990258517fe1502725f57c0316828_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_a348990258517fe1502725f57c0316828_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_ab8f1858aa0271e022be8cbf0f535e7b4}} 
+\index{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}!SaveWatchedApplications@{SaveWatchedApplications}}
+\index{SaveWatchedApplications@{SaveWatchedApplications}!ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}}
+\doxysubsubsection{SaveWatchedApplications()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Adapters.\+Watched\+Application\+Data\+Adapter.\+Save\+Watched\+Applications (\begin{DoxyParamCaption}\item[{IEnumerable$<$ \textbf{ Watched\+Application\+View\+Model} $>$}]{watched\+Applications }\end{DoxyParamCaption})}
+
+
+
+Converts a Watched\+Application\+View\+Model to a Watched\+Application entity and inserts it if it\textquotesingle{}s not yet been persisted. Otherwise, updates the existing entity. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em watched\+Applications} & \\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_ab8f1858aa0271e022be8cbf0f535e7b4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_ab8f1858aa0271e022be8cbf0f535e7b4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_aa671ccdd9a1ee5642c14cac43598bac7}} 
+\index{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}!UpdateWatchedApplication@{UpdateWatchedApplication}}
+\index{UpdateWatchedApplication@{UpdateWatchedApplication}!ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter@{ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter}}
+\doxysubsubsection{UpdateWatchedApplication()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Adapters.\+Watched\+Application\+Data\+Adapter.\+Update\+Watched\+Application (\begin{DoxyParamCaption}\item[{\textbf{ Watched\+Application\+View\+Model}}]{watched\+Application }\end{DoxyParamCaption})}
+
+
+
+Converts a Watched\+Application\+View\+Model object to a Watched\+Application entity and updates the corresponding object in the datastore. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em watched\+Application} & The Watched\+Application\+View\+Model to update.\\
+\hline
+\end{DoxyParams}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_aa671ccdd9a1ee5642c14cac43598bac7_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter_aa671ccdd9a1ee5642c14cac43598bac7_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Adapters/\textbf{ Watched\+Application\+Data\+Adapter.\+cs}\end{DoxyCompactItemize}

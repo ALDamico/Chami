@@ -1,0 +1,6 @@
+<map id="ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter.GetApplicationLanguageByCode" name="ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter.GetApplicationLanguageByCode">
+<area shape="rect" id="node1" title="Gets an ApplicationLanguageViewModel by its ISO&#45;639 code." alt="" coords="609,43,848,99"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#a7a46d13592c83ca652c1c3b2a73d73fe" title="Gets an ApplicationLanguageViewModel, converts them to a CultureInfo, and returns it." alt="" coords="317,5,555,61"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory.html#a81b0e4d50ea357d0f5fc5ee77126afc4" title="Retrieves all Chami settings." alt="" coords="311,86,561,127"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_window_view_model.html#aa577f61a2a1c59c10a649e2658e2b011" title=" " alt="" coords="5,79,263,135"/>
+</map>

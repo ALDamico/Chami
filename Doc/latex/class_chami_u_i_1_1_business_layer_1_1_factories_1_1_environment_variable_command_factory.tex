@@ -1,0 +1,63 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Factories.\+Environment\+Variable\+Command\+Factory Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory}\index{ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory@{ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory}}
+
+
+Factory for \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} objects.  
+
+
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \textbf{ IShell\+Command} \textbf{ Get\+Command} (Type target\+Type, \textbf{ Environment\+Variable} environment\+Variable)
+\begin{DoxyCompactList}\small\item\em Creates an appropriate \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} based on the requested type. The \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} must implement a public constructor that accepts a parameter of type Environment\+Variable. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Factory for \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} objects. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory_ab74228007aa9d62590bd232be8036040}} 
+\index{ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory@{ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory}!GetCommand@{GetCommand}}
+\index{GetCommand@{GetCommand}!ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory@{ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory}}
+\doxysubsubsection{GetCommand()}
+{\footnotesize\ttfamily static \textbf{ IShell\+Command} Chami\+UI.\+Business\+Layer.\+Factories.\+Environment\+Variable\+Command\+Factory.\+Get\+Command (\begin{DoxyParamCaption}\item[{Type}]{target\+Type,  }\item[{\textbf{ Environment\+Variable}}]{environment\+Variable }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates an appropriate \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} based on the requested type. The \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} must implement a public constructor that accepts a parameter of type Environment\+Variable. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em target\+Type} & The class implementing \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} to instantiate.\\
+\hline
+{\em environment\+Variable} & The Environment\+Variable object to apply the command to.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+An \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command} that the \doxyref{Cmd\+Executor}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor} object can consume.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Missing\+Method\+Exception} & The \doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command}\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See also}
+\doxyref{IShell\+Command}{p.}{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command}, \doxyref{Environment\+Variable\+Application\+Command}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command}, \doxyref{Environment\+Variable\+Removal\+Command}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command}
+
+
+\end{DoxySeeAlso}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory_ab74228007aa9d62590bd232be8036040_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Factories/\textbf{ IEnvironment\+Variable\+Command\+Factory.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,49 @@
+\doxysection{Chami\+UI.\+Annotations.\+Source\+Template\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_source_template_attribute}\index{ChamiUI.Annotations.SourceTemplateAttribute@{ChamiUI.Annotations.SourceTemplateAttribute}}
+
+
+An extension method marked with this attribute is processed by code completion as a \textquotesingle{}Source Template\textquotesingle{}. When the extension method is completed over some expression, its source code is automatically expanded like a template at call site.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Source\+Template\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_chami_u_i_1_1_annotations_1_1_source_template_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Source\+Template\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=222pt]{class_chami_u_i_1_1_annotations_1_1_source_template_attribute__coll__graph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+An extension method marked with this attribute is processed by code completion as a \textquotesingle{}Source Template\textquotesingle{}. When the extension method is completed over some expression, its source code is automatically expanded like a template at call site. 
+
+Template method body can contain valid source code and/or special comments starting with \textquotesingle{}\$\textquotesingle{}. Text inside these comments is added as source code when the template is applied. Template parameters can be used either as additional method parameters or as identifiers wrapped in two \textquotesingle{}\$\textquotesingle{} signs. Use the \doxyref{Macro\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_macro_attribute} attribute to specify macros for parameters. 
+
+In this example, the \textquotesingle{}for\+Each\textquotesingle{} method is a source template available over all values of enumerable types, producing ordinary C\# \textquotesingle{}foreach\textquotesingle{} statement and placing caret inside block\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[SourceTemplate]}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{void} forEach<T>(\textcolor{keyword}{this} IEnumerable<T> xs) \{}
+\DoxyCodeLine{  \textcolor{keywordflow}{foreach} (var x \textcolor{keywordflow}{in} xs) \{}
+\DoxyCodeLine{     \textcolor{comment}{//\$ \$END\$}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

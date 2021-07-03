@@ -1,0 +1,79 @@
+\doxysection{Chami\+UI.\+Annotations.\+Must\+Use\+Return\+Value\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute}\index{ChamiUI.Annotations.MustUseReturnValueAttribute@{ChamiUI.Annotations.MustUseReturnValueAttribute}}
+
+
+Indicates that the return value of the method invocation must be used.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Must\+Use\+Return\+Value\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Must\+Use\+Return\+Value\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Must\+Use\+Return\+Value\+Attribute} ()
+\item 
+\textbf{ Must\+Use\+Return\+Value\+Attribute} ([Not\+Null] string justification)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Justification}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Indicates that the return value of the method invocation must be used. 
+
+Methods decorated with this attribute (in contrast to pure methods) might change state, but make no sense without using their return value. ~\newline
+ Similarly to \doxyref{Pure\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_pure_attribute}, this attribute will help detecting usages of the method when the return value in not used. Additionally, you can optionally specify a custom message, which will be used when showing warnings, e.\+g. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[MustUseReturnValue(\textcolor{stringliteral}{"{}Use the return value to..."{}})]}
+
+\end{DoxyCode}
+. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute_a0ec46341aa7d7e5acd1f4a0a5d03ba8f}} 
+\index{ChamiUI.Annotations.MustUseReturnValueAttribute@{ChamiUI.Annotations.MustUseReturnValueAttribute}!MustUseReturnValueAttribute@{MustUseReturnValueAttribute}}
+\index{MustUseReturnValueAttribute@{MustUseReturnValueAttribute}!ChamiUI.Annotations.MustUseReturnValueAttribute@{ChamiUI.Annotations.MustUseReturnValueAttribute}}
+\doxysubsubsection{MustUseReturnValueAttribute()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Must\+Use\+Return\+Value\+Attribute.\+Must\+Use\+Return\+Value\+Attribute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute_a05753509cf426b1f5fb06b300d9019fa}} 
+\index{ChamiUI.Annotations.MustUseReturnValueAttribute@{ChamiUI.Annotations.MustUseReturnValueAttribute}!MustUseReturnValueAttribute@{MustUseReturnValueAttribute}}
+\index{MustUseReturnValueAttribute@{MustUseReturnValueAttribute}!ChamiUI.Annotations.MustUseReturnValueAttribute@{ChamiUI.Annotations.MustUseReturnValueAttribute}}
+\doxysubsubsection{MustUseReturnValueAttribute()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Must\+Use\+Return\+Value\+Attribute.\+Must\+Use\+Return\+Value\+Attribute (\begin{DoxyParamCaption}\item[{[\+Not\+Null] string}]{justification }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute_abbf05e693db426184cb44dd1e75b902a}} 
+\index{ChamiUI.Annotations.MustUseReturnValueAttribute@{ChamiUI.Annotations.MustUseReturnValueAttribute}!Justification@{Justification}}
+\index{Justification@{Justification}!ChamiUI.Annotations.MustUseReturnValueAttribute@{ChamiUI.Annotations.MustUseReturnValueAttribute}}
+\doxysubsubsection{Justification}
+{\footnotesize\ttfamily string Chami\+UI.\+Annotations.\+Must\+Use\+Return\+Value\+Attribute.\+Justification\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

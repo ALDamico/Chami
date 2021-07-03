@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Converters.SortDescriptionConverter.ConvertBack" name="ChamiUI.BusinessLayer.Converters.SortDescriptionConverter.ConvertBack">
+<area shape="rect" id="node1" title="Converts a SortDescription to a Setting." alt="" coords="5,5,248,47"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter.html#af814cbcd08a56f87d94830f60772921f" title="Gets the value to update the Value property of a Setting object." alt="" coords="296,5,560,47"/>
+</map>

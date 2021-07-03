@@ -1,0 +1,307 @@
+\doxysection{Chami\+UI.\+Annotations Namespace Reference}
+\label{namespace_chami_u_i_1_1_annotations}\index{ChamiUI.Annotations@{ChamiUI.Annotations}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Can\+Be\+Null\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the value of the marked element could be {\ttfamily null} sometimes, so checking for {\ttfamily null} is required before its usage. \end{DoxyCompactList}\item 
+class \textbf{ Not\+Null\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the value of the marked element can never be {\ttfamily null}. \end{DoxyCompactList}\item 
+class \textbf{ Item\+Not\+Null\+Attribute}
+\begin{DoxyCompactList}\small\item\em Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task and Lazy classes to indicate that the value of a collection item, of the Task.\+Result property or of the Lazy.\+Value property can never be null. \end{DoxyCompactList}\item 
+class \textbf{ Item\+Can\+Be\+Null\+Attribute}
+\begin{DoxyCompactList}\small\item\em Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task and Lazy classes to indicate that the value of a collection item, of the Task.\+Result property or of the Lazy.\+Value property can be null. \end{DoxyCompactList}\item 
+class \textbf{ String\+Format\+Method\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the marked method builds string by the format pattern and (optional) arguments. The parameter, which contains the format string, should be given in constructor. The format string should be in string.\+Format(\+IFormat\+Provider,string,object[$\,$])-\/like form. \end{DoxyCompactList}\item 
+class \textbf{ Value\+Provider\+Attribute}
+\begin{DoxyCompactList}\small\item\em Use this annotation to specify a type that contains static or const fields with values for the annotated property/field/parameter. The specified type will be used to improve completion suggestions. \end{DoxyCompactList}\item 
+class \textbf{ Value\+Range\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the integral value falls into the specified interval. It\textquotesingle{}s allowed to specify multiple non-\/intersecting intervals. Values of interval boundaries are inclusive. \end{DoxyCompactList}\item 
+class \textbf{ Non\+Negative\+Value\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the integral value never falls below zero. \end{DoxyCompactList}\item 
+class \textbf{ Invoker\+Parameter\+Name\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the function argument should be a string literal and match one of the parameters of the caller function. For example, Re\+Sharper annotates the parameter of System.\+Argument\+Null\+Exception. \end{DoxyCompactList}\item 
+class \textbf{ Notify\+Property\+Changed\+Invocator\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the method is contained in a type that implements {\ttfamily System.\+Component\+Model.\+INotify\+Property\+Changed} interface and this method is used to notify that some property value changed. \end{DoxyCompactList}\item 
+class \textbf{ Contract\+Annotation\+Attribute}
+\begin{DoxyCompactList}\small\item\em Describes dependency between method input and output. \end{DoxyCompactList}\item 
+class \textbf{ Localization\+Required\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates whether the marked element should be localized. \end{DoxyCompactList}\item 
+class \textbf{ Cannot\+Apply\+Equality\+Operator\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the value of the marked type (or its derivatives) cannot be compared using \textquotesingle{}==\textquotesingle{} or \textquotesingle{}!=\textquotesingle{} operators and {\ttfamily Equals()} should be used instead. However, using \textquotesingle{}==\textquotesingle{} or \textquotesingle{}!=\textquotesingle{} for comparison with {\ttfamily null} is always permitted. \end{DoxyCompactList}\item 
+class \textbf{ Base\+Type\+Required\+Attribute}
+\begin{DoxyCompactList}\small\item\em When applied to a target attribute, specifies a requirement for any type marked with the target attribute to implement or inherit specific type or types. \end{DoxyCompactList}\item 
+class \textbf{ Used\+Implicitly\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the marked symbol is used implicitly (e.\+g. via reflection, in external library), so this symbol will not be reported as unused (as well as by other usage inspections). \end{DoxyCompactList}\item 
+class \textbf{ Means\+Implicit\+Use\+Attribute}
+\begin{DoxyCompactList}\small\item\em Can be applied to attributes, type parameters, and parameters of a type assignable from System.\+Type . When applied to an attribute, the decorated attribute behaves the same as \doxyref{Used\+Implicitly\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_used_implicitly_attribute}. When applied to a type parameter or to a parameter of type System.\+Type, indicates that the corresponding type is used implicitly. \end{DoxyCompactList}\item 
+class \textbf{ Public\+APIAttribute}
+\begin{DoxyCompactList}\small\item\em This attribute is intended to mark publicly available API which should not be removed and so is treated as used. \end{DoxyCompactList}\item 
+class \textbf{ Instant\+Handle\+Attribute}
+\begin{DoxyCompactList}\small\item\em Tells code analysis engine if the parameter is completely handled when the invoked method is on stack. If the parameter is a delegate, indicates that delegate is executed while the method is executed. If the parameter is an enumerable, indicates that it is enumerated while the method is executed. \end{DoxyCompactList}\item 
+class \textbf{ Pure\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that a method does not make any observable state changes. The same as {\ttfamily System.\+Diagnostics.\+Contracts.\+Pure\+Attribute}. \end{DoxyCompactList}\item 
+class \textbf{ Must\+Use\+Return\+Value\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the return value of the method invocation must be used. \end{DoxyCompactList}\item 
+class \textbf{ Provides\+Context\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates the type member or parameter of some type, that should be used instead of all other ways to get the value of that type. This annotation is useful when you have some \char`\"{}context\char`\"{} value evaluated and stored somewhere, meaning that all other ways to get this value must be consolidated with existing one. \end{DoxyCompactList}\item 
+class \textbf{ Path\+Reference\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that a parameter is a path to a file or a folder within a web project. Path can be relative or absolute, starting from web root ($\sim$). \end{DoxyCompactList}\item 
+class \textbf{ Source\+Template\+Attribute}
+\begin{DoxyCompactList}\small\item\em An extension method marked with this attribute is processed by code completion as a \textquotesingle{}Source Template\textquotesingle{}. When the extension method is completed over some expression, its source code is automatically expanded like a template at call site. \end{DoxyCompactList}\item 
+class \textbf{ Macro\+Attribute}
+\begin{DoxyCompactList}\small\item\em Allows specifying a macro for a parameter of a \doxyref{source template}{p.}{class_chami_u_i_1_1_annotations_1_1_source_template_attribute}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Area\+Master\+Location\+Format\+Attribute}
+\item 
+class \textbf{ Asp\+Mvc\+Area\+Partial\+View\+Location\+Format\+Attribute}
+\item 
+class \textbf{ Asp\+Mvc\+Area\+View\+Location\+Format\+Attribute}
+\item 
+class \textbf{ Asp\+Mvc\+Master\+Location\+Format\+Attribute}
+\item 
+class \textbf{ Asp\+Mvc\+Partial\+View\+Location\+Format\+Attribute}
+\item 
+class \textbf{ Asp\+Mvc\+View\+Location\+Format\+Attribute}
+\item 
+class \textbf{ Asp\+Mvc\+Action\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC action. If applied to a method, the MVC action name is calculated implicitly from the context. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Html.\+Child\+Action\+Extensions.\+Render\+Action(\+Html\+Helper, String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Area\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. Indicates that the marked parameter is an MVC area. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Html.\+Child\+Action\+Extensions.\+Render\+Action(\+Html\+Helper, String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Controller\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC controller. If applied to a method, the MVC controller name is calculated implicitly from the context. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Html.\+Child\+Action\+Extensions.\+Render\+Action(\+Html\+Helper, String, String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Master\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. Indicates that the marked parameter is an MVC Master. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Controller.\+View(\+String, String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Model\+Type\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. Indicates that the marked parameter is an MVC model type. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Controller.\+View(\+String, Object)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Partial\+View\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC partial view. If applied to a method, the MVC partial view name is calculated implicitly from the context. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Html.\+Render\+Partial\+Extensions.\+Render\+Partial(\+Html\+Helper, String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Suppress\+View\+Error\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. Allows disabling inspections for MVC views within a class or a method. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Display\+Template\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. Indicates that a parameter is an MVC display template. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Html.\+Display\+Extensions.\+Display\+For\+Model(\+Html\+Helper, String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Editor\+Template\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. Indicates that the marked parameter is an MVC editor template. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Html.\+Editor\+Extensions.\+Editor\+For\+Model(\+Html\+Helper, String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Template\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. Indicates that the marked parameter is an MVC template. Use this attribute for custom wrappers similar to {\ttfamily System.\+Component\+Model.\+Data\+Annotations.\+UIHint\+Attribute(System.\+String)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+View\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC view component. If applied to a method, the MVC view name is calculated implicitly from the context. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Mvc.\+Controller.\+View(\+Object)}. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+View\+Component\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC view component name. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+View\+Component\+View\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. If applied to a parameter, indicates that the parameter is an MVC view component view. If applied to a method, the MVC view component view name is default. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Mvc\+Action\+Selector\+Attribute}
+\begin{DoxyCompactList}\small\item\em ASP.\+NET MVC attribute. When applied to a parameter of an attribute, indicates that this parameter is an MVC action name. \end{DoxyCompactList}\item 
+class \textbf{ Html\+Element\+Attributes\+Attribute}
+\item 
+class \textbf{ Html\+Attribute\+Value\+Attribute}
+\item 
+class \textbf{ Razor\+Section\+Attribute}
+\begin{DoxyCompactList}\small\item\em Razor attribute. Indicates that the marked parameter or method is a Razor section. Use this attribute for custom wrappers similar to {\ttfamily System.\+Web.\+Web\+Pages.\+Web\+Page\+Base.\+Render\+Section(\+String)}. \end{DoxyCompactList}\item 
+class \textbf{ Collection\+Access\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates how method, constructor invocation, or property access over collection type affects the contents of the collection. Use \doxyref{Collection\+Access\+Type}{p.}{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute_a9ce861044304ca2011628f102a2615a8} to specify the access type. \end{DoxyCompactList}\item 
+class \textbf{ Assertion\+Method\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the marked method is assertion method, i.\+e. it halts the control flow if one of the conditions is satisfied. To set the condition, mark one of the parameters with \doxyref{Assertion\+Condition\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_assertion_condition_attribute} attribute. \end{DoxyCompactList}\item 
+class \textbf{ Assertion\+Condition\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates the condition parameter of the assertion method. The method itself should be marked by \doxyref{Assertion\+Method\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_assertion_method_attribute} attribute. The mandatory argument of the attribute is the assertion type. \end{DoxyCompactList}\item 
+class \textbf{ Terminates\+Program\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the marked method unconditionally terminates control flow execution. For example, it could unconditionally throw exception. \end{DoxyCompactList}\item 
+class \textbf{ Linq\+Tunnel\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that method is pure LINQ method, with postponed enumeration (like Enumerable.\+Select, .Where). This annotation allows inference of [Instant\+Handle] annotation for parameters of delegate type by analyzing LINQ method chains. \end{DoxyCompactList}\item 
+class \textbf{ No\+Enumeration\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that IEnumerable passed as a parameter is not enumerated. Use this annotation to suppress the \textquotesingle{}Possible multiple enumeration of IEnumerable\textquotesingle{} inspection. \end{DoxyCompactList}\item 
+class \textbf{ Regex\+Pattern\+Attribute}
+\begin{DoxyCompactList}\small\item\em Indicates that the marked parameter is a regular expression pattern. \end{DoxyCompactList}\item 
+class \textbf{ No\+Reorder\+Attribute}
+\begin{DoxyCompactList}\small\item\em Prevents the Member Reordering feature from tossing members of the marked class. \end{DoxyCompactList}\item 
+class \textbf{ Xaml\+Items\+Control\+Attribute}
+\begin{DoxyCompactList}\small\item\em XAML attribute. Indicates the type that has {\ttfamily Items\+Source} property and should be treated as {\ttfamily Items\+Control}-\/derived type, to enable inner items {\ttfamily Data\+Context} type resolve. \end{DoxyCompactList}\item 
+class \textbf{ Xaml\+Item\+Binding\+Of\+Items\+Control\+Attribute}
+\begin{DoxyCompactList}\small\item\em XAML attribute. Indicates the property of some {\ttfamily Binding\+Base}-\/derived type, that is used to bind some item of {\ttfamily Items\+Control}-\/derived type. This annotation will enable the {\ttfamily Data\+Context} type resolve for XAML bindings for such properties. \end{DoxyCompactList}\item 
+class \textbf{ Xaml\+Item\+Style\+Of\+Items\+Control\+Attribute}
+\begin{DoxyCompactList}\small\item\em XAML attribute. Indicates the property of some {\ttfamily Style}-\/derived type, that is used to style items of {\ttfamily Items\+Control}-\/derived type. This annotation will enable the {\ttfamily Data\+Context} type resolve for XAML bindings for such properties. \end{DoxyCompactList}\item 
+class \textbf{ Asp\+Child\+Control\+Type\+Attribute}
+\item 
+class \textbf{ Asp\+Data\+Field\+Attribute}
+\item 
+class \textbf{ Asp\+Data\+Fields\+Attribute}
+\item 
+class \textbf{ Asp\+Method\+Property\+Attribute}
+\item 
+class \textbf{ Asp\+Required\+Attribute\+Attribute}
+\item 
+class \textbf{ Asp\+Type\+Property\+Attribute}
+\item 
+class \textbf{ Razor\+Import\+Namespace\+Attribute}
+\item 
+class \textbf{ Razor\+Injection\+Attribute}
+\item 
+class \textbf{ Razor\+Directive\+Attribute}
+\item 
+class \textbf{ Razor\+Page\+Base\+Type\+Attribute}
+\item 
+class \textbf{ Razor\+Helper\+Common\+Attribute}
+\item 
+class \textbf{ Razor\+Layout\+Attribute}
+\item 
+class \textbf{ Razor\+Write\+Literal\+Method\+Attribute}
+\item 
+class \textbf{ Razor\+Write\+Method\+Attribute}
+\item 
+class \textbf{ Razor\+Write\+Method\+Parameter\+Attribute}
+\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \textbf{ Implicit\+Use\+Kind\+Flags} \{ \newline
+\textbf{ Default} = Access $\vert$ Assign $\vert$ Instantiated\+With\+Fixed\+Constructor\+Signature
+, \textbf{ Access} = 1
+, \textbf{ Assign} = 2
+, \textbf{ Instantiated\+With\+Fixed\+Constructor\+Signature} = 4
+, \newline
+\textbf{ Instantiated\+No\+Fixed\+Constructor\+Signature} = 8
+ \}
+\begin{DoxyCompactList}\small\item\em Specify the details of implicitly used symbol when it is marked with Means\+Implicit\+Use\+Attribute or Used\+Implicitly\+Attribute. \end{DoxyCompactList}\item 
+enum class \textbf{ Implicit\+Use\+Target\+Flags} \{ \newline
+\textbf{ Default} = Itself
+, \textbf{ Itself} = 1
+, \textbf{ Members} = 2
+, \textbf{ With\+Inheritors} = 4
+, \newline
+\textbf{ With\+Members} = Itself $\vert$ Members
+ \}
+\begin{DoxyCompactList}\small\item\em Specify what is considered to be used implicitly when marked with Means\+Implicit\+Use\+Attribute or Used\+Implicitly\+Attribute. \end{DoxyCompactList}\item 
+enum class \textbf{ Collection\+Access\+Type} \{ \textbf{ None} = 0
+, \textbf{ Read} = 1
+, \textbf{ Modify\+Existing\+Content} = 2
+, \textbf{ Updated\+Content} = Modify\+Existing\+Content $\vert$ 4
+ \}
+\begin{DoxyCompactList}\small\item\em Provides a value for the Collection\+Access\+Attribute to define how the collection method invocation affects the contents of the collection. \end{DoxyCompactList}\item 
+enum class \textbf{ Assertion\+Condition\+Type} \{ \textbf{ IS\+\_\+\+TRUE} = 0
+, \textbf{ IS\+\_\+\+FALSE} = 1
+, \textbf{ IS\+\_\+\+NULL} = 2
+, \textbf{ IS\+\_\+\+NOT\+\_\+\+NULL} = 3
+ \}
+\begin{DoxyCompactList}\small\item\em Specifies assertion type. If the assertion method argument satisfies the condition, then the execution continues. Otherwise, execution is assumed to be halted. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\label{namespace_chami_u_i_1_1_annotations_a62d80d2cb9c1d0aafca317948ee33a32}} 
+\index{ChamiUI.Annotations@{ChamiUI.Annotations}!AssertionConditionType@{AssertionConditionType}}
+\index{AssertionConditionType@{AssertionConditionType}!ChamiUI.Annotations@{ChamiUI.Annotations}}
+\doxysubsubsection{AssertionConditionType}
+{\footnotesize\ttfamily enum \textbf{ Chami\+UI.\+Annotations.\+Assertion\+Condition\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Specifies assertion type. If the assertion method argument satisfies the condition, then the execution continues. Otherwise, execution is assumed to be halted. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IS\_TRUE@{IS\_TRUE}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!IS\_TRUE@{IS\_TRUE}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a62d80d2cb9c1d0aafca317948ee33a32a23cd5ba5c6eed3d82ba0c6c0526df429}} 
+IS\+\_\+\+TRUE&Marked parameter should be evaluated to true. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IS\_FALSE@{IS\_FALSE}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!IS\_FALSE@{IS\_FALSE}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a62d80d2cb9c1d0aafca317948ee33a32adeab83d56dee7ab418359a59b4ff2eb0}} 
+IS\+\_\+\+FALSE&Marked parameter should be evaluated to false. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IS\_NULL@{IS\_NULL}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!IS\_NULL@{IS\_NULL}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a62d80d2cb9c1d0aafca317948ee33a32adbd9c38e0339e6c34bd48cafc59be388}} 
+IS\+\_\+\+NULL&Marked parameter should be evaluated to null value. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{IS\_NOT\_NULL@{IS\_NOT\_NULL}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!IS\_NOT\_NULL@{IS\_NOT\_NULL}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a62d80d2cb9c1d0aafca317948ee33a32a05dd132ba23ff57c0ca5ec4100c31fdc}} 
+IS\+\_\+\+NOT\+\_\+\+NULL&Marked parameter should be evaluated to not null value. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\label{namespace_chami_u_i_1_1_annotations_a75b51ab3495c9a82af4fbd6934d7d316}} 
+\index{ChamiUI.Annotations@{ChamiUI.Annotations}!CollectionAccessType@{CollectionAccessType}}
+\index{CollectionAccessType@{CollectionAccessType}!ChamiUI.Annotations@{ChamiUI.Annotations}}
+\doxysubsubsection{CollectionAccessType}
+{\footnotesize\ttfamily enum \textbf{ Chami\+UI.\+Annotations.\+Collection\+Access\+Type}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Provides a value for the \doxyref{Collection\+Access\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_collection_access_attribute} to define how the collection method invocation affects the contents of the collection. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{None@{None}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!None@{None}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a75b51ab3495c9a82af4fbd6934d7d316a6adf97f83acf6453d4a6a4b1070f3754}} 
+None&Method does not use or modify content of the collection. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Read@{Read}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!Read@{Read}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a75b51ab3495c9a82af4fbd6934d7d316a7a1a5f3e79fdc91edf2f5ead9d66abb4}} 
+Read&Method only reads content of the collection but does not modify it. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{ModifyExistingContent@{ModifyExistingContent}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!ModifyExistingContent@{ModifyExistingContent}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a75b51ab3495c9a82af4fbd6934d7d316aabf21948b8bdc6b576703a901052dc09}} 
+Modify\+Existing\+Content&Method can change content of the collection but does not add new elements. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{UpdatedContent@{UpdatedContent}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!UpdatedContent@{UpdatedContent}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a75b51ab3495c9a82af4fbd6934d7d316a424cc5446574f01d7f484e158b23d001}} 
+Updated\+Content&Method can add new elements to the collection. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\label{namespace_chami_u_i_1_1_annotations_a5ae3746af252ee16d4fe96d5a994e138}} 
+\index{ChamiUI.Annotations@{ChamiUI.Annotations}!ImplicitUseKindFlags@{ImplicitUseKindFlags}}
+\index{ImplicitUseKindFlags@{ImplicitUseKindFlags}!ChamiUI.Annotations@{ChamiUI.Annotations}}
+\doxysubsubsection{ImplicitUseKindFlags}
+{\footnotesize\ttfamily enum \textbf{ Chami\+UI.\+Annotations.\+Implicit\+Use\+Kind\+Flags}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Specify the details of implicitly used symbol when it is marked with \doxyref{Means\+Implicit\+Use\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_means_implicit_use_attribute} or \doxyref{Used\+Implicitly\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_used_implicitly_attribute}. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Default@{Default}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!Default@{Default}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a5ae3746af252ee16d4fe96d5a994e138a7a1920d61156abc05a60135aefe8bc67}} 
+Default&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Access@{Access}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!Access@{Access}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a5ae3746af252ee16d4fe96d5a994e138abf733d8a933c1601697f364223fc7ecb}} 
+Access&Only entity marked with attribute considered used. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Assign@{Assign}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!Assign@{Assign}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a5ae3746af252ee16d4fe96d5a994e138a185b7133db22230701a857c059360cc2}} 
+Assign&Indicates implicit assignment to a member. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InstantiatedWithFixedConstructorSignature@{InstantiatedWithFixedConstructorSignature}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!InstantiatedWithFixedConstructorSignature@{InstantiatedWithFixedConstructorSignature}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a5ae3746af252ee16d4fe96d5a994e138a88199ed5f1baf0dc6ed80a0db9336403}} 
+Instantiated\+With\+Fixed\+Constructor\+Signature&Indicates implicit instantiation of a type with fixed constructor signature. That means any unused constructor parameters won\textquotesingle{}t be reported as such. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{InstantiatedNoFixedConstructorSignature@{InstantiatedNoFixedConstructorSignature}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!InstantiatedNoFixedConstructorSignature@{InstantiatedNoFixedConstructorSignature}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a5ae3746af252ee16d4fe96d5a994e138a4ea3601c5369a85043a3d88bbe23d4f6}} 
+Instantiated\+No\+Fixed\+Constructor\+Signature&Indicates implicit instantiation of a type. \\
+\hline
+
+\end{DoxyEnumFields}
+\mbox{\label{namespace_chami_u_i_1_1_annotations_a604ec5c0c6c4ca413a29b0e47c20ff03}} 
+\index{ChamiUI.Annotations@{ChamiUI.Annotations}!ImplicitUseTargetFlags@{ImplicitUseTargetFlags}}
+\index{ImplicitUseTargetFlags@{ImplicitUseTargetFlags}!ChamiUI.Annotations@{ChamiUI.Annotations}}
+\doxysubsubsection{ImplicitUseTargetFlags}
+{\footnotesize\ttfamily enum \textbf{ Chami\+UI.\+Annotations.\+Implicit\+Use\+Target\+Flags}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Specify what is considered to be used implicitly when marked with \doxyref{Means\+Implicit\+Use\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_means_implicit_use_attribute} or \doxyref{Used\+Implicitly\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_used_implicitly_attribute}. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Default@{Default}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!Default@{Default}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a604ec5c0c6c4ca413a29b0e47c20ff03a7a1920d61156abc05a60135aefe8bc67}} 
+Default&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Itself@{Itself}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!Itself@{Itself}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a604ec5c0c6c4ca413a29b0e47c20ff03ad24a614afd61a4a9097269b8a7225209}} 
+Itself&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Members@{Members}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!Members@{Members}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a604ec5c0c6c4ca413a29b0e47c20ff03aef53538ae41a651c7f72ab6cb1135d8c}} 
+Members&Members of entity marked with attribute are considered used. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WithInheritors@{WithInheritors}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!WithInheritors@{WithInheritors}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a604ec5c0c6c4ca413a29b0e47c20ff03a7dab71373ccceb43fda71984fde5376e}} 
+With\+Inheritors&Inherited entities are considered used. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{WithMembers@{WithMembers}!ChamiUI.Annotations@{ChamiUI.Annotations}}\index{ChamiUI.Annotations@{ChamiUI.Annotations}!WithMembers@{WithMembers}}}\mbox{\label{namespace_chami_u_i_1_1_annotations_a604ec5c0c6c4ca413a29b0e47c20ff03a5583bb135f4d32715af96327c369e623}} 
+With\+Members&Entity marked with attribute and all its members considered used. \\
+\hline
+
+\end{DoxyEnumFields}

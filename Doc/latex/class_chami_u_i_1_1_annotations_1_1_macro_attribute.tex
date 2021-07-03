@@ -1,0 +1,100 @@
+\doxysection{Chami\+UI.\+Annotations.\+Macro\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_macro_attribute}\index{ChamiUI.Annotations.MacroAttribute@{ChamiUI.Annotations.MacroAttribute}}
+
+
+Allows specifying a macro for a parameter of a \doxyref{source template}{p.}{class_chami_u_i_1_1_annotations_1_1_source_template_attribute}.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Macro\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_chami_u_i_1_1_annotations_1_1_macro_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Macro\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=218pt]{class_chami_u_i_1_1_annotations_1_1_macro_attribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Expression}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Allows specifying a macro that will be executed for a \doxyref{source template}{p.}{class_chami_u_i_1_1_annotations_1_1_source_template_attribute} parameter when the template is expanded. \end{DoxyCompactList}\item 
+int \textbf{ Editable}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Allows specifying which occurrence of the target parameter becomes editable when the template is deployed. \end{DoxyCompactList}\item 
+string \textbf{ Target}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em Identifies the target parameter of a \doxyref{source template}{p.}{class_chami_u_i_1_1_annotations_1_1_source_template_attribute} if the \doxyref{Macro\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_macro_attribute} is applied on a template method. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Allows specifying a macro for a parameter of a \doxyref{source template}{p.}{class_chami_u_i_1_1_annotations_1_1_source_template_attribute}. 
+
+You can apply the attribute on the whole method or on any of its additional parameters. The macro expression is defined in the \doxyref{Macro\+Attribute.\+Expression}{p.}{class_chami_u_i_1_1_annotations_1_1_macro_attribute_a65cee44a2c405d160d4fad096d014979} property. When applied on a method, the target template parameter is defined in the \doxyref{Macro\+Attribute.\+Target}{p.}{class_chami_u_i_1_1_annotations_1_1_macro_attribute_aae0381b175d36c5b7d65a10f3ef8d2ca} property. To apply the macro silently for the parameter, set the \doxyref{Macro\+Attribute.\+Editable}{p.}{class_chami_u_i_1_1_annotations_1_1_macro_attribute_af50c07c5312d99e97a1d043633499866} property value = -\/1. 
+
+Applying the attribute on a source template method\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[SourceTemplate, Macro(Target = \textcolor{stringliteral}{"{}item"{}}, Expression = \textcolor{stringliteral}{"{}suggestVariableName()"{}})]}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{void} forEach<T>(\textcolor{keyword}{this} IEnumerable<T> collection) \{}
+\DoxyCodeLine{  \textcolor{keywordflow}{foreach} (var item \textcolor{keywordflow}{in} collection) \{}
+\DoxyCodeLine{    \textcolor{comment}{//\$ \$END\$}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+ Applying the attribute on a template method parameter\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[SourceTemplate]}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{void} something(\textcolor{keyword}{this} Entity x, [Macro(Expression = \textcolor{stringliteral}{"{}guid()"{}}, Editable = -\/1)] \textcolor{keywordtype}{string} newguid) \{}
+\DoxyCodeLine{  \textcolor{comment}{/*\$ var \$x\$Id = "{}\$newguid\$"{} + x.ToString();}}
+\DoxyCodeLine{\textcolor{comment}{  x.DoSomething(\$x\$Id); *\&zwj;/}}
+\DoxyCodeLine{\textcolor{comment}{\}}}
+
+\end{DoxyCode}
+ 
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_macro_attribute_af50c07c5312d99e97a1d043633499866}} 
+\index{ChamiUI.Annotations.MacroAttribute@{ChamiUI.Annotations.MacroAttribute}!Editable@{Editable}}
+\index{Editable@{Editable}!ChamiUI.Annotations.MacroAttribute@{ChamiUI.Annotations.MacroAttribute}}
+\doxysubsubsection{Editable}
+{\footnotesize\ttfamily int Chami\+UI.\+Annotations.\+Macro\+Attribute.\+Editable\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Allows specifying which occurrence of the target parameter becomes editable when the template is deployed. 
+
+If the target parameter is used several times in the template, only one occurrence becomes editable; other occurrences are changed synchronously. To specify the zero-\/based index of the editable occurrence, use values $>$= 0. To make the parameter non-\/editable when the template is expanded, use -\/1. \mbox{\label{class_chami_u_i_1_1_annotations_1_1_macro_attribute_a65cee44a2c405d160d4fad096d014979}} 
+\index{ChamiUI.Annotations.MacroAttribute@{ChamiUI.Annotations.MacroAttribute}!Expression@{Expression}}
+\index{Expression@{Expression}!ChamiUI.Annotations.MacroAttribute@{ChamiUI.Annotations.MacroAttribute}}
+\doxysubsubsection{Expression}
+{\footnotesize\ttfamily string Chami\+UI.\+Annotations.\+Macro\+Attribute.\+Expression\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Allows specifying a macro that will be executed for a \doxyref{source template}{p.}{class_chami_u_i_1_1_annotations_1_1_source_template_attribute} parameter when the template is expanded. 
+
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_macro_attribute_aae0381b175d36c5b7d65a10f3ef8d2ca}} 
+\index{ChamiUI.Annotations.MacroAttribute@{ChamiUI.Annotations.MacroAttribute}!Target@{Target}}
+\index{Target@{Target}!ChamiUI.Annotations.MacroAttribute@{ChamiUI.Annotations.MacroAttribute}}
+\doxysubsubsection{Target}
+{\footnotesize\ttfamily string Chami\+UI.\+Annotations.\+Macro\+Attribute.\+Target\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+Identifies the target parameter of a \doxyref{source template}{p.}{class_chami_u_i_1_1_annotations_1_1_source_template_attribute} if the \doxyref{Macro\+Attribute}{p.}{class_chami_u_i_1_1_annotations_1_1_macro_attribute} is applied on a template method. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,8 @@
+<map id="Chami.Db.Repositories.UiLanguageRepository.GetAllUiLanguages" name="Chami.Db.Repositories.UiLanguageRepository.GetAllUiLanguages">
+<area shape="rect" id="node1" title="Gets all the UiLanguages available to the Chami application." alt="" coords="896,63,1151,105"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#a0a2df935d9c28b84aba919a059897cb4" title="Gets all the available UiLanguage entities from the database, converts them to ApplicationLanguageVie..." alt="" coords="609,56,848,112"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_app.html#a0bd094119fc58fb4a58b2a0a361f020e" title=" " alt="" coords="373,5,499,32"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#ae84588fcc07cfba0d2842c22aa6ede75" title="Gets all the ApplicationLanguageViewModels, converts them to CultureInfo objects, and returns them as..." alt="" coords="317,56,555,112"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory.html#a81b0e4d50ea357d0f5fc5ee77126afc4" title="Retrieves all Chami settings." alt="" coords="311,137,561,178"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_window_view_model.html#aa577f61a2a1c59c10a649e2658e2b011" title=" " alt="" coords="5,129,263,185"/>
+</map>

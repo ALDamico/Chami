@@ -1,0 +1,6 @@
+<map id="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.GetActiveWatchedApplications" name="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.GetActiveWatchedApplications">
+<area shape="rect" id="node1" title="Gets all the WatchedApplication objects whose state is active and converts them to WatchedApplication..." alt="" coords="609,20,880,76"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_app.html#a0bd094119fc58fb4a58b2a0a361f020e" title=" " alt="" coords="373,5,499,32"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory.html#a81b0e4d50ea357d0f5fc5ee77126afc4" title="Retrieves all Chami settings." alt="" coords="311,57,561,98"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_window_view_model.html#aa577f61a2a1c59c10a649e2658e2b011" title=" " alt="" coords="5,49,263,105"/>
+</map>

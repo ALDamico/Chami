@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.EnvironmentBackupper.Backup" name="ChamiUI.BusinessLayer.EnvironmentBackupper.Backup">
+<area shape="rect" id="node1" title="Backs up the current environment to the datastore, excluding the environment variables added by Chami..." alt="" coords="337,39,573,80"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a8eb78eb9c798111d916439a4e91f6663" title="Performs a backup of the current state of environment variables, excluding those that belong to a Cha..." alt="" coords="5,5,289,47"/>
+<area shape="rect" id="node3" href="$class_chami_tests_1_1_business_tests.html#a8845266b4f76402f719822d3808bed53" title=" " alt="" coords="55,71,240,112"/>
+</map>

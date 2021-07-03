@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.Converters.EnvironmentConverter.To" name="ChamiUI.BusinessLayer.Converters.EnvironmentConverter.To">
+<area shape="rect" id="node1" title="Converts an Environment to an EnvironmentViewModel." alt="" coords="671,13,901,54"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a88cb36efabf423fe44dddcaae8428f53" title="Gets the EnvironmentViewModel with the specified name." alt="" coords="312,13,623,54"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model.html#a22fff72c51fecf9b92b2a7f141a65370" title=" " alt="" coords="5,5,264,61"/>
+</map>

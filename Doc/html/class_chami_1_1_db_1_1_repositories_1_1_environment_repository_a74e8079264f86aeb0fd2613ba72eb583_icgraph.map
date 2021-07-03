@@ -1,0 +1,10 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.InsertEnvironment" name="Chami.Db.Repositories.EnvironmentRepository.InsertEnvironment">
+<area shape="rect" id="node1" title="Inserts an Environment object in the datastore and its associated &lt;ses cref=&quot;EnvironmentVariable&quot;&gt;s." alt="" coords="657,144,888,185"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_environment_backupper.html#a1cc2a200cdef00e33ad53e212c07ba9e" title="Backs up the current environment to the datastore, excluding the environment variables added by Chami..." alt="" coords="355,71,591,112"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a760d73b04fe6010eabd856d0880d5eea" title="Validates the supplied EnvironmentViewModel. If the validation is successful, converts to an Environm..." alt="" coords="337,144,609,185"/>
+<area shape="rect" id="node7" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a083fc406339cecc488cb8aee86748e47" title="Inserts an Environment in the datastore, or updates it if it&#39;s already present." alt="" coords="358,213,589,255"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a8eb78eb9c798111d916439a4e91f6663" title="Performs a backup of the current state of environment variables, excluding those that belong to a Cha..." alt="" coords="5,5,289,47"/>
+<area shape="rect" id="node4" href="$class_chami_tests_1_1_business_tests.html#a8845266b4f76402f719822d3808bed53" title=" " alt="" coords="55,71,240,112"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model.html#a85f350549855006d9655928174ab5b8d" title=" " alt="" coords="18,137,277,193"/>
+<area shape="rect" id="node8" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#abc9ba90c35e14c2e275e102291503a88" title="Converts an EnvironmentViewModel to an Environment entity and inserts it if it&#39;s not been persisted y..." alt="" coords="13,217,281,259"/>
+</map>

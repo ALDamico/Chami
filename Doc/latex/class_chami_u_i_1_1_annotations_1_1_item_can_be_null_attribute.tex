@@ -1,0 +1,49 @@
+\doxysection{Chami\+UI.\+Annotations.\+Item\+Can\+Be\+Null\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_item_can_be_null_attribute}\index{ChamiUI.Annotations.ItemCanBeNullAttribute@{ChamiUI.Annotations.ItemCanBeNullAttribute}}
+
+
+Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task and Lazy classes to indicate that the value of a collection item, of the Task.\+Result property or of the Lazy.\+Value property can be null.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Item\+Can\+Be\+Null\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_chami_u_i_1_1_annotations_1_1_item_can_be_null_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Item\+Can\+Be\+Null\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=210pt]{class_chami_u_i_1_1_annotations_1_1_item_can_be_null_attribute__coll__graph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Can be applied to symbols of types derived from IEnumerable as well as to symbols of Task and Lazy classes to indicate that the value of a collection item, of the Task.\+Result property or of the Lazy.\+Value property can be null. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{public} \textcolor{keywordtype}{void} Foo([ItemCanBeNull]List<string> books)}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keywordflow}{foreach} (var book \textcolor{keywordflow}{in} books)}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{comment}{// Warning: Possible 'System.NullReferenceException'}}
+\DoxyCodeLine{    Console.WriteLine(book.ToUpper());}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

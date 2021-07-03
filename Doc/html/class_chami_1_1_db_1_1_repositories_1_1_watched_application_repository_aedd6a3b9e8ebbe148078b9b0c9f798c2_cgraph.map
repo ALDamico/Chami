@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.WatchedApplicationRepository.GetWatchedApplications" name="Chami.Db.Repositories.WatchedApplicationRepository.GetWatchedApplications">
+<area shape="rect" id="node1" title="Gets all the WatchedApplication objects available to the Chami application." alt="" coords="5,5,231,61"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="279,13,500,54"/>
+</map>

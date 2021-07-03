@@ -1,0 +1,7 @@
+<map id="Chami.Db.Repositories.RepositoryBase" name="Chami.Db.Repositories.RepositoryBase">
+<area shape="rect" id="node1" title="Base class for all repositories in the Chami application." alt="" coords="5,111,256,138"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html" title="Performs CRUD operations on the Environment aggregate." alt="" coords="304,5,535,47"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_settings_repository.html" title="Performs CRUD operations on the Settings aggregate." alt="" coords="316,71,523,112"/>
+<area shape="rect" id="node4" href="$class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository.html" title="Performs CRUD operations on the UiLanguage aggregate." alt="" coords="334,136,505,177"/>
+<area shape="rect" id="node5" href="$class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html" title="Performs CRUD operations on the WatchedApplication aggregate." alt="" coords="314,201,525,243"/>
+</map>

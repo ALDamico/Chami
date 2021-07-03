@@ -1,0 +1,29 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Validators Namespace Reference}
+\label{namespace_chami_u_i_1_1_business_layer_1_1_validators}\index{ChamiUI.BusinessLayer.Validators@{ChamiUI.BusinessLayer.Validators}}
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \textbf{ Environment\+Name\+Validation\+Rule}
+\begin{DoxyCompactList}\small\item\em Validates the name of an environment. \end{DoxyCompactList}\item 
+class \textbf{ Environment\+Variable\+Name\+Length\+Validation\+Rule}
+\begin{DoxyCompactList}\small\item\em Validates the length of the Name property of an Environment\+Variable\+View\+Model. The maximum allowed length is configurable through the \doxyref{Max\+Length}{p.}{class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_name_length_validation_rule_accd80564cd531d4c2ef2bde05da4c693} property, but \doxyref{Chami}{p.}{namespace_chami} always uses \doxyref{Windows}{p.}{namespace_chami_u_i_1_1_windows}\textquotesingle{} default value of 2047. {\texttt{ https\+://devblogs.\+microsoft.\+com/oldnewthing/20100203-\/00/?p=15083}} \end{DoxyCompactList}\item 
+class \textbf{ Environment\+Variable\+Name\+No\+Number\+First\+Character\+Validation\+Rule}
+\begin{DoxyCompactList}\small\item\em Validates that an environment variable name doesn\textquotesingle{}t start with a number. \end{DoxyCompactList}\item 
+class \textbf{ Environment\+Variable\+Name\+Not\+Null\+Validation\+Rule}
+\begin{DoxyCompactList}\small\item\em Validates that the Name property of an Entironment\+Variable\+View\+Model object is not null, empty, or only composed of whitespace characters. \end{DoxyCompactList}\item 
+class \textbf{ Environment\+Variable\+Name\+Unique\+Validation\+Rule}
+\begin{DoxyCompactList}\small\item\em Validates that an environment variable name is unique in an environment. \end{DoxyCompactList}\item 
+class \textbf{ Environment\+Variable\+Name\+Valid\+Characters\+Validation\+Rule}
+\begin{DoxyCompactList}\small\item\em Validates that there are no invalid characters in an environment variable name. \end{DoxyCompactList}\item 
+class \textbf{ Environment\+Variable\+Validator}
+\begin{DoxyCompactList}\small\item\em Performs simple validation on Environment\+Variable\+View\+Model objects when converting between entities and viewmodels. \end{DoxyCompactList}\item 
+class \textbf{ Environment\+View\+Model\+Validator}
+\begin{DoxyCompactList}\small\item\em Performs basic validation on Environment\+View\+Model objects. \end{DoxyCompactList}\item 
+interface \textbf{ IValidation\+Result}
+\begin{DoxyCompactList}\small\item\em Interface for basic \doxyref{Validation\+Result}{p.}{class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result} objects. \end{DoxyCompactList}\item 
+interface \textbf{ IValidator}
+\begin{DoxyCompactList}\small\item\em Interface for classes that perform basic validation on objects of type T \end{DoxyCompactList}\item 
+class \textbf{ Validation\+Result}
+\begin{DoxyCompactList}\small\item\em Basic implementation of the \doxyref{IValidation\+Result}{p.}{interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result} interface. \end{DoxyCompactList}\item 
+class \textbf{ Validation\+Utils}
+\begin{DoxyCompactList}\small\item\em Helper class for functions related to validation. \end{DoxyCompactList}\end{DoxyCompactItemize}

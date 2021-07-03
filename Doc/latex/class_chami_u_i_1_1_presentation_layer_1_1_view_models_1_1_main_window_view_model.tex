@@ -1,0 +1,449 @@
+\doxysection{Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model Class Reference}
+\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model}\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+
+
+Inheritance diagram for Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=255pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Cancel\+Active\+Task} ()
+\item 
+void \textbf{ Enable\+Editing} ()
+\item 
+void \textbf{ Disable\+Editing} ()
+\item 
+void \textbf{ Change\+Filter\+Strategy} (\textbf{ IFilter\+Strategy} filter\+Strategy)
+\item 
+\textbf{ Main\+Window\+View\+Model} (string connection\+String)
+\item 
+bool \textbf{ Are\+Selected\+Environment\+Variables\+Valid} ()
+\item 
+async Task \textbf{ Change\+Environment\+Async} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress)
+\item 
+void \textbf{ Change\+Environment} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress)
+\item 
+string \textbf{ Get\+Detected\+Applications\+Message} ()
+\item 
+void \textbf{ Delete\+Selected\+Environment} ()
+\item 
+void \textbf{ Save\+Current\+Environment} ()
+\item 
+bool \textbf{ Check\+Environment\+Exists} (\textbf{ Environment\+View\+Model} environment)
+\item 
+void \textbf{ Backup\+Environment} ()
+\item 
+void \textbf{ Delete\+Selected\+Variable} ()
+\item 
+async Task \textbf{ Reset\+Environment\+Async} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress, Cancellation\+Token cancellation\+Token)
+\item 
+void \textbf{ Detect\+Current\+Environment} ()
+\item 
+void \textbf{ Reset\+Current\+Environment\+From\+Datasource} ()
+\item 
+async Task \textbf{ Rename\+Environment} (string args\+New\+Name, Progress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress)
+\item 
+List$<$ \textbf{ Environment\+View\+Model} $>$ \textbf{ Start\+Import\+Files} (string[$\,$] dialog\+File\+Names)
+\item 
+void \textbf{ Save\+Window\+State} (double width, double height, double x\+Position, double y\+Position, Sort\+Description sort\+Description)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ IMinimization\+Strategy} \textbf{ Minimization\+Strategy}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+bool \textbf{ Editing\+Enabled}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+Observable\+Collection$<$ \textbf{ IFilter\+Strategy} $>$ \textbf{ Filter\+Strategies}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\textbf{ IFilter\+Strategy} \textbf{ Filter\+Strategy}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\textbf{ Settings\+View\+Model} \textbf{ Settings}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+bool \textbf{ Is\+Clear\+Filter\+Button\+Enabled}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+string \textbf{ Filter\+Text}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+bool \textbf{ Is\+Descending\+Sorting}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+bool \textbf{ Is\+Case\+Sensitive\+Search}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+bool \textbf{ Execute\+Button\+Play\+Enabled}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+string \textbf{ Filter\+Strategy\+Combobox\+Tool\+Tip}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+Cancellation\+Token\+Source \textbf{ Cancellation\+Token\+Source}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\textbf{ Environment\+View\+Model} \textbf{ Active\+Environment}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+Observable\+Collection$<$ \textbf{ Environment\+View\+Model} $>$ \textbf{ Environments}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+\textbf{ Environment\+View\+Model} \textbf{ Selected\+Environment}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+string \textbf{ Execute\+Button\+Icon}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+string \textbf{ Clear\+Filter\+Text\+Button\+Icon}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+\textbf{ Environment\+Variable\+View\+Model} \textbf{ Selected\+Variable}\hspace{0.3cm}{\ttfamily  [get, set]}
+\item 
+string \textbf{ Window\+Title}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+\doxysubsection*{Events}
+\begin{DoxyCompactItemize}
+\item 
+Event\+Handler$<$ \textbf{ Environment\+Changed\+Event\+Args} $>$ \textbf{ Environment\+Changed}
+\item 
+Event\+Handler$<$ \textbf{ Environment\+Existing\+Event\+Args} $>$ \textbf{ Environment\+Exists}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_af60b0fbaca532f5ec50adaa2177da296}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!MainWindowViewModel@{MainWindowViewModel}}
+\index{MainWindowViewModel@{MainWindowViewModel}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{MainWindowViewModel()}
+{\footnotesize\ttfamily Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Main\+Window\+View\+Model (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a5eafff70411257963c9271c8b654f512}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!AreSelectedEnvironmentVariablesValid@{AreSelectedEnvironmentVariablesValid}}
+\index{AreSelectedEnvironmentVariablesValid@{AreSelectedEnvironmentVariablesValid}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{AreSelectedEnvironmentVariablesValid()}
+{\footnotesize\ttfamily bool Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Are\+Selected\+Environment\+Variables\+Valid (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aa0c7f0689e182a6c3319719e99db910a}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!BackupEnvironment@{BackupEnvironment}}
+\index{BackupEnvironment@{BackupEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{BackupEnvironment()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Backup\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_ab02c8ae25c935814ea9eb4775c760f2c}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!CancelActiveTask@{CancelActiveTask}}
+\index{CancelActiveTask@{CancelActiveTask}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{CancelActiveTask()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Cancel\+Active\+Task (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a2473a863e87208858e84253fc61e8f2d}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ChangeEnvironment@{ChangeEnvironment}}
+\index{ChangeEnvironment@{ChangeEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ChangeEnvironment()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Change\+Environment (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a2473a863e87208858e84253fc61e8f2d_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a1110ef9223794a210295d568db55776a}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ChangeEnvironmentAsync@{ChangeEnvironmentAsync}}
+\index{ChangeEnvironmentAsync@{ChangeEnvironmentAsync}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ChangeEnvironmentAsync()}
+{\footnotesize\ttfamily async Task Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Change\+Environment\+Async (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a1110ef9223794a210295d568db55776a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a1110ef9223794a210295d568db55776a_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a520ddddc6e775b734edb0fb75b86b118}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ChangeFilterStrategy@{ChangeFilterStrategy}}
+\index{ChangeFilterStrategy@{ChangeFilterStrategy}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ChangeFilterStrategy()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Change\+Filter\+Strategy (\begin{DoxyParamCaption}\item[{\textbf{ IFilter\+Strategy}}]{filter\+Strategy }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a7e0af84a19dbe37616459d0124e923dc}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!CheckEnvironmentExists@{CheckEnvironmentExists}}
+\index{CheckEnvironmentExists@{CheckEnvironmentExists}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{CheckEnvironmentExists()}
+{\footnotesize\ttfamily bool Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Check\+Environment\+Exists (\begin{DoxyParamCaption}\item[{\textbf{ Environment\+View\+Model}}]{environment }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a229fff209a38770d360424a0bb72d74b}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!DeleteSelectedEnvironment@{DeleteSelectedEnvironment}}
+\index{DeleteSelectedEnvironment@{DeleteSelectedEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{DeleteSelectedEnvironment()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Delete\+Selected\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a4b505413e07836ce2e829a386a11ead8}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!DeleteSelectedVariable@{DeleteSelectedVariable}}
+\index{DeleteSelectedVariable@{DeleteSelectedVariable}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{DeleteSelectedVariable()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Delete\+Selected\+Variable (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a4b505413e07836ce2e829a386a11ead8_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_af75c90f652429ef7641ec6e94229e82a}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!DetectCurrentEnvironment@{DetectCurrentEnvironment}}
+\index{DetectCurrentEnvironment@{DetectCurrentEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{DetectCurrentEnvironment()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Detect\+Current\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a57ea5907a0199eb52d39f2dc056695ab}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!DisableEditing@{DisableEditing}}
+\index{DisableEditing@{DisableEditing}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{DisableEditing()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Disable\+Editing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a57ea5907a0199eb52d39f2dc056695ab_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a39ead58002acc25002de9de832e611dd}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!EnableEditing@{EnableEditing}}
+\index{EnableEditing@{EnableEditing}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{EnableEditing()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Enable\+Editing (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a6da5130321ee96a57625df5caf19cbf4}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!GetDetectedApplicationsMessage@{GetDetectedApplicationsMessage}}
+\index{GetDetectedApplicationsMessage@{GetDetectedApplicationsMessage}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{GetDetectedApplicationsMessage()}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Get\+Detected\+Applications\+Message (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aaa056c4e9054aaec3a04f71fa04997ba}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!RenameEnvironment@{RenameEnvironment}}
+\index{RenameEnvironment@{RenameEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{RenameEnvironment()}
+{\footnotesize\ttfamily async Task Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Rename\+Environment (\begin{DoxyParamCaption}\item[{string}]{args\+New\+Name,  }\item[{Progress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aaa056c4e9054aaec3a04f71fa04997ba_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_af15bd7c6fadd139052d724bfc4255c3f}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ResetCurrentEnvironmentFromDatasource@{ResetCurrentEnvironmentFromDatasource}}
+\index{ResetCurrentEnvironmentFromDatasource@{ResetCurrentEnvironmentFromDatasource}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ResetCurrentEnvironmentFromDatasource()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Reset\+Current\+Environment\+From\+Datasource (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aab5b7bf465e97c1bfde8ca1578c341ec}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ResetEnvironmentAsync@{ResetEnvironmentAsync}}
+\index{ResetEnvironmentAsync@{ResetEnvironmentAsync}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ResetEnvironmentAsync()}
+{\footnotesize\ttfamily async Task Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Reset\+Environment\+Async (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress,  }\item[{Cancellation\+Token}]{cancellation\+Token }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aab5b7bf465e97c1bfde8ca1578c341ec_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_adc3b0770b2c22133dc8d45659b3d8a03}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!SaveCurrentEnvironment@{SaveCurrentEnvironment}}
+\index{SaveCurrentEnvironment@{SaveCurrentEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{SaveCurrentEnvironment()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Save\+Current\+Environment (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_adc3b0770b2c22133dc8d45659b3d8a03_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a48e89f46a09b0aefccbadec47a9352fd}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!SaveWindowState@{SaveWindowState}}
+\index{SaveWindowState@{SaveWindowState}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{SaveWindowState()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Save\+Window\+State (\begin{DoxyParamCaption}\item[{double}]{width,  }\item[{double}]{height,  }\item[{double}]{x\+Position,  }\item[{double}]{y\+Position,  }\item[{Sort\+Description}]{sort\+Description }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_afb0af58c8987bb6d817ae55a4592f875}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!StartImportFiles@{StartImportFiles}}
+\index{StartImportFiles@{StartImportFiles}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{StartImportFiles()}
+{\footnotesize\ttfamily List$<$\textbf{ Environment\+View\+Model}$>$ Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Start\+Import\+Files (\begin{DoxyParamCaption}\item[{string[$\,$]}]{dialog\+File\+Names }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_afb0af58c8987bb6d817ae55a4592f875_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a8e0e7acc56d6d027df599012ea487a15}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ActiveEnvironment@{ActiveEnvironment}}
+\index{ActiveEnvironment@{ActiveEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ActiveEnvironment}
+{\footnotesize\ttfamily \textbf{ Environment\+View\+Model} Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Active\+Environment\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a45cafd3c3a209ab1b9666a08d65070e3}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!CancellationTokenSource@{CancellationTokenSource}}
+\index{CancellationTokenSource@{CancellationTokenSource}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{CancellationTokenSource}
+{\footnotesize\ttfamily Cancellation\+Token\+Source Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Cancellation\+Token\+Source\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a981fb74bd77c060ef0b1077491ff1b99}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ClearFilterTextButtonIcon@{ClearFilterTextButtonIcon}}
+\index{ClearFilterTextButtonIcon@{ClearFilterTextButtonIcon}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ClearFilterTextButtonIcon}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Clear\+Filter\+Text\+Button\+Icon\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aa1ddcd0fc534bfb35e82ffad196ce9dd}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!EditingEnabled@{EditingEnabled}}
+\index{EditingEnabled@{EditingEnabled}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{EditingEnabled}
+{\footnotesize\ttfamily bool Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Editing\+Enabled\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_acdcf268141f31aa16437a4e70339824c}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!Environments@{Environments}}
+\index{Environments@{Environments}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{Environments}
+{\footnotesize\ttfamily Observable\+Collection$<$\textbf{ Environment\+View\+Model}$>$ Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Environments\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a1855104683bfc83315d1ed7cbdf57025}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ExecuteButtonIcon@{ExecuteButtonIcon}}
+\index{ExecuteButtonIcon@{ExecuteButtonIcon}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ExecuteButtonIcon}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Execute\+Button\+Icon\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aa5b40077fde7aa1b4fe4cde65cb6cb0e}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!ExecuteButtonPlayEnabled@{ExecuteButtonPlayEnabled}}
+\index{ExecuteButtonPlayEnabled@{ExecuteButtonPlayEnabled}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{ExecuteButtonPlayEnabled}
+{\footnotesize\ttfamily bool Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Execute\+Button\+Play\+Enabled\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_ab19012078fc147144dcbe18ce841c27d}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!FilterStrategies@{FilterStrategies}}
+\index{FilterStrategies@{FilterStrategies}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{FilterStrategies}
+{\footnotesize\ttfamily Observable\+Collection$<$\textbf{ IFilter\+Strategy}$>$ Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Filter\+Strategies\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aa7edd85b1b610ae8ffbfe7a3f61babb3}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!FilterStrategy@{FilterStrategy}}
+\index{FilterStrategy@{FilterStrategy}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{FilterStrategy}
+{\footnotesize\ttfamily \textbf{ IFilter\+Strategy} Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Filter\+Strategy\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a8ea5d8af46c411da5bf6d32f29696b09}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!FilterStrategyComboboxToolTip@{FilterStrategyComboboxToolTip}}
+\index{FilterStrategyComboboxToolTip@{FilterStrategyComboboxToolTip}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{FilterStrategyComboboxToolTip}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Filter\+Strategy\+Combobox\+Tool\+Tip\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a99ea87a131b376eb96463d85e7eb5d9f}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!FilterText@{FilterText}}
+\index{FilterText@{FilterText}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{FilterText}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Filter\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_af97160346f3ea0f248d742f430184f0b}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!IsCaseSensitiveSearch@{IsCaseSensitiveSearch}}
+\index{IsCaseSensitiveSearch@{IsCaseSensitiveSearch}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{IsCaseSensitiveSearch}
+{\footnotesize\ttfamily bool Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Is\+Case\+Sensitive\+Search\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aa3df72183e4e31ea40b8d48e41e77d30}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!IsClearFilterButtonEnabled@{IsClearFilterButtonEnabled}}
+\index{IsClearFilterButtonEnabled@{IsClearFilterButtonEnabled}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{IsClearFilterButtonEnabled}
+{\footnotesize\ttfamily bool Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Is\+Clear\+Filter\+Button\+Enabled\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_ae6718b416c0bcfc45cbdb81fcab5179c}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!IsDescendingSorting@{IsDescendingSorting}}
+\index{IsDescendingSorting@{IsDescendingSorting}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{IsDescendingSorting}
+{\footnotesize\ttfamily bool Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Is\+Descending\+Sorting\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_ab8cb9a40582e47c3f6e88973c8ff1a7d}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!MinimizationStrategy@{MinimizationStrategy}}
+\index{MinimizationStrategy@{MinimizationStrategy}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{MinimizationStrategy}
+{\footnotesize\ttfamily \textbf{ IMinimization\+Strategy} Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Minimization\+Strategy\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a215b8eebd3fe2288509df60a1e51c314}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!SelectedEnvironment@{SelectedEnvironment}}
+\index{SelectedEnvironment@{SelectedEnvironment}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{SelectedEnvironment}
+{\footnotesize\ttfamily \textbf{ Environment\+View\+Model} Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Selected\+Environment\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a19347a3875c6d9761203d20709006165}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!SelectedVariable@{SelectedVariable}}
+\index{SelectedVariable@{SelectedVariable}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{SelectedVariable}
+{\footnotesize\ttfamily \textbf{ Environment\+Variable\+View\+Model} Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Selected\+Variable\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_aea1f99bba9bf1a32fa04125890ba2a68}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!Settings@{Settings}}
+\index{Settings@{Settings}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{Settings}
+{\footnotesize\ttfamily \textbf{ Settings\+View\+Model} Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Settings\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a4a0149e069873ae72f7ce8b9baa8fe20}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!WindowTitle@{WindowTitle}}
+\index{WindowTitle@{WindowTitle}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{WindowTitle}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Window\+Title\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+\doxysubsection{Event Documentation}
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a58f92c7e752397ff04b92903095137f6}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!EnvironmentChanged@{EnvironmentChanged}}
+\index{EnvironmentChanged@{EnvironmentChanged}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{EnvironmentChanged}
+{\footnotesize\ttfamily Event\+Handler$<$\textbf{ Environment\+Changed\+Event\+Args}$>$ Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Environment\+Changed}
+
+\mbox{\label{class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model_a4d1566ecaf9ce5df8d382b6afe932914}} 
+\index{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}!EnvironmentExists@{EnvironmentExists}}
+\index{EnvironmentExists@{EnvironmentExists}!ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel@{ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel}}
+\doxysubsubsection{EnvironmentExists}
+{\footnotesize\ttfamily Event\+Handler$<$\textbf{ Environment\+Existing\+Event\+Args}$>$ Chami\+UI.\+Presentation\+Layer.\+View\+Models.\+Main\+Window\+View\+Model.\+Environment\+Exists}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Presentation\+Layer/\+View\+Models/\textbf{ Main\+Window\+View\+Model.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,4 @@
+<map id="ChamiUI.PresentationLayer.Events.EnvironmentRenamedEventArgs" name="ChamiUI.PresentationLayer.Events.EnvironmentRenamedEventArgs">
+<area shape="rect" id="node1" title="Subclass of EventArgs used for handling events of environments changing their name." alt="" coords="5,80,256,121"/>
+<area shape="rect" id="node2" title=" " alt="" coords="90,5,171,32"/>
+</map>

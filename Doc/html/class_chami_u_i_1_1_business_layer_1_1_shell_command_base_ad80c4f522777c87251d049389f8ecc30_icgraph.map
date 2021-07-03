@@ -1,0 +1,7 @@
+<map id="ChamiUI.BusinessLayer.ShellCommandBase.PrepareProcess" name="ChamiUI.BusinessLayer.ShellCommandBase.PrepareProcess">
+<area shape="rect" id="node1" title="Creates a new Process object that can be started by an inheritor." alt="" coords="335,104,543,145"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html#af9f4f966515963abe6518003df3b5225" title="Execute the shell command." alt="" coords="24,5,268,47"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command.html#a25a9d6eca966c8d3de79fe5e4b25611e" title="Executes the shell command synchronously by deleting the registry key corresponding to the variable w..." alt="" coords="28,71,264,112"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html#ac4fac2aa8ba53e57f0704cd6dd233a7d" title="Executes the shell command asynchronously. Optionally reports progress. Can be canceled." alt="" coords="5,136,287,177"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command.html#ae09c4ec22e8ee3b4c27bda38f6e69ab1" title="Executes the shell command asynchronously by deleting the registry key corresponding to the variable ..." alt="" coords="13,201,279,243"/>
+</map>

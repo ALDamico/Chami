@@ -1,0 +1,4 @@
+<map id="Chami.Db.Entities.Setting" name="Chami.Db.Entities.Setting">
+<area shape="rect" id="node1" title="Represents a configurable aspect of the Chami application." alt="" coords="5,80,177,107"/>
+<area shape="rect" id="node2" href="$interface_chami_1_1_db_1_1_entities_1_1_i_chami_entity.html" title="Marker interface for all Chami entities." alt="" coords="43,5,139,32"/>
+</map>

@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.DeleteVariableById" name="Chami.Db.Repositories.EnvironmentRepository.DeleteVariableById">
+<area shape="rect" id="node1" title="Deletes the EnvironmentVariable with the specified id from the datastore." alt="" coords="5,5,236,47"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="284,5,505,47"/>
+</map>

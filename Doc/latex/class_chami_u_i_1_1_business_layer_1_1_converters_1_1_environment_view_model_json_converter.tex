@@ -1,0 +1,148 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter}\index{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}}
+
+
+Custom Json\+Converter for converting \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1}s and Environment\+View\+Models to JSON.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=258pt]{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \textbf{ Write\+Json} (Json\+Writer writer, object value, Json\+Serializer serializer)
+\begin{DoxyCompactList}\small\item\em Custom logic for writing an Environment\+View\+Model to JSON. \end{DoxyCompactList}\item 
+override object \textbf{ Read\+Json} (Json\+Reader reader, Type object\+Type, object existing\+Value, Json\+Serializer serializer)
+\begin{DoxyCompactList}\small\item\em Custom logic for reading a JSON object and converting it to an Environment\+View\+Model. \end{DoxyCompactList}\item 
+override bool \textbf{ Can\+Convert} (Type object\+Type)
+\begin{DoxyCompactList}\small\item\em Determines if the Type can be serialized or deserialized using this Json\+Converter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+override bool \textbf{ Can\+Write}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+override bool \textbf{ Can\+Read}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Custom Json\+Converter for converting \doxyref{Environment}{p.}{_environment_excel_exporter_8cs_a96559709b5e089f14a24e8e50baa2aa1}s and Environment\+View\+Models to JSON. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter_ad0cce0bd74be444630e4c53afc23dcf7}} 
+\index{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}!CanConvert@{CanConvert}}
+\index{CanConvert@{CanConvert}!ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}}
+\doxysubsubsection{CanConvert()}
+{\footnotesize\ttfamily override bool Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter.\+Can\+Convert (\begin{DoxyParamCaption}\item[{Type}]{object\+Type }\end{DoxyParamCaption})}
+
+
+
+Determines if the Type can be serialized or deserialized using this Json\+Converter. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em object\+Type} & The Type of the object to serialize.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter_ad0cce0bd74be444630e4c53afc23dcf7_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter_a1e5e0cd0b75727474d79fb7a1c984050}} 
+\index{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}!ReadJson@{ReadJson}}
+\index{ReadJson@{ReadJson}!ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}}
+\doxysubsubsection{ReadJson()}
+{\footnotesize\ttfamily override object Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter.\+Read\+Json (\begin{DoxyParamCaption}\item[{Json\+Reader}]{reader,  }\item[{Type}]{object\+Type,  }\item[{object}]{existing\+Value,  }\item[{Json\+Serializer}]{serializer }\end{DoxyParamCaption})}
+
+
+
+Custom logic for reading a JSON object and converting it to an Environment\+View\+Model. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em reader} & A Json\+Reader.\\
+\hline
+{\em object\+Type} & The Type to convert from.\\
+\hline
+{\em existing\+Value} & Unused.\\
+\hline
+{\em serializer} & The Json\+Serializer to use.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A converter Environment\+View\+Model object.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter_a1e5e0cd0b75727474d79fb7a1c984050_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter_a1de76622539cb0e910fe2546782f4c70}} 
+\index{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}!WriteJson@{WriteJson}}
+\index{WriteJson@{WriteJson}!ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}}
+\doxysubsubsection{WriteJson()}
+{\footnotesize\ttfamily override void Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter.\+Write\+Json (\begin{DoxyParamCaption}\item[{Json\+Writer}]{writer,  }\item[{object}]{value,  }\item[{Json\+Serializer}]{serializer }\end{DoxyParamCaption})}
+
+
+
+Custom logic for writing an Environment\+View\+Model to JSON. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em writer} & A Json\+Writer.\\
+\hline
+{\em value} & The Environment\+View\+Model to write to JSON.\\
+\hline
+{\em serializer} & The Json\+Serializer to use.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter_a2bfcb39be7f221648adda6a1c603ff02}} 
+\index{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}!CanRead@{CanRead}}
+\index{CanRead@{CanRead}!ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}}
+\doxysubsubsection{CanRead}
+{\footnotesize\ttfamily override bool Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter.\+Can\+Read\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter_ae1fd8e77c9406e9954b63302372aafed}} 
+\index{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}!CanWrite@{CanWrite}}
+\index{CanWrite@{CanWrite}!ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter@{ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter}}
+\doxysubsubsection{CanWrite}
+{\footnotesize\ttfamily override bool Chami\+UI.\+Business\+Layer.\+Converters.\+Environment\+View\+Model\+Json\+Converter.\+Can\+Write\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Converters/\textbf{ Environment\+View\+Model\+Json\+Converter.\+cs}\end{DoxyCompactItemize}

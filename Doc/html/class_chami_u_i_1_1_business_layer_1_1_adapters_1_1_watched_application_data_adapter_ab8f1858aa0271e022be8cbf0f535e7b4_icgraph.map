@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.SaveWatchedApplications" name="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.SaveWatchedApplications">
+<area shape="rect" id="node1" title="Converts a WatchedApplicationViewModel to a WatchedApplication entity and inserts it if it&#39;s not yet ..." alt="" coords="311,5,553,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_window_view_model.html#ad6ec7d7341829a558a10dc4884577171" title=" " alt="" coords="5,5,263,61"/>
+</map>

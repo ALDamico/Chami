@@ -1,0 +1,15 @@
+<map id="ChamiUI.App.App" name="ChamiUI.App.App">
+<area shape="rect" id="node1" title=" " alt="" coords="5,239,131,266"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger.html#a1a0b882848f5545b41560f4074daf6da" title="Adds a file to write to." alt="" coords="210,5,418,47"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#a98c3ae6226161d73a916e57b88a654b2" title="Gets all the WatchedApplication objects whose state is active and converts them to WatchedApplication..." alt="" coords="179,71,449,127"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#a0a2df935d9c28b84aba919a059897cb4" title="Gets all the available UiLanguage entities from the database, converts them to ApplicationLanguageVie..." alt="" coords="195,151,433,207"/>
+<area shape="rect" id="node8" href="$class_chami_u_i_1_1_app.html#a5e30d78277d0a61b9d0b45bd0bec6c70" title=" " alt="" coords="220,232,408,273"/>
+<area shape="rect" id="node9" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a2dc31d2d0a7f50da15986b4416c51abc" title="Retrieves settings from the datastore and converts them to an instance of SettingsViewModel" alt="" coords="203,297,425,339"/>
+<area shape="rect" id="node11" href="$class_chami_u_i_1_1_app.html#a8c021c386a50f76288913ddf6ea178df" title="InitializeComponent" alt="" coords="207,363,421,390"/>
+<area shape="rect" id="node12" href="$class_chami_u_i_1_1_app.html#a35ea7888c68e3e17c6fd628c0e01b361" title=" " alt="" coords="218,415,410,456"/>
+<area shape="rect" id="node4" href="$class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#a8e249c1f527e576165abc27a9a46041f" title="Gets all the WatchedApplication objects that Chami is currently listening to." alt="" coords="497,74,757,130"/>
+<area shape="rect" id="node5" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="805,120,1027,161"/>
+<area shape="rect" id="node7" href="$class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository.html#ad6bd095e3d28210168a6c5ef2ac6b2bf" title="Gets all the UiLanguages available to the Chami application." alt="" coords="500,157,755,199"/>
+<area shape="rect" id="node10" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a5b018162e225a69ee2cc15a38f1eda9c" title="Converts the Setting entities to a suitable SettingsViewModel that the presentation layer can use by ..." alt="" coords="516,297,739,339"/>
+<area shape="rect" id="node13" href="$class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger.html#aea988cfd1c4f6fa0edfb253521b508bc" title="Gets the Serilog Logger object." alt="" coords="523,415,731,456"/>
+</map>

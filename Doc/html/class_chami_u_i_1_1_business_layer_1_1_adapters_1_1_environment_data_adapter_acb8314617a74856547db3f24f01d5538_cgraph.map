@@ -1,0 +1,6 @@
+<map id="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.GetEnvironments" name="ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.GetEnvironments">
+<area shape="rect" id="node1" title="Gets all the EnvironmentViewModels marked as normal environments in the datastore." alt="" coords="5,39,273,80"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a48b014b7255c5d5b13940ad6e8de64ea" title="Get all the environments marked as normal environments in the datastore." alt="" coords="321,39,552,80"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_entities_1_1_environment.html#a2a45d4326b4cf2fabc0f4e5ae3ce5efd" title="Constructs a new Environment object with default values. These are: AddedOn: Current date and time...." alt="" coords="607,5,814,47"/>
+<area shape="rect" id="node4" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="600,71,821,112"/>
+</map>

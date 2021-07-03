@@ -1,0 +1,47 @@
+\doxysection{Chami\+UI.\+Annotations.\+Can\+Be\+Null\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_can_be_null_attribute}\index{ChamiUI.Annotations.CanBeNullAttribute@{ChamiUI.Annotations.CanBeNullAttribute}}
+
+
+Indicates that the value of the marked element could be {\ttfamily null} sometimes, so checking for {\ttfamily null} is required before its usage.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Can\+Be\+Null\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_chami_u_i_1_1_annotations_1_1_can_be_null_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Can\+Be\+Null\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=220pt]{class_chami_u_i_1_1_annotations_1_1_can_be_null_attribute__coll__graph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Indicates that the value of the marked element could be {\ttfamily null} sometimes, so checking for {\ttfamily null} is required before its usage. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[CanBeNull] \textcolor{keywordtype}{object} Test() => \textcolor{keyword}{null};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} UseTest() \{}
+\DoxyCodeLine{  var p = Test();}
+\DoxyCodeLine{  var s = p.ToString(); \textcolor{comment}{// Warning: Possible 'System.NullReferenceException'}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

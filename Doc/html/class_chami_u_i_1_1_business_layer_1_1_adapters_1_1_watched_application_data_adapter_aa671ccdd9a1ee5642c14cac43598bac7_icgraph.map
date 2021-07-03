@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.UpdateWatchedApplication" name="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.UpdateWatchedApplication">
+<area shape="rect" id="node1" title="Converts a WatchedApplicationViewModel object to a WatchedApplication entity and updates the correspo..." alt="" coords="601,5,856,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#ab8f1858aa0271e022be8cbf0f535e7b4" title="Converts a WatchedApplicationViewModel to a WatchedApplication entity and inserts it if it&#39;s not yet ..." alt="" coords="311,5,553,61"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_window_view_model.html#ad6ec7d7341829a558a10dc4884577171" title=" " alt="" coords="5,5,263,61"/>
+</map>

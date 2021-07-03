@@ -1,0 +1,5 @@
+<map id="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.GetActiveWatchedApplications" name="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.GetActiveWatchedApplications">
+<area shape="rect" id="node1" title="Gets all the WatchedApplication objects whose state is active and converts them to WatchedApplication..." alt="" coords="5,5,276,61"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#a8e249c1f527e576165abc27a9a46041f" title="Gets all the WatchedApplication objects that Chami is currently listening to." alt="" coords="324,5,584,61"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="632,13,853,54"/>
+</map>

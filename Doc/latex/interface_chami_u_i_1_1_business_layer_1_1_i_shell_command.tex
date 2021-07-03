@@ -1,0 +1,90 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+IShell\+Command Interface Reference}
+\label{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command}\index{ChamiUI.BusinessLayer.IShellCommand@{ChamiUI.BusinessLayer.IShellCommand}}
+
+
+Interface for executing shell commands for use by \doxyref{Cmd\+Executor\+Base}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base}.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+IShell\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ Execute} ()
+\begin{DoxyCompactList}\small\item\em Execute a shell command synchronously. \end{DoxyCompactList}\item 
+Task \textbf{ Execute\+Async} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress, float percentage, Cancellation\+Token cancellation\+Token)
+\begin{DoxyCompactList}\small\item\em Execute a shell command asynchronously. Can optionally report progress to caller. Can be cancelled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface for executing shell commands for use by \doxyref{Cmd\+Executor\+Base}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base}. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command_a6dcb9c9ac2e678896175cc0bccbc3f9c}} 
+\index{ChamiUI.BusinessLayer.IShellCommand@{ChamiUI.BusinessLayer.IShellCommand}!Execute@{Execute}}
+\index{Execute@{Execute}!ChamiUI.BusinessLayer.IShellCommand@{ChamiUI.BusinessLayer.IShellCommand}}
+\doxysubsubsection{Execute()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+IShell\+Command.\+Execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Execute a shell command synchronously. 
+
+
+
+Implemented in \textbf{ Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_a90dfdd0a479cb8c11b708eb49c554fbe}, \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_a25a9d6eca966c8d3de79fe5e4b25611e}, and \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_af9f4f966515963abe6518003df3b5225}.
+
+\mbox{\label{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command_a2a8f4b146a27d3332688388844bfe67a}} 
+\index{ChamiUI.BusinessLayer.IShellCommand@{ChamiUI.BusinessLayer.IShellCommand}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!ChamiUI.BusinessLayer.IShellCommand@{ChamiUI.BusinessLayer.IShellCommand}}
+\doxysubsubsection{ExecuteAsync()}
+{\footnotesize\ttfamily Task Chami\+UI.\+Business\+Layer.\+IShell\+Command.\+Execute\+Async (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress,  }\item[{float}]{percentage,  }\item[{Cancellation\+Token}]{cancellation\+Token }\end{DoxyParamCaption})}
+
+
+
+Execute a shell command asynchronously. Can optionally report progress to caller. Can be cancelled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em progress} & Object to report progress to caller.\\
+\hline
+{\em percentage} & Execution percentage. Used by \doxyref{Cmd\+Executor\+Base}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base} for progress reporting.\\
+\hline
+{\em cancellation\+Token} & Allows cancelling the task.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Asynchronous method.
+\end{DoxyReturn}
+\begin{DoxySeeAlso}{See also}
+IProgress$<$\+T$>$
+
+
+\end{DoxySeeAlso}
+
+
+Implemented in \textbf{ Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ac03c3d91fa58422eed187405d33a2ff7}, \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Removal\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command_ae09c4ec22e8ee3b4c27bda38f6e69ab1}, and \textbf{ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_ac4fac2aa8ba53e57f0704cd6dd233a7d}.
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_chami_u_i_1_1_business_layer_1_1_i_shell_command_a2a8f4b146a27d3332688388844bfe67a_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\textbf{ IShell\+Command.\+cs}\end{DoxyCompactItemize}

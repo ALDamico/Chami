@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Factories.EnvironmentReaderFactory.GetEnvironmentReaderByExtension" name="ChamiUI.BusinessLayer.Factories.EnvironmentReaderFactory.GetEnvironmentReaderByExtension">
+<area shape="rect" id="node1" title="Returns the appropriate IEnvironmentReader&lt;TOut&gt; based on the extension of the input file." alt="" coords="291,5,565,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#afb0af58c8987bb6d817ae55a4592f875" title=" " alt="" coords="5,5,243,61"/>
+</map>

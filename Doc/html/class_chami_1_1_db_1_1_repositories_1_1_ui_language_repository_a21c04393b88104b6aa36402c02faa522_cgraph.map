@@ -1,0 +1,4 @@
+<map id="Chami.Db.Repositories.UiLanguageRepository.GetUiLanguageByCode" name="Chami.Db.Repositories.UiLanguageRepository.GetUiLanguageByCode">
+<area shape="rect" id="node1" title="Gets a UiLanguage with the requested code." alt="" coords="5,5,239,61"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="287,13,508,54"/>
+</map>

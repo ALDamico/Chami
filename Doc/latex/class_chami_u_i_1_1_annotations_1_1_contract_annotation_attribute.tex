@@ -1,0 +1,103 @@
+\doxysection{Chami\+UI.\+Annotations.\+Contract\+Annotation\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_contract_annotation_attribute}\index{ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}}
+
+
+Describes dependency between method input and output.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Contract\+Annotation\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{class_chami_u_i_1_1_annotations_1_1_contract_annotation_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Contract\+Annotation\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{class_chami_u_i_1_1_annotations_1_1_contract_annotation_attribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Contract\+Annotation\+Attribute} ([Not\+Null] string contract)
+\item 
+\textbf{ Contract\+Annotation\+Attribute} ([Not\+Null] string contract, bool force\+Full\+States)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Contract}\hspace{0.3cm}{\ttfamily  [get]}
+\item 
+bool \textbf{ Force\+Full\+States}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Describes dependency between method input and output. 
+
+$<$syntax$>$ 
+
+Function Definition Table syntax\+:
+
+
+\begin{DoxyItemize}
+\item FDT \+::= FDTRow [;FDTRow]$\ast$ 
+\item FDTRow \+::= Input =$>$ Output $\vert$ Output $<$= Input 
+\item Input \+::= Parameter\+Name\+: Value [, Input]$\ast$ 
+\item Output \+::= [Parameter\+Name\+: Value]$\ast$ \{halt$\vert$stop$\vert$void$\vert$nothing$\vert$\+Value\} 
+\item Value \+::= true $\vert$ false $\vert$ null $\vert$ notnull $\vert$ canbenull 
+\end{DoxyItemize}If the method has a single input parameter, its name could be omitted.~\newline
+ Using {\ttfamily halt} (or {\ttfamily void}/{\ttfamily nothing}, which is the same) for the method output means that the method doesn\textquotesingle{}t return normally (throws or terminates the process).~\newline
+ Value {\ttfamily canbenull} is only applicable for output parameters.~\newline
+ You can use multiple {\ttfamily [Contract\+Annotation]} for each FDT row, or use single attribute with rows separated by semicolon. There is no notion of order rows, all rows are checked for applicability and applied per each program state tracked by the analysis engine.~\newline
+ $<$/syntax$>$ $<$examples$>$
+\begin{DoxyItemize}
+\item {\ttfamily  [Contract\+Annotation(\char`\"{}=> halt\char`\"{})] public void Termination\+Method() } 
+\item {\ttfamily  [Contract\+Annotation(\char`\"{}null <= param\+:null\char`\"{})] // reverse condition syntax public string Get\+Name(string surname) } 
+\item {\ttfamily  [Contract\+Annotation(\char`\"{}s\+:null => true\char`\"{})] public bool Is\+Null\+Or\+Empty(string s) // string.\+Is\+Null\+Or\+Empty() } 
+\item {\ttfamily  // A method that returns null if the parameter is null, // and not null if the parameter is not null [Contract\+Annotation(\char`\"{}null => null; notnull => notnull\char`\"{})] public object Transform(object data) } 
+\item {\ttfamily  [Contract\+Annotation(\char`\"{}=> true, result\+: notnull; => false, result\+: null\char`\"{})] public bool Try\+Parse(string s, out Person result) } 
+\end{DoxyItemize}$<$/examples$>$ 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_contract_annotation_attribute_a39515f2516b82edee8e9bd24dd47aa5c}} 
+\index{ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}!ContractAnnotationAttribute@{ContractAnnotationAttribute}}
+\index{ContractAnnotationAttribute@{ContractAnnotationAttribute}!ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}}
+\doxysubsubsection{ContractAnnotationAttribute()\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Contract\+Annotation\+Attribute.\+Contract\+Annotation\+Attribute (\begin{DoxyParamCaption}\item[{[\+Not\+Null] string}]{contract }\end{DoxyParamCaption})}
+
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_contract_annotation_attribute_aaa052e46e549f7ed293274041141b75c}} 
+\index{ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}!ContractAnnotationAttribute@{ContractAnnotationAttribute}}
+\index{ContractAnnotationAttribute@{ContractAnnotationAttribute}!ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}}
+\doxysubsubsection{ContractAnnotationAttribute()\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Contract\+Annotation\+Attribute.\+Contract\+Annotation\+Attribute (\begin{DoxyParamCaption}\item[{[\+Not\+Null] string}]{contract,  }\item[{bool}]{force\+Full\+States }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_contract_annotation_attribute_a8e686a2da298fa79ddb6dae5a48d0bf4}} 
+\index{ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}!Contract@{Contract}}
+\index{Contract@{Contract}!ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}}
+\doxysubsubsection{Contract}
+{\footnotesize\ttfamily string Chami\+UI.\+Annotations.\+Contract\+Annotation\+Attribute.\+Contract\hspace{0.3cm}{\ttfamily [get]}}
+
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_contract_annotation_attribute_afa0d92863607af0277a53ab31a0a0fc9}} 
+\index{ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}!ForceFullStates@{ForceFullStates}}
+\index{ForceFullStates@{ForceFullStates}!ChamiUI.Annotations.ContractAnnotationAttribute@{ChamiUI.Annotations.ContractAnnotationAttribute}}
+\doxysubsubsection{ForceFullStates}
+{\footnotesize\ttfamily bool Chami\+UI.\+Annotations.\+Contract\+Annotation\+Attribute.\+Force\+Full\+States\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

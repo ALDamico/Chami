@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter.GetSettings" name="ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter.GetSettings">
+<area shape="rect" id="node1" title="Retrieves settings from the datastore and converts them to an instance of SettingsViewModel" alt="" coords="5,5,227,47"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a5b018162e225a69ee2cc15a38f1eda9c" title="Converts the Setting entities to a suitable SettingsViewModel that the presentation layer can use by ..." alt="" coords="275,5,497,47"/>
+</map>

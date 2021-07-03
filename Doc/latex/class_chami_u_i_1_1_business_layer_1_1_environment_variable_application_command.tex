@@ -1,0 +1,115 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command}\index{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand@{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand}}
+
+
+A command that creates (persistently) a new environment variable or updates its value if it already exists.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+override void \textbf{ Execute} ()
+\begin{DoxyCompactList}\small\item\em Execute the shell command. \end{DoxyCompactList}\item 
+override async Task \textbf{ Execute\+Async} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress, float percentage, Cancellation\+Token cancellation\+Token)
+\begin{DoxyCompactList}\small\item\em Executes the shell command asynchronously. Optionally reports progress. Can be canceled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+Variable\+View\+Model} \textbf{ Environment\+Variable}\hspace{0.3cm}{\ttfamily  [get, set]}
+\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+A command that creates (persistently) a new environment variable or updates its value if it already exists. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_af9f4f966515963abe6518003df3b5225}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand@{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand}!Execute@{Execute}}
+\index{Execute@{Execute}!ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand@{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand}}
+\doxysubsubsection{Execute()}
+{\footnotesize\ttfamily override void Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command.\+Execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Execute the shell command. 
+
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_a90dfdd0a479cb8c11b708eb49c554fbe}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_af9f4f966515963abe6518003df3b5225_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_ac4fac2aa8ba53e57f0704cd6dd233a7d}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand@{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand@{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand}}
+\doxysubsubsection{ExecuteAsync()}
+{\footnotesize\ttfamily override async Task Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command.\+Execute\+Async (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress,  }\item[{float}]{percentage,  }\item[{Cancellation\+Token}]{cancellation\+Token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes the shell command asynchronously. Optionally reports progress. Can be canceled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em progress} & Notifies caller of progress.\\
+\hline
+{\em percentage} & The progress percentage.\\
+\hline
+{\em cancellation\+Token} & Allows task cancellation.\\
+\hline
+\end{DoxyParams}
+
+
+Implements \textbf{ Chami\+UI.\+Business\+Layer.\+Shell\+Command\+Base} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_shell_command_base_ac03c3d91fa58422eed187405d33a2ff7}.
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_ac4fac2aa8ba53e57f0704cd6dd233a7d_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command_aa2082d544cb1ecde971935d6772c935e}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand@{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand}!EnvironmentVariable@{EnvironmentVariable}}
+\index{EnvironmentVariable@{EnvironmentVariable}!ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand@{ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand}}
+\doxysubsubsection{EnvironmentVariable}
+{\footnotesize\ttfamily \textbf{ Environment\+Variable\+View\+Model} Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Application\+Command.\+Environment\+Variable\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\textbf{ Environment\+Variable\+Application\+Command.\+cs}\end{DoxyCompactItemize}

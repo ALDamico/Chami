@@ -1,0 +1,9 @@
+<map id="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.SaveWatchedApplications" name="ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.SaveWatchedApplications">
+<area shape="rect" id="node1" title="Converts a WatchedApplicationViewModel to a WatchedApplication entity and inserts it if it&#39;s not yet ..." alt="" coords="5,60,248,116"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#a348990258517fe1502725f57c0316828" title="Converts a WatchedApplicationViewModel to WatchedApplication and inserts it in the datastore." alt="" coords="300,20,547,76"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#aa671ccdd9a1ee5642c14cac43598bac7" title="Converts a WatchedApplicationViewModel object to a WatchedApplication entity and updates the correspo..." alt="" coords="296,100,551,156"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#a76bafe1db158bb6a0e96fcd189849234" title="Inserts a new WatchedApplication object in the database." alt="" coords="599,20,835,76"/>
+<area shape="rect" id="node4" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="1188,34,1409,76"/>
+<area shape="rect" id="node5" href="$class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#a335525bdb6cf16e6dadd1b4ae31d28a0" title="Gets the WatchedApplication with the specified name." alt="" coords="899,27,1124,83"/>
+<area shape="rect" id="node7" href="$class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#ac55a7c67c60ad2907da3b831c11fb094" title="Updates an existing WatchedApplication object in the database." alt="" coords="883,108,1140,149"/>
+</map>

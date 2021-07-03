@@ -1,0 +1,7 @@
+<map id="ChamiUI.BusinessLayer.IShellCommand.ExecuteAsync" name="ChamiUI.BusinessLayer.IShellCommand.ExecuteAsync">
+<area shape="rect" id="node1" title="Execute a shell command asynchronously. Can optionally report progress to caller. Can be cancelled." alt="" coords="576,93,773,134"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a1110ef9223794a210295d568db55776a" title=" " alt="" coords="291,45,528,101"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aab5b7bf465e97c1bfde8ca1578c341ec" title=" " alt="" coords="291,125,528,181"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a2473a863e87208858e84253fc61e8f2d" title=" " alt="" coords="5,5,243,61"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aaa056c4e9054aaec3a04f71fa04997ba" title=" " alt="" coords="5,85,243,141"/>
+</map>

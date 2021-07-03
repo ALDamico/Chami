@@ -1,0 +1,21 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" title=" " alt="" coords="5,467,249,509"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_controls_1_1_application_detector_control.html" title="This is the control in the Settings window that enables the user to detect if some application is run..." alt="" coords="327,369,518,410"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html" title="This is the control that allows the user to customize the console in the main window." alt="" coords="335,434,510,475"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_controls_1_1_file_input_box.html" title="A control for selecting a file to save." alt="" coords="323,5,522,32"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_controls_1_1_file_picker.html" title="FilePicker" alt="" coords="330,56,515,83"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_controls_1_1_language_selector_control.html" title="The control for changing the application language." alt="" coords="331,107,514,149"/>
+<area shape="rect" id="node7" href="$class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html" title="Control for managing the logging settings of the Chami application." alt="" coords="337,173,509,214"/>
+<area shape="rect" id="node8" href="$class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html" title="MinimizationBehaviourControl" alt="" coords="323,238,523,279"/>
+<area shape="rect" id="node9" href="$class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html" title="Control for managing safety. Currently unused and non functional." alt="" coords="323,303,523,345"/>
+<area shape="rect" id="node10" href="$class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html" title="AboutBox" alt="" coords="326,891,519,933"/>
+<area shape="rect" id="node11" href="$class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html" title="ExportWindow" alt="" coords="313,957,533,998"/>
+<area shape="rect" id="node12" href="$class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html" title="ImportEnvironmentWindow" alt="" coords="303,499,542,541"/>
+<area shape="rect" id="node13" href="$class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html" title="MainWindow" alt="" coords="317,565,528,606"/>
+<area shape="rect" id="node14" href="$class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html" title="NewEnvironmentWindow" alt="" coords="309,630,537,671"/>
+<area shape="rect" id="node15" href="$class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html" title="NewTemplateWindow" alt="" coords="317,695,528,737"/>
+<area shape="rect" id="node16" href="$class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html" title="RenameEnvironmentWindow" alt="" coords="297,761,548,802"/>
+<area shape="rect" id="node17" href="$class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html" title="SettingsWindow" alt="" coords="333,826,513,867"/>
+<area shape="rect" id="node18" title=" " alt="" coords="37,206,217,247"/>
+<area shape="rect" id="node19" title=" " alt="" coords="40,735,215,761"/>
+</map>

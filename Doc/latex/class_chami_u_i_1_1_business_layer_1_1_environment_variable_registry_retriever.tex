@@ -1,0 +1,58 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Registry\+Retriever Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever}\index{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever@{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever}}
+
+
+Retrieves information about environment variables using the \doxyref{Windows}{p.}{namespace_chami_u_i_1_1_windows} registry.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Dictionary$<$ string, string $>$ \textbf{ Get\+Environment\+Variables} ()
+\begin{DoxyCompactList}\small\item\em Gets all environment variables as a Dictionary$<$\+TKey,\+TValue$>$-\/ \end{DoxyCompactList}\item 
+string \textbf{ Get\+Environment\+Variable} (string name)
+\begin{DoxyCompactList}\small\item\em Gets the value of a single environment variable by its name. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Retrieves information about environment variables using the \doxyref{Windows}{p.}{namespace_chami_u_i_1_1_windows} registry. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever_ab908ece50d9ef9dd04bc9142b01d20f6}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever@{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever}!GetEnvironmentVariable@{GetEnvironmentVariable}}
+\index{GetEnvironmentVariable@{GetEnvironmentVariable}!ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever@{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever}}
+\doxysubsubsection{GetEnvironmentVariable()}
+{\footnotesize\ttfamily string Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Registry\+Retriever.\+Get\+Environment\+Variable (\begin{DoxyParamCaption}\item[{string}]{name }\end{DoxyParamCaption})}
+
+
+
+Gets the value of a single environment variable by its name. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name} & The name of the environment variable to retrieve.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If a value is found, returns the corresponding value, otherwise null.
+\end{DoxyReturn}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever_ad5713ad0e01885da11e52cfc8b44ebfc}} 
+\index{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever@{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever}!GetEnvironmentVariables@{GetEnvironmentVariables}}
+\index{GetEnvironmentVariables@{GetEnvironmentVariables}!ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever@{ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever}}
+\doxysubsubsection{GetEnvironmentVariables()}
+{\footnotesize\ttfamily Dictionary$<$string, string$>$ Chami\+UI.\+Business\+Layer.\+Environment\+Variable\+Registry\+Retriever.\+Get\+Environment\+Variables (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all environment variables as a Dictionary$<$\+TKey,\+TValue$>$-\/ 
+
+\begin{DoxyReturn}{Returns}
+A Dictionary$<$\+TKey,\+TValue$>$ where the key is the variable name and the value is the variable value.
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\textbf{ Environment\+Variable\+Registry\+Retriever.\+cs}\end{DoxyCompactItemize}

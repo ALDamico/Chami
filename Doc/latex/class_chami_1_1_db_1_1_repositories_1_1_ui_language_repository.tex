@@ -1,0 +1,131 @@
+\doxysection{Chami.\+Db.\+Repositories.\+Ui\+Language\+Repository Class Reference}
+\label{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository}\index{Chami.Db.Repositories.UiLanguageRepository@{Chami.Db.Repositories.UiLanguageRepository}}
+
+
+Performs CRUD operations on the Ui\+Language aggregate.  
+
+
+
+
+Inheritance diagram for Chami.\+Db.\+Repositories.\+Ui\+Language\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami.\+Db.\+Repositories.\+Ui\+Language\+Repository\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=208pt]{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Ui\+Language\+Repository} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Ui\+Language\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository} with the requested connection string. \end{DoxyCompactList}\item 
+IEnumerable$<$ \textbf{ Ui\+Language} $>$ \textbf{ Get\+All\+Ui\+Languages} ()
+\begin{DoxyCompactList}\small\item\em Gets all the Ui\+Languages available to the \doxyref{Chami}{p.}{namespace_chami} application. \end{DoxyCompactList}\item 
+\textbf{ Ui\+Language} \textbf{ Get\+Ui\+Language\+By\+Code} (string code)
+\begin{DoxyCompactList}\small\item\em Gets a Ui\+Language with the requested code. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+
+
+\doxysubsection{Detailed Description}
+Performs CRUD operations on the Ui\+Language aggregate. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository_abb5ab8d71f7672e58f455adf11bb0bf6}} 
+\index{Chami.Db.Repositories.UiLanguageRepository@{Chami.Db.Repositories.UiLanguageRepository}!UiLanguageRepository@{UiLanguageRepository}}
+\index{UiLanguageRepository@{UiLanguageRepository}!Chami.Db.Repositories.UiLanguageRepository@{Chami.Db.Repositories.UiLanguageRepository}}
+\doxysubsubsection{UiLanguageRepository()}
+{\footnotesize\ttfamily Chami.\+Db.\+Repositories.\+Ui\+Language\+Repository.\+Ui\+Language\+Repository (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Ui\+Language\+Repository}{p.}{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository} with the requested connection string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & The connection string to connect to the database.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository_ad6bd095e3d28210168a6c5ef2ac6b2bf}} 
+\index{Chami.Db.Repositories.UiLanguageRepository@{Chami.Db.Repositories.UiLanguageRepository}!GetAllUiLanguages@{GetAllUiLanguages}}
+\index{GetAllUiLanguages@{GetAllUiLanguages}!Chami.Db.Repositories.UiLanguageRepository@{Chami.Db.Repositories.UiLanguageRepository}}
+\doxysubsubsection{GetAllUiLanguages()}
+{\footnotesize\ttfamily IEnumerable$<$\textbf{ Ui\+Language}$>$ Chami.\+Db.\+Repositories.\+Ui\+Language\+Repository.\+Get\+All\+Ui\+Languages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the Ui\+Languages available to the \doxyref{Chami}{p.}{namespace_chami} application. 
+
+\begin{DoxyReturn}{Returns}
+An IEnumerable$<$\+T$>$ with all the available Ui\+Languages.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository_ad6bd095e3d28210168a6c5ef2ac6b2bf_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository_ad6bd095e3d28210168a6c5ef2ac6b2bf_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository_a21c04393b88104b6aa36402c02faa522}} 
+\index{Chami.Db.Repositories.UiLanguageRepository@{Chami.Db.Repositories.UiLanguageRepository}!GetUiLanguageByCode@{GetUiLanguageByCode}}
+\index{GetUiLanguageByCode@{GetUiLanguageByCode}!Chami.Db.Repositories.UiLanguageRepository@{Chami.Db.Repositories.UiLanguageRepository}}
+\doxysubsubsection{GetUiLanguageByCode()}
+{\footnotesize\ttfamily \textbf{ Ui\+Language} Chami.\+Db.\+Repositories.\+Ui\+Language\+Repository.\+Get\+Ui\+Language\+By\+Code (\begin{DoxyParamCaption}\item[{string}]{code }\end{DoxyParamCaption})}
+
+
+
+Gets a Ui\+Language with the requested code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The ISO-\/639 code of the requested language.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If a suitable Ui\+Language exists in the database, returns it. Otherwise, null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository_a21c04393b88104b6aa36402c02faa522_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository_a21c04393b88104b6aa36402c02faa522_icgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+Db\+Migrations/\+Repositories/\textbf{ Ui\+Language\+Repository.\+cs}\end{DoxyCompactItemize}

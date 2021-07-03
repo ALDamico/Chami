@@ -1,0 +1,4 @@
+<map id="Chami.Db.Entities.WatchedApplication" name="Chami.Db.Entities.WatchedApplication">
+<area shape="rect" id="node1" title="Represents a row in the WatchedApplications table. These are the names of the applications that Chami..." alt="" coords="5,80,188,121"/>
+<area shape="rect" id="node2" href="$interface_chami_1_1_db_1_1_entities_1_1_i_chami_entity.html" title="Marker interface for all Chami entities." alt="" coords="49,5,145,32"/>
+</map>

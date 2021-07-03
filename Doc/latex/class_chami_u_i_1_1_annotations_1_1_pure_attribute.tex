@@ -1,0 +1,46 @@
+\doxysection{Chami\+UI.\+Annotations.\+Pure\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_pure_attribute}\index{ChamiUI.Annotations.PureAttribute@{ChamiUI.Annotations.PureAttribute}}
+
+
+Indicates that a method does not make any observable state changes. The same as {\ttfamily System.\+Diagnostics.\+Contracts.\+Pure\+Attribute}.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Pure\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_chami_u_i_1_1_annotations_1_1_pure_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Pure\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{class_chami_u_i_1_1_annotations_1_1_pure_attribute__coll__graph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Indicates that a method does not make any observable state changes. The same as {\ttfamily System.\+Diagnostics.\+Contracts.\+Pure\+Attribute}. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[Pure] \textcolor{keywordtype}{int} Multiply(\textcolor{keywordtype}{int} x, \textcolor{keywordtype}{int} y) => x * y;}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{void} M() \{}
+\DoxyCodeLine{  Multiply(123, 42); \textcolor{comment}{// Warning: Return value of pure method is not used}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

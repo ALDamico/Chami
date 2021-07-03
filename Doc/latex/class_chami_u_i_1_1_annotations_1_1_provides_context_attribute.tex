@@ -1,0 +1,49 @@
+\doxysection{Chami\+UI.\+Annotations.\+Provides\+Context\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_provides_context_attribute}\index{ChamiUI.Annotations.ProvidesContextAttribute@{ChamiUI.Annotations.ProvidesContextAttribute}}
+
+
+Indicates the type member or parameter of some type, that should be used instead of all other ways to get the value of that type. This annotation is useful when you have some \char`\"{}context\char`\"{} value evaluated and stored somewhere, meaning that all other ways to get this value must be consolidated with existing one.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Provides\+Context\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{class_chami_u_i_1_1_annotations_1_1_provides_context_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Provides\+Context\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=228pt]{class_chami_u_i_1_1_annotations_1_1_provides_context_attribute__coll__graph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+Indicates the type member or parameter of some type, that should be used instead of all other ways to get the value of that type. This annotation is useful when you have some \char`\"{}context\char`\"{} value evaluated and stored somewhere, meaning that all other ways to get this value must be consolidated with existing one. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{class }Foo \{}
+\DoxyCodeLine{  [ProvidesContext] IBarService \_barService = ...;}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keywordtype}{void} ProcessNode(INode node) \{}
+\DoxyCodeLine{    DoSomething(node, node.GetGlobalServices().Bar);}
+\DoxyCodeLine{    \textcolor{comment}{//              \string^ Warning: use value of '\_barService' field}}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

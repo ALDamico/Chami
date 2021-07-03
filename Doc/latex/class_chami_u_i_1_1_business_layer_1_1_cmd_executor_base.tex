@@ -1,0 +1,124 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Cmd\+Executor\+Base Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base}\index{ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}}
+
+
+Base class for executing queues of \doxyref{Windows}{p.}{namespace_chami_u_i_1_1_windows} shell commands.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+Cmd\+Executor\+Base\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Cmd\+Executor\+Base} ()
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Cmd\+Executor}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor} object and initializes its command queue. \end{DoxyCompactList}\item 
+void \textbf{ Add\+Command} (\textbf{ IShell\+Command} command)
+\begin{DoxyCompactList}\small\item\em Adds a new command to the queue. \end{DoxyCompactList}\item 
+virtual void \textbf{ Execute} ()
+\begin{DoxyCompactList}\small\item\em Executes all commands in the \doxyref{Command\+Queue}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a9748b158e75e8b1a0fb25f4cf330bea3} synchronously and removes them from the data structure. \end{DoxyCompactList}\item 
+virtual async Task \textbf{ Execute\+Async} (IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$ progress, Cancellation\+Token cancellation\+Token)
+\begin{DoxyCompactList}\small\item\em Executes all commands in the \doxyref{Command\+Queue}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a9748b158e75e8b1a0fb25f4cf330bea3} asynchronously and removes them from the data structure. Optionally, notifies of progress. Can be canceled. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+Queue$<$ \textbf{ IShell\+Command} $>$ \textbf{ Command\+Queue}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em The sequence of commands to execute. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class for executing queues of \doxyref{Windows}{p.}{namespace_chami_u_i_1_1_windows} shell commands. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_ac2a3f53eee7c97a4e407e1e00c223d95}} 
+\index{ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}!CmdExecutorBase@{CmdExecutorBase}}
+\index{CmdExecutorBase@{CmdExecutorBase}!ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}}
+\doxysubsubsection{CmdExecutorBase()}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Cmd\+Executor\+Base.\+Cmd\+Executor\+Base (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Cmd\+Executor}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor} object and initializes its command queue. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a6220cacf68e8fbf5b388c99a65c6408a}} 
+\index{ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}!AddCommand@{AddCommand}}
+\index{AddCommand@{AddCommand}!ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}}
+\doxysubsubsection{AddCommand()}
+{\footnotesize\ttfamily void Chami\+UI.\+Business\+Layer.\+Cmd\+Executor\+Base.\+Add\+Command (\begin{DoxyParamCaption}\item[{\textbf{ IShell\+Command}}]{command }\end{DoxyParamCaption})}
+
+
+
+Adds a new command to the queue. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em command} & The command to add to the execution queue.\\
+\hline
+\end{DoxyParams}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a4439737e192e7c06822e5cbbd04a7b3d}} 
+\index{ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}!Execute@{Execute}}
+\index{Execute@{Execute}!ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}}
+\doxysubsubsection{Execute()}
+{\footnotesize\ttfamily virtual void Chami\+UI.\+Business\+Layer.\+Cmd\+Executor\+Base.\+Execute (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes all commands in the \doxyref{Command\+Queue}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a9748b158e75e8b1a0fb25f4cf330bea3} synchronously and removes them from the data structure. 
+
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a07cc39ee56c5f3f960284ffa389ea467}} 
+\index{ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}!ExecuteAsync@{ExecuteAsync}}
+\index{ExecuteAsync@{ExecuteAsync}!ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}}
+\doxysubsubsection{ExecuteAsync()}
+{\footnotesize\ttfamily virtual async Task Chami\+UI.\+Business\+Layer.\+Cmd\+Executor\+Base.\+Execute\+Async (\begin{DoxyParamCaption}\item[{IProgress$<$ \textbf{ Cmd\+Executor\+Progress} $>$}]{progress,  }\item[{Cancellation\+Token}]{cancellation\+Token }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+
+
+Executes all commands in the \doxyref{Command\+Queue}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a9748b158e75e8b1a0fb25f4cf330bea3} asynchronously and removes them from the data structure. Optionally, notifies of progress. Can be canceled. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em progress} & Notifies its caller of progress.\\
+\hline
+{\em cancellation\+Token} & Enables canceling\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+IProgress$<$\+T$>$
+
+
+\end{DoxySeeAlso}
+~\newline
+ 
+
+Reimplemented in \textbf{ Chami\+UI.\+Business\+Layer.\+Cmd\+Executor} \doxyref{}{p.}{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_af734e5462c3be440ad70dda0b88f64c7}.
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base_a9748b158e75e8b1a0fb25f4cf330bea3}} 
+\index{ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}!CommandQueue@{CommandQueue}}
+\index{CommandQueue@{CommandQueue}!ChamiUI.BusinessLayer.CmdExecutorBase@{ChamiUI.BusinessLayer.CmdExecutorBase}}
+\doxysubsubsection{CommandQueue}
+{\footnotesize\ttfamily Queue$<$\textbf{ IShell\+Command}$>$ Chami\+UI.\+Business\+Layer.\+Cmd\+Executor\+Base.\+Command\+Queue\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [protected]}}
+
+
+
+The sequence of commands to execute. 
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\textbf{ Cmd\+Executor\+Base.\+cs}\end{DoxyCompactItemize}

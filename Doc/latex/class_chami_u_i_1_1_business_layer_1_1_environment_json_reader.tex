@@ -1,0 +1,108 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Environment\+Json\+Reader Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader}\index{ChamiUI.BusinessLayer.EnvironmentJsonReader@{ChamiUI.BusinessLayer.EnvironmentJsonReader}}
+
+
+Reads environments from a JSON file.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Business\+Layer.\+Environment\+Json\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Business\+Layer.\+Environment\+Json\+Reader\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=257pt]{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Environment\+Json\+Reader} (string input\+File)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Environment\+Json\+Reader}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader} object and initializes its internal stream. \end{DoxyCompactList}\item 
+\textbf{ Environment\+View\+Model} \textbf{ Process} ()
+\begin{DoxyCompactList}\small\item\em Reads a JSON file containing a single environment using the Environment\+View\+Model\+Json\+Converter. \end{DoxyCompactList}\item 
+ICollection$<$ \textbf{ Environment\+View\+Model} $>$ \textbf{ Process\+Multiple} ()
+\begin{DoxyCompactList}\small\item\em Reads a JSON file containing an array of environments using the Environment\+View\+Model\+Json\+Converter. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Reads environments from a JSON file. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader_a93dea1aeac5e3f7f929aa992eb95ef35}} 
+\index{ChamiUI.BusinessLayer.EnvironmentJsonReader@{ChamiUI.BusinessLayer.EnvironmentJsonReader}!EnvironmentJsonReader@{EnvironmentJsonReader}}
+\index{EnvironmentJsonReader@{EnvironmentJsonReader}!ChamiUI.BusinessLayer.EnvironmentJsonReader@{ChamiUI.BusinessLayer.EnvironmentJsonReader}}
+\doxysubsubsection{EnvironmentJsonReader()}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Environment\+Json\+Reader.\+Environment\+Json\+Reader (\begin{DoxyParamCaption}\item[{string}]{input\+File }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Environment\+Json\+Reader}{p.}{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader} object and initializes its internal stream. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em input\+File} & \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader_a42a372363e50b4ae9e46252dabfa8f88}} 
+\index{ChamiUI.BusinessLayer.EnvironmentJsonReader@{ChamiUI.BusinessLayer.EnvironmentJsonReader}!Process@{Process}}
+\index{Process@{Process}!ChamiUI.BusinessLayer.EnvironmentJsonReader@{ChamiUI.BusinessLayer.EnvironmentJsonReader}}
+\doxysubsubsection{Process()}
+{\footnotesize\ttfamily \textbf{ Environment\+View\+Model} Chami\+UI.\+Business\+Layer.\+Environment\+Json\+Reader.\+Process (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a JSON file containing a single environment using the Environment\+View\+Model\+Json\+Converter. 
+
+\begin{DoxyReturn}{Returns}
+An Environment\+View\+Model constructed using the information read in the input file.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Null\+Reference\+Exception} & If the private stream is null, an exception is thrown.\\
+\hline
+\end{DoxyExceptions}
+\begin{DoxySeeAlso}{See also}
+Environment\+View\+Model\+Json\+Converter
+
+
+\end{DoxySeeAlso}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_environment_json_reader_a44da95910e66f3287d93dbe5cc396db4}} 
+\index{ChamiUI.BusinessLayer.EnvironmentJsonReader@{ChamiUI.BusinessLayer.EnvironmentJsonReader}!ProcessMultiple@{ProcessMultiple}}
+\index{ProcessMultiple@{ProcessMultiple}!ChamiUI.BusinessLayer.EnvironmentJsonReader@{ChamiUI.BusinessLayer.EnvironmentJsonReader}}
+\doxysubsubsection{ProcessMultiple()}
+{\footnotesize\ttfamily ICollection$<$\textbf{ Environment\+View\+Model}$>$ Chami\+UI.\+Business\+Layer.\+Environment\+Json\+Reader.\+Process\+Multiple (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Reads a JSON file containing an array of environments using the Environment\+View\+Model\+Json\+Converter. 
+
+\begin{DoxyReturn}{Returns}
+A List$<$\+T$>$ of Environment\+View\+Models.
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em Null\+Reference\+Exception} & If the private stream is null, an exception is thrown.\\
+\hline
+\end{DoxyExceptions}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\textbf{ Environment\+Json\+Reader.\+cs}\end{DoxyCompactItemize}

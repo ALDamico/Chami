@@ -1,0 +1,4 @@
+<map id="Chami.Db.Entities.Environment" name="Chami.Db.Entities.Environment">
+<area shape="rect" id="node1" title="Represents a set of EnvironmentVariables that belong together." alt="" coords="5,80,208,107"/>
+<area shape="rect" id="node2" href="$interface_chami_1_1_db_1_1_entities_1_1_i_chami_entity.html" title="Marker interface for all Chami entities." alt="" coords="59,5,155,32"/>
+</map>

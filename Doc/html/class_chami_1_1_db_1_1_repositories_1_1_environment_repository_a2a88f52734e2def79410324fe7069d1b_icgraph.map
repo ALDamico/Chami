@@ -1,0 +1,12 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentById" name="Chami.Db.Repositories.EnvironmentRepository.GetEnvironmentById">
+<area shape="rect" id="node1" title="Gets the environment with the specified Id and its corresponding EnvironmentVariables." alt="" coords="941,159,1172,201"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html#afc7d9e8da99b8d223e919895b5905d17" title=" " alt="" coords="627,5,873,61"/>
+<area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a51f163e7319ae29c1f5afde5e9984523" title="Get the EnvironmentViewModel with the specified id." alt="" coords="607,86,893,127"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a84cee0a4430a1ffaf20733c34f5f6eab" title="Gets the Environment with the specified id." alt="" coords="619,152,881,208"/>
+<area shape="rect" id="node8" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a7f1e717e64ddc444dfc6ca15d7e52b7d" title="Updates the data associated with an Environment in the datastore." alt="" coords="635,233,865,274"/>
+<area shape="rect" id="node9" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a083fc406339cecc488cb8aee86748e47" title="Inserts an Environment in the datastore, or updates it if it&#39;s already present." alt="" coords="325,262,555,303"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a1110ef9223794a210295d568db55776a" title=" " alt="" coords="321,152,559,208"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a2473a863e87208858e84253fc61e8f2d" title=" " alt="" coords="21,101,258,157"/>
+<area shape="rect" id="node7" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aaa056c4e9054aaec3a04f71fa04997ba" title=" " alt="" coords="21,181,258,237"/>
+<area shape="rect" id="node10" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#abc9ba90c35e14c2e275e102291503a88" title="Converts an EnvironmentViewModel to an Environment entity and inserts it if it&#39;s not been persisted y..." alt="" coords="5,262,273,303"/>
+</map>

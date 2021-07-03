@@ -1,0 +1,89 @@
+\doxysection{Chami\+UI.\+Annotations.\+Value\+Provider\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_value_provider_attribute}\index{ChamiUI.Annotations.ValueProviderAttribute@{ChamiUI.Annotations.ValueProviderAttribute}}
+
+
+Use this annotation to specify a type that contains static or const fields with values for the annotated property/field/parameter. The specified type will be used to improve completion suggestions.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Value\+Provider\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_chami_u_i_1_1_annotations_1_1_value_provider_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Value\+Provider\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{class_chami_u_i_1_1_annotations_1_1_value_provider_attribute__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Value\+Provider\+Attribute} ([Not\+Null] string name)
+\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Name}\hspace{0.3cm}{\ttfamily  [get]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Use this annotation to specify a type that contains static or const fields with values for the annotated property/field/parameter. The specified type will be used to improve completion suggestions. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{namespace }TestNamespace}
+\DoxyCodeLine{\{}
+\DoxyCodeLine{  \textcolor{keyword}{public} \textcolor{keyword}{class }Constants}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{static} \textcolor{keywordtype}{int} INT\_CONST = 1;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keyword}{const} \textcolor{keywordtype}{string} STRING\_CONST = \textcolor{stringliteral}{"{}1"{}};}
+\DoxyCodeLine{  \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{  \textcolor{keyword}{public} \textcolor{keyword}{class }Class1}
+\DoxyCodeLine{  \{}
+\DoxyCodeLine{    [ValueProvider(\textcolor{stringliteral}{"{}TestNamespace.Constants"{}})] \textcolor{keyword}{public} \textcolor{keywordtype}{int} myField;}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} Foo([ValueProvider(\textcolor{stringliteral}{"{}TestNamespace.Constants"{}})] \textcolor{keywordtype}{string} str) \{ \}}
+\DoxyCodeLine{}
+\DoxyCodeLine{    \textcolor{keyword}{public} \textcolor{keywordtype}{void} Test()}
+\DoxyCodeLine{    \{}
+\DoxyCodeLine{      Foo(\textcolor{comment}{/*try completion here*\&zwj;/);//}}
+\DoxyCodeLine{\textcolor{comment}{      myField = /*try completion here*\&zwj;/}}
+\DoxyCodeLine{\textcolor{comment}{    \}}}
+\DoxyCodeLine{\textcolor{comment}{  \}}}
+\DoxyCodeLine{\textcolor{comment}{\}}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_value_provider_attribute_a23a4339976ef38ca260ea3e537785303}} 
+\index{ChamiUI.Annotations.ValueProviderAttribute@{ChamiUI.Annotations.ValueProviderAttribute}!ValueProviderAttribute@{ValueProviderAttribute}}
+\index{ValueProviderAttribute@{ValueProviderAttribute}!ChamiUI.Annotations.ValueProviderAttribute@{ChamiUI.Annotations.ValueProviderAttribute}}
+\doxysubsubsection{ValueProviderAttribute()}
+{\footnotesize\ttfamily Chami\+UI.\+Annotations.\+Value\+Provider\+Attribute.\+Value\+Provider\+Attribute (\begin{DoxyParamCaption}\item[{[\+Not\+Null] string}]{name }\end{DoxyParamCaption})}
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{class_chami_u_i_1_1_annotations_1_1_value_provider_attribute_a1f7a1ddcfbff0cf5473e008de48a1f7d}} 
+\index{ChamiUI.Annotations.ValueProviderAttribute@{ChamiUI.Annotations.ValueProviderAttribute}!Name@{Name}}
+\index{Name@{Name}!ChamiUI.Annotations.ValueProviderAttribute@{ChamiUI.Annotations.ValueProviderAttribute}}
+\doxysubsubsection{Name}
+{\footnotesize\ttfamily string Chami\+UI.\+Annotations.\+Value\+Provider\+Attribute.\+Name\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}

@@ -1,0 +1,9 @@
+<map id="Chami.Db.Repositories.EnvironmentRepository.UpsertEnvironment" name="Chami.Db.Repositories.EnvironmentRepository.UpsertEnvironment">
+<area shape="rect" id="node1" title="Inserts an Environment in the datastore, or updates it if it&#39;s already present." alt="" coords="5,83,236,124"/>
+<area shape="rect" id="node2" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a2a88f52734e2def79410324fe7069d1b" title="Gets the environment with the specified Id and its corresponding EnvironmentVariables." alt="" coords="563,5,793,47"/>
+<area shape="rect" id="node5" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a74e8079264f86aeb0fd2613ba72eb583" title="Inserts an Environment object in the datastore and its associated &lt;ses cref=&quot;EnvironmentVariable&quot;&gt;s." alt="" coords="284,115,515,156"/>
+<area shape="rect" id="node6" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a890bff10c65cf4b0f5d5db5d8d43ebbc" title="Inserts a new EnvironmentVariable object in the datastore." alt="" coords="563,173,793,215"/>
+<area shape="rect" id="node7" href="$class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a7f1e717e64ddc444dfc6ca15d7e52b7d" title="Updates the data associated with an Environment in the datastore." alt="" coords="284,49,515,91"/>
+<area shape="rect" id="node3" href="$class_chami_1_1_db_1_1_entities_1_1_environment.html#a2a45d4326b4cf2fabc0f4e5ae3ce5efd" title="Constructs a new Environment object with default values. These are: AddedOn: Current date and time...." alt="" coords="849,5,1055,47"/>
+<area shape="rect" id="node4" href="$class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e" title="Creates a new database connection and opens it." alt="" coords="841,92,1063,133"/>
+</map>

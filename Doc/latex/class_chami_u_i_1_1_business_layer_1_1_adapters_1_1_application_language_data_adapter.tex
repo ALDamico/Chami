@@ -1,0 +1,161 @@
+\doxysection{Chami\+UI.\+Business\+Layer.\+Adapters.\+Application\+Language\+Data\+Adapter Class Reference}
+\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter}\index{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}}
+
+
+Data adapter for Ui\+Language entities.  
+
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\textbf{ Application\+Language\+Data\+Adapter} (string connection\+String)
+\begin{DoxyCompactList}\small\item\em Constructs a new \doxyref{Application\+Language\+Data\+Adapter}{p.}{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter} object. \end{DoxyCompactList}\item 
+\textbf{ Application\+Language\+View\+Model} \textbf{ Get\+Application\+Language\+By\+Code} (string code)
+\begin{DoxyCompactList}\small\item\em Gets an Application\+Language\+View\+Model by its ISO-\/639 code. \end{DoxyCompactList}\item 
+IEnumerable$<$ \textbf{ Application\+Language\+View\+Model} $>$ \textbf{ Get\+All\+Application\+Languages} ()
+\begin{DoxyCompactList}\small\item\em Gets all the available Ui\+Language entities from the database, converts them to Application\+Language\+View\+Models, and returns them. \end{DoxyCompactList}\item 
+IEnumerable$<$ Culture\+Info $>$ \textbf{ Get\+All\+Available\+Culture\+Infos} ()
+\begin{DoxyCompactList}\small\item\em Gets all the Application\+Language\+View\+Models, converts them to Culture\+Info objects, and returns them as an IEnumerable$<$\+T$>$ \end{DoxyCompactList}\item 
+Culture\+Info \textbf{ Get\+Culture\+Info\+By\+Code} (string code)
+\begin{DoxyCompactList}\small\item\em Gets an Application\+Language\+View\+Model, converts them to a Culture\+Info, and returns it. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Data adapter for Ui\+Language entities. 
+
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a0ab695c12bfb1e1835277f9c7af2ada5}} 
+\index{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}!ApplicationLanguageDataAdapter@{ApplicationLanguageDataAdapter}}
+\index{ApplicationLanguageDataAdapter@{ApplicationLanguageDataAdapter}!ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}}
+\doxysubsubsection{ApplicationLanguageDataAdapter()}
+{\footnotesize\ttfamily Chami\+UI.\+Business\+Layer.\+Adapters.\+Application\+Language\+Data\+Adapter.\+Application\+Language\+Data\+Adapter (\begin{DoxyParamCaption}\item[{string}]{connection\+String }\end{DoxyParamCaption})}
+
+
+
+Constructs a new \doxyref{Application\+Language\+Data\+Adapter}{p.}{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em connection\+String} & The connection string for the internal Ui\+Language\+Repository.\\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a0a2df935d9c28b84aba919a059897cb4}} 
+\index{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}!GetAllApplicationLanguages@{GetAllApplicationLanguages}}
+\index{GetAllApplicationLanguages@{GetAllApplicationLanguages}!ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}}
+\doxysubsubsection{GetAllApplicationLanguages()}
+{\footnotesize\ttfamily IEnumerable$<$\textbf{ Application\+Language\+View\+Model}$>$ Chami\+UI.\+Business\+Layer.\+Adapters.\+Application\+Language\+Data\+Adapter.\+Get\+All\+Application\+Languages (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the available Ui\+Language entities from the database, converts them to Application\+Language\+View\+Models, and returns them. 
+
+\begin{DoxyReturn}{Returns}
+A (possibly empty) list of Application\+Language\+View\+Model objects.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a0a2df935d9c28b84aba919a059897cb4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a0a2df935d9c28b84aba919a059897cb4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_ae84588fcc07cfba0d2842c22aa6ede75}} 
+\index{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}!GetAllAvailableCultureInfos@{GetAllAvailableCultureInfos}}
+\index{GetAllAvailableCultureInfos@{GetAllAvailableCultureInfos}!ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}}
+\doxysubsubsection{GetAllAvailableCultureInfos()}
+{\footnotesize\ttfamily IEnumerable$<$Culture\+Info$>$ Chami\+UI.\+Business\+Layer.\+Adapters.\+Application\+Language\+Data\+Adapter.\+Get\+All\+Available\+Culture\+Infos (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Gets all the Application\+Language\+View\+Models, converts them to Culture\+Info objects, and returns them as an IEnumerable$<$\+T$>$ 
+
+\begin{DoxyReturn}{Returns}
+A list of all available Culture\+Info objects.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_ae84588fcc07cfba0d2842c22aa6ede75_cgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a7b2d68aad14d93caa2d36cfc5629b5b4}} 
+\index{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}!GetApplicationLanguageByCode@{GetApplicationLanguageByCode}}
+\index{GetApplicationLanguageByCode@{GetApplicationLanguageByCode}!ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}}
+\doxysubsubsection{GetApplicationLanguageByCode()}
+{\footnotesize\ttfamily \textbf{ Application\+Language\+View\+Model} Chami\+UI.\+Business\+Layer.\+Adapters.\+Application\+Language\+Data\+Adapter.\+Get\+Application\+Language\+By\+Code (\begin{DoxyParamCaption}\item[{string}]{code }\end{DoxyParamCaption})}
+
+
+
+Gets an Application\+Language\+View\+Model by its ISO-\/639 code. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The code of the language to retrieve from the database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If a corresponding entity is found in the database, converts and returns it. Otherwise, returns null.
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a7b2d68aad14d93caa2d36cfc5629b5b4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a7b2d68aad14d93caa2d36cfc5629b5b4_icgraph}
+\end{center}
+\end{figure}
+\mbox{\label{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a7a46d13592c83ca652c1c3b2a73d73fe}} 
+\index{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}!GetCultureInfoByCode@{GetCultureInfoByCode}}
+\index{GetCultureInfoByCode@{GetCultureInfoByCode}!ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter@{ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter}}
+\doxysubsubsection{GetCultureInfoByCode()}
+{\footnotesize\ttfamily Culture\+Info Chami\+UI.\+Business\+Layer.\+Adapters.\+Application\+Language\+Data\+Adapter.\+Get\+Culture\+Info\+By\+Code (\begin{DoxyParamCaption}\item[{string}]{code }\end{DoxyParamCaption})}
+
+
+
+Gets an Application\+Language\+View\+Model, converts them to a Culture\+Info, and returns it. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em code} & The language code to use to retrieve the desired object from the database.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+If no suitable Application\+Language\+View\+Model is found, returns null. Otherwise, returns the object converted to Culture\+Info
+\end{DoxyReturn}
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter_a7a46d13592c83ca652c1c3b2a73d73fe_cgraph}
+\end{center}
+\end{figure}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Business\+Layer/\+Adapters/\textbf{ Application\+Language\+Data\+Adapter.\+cs}\end{DoxyCompactItemize}

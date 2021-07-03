@@ -1,0 +1,21 @@
+var searchData=
+[
+  ['backgroundcolor_98',['BackgroundColor',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_console_appearance_view_model.html#a9528ec51d82fdd9dde4da7d49b592586',1,'ChamiUI::PresentationLayer::ViewModels::ConsoleAppearanceViewModel']]],
+  ['backgroundcolorpicker_5fadvancedtabheader_99',['BackgroundColorPicker_AdvancedTabHeader',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#afad7e489f6e02534b2283bde4e3483fc',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['backgroundcolorpicker_5favailablecolorsheader_100',['BackgroundColorPicker_AvailableColorsHeader',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a0c30fcbe52eb23dcf4a3c2c3359c9635',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['backgroundcolorpicker_5fstandardcolorsheader_101',['BackgroundColorPicker_StandardColorsHeader',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a6177bc12c6339338d4a99cdfe726ca18',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['backgroundcolorpicker_5fstandardtabheader_102',['BackgroundColorPicker_StandardTabHeader',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#ae9b51ef228fe2f872778b3997c098443',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['backup_103',['Backup',['../class_chami_u_i_1_1_business_layer_1_1_environment_backupper.html#a1cc2a200cdef00e33ad53e212c07ba9e',1,'ChamiUI::BusinessLayer::EnvironmentBackupper']]],
+  ['backupenvironment_104',['BackupEnvironment',['../class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a8eb78eb9c798111d916439a4e91f6663',1,'ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.BackupEnvironment()'],['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aa0c7f0689e182a6c3319719e99db910a',1,'ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel.BackupEnvironment()'],['../namespace_chami_1_1_db_1_1_entities.html#a1f3c7007c7886e97ffd17766008e3e51ae4044032ee90a75f69bf2b0dd814e94d',1,'Chami.Db.Entities.BackupEnvironment()']]],
+  ['backupenvironmentmenuitem_5fheader_105',['BackupEnvironmentMenuItem_Header',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a122fda36b74ca6cc8bf6ec07d00242a5',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['basepath_106',['BasePath',['../class_chami_u_i_1_1_annotations_1_1_path_reference_attribute.html#a50c7caa977a7c379416b75a7a7183db3',1,'ChamiUI::Annotations::PathReferenceAttribute']]],
+  ['basetype_107',['BaseType',['../class_chami_u_i_1_1_annotations_1_1_base_type_required_attribute.html#a27158a91964a43010d5e22f34ddf70e6',1,'ChamiUI.Annotations.BaseTypeRequiredAttribute.BaseType()'],['../class_chami_u_i_1_1_annotations_1_1_razor_page_base_type_attribute.html#a7ac526f8d675bbf4705a558ed1d90df8',1,'ChamiUI.Annotations.RazorPageBaseTypeAttribute.BaseType()']]],
+  ['basetyperequiredattribute_108',['BaseTypeRequiredAttribute',['../class_chami_u_i_1_1_annotations_1_1_base_type_required_attribute.html#a7ba8753df8ab438d02b7f649ac4088d2',1,'ChamiUI.Annotations.BaseTypeRequiredAttribute.BaseTypeRequiredAttribute()'],['../class_chami_u_i_1_1_annotations_1_1_base_type_required_attribute.html',1,'ChamiUI.Annotations.BaseTypeRequiredAttribute']]],
+  ['bgcolorlabel_5fcontent_109',['BgColorLabel_Content',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#afafa8137c582992a3056ffb0809b8bed',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['booleantostringcomparisonconverter_110',['BooleanToStringComparisonConverter',['../class_chami_u_i_1_1_presentation_layer_1_1_converters_1_1_boolean_to_string_comparison_converter.html',1,'ChamiUI::PresentationLayer::Converters']]],
+  ['booleantostringcomparisonconverter_2ecs_111',['BooleanToStringComparisonConverter.cs',['../_boolean_to_string_comparison_converter_8cs.html',1,'']]],
+  ['brushconverter_112',['BrushConverter',['../class_chami_u_i_1_1_business_layer_1_1_converters_1_1_brush_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['brushconverter_2ecs_113',['BrushConverter.cs',['../_brush_converter_8cs.html',1,'']]],
+  ['businesstests_114',['BusinessTests',['../class_chami_tests_1_1_business_tests.html',1,'ChamiTests']]],
+  ['businesstests_2ecs_115',['BusinessTests.cs',['../_business_tests_8cs.html',1,'']]]
+];

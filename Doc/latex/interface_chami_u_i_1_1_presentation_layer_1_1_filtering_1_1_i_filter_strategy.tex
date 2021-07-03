@@ -1,0 +1,98 @@
+\doxysection{Chami\+UI.\+Presentation\+Layer.\+Filtering.\+IFilter\+Strategy Interface Reference}
+\label{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy}\index{ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}}
+
+
+Interface that describes a filtering strategy.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Presentation\+Layer.\+Filtering.\+IFilter\+Strategy\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy__inherit__graph}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \textbf{ On\+Filter} (object sender, Filter\+Event\+Args args)
+\begin{DoxyCompactList}\small\item\em A method that reacts to the Filter event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Properties}
+\begin{DoxyCompactItemize}
+\item 
+string \textbf{ Name}\hspace{0.3cm}{\ttfamily  [get]}
+\begin{DoxyCompactList}\small\item\em A friendly name of the filter strategy for use by the UI. \end{DoxyCompactList}\item 
+string \textbf{ Searched\+Text}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em The text to search for. \end{DoxyCompactList}\item 
+String\+Comparison \textbf{ Comparison}\hspace{0.3cm}{\ttfamily  [get, set]}
+\begin{DoxyCompactList}\small\item\em The String\+Comparison to use when filtering. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Interface that describes a filtering strategy. 
+
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\label{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy_a40ba6aafb3b39ea44b34dee779192c3c}} 
+\index{ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}!OnFilter@{OnFilter}}
+\index{OnFilter@{OnFilter}!ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}}
+\doxysubsubsection{OnFilter()}
+{\footnotesize\ttfamily void Chami\+UI.\+Presentation\+Layer.\+Filtering.\+IFilter\+Strategy.\+On\+Filter (\begin{DoxyParamCaption}\item[{object}]{sender,  }\item[{Filter\+Event\+Args}]{args }\end{DoxyParamCaption})}
+
+
+
+A method that reacts to the Filter event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sender} & The object that initiated the event.\\
+\hline
+{\em args} & Information about the Filter event.\\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \textbf{ Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+Name\+Filter\+Strategy} \doxyref{}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy_ad39b9afc9ceec5aff6a8045ae317ba9d}, \textbf{ Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+Filter\+Strategy} \doxyref{}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_filter_strategy_a310fb353364eba3e64bf458321659dab}, and \textbf{ Chami\+UI.\+Presentation\+Layer.\+Filtering.\+Environment\+And\+Variable\+Name\+And\+Value\+Filter\+Strategy} \doxyref{}{p.}{class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy_a9adfb9a563bf3929f87440e6bf2c2d0d}.
+
+
+
+\doxysubsection{Property Documentation}
+\mbox{\label{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy_ad99fadd394596fa1949cbae26c1f3ab1}} 
+\index{ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}!Comparison@{Comparison}}
+\index{Comparison@{Comparison}!ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}}
+\doxysubsubsection{Comparison}
+{\footnotesize\ttfamily String\+Comparison Chami\+UI.\+Presentation\+Layer.\+Filtering.\+IFilter\+Strategy.\+Comparison\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The String\+Comparison to use when filtering. 
+
+\mbox{\label{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy_aac847598321f107d6b0aae9e42f06809}} 
+\index{ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}!Name@{Name}}
+\index{Name@{Name}!ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}}
+\doxysubsubsection{Name}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+Filtering.\+IFilter\+Strategy.\+Name\hspace{0.3cm}{\ttfamily [get]}}
+
+
+
+A friendly name of the filter strategy for use by the UI. 
+
+\mbox{\label{interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy_a0989f1bcb4089ae35989285987ac6081}} 
+\index{ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}!SearchedText@{SearchedText}}
+\index{SearchedText@{SearchedText}!ChamiUI.PresentationLayer.Filtering.IFilterStrategy@{ChamiUI.PresentationLayer.Filtering.IFilterStrategy}}
+\doxysubsubsection{SearchedText}
+{\footnotesize\ttfamily string Chami\+UI.\+Presentation\+Layer.\+Filtering.\+IFilter\+Strategy.\+Searched\+Text\hspace{0.3cm}{\ttfamily [get]}, {\ttfamily [set]}}
+
+
+
+The text to search for. 
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\+Presentation\+Layer/\+Filtering/\textbf{ IFilter\+Strategy.\+cs}\end{DoxyCompactItemize}

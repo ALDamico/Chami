@@ -1,0 +1,46 @@
+\doxysection{Chami\+UI.\+Annotations.\+Asp\+Mvc\+Action\+Selector\+Attribute Class Reference}
+\label{class_chami_u_i_1_1_annotations_1_1_asp_mvc_action_selector_attribute}\index{ChamiUI.Annotations.AspMvcActionSelectorAttribute@{ChamiUI.Annotations.AspMvcActionSelectorAttribute}}
+
+
+ASP.\+NET MVC attribute. When applied to a parameter of an attribute, indicates that this parameter is an MVC action name.  
+
+
+
+
+Inheritance diagram for Chami\+UI.\+Annotations.\+Asp\+Mvc\+Action\+Selector\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_chami_u_i_1_1_annotations_1_1_asp_mvc_action_selector_attribute__inherit__graph}
+\end{center}
+\end{figure}
+
+
+Collaboration diagram for Chami\+UI.\+Annotations.\+Asp\+Mvc\+Action\+Selector\+Attribute\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=226pt]{class_chami_u_i_1_1_annotations_1_1_asp_mvc_action_selector_attribute__coll__graph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Detailed Description}
+ASP.\+NET MVC attribute. When applied to a parameter of an attribute, indicates that this parameter is an MVC action name. 
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{[ActionName(\textcolor{stringliteral}{"{}Foo"{}})]}
+\DoxyCodeLine{\textcolor{keyword}{public} ActionResult Login(\textcolor{keywordtype}{string} returnUrl) \{}
+\DoxyCodeLine{  ViewBag.ReturnUrl = Url.Action(\textcolor{stringliteral}{"{}Foo"{}}); \textcolor{comment}{// OK}}
+\DoxyCodeLine{  \textcolor{keywordflow}{return} RedirectToAction(\textcolor{stringliteral}{"{}Bar"{}}); \textcolor{comment}{// Error: Cannot resolve action}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/code/\+Chami/\+Chami\+UI/\textbf{ Annotations.\+cs}\end{DoxyCompactItemize}
