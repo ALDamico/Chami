@@ -8,6 +8,7 @@ var dir_58d0ca9efdb9a93551b2ad1a951e787c =
     [ "Logger", "dir_ae866614f07f2fe8a8b5d922c306f264.html", "dir_ae866614f07f2fe8a8b5d922c306f264" ],
     [ "Validators", "dir_e7fde58d417d75413e45178e2b211c42.html", "dir_e7fde58d417d75413e45178e2b211c42" ],
     [ "CmdExecutor.cs", "_cmd_executor_8cs_source.html", null ],
+    [ "CmdExecutorBase.cs", "_cmd_executor_base_8cs_source.html", null ],
     [ "EnvironmentBackupper.cs", "_environment_backupper_8cs_source.html", null ],
     [ "EnvironmentDotEnvReader.cs", "_environment_dot_env_reader_8cs_source.html", null ],
     [ "EnvironmentJsonReader.cs", "_environment_json_reader_8cs_source.html", null ],
@@ -15,6 +16,7 @@ var dir_58d0ca9efdb9a93551b2ad1a951e787c =
     [ "EnvironmentVariableRegistryRetriever.cs", "_environment_variable_registry_retriever_8cs_source.html", null ],
     [ "EnvironmentVariableRemovalCommand.cs", "_environment_variable_removal_command_8cs_source.html", null ],
     [ "IEnvironmentReader.cs", "_i_environment_reader_8cs_source.html", null ],
-    [ "IEnvironmentVariableCommand.cs", "_i_environment_variable_command_8cs_source.html", null ],
-    [ "RunningApplicationDetector.cs", "_running_application_detector_8cs_source.html", null ]
+    [ "IShellCommand.cs", "_i_shell_command_8cs_source.html", null ],
+    [ "RunningApplicationDetector.cs", "_running_application_detector_8cs_source.html", null ],
+    [ "ShellCommandBase.cs", "_shell_command_base_8cs_source.html", null ]
 ];

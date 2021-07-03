@@ -160,21 +160,22 @@ var annotated_dup =
           [ "EnvironmentVariableNameUniqueValidationRule", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_name_unique_validation_rule.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_name_unique_validation_rule" ],
           [ "EnvironmentVariableNameValidCharactersValidationRule", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_name_valid_characters_validation_rule.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_name_valid_characters_validation_rule" ],
           [ "EnvironmentVariableValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_validator.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_validator" ],
-          [ "EnvironmentVariableViewModelValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_view_model_validator.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_view_model_validator" ],
           [ "EnvironmentViewModelValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_view_model_validator.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_view_model_validator" ],
           [ "IValidationResult", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result.html", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result" ],
           [ "IValidator", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator" ],
           [ "ValidationResult", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result" ]
         ] ],
         [ "CmdExecutor", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor.html", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor" ],
+        [ "CmdExecutorBase", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base.html", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base" ],
         [ "EnvironmentDotEnvReader", "class_chami_u_i_1_1_business_layer_1_1_environment_dot_env_reader.html", "class_chami_u_i_1_1_business_layer_1_1_environment_dot_env_reader" ],
         [ "EnvironmentJsonReader", "class_chami_u_i_1_1_business_layer_1_1_environment_json_reader.html", "class_chami_u_i_1_1_business_layer_1_1_environment_json_reader" ],
         [ "EnvironmentVariableApplicationCommand", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command" ],
         [ "EnvironmentVariableRegistryRetriever", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever" ],
         [ "EnvironmentVariableRemovalCommand", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command.html", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command" ],
         [ "IEnvironmentReader", "interface_chami_u_i_1_1_business_layer_1_1_i_environment_reader.html", "interface_chami_u_i_1_1_business_layer_1_1_i_environment_reader" ],
-        [ "IEnvironmentVariableCommand", "interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command.html", "interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command" ],
-        [ "RunningApplicationDetector", "class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html", "class_chami_u_i_1_1_business_layer_1_1_running_application_detector" ]
+        [ "IShellCommand", "interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html", "interface_chami_u_i_1_1_business_layer_1_1_i_shell_command" ],
+        [ "RunningApplicationDetector", "class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html", "class_chami_u_i_1_1_business_layer_1_1_running_application_detector" ],
+        [ "ShellCommandBase", "class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html", "class_chami_u_i_1_1_business_layer_1_1_shell_command_base" ]
       ] ],
       [ "Controls", "namespace_chami_u_i_1_1_controls.html", [
         [ "ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", "class_chami_u_i_1_1_controls_1_1_application_detector_control" ],

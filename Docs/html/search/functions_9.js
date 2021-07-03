@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['watchedapplicationrepository_800',['WatchedApplicationRepository',['../class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#aa67264befd46c9d4ddf5b29a8aeda6d0',1,'Chami::Db::Repositories::WatchedApplicationRepository']]]
+  ['onenvironmentchanged_854',['OnEnvironmentChanged',['../class_chami_u_i_1_1_business_layer_1_1_cmd_executor.html#aebf5647d1b3950650ef27fb487ca5f23',1,'ChamiUI::BusinessLayer::CmdExecutor']]]
 ];

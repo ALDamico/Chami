@@ -90,18 +90,87 @@ $(document).ready(function(){initNavTree('interface_chami_u_i_1_1_business_layer
 <div class="title">ChamiUI.BusinessLayer.Converters.IConverter&lt; TFrom, TTo &gt; Interface Template Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Interface for the converters used by the <a class="el" href="namespace_chami.html">Chami</a> application to convert between entities and viewmodels.  
+ <a href="interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1b26177fdf0183fb7cd713ca9e9f43e9"><td class="memItemLeft" align="right" valign="top"><a id="a1b26177fdf0183fb7cd713ca9e9f43e9"></a>
-TFrom&#160;</td><td class="memItemRight" valign="bottom"><b>From</b> (TTo model)</td></tr>
+<tr class="memitem:a1b26177fdf0183fb7cd713ca9e9f43e9"><td class="memItemLeft" align="right" valign="top">TFrom&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html#a1b26177fdf0183fb7cd713ca9e9f43e9">From</a> (TTo model)</td></tr>
+<tr class="memdesc:a1b26177fdf0183fb7cd713ca9e9f43e9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts from a viewmodel to an entity.  <a href="interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html#a1b26177fdf0183fb7cd713ca9e9f43e9">More...</a><br /></td></tr>
 <tr class="separator:a1b26177fdf0183fb7cd713ca9e9f43e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ac326fedee074a7d12338fe3beb2ed9fc"><td class="memItemLeft" align="right" valign="top"><a id="ac326fedee074a7d12338fe3beb2ed9fc"></a>
-TTo&#160;</td><td class="memItemRight" valign="bottom"><b>To</b> (TFrom entity)</td></tr>
+<tr class="memitem:ac326fedee074a7d12338fe3beb2ed9fc"><td class="memItemLeft" align="right" valign="top">TTo&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html#ac326fedee074a7d12338fe3beb2ed9fc">To</a> (TFrom entity)</td></tr>
+<tr class="memdesc:ac326fedee074a7d12338fe3beb2ed9fc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts from an entity to a viewmodel.  <a href="interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html#ac326fedee074a7d12338fe3beb2ed9fc">More...</a><br /></td></tr>
 <tr class="separator:ac326fedee074a7d12338fe3beb2ed9fc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Interface for the converters used by the <a class="el" href="namespace_chami.html">Chami</a> application to convert between entities and viewmodels. </p>
+<dl class="tparams"><dt>Template Parameters</dt><dd>
+  <table class="tparams">
+    <tr><td class="paramname">TFrom</td><td>The entity type.</td></tr>
+    <tr><td class="paramname">TTo</td><td>The viewmodel type.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_i_converter_8cs_source.html#l00008">8</a> of file <a class="el" href="_i_converter_8cs_source.html">IConverter.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a1b26177fdf0183fb7cd713ca9e9f43e9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1b26177fdf0183fb7cd713ca9e9f43e9">&#9670;&nbsp;</a></span>From()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TFrom <a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html">ChamiUI.BusinessLayer.Converters.IConverter</a>&lt; TFrom, TTo &gt;.From </td>
+          <td>(</td>
+          <td class="paramtype">TTo&#160;</td>
+          <td class="paramname"><em>model</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts from a viewmodel to an entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">model</td><td>The viewmodel to convert from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A converted entity.</dd></dl>
+
+</div>
+</div>
+<a id="ac326fedee074a7d12338fe3beb2ed9fc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac326fedee074a7d12338fe3beb2ed9fc">&#9670;&nbsp;</a></span>To()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">TTo <a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html">ChamiUI.BusinessLayer.Converters.IConverter</a>&lt; TFrom, TTo &gt;.To </td>
+          <td>(</td>
+          <td class="paramtype">TFrom&#160;</td>
+          <td class="paramname"><em>entity</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts from an entity to a viewmodel. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">entity</td><td>The entity to convert from.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>A converted viewmodel.</dd></dl>
+
+</div>
+</div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/BusinessLayer/Converters/IConverter.cs</li>
+<li>D:/code/Chami/ChamiUI/BusinessLayer/Converters/<a class="el" href="_i_converter_8cs_source.html">IConverter.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

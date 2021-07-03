@@ -95,39 +95,43 @@ $(document).ready(function(){initNavTree('_running_application_detector_8cs_sour
 <div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160; </div>
 <div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;<span class="keyword">namespace </span><a class="code" href="namespace_chami_u_i_1_1_business_layer.html">ChamiUI.BusinessLayer</a></div>
 <div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;{</div>
-<div class="line"><a name="l00009"></a><span class="lineno"><a class="line" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html">    9</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html">RunningApplicationDetector</a></div>
-<div class="line"><a name="l00010"></a><span class="lineno">   10</span>&#160;    {</div>
-<div class="line"><a name="l00011"></a><span class="lineno">   11</span>&#160;        <span class="keyword">public</span> <a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html">RunningApplicationDetector</a>(IEnumerable&lt;WatchedApplicationViewModel&gt; watchedApplications)</div>
-<div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;        {</div>
-<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;            WatchedApplications = <span class="keyword">new</span> List&lt;WatchedApplicationViewModel&gt;(watchedApplications);</div>
-<div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;        }</div>
-<div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;        <span class="keyword">public</span> List&lt;WatchedApplicationViewModel&gt; WatchedApplications { <span class="keyword">get</span>;  <span class="keyword">set</span>; }</div>
-<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160; </div>
-<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;        <span class="keyword">public</span> List&lt;WatchedApplicationViewModel&gt; Detect()</div>
-<div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;        {</div>
-<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;            var processes = Process.GetProcesses();</div>
-<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            var output = <span class="keyword">new</span> List&lt;WatchedApplicationViewModel&gt;();</div>
-<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;            <span class="keywordflow">foreach</span> (var process <span class="keywordflow">in</span> processes)</div>
-<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;            {</div>
-<div class="line"><a name="l00023"></a><span class="lineno">   23</span>&#160;                <span class="keywordflow">foreach</span> (var application <span class="keywordflow">in</span> WatchedApplications.Where(a =&gt; a.IsWatchEnabled == <span class="keyword">true</span>))</div>
-<div class="line"><a name="l00024"></a><span class="lineno">   24</span>&#160;                {</div>
-<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;                    var match = Regex.Match(process.ProcessName, application.Name, RegexOptions.IgnoreCase);</div>
-<div class="line"><a name="l00026"></a><span class="lineno">   26</span>&#160;                    <span class="keywordflow">if</span> (match.Success)</div>
-<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160;                    {</div>
-<div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;                        application.ProcessName = process.ProcessName;</div>
-<div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;                        output.Add(application);</div>
-<div class="line"><a name="l00030"></a><span class="lineno">   30</span>&#160;                    }</div>
-<div class="line"><a name="l00031"></a><span class="lineno">   31</span>&#160;                }</div>
-<div class="line"><a name="l00032"></a><span class="lineno">   32</span>&#160;            }</div>
-<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;            <span class="keywordflow">if</span> (output.Count == 0)</div>
-<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            {</div>
-<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
-<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            }</div>
-<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            <span class="keywordflow">return</span> output;</div>
-<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;        }</div>
-<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;    }</div>
-<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;}</div>
-<div class="ttc" id="aclass_chami_u_i_1_1_business_layer_1_1_running_application_detector_html"><div class="ttname"><a href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html">ChamiUI.BusinessLayer.RunningApplicationDetector</a></div><div class="ttdef"><b>Definition:</b> <a href="_running_application_detector_8cs_source.html#l00009">RunningApplicationDetector.cs:10</a></div></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html">   12</a></span>&#160;    <span class="keyword">public</span> <span class="keyword">class </span><a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html">RunningApplicationDetector</a></div>
+<div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;    {</div>
+<div class="line"><a name="l00018"></a><span class="lineno"><a class="line" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#aed6497fa95c26bb51a7c015310cc5949">   18</a></span>&#160;        <span class="keyword">public</span> <a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#aed6497fa95c26bb51a7c015310cc5949">RunningApplicationDetector</a>(IEnumerable&lt;WatchedApplicationViewModel&gt; watchedApplications)</div>
+<div class="line"><a name="l00019"></a><span class="lineno">   19</span>&#160;        {</div>
+<div class="line"><a name="l00020"></a><span class="lineno">   20</span>&#160;            <a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#add18a85865c2e3ec3987c22ac2bf79c4">WatchedApplications</a> = <span class="keyword">new</span> List&lt;WatchedApplicationViewModel&gt;(watchedApplications);</div>
+<div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;        }</div>
+<div class="line"><a name="l00022"></a><span class="lineno">   22</span>&#160;        </div>
+<div class="line"><a name="l00026"></a><span class="lineno"><a class="line" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#add18a85865c2e3ec3987c22ac2bf79c4">   26</a></span>&#160;        <span class="keyword">public</span> List&lt;WatchedApplicationViewModel&gt; <a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#add18a85865c2e3ec3987c22ac2bf79c4">WatchedApplications</a> { <span class="keyword">get</span>;  <span class="keyword">set</span>; }</div>
+<div class="line"><a name="l00027"></a><span class="lineno">   27</span>&#160; </div>
+<div class="line"><a name="l00032"></a><span class="lineno"><a class="line" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#ab5538ca08b89afa3aa546961dacac5d4">   32</a></span>&#160;        <span class="keyword">public</span> List&lt;WatchedApplicationViewModel&gt; <a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#ab5538ca08b89afa3aa546961dacac5d4">Detect</a>()</div>
+<div class="line"><a name="l00033"></a><span class="lineno">   33</span>&#160;        {</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;            var processes = Process.GetProcesses();</div>
+<div class="line"><a name="l00035"></a><span class="lineno">   35</span>&#160;            var output = <span class="keyword">new</span> List&lt;WatchedApplicationViewModel&gt;();</div>
+<div class="line"><a name="l00036"></a><span class="lineno">   36</span>&#160;            <span class="keywordflow">foreach</span> (var process <span class="keywordflow">in</span> processes)</div>
+<div class="line"><a name="l00037"></a><span class="lineno">   37</span>&#160;            {</div>
+<div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;                <span class="keywordflow">foreach</span> (var application <span class="keywordflow">in</span> <a class="code" href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#add18a85865c2e3ec3987c22ac2bf79c4">WatchedApplications</a>.Where(a =&gt; a.IsWatchEnabled == <span class="keyword">true</span>))</div>
+<div class="line"><a name="l00039"></a><span class="lineno">   39</span>&#160;                {</div>
+<div class="line"><a name="l00040"></a><span class="lineno">   40</span>&#160;                    var match = Regex.Match(process.ProcessName, application.Name, RegexOptions.IgnoreCase);</div>
+<div class="line"><a name="l00041"></a><span class="lineno">   41</span>&#160;                    <span class="keywordflow">if</span> (match.Success)</div>
+<div class="line"><a name="l00042"></a><span class="lineno">   42</span>&#160;                    {</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;                        application.ProcessName = process.ProcessName;</div>
+<div class="line"><a name="l00044"></a><span class="lineno">   44</span>&#160;                        output.Add(application);</div>
+<div class="line"><a name="l00045"></a><span class="lineno">   45</span>&#160;                    }</div>
+<div class="line"><a name="l00046"></a><span class="lineno">   46</span>&#160;                }</div>
+<div class="line"><a name="l00047"></a><span class="lineno">   47</span>&#160;            }</div>
+<div class="line"><a name="l00048"></a><span class="lineno">   48</span>&#160;            <span class="keywordflow">if</span> (output.Count == 0)</div>
+<div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;            {</div>
+<div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;                <span class="keywordflow">return</span> <span class="keyword">null</span>;</div>
+<div class="line"><a name="l00051"></a><span class="lineno">   51</span>&#160;            }</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;            <span class="keywordflow">return</span> output;</div>
+<div class="line"><a name="l00053"></a><span class="lineno">   53</span>&#160;        }</div>
+<div class="line"><a name="l00054"></a><span class="lineno">   54</span>&#160;    }</div>
+<div class="line"><a name="l00055"></a><span class="lineno">   55</span>&#160;}</div>
+<div class="ttc" id="aclass_chami_u_i_1_1_business_layer_1_1_running_application_detector_html"><div class="ttname"><a href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html">ChamiUI.BusinessLayer.RunningApplicationDetector</a></div><div class="ttdoc">Detects if one or more application are running.</div><div class="ttdef"><b>Definition:</b> <a href="_running_application_detector_8cs_source.html#l00012">RunningApplicationDetector.cs:13</a></div></div>
+<div class="ttc" id="aclass_chami_u_i_1_1_business_layer_1_1_running_application_detector_html_ab5538ca08b89afa3aa546961dacac5d4"><div class="ttname"><a href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#ab5538ca08b89afa3aa546961dacac5d4">ChamiUI.BusinessLayer.RunningApplicationDetector.Detect</a></div><div class="ttdeci">List&lt; WatchedApplicationViewModel &gt; Detect()</div><div class="ttdoc">Start detecting running applications.</div><div class="ttdef"><b>Definition:</b> <a href="_running_application_detector_8cs_source.html#l00032">RunningApplicationDetector.cs:32</a></div></div>
+<div class="ttc" id="aclass_chami_u_i_1_1_business_layer_1_1_running_application_detector_html_add18a85865c2e3ec3987c22ac2bf79c4"><div class="ttname"><a href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#add18a85865c2e3ec3987c22ac2bf79c4">ChamiUI.BusinessLayer.RunningApplicationDetector.WatchedApplications</a></div><div class="ttdeci">List&lt; WatchedApplicationViewModel &gt; WatchedApplications</div><div class="ttdoc">The list of WatchedApplicationViewModels to observe.</div><div class="ttdef"><b>Definition:</b> <a href="_running_application_detector_8cs_source.html#l00026">RunningApplicationDetector.cs:26</a></div></div>
+<div class="ttc" id="aclass_chami_u_i_1_1_business_layer_1_1_running_application_detector_html_aed6497fa95c26bb51a7c015310cc5949"><div class="ttname"><a href="class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html#aed6497fa95c26bb51a7c015310cc5949">ChamiUI.BusinessLayer.RunningApplicationDetector.RunningApplicationDetector</a></div><div class="ttdeci">RunningApplicationDetector(IEnumerable&lt; WatchedApplicationViewModel &gt; watchedApplications)</div><div class="ttdoc">Constructs a new RunningApplicationDetector object and initializes its list of watched applications.</div><div class="ttdef"><b>Definition:</b> <a href="_running_application_detector_8cs_source.html#l00018">RunningApplicationDetector.cs:18</a></div></div>
 <div class="ttc" id="anamespace_chami_u_i_1_1_business_layer_html"><div class="ttname"><a href="namespace_chami_u_i_1_1_business_layer.html">ChamiUI.BusinessLayer</a></div><div class="ttdef"><b>Definition:</b> <a href="_application_language_data_adapter_8cs_source.html#l00008">ApplicationLanguageDataAdapter.cs:9</a></div></div>
 <div class="ttc" id="anamespace_chami_u_i_1_1_presentation_layer_1_1_view_models_html"><div class="ttname"><a href="namespace_chami_u_i_1_1_presentation_layer_1_1_view_models.html">ChamiUI.PresentationLayer.ViewModels</a></div><div class="ttdef"><b>Definition:</b> <a href="_application_language_view_model_8cs_source.html#l00001">ApplicationLanguageViewModel.cs:2</a></div></div>
 <div class="ttc" id="anamespace_chami_u_i_1_1_presentation_layer_html"><div class="ttname"><a href="namespace_chami_u_i_1_1_presentation_layer.html">ChamiUI.PresentationLayer</a></div><div class="ttdef"><b>Definition:</b> <a href="_find_window_commands_provider_8cs_source.html#l00003">FindWindowCommandsProvider.cs:4</a></div></div>

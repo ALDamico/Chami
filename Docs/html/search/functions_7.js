@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['tablenameattribute_793',['TableNameAttribute',['../class_chami_1_1_db_1_1_annotations_1_1_table_name_attribute.html#a2960330562365cf08b9d47cac311879c',1,'Chami::Db::Annotations::TableNameAttribute']]],
-  ['toviewmodel_794',['ToViewModel',['../class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a5b018162e225a69ee2cc15a38f1eda9c',1,'ChamiUI::BusinessLayer::Adapters::SettingsDataAdapter']]]
+  ['insertenvironment_850',['InsertEnvironment',['../class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a74e8079264f86aeb0fd2613ba72eb583',1,'Chami.Db.Repositories.EnvironmentRepository.InsertEnvironment()'],['../class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a760d73b04fe6010eabd856d0880d5eea',1,'ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter.InsertEnvironment()']]],
+  ['insertvariable_851',['InsertVariable',['../class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a890bff10c65cf4b0f5d5db5d8d43ebbc',1,'Chami::Db::Repositories::EnvironmentRepository']]],
+  ['insertwatchedapplication_852',['InsertWatchedApplication',['../class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html#a76bafe1db158bb6a0e96fcd189849234',1,'Chami.Db.Repositories.WatchedApplicationRepository.InsertWatchedApplication()'],['../class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#a348990258517fe1502725f57c0316828',1,'ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.InsertWatchedApplication()']]]
 ];

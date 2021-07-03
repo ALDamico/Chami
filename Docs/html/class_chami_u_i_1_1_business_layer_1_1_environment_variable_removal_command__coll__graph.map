@@ -1,4 +1,5 @@
 <map id="ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand" name="ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,241,121"/>
-<area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command.html" title=" " alt="" coords="22,5,225,32"/>
+<area shape="rect" id="node1" title="Executes a shell command that removes an environment variable from the registry." alt="" coords="5,155,241,196"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html" title=" " alt="" coords="53,80,193,107"/>
+<area shape="rect" id="node3" href="$interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase." alt="" coords="67,5,180,32"/>
 </map>

@@ -1,4 +1,4 @@
 <map id="ChamiUI.BusinessLayer.Validators.EnvironmentVariableValidator" name="ChamiUI.BusinessLayer.Validators.EnvironmentVariableValidator">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,232,136"/>
+<area shape="rect" id="node1" title="Performs simple validation on EnvironmentVariableViewModel objects when converting between entities a..." alt="" coords="5,95,232,136"/>
 <area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html" title=" " alt="" coords="15,5,222,47"/>
 </map>

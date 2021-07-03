@@ -90,18 +90,77 @@ $(document).ready(function(){initNavTree('class_chami_u_i_1_1_business_layer_1_1
 <div class="title">ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Retrieves information about environment variables using the <a class="el" href="namespace_chami_u_i_1_1_windows.html">Windows</a> registry.  
+ <a href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad5713ad0e01885da11e52cfc8b44ebfc"><td class="memItemLeft" align="right" valign="top"><a id="ad5713ad0e01885da11e52cfc8b44ebfc"></a>
-Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetEnvironmentVariables</b> ()</td></tr>
+<tr class="memitem:ad5713ad0e01885da11e52cfc8b44ebfc"><td class="memItemLeft" align="right" valign="top">Dictionary&lt; string, string &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html#ad5713ad0e01885da11e52cfc8b44ebfc">GetEnvironmentVariables</a> ()</td></tr>
+<tr class="memdesc:ad5713ad0e01885da11e52cfc8b44ebfc"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all environment variables as a Dictionary&lt;TKey,TValue&gt;-  <a href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html#ad5713ad0e01885da11e52cfc8b44ebfc">More...</a><br /></td></tr>
 <tr class="separator:ad5713ad0e01885da11e52cfc8b44ebfc"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab908ece50d9ef9dd04bc9142b01d20f6"><td class="memItemLeft" align="right" valign="top"><a id="ab908ece50d9ef9dd04bc9142b01d20f6"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>GetEnvironmentVariable</b> (string name)</td></tr>
+<tr class="memitem:ab908ece50d9ef9dd04bc9142b01d20f6"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html#ab908ece50d9ef9dd04bc9142b01d20f6">GetEnvironmentVariable</a> (string name)</td></tr>
+<tr class="memdesc:ab908ece50d9ef9dd04bc9142b01d20f6"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the value of a single environment variable by its name.  <a href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html#ab908ece50d9ef9dd04bc9142b01d20f6">More...</a><br /></td></tr>
 <tr class="separator:ab908ece50d9ef9dd04bc9142b01d20f6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Retrieves information about environment variables using the <a class="el" href="namespace_chami_u_i_1_1_windows.html">Windows</a> registry. </p>
+
+<p class="definition">Definition at line <a class="el" href="_environment_variable_registry_retriever_8cs_source.html#l00010">10</a> of file <a class="el" href="_environment_variable_registry_retriever_8cs_source.html">EnvironmentVariableRegistryRetriever.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="ab908ece50d9ef9dd04bc9142b01d20f6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab908ece50d9ef9dd04bc9142b01d20f6">&#9670;&nbsp;</a></span>GetEnvironmentVariable()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever.GetEnvironmentVariable </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets the value of a single environment variable by its name. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td>The name of the environment variable to retrieve.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>If a value is found, returns the corresponding value, otherwise null.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_environment_variable_registry_retriever_8cs_source.html#l00040">40</a> of file <a class="el" href="_environment_variable_registry_retriever_8cs_source.html">EnvironmentVariableRegistryRetriever.cs</a>.</p>
+
+</div>
+</div>
+<a id="ad5713ad0e01885da11e52cfc8b44ebfc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad5713ad0e01885da11e52cfc8b44ebfc">&#9670;&nbsp;</a></span>GetEnvironmentVariables()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Dictionary&lt;string, string&gt; ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever.GetEnvironmentVariables </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets all environment variables as a Dictionary&lt;TKey,TValue&gt;- </p>
+<dl class="section return"><dt>Returns</dt><dd>A Dictionary&lt;TKey,TValue&gt; where the key is the variable name and the value is the variable value.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_environment_variable_registry_retriever_8cs_source.html#l00016">16</a> of file <a class="el" href="_environment_variable_registry_retriever_8cs_source.html">EnvironmentVariableRegistryRetriever.cs</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/BusinessLayer/EnvironmentVariableRegistryRetriever.cs</li>
+<li>D:/code/Chami/ChamiUI/BusinessLayer/<a class="el" href="_environment_variable_registry_retriever_8cs_source.html">EnvironmentVariableRegistryRetriever.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

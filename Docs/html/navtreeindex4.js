@@ -1,5 +1,11 @@
 var NAVTREEINDEX4 =
 {
+"interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy.html#a826ae7ab54450ff6f0c6776078c8caa0":[1,0,3,4,3,0,0],
+"interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy.html#ab2d7d1854fcddd3a36b17f759a72c176":[1,0,3,4,3,0,1],
+"namespace_chami.html":[0,0,0],
+"namespace_chami_1_1_db.html":[0,0,0,0],
+"namespace_chami_1_1_db_1_1_annotations.html":[0,0,0,0,0],
+"namespace_chami_1_1_db_1_1_entities.html":[0,0,0,0,1],
 "namespace_chami_1_1_db_1_1_entities.html#a1f3c7007c7886e97ffd17766008e3e51":[0,0,0,0,1,6],
 "namespace_chami_1_1_db_1_1_entities.html#a1f3c7007c7886e97ffd17766008e3e51a7b24b3ce02091eda14707f12b4838d54":[0,0,0,0,1,6,2],
 "namespace_chami_1_1_db_1_1_entities.html#a1f3c7007c7886e97ffd17766008e3e51ae4044032ee90a75f69bf2b0dd814e94d":[0,0,0,0,1,6,1],
@@ -72,6 +78,5 @@ var NAVTREEINDEX4 =
 "struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a1597d283c2bf66013189fbd2c549f297":[1,0,3,4,4,0,2],
 "struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a71fbb6dba48e8780581946454a16554e":[1,0,3,4,4,0,3],
 "struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a9b7edb74ac4e74749318af16003827b4":[1,0,3,4,4,0,0],
-"struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#acba95fa744c52ec62154b10e9fb9f410":[1,0,3,4,4,0,1],
-"":[0,0,4]
+"struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#acba95fa744c52ec62154b10e9fb9f410":[1,0,3,4,4,0,1]
 };

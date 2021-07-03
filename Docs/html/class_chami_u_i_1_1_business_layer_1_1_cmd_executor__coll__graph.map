@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.CmdExecutor" name="ChamiUI.BusinessLayer.CmdExecutor">
+<area shape="rect" id="node1" title="Executes groups of command prompt commands and emits events that the Chami user interface can react t..." alt="" coords="5,80,197,121"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base.html" title="Base class for executing queues of Windows shell commands." alt="" coords="36,5,167,32"/>
+</map>

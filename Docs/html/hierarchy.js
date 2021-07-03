@@ -87,7 +87,9 @@ var hierarchy =
     [ "ChamiTests.BusinessTests", "class_chami_tests_1_1_business_tests.html", null ],
     [ "ChamiUI.BusinessLayer.Logger.ChamiLogger", "class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger.html", null ],
     [ "ChamiUI.Localization.ChamiUIStrings", "class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html", null ],
-    [ "ChamiUI.BusinessLayer.CmdExecutor", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor.html", null ],
+    [ "ChamiUI.BusinessLayer.CmdExecutorBase", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base.html", [
+      [ "ChamiUI.BusinessLayer.CmdExecutor", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor.html", null ]
+    ] ],
     [ "ChamiUI.PresentationLayer.Progress.CmdExecutorProgress", "struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html", null ],
     [ "ChamiTests.DbTests", "class_chami_tests_1_1_db_tests.html", null ],
     [ "ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter", "class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html", null ],
@@ -140,10 +142,6 @@ var hierarchy =
       [ "ChamiUI.BusinessLayer.EnvironmentDotEnvReader", "class_chami_u_i_1_1_business_layer_1_1_environment_dot_env_reader.html", null ],
       [ "ChamiUI.BusinessLayer.EnvironmentJsonReader", "class_chami_u_i_1_1_business_layer_1_1_environment_json_reader.html", null ]
     ] ],
-    [ "ChamiUI.BusinessLayer.IEnvironmentVariableCommand", "interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command.html", [
-      [ "ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html", null ],
-      [ "ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command.html", null ]
-    ] ],
     [ "ChamiUI.PresentationLayer.Filtering.IFilterStrategy", "interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html", [
       [ "ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameAndValueFilterStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy.html", null ],
       [ "ChamiUI.PresentationLayer.Filtering.EnvironmentAndVariableNameFilterStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_filter_strategy.html", null ],
@@ -185,13 +183,18 @@ var hierarchy =
       ] ]
     ] ],
     [ "ChamiUI.BusinessLayer.Converters.ISettingConverter< T >", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_setting_converter.html", null ],
+    [ "ChamiUI.BusinessLayer.IShellCommand", "interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html", [
+      [ "ChamiUI.BusinessLayer.ShellCommandBase", "class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html", [
+        [ "ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html", null ],
+        [ "ChamiUI.BusinessLayer.EnvironmentVariableRemovalCommand", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command.html", null ]
+      ] ]
+    ] ],
     [ "ChamiUI.BusinessLayer.Validators.IValidationResult", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result.html", [
       [ "ChamiUI.BusinessLayer.Validators.ValidationResult", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html", null ]
     ] ],
     [ "ChamiUI.BusinessLayer.Validators.IValidator< in in T >", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html", null ],
     [ "ChamiUI.BusinessLayer.Validators.IValidator< EnvironmentVariableViewModel >", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html", [
-      [ "ChamiUI.BusinessLayer.Validators.EnvironmentVariableValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_validator.html", null ],
-      [ "ChamiUI.BusinessLayer.Validators.EnvironmentVariableViewModelValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_view_model_validator.html", null ]
+      [ "ChamiUI.BusinessLayer.Validators.EnvironmentVariableValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_validator.html", null ]
     ] ],
     [ "ChamiUI.BusinessLayer.Validators.IValidator< EnvironmentViewModel >", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html", [
       [ "ChamiUI.BusinessLayer.Validators.EnvironmentViewModelValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_view_model_validator.html", null ]

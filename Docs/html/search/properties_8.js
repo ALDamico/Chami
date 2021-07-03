@@ -1,6 +1,6 @@
 var searchData=
 [
-  ['jsondeserializationerrormessageboxcaption_943',['JsonDeserializationErrorMessageBoxCaption',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a25cd874693353728176fced614bd1071',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['jsondeserializationerrormessageboxtext_944',['JsonDeserializationErrorMessageBoxText',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#abedeb97df999da8464cc6491ad8674ff',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['jsonfiledialogdescription_945',['JsonFileDialogDescription',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a9bcf242cf423d602e513af200f5ae871',1,'ChamiUI::Localization::ChamiUIStrings']]]
+  ['jsondeserializationerrormessageboxcaption_1027',['JsonDeserializationErrorMessageBoxCaption',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a25cd874693353728176fced614bd1071',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['jsondeserializationerrormessageboxtext_1028',['JsonDeserializationErrorMessageBoxText',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#abedeb97df999da8464cc6491ad8674ff',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['jsonfiledialogdescription_1029',['JsonFileDialogDescription',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a9bcf242cf423d602e513af200f5ae871',1,'ChamiUI::Localization::ChamiUIStrings']]]
 ];

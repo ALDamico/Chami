@@ -1,4 +1,4 @@
 <map id="ChamiUI.BusinessLayer.Converters.FilterStrategyConverter" name="ChamiUI.BusinessLayer.Converters.FilterStrategyConverter">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,236,136"/>
+<area shape="rect" id="node1" title="Converts an IFilterStrategy object to a string that can be saved as a Setting entity." alt="" coords="5,95,236,136"/>
 <area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter.html" title=" " alt="" coords="49,5,192,47"/>
 </map>

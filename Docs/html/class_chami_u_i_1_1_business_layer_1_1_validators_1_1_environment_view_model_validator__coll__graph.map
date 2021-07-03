@@ -1,4 +1,4 @@
 <map id="ChamiUI.BusinessLayer.Validators.EnvironmentViewModelValidator" name="ChamiUI.BusinessLayer.Validators.EnvironmentViewModelValidator">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,232,136"/>
+<area shape="rect" id="node1" title="Performs basic validation on EnvironmentViewModel objects." alt="" coords="5,95,232,136"/>
 <area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html" title=" " alt="" coords="25,5,212,47"/>
 </map>

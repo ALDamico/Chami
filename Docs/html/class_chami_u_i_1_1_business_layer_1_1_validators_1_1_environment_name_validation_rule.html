@@ -90,24 +90,82 @@ $(document).ready(function(){initNavTree('class_chami_u_i_1_1_business_layer_1_1
 <div class="title">ChamiUI.BusinessLayer.Validators.EnvironmentNameValidationRule Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Validates the name of an environment.  
+ <a href="class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_name_validation_rule.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ChamiUI.BusinessLayer.Validators.EnvironmentNameValidationRule:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_name_validation_rule__inherit__graph.png" border="0" usemap="#a_chami_u_i_8_business_layer_8_validators_8_environment_name_validation_rule_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_chami_u_i_8_business_layer_8_validators_8_environment_name_validation_rule_inherit__map" id="a_chami_u_i_8_business_layer_8_validators_8_environment_name_validation_rule_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,232,121"/>
+<area shape="rect" title="Validates the name of an environment." alt="" coords="5,80,232,121"/>
+<area shape="rect" title=" " alt="" coords="66,5,171,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for ChamiUI.BusinessLayer.Validators.EnvironmentNameValidationRule:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_name_validation_rule__coll__graph.png" border="0" usemap="#a_chami_u_i_8_business_layer_8_validators_8_environment_name_validation_rule_coll__map" alt="Collaboration graph"/></div>
+<map name="a_chami_u_i_8_business_layer_8_validators_8_environment_name_validation_rule_coll__map" id="a_chami_u_i_8_business_layer_8_validators_8_environment_name_validation_rule_coll__map">
+<area shape="rect" title="Validates the name of an environment." alt="" coords="5,80,232,121"/>
 <area shape="rect" title=" " alt="" coords="66,5,171,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:af7adfe155f082b06c8085f90ce25adca"><td class="memItemLeft" align="right" valign="top"><a id="af7adfe155f082b06c8085f90ce25adca"></a>
-override System.Windows.Controls.ValidationResult&#160;</td><td class="memItemRight" valign="bottom"><b>Validate</b> (object value, CultureInfo cultureInfo)</td></tr>
+<tr class="memitem:af7adfe155f082b06c8085f90ce25adca"><td class="memItemLeft" align="right" valign="top">override System.Windows.Controls.ValidationResult&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_name_validation_rule.html#af7adfe155f082b06c8085f90ce25adca">Validate</a> (object value, CultureInfo cultureInfo)</td></tr>
+<tr class="memdesc:af7adfe155f082b06c8085f90ce25adca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Validates the name of an environment. Such a name can't be null, an empty string or a string composed of only spaces.  <a href="class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_name_validation_rule.html#af7adfe155f082b06c8085f90ce25adca">More...</a><br /></td></tr>
 <tr class="separator:af7adfe155f082b06c8085f90ce25adca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Validates the name of an environment. </p>
+
+<p class="definition">Definition at line <a class="el" href="_environment_name_validation_rule_8cs_source.html#l00011">11</a> of file <a class="el" href="_environment_name_validation_rule_8cs_source.html">EnvironmentNameValidationRule.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af7adfe155f082b06c8085f90ce25adca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af7adfe155f082b06c8085f90ce25adca">&#9670;&nbsp;</a></span>Validate()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">override System.Windows.Controls.ValidationResult ChamiUI.BusinessLayer.Validators.EnvironmentNameValidationRule.Validate </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>value</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CultureInfo&#160;</td>
+          <td class="paramname"><em>cultureInfo</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Validates the name of an environment. Such a name can't be null, an empty string or a string composed of only spaces. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>The value to validate.</td></tr>
+    <tr><td class="paramname">cultureInfo</td><td>Not used.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>If the value parameter is not a string, is a null string, is an empty string or a string composed of only whitespace, returns a non-valid result. Otherwise, returns System.Windows.Controls.ValidationResult.ValidResult.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>System.Windows.Controls.ValidationResult</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_environment_name_validation_rule_8cs_source.html#l00021">21</a> of file <a class="el" href="_environment_name_validation_rule_8cs_source.html">EnvironmentNameValidationRule.cs</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/BusinessLayer/Validators/EnvironmentNameValidationRule.cs</li>
+<li>D:/code/Chami/ChamiUI/BusinessLayer/Validators/<a class="el" href="_environment_name_validation_rule_8cs_source.html">EnvironmentNameValidationRule.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,4 +1,4 @@
 <map id="ChamiUI.BusinessLayer.Converters.ApplicationLanguageConverter" name="ChamiUI.BusinessLayer.Converters.ApplicationLanguageConverter">
-<area shape="rect" id="node1" title=" " alt="" coords="5,95,236,136"/>
+<area shape="rect" id="node1" title="Converts between UiLanguage entities and ApplicationLanguageViewModel objects." alt="" coords="5,95,236,136"/>
 <area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html" title=" " alt="" coords="10,5,231,47"/>
 </map>

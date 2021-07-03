@@ -1,5 +1,5 @@
 <map id="ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter" name="ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter">
-<area shape="rect" id="node1" title=" " alt="" coords="9,80,235,121"/>
-<area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html" title=" " alt="" coords="5,5,116,32"/>
+<area shape="rect" id="node1" title="Exports a list of Environment entities to an Excel spreadsheet. Requires the NetOffice package." alt="" coords="9,80,235,121"/>
+<area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html" title="Generic interfaces for the exporters supported by the Chami application." alt="" coords="5,5,116,32"/>
 <area shape="rect" id="node3" title=" " alt="" coords="140,5,229,32"/>
 </map>

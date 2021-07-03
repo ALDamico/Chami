@@ -1,4 +1,4 @@
 <map id="ChamiUI.BusinessLayer.Validators.EnvironmentVariableNameNoNumberFirstCharacterValidationRule" name="ChamiUI.BusinessLayer.Validators.EnvironmentVariableNameNoNumberFirstCharacterValidationRule">
-<area shape="rect" id="node1" title=" " alt="" coords="5,80,267,136"/>
+<area shape="rect" id="node1" title="Validates that an environment variable name doesn&#39;t start with a number." alt="" coords="5,80,267,136"/>
 <area shape="rect" id="node2" title=" " alt="" coords="83,5,189,32"/>
 </map>

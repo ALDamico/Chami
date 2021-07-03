@@ -90,27 +90,170 @@ $(document).ready(function(){initNavTree('class_chami_u_i_1_1_business_layer_1_1
 <div class="title">ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Data adapter for the WatchedApplicationViewModel class.  
+ <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad225c422917798dc3cc69fbf4e6b3e35"><td class="memItemLeft" align="right" valign="top"><a id="ad225c422917798dc3cc69fbf4e6b3e35"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>WatchedApplicationDataAdapter</b> (string connectionString)</td></tr>
+<tr class="memitem:ad225c422917798dc3cc69fbf4e6b3e35"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#ad225c422917798dc3cc69fbf4e6b3e35">WatchedApplicationDataAdapter</a> (string connectionString)</td></tr>
+<tr class="memdesc:ad225c422917798dc3cc69fbf4e6b3e35"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html" title="Data adapter for the WatchedApplicationViewModel class.">WatchedApplicationDataAdapter</a> object with the provided connection string.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#ad225c422917798dc3cc69fbf4e6b3e35">More...</a><br /></td></tr>
 <tr class="separator:ad225c422917798dc3cc69fbf4e6b3e35"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a98c3ae6226161d73a916e57b88a654b2"><td class="memItemLeft" align="right" valign="top"><a id="a98c3ae6226161d73a916e57b88a654b2"></a>
-IEnumerable&lt; <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>GetActiveWatchedApplications</b> ()</td></tr>
+<tr class="memitem:a98c3ae6226161d73a916e57b88a654b2"><td class="memItemLeft" align="right" valign="top">IEnumerable&lt; <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#a98c3ae6226161d73a916e57b88a654b2">GetActiveWatchedApplications</a> ()</td></tr>
+<tr class="memdesc:a98c3ae6226161d73a916e57b88a654b2"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets all the WatchedApplication objects whose state is active and converts them to WatchedApplicationViewModels.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#a98c3ae6226161d73a916e57b88a654b2">More...</a><br /></td></tr>
 <tr class="separator:a98c3ae6226161d73a916e57b88a654b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a348990258517fe1502725f57c0316828"><td class="memItemLeft" align="right" valign="top"><a id="a348990258517fe1502725f57c0316828"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>InsertWatchedApplication</b> (<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> watchedApplication)</td></tr>
+<tr class="memitem:a348990258517fe1502725f57c0316828"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#a348990258517fe1502725f57c0316828">InsertWatchedApplication</a> (<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> watchedApplication)</td></tr>
+<tr class="memdesc:a348990258517fe1502725f57c0316828"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a WatchedApplicationViewModel to WatchedApplication and inserts it in the datastore.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#a348990258517fe1502725f57c0316828">More...</a><br /></td></tr>
 <tr class="separator:a348990258517fe1502725f57c0316828"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa671ccdd9a1ee5642c14cac43598bac7"><td class="memItemLeft" align="right" valign="top"><a id="aa671ccdd9a1ee5642c14cac43598bac7"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>UpdateWatchedApplication</b> (<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> watchedApplication)</td></tr>
+<tr class="memitem:aa671ccdd9a1ee5642c14cac43598bac7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#aa671ccdd9a1ee5642c14cac43598bac7">UpdateWatchedApplication</a> (<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> watchedApplication)</td></tr>
+<tr class="memdesc:aa671ccdd9a1ee5642c14cac43598bac7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a WatchedApplicationViewModel object to a WatchedApplication entity and updates the corresponding object in the datastore.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#aa671ccdd9a1ee5642c14cac43598bac7">More...</a><br /></td></tr>
 <tr class="separator:aa671ccdd9a1ee5642c14cac43598bac7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab8f1858aa0271e022be8cbf0f535e7b4"><td class="memItemLeft" align="right" valign="top"><a id="ab8f1858aa0271e022be8cbf0f535e7b4"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>SaveWatchedApplications</b> (IEnumerable&lt; <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> &gt; watchedApplications)</td></tr>
+<tr class="memitem:ab8f1858aa0271e022be8cbf0f535e7b4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#ab8f1858aa0271e022be8cbf0f535e7b4">SaveWatchedApplications</a> (IEnumerable&lt; <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> &gt; watchedApplications)</td></tr>
+<tr class="memdesc:ab8f1858aa0271e022be8cbf0f535e7b4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts a WatchedApplicationViewModel to a WatchedApplication entity and inserts it if it's not yet been persisted. Otherwise, updates the existing entity.  <a href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html#ab8f1858aa0271e022be8cbf0f535e7b4">More...</a><br /></td></tr>
 <tr class="separator:ab8f1858aa0271e022be8cbf0f535e7b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Data adapter for the WatchedApplicationViewModel class. </p>
+
+<p class="definition">Definition at line <a class="el" href="_watched_application_data_adapter_8cs_source.html#l00016">16</a> of file <a class="el" href="_watched_application_data_adapter_8cs_source.html">WatchedApplicationDataAdapter.cs</a>.</p>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="ad225c422917798dc3cc69fbf4e6b3e35"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad225c422917798dc3cc69fbf4e6b3e35">&#9670;&nbsp;</a></span>WatchedApplicationDataAdapter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.WatchedApplicationDataAdapter </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>connectionString</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html" title="Data adapter for the WatchedApplicationViewModel class.">WatchedApplicationDataAdapter</a> object with the provided connection string. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">connectionString</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_watched_application_data_adapter_8cs_source.html#l00022">22</a> of file <a class="el" href="_watched_application_data_adapter_8cs_source.html">WatchedApplicationDataAdapter.cs</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="a98c3ae6226161d73a916e57b88a654b2"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a98c3ae6226161d73a916e57b88a654b2">&#9670;&nbsp;</a></span>GetActiveWatchedApplications()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">IEnumerable&lt;<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a>&gt; ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.GetActiveWatchedApplications </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Gets all the WatchedApplication objects whose state is active and converts them to WatchedApplicationViewModels. </p>
+<dl class="section return"><dt>Returns</dt><dd>A List&lt;T&gt; of all WatchedApplicationViewModels.</dd></dl>
+
+<p class="definition">Definition at line <a class="el" href="_watched_application_data_adapter_8cs_source.html#l00033">33</a> of file <a class="el" href="_watched_application_data_adapter_8cs_source.html">WatchedApplicationDataAdapter.cs</a>.</p>
+
+</div>
+</div>
+<a id="a348990258517fe1502725f57c0316828"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a348990258517fe1502725f57c0316828">&#9670;&nbsp;</a></span>InsertWatchedApplication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.InsertWatchedApplication </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a>&#160;</td>
+          <td class="paramname"><em>watchedApplication</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a WatchedApplicationViewModel to WatchedApplication and inserts it in the datastore. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">watchedApplication</td><td>The WatchedApplicationViewModel to convert and insert.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_watched_application_data_adapter_8cs_source.html#l00051">51</a> of file <a class="el" href="_watched_application_data_adapter_8cs_source.html">WatchedApplicationDataAdapter.cs</a>.</p>
+
+</div>
+</div>
+<a id="ab8f1858aa0271e022be8cbf0f535e7b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab8f1858aa0271e022be8cbf0f535e7b4">&#9670;&nbsp;</a></span>SaveWatchedApplications()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.SaveWatchedApplications </td>
+          <td>(</td>
+          <td class="paramtype">IEnumerable&lt; <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a> &gt;&#160;</td>
+          <td class="paramname"><em>watchedApplications</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a WatchedApplicationViewModel to a WatchedApplication entity and inserts it if it's not yet been persisted. Otherwise, updates the existing entity. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">watchedApplications</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_watched_application_data_adapter_8cs_source.html#l00073">73</a> of file <a class="el" href="_watched_application_data_adapter_8cs_source.html">WatchedApplicationDataAdapter.cs</a>.</p>
+
+</div>
+</div>
+<a id="aa671ccdd9a1ee5642c14cac43598bac7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa671ccdd9a1ee5642c14cac43598bac7">&#9670;&nbsp;</a></span>UpdateWatchedApplication()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter.UpdateWatchedApplication </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html">WatchedApplicationViewModel</a>&#160;</td>
+          <td class="paramname"><em>watchedApplication</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Converts a WatchedApplicationViewModel object to a WatchedApplication entity and updates the corresponding object in the datastore. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">watchedApplication</td><td>The WatchedApplicationViewModel to update.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p class="definition">Definition at line <a class="el" href="_watched_application_data_adapter_8cs_source.html#l00062">62</a> of file <a class="el" href="_watched_application_data_adapter_8cs_source.html">WatchedApplicationDataAdapter.cs</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/BusinessLayer/Adapters/WatchedApplicationDataAdapter.cs</li>
+<li>D:/code/Chami/ChamiUI/BusinessLayer/Adapters/<a class="el" href="_watched_application_data_adapter_8cs_source.html">WatchedApplicationDataAdapter.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,4 +1,4 @@
 <map id="ChamiUI.BusinessLayer.Validators.IValidationResult" name="ChamiUI.BusinessLayer.Validators.IValidationResult">
-<area shape="rect" id="node1" title=" " alt="" coords="5,5,232,47"/>
-<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html" title=" " alt="" coords="5,95,232,136"/>
+<area shape="rect" id="node1" title="Interface for basic ValidationResult objects." alt="" coords="5,5,232,47"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html" title="Basic implementation of the IValidationResult interface." alt="" coords="5,95,232,136"/>
 </map>

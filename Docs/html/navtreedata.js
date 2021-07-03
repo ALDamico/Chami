@@ -41,6 +41,9 @@ var NAVTREE =
         [ "Functions", "functions_func.html", null ],
         [ "Properties", "functions_prop.html", "functions_prop" ]
       ] ]
+    ] ],
+    [ "Files", "files.html", [
+      [ "File List", "files.html", "files_dup" ]
     ] ]
   ] ]
 ];
@@ -48,9 +51,10 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "",
-"class_chami_u_i_1_1_annotations_1_1_razor_write_literal_method_attribute.html",
-"class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_application_language_view_model.html#af261b4e20bb8b4e3746827b2b9411ab2",
-"functions_prop_u.html"
+"class_chami_tests_1_1_business_tests.html#a7db9afa9b66fb176279e2c0d43265f8f",
+"class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_export_converter.html#a35cf22130d2582a4df61f235137d815b",
+"class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aa1ddcd0fc534bfb35e82ffad196ce9dd",
+"interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy.html#a826ae7ab54450ff6f0c6776078c8caa0"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

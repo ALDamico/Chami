@@ -1,4 +1,4 @@
 <map id="ChamiUI.BusinessLayer.Converters.EnvironmentExportConverter" name="ChamiUI.BusinessLayer.Converters.EnvironmentExportConverter">
-<area shape="rect" id="node1" title=" " alt="" coords="9,109,240,151"/>
+<area shape="rect" id="node1" title="Converts between EnvironmentExportWindowViewModel and EnvironmentViewModel" alt="" coords="9,109,240,151"/>
 <area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html" title=" " alt="" coords="5,5,244,61"/>
 </map>

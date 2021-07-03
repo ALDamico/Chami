@@ -91,40 +91,146 @@ $(document).ready(function(){initNavTree('class_chami_u_i_1_1_business_layer_1_1
 <div class="title">ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand Class Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>A command that creates (persistently) a new environment variable or updates its value if it already exists.  
+ <a href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand:</div>
 <div class="dyncontent">
 <div class="center"><img src="class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command__inherit__graph.png" border="0" usemap="#a_chami_u_i_8_business_layer_8_environment_variable_application_command_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_chami_u_i_8_business_layer_8_environment_variable_application_command_inherit__map" id="a_chami_u_i_8_business_layer_8_environment_variable_application_command_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,80,241,121"/>
-<area shape="rect" href="interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command.html" title=" " alt="" coords="22,5,225,32"/>
+<area shape="rect" title="A command that creates (persistently) a new environment variable or updates its value if it already e..." alt="" coords="5,155,241,196"/>
+<area shape="rect" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html" title=" " alt="" coords="53,80,193,107"/>
+<area shape="rect" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase." alt="" coords="67,5,180,32"/>
+</map>
+<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
+<div class="dynheader">
+Collaboration diagram for ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand:</div>
+<div class="dyncontent">
+<div class="center"><img src="class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command__coll__graph.png" border="0" usemap="#a_chami_u_i_8_business_layer_8_environment_variable_application_command_coll__map" alt="Collaboration graph"/></div>
+<map name="a_chami_u_i_8_business_layer_8_environment_variable_application_command_coll__map" id="a_chami_u_i_8_business_layer_8_environment_variable_application_command_coll__map">
+<area shape="rect" title="A command that creates (persistently) a new environment variable or updates its value if it already e..." alt="" coords="5,155,241,196"/>
+<area shape="rect" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html" title=" " alt="" coords="53,80,193,107"/>
+<area shape="rect" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase." alt="" coords="67,5,180,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a880d9d1e248a20e3e3908ac238f8a5b9"><td class="memItemLeft" align="right" valign="top"><a id="a880d9d1e248a20e3e3908ac238f8a5b9"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>EnvironmentVariableApplicationCommand</b> (<a class="el" href="class_chami_1_1_db_1_1_entities_1_1_environment_variable.html">EnvironmentVariable</a> variable)</td></tr>
-<tr class="separator:a880d9d1e248a20e3e3908ac238f8a5b9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e0eac24934ba37a8a86833424156c86"><td class="memItemLeft" align="right" valign="top"><a id="a3e0eac24934ba37a8a86833424156c86"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Execute</b> ()</td></tr>
-<tr class="separator:a3e0eac24934ba37a8a86833424156c86"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6c6382dab2c32305fc346986c76bb9c6"><td class="memItemLeft" align="right" valign="top"><a id="a6c6382dab2c32305fc346986c76bb9c6"></a>
-async Task&#160;</td><td class="memItemRight" valign="bottom"><b>ExecuteAsync</b> (IProgress&lt; <a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html">CmdExecutorProgress</a> &gt; progress, float percentage, CancellationToken cancellationToken)</td></tr>
-<tr class="separator:a6c6382dab2c32305fc346986c76bb9c6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9f4f966515963abe6518003df3b5225"><td class="memItemLeft" align="right" valign="top">override void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html#af9f4f966515963abe6518003df3b5225">Execute</a> ()</td></tr>
+<tr class="memdesc:af9f4f966515963abe6518003df3b5225"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute the shell command.  <a href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html#af9f4f966515963abe6518003df3b5225">More...</a><br /></td></tr>
+<tr class="separator:af9f4f966515963abe6518003df3b5225"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac4fac2aa8ba53e57f0704cd6dd233a7d"><td class="memItemLeft" align="right" valign="top">override async Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html#ac4fac2aa8ba53e57f0704cd6dd233a7d">ExecuteAsync</a> (IProgress&lt; <a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html">CmdExecutorProgress</a> &gt; progress, float percentage, CancellationToken cancellationToken)</td></tr>
+<tr class="memdesc:ac4fac2aa8ba53e57f0704cd6dd233a7d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Executes the shell command asynchronously. Optionally reports progress. Can be canceled.  <a href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html#ac4fac2aa8ba53e57f0704cd6dd233a7d">More...</a><br /></td></tr>
+<tr class="separator:ac4fac2aa8ba53e57f0704cd6dd233a7d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a64a407c3392cce9abd702960173cc08f"><td class="memItemLeft" align="right" valign="top"><a id="a64a407c3392cce9abd702960173cc08f"></a>
-<a class="el" href="class_chami_1_1_db_1_1_entities_1_1_environment_variable.html">EnvironmentVariable</a>&#160;</td><td class="memItemRight" valign="bottom"><b>EnvironmentVariable</b><code> [get, set]</code></td></tr>
-<tr class="separator:a64a407c3392cce9abd702960173cc08f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="inherit_header properties_interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command.html">ChamiUI.BusinessLayer.IEnvironmentVariableCommand</a></td></tr>
-<tr class="memitem:aed10fb34a59a3fbe769cde618752dfaf inherit properties_interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command"><td class="memItemLeft" align="right" valign="top"><a id="aed10fb34a59a3fbe769cde618752dfaf"></a>
-<a class="el" href="class_chami_1_1_db_1_1_entities_1_1_environment_variable.html">EnvironmentVariable</a>&#160;</td><td class="memItemRight" valign="bottom"><b>EnvironmentVariable</b><code> [get, set]</code></td></tr>
-<tr class="separator:aed10fb34a59a3fbe769cde618752dfaf inherit properties_interface_chami_u_i_1_1_business_layer_1_1_i_environment_variable_command"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa2082d544cb1ecde971935d6772c935e"><td class="memItemLeft" align="right" valign="top"><a id="aa2082d544cb1ecde971935d6772c935e"></a>
+<a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_variable_view_model.html">EnvironmentVariableViewModel</a>&#160;</td><td class="memItemRight" valign="bottom"><b>EnvironmentVariable</b><code> [get, set]</code></td></tr>
+<tr class="separator:aa2082d544cb1ecde971935d6772c935e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="inherited"></a>
+Additional Inherited Members</h2></td></tr>
+<tr class="inherit_header pro_methods_class_chami_u_i_1_1_business_layer_1_1_shell_command_base"><td colspan="2" onclick="javascript:toggleInherit('pro_methods_class_chami_u_i_1_1_business_layer_1_1_shell_command_base')"><img src="closed.png" alt="-"/>&#160;Protected Member Functions inherited from <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html">ChamiUI.BusinessLayer.ShellCommandBase</a></td></tr>
+<tr class="memitem:ad80c4f522777c87251d049389f8ecc30 inherit pro_methods_class_chami_u_i_1_1_business_layer_1_1_shell_command_base"><td class="memItemLeft" align="right" valign="top">virtual Process&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ad80c4f522777c87251d049389f8ecc30">PrepareProcess</a> (string arguments)</td></tr>
+<tr class="memdesc:ad80c4f522777c87251d049389f8ecc30 inherit pro_methods_class_chami_u_i_1_1_business_layer_1_1_shell_command_base"><td class="mdescLeft">&#160;</td><td class="mdescRight">Creates a new Process object that can be started by an inheritor.  <a href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ad80c4f522777c87251d049389f8ecc30">More...</a><br /></td></tr>
+<tr class="separator:ad80c4f522777c87251d049389f8ecc30 inherit pro_methods_class_chami_u_i_1_1_business_layer_1_1_shell_command_base"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>A command that creates (persistently) a new environment variable or updates its value if it already exists. </p>
+
+<p class="definition">Definition at line <a class="el" href="_environment_variable_application_command_8cs_source.html#l00014">14</a> of file <a class="el" href="_environment_variable_application_command_8cs_source.html">EnvironmentVariableApplicationCommand.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="af9f4f966515963abe6518003df3b5225"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#af9f4f966515963abe6518003df3b5225">&#9670;&nbsp;</a></span>Execute()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override void ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand.Execute </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Execute the shell command. </p>
+
+<p>Implements <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#a90dfdd0a479cb8c11b708eb49c554fbe">ChamiUI.BusinessLayer.ShellCommandBase</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_environment_variable_application_command_8cs_source.html#l00020">20</a> of file <a class="el" href="_environment_variable_application_command_8cs_source.html">EnvironmentVariableApplicationCommand.cs</a>.</p>
+
+</div>
+</div>
+<a id="ac4fac2aa8ba53e57f0704cd6dd233a7d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ac4fac2aa8ba53e57f0704cd6dd233a7d">&#9670;&nbsp;</a></span>ExecuteAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">override async Task ChamiUI.BusinessLayer.EnvironmentVariableApplicationCommand.ExecuteAsync </td>
+          <td>(</td>
+          <td class="paramtype">IProgress&lt; <a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html">CmdExecutorProgress</a> &gt;&#160;</td>
+          <td class="paramname"><em>progress</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>percentage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">CancellationToken&#160;</td>
+          <td class="paramname"><em>cancellationToken</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Executes the shell command asynchronously. Optionally reports progress. Can be canceled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">progress</td><td>Notifies caller of progress.</td></tr>
+    <tr><td class="paramname">percentage</td><td>The progress percentage.</td></tr>
+    <tr><td class="paramname">cancellationToken</td><td>Allows task cancellation.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implements <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ac03c3d91fa58422eed187405d33a2ff7">ChamiUI.BusinessLayer.ShellCommandBase</a>.</p>
+
+<p class="definition">Definition at line <a class="el" href="_environment_variable_application_command_8cs_source.html#l00035">35</a> of file <a class="el" href="_environment_variable_application_command_8cs_source.html">EnvironmentVariableApplicationCommand.cs</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/BusinessLayer/EnvironmentVariableApplicationCommand.cs</li>
+<li>D:/code/Chami/ChamiUI/BusinessLayer/<a class="el" href="_environment_variable_application_command_8cs_source.html">EnvironmentVariableApplicationCommand.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

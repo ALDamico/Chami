@@ -90,24 +90,92 @@ $(document).ready(function(){initNavTree('interface_chami_u_i_1_1_business_layer
 <div class="title">ChamiUI.BusinessLayer.Exporters.IChamiExporter Interface Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Generic interfaces for the exporters supported by the <a class="el" href="namespace_chami.html">Chami</a> application.  
+ <a href="interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ChamiUI.BusinessLayer.Exporters.IChamiExporter:</div>
 <div class="dyncontent">
 <div class="center"><img src="interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter__inherit__graph.png" border="0" usemap="#a_chami_u_i_8_business_layer_8_exporters_8_i_chami_exporter_inherit__map" alt="Inheritance graph"/></div>
 <map name="a_chami_u_i_8_business_layer_8_exporters_8_i_chami_exporter_inherit__map" id="a_chami_u_i_8_business_layer_8_exporters_8_i_chami_exporter_inherit__map">
-<area shape="rect" title=" " alt="" coords="5,5,231,47"/>
-<area shape="rect" href="class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter.html" title=" " alt="" coords="5,95,231,136"/>
+<area shape="rect" title="Generic interfaces for the exporters supported by the Chami application." alt="" coords="5,5,231,47"/>
+<area shape="rect" href="class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter.html" title="Exports a list of Environment entities to an Excel spreadsheet. Requires the NetOffice package." alt="" coords="5,95,231,136"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a88262f22e45235392766f93b999a1c02"><td class="memItemLeft" align="right" valign="top"><a id="a88262f22e45235392766f93b999a1c02"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>Export</b> (string filename)</td></tr>
+<tr class="memitem:a88262f22e45235392766f93b999a1c02"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html#a88262f22e45235392766f93b999a1c02">Export</a> (string filename)</td></tr>
+<tr class="memdesc:a88262f22e45235392766f93b999a1c02"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports a list of entities synchronously.  <a href="interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html#a88262f22e45235392766f93b999a1c02">More...</a><br /></td></tr>
 <tr class="separator:a88262f22e45235392766f93b999a1c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afc15a57f5b9a5337eedc7ab8a23a1ceb"><td class="memItemLeft" align="right" valign="top">Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html#afc15a57f5b9a5337eedc7ab8a23a1ceb">ExportAsync</a> (string filename)</td></tr>
+<tr class="memdesc:afc15a57f5b9a5337eedc7ab8a23a1ceb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Exports a list of entities asynchronously.  <a href="interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html#afc15a57f5b9a5337eedc7ab8a23a1ceb">More...</a><br /></td></tr>
+<tr class="separator:afc15a57f5b9a5337eedc7ab8a23a1ceb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Generic interfaces for the exporters supported by the <a class="el" href="namespace_chami.html">Chami</a> application. </p>
+
+<p class="definition">Definition at line <a class="el" href="_i_chami_exporter_8cs_source.html#l00008">8</a> of file <a class="el" href="_i_chami_exporter_8cs_source.html">IChamiExporter.cs</a>.</p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a88262f22e45235392766f93b999a1c02"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a88262f22e45235392766f93b999a1c02">&#9670;&nbsp;</a></span>Export()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChamiUI.BusinessLayer.Exporters.IChamiExporter.Export </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Exports a list of entities synchronously. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The name of the output file.</td></tr>
+  </table>
+  </dd>
+</dl>
+
+<p>Implemented in <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter.html#aa55ca80dfffd3c983737bdaae2b14c7b">ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter</a>.</p>
+
+</div>
+</div>
+<a id="afc15a57f5b9a5337eedc7ab8a23a1ceb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#afc15a57f5b9a5337eedc7ab8a23a1ceb">&#9670;&nbsp;</a></span>ExportAsync()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Task ChamiUI.BusinessLayer.Exporters.IChamiExporter.ExportAsync </td>
+          <td>(</td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>filename</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Exports a list of entities asynchronously. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">filename</td><td>The name of the output file.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
+<p>Implemented in <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter.html#aa63ff05fab30df0e04a7993448b8a5d4">ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this interface was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/BusinessLayer/Exporters/IChamiExporter.cs</li>
+<li>D:/code/Chami/ChamiUI/BusinessLayer/Exporters/<a class="el" href="_i_chami_exporter_8cs_source.html">IChamiExporter.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -1,0 +1,4 @@
+<map id="ChamiUI.BusinessLayer.ShellCommandBase" name="ChamiUI.BusinessLayer.ShellCommandBase">
+<area shape="rect" id="node1" title=" " alt="" coords="5,80,200,121"/>
+<area shape="rect" id="node2" href="$interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase." alt="" coords="46,5,159,32"/>
+</map>
