@@ -313,7 +313,7 @@
     <value>Exit</value>
   </data>
   <data name="ExistingEnvironmentMessageBoxText" xml:space="preserve">
-    <value>The environment you're trying to import already exists!</value>
+    <value>An environment with the same name already exists!</value>
   </data>
   <data name="ExistingEnvironmentMessageBoxCaption" xml:space="preserve">
     <value>Error importing environment</value>

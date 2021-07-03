@@ -647,7 +647,7 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The environment you&apos;re trying to import already exists!.
+        ///   Looks up a localized string similar to An environment with the same name already exists!.
         /// </summary>
         public static string ExistingEnvironmentMessageBoxText {
             get {

@@ -7,8 +7,15 @@ using ChamiUI.Localization;
 
 namespace ChamiUI.Controls
 {
+    /// <summary>
+    /// This is the control that allows the user to customize the console in the main window.
+    /// </summary>
     public partial class ConsoleAppearanceEditor : UserControl
     {
+        /// <summary>
+        /// Constructs a new <see cref="ConsoleAppearanceEditor"/> control and sets its viewmodel.
+        /// </summary>
+        /// <param name="viewModel">The object containing the control's state.</param>
         public ConsoleAppearanceEditor(ConsoleAppearanceViewModel viewModel)
         {
             _viewModel = viewModel;
@@ -18,6 +25,10 @@ namespace ChamiUI.Controls
             SetColors();
         }
 
+        /// <summary>
+        /// Sets the <see cref="BackgroundColorPicker"/> and <see cref="ForegroundColorPicker"/> colors when
+        /// initializing the control.
+        /// </summary>
         private void SetColors()
         {
             if (_viewModel.BackgroundColor is SolidColorBrush backgroundColorBrush)
@@ -31,8 +42,13 @@ namespace ChamiUI.Controls
             }
         }
 
-        private ConsoleAppearanceViewModel _viewModel;
+        private readonly ConsoleAppearanceViewModel _viewModel;
 
+        /// <summary>
+        /// Handles color changing on the <see cref="BackgroundColorPicker"/>.
+        /// </summary>
+        /// <param name="sender">The object that started this action.</param>
+        /// <param name="e">Information about the new color.</param>
         private void ColorPicker_OnSelectedColorChanged(object sender, RoutedPropertyChangedEventArgs<Color?> e)
         {
             var newColor = e.NewValue;
@@ -43,6 +59,11 @@ namespace ChamiUI.Controls
             }
         }
 
+        /// <summary>
+        /// Handles color changing on the <see cref="ForegroundColorPicker"/>.
+        /// </summary>
+        /// <param name="sender">The object that started this action.</param>
+        /// <param name="e">Information about the new color.</param>
         private void ForegroundColorPicker_OnSelectedColorChanged(object sender,
             RoutedPropertyChangedEventArgs<Color?> e)
         {

@@ -5,8 +5,16 @@ using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.PresentationLayer.Filtering
 {
+    /// <summary>
+    /// An <see cref="IFilterStrategy"/> that filters based on environment names and environment variable names
+    /// (but not values).
+    /// </summary>
+    /// <seealso cref="IFilterStrategy"/>
     public class EnvironmentAndVariableNameFilterStrategy:IFilterStrategy
     {
+        /// <summary>
+        /// Constructs a new <see cref="EnvironmentAndVariableNameFilterStrategy"/> object and sets its name.
+        /// </summary>
         public EnvironmentAndVariableNameFilterStrategy()
         {
             Name = ChamiUIStrings.EnvironmentAndVariableNameFilterStrategyName;

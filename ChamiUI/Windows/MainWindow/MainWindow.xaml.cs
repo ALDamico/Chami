@@ -168,9 +168,13 @@ namespace ChamiUI.Windows.MainWindow
 
         private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
         {
+            
             if (args != null)
             {
-                ViewModel.Environments.Add(args.EnvironmentViewModel);
+                if (!ViewModel.CheckEnvironmentExists(args.EnvironmentViewModel))
+                {
+                    ViewModel.Environments.Add(args.EnvironmentViewModel);
+                } 
             }
         }
 

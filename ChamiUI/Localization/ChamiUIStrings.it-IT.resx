@@ -313,7 +313,7 @@
     <value>Esci</value>
   </data>
   <data name="ExistingEnvironmentMessageBoxText" xml:space="preserve">
-    <value>L'ambiente che stai provando a importare non esiste!</value>
+    <value>Esiste già un ambiente con lo stesso nome!</value>
   </data>
   <data name="ExistingEnvironmentMessageBoxCaption" xml:space="preserve">
     <value>Errore durante l'importazione dell'ambiente</value>

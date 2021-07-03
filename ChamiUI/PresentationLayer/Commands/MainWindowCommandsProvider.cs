@@ -2,6 +2,9 @@ using System.Windows.Input;
 
 namespace ChamiUI.PresentationLayer.Commands
 {
+    /// <summary>
+    /// Helper class that provides <see cref="RoutedCommand"/>s for the main window of the application.
+    /// </summary>
     public static class MainWindowCommandsProvider 
     {
         static MainWindowCommandsProvider()

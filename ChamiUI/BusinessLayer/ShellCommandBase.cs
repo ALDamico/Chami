@@ -7,10 +7,24 @@ using ChamiUI.PresentationLayer.Progress;
 
 namespace ChamiUI.BusinessLayer
 {
+    /// <summary>
+    /// Base class that provides common protected methods for classes that implement <see cref="IShellCommand"/>.
+    /// </summary>
     public abstract class ShellCommandBase : IShellCommand
     {
+        /// <summary>
+        /// Derived classes must implement the <see cref="Execute"/> method.
+        /// </summary>
         public abstract void Execute();
 
+
+        /// <summary>
+        /// Derived classes must implement the <see cref="ExecuteAsync"/> method.
+        /// </summary>
+        /// <param name="progress">Notifies the caller of progress.</param>
+        /// <param name="percentage">Percentage of overall completion</param>
+        /// <param name="cancellationToken">Allows cancelling the task.</param>
+        /// <returns></returns>
         public abstract Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage,
             CancellationToken cancellationToken);
 

@@ -437,7 +437,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        protected bool CheckEnvironmentExists(EnvironmentViewModel environment)
+        public bool CheckEnvironmentExists(EnvironmentViewModel environment)
         {
             if (Environments.Any(e => e.Name == environment.Name))
             {

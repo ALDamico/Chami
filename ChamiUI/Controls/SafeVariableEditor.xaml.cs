@@ -3,6 +3,9 @@ using System.Windows.Controls;
 
 namespace ChamiUI.Controls
 {
+    /// <summary>
+    /// Control for managing safety. Currently unused and non functional.
+    /// </summary>
     public partial class SafeVariableEditor : UserControl
     {
         public SafeVariableEditor()

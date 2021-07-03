@@ -6,16 +6,15 @@ namespace ChamiUI.Controls
 {
     public partial class MinimizationBehaviourControl : UserControl
     {
+        /// <summary>
+        /// Constructs a new <see cref="MinimizationBehaviourControl"/> and sets its viewmodel.
+        /// </summary>
+        /// <param name="minimizationBehaviourViewModel">The starting viewmodel.</param>
         public MinimizationBehaviourControl(MinimizationBehaviourViewModel minimizationBehaviourViewModel)
         {
             var viewModel = minimizationBehaviourViewModel;
             DataContext = viewModel;
             InitializeComponent();
         }
-/*
-        private void Selector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            (DataContext as MinimizationBehaviourViewModel).MinimizationStrategy = (IMinimizationStrategy)e.AddedItems[0];
-        }*/
     }
 }
