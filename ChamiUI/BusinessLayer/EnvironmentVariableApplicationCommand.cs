@@ -1,10 +1,8 @@
 using ChamiUI.PresentationLayer.Progress;
 using System;
-using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
-using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -13,7 +11,11 @@ namespace ChamiUI.BusinessLayer
     /// </summary>
     public class EnvironmentVariableApplicationCommand : ShellCommandBase
     {
-        public EnvironmentVariableViewModel EnvironmentVariable { get; set; }
+        public EnvironmentVariableApplicationCommand(EnvironmentVariable viewModel)
+        {
+            EnvironmentVariable = viewModel;
+        }
+        public EnvironmentVariable EnvironmentVariable { get; set; }
         /// <summary>
         /// Execute the shell command.
         /// </summary>
