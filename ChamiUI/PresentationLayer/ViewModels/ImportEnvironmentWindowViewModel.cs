@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using Chami.Db.Entities;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -20,10 +21,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// The list of new environments to import.
         /// </summary>
         public ObservableCollection<EnvironmentViewModel> NewEnvironments { get; }
+
         private EnvironmentViewModel _selectedEnvironment;
 
         /// <summary>
-        /// 
+        /// The currently-selected environment in the environment listview.
         /// </summary>
         public EnvironmentViewModel SelectedEnvironment
         {
@@ -36,6 +38,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determines if the save button is enabled, i.e. if they all pass validation.
+        /// </summary>
         public override bool IsSaveButtonEnabled
         {
             get
@@ -52,7 +57,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// The name of the selected environment.
+        /// </summary>
         public string SelectedEnvironmentName
         {
             get => SelectedEnvironment.Name;
@@ -63,6 +70,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Converts all the viewmodels to save to <see cref="Environment"/> entities and saves them to the datastore.
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<EnvironmentViewModel> SaveEnvironments()
         {
             var environments = new List<EnvironmentViewModel>();
