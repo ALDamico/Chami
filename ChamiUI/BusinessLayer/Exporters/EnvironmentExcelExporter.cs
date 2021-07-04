@@ -135,9 +135,20 @@ namespace ChamiUI.BusinessLayer.Exporters
                     // The workbook was already closed
                 }
             }
-            
-            _excelApplication.Quit();
-            _excelApplication.Dispose();
+
+            if (_excelApplication != null)
+            {
+                try
+                {
+                    _excelApplication.Quit();
+                }
+                catch (MethodCOMException)
+                {
+                    
+                }
+                
+                _excelApplication.Dispose();    
+            }
         }
     }
 }

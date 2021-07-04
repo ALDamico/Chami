@@ -21,6 +21,11 @@ namespace ChamiTests
         public void InsertTest()
         {
             var repository = new EnvironmentRepository(connectionString);
+            var env = repository.GetEnvironmentByName("Example");
+            if (env != null)
+            {
+                repository.DeleteEnvironmentById(env.EnvironmentId);
+            }
 
             var environment = new Environment()
             {
