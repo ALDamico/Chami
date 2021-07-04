@@ -29,16 +29,28 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public double Width { get; set; }
         
         /// <summary>
-        /// The position on the left coordinate of the screen of the main window.
+        /// The position on the X coordinate of the screen of the main window.
         /// </summary>
         public double XPosition { get; set; }
         
         /// <summary>
-        /// 
+        /// The position on the Y coordinate of the screen of the main window.
         /// </summary>
         public double YPosition { get; set; }
+        
+        /// <summary>
+        /// The strategy the filtering component will use when searching environments.
+        /// </summary>
         public IFilterStrategy SearchPath { get; set; }
+        
+        /// <summary>
+        /// The sorting order for the listview of environments.
+        /// </summary>
         public SortDescription SortDescription { get; set; }
+        
+        /// <summary>
+        /// Describes how the window should behave when it's minimized.
+        /// </summary>
         public IMinimizationStrategy MinimizationStrategy { get; set; }
     }
 }
