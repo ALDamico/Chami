@@ -1,5 +1,5 @@
 <map id="ChamiUI.PresentationLayer.ViewModels.EnvironmentViewModel.EnvironmentViewModel" name="ChamiUI.PresentationLayer.ViewModels.EnvironmentViewModel.EnvironmentViewModel">
-<area shape="rect" id="node1" title=" " alt="" coords="573,5,808,61"/>
-<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model.html#a90a0b9e212cce4c720fdc91eae4a4303" title=" " alt="" coords="291,5,525,61"/>
+<area shape="rect" id="node1" title="Constructs a new EnvironmentViewModel object and initializes it to its default state." alt="" coords="573,5,808,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model.html#a90a0b9e212cce4c720fdc91eae4a4303" title="Compares two environments by their id." alt="" coords="291,5,525,61"/>
 <area shape="rect" id="node3" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aaa056c4e9054aaec3a04f71fa04997ba" title=" " alt="" coords="5,5,243,61"/>
 </map>

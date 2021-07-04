@@ -1,5 +1,5 @@
 <map id="ChamiUI.Windows.MainWindow.MainWindow.MainWindow" name="ChamiUI.Windows.MainWindow.MainWindow.MainWindow">
-<area shape="rect" id="node1" title=" " alt="" coords="5,39,216,80"/>
+<area shape="rect" id="node1" title="Constructs a new MainWindow and sets its DataContext, plus registering event handlers." alt="" coords="5,39,216,80"/>
 <area shape="rect" id="node2" href="$class_chami_u_i_1_1_app.html#a5e30d78277d0a61b9d0b45bd0bec6c70" title=" " alt="" coords="277,5,465,47"/>
 <area shape="rect" id="node3" href="$class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html#a7fffca139831c9ad843258d125c697dd" title="InitializeComponent" alt="" coords="264,71,477,112"/>
 </map>

@@ -1,5 +1,5 @@
 <map id="Chami.Db.Repositories.EnvironmentRepository.GetEnvironments" name="Chami.Db.Repositories.EnvironmentRepository.GetEnvironments">
 <area shape="rect" id="node1" title="Get all the environments marked as normal environments in the datastore." alt="" coords="321,50,552,91"/>
-<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html#afc7d9e8da99b8d223e919895b5905d17" title=" " alt="" coords="16,5,263,61"/>
+<area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html#afc7d9e8da99b8d223e919895b5905d17" title="Perform the exporting asynchronously" alt="" coords="16,5,263,61"/>
 <area shape="rect" id="node3" href="$class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#acb8314617a74856547db3f24f01d5538" title="Gets all the EnvironmentViewModels marked as normal environments in the datastore." alt="" coords="5,86,273,127"/>
 </map>

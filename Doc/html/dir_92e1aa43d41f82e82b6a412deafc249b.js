@@ -21,7 +21,7 @@ var dir_92e1aa43d41f82e82b6a412deafc249b =
     [ "FilePicker.g.i.cs", "_file_picker_8g_8i_8cs.html", [
       [ "FilePicker", "class_chami_u_i_1_1_controls_1_1_file_picker.html", "class_chami_u_i_1_1_controls_1_1_file_picker" ]
     ] ],
-    [ "LanguageSelectorControl.g.cs", "_language_selector_control_8g_8cs.html", [
+    [ "LanguageSelectorControl.g.cs", "_debug_2net5_80-windows_2_controls_2_language_selector_control_8g_8cs.html", [
       [ "LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", "class_chami_u_i_1_1_controls_1_1_language_selector_control" ]
     ] ],
     [ "LoggingSettingsEditor.g.cs", "_debug_2net5_80-windows_2_controls_2_logging_settings_editor_8g_8cs.html", [
@@ -30,7 +30,7 @@ var dir_92e1aa43d41f82e82b6a412deafc249b =
     [ "LoggingSettingsEditor.g.i.cs", "_logging_settings_editor_8g_8i_8cs.html", [
       [ "LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor" ]
     ] ],
-    [ "MinimizationBehaviourControl.g.cs", "_minimization_behaviour_control_8g_8cs.html", [
+    [ "MinimizationBehaviourControl.g.cs", "_debug_2net5_80-windows_2_controls_2_minimization_behaviour_control_8g_8cs.html", [
       [ "MinimizationBehaviourControl", "class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html", "class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control" ]
     ] ],
     [ "SafeVariableEditor.g.cs", "_debug_2net5_80-windows_2_controls_2_safe_variable_editor_8g_8cs.html", [

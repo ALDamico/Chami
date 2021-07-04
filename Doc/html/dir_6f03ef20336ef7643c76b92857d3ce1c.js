@@ -18,9 +18,6 @@ var dir_6f03ef20336ef7643c76b92857d3ce1c =
     [ "ExportWindowViewModel.cs", "_export_window_view_model_8cs.html", [
       [ "ExportWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model" ]
     ] ],
-    [ "FindWindowViewModel.cs", "_find_window_view_model_8cs.html", [
-      [ "FindWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_find_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_find_window_view_model" ]
-    ] ],
     [ "ImportEnvironmentWindowViewModel.cs", "_import_environment_window_view_model_8cs.html", [
       [ "ImportEnvironmentWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model" ]
     ] ],

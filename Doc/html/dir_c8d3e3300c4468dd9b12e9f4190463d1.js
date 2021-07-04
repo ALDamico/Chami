@@ -1,6 +1,7 @@
 var dir_c8d3e3300c4468dd9b12e9f4190463d1 =
 [
     [ "Controls", "dir_c72b5f8c0cf40718239cce21905d0f5f.html", "dir_c72b5f8c0cf40718239cce21905d0f5f" ],
+    [ "it-IT", "dir_ea76249bb81d4109a75228cfb2462cfc.html", "dir_ea76249bb81d4109a75228cfb2462cfc" ],
     [ "Windows", "dir_4898bf8719a1bd07ddce2dce0374cae2.html", "dir_4898bf8719a1bd07ddce2dce0374cae2" ],
     [ ".NETCoreApp,Version=v5.0.AssemblyAttributes.cs", "_chami_u_i_2obj_2_release_2net5_80-windows_2_8_n_e_t_core_app_00_version_0av5_80_8_assembly_attributes_8cs.html", null ],
     [ "App.g.cs", "_release_2net5_80-windows_2_app_8g_8cs.html", [

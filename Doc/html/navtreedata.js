@@ -57,12 +57,12 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "20210620___initial_8cs.html",
-"class_chami_1_1_db_1_1_annotations_1_1_table_name_attribute.html#a2960330562365cf08b9d47cac311879c",
-"class_chami_u_i_1_1_annotations_1_1_regex_pattern_attribute.html",
-"class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a068311db7247af25d0cfc0c9fca49e73",
-"class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_console_appearance_view_model.html#a3529baa66303a9e3883dfec94c058c6b",
-"dir_0e499bf2720ba3cbdeaed9f64df539ea.html",
-"namespace_chami_u_i_1_1_windows_1_1_settings_window.html"
+"_watched_application_view_model_8cs.html",
+"class_chami_u_i_1_1_annotations_1_1_razor_injection_attribute.html",
+"class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html#a76a8793c99b77e288645f167d6842460",
+"class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_sort_description_utils.html",
+"class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#a8ec4c37e82d9f4e867e9655f4eac3a78",
+"namespace_chami_u_i_1_1_controls.html"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

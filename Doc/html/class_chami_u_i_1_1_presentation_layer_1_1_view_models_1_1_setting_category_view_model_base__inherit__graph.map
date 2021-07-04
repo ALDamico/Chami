@@ -1,9 +1,9 @@
 <map id="ChamiUI.PresentationLayer.ViewModels.SettingCategoryViewModelBase" name="ChamiUI.PresentationLayer.ViewModels.SettingCategoryViewModelBase">
 <area shape="rect" id="node1" title="Marker class that gives the default ExplicitSaveOnlyAttribute value (false)" alt="" coords="375,166,592,222"/>
-<area shape="rect" id="node4" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_console_appearance_view_model.html" title=" " alt="" coords="640,5,915,47"/>
-<area shape="rect" id="node5" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model.html" title=" " alt="" coords="646,71,909,112"/>
-<area shape="rect" id="node6" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model.html" title=" " alt="" coords="651,136,903,177"/>
-<area shape="rect" id="node7" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_saved_behaviour_view_model.html" title=" " alt="" coords="647,202,908,258"/>
+<area shape="rect" id="node4" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_console_appearance_view_model.html" title="Contains information about how the console should appear in the application." alt="" coords="640,5,915,47"/>
+<area shape="rect" id="node5" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model.html" title="Viewmodel for the LanguageSelectorControl" alt="" coords="646,71,909,112"/>
+<area shape="rect" id="node6" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model.html" title="Viewmodel for the LogginSettingsEditor control." alt="" coords="651,136,903,177"/>
+<area shape="rect" id="node7" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_saved_behaviour_view_model.html" title="Contains the main window state that can be saved to the database and restored when the application is..." alt="" coords="647,202,908,258"/>
 <area shape="rect" id="node8" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_safe_variable_view_model.html" title=" " alt="" coords="661,283,893,324"/>
 <area shape="rect" id="node9" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_control_view_model.html" title=" " alt="" coords="651,349,904,405"/>
 <area shape="rect" id="node2" href="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_view_model_base.html" title=" " alt="" coords="212,181,327,207"/>

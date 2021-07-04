@@ -40,7 +40,8 @@ var annotated_dup =
       [ "DbTests", "class_chami_tests_1_1_db_tests.html", "class_chami_tests_1_1_db_tests" ],
       [ "ExportTests", "class_chami_tests_1_1_export_tests.html", "class_chami_tests_1_1_export_tests" ],
       [ "JsonTests", "class_chami_tests_1_1_json_tests.html", "class_chami_tests_1_1_json_tests" ],
-      [ "RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", "class_chami_tests_1_1_registry_retriever_tests" ]
+      [ "RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", "class_chami_tests_1_1_registry_retriever_tests" ],
+      [ "ResourceTest", "class_chami_tests_1_1_resource_test.html", "class_chami_tests_1_1_resource_test" ]
     ] ],
     [ "ChamiUI", "namespace_chami_u_i.html", [
       [ "Annotations", "namespace_chami_u_i_1_1_annotations.html", [
@@ -243,7 +244,6 @@ var annotated_dup =
           [ "EnvironmentVariableViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_variable_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_variable_view_model" ],
           [ "EnvironmentViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model" ],
           [ "ExportWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model" ],
-          [ "FindWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_find_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_find_window_view_model" ],
           [ "ImportEnvironmentWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model" ],
           [ "LanguageSelectorViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model" ],
           [ "LoggingSettingsViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model" ],

@@ -98,8 +98,10 @@ $(document).ready(function(){initNavTree('class_chami_u_i_1_1_presentation_layer
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a511cc0bb29d68507d71f89d2f6a48022"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_resource_utils.html#a511cc0bb29d68507d71f89d2f6a48022">TryGetResource</a> (this ResourceDictionary resourceDictionary, string resourceName, out object output)</td></tr>
+<tr class="memdesc:a511cc0bb29d68507d71f89d2f6a48022"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that tries to get the specified resource and, if successful, sets the output parameter.  <a href="class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_resource_utils.html#a511cc0bb29d68507d71f89d2f6a48022">More...</a><br /></td></tr>
 <tr class="separator:a511cc0bb29d68507d71f89d2f6a48022"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5a66d7c2f59165037b42709d45d0f0ec"><td class="memItemLeft" align="right" valign="top">static bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_resource_utils.html#a5a66d7c2f59165037b42709d45d0f0ec">TryGetCollectionViewSource</a> (this ResourceDictionary resourceDictionary, string resourceName, out CollectionViewSource output)</td></tr>
+<tr class="memdesc:a5a66d7c2f59165037b42709d45d0f0ec"><td class="mdescLeft">&#160;</td><td class="mdescRight">Helper function that tries to get a CollectionViewSource from a resource dictionary.  <a href="class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_resource_utils.html#a5a66d7c2f59165037b42709d45d0f0ec">More...</a><br /></td></tr>
 <tr class="separator:a5a66d7c2f59165037b42709d45d0f0ec"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
@@ -151,6 +153,17 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Helper function that tries to get a CollectionViewSource from a resource dictionary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resourceDictionary</td><td></td></tr>
+    <tr><td class="paramname">resourceName</td><td></td></tr>
+    <tr><td class="paramname">output</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
+
 </div>
 </div>
 <a id="a511cc0bb29d68507d71f89d2f6a48022"></a>
@@ -192,6 +205,18 @@ Properties</h2></td></tr>
   </tr>
 </table>
 </div><div class="memdoc">
+
+<p>Helper function that tries to get the specified resource and, if successful, sets the output parameter. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">resourceDictionary</td><td>The ResourceDictionary to extract from.</td></tr>
+    <tr><td class="paramname">resourceName</td><td>The name of the resource we want to retrieve.</td></tr>
+    <tr><td class="paramname">output</td><td>The requested resource, if found.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>True if the requested resource has been found, otherwise false.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd>ResourceDictionary</dd></dl>
 
 </div>
 </div>

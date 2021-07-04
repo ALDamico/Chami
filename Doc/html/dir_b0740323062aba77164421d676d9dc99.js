@@ -11,5 +11,8 @@ var dir_b0740323062aba77164421d676d9dc99 =
     ] ],
     [ "RegistryRetrieverTests.cs", "_registry_retriever_tests_8cs.html", [
       [ "RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", "class_chami_tests_1_1_registry_retriever_tests" ]
+    ] ],
+    [ "ResourceTest.cs", "_resource_test_8cs.html", [
+      [ "ResourceTest", "class_chami_tests_1_1_resource_test.html", "class_chami_tests_1_1_resource_test" ]
     ] ]
 ];
