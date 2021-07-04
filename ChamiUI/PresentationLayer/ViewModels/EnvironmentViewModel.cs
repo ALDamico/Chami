@@ -4,8 +4,15 @@ using System.Windows;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// Represents an environment (i.e., a collection of environment variables) saved in the datastore and converted
+    /// for use by the Chami UI.
+    /// </summary>
     public class EnvironmentViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="EnvironmentViewModel"/> object and initializes it to its default state.
+        /// </summary>
         public EnvironmentViewModel()
         {
             EnvironmentVariables = new ObservableCollection<EnvironmentVariableViewModel>();
@@ -14,6 +21,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private bool _isActive;
 
+        /// <summary>
+        /// Represents if this viewmodel is the currently active environment.
+        /// </summary>
         public bool IsActive
         {
             get => _isActive;
@@ -26,6 +36,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The <see cref="FontWeight"/> this environment will have in the listvview. The active environment will be in
+        /// bold, while others will be in a regular font weight.
+        /// </summary>
         public FontWeight TextFontWeight
         {
             get
@@ -38,6 +52,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The displayed name in the listview. The active environment will have an asterisk after its name, other
+        /// environments won't.
+        /// </summary>
         public string DisplayName
         {
             get
@@ -55,8 +73,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private DateTime _addedOn;
         private string _name;
 
+        /// <summary>
+        /// The environment variables that belong to this environment.
+        /// </summary>
         public ObservableCollection<EnvironmentVariableViewModel> EnvironmentVariables { get; }
 
+        /// <summary>
+        /// The id of this environment in the datastore.
+        /// </summary>
         public int Id
         {
             get => _id;
@@ -67,6 +91,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The name of this environment.
+        /// </summary>
         public string Name
         {
             get => _name;
@@ -78,6 +105,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The creation date of this environment.
+        /// </summary>
         public DateTime AddedOn
         {
             get => _addedOn;
@@ -88,6 +118,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Compares two environments by their id.
+        /// </summary>
+        /// <param name="obj">The other environment.</param>
+        /// <returns>True if the two ids match, otherwise false.</returns>
         public override bool Equals(object obj)
         {
             var environmentViewModel2 = obj as EnvironmentViewModel;

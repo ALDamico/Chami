@@ -1,9 +1,17 @@
+using Chami.Db.Entities;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class ApplicationLanguageViewModel:ViewModelBase
+    /// <summary>
+    /// A viewmodel for <see cref="UiLanguage"/>, as used by the GUI of the Chami application.
+    /// </summary>
+    public class ApplicationLanguageViewModel : ViewModelBase
     {
         private string _name;
 
+        /// <summary>
+        /// Display name for the language.
+        /// </summary>
         public string Name
         {
             get => _name;
@@ -16,6 +24,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private string _code;
 
+        /// <summary>
+        /// ISO-639 code of the language.
+        /// </summary>
         public string Code
         {
             get => _code;
@@ -27,6 +38,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private string _iconPath;
+
+        /// <summary>
+        /// Path to the SVG image of the language's flag.
+        /// </summary>
         public string IconPath
         {
             get => _iconPath;

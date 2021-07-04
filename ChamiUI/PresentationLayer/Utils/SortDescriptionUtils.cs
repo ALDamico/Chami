@@ -5,6 +5,9 @@ using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.PresentationLayer.Utils
 {
+    /// <summary>
+    /// Helper class for <see cref="SortDescription"/> objects. Provides multiple singleton objects.
+    /// </summary>
     public static class SortDescriptionUtils
     {
         static SortDescriptionUtils()

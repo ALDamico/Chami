@@ -8,7 +8,7 @@ namespace ChamiUI.BusinessLayer.Validators
     /// <summary>
     /// Validates that an environment variable name doesn't start with a number.
     /// </summary>
-    public class EnvironmentVariableNameNoNumberFirstCharacterValidationRule:ValidationRule
+    public class EnvironmentVariableNameNoNumberFirstCharacterValidationRule : ValidationRule
     {
         /// <summary>
         /// Validates that an environment variable name doesn't start with a number.
@@ -18,7 +18,7 @@ namespace ChamiUI.BusinessLayer.Validators
         /// <returns>A <see cref="System.Windows.Controls.ValidationResult.ValidResult"/> if the environment variable name doesn't start with a number, otherwise an invalid result.</returns>
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            var environmentVariableViewModel =  ValidationUtils.ConvertObjectToValidate(value);
+            var environmentVariableViewModel = ValidationUtils.ConvertObjectToValidate(value);
             if (environmentVariableViewModel != null)
             {
                 environmentVariableViewModel.IsValid = false;
@@ -26,15 +26,16 @@ namespace ChamiUI.BusinessLayer.Validators
                 if (name == null)
                 {
                     environmentVariableViewModel.IsValid = true;
-                    return  System.Windows.Controls.ValidationResult.ValidResult;
+                    return System.Windows.Controls.ValidationResult.ValidResult;
                 }
+
                 if (Regex.IsMatch(name, "^[0-9]"))
                 {
                     return new System.Windows.Controls.ValidationResult(false,
                         ChamiUIStrings.EnvironmentVariableNameNumberFirstCharacterErrorMessage);
                 }
             }
-            
+
             return System.Windows.Controls.ValidationResult.ValidResult;
         }
     }

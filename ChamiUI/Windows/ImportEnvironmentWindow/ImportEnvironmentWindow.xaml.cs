@@ -43,7 +43,6 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
-            
             Close();
         }
 

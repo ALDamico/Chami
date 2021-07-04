@@ -2,10 +2,16 @@ using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the environments to show in the export window.
+    /// </summary>
     public class EnvironmentExportWindowViewModel: ViewModelBase
     {
         private EnvironmentViewModel _environment;
 
+        /// <summary>
+        /// The environment.
+        /// </summary>
         public EnvironmentViewModel Environment
         {
             get => _environment;
@@ -18,11 +24,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The number of variables in the environment.
+        /// </summary>
         public int NumVariables
         {
             get => Environment.EnvironmentVariables.Count;
         }
 
+        /// <summary>
+        /// The name to display in the listview for this environment.
+        /// </summary>
         public string DisplayedName
         {
             get

@@ -3,15 +3,28 @@ using System.Collections.ObjectModel;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class ImportEnvironmentWindowViewModel:NewEnvironmentViewModelBase
+    /// <summary>
+    /// Viewmodel for the import window.
+    /// </summary>
+    public class ImportEnvironmentWindowViewModel : NewEnvironmentViewModelBase
     {
-        public ImportEnvironmentWindowViewModel():base()
+        /// <summary>
+        /// Constructs a new <see cref="ImportEnvironmentWindowViewModel"/> object and initializes its properties.
+        /// </summary>
+        public ImportEnvironmentWindowViewModel()
         {
             NewEnvironments = new ObservableCollection<EnvironmentViewModel>();
         }
+
+        /// <summary>
+        /// The list of new environments to import.
+        /// </summary>
         public ObservableCollection<EnvironmentViewModel> NewEnvironments { get; }
         private EnvironmentViewModel _selectedEnvironment;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public EnvironmentViewModel SelectedEnvironment
         {
             get => _selectedEnvironment;
@@ -38,11 +51,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 return true;
             }
         }
-        
+
 
         public string SelectedEnvironmentName
         {
-            get => SelectedEnvironment.Name; 
+            get => SelectedEnvironment.Name;
             set
             {
                 SelectedEnvironment.Name = value;

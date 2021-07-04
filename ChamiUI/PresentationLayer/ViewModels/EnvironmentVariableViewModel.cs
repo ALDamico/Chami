@@ -1,7 +1,12 @@
 using System;
+using System.Windows.Controls;
+using Chami.Db.Entities;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// Viewmodel that represents a <see cref="EnvironmentVariable"/> in the Chami application.
+    /// </summary>
     public class EnvironmentVariableViewModel : ViewModelBase
     {
         private string _name;
@@ -9,6 +14,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private DateTime _addedOn;
         private bool? _isValid;
 
+        /// <summary>
+        /// The result of a <see cref="ValidationRule"/> that has been run on this variable.
+        /// </summary>
         public bool? IsValid
         {
             get => _isValid;
@@ -18,9 +26,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(_isValid));
             }
         }
+        
+        /// <summary>
+        /// The Id used by the database.
+        /// </summary>
         public int Id { get; set; }
         private EnvironmentViewModel _environment;
 
+        /// <summary>
+        /// The environment this variable belongs to.
+        /// </summary>
         public EnvironmentViewModel Environment
         {
             get => _environment;
@@ -31,6 +46,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The date this variable was saved to the datastore.
+        /// </summary>
         public DateTime AddedOn
         {
             get => _addedOn;
@@ -41,6 +59,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The name of the variable.
+        /// </summary>
         public string Name
         {
             get => _name;
@@ -51,6 +72,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The value of the variable.
+        /// </summary>
         public string Value
         {
             get => _value;

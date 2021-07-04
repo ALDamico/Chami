@@ -5,26 +5,43 @@ using System.Windows.Media;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// Contains information about how the console should appear in the application.
+    /// </summary>
     public class ConsoleAppearanceViewModel : SettingCategoryViewModelBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="ConsoleAppearanceViewModel"/> object, retrieves the list of installed fonts on
+        /// the machine and sets its default values.
+        /// </summary>
         public ConsoleAppearanceViewModel()
         {
-            var installedFonts = System.Windows.Media.Fonts.GetFontFamilies("c:/windows/fonts");
-            FontFamily = installedFonts.FirstOrDefault(f => Regex.Match(f.Source, "segoe").Success);
+            FontFamilies = GetInstalledFonts();
+            FontFamily = FontFamilies.FirstOrDefault(f => Regex.Match(f.Source, "segoe").Success);
             FontSize = 12.0;
             BackgroundColor = Brushes.Black;
             ForegroundColor = Brushes.White;
-            FontFamilies = GetInstalledFonts();
         }
 
+        /// <summary>
+        /// Retrieves all font families installed on this machine.
+        /// </summary>
+        /// <returns>An <see cref="ObservableCollection{T}"/> containing all installed fonts in the current machine.</returns>
         private ObservableCollection<FontFamily> GetInstalledFonts()
         {
             return new ObservableCollection<FontFamily>(Fonts.GetFontFamilies("c:/windows/fonts"));
         }
 
+        /// <summary>
+        /// A list of all font families installed on this machine.
+        /// </summary>
         public ObservableCollection<FontFamily> FontFamilies { get; }
 
         private FontFamily _fontFamily;
+        
+        /// <summary>
+        /// The font that the console will use.
+        /// </summary>
         public FontFamily FontFamily
         {
             get => _fontFamily;
@@ -36,6 +53,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private double _fontSize;
+        
+        /// <summary>
+        /// The font size the console will use.
+        /// </summary>
         public double FontSize
         {
             get => _fontSize;
@@ -47,6 +68,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private Brush _backgroundColor;
+        
+        /// <summary>
+        /// The background color of the console.
+        /// </summary>
         public Brush BackgroundColor
         {
             get => _backgroundColor;
@@ -58,6 +83,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private Brush _foregroundColor;
+        
+        /// <summary>
+        /// The foreground (i.e., text) color of the console.
+        /// </summary>
         public Brush ForegroundColor
         {
             get => _foregroundColor;
@@ -68,11 +97,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Sets the <see cref="BackgroundColor"/> property to a new value.
+        /// </summary>
+        /// <param name="brush">The new color.</param>
         public void ChangeBackgroundColor(SolidColorBrush brush)
         {
             BackgroundColor = brush;
         }
 
+        /// <summary>
+        /// Sets the <see cref="ForegroundColor"/> property to a new value.
+        /// </summary>
+        /// <param name="brush">The new color.</param>
         public void ChangeForegroundColor(SolidColorBrush brush)
         {
             ForegroundColor = brush;

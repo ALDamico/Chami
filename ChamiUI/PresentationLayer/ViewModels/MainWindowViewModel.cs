@@ -18,6 +18,7 @@ using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
+using Newtonsoft.Json;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -555,8 +556,22 @@ namespace ChamiUI.PresentationLayer.ViewModels
             foreach (var fileName in dialogFileNames)
             {
                 var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
-                var viewModel = reader.Process();
-                output.Add(viewModel);
+                EnvironmentViewModel viewModel = null;
+                try
+                {
+                    viewModel = reader.Process();
+                    output.Add(viewModel);
+                }
+                catch (JsonReaderException)
+                {
+                    //reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
+                    var viewModels = reader.ProcessMultiple();
+                    foreach (var model in viewModels)
+                    {
+                        output.Add(model);
+                    }
+                }
+                
             }
 
             return output;

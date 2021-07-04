@@ -9,8 +9,14 @@ using ChamiUI.BusinessLayer.Exporters;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// Viewmodel for the export window.
+    /// </summary>
     public class ExportWindowViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="ExportWindowViewModel"/> and sets its default values.
+        /// </summary>
         public ExportWindowViewModel()
         {
             ExportAll = true;
@@ -23,6 +29,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private EnvironmentRepository _repository;
 
+        /// <summary>
+        /// Constructs a new <see cref="ExportWindowViewModel"/> object and adds an initial set of environment
+        /// variables.
+        /// </summary>
+        /// <param name="environments">The starting environments for the window.</param>
         public ExportWindowViewModel(ICollection<EnvironmentViewModel> environments) : this()
         {
             var converter = new EnvironmentExportConverter();
@@ -33,8 +44,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The environments available for exporting.
+        /// </summary>
         public ObservableCollection<EnvironmentExportWindowViewModel> Environments { get; set; }
 
+        /// <summary>
+        /// Determines if the window will export only a user-selected subset of environments..
+        /// </summary>
         public bool ExportSelected
         {
             get => _exportSelected;
@@ -45,6 +62,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determines if the window will export all environments.
+        /// </summary>
         public bool ExportAll
         {
             get => _exportAll;
@@ -55,6 +75,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Perform the exporting asynchronously
+        /// </summary>
         public async Task ExportAsync()
         {
             var environmentList = new List<Environment>();
@@ -77,8 +100,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             await exporter.ExportAsync(Filename);
         }
 
+        /// <summary>
+        /// The list of environments selected in the listview.
+        /// </summary>
         public ObservableCollection<EnvironmentExportWindowViewModel> SelectedEnvironments { get; set; }
 
+        /// <summary>
+        /// Adds or removes environments from the <see cref="SelectedEnvironments"/> property when the user changes
+        /// its selection.
+        /// </summary>
+        /// <param name="sender">The object that initiated the event.</param>
+        /// <param name="e">Information about the changed selection.</param>
         public void HandleSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             e.Handled = true;
@@ -98,6 +130,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private bool _exportAll;
         private string _filename;
 
+        /// <summary>
+        /// The name of the file to export to.
+        /// </summary>
         public string Filename
         {
             get => _filename;
@@ -109,6 +144,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determines if the export button is enabled or not.
+        /// </summary>
         public bool ExportButtonEnabled => !string.IsNullOrWhiteSpace(Filename);
     }
 }
