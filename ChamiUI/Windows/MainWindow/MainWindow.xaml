@@ -16,7 +16,7 @@
         xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
-        Height="450" Width="800"
+        WindowStartupLocation="Manual"
         StateChanged="MainWindow_OnStateChanged"
         AllowDrop="True"
         Drop="MainWindow_OnDrop"

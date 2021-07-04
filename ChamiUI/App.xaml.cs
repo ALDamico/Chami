@@ -142,7 +142,9 @@ namespace ChamiUI
         {
             InitLocalization();
             DetectOtherInstance();
-            MainWindow = new MainWindow();
+            var mainWindow = new MainWindow();
+            mainWindow.ResumeState();
+            MainWindow = mainWindow;
             if (_taskbarIcon != null)
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)

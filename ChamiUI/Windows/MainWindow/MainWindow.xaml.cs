@@ -57,8 +57,7 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private MainWindowViewModel ViewModel { get; set; }
-        
-        
+
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
@@ -171,13 +170,12 @@ namespace ChamiUI.Windows.MainWindow
 
         private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
         {
-            
             if (args != null)
             {
                 if (!ViewModel.CheckEnvironmentExists(args.EnvironmentViewModel))
                 {
                     ViewModel.Environments.Add(args.EnvironmentViewModel);
-                } 
+                }
             }
         }
 
@@ -332,10 +330,9 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.DetectCurrentEnvironment();
             ResumeState();
-            
         }
 
-        private void ResumeState()
+        public void ResumeState()
         {
             var settings = ViewModel.Settings.MainWindowBehaviourSettings;
             Width = settings.Width;
@@ -359,15 +356,15 @@ namespace ChamiUI.Windows.MainWindow
                     SortByDateAddedRadioButton.IsChecked = true;
                     break;
             }
+
             if (sortDescription.PropertyName == "Id")
             {
                 SortByIdRadioButton.IsChecked = true;
             }
 
             ViewModel.IsDescendingSorting = sortDescription.Direction == ListSortDirection.Descending;
-            ViewModel.FilterStrategy = ViewModel.FilterStrategies.Where(fs => fs.GetType().FullName == settings.SearchPath.GetType().FullName).FirstOrDefault(); //TODO
-
-            //ViewModel.SetSortDescription(settings.SortDescription);
+            ViewModel.FilterStrategy = ViewModel.FilterStrategies.FirstOrDefault(fs =>
+                fs.GetType().FullName == settings.SearchPath.GetType().FullName); 
         }
 
         private void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -408,8 +405,9 @@ namespace ChamiUI.Windows.MainWindow
             if (WindowState == WindowState.Minimized)
             {
                 var sortDescription = GetCurrentSortDescriptionOrDefault();
-                
-                ViewModel.MinimizationStrategy.Minimize(this, () => {ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);});
+
+                ViewModel.MinimizationStrategy.Minimize(this,
+                    () => { ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription); });
             }
         }
 
@@ -519,6 +517,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
+
             ToggleSortDirection();
         }
 
@@ -550,6 +549,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
+
             ToggleSortDirection();
         }
 
@@ -645,7 +645,8 @@ namespace ChamiUI.Windows.MainWindow
         {
             var sortDescription = GetCurrentSortDescriptionOrDefault();
             ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
-            App.Current.Shutdown(0); // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
+            App.Current.Shutdown(
+                0); // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
         }
     }
 }
