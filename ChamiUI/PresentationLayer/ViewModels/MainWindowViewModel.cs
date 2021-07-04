@@ -24,17 +24,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-
+        /// <summary>
+        /// How the window should behave when it's minimized.
+        /// </summary>
         public IMinimizationStrategy MinimizationStrategy
         {
             get => _settings.MinimizationBehaviour.MinimizationStrategy;
         }
+
+        /// <summary>
+        /// Cancels the execution of the active <see cref="CmdExecutor"/> queue.
+        /// </summary>
         public void CancelActiveTask()
         {
             CancellationTokenSource.Cancel();
         }
+
         private bool _editingEnabled;
 
+        /// <summary>
+        /// Determines if the user is in the process of editing an environment.
+        /// </summary>
         public bool EditingEnabled
         {
             get => _editingEnabled;
@@ -46,13 +56,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
             }
         }
+
+        /// <summary>
+        /// A list of available <see cref="FilterStrategies"/> for use by the filtering component.
+        /// </summary>
         public ObservableCollection<IFilterStrategy> FilterStrategies { get; }
 
+        /// <summary>
+        /// Starts the editing process, which changes of the window behaves.
+        /// </summary>
         public void EnableEditing()
         {
             EditingEnabled = true;
         }
 
+        /// <summary>
+        /// Terminates the editing process.
+        /// </summary>
         public void DisableEditing()
         {
             EditingEnabled = false;
@@ -61,6 +81,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedVariable = null;
         }
 
+        /// <summary>
+        /// Change the filter strategy of the filtering component.
+        /// </summary>
+        /// <param name="filterStrategy">The new filter strategy to apply.</param>
         public void ChangeFilterStrategy(IFilterStrategy filterStrategy)
         {
             var currentFilterStrategy = FilterStrategy;
@@ -71,6 +95,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private IFilterStrategy _filterStrategy;
 
+        /// <summary>
+        /// The filter strategy to use when filtering the environment listview.
+        /// </summary>
         public IFilterStrategy FilterStrategy
         {
             get => _filterStrategy;
@@ -84,6 +111,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private SettingsViewModel _settings;
 
+        /// <summary>
+        /// Contains all the settings available to the application.
+        /// </summary>
         public SettingsViewModel Settings
         {
             get => _settings;
@@ -95,10 +125,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determines if the clear filter button (the big red cross) is enabled or not.
+        /// </summary>
         public bool IsClearFilterButtonEnabled => FilterStrategy.SearchedText != null;
 
         private string _filterText;
 
+        /// <summary>
+        /// The text the filtering component will filter by.
+        /// </summary>
         public string FilterText
         {
             get => _filterText;
@@ -112,6 +148,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Constructs a new <see cref="MainWindowViewModel"/> object and initializes its data adapter with the provided
+        /// connection string.
+        /// </summary>
+        /// <param name="connectionString">The connection string to the Chami datastore.</param>
         public MainWindowViewModel(string connectionString)
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
@@ -133,6 +174,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             CancellationTokenSource = new CancellationTokenSource();
         }
 
+        /// <summary>
+        /// Initializes the filtering strategies.
+        /// </summary>
         private void InitFilterStrategies()
         {
             FilterStrategy = new EnvironmentNameFilterStrategy();
@@ -142,6 +186,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private bool _isDescendingSorting;
+
         public bool IsDescendingSorting
         {
             get => _isDescendingSorting;
@@ -162,7 +207,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _isCaseSensitiveSearch = value;
 
                 var converter = new BooleanToStringComparisonConverter();
-                var stringComparisonObject = converter.ConvertBack(value, typeof(StringComparison), null, CultureInfo.CurrentUICulture);
+                var stringComparisonObject =
+                    converter.ConvertBack(value, typeof(StringComparison), null, CultureInfo.CurrentUICulture);
 
                 if (stringComparisonObject is StringComparison stringComparison)
                 {
@@ -170,10 +216,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     {
                         FilterStrategy.Comparison = stringComparison;
                     }
+
                     OnPropertyChanged(nameof(FilterStrategy));
                 }
+
                 OnPropertyChanged(nameof(IsCaseSensitiveSearch));
-                
             }
         }
 
@@ -281,7 +328,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         public string FilterStrategyComboboxToolTip => FilterStrategy.Name;
-        
+
         public CancellationTokenSource CancellationTokenSource { get; set; }
 
         private EnvironmentViewModel _activeEnvironment;
@@ -328,18 +375,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     return "/Assets/Svg/play_disabled.svg";
                 }
-                
+
                 if (ExecuteButtonPlayEnabled)
                 {
                     return "/Assets/Svg/play.svg";
                 }
 
-                
 
                 return "/Assets/Svg/stop.svg";
             }
         }
-        
+
         public string ClearFilterTextButtonIcon
         {
             get
@@ -434,6 +480,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     return $"{_windowTitle} - {ActiveEnvironment.Name}";
                 }
+
                 return _windowTitle;
             }
         }
@@ -461,7 +508,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             DisableEditing();
         }
 
-        public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress, CancellationToken cancellationToken)
+        public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress,
+            CancellationToken cancellationToken)
         {
             if (progress != null)
             {
@@ -469,9 +517,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     new CmdExecutorProgress(0, null, ChamiUIStrings.RevertToOriginalEnvironmentMessage);
                 progress.Report(executorProgress);
             }
+
             var cmdExecutor = new CmdExecutor();
             var detector = new EnvironmentVariableRegistryRetriever();
-            
+
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
             if (currentEnvironmentName != null)
             {
@@ -487,6 +536,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                                 environmentVariable);
                         cmdExecutor.AddCommand(newCommand);
                     }
+
                     var chamiEnvVariable = new EnvironmentVariable() {Name = "_CHAMI_ENV"};
                     var chamiEnvVarRemovalCommand =
                         EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
@@ -504,6 +554,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     progress.Report(executorProgress);
                 }
             }
+
             OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(null));
         }
 
@@ -518,7 +569,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void DetectCurrentEnvironment()
         {
             var detector = new EnvironmentVariableRegistryRetriever();
-            
+
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
             OnEnvironmentChanged(this,
                 new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
@@ -547,6 +598,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 ActiveEnvironment = newSelectedEnvironment;
                 await ChangeEnvironmentAsync(progress);
             }
+
             SelectedEnvironment.Name = argsNewName;
         }
 
@@ -571,15 +623,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         output.Add(model);
                     }
                 }
-                
             }
 
             return output;
         }
 
-        public void SaveWindowState(double width, double height, double xPosition, double yPosition, SortDescription sortDescription)
+        public void SaveWindowState(double width, double height, double xPosition, double yPosition,
+            SortDescription sortDescription)
         {
-            var settings = Settings.MainWindowBehaviourSettings; 
+            var settings = Settings.MainWindowBehaviourSettings;
             settings.IsCaseSensitiveSearch = IsCaseSensitiveSearch;
             settings.Height = height;
             settings.Width = width;
@@ -588,7 +640,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             settings.SearchPath = FilterStrategy;
             settings.SortDescription = sortDescription;
             _settingsDataAdapter.SaveMainWindowState(Settings);
-            
         }
     }
 }
