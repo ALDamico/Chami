@@ -36,6 +36,7 @@ namespace ChamiUI.BusinessLayer
                 throw new NullReferenceException("The input stream was null!");
             }
 
+            ResetStream();
             var streamReader = new StreamReader(_stream).ReadToEnd();
 
             var environment =
@@ -56,12 +57,18 @@ namespace ChamiUI.BusinessLayer
                 throw new NullReferenceException("The input stream was null!");
             }
 
+            ResetStream();
             var jsonText = new StreamReader(_stream).ReadToEnd();
 
             var environments =
                 JsonConvert.DeserializeObject<IEnumerable<EnvironmentViewModel>>(jsonText,
                     new EnvironmentViewModelJsonConverter());
             return environments as List<EnvironmentViewModel>;
+        }
+
+        private void ResetStream()
+        {
+            _stream.Seek(0, SeekOrigin.Begin);
         }
     }
 }
