@@ -12,7 +12,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Data;
 using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
@@ -27,17 +26,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
-        public IMinimizationStrategy MinimizationStrategy
-        {
-            get => _settings.MinimizationBehaviour.MinimizationStrategy;
-        }
+        public IMinimizationStrategy MinimizationStrategy => _settings.MinimizationBehaviour.MinimizationStrategy;
 
         /// <summary>
         /// Cancels the execution of the active <see cref="CmdExecutor"/> queue.
         /// </summary>
         public void CancelActiveTask()
         {
-            CancellationTokenSource.Cancel();
+            _cancellationTokenSource.Cancel();
         }
 
         private bool _editingEnabled;
@@ -171,7 +167,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
-            CancellationTokenSource = new CancellationTokenSource();
+            _cancellationTokenSource = new CancellationTokenSource();
         }
 
         /// <summary>
@@ -187,6 +183,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private bool _isDescendingSorting;
 
+        /// <summary>
+        /// Determines if the filtering/sorting component should sort its results in a descending fashion.
+        /// </summary>
         public bool IsDescendingSorting
         {
             get => _isDescendingSorting;
@@ -198,7 +197,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private bool _isCaseSensitiveSearch;
-
+        
+        /// <summary>
+        /// Determines if the filtering component should work in a case-sensitive fashion or not.
+        /// </summary>
         public bool IsCaseSensitiveSearch
         {
             get => _isCaseSensitiveSearch;
@@ -224,14 +226,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-
+        /// <summary>
+        /// Event that gets fired when the active environment changes.
+        /// </summary>
         public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
 
+        /// <summary>
+        /// Determines if the Apply button in the window is enabled (i.e., there's no editing and no environment
+        /// switching on progress.
+        /// </summary>
         public bool ExecuteButtonPlayEnabled => !EditingEnabled && !_isChangeInProgress;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
 
+        /// <summary>
+        /// Reads the settings from the datastore.
+        /// </summary>
+        /// <returns>The <see cref="SettingsViewModel"/> read from the datastore.</returns>
         private SettingsViewModel GetSettingsViewModel()
         {
             var settings = _settingsDataAdapter.GetSettings();
@@ -241,6 +253,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return settings;
         }
 
+        /// <summary>
+        /// Reacts to the EnvironmentChanged event.
+        /// </summary>
+        /// <param name="sender">The object that generated the event.</param>
+        /// <param name="args">Information about the environment change.</param>
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
         {
             if (args != null)
@@ -257,6 +274,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EnvironmentChanged?.Invoke(this, args);
         }
 
+        /// <summary>
+        /// Performs the act of changing the active environment to update the window appearance.
+        /// </summary>
         private void ChangeActiveEnvironment()
         {
             foreach (var environment in Environments)
@@ -282,10 +302,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private CancellationToken GetNewCancellationToken()
         {
-            CancellationTokenSource = new CancellationTokenSource();
-            return CancellationTokenSource.Token;
+            _cancellationTokenSource = new CancellationTokenSource();
+            return _cancellationTokenSource.Token;
         }
 
+        /// <summary>
+        /// Performs an environment change.
+        /// </summary>
+        /// <param name="progress">Reports progress notification.</param>
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress)
         {
             SetIsChangeInProgress(true);
@@ -327,12 +351,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SetIsChangeInProgress(false);
         }
 
+        /// <summary>
+        /// Binding for the tooltip of the filter strategy combobox.
+        /// </summary>
         public string FilterStrategyComboboxToolTip => FilterStrategy.Name;
 
-        public CancellationTokenSource CancellationTokenSource { get; set; }
+        private CancellationTokenSource _cancellationTokenSource;
 
         private EnvironmentViewModel _activeEnvironment;
 
+        /// <summary>
+        /// The currently-active environment on the system.
+        /// </summary>
         public EnvironmentViewModel ActiveEnvironment
         {
             get => _activeEnvironment;
@@ -344,15 +374,25 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Synchronous version of <see cref="ChangeEnvironment"/>. Chami doesn't make use of it.
+        /// </summary>
+        /// <param name="progress"></param>
         public void ChangeEnvironment(IProgress<CmdExecutorProgress> progress)
         {
             ChangeEnvironmentAsync(progress).GetAwaiter().GetResult();
         }
 
+        /// <summary>
+        /// Contains all environments present in the datastore.
+        /// </summary>
         public ObservableCollection<EnvironmentViewModel> Environments { get; set; }
 
         private EnvironmentViewModel _selectedEnvironment;
 
+        /// <summary>
+        /// The environment selected in the listbox.
+        /// </summary>
         public EnvironmentViewModel SelectedEnvironment
         {
             get => _selectedEnvironment;
@@ -608,10 +648,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             foreach (var fileName in dialogFileNames)
             {
                 var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
-                EnvironmentViewModel viewModel = null;
                 try
                 {
-                    viewModel = reader.Process();
+                    var viewModel = reader.Process();
                     output.Add(viewModel);
                 }
                 catch (JsonReaderException)
