@@ -294,6 +294,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             OnPropertyChanged(nameof(ExecuteButtonIcon));
         }
 
+        /// <summary>
+        /// Determines if all the environment variables in the <see cref="SelectedEnvironment"/> passed validation.
+        /// </summary>
+        /// <returns>True if all environment variables passed validation, otherwise false.</returns>
         public bool AreSelectedEnvironmentVariablesValid()
         {
             return SelectedEnvironment.EnvironmentVariables.All(envVar =>
@@ -407,6 +411,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The path to the icon to show in the Execute button.
+        /// If no environment is selected the play_disabled image is shown.
+        /// If <see cref="ExecuteButtonPlayEnabled"/> is true, the play image is shown.
+        /// Otherwise, the stop icon is shown.
+        /// </summary>
         public string ExecuteButtonIcon
         {
             get
@@ -426,6 +436,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The path to the image used in the clear filter button.
+        /// </summary>
         public string ClearFilterTextButtonIcon
         {
             get
@@ -439,6 +452,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The currently-selected variable in the listview.
+        /// </summary>
         public EnvironmentVariableViewModel SelectedVariable
         {
             get => _selectedVariable;
@@ -460,6 +476,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private readonly EnvironmentDataAdapter _dataAdapter;
 
+        /// <summary>
+        /// Constructs the message to show in the messagebox that appears when a running application is detected after
+        /// changing the environment.
+        /// </summary>
+        /// <returns>The content of the messagebox.</returns>
         public string GetDetectedApplicationsMessage()
         {
             var watchedApplicationSettings = Settings.WatchedApplicationSettings;
@@ -492,6 +513,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return null;
         }
 
+        /// <summary>
+        /// Deletes the selected environment from the datastore.
+        /// </summary>
         public void DeleteSelectedEnvironment()
         {
             _dataAdapter.DeleteEnvironment(SelectedEnvironment);
@@ -499,6 +523,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = null;
         }
 
+        /// <summary>
+        /// Saves the currently-edited environment.
+        /// </summary>
         public void SaveCurrentEnvironment()
         {
             var environment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
@@ -508,10 +535,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             DisableEditing();
         }
 
+        /// <summary>
+        /// Event that gets triggered when an environment already exists.
+        /// </summary>
         public event EventHandler<EnvironmentExistingEventArgs> EnvironmentExists;
 
         private string _windowTitle = "Chami";
 
+        /// <summary>
+        /// The title of the main window. If no environment is active, it defaults to the application name. If there is
+        /// an active environment, it shows the name of the application and that of the environment.
+        /// </summary>
         public string WindowTitle
         {
             get
@@ -525,6 +559,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Checks if an environment already exists in the environment list.
+        /// </summary>
+        /// <param name="environment">The environment to check for.</param>
+        /// <returns>True if the environment exists in the collection, otherwise null.</returns>
         public bool CheckEnvironmentExists(EnvironmentViewModel environment)
         {
             if (Environments.Any(e => e.Name == environment.Name))
@@ -536,11 +575,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return false;
         }
 
+        /// <summary>
+        /// Executes a backup of the current environment variables.
+        /// </summary>
+        /// <seealso cref="EnvironmentBackupper"/>
         public void BackupEnvironment()
         {
             _dataAdapter.BackupEnvironment();
         }
 
+        /// <summary>
+        /// Deletes an environment variable from the datastore.
+        /// </summary>
         public void DeleteSelectedVariable()
         {
             _dataAdapter.DeleteVariable(SelectedVariable);
@@ -548,6 +594,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             DisableEditing();
         }
 
+        /// <summary>
+        /// Removes all Chami environment variables from the current environment.
+        /// </summary>
+        /// <param name="progress">Used for progress reporting.</param>
+        /// <param name="cancellationToken">Enabled canceling the task.</param>
         public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress,
             CancellationToken cancellationToken)
         {
@@ -606,6 +657,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return newVariable;
         }
 
+        /// <summary>
+        /// Detects the currently-active Chami environment by querying the Windows Registry.
+        /// </summary>
         public void DetectCurrentEnvironment()
         {
             var detector = new EnvironmentVariableRegistryRetriever();
@@ -615,6 +669,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 new EnvironmentChangedEventArgs(Environments.FirstOrDefault(e => e.Name == currentEnvironmentName)));
         }
 
+        /// <summary>
+        /// Re-synchronizes the datastore and the UI explicitly.
+        /// </summary>
         public void ResetCurrentEnvironmentFromDatasource()
         {
             if (SelectedEnvironment != null)
@@ -623,9 +680,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Renames an environment.
+        /// </summary>
+        /// <param name="argsNewName">The new name of the environment.</param>
+        /// <param name="progress">Reports progress.</param>
         public async Task RenameEnvironment(string argsNewName, Progress<CmdExecutorProgress> progress)
         {
-            //SelectedEnvironment.Name = argsNewName;
             var environmentToSave = SelectedEnvironment;
             environmentToSave.Name = argsNewName;
             var newSelectedEnvironment = _dataAdapter.SaveEnvironment(environmentToSave);
@@ -642,6 +703,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment.Name = argsNewName;
         }
 
+        /// <summary>
+        /// Imports environments from a list of files.
+        /// </summary>
+        /// <param name="dialogFileNames">An array containing the paths to the files to import.</param>
+        /// <returns>A <see cref="List{T}"/> of converted <see cref="EnvironmentViewModel"/>.</returns>
         public List<EnvironmentViewModel> StartImportFiles(string[] dialogFileNames)
         {
             List<EnvironmentViewModel> output = new List<EnvironmentViewModel>();
@@ -655,7 +721,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 }
                 catch (JsonReaderException)
                 {
-                    //reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
                     var viewModels = reader.ProcessMultiple();
                     foreach (var model in viewModels)
                     {
@@ -667,6 +732,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return output;
         }
 
+        /// <summary>
+        /// Saves the state of the main window to the datastore.
+        /// </summary>
+        /// <param name="width">The width of the window.</param>
+        /// <param name="height">The height of the window.</param>
+        /// <param name="xPosition">The position of the top left corner of the window on the screen on the X coordinate.</param>
+        /// <param name="yPosition">The position of the top left corner of the window on the screen on the Y coordinate.</param>
+        /// <param name="sortDescription">The sorting used by the listview.</param>
+        /// <seealso cref="MainWindowSavedBehaviourViewModel"/>
+        /// <seealso cref="SettingsDataAdapter"/>
         public void SaveWindowState(double width, double height, double xPosition, double yPosition,
             SortDescription sortDescription)
         {

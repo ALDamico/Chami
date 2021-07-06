@@ -1554,6 +1554,24 @@ namespace ChamiUI.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
+        public static string TaskbarExitMenuItem_Header {
+            get {
+                return ResourceManager.GetString("TaskbarExitMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hide Chami.
+        /// </summary>
+        public static string TaskbarHideChamiMenuItem_Header {
+            get {
+                return ResourceManager.GetString("TaskbarHideChamiMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit.
+        /// </summary>
         public static string TaskbarItemExit_Header {
             get {
                 return ResourceManager.GetString("TaskbarItemExit_Header", resourceCulture);
@@ -1575,6 +1593,15 @@ namespace ChamiUI.Localization {
         public static string TaskbarItemShow_Header {
             get {
                 return ResourceManager.GetString("TaskbarItemShow_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Chami.
+        /// </summary>
+        public static string TaskbarShowChamiMenuItem_Header {
+            get {
+                return ResourceManager.GetString("TaskbarShowChamiMenuItem_Header", resourceCulture);
             }
         }
         

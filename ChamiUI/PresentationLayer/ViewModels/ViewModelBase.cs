@@ -4,14 +4,19 @@ using System.Runtime.CompilerServices;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class ViewModelBase : INotifyPropertyChanged
+    /// <summary>
+    /// Base abstract class for all viewmodels in Chami that implements the <see cref="INotifyPropertyChanged"/>
+    /// interface.
+    /// </summary>
+    /// <seealso cref="INotifyPropertyChanged"/>
+    public abstract class ViewModelBase : INotifyPropertyChanged
     {
-        public ViewModelBase()
-        {
-        }
-
         public event PropertyChangedEventHandler PropertyChanged;
 
+        /// <summary>
+        /// Notify the UI a property has changed
+        /// </summary>
+        /// <param name="propertyName">The name of the property.</param>
         [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {

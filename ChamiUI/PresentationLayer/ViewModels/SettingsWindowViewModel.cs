@@ -8,15 +8,23 @@ using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// Viewmodel class for the settings window.
+    /// </summary>
     public class SettingsWindowViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="SettingsWindowViewModel"/> object and initializes its <see cref="Settings"/>
+        /// property and its data adapters.
+        /// </summary>
         public SettingsWindowViewModel()
         {
             var connectionString = App.GetConnectionString();
             _dataAdapter = new SettingsDataAdapter(connectionString);
             _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
             _languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
-            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter, _languageDataAdapter);
+            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
+                _languageDataAdapter);
             _controls = new Dictionary<string, UserControl>();
 
             var viewKey = ChamiUIStrings.ViewCategory;
@@ -34,10 +42,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _controls[minimizationKey] = new MinimizationBehaviourControl(Settings.MinimizationBehaviour);
         }
 
+        /// <summary>
+        /// Saves the changes to the settings to the datastore.
+        /// </summary>
         public void SaveSettings()
         {
             _dataAdapter.SaveSettings(Settings);
-            _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings.WatchedApplications);
+            _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
+                .WatchedApplications);
         }
 
         private SettingsDataAdapter _dataAdapter;
@@ -45,6 +57,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private ApplicationLanguageDataAdapter _languageDataAdapter;
         private Dictionary<string, UserControl> _controls;
 
+        /// <summary>
+        /// Changes the displayed control when the user clicks on a different entry in the side bar.
+        /// </summary>
+        /// <param name="name">The name of the control to get.</param>
         public void ChangeControl(string name)
         {
             var controlExists = _controls.TryGetValue(name, out var control);
@@ -60,6 +76,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private UserControl _displayedControl;
 
+        /// <summary>
+        /// The currently-displayed control.
+        /// </summary>
         public UserControl DisplayedControl
         {
             get => _displayedControl;
@@ -72,6 +91,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private SettingsViewModel _settingsViewModel;
 
+        /// <summary>
+        /// The entire application settings.
+        /// </summary>
         public SettingsViewModel Settings
         {
             get => _settingsViewModel;

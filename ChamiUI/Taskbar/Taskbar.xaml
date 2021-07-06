@@ -2,13 +2,13 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:tb="http://www.hardcodet.net/taskbar"
                     xmlns:vm="clr-namespace:ChamiUI.Taskbar"
-                    >
+                    xmlns:lex="http://wpflocalizeextension.codeplex.com">
     
     <ContextMenu x:Shared="False" x:Key="ChamiSystemTrayMenu">
-        <MenuItem Header="Show Chami" Command="{Binding ShowWindowCommand}"></MenuItem>
-        <MenuItem Header="Hide Chami" Command="{Binding HideWindowCommand}"></MenuItem>
+        <MenuItem Header="{lex:Loc}" x:Name="TaskbarShowChamiMenuItem" Command="{Binding ShowWindowCommand}"></MenuItem>
+        <MenuItem Header="{lex:Loc}" x:Name="TaskbarHideChamiMenuItem" Command="{Binding HideWindowCommand}"></MenuItem>
         <Separator/>
-        <MenuItem Header="Exit" Command="{Binding ExitApplicationCommand}"></MenuItem>
+        <MenuItem Header="{lex:Loc}" x:Name="TaskbarExitMenuItem" Command="{Binding ExitApplicationCommand}"></MenuItem>
     </ContextMenu>
     <tb:TaskbarIcon x:Key="ChamiTaskbarIcon" 
                     IconSource="../Assets/chameleon16x16.ico" 

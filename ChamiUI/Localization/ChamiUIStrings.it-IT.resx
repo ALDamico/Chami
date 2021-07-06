@@ -649,4 +649,13 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="MinimizationCategory" xml:space="preserve">
     <value>Riduzione a icona</value>
   </data>
+  <data name="TaskbarShowChamiMenuItem_Header" xml:space="preserve">
+    <value>Mostra Chami</value>
+  </data>
+  <data name="TaskbarHideChamiMenuItem_Header" xml:space="preserve">
+    <value>Nascondi Chami</value>
+  </data>
+  <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
+    <value>Esci</value>
+  </data>
 </root>

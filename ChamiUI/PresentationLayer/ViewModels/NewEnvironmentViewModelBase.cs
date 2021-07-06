@@ -5,16 +5,33 @@ using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public abstract class NewEnvironmentViewModelBase: ViewModelBase
+    /// <summary>
+    /// Base viewmodel class used by the new environment and the import environment windows.
+    /// </summary>
+    public abstract class NewEnvironmentViewModelBase : ViewModelBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="NewEnvironmentViewModelBase"/> object and initializes its <see cref="DataAdapter"/>
+        /// </summary>
         public NewEnvironmentViewModelBase()
         {
             Validator = new EnvironmentViewModelValidator();
             DataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
         }
+
+        /// <summary>
+        /// Performs validation on the environment before saving it.
+        /// </summary>
         protected EnvironmentViewModelValidator Validator { get; }
+
+        /// <summary>
+        /// Allows saving the new environment.
+        /// </summary>
         protected EnvironmentDataAdapter DataAdapter { get; }
-        
-        public abstract bool IsSaveButtonEnabled { get;  }
+
+        /// <summary>
+        /// Determines if the save button is enabled.
+        /// </summary>
+        public abstract bool IsSaveButtonEnabled { get; }
     }
 }

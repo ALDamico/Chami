@@ -6,13 +6,23 @@ using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// Viewmodel for the watched applications control.
+    /// </summary>
     public class WatchedApplicationControlViewModel : SettingCategoryViewModelBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="WatchedApplicationControlViewModel"/>.
+        /// </summary>
         public WatchedApplicationControlViewModel()
         {
             WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>();
         }
         private bool _isDetectionEnabled;
+        
+        /// <summary>
+        /// True if Chami is tracking the detection of running applications, otherwise false.
+        /// </summary>
         public bool IsDetectionEnabled
         {
             get => _isDetectionEnabled;
@@ -24,11 +34,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determines if the controls that allow editing the watched applications are enabled.
+        /// </summary>
         public bool ControlsEnabled => IsDetectionEnabled;
 
+        /// <summary>
+        /// The list of applications to watch.
+        /// </summary>
         [NonPersistentSetting]
         public ObservableCollection<WatchedApplicationViewModel> WatchedApplications { get; set; }
 
+        /// <summary>
+        /// Adds a new watched application to the datastore and to the application.
+        /// </summary>
+        /// <returns>True if a new application has been added (i.e., it doesn't already exist in the datastore),
+        /// otherwise false.</returns>
+        /// <exception cref="InvalidOperationException">An <see cref="InvalidOperationException"/> is thrown if the name
+        /// is null, an empty string, or just whitespace.</exception>
         public bool AddWatchedApplication()
         {
             if (string.IsNullOrWhiteSpace(NewApplicationName))
@@ -48,6 +71,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private string _newApplicationName;
+        
+        /// <summary>
+        /// The name of the application to add.
+        /// </summary>
         [NonPersistentSetting]
         public string NewApplicationName
         {

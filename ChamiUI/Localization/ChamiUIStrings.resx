@@ -649,4 +649,13 @@ Fix the issues and try saving again.</value>
   <data name="FilteringCaseSensitivityIcon_ToolTip" xml:space="preserve">
     <value>Case sensitive</value>
   </data>
+  <data name="TaskbarShowChamiMenuItem_Header" xml:space="preserve">
+    <value>Show Chami</value>
+  </data>
+  <data name="TaskbarHideChamiMenuItem_Header" xml:space="preserve">
+    <value>Hide Chami</value>
+  </data>
+  <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
+    <value>Exit</value>
+  </data>
 </root>
