@@ -1,9 +1,7 @@
 var searchData=
 [
-  ['languagecategory_1030',['LanguageCategory',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#ae996c33eb7f7716b04553c6e7b5e3f20',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['languageselectorlabel_5fcontent_1031',['LanguageSelectorLabel_Content',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#afe3b90451af6de7b70cf49aef7a07923',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['languagesettings_1032',['LanguageSettings',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html#a9eef3523bc033842e5893fc334f7647f',1,'ChamiUI::PresentationLayer::ViewModels::SettingsViewModel']]],
-  ['loggingcategory_1033',['LoggingCategory',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a16c5ca152ae0b430915a824c59b37204',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['logginggroupbox_5fheader_1034',['LoggingGroupBox_Header',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#af71c1ea0c0371ba7279c07684877e225',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['loggingsettings_1035',['LoggingSettings',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html#a410501cdd1474ee94a02355bb4bc5429',1,'ChamiUI::PresentationLayer::ViewModels::SettingsViewModel']]]
+  ['jsondeserializationerrormessageboxcaption_1869',['JsonDeserializationErrorMessageBoxCaption',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a25cd874693353728176fced614bd1071',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['jsondeserializationerrormessageboxtext_1870',['JsonDeserializationErrorMessageBoxText',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#abedeb97df999da8464cc6491ad8674ff',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['jsonfiledialogdescription_1871',['JsonFileDialogDescription',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a9bcf242cf423d602e513af200f5ae871',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['justification_1872',['Justification',['../class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute.html#abbf05e693db426184cb44dd1e75b902a',1,'ChamiUI::Annotations::MustUseReturnValueAttribute']]]
 ];

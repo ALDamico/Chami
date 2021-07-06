@@ -1,8 +1,12 @@
 var hierarchy =
 [
-    [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
-    [ "ChamiUI.App", "class_chami_u_i_1_1_app.html", null ],
-    [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+    [ "Chami.Db.Annotations.AnnotationUtils", "class_chami_1_1_db_1_1_annotations_1_1_annotation_utils.html", null ],
+    [ "System.Windows.Application", null, [
+      [ "ChamiUI.App", "class_chami_u_i_1_1_app.html", null ],
+      [ "ChamiUI.App", "class_chami_u_i_1_1_app.html", null ],
+      [ "ChamiUI.App", "class_chami_u_i_1_1_app.html", null ],
+      [ "ChamiUI.App", "class_chami_u_i_1_1_app.html", null ]
+    ] ],
     [ "ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter", "class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html", null ],
     [ "ChamiUI.BusinessLayer.Converters.ApplicationLanguageSettingConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_application_language_setting_converter.html", null ],
     [ "Attribute", null, [
@@ -92,8 +96,13 @@ var hierarchy =
     ] ],
     [ "ChamiUI.PresentationLayer.Progress.CmdExecutorProgress", "struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html", null ],
     [ "ChamiTests.DbTests", "class_chami_tests_1_1_db_tests.html", null ],
+    [ "ChamiUI.PresentationLayer.Factories.DurationFactory", "class_chami_u_i_1_1_presentation_layer_1_1_factories_1_1_duration_factory.html", null ],
+    [ "ChamiUI.BusinessLayer.EnvironmentBackupper", "class_chami_u_i_1_1_business_layer_1_1_environment_backupper.html", null ],
     [ "ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter", "class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html", null ],
+    [ "ChamiUI.BusinessLayer.Factories.EnvironmentReaderFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_reader_factory.html", null ],
+    [ "ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory.html", null ],
     [ "ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html", null ],
+    [ "ChamiUI.EnvironmentVariableSafetyFilter", "class_chami_u_i_1_1_environment_variable_safety_filter.html", null ],
     [ "EventArgs", null, [
       [ "ChamiUI.PresentationLayer.Events.EnvironmentChangedEventArgs", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_environment_changed_event_args.html", null ],
       [ "ChamiUI.PresentationLayer.Events.EnvironmentExistingEventArgs", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_environment_existing_event_args.html", null ],
@@ -101,8 +110,6 @@ var hierarchy =
       [ "ChamiUI.PresentationLayer.Events.EnvironmentSavedEventArgs", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_environment_saved_event_args.html", null ],
       [ "ChamiUI.PresentationLayer.Events.SettingsSavedEventArgs", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_settings_saved_event_args.html", null ]
     ] ],
-    [ "ChamiTests.ExportTests", "class_chami_tests_1_1_export_tests.html", null ],
-    [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
     [ "Chami.Db.Entities.IChamiEntity", "interface_chami_1_1_db_1_1_entities_1_1_i_chami_entity.html", [
       [ "Chami.Db.Entities.Environment", "class_chami_1_1_db_1_1_entities_1_1_environment.html", null ],
       [ "Chami.Db.Entities.EnvironmentVariable", "class_chami_1_1_db_1_1_entities_1_1_environment_variable.html", null ],
@@ -117,6 +124,62 @@ var hierarchy =
       [ "ChamiUI.Taskbar.Commands.ExitApplicationCommand", "class_chami_u_i_1_1_taskbar_1_1_commands_1_1_exit_application_command.html", null ],
       [ "ChamiUI.Taskbar.Commands.HideWindowCommand", "class_chami_u_i_1_1_taskbar_1_1_commands_1_1_hide_window_command.html", null ],
       [ "ChamiUI.Taskbar.Commands.ShowWindowCommand", "class_chami_u_i_1_1_taskbar_1_1_commands_1_1_show_window_command.html", null ]
+    ] ],
+    [ "System.Windows.Markup.IComponentConnector", null, [
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", null ],
+      [ "ChamiUI.Controls.LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", null ],
+      [ "ChamiUI.Controls.LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.MinimizationBehaviourControl", "class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html", null ],
+      [ "ChamiUI.Controls.MinimizationBehaviourControl", "class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ImportEnvironmentWindow.ImportEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html", null ],
+      [ "ChamiUI.Windows.ImportEnvironmentWindow.ImportEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html", null ],
+      [ "ChamiUI.Windows.ImportEnvironmentWindow.ImportEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+      [ "ChamiUI.Windows.NewTemplateWindow.NewTemplateWindow", "class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html", null ],
+      [ "ChamiUI.Windows.NewTemplateWindow.NewTemplateWindow", "class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html", null ],
+      [ "ChamiUI.Windows.NewTemplateWindow.NewTemplateWindow", "class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html", null ],
+      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ],
+      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ],
+      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ]
     ] ],
     [ "ChamiUI.BusinessLayer.Converters.IConverter< TFrom, TTo >", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html", null ],
     [ "ChamiUI.BusinessLayer.Converters.IConverter< Environment, EnvironmentViewModel >", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html", [
@@ -135,6 +198,7 @@ var hierarchy =
       [ "ChamiUI.BusinessLayer.Converters.WatchedApplicationConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_watched_application_converter.html", null ]
     ] ],
     [ "IDisposable", null, [
+      [ "ChamiTests.ExportTests", "class_chami_tests_1_1_export_tests.html", null ],
       [ "ChamiUI.BusinessLayer.Exporters.EnvironmentExcelExporter", "class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter.html", null ]
     ] ],
     [ "ChamiUI.BusinessLayer.IEnvironmentReader< TOut >", "interface_chami_u_i_1_1_business_layer_1_1_i_environment_reader.html", null ],
@@ -151,16 +215,13 @@ var hierarchy =
       [ "ChamiUI.PresentationLayer.Minimizing.MinimizeToTaskbarStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_taskbar_strategy.html", null ],
       [ "ChamiUI.PresentationLayer.Minimizing.MinimizeToTrayStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_tray_strategy.html", null ]
     ] ],
-    [ "ChamiUI.Windows.ImportEnvironmentWindow.ImportEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html", null ],
     [ "INotifyPropertyChanged", null, [
-      [ "ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html", null ],
       [ "ChamiUI.PresentationLayer.ViewModels.ViewModelBase", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_view_model_base.html", [
         [ "ChamiUI.PresentationLayer.ViewModels.ApplicationLanguageViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_application_language_view_model.html", null ],
         [ "ChamiUI.PresentationLayer.ViewModels.EnvironmentExportWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_export_window_view_model.html", null ],
         [ "ChamiUI.PresentationLayer.ViewModels.EnvironmentVariableViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_variable_view_model.html", null ],
         [ "ChamiUI.PresentationLayer.ViewModels.EnvironmentViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model.html", null ],
         [ "ChamiUI.PresentationLayer.ViewModels.ExportWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html", null ],
-        [ "ChamiUI.PresentationLayer.ViewModels.FindWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_find_window_view_model.html", null ],
         [ "ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html", null ],
         [ "ChamiUI.PresentationLayer.ViewModels.MinimizationBehaviourViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_minimization_behaviour_view_model.html", null ],
         [ "ChamiUI.PresentationLayer.ViewModels.NewEnvironmentViewModelBase", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model_base.html", [
@@ -181,6 +242,12 @@ var hierarchy =
         [ "ChamiUI.PresentationLayer.ViewModels.WatchedApplicationViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html", null ],
         [ "ChamiUI.Taskbar.TaskbarBehaviourViewModel", "class_chami_u_i_1_1_taskbar_1_1_taskbar_behaviour_view_model.html", null ]
       ] ]
+    ] ],
+    [ "System.Windows.Markup.InternalTypeHelper", null, [
+      [ "XamlGeneratedNamespace.GeneratedInternalTypeHelper", "class_xaml_generated_namespace_1_1_generated_internal_type_helper.html", null ],
+      [ "XamlGeneratedNamespace.GeneratedInternalTypeHelper", "class_xaml_generated_namespace_1_1_generated_internal_type_helper.html", null ],
+      [ "XamlGeneratedNamespace.GeneratedInternalTypeHelper", "class_xaml_generated_namespace_1_1_generated_internal_type_helper.html", null ],
+      [ "XamlGeneratedNamespace.GeneratedInternalTypeHelper", "class_xaml_generated_namespace_1_1_generated_internal_type_helper.html", null ]
     ] ],
     [ "ChamiUI.BusinessLayer.Converters.ISettingConverter< T >", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_setting_converter.html", null ],
     [ "ChamiUI.BusinessLayer.IShellCommand", "interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html", [
@@ -207,7 +274,7 @@ var hierarchy =
       [ "ChamiUI.BusinessLayer.Converters.EnvironmentViewModelJsonConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_view_model_json_converter.html", null ]
     ] ],
     [ "ChamiTests.JsonTests", "class_chami_tests_1_1_json_tests.html", null ],
-    [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+    [ "ChamiUI.PresentationLayer.Commands.MainWindowCommandsProvider", "class_chami_u_i_1_1_presentation_layer_1_1_commands_1_1_main_window_commands_provider.html", null ],
     [ "Migration", null, [
       [ "ChamiDbMigrations.Migrations.AddAddedOnIndex", "class_chami_db_migrations_1_1_migrations_1_1_add_added_on_index.html", null ],
       [ "ChamiDbMigrations.Migrations.AddDetectorSettings", "class_chami_db_migrations_1_1_migrations_1_1_add_detector_settings.html", null ],
@@ -219,7 +286,8 @@ var hierarchy =
       [ "ChamiDbMigrations.Migrations.MinimizeBehaviour", "class_chami_db_migrations_1_1_migrations_1_1_minimize_behaviour.html", null ]
     ] ],
     [ "ChamiUI.BusinessLayer.Converters.MinimizationStrategyConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_minimization_strategy_converter.html", null ],
-    [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+    [ "ChamiUI.BusinessLayer.Factories.OpenFileDialogFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_open_file_dialog_factory.html", null ],
+    [ "ChamiUI.PresentationLayer.Utils.ProcessUtils", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_process_utils.html", null ],
     [ "WhereAmI.Program", "class_where_am_i_1_1_program.html", null ],
     [ "ChamiTests.RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", null ],
     [ "Chami.Db.Repositories.RepositoryBase", "class_chami_1_1_db_1_1_repositories_1_1_repository_base.html", [
@@ -228,20 +296,49 @@ var hierarchy =
       [ "Chami.Db.Repositories.UiLanguageRepository", "class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository.html", null ],
       [ "Chami.Db.Repositories.WatchedApplicationRepository", "class_chami_1_1_db_1_1_repositories_1_1_watched_application_repository.html", null ]
     ] ],
+    [ "ChamiTests.ResourceTest", "class_chami_tests_1_1_resource_test.html", null ],
+    [ "ChamiUI.PresentationLayer.Utils.ResourceUtils", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_resource_utils.html", null ],
     [ "ChamiUI.BusinessLayer.RunningApplicationDetector", "class_chami_u_i_1_1_business_layer_1_1_running_application_detector.html", null ],
     [ "ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter", "class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html", null ],
-    [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ],
+    [ "ChamiUI.BusinessLayer.Factories.SettingsViewModelFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory.html", null ],
     [ "ChamiUI.BusinessLayer.Converters.SortDescriptionConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter.html", null ],
+    [ "ChamiUI.PresentationLayer.Utils.SortDescriptionUtils", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_sort_description_utils.html", null ],
+    [ "ChamiUI.BusinessLayer.Converters.StringConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_string_converter.html", null ],
     [ "ChamiUI.BusinessLayer.Converters.UnwrappingConverter< T >", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter.html", null ],
     [ "ChamiUI.BusinessLayer.Converters.UnwrappingConverter< IFilterStrategy >", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter.html", [
       [ "ChamiUI.BusinessLayer.Converters.FilterStrategyConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_filter_strategy_converter.html", null ]
     ] ],
-    [ "UserControl", null, [
+    [ "System.Windows.Controls.UserControl", null, [
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ApplicationDetectorControl", "class_chami_u_i_1_1_controls_1_1_application_detector_control.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
+      [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
       [ "ChamiUI.Controls.ConsoleAppearanceEditor", "class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html", null ],
       [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.FileInputBox", "class_chami_u_i_1_1_controls_1_1_file_input_box.html", null ],
+      [ "ChamiUI.Controls.LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", null ],
+      [ "ChamiUI.Controls.LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", null ],
+      [ "ChamiUI.Controls.LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", null ],
       [ "ChamiUI.Controls.LanguageSelectorControl", "class_chami_u_i_1_1_controls_1_1_language_selector_control.html", null ],
       [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
+      [ "ChamiUI.Controls.LoggingSettingsEditor", "class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html", null ],
       [ "ChamiUI.Controls.MinimizationBehaviourControl", "class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html", null ],
+      [ "ChamiUI.Controls.MinimizationBehaviourControl", "class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html", null ],
+      [ "ChamiUI.Controls.MinimizationBehaviourControl", "class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
+      [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ],
       [ "ChamiUI.Controls.SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", null ]
     ] ],
     [ "ValidationRule", null, [
@@ -252,9 +349,39 @@ var hierarchy =
       [ "ChamiUI.BusinessLayer.Validators.EnvironmentVariableNameUniqueValidationRule", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_name_unique_validation_rule.html", null ],
       [ "ChamiUI.BusinessLayer.Validators.EnvironmentVariableNameValidCharactersValidationRule", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_variable_name_valid_characters_validation_rule.html", null ]
     ] ],
+    [ "ChamiUI.BusinessLayer.Validators.ValidationUtils", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_utils.html", null ],
     [ "ChamiUI.BusinessLayer.Adapters.WatchedApplicationDataAdapter", "class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_watched_application_data_adapter.html", null ],
-    [ "Window", null, [
+    [ "System.Windows.Window", null, [
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.AboutBox.AboutBox", "class_chami_u_i_1_1_windows_1_1_about_box_1_1_about_box.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ExportWindow.ExportWindow", "class_chami_u_i_1_1_windows_1_1_export_window_1_1_export_window.html", null ],
+      [ "ChamiUI.Windows.ImportEnvironmentWindow.ImportEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html", null ],
+      [ "ChamiUI.Windows.ImportEnvironmentWindow.ImportEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html", null ],
+      [ "ChamiUI.Windows.ImportEnvironmentWindow.ImportEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.MainWindow.MainWindow", "class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
+      [ "ChamiUI.Windows.NewEnvironmentWindow.NewEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html", null ],
       [ "ChamiUI.Windows.NewTemplateWindow.NewTemplateWindow", "class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html", null ],
-      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ]
+      [ "ChamiUI.Windows.NewTemplateWindow.NewTemplateWindow", "class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html", null ],
+      [ "ChamiUI.Windows.NewTemplateWindow.NewTemplateWindow", "class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html", null ],
+      [ "ChamiUI.Windows.NewTemplateWindow.NewTemplateWindow", "class_chami_u_i_1_1_windows_1_1_new_template_window_1_1_new_template_window.html", null ],
+      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ],
+      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ],
+      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ],
+      [ "ChamiUI.Windows.RenameEnvironmentWindow.RenameEnvironmentWindow", "class_chami_u_i_1_1_windows_1_1_rename_environment_window_1_1_rename_environment_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ],
+      [ "ChamiUI.Windows.SettingsWindow.SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", null ]
     ] ]
 ];

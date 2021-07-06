@@ -1,6 +1,4 @@
 var searchData=
 [
-  ['hidewindowcommand_644',['HideWindowCommand',['../class_chami_u_i_1_1_taskbar_1_1_commands_1_1_hide_window_command.html',1,'ChamiUI::Taskbar::Commands']]],
-  ['htmlattributevalueattribute_645',['HtmlAttributeValueAttribute',['../class_chami_u_i_1_1_annotations_1_1_html_attribute_value_attribute.html',1,'ChamiUI::Annotations']]],
-  ['htmlelementattributesattribute_646',['HtmlElementAttributesAttribute',['../class_chami_u_i_1_1_annotations_1_1_html_element_attributes_attribute.html',1,'ChamiUI::Annotations']]]
+  ['generatedinternaltypehelper_1054',['GeneratedInternalTypeHelper',['../class_xaml_generated_namespace_1_1_generated_internal_type_helper.html',1,'XamlGeneratedNamespace']]]
 ];

@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['withinheritors_899',['WithInheritors',['../namespace_chami_u_i_1_1_annotations.html#a604ec5c0c6c4ca413a29b0e47c20ff03a7dab71373ccceb43fda71984fde5376e',1,'ChamiUI::Annotations']]],
-  ['withmembers_900',['WithMembers',['../namespace_chami_u_i_1_1_annotations.html#a604ec5c0c6c4ca413a29b0e47c20ff03a5583bb135f4d32715af96327c369e623',1,'ChamiUI::Annotations']]]
+  ['read_1673',['Read',['../namespace_chami_u_i_1_1_annotations.html#a75b51ab3495c9a82af4fbd6934d7d316a7a1a5f3e79fdc91edf2f5ead9d66abb4',1,'ChamiUI::Annotations']]]
 ];

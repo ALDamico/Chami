@@ -24,7 +24,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="chameleon128x128.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="chameleon256x256.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Chami
    </div>
@@ -83,7 +83,7 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 </div>
 
 <div class="contents">
-<div class="textblock">Here is a list of all documented class members with links to the class documentation for each member:</div>
+<div class="textblock">Here is a list of all class members with links to the classes they belong to:</div>
 
 <h3><a id="index_g"></a>- g -</h3><ul>
 <li>GenericExceptionMessageBoxCaption
@@ -108,14 +108,23 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetBackupEnvironments()
 : <a class="el" href="class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#ad749262af686d327b9c08b793e8357a4">Chami.Db.Repositories.EnvironmentRepository</a>
 </li>
+<li>GetCommand()
+: <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory.html#ab74228007aa9d62590bd232be8036040">ChamiUI.BusinessLayer.Factories.EnvironmentVariableCommandFactory</a>
+</li>
 <li>GetConnection()
 : <a class="el" href="class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a367b24aeb7e14765ac21958a6eee265e">Chami.Db.Repositories.RepositoryBase</a>
 </li>
 <li>GetConnectionAsync()
 : <a class="el" href="class_chami_1_1_db_1_1_repositories_1_1_repository_base.html#a4213b24dd577583142f8975d946db245">Chami.Db.Repositories.RepositoryBase</a>
 </li>
+<li>GetConnectionString()
+: <a class="el" href="class_chami_u_i_1_1_app.html#a5e30d78277d0a61b9d0b45bd0bec6c70">ChamiUI.App</a>
+</li>
 <li>GetCultureInfoByCode()
 : <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_application_language_data_adapter.html#a7a46d13592c83ca652c1c3b2a73d73fe">ChamiUI.BusinessLayer.Adapters.ApplicationLanguageDataAdapter</a>
+</li>
+<li>GetDetectedApplicationsMessage()
+: <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a6da5130321ee96a57625df5caf19cbf4">ChamiUI.PresentationLayer.ViewModels.MainWindowViewModel</a>
 </li>
 <li>GetEnvironmentById()
 : <a class="el" href="class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a2a88f52734e2def79410324fe7069d1b">Chami.Db.Repositories.EnvironmentRepository</a>
@@ -134,6 +143,9 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetEnvironmentEntityByName()
 : <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#a79c4c7178bc72866e68df59fd3028684">ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter</a>
 </li>
+<li>GetEnvironmentReaderByExtension()
+: <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_reader_factory.html#abdea8b512cdda7575544eccaf61c5d6c">ChamiUI.BusinessLayer.Factories.EnvironmentReaderFactory</a>
+</li>
 <li>GetEnvironments()
 : <a class="el" href="class_chami_1_1_db_1_1_repositories_1_1_environment_repository.html#a48b014b7255c5d5b13940ad6e8de64ea">Chami.Db.Repositories.EnvironmentRepository</a>
 , <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_environment_data_adapter.html#acb8314617a74856547db3f24f01d5538">ChamiUI.BusinessLayer.Adapters.EnvironmentDataAdapter</a>
@@ -144,16 +156,39 @@ $(document).ready(function(){initNavTree('functions_g.html',''); initResizable()
 <li>GetEnvironmentVariables()
 : <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_environment_variable_registry_retriever.html#ad5713ad0e01885da11e52cfc8b44ebfc">ChamiUI.BusinessLayer.EnvironmentVariableRegistryRetriever</a>
 </li>
+<li>GetExistingEnvironment()
+: <a class="el" href="class_chami_tests_1_1_db_tests.html#ae3d48fe55ab163f3a6c9d13214e5a51b">ChamiTests.DbTests</a>
+</li>
+<li>GetInsertedEnvironment()
+: <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model.html#a22fff72c51fecf9b92b2a7f141a65370">ChamiUI.PresentationLayer.ViewModels.NewEnvironmentViewModel</a>
+</li>
 <li>GetLogger()
-: <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger.html#aea988cfd1c4f6fa0edfb253521b508bc">ChamiUI.BusinessLayer.Logger.ChamiLogger</a>
+: <a class="el" href="class_chami_u_i_1_1_app.html#a8338e446afc331b71b703d7c744c33ce">ChamiUI.App</a>
+, <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger.html#aea988cfd1c4f6fa0edfb253521b508bc">ChamiUI.BusinessLayer.Logger.ChamiLogger</a>
+</li>
+<li>GetNotExistingEnvironment()
+: <a class="el" href="class_chami_tests_1_1_db_tests.html#ac5ddc4d96aa9a61fcd50e507d15bf48f">ChamiTests.DbTests</a>
+</li>
+<li>GetOpenFileDialog()
+: <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_factories_1_1_open_file_dialog_factory.html#a05e7d7ecb99e92a4bb63c59d9d8cf146">ChamiUI.BusinessLayer.Factories.OpenFileDialogFactory</a>
+</li>
+<li>GetOppositeSorting()
+: <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_sort_description_utils.html#a4212f7c7ac8496e9610a473380ecd9f5">ChamiUI.PresentationLayer.Utils.SortDescriptionUtils</a>
+</li>
+<li>GetPropertyValue()
+: <a class="el" href="class_xaml_generated_namespace_1_1_generated_internal_type_helper.html#afdc9fe15b56607d02082908d934480c6">XamlGeneratedNamespace.GeneratedInternalTypeHelper</a>
 </li>
 <li>GetSettings()
 : <a class="el" href="class_chami_1_1_db_1_1_repositories_1_1_settings_repository.html#a551dc1fd5b089ae49c0e1781ed9f7e84">Chami.Db.Repositories.SettingsRepository</a>
 , <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html#a2dc31d2d0a7f50da15986b4416c51abc">ChamiUI.BusinessLayer.Adapters.SettingsDataAdapter</a>
+, <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory.html#a81b0e4d50ea357d0f5fc5ee77126afc4">ChamiUI.BusinessLayer.Factories.SettingsViewModelFactory</a>
 </li>
 <li>GetSettingValue()
 : <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_converters_1_1_filter_strategy_converter.html#a7b0198c8b43c52198df068b83c045dae">ChamiUI.BusinessLayer.Converters.FilterStrategyConverter</a>
 , <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter.html#af814cbcd08a56f87d94830f60772921f">ChamiUI.BusinessLayer.Converters.SortDescriptionConverter</a>
+</li>
+<li>GetTableName()
+: <a class="el" href="class_chami_1_1_db_1_1_annotations_1_1_annotation_utils.html#a3b43277de3ff78c59fabbfe1bc55e26d">Chami.Db.Annotations.AnnotationUtils</a>
 </li>
 <li>GetUiLanguageByCode()
 : <a class="el" href="class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository.html#a21c04393b88104b6aa36402c02faa522">Chami.Db.Repositories.UiLanguageRepository</a>

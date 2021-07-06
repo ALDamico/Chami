@@ -21,7 +21,6 @@ var class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_
     [ "SaveWindowState", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a48e89f46a09b0aefccbadec47a9352fd", null ],
     [ "StartImportFiles", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#afb0af58c8987bb6d817ae55a4592f875", null ],
     [ "ActiveEnvironment", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a8e0e7acc56d6d027df599012ea487a15", null ],
-    [ "CancellationTokenSource", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a45cafd3c3a209ab1b9666a08d65070e3", null ],
     [ "ClearFilterTextButtonIcon", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#a981fb74bd77c060ef0b1077491ff1b99", null ],
     [ "EditingEnabled", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aa1ddcd0fc534bfb35e82ffad196ce9dd", null ],
     [ "Environments", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#acdcf268141f31aa16437a4e70339824c", null ],

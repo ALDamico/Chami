@@ -1,13 +1,11 @@
 var searchData=
 [
-  ['mainwindowbehavioursettings_1036',['MainWindowBehaviourSettings',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html#a4c9e570da5dbca45689565d51730b3dd',1,'ChamiUI::PresentationLayer::ViewModels::SettingsViewModel']]],
-  ['mainwindoweditmenuitem_5fheader_1037',['MainWindowEditMenuItem_Header',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a1d4a784d333c16f083b4dccb49870d05',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['mainwindowfilterlabel_5fcontent_1038',['MainWindowFilterLabel_Content',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a0348617171cdc421e5cd2dde8267edf6',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['mainwindowfindmenuitem_5fheader_1039',['MainWindowFindMenuItem_Header',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#aa5b6efeeb9b471ef84b1243afc520c5b',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['message_1040',['Message',['../interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result.html#a4ef38593c24582dee34a5bdd9a58bce8',1,'ChamiUI.BusinessLayer.Validators.IValidationResult.Message()'],['../class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html#a81bf617f4cccc13beb54c4b7b85cab64',1,'ChamiUI.BusinessLayer.Validators.ValidationResult.Message()']]],
-  ['minimizationbehaviour_1041',['MinimizationBehaviour',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html#ab72e17c5c42de96fbf8652be1e4dff44',1,'ChamiUI::PresentationLayer::ViewModels::SettingsViewModel']]],
-  ['minimizationbehaviourcontrollabel_5fcontent_1042',['MinimizationBehaviourControlLabel_Content',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a8b0a066621baa72a3de80fc789b528b3',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['minimizationcategory_1043',['MinimizationCategory',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#ad4035154fe30c71bcc3e204401247ae4',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['minimizetotaskbarstrategyname_1044',['MinimizeToTaskbarStrategyName',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a61f15c0d0bb4a9a0691467f05eb93a90',1,'ChamiUI::Localization::ChamiUIStrings']]],
-  ['minimizetotraystrategyname_1045',['MinimizeToTrayStrategyName',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a2016f45d24e6feba41f9b10da36b4c21',1,'ChamiUI::Localization::ChamiUIStrings']]]
+  ['languagecategory_1873',['LanguageCategory',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#ae996c33eb7f7716b04553c6e7b5e3f20',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['languageselectorlabel_5fcontent_1874',['LanguageSelectorLabel_Content',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#afe3b90451af6de7b70cf49aef7a07923',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['languagesettings_1875',['LanguageSettings',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html#a9eef3523bc033842e5893fc334f7647f',1,'ChamiUI::PresentationLayer::ViewModels::SettingsViewModel']]],
+  ['logger_1876',['Logger',['../class_chami_u_i_1_1_app.html#a4c172d3dbc5aa5be969c32dd0ff9e23a',1,'ChamiUI::App']]],
+  ['loggingcategory_1877',['LoggingCategory',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#a16c5ca152ae0b430915a824c59b37204',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['loggingenabled_1878',['LoggingEnabled',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model.html#a02d80508a7872c6f080b9d964aa42946',1,'ChamiUI::PresentationLayer::ViewModels::LoggingSettingsViewModel']]],
+  ['logginggroupbox_5fheader_1879',['LoggingGroupBox_Header',['../class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html#af71c1ea0c0371ba7279c07684877e225',1,'ChamiUI::Localization::ChamiUIStrings']]],
+  ['loggingsettings_1880',['LoggingSettings',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html#a410501cdd1474ee94a02355bb4bc5429',1,'ChamiUI::PresentationLayer::ViewModels::SettingsViewModel']]]
 ];

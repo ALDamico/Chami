@@ -1,0 +1,14 @@
+digraph "ChamiUI.BusinessLayer.IShellCommand"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ChamiUI.BusinessLayer.IShell\lCommand",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Interface for executing shell commands for use by CmdExecutorBase."];
+  Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="ChamiUI.BusinessLayer.Shell\lCommandBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html",tooltip="Base class that provides common protected methods for classes that implement IShellCommand."];
+  Node2 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ChamiUI.BusinessLayer.Environment\lVariableApplicationCommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html",tooltip="A command that creates (persistently) a new environment variable or updates its value if it already e..."];
+  Node2 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ChamiUI.BusinessLayer.Environment\lVariableRemovalCommand",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_business_layer_1_1_environment_variable_removal_command.html",tooltip="Executes a shell command that removes an environment variable from the registry."];
+}

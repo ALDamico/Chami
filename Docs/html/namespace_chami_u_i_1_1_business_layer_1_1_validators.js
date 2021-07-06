@@ -10,5 +10,6 @@ var namespace_chami_u_i_1_1_business_layer_1_1_validators =
     [ "EnvironmentViewModelValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_view_model_validator.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_view_model_validator" ],
     [ "IValidationResult", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result.html", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result" ],
     [ "IValidator", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator" ],
-    [ "ValidationResult", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result" ]
+    [ "ValidationResult", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result" ],
+    [ "ValidationUtils", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_utils.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_utils" ]
 ];

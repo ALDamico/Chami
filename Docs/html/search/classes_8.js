@@ -1,4 +1,28 @@
 var searchData=
 [
-  ['jsontests_672',['JsonTests',['../class_chami_tests_1_1_json_tests.html',1,'ChamiTests']]]
+  ['ichamientity_1058',['IChamiEntity',['../interface_chami_1_1_db_1_1_entities_1_1_i_chami_entity.html',1,'Chami::Db::Entities']]],
+  ['ichamiexporter_1059',['IChamiExporter',['../interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html',1,'ChamiUI::BusinessLayer::Exporters']]],
+  ['iconverter_1060',['IConverter',['../interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['iconverter_3c_20environment_2c_20environmentviewmodel_20_3e_1061',['IConverter&lt; Environment, EnvironmentViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['iconverter_3c_20environmentexportwindowviewmodel_2c_20environmentviewmodel_20_3e_1062',['IConverter&lt; EnvironmentExportWindowViewModel, EnvironmentViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['iconverter_3c_20environmentvariable_2c_20environmentvariableviewmodel_20_3e_1063',['IConverter&lt; EnvironmentVariable, EnvironmentVariableViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['iconverter_3c_20uilanguage_2c_20applicationlanguageviewmodel_20_3e_1064',['IConverter&lt; UiLanguage, ApplicationLanguageViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['iconverter_3c_20watchedapplication_2c_20watchedapplicationviewmodel_20_3e_1065',['IConverter&lt; WatchedApplication, WatchedApplicationViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['ienvironmentreader_1066',['IEnvironmentReader',['../interface_chami_u_i_1_1_business_layer_1_1_i_environment_reader.html',1,'ChamiUI::BusinessLayer']]],
+  ['ienvironmentreader_3c_20environmentviewmodel_20_3e_1067',['IEnvironmentReader&lt; EnvironmentViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_i_environment_reader.html',1,'ChamiUI::BusinessLayer']]],
+  ['ifilterstrategy_1068',['IFilterStrategy',['../interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html',1,'ChamiUI::PresentationLayer::Filtering']]],
+  ['iminimizationstrategy_1069',['IMinimizationStrategy',['../interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy.html',1,'ChamiUI::PresentationLayer::Minimizing']]],
+  ['importenvironmentwindow_1070',['ImportEnvironmentWindow',['../class_chami_u_i_1_1_windows_1_1_import_environment_window_1_1_import_environment_window.html',1,'ChamiUI::Windows::ImportEnvironmentWindow']]],
+  ['importenvironmentwindowviewmodel_1071',['ImportEnvironmentWindowViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
+  ['initial_1072',['Initial',['../class_chami_db_migrations_1_1_migrations_1_1_initial.html',1,'ChamiDbMigrations::Migrations']]],
+  ['instanthandleattribute_1073',['InstantHandleAttribute',['../class_chami_u_i_1_1_annotations_1_1_instant_handle_attribute.html',1,'ChamiUI::Annotations']]],
+  ['invokerparameternameattribute_1074',['InvokerParameterNameAttribute',['../class_chami_u_i_1_1_annotations_1_1_invoker_parameter_name_attribute.html',1,'ChamiUI::Annotations']]],
+  ['isettingconverter_1075',['ISettingConverter',['../interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_setting_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['ishellcommand_1076',['IShellCommand',['../interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html',1,'ChamiUI::BusinessLayer']]],
+  ['itemcanbenullattribute_1077',['ItemCanBeNullAttribute',['../class_chami_u_i_1_1_annotations_1_1_item_can_be_null_attribute.html',1,'ChamiUI::Annotations']]],
+  ['itemnotnullattribute_1078',['ItemNotNullAttribute',['../class_chami_u_i_1_1_annotations_1_1_item_not_null_attribute.html',1,'ChamiUI::Annotations']]],
+  ['ivalidationresult_1079',['IValidationResult',['../interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result.html',1,'ChamiUI::BusinessLayer::Validators']]],
+  ['ivalidator_1080',['IValidator',['../interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html',1,'ChamiUI::BusinessLayer::Validators']]],
+  ['ivalidator_3c_20environmentvariableviewmodel_20_3e_1081',['IValidator&lt; EnvironmentVariableViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html',1,'ChamiUI::BusinessLayer::Validators']]],
+  ['ivalidator_3c_20environmentviewmodel_20_3e_1082',['IValidator&lt; EnvironmentViewModel &gt;',['../interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html',1,'ChamiUI::BusinessLayer::Validators']]]
 ];

@@ -13,6 +13,7 @@ var namespace_chami_u_i_1_1_business_layer_1_1_converters =
     [ "ISettingConverter", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_setting_converter.html", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_setting_converter" ],
     [ "MinimizationStrategyConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_minimization_strategy_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_minimization_strategy_converter" ],
     [ "SortDescriptionConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter" ],
+    [ "StringConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_string_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_string_converter" ],
     [ "UnwrappingConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter" ],
     [ "WatchedApplicationConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_watched_application_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_watched_application_converter" ]
 ];

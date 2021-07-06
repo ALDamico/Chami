@@ -24,7 +24,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="chameleon128x128.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="chameleon256x256.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Chami
    </div>
@@ -91,6 +91,9 @@ $(document).ready(function(){initNavTree('class_chami_u_i_1_1_business_layer_1_1
 <div class="title">ChamiUI.BusinessLayer.ShellCommandBase Class Reference<span class="mlabels"><span class="mlabel">abstract</span></span></div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Base class that provides common protected methods for classes that implement <a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase.">IShellCommand</a>.  
+ <a href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for ChamiUI.BusinessLayer.ShellCommandBase:</div>
 <div class="dyncontent">
@@ -102,23 +105,14 @@ Inheritance diagram for ChamiUI.BusinessLayer.ShellCommandBase:</div>
 <area shape="rect" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase." alt="" coords="5,46,119,73"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for ChamiUI.BusinessLayer.ShellCommandBase:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_chami_u_i_1_1_business_layer_1_1_shell_command_base__coll__graph.png" border="0" usemap="#a_chami_u_i_8_business_layer_8_shell_command_base_coll__map" alt="Collaboration graph"/></div>
-<map name="a_chami_u_i_8_business_layer_8_shell_command_base_coll__map" id="a_chami_u_i_8_business_layer_8_shell_command_base_coll__map">
-<area shape="rect" title=" " alt="" coords="5,80,200,121"/>
-<area shape="rect" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase." alt="" coords="46,5,159,32"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a90dfdd0a479cb8c11b708eb49c554fbe"><td class="memItemLeft" align="right" valign="top">abstract void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#a90dfdd0a479cb8c11b708eb49c554fbe">Execute</a> ()</td></tr>
-<tr class="memdesc:a90dfdd0a479cb8c11b708eb49c554fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a shell command synchronously.  <a href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#a90dfdd0a479cb8c11b708eb49c554fbe">More...</a><br /></td></tr>
+<tr class="memdesc:a90dfdd0a479cb8c11b708eb49c554fbe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived classes must implement the <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#a90dfdd0a479cb8c11b708eb49c554fbe" title="Derived classes must implement the Execute method.">Execute</a> method.  <a href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#a90dfdd0a479cb8c11b708eb49c554fbe">More...</a><br /></td></tr>
 <tr class="separator:a90dfdd0a479cb8c11b708eb49c554fbe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac03c3d91fa58422eed187405d33a2ff7"><td class="memItemLeft" align="right" valign="top">abstract Task&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ac03c3d91fa58422eed187405d33a2ff7">ExecuteAsync</a> (IProgress&lt; <a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html">CmdExecutorProgress</a> &gt; progress, float percentage, CancellationToken cancellationToken)</td></tr>
-<tr class="memdesc:ac03c3d91fa58422eed187405d33a2ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Execute a shell command asynchronously. Can optionally report progress to caller. Can be cancelled.  <a href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ac03c3d91fa58422eed187405d33a2ff7">More...</a><br /></td></tr>
+<tr class="memdesc:ac03c3d91fa58422eed187405d33a2ff7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Derived classes must implement the <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ac03c3d91fa58422eed187405d33a2ff7" title="Derived classes must implement the ExecuteAsync method.">ExecuteAsync</a> method.  <a href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ac03c3d91fa58422eed187405d33a2ff7">More...</a><br /></td></tr>
 <tr class="separator:ac03c3d91fa58422eed187405d33a2ff7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
@@ -128,8 +122,7 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:ad80c4f522777c87251d049389f8ecc30"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_shell_command_base_8cs_source.html#l00010">10</a> of file <a class="el" href="_shell_command_base_8cs_source.html">ShellCommandBase.cs</a>.</p>
+<div class="textblock"><p>Base class that provides common protected methods for classes that implement <a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html" title="Interface for executing shell commands for use by CmdExecutorBase.">IShellCommand</a>. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a90dfdd0a479cb8c11b708eb49c554fbe"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a90dfdd0a479cb8c11b708eb49c554fbe">&#9670;&nbsp;</a></span>Execute()</h2>
@@ -154,7 +147,7 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Execute a shell command synchronously. </p>
+<p>Derived classes must implement the <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#a90dfdd0a479cb8c11b708eb49c554fbe" title="Derived classes must implement the Execute method.">Execute</a> method. </p>
 
 <p>Implements <a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html#a6dcb9c9ac2e678896175cc0bccbc3f9c">ChamiUI.BusinessLayer.IShellCommand</a>.</p>
 
@@ -202,17 +195,16 @@ Protected Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Execute a shell command asynchronously. Can optionally report progress to caller. Can be cancelled. </p>
+<p>Derived classes must implement the <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html#ac03c3d91fa58422eed187405d33a2ff7" title="Derived classes must implement the ExecuteAsync method.">ExecuteAsync</a> method. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
-    <tr><td class="paramname">progress</td><td>Object to report progress to caller.</td></tr>
-    <tr><td class="paramname">percentage</td><td>Execution percentage. Used by <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base.html" title="Base class for executing queues of Windows shell commands.">CmdExecutorBase</a> for progress reporting.</td></tr>
+    <tr><td class="paramname">progress</td><td>Notifies the caller of progress.</td></tr>
+    <tr><td class="paramname">percentage</td><td>Percentage of overall completion</td></tr>
     <tr><td class="paramname">cancellationToken</td><td>Allows cancelling the task.</td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section return"><dt>Returns</dt><dd>Asynchronous method.</dd></dl>
-<dl class="section see"><dt>See also</dt><dd>IProgress&lt;T&gt;</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 <p>Implements <a class="el" href="interface_chami_u_i_1_1_business_layer_1_1_i_shell_command.html#a2a8f4b146a27d3332688388844bfe67a">ChamiUI.BusinessLayer.IShellCommand</a>.</p>
 
@@ -253,12 +245,10 @@ Protected Member Functions</h2></td></tr>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A Process object for use by an <a class="el" href="class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base.html" title="Base class for executing queues of Windows shell commands.">CmdExecutorBase</a>.</dd></dl>
 
-<p class="definition">Definition at line <a class="el" href="_shell_command_base_8cs_source.html#l00022">22</a> of file <a class="el" href="_shell_command_base_8cs_source.html">ShellCommandBase.cs</a>.</p>
-
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/BusinessLayer/<a class="el" href="_shell_command_base_8cs_source.html">ShellCommandBase.cs</a></li>
+<li>Chami/ChamiUI/BusinessLayer/<a class="el" href="_shell_command_base_8cs.html">ShellCommandBase.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

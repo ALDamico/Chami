@@ -1,0 +1,54 @@
+digraph "ChamiUI.PresentationLayer.ViewModels.ViewModelBase"
+{
+ // LATEX_PDF_SIZE
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  rankdir="LR";
+  Node1 [label="ChamiUI.PresentationLayer.\lViewModels.ViewModelBase",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black",tooltip="Base abstract class for all viewmodels in Chami that implements the INotifyPropertyChanged interface."];
+  Node2 -> Node1 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node2 [label="INotifyPropertyChanged",height=0.2,width=0.4,color="grey75", fillcolor="white", style="filled",tooltip=" "];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="ChamiUI.PresentationLayer.\lViewModels.ApplicationLanguage\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_application_language_view_model.html",tooltip="A viewmodel for UiLanguage, as used by the GUI of the Chami application."];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="ChamiUI.PresentationLayer.\lViewModels.EnvironmentExportWindow\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_export_window_view_model.html",tooltip="ViewModel for the environments to show in the export window."];
+  Node1 -> Node5 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node5 [label="ChamiUI.PresentationLayer.\lViewModels.EnvironmentVariable\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_variable_view_model.html",tooltip="Viewmodel that represents a EnvironmentVariable in the Chami application."];
+  Node1 -> Node6 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node6 [label="ChamiUI.PresentationLayer.\lViewModels.EnvironmentViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model.html",tooltip="Represents an environment (i.e., a collection of environment variables) saved in the datastore and co..."];
+  Node1 -> Node7 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node7 [label="ChamiUI.PresentationLayer.\lViewModels.ExportWindowViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html",tooltip="Viewmodel for the export window."];
+  Node1 -> Node8 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node8 [label="ChamiUI.PresentationLayer.\lViewModels.MainWindowViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html",tooltip=" "];
+  Node1 -> Node9 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node9 [label="ChamiUI.PresentationLayer.\lViewModels.MinimizationBehaviour\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_minimization_behaviour_view_model.html",tooltip="Represents the settings that control how the main window behaves when it's minimized."];
+  Node1 -> Node10 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node10 [label="ChamiUI.PresentationLayer.\lViewModels.NewEnvironmentViewModelBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model_base.html",tooltip="Base viewmodel class used by the new environment and the import environment windows."];
+  Node10 -> Node11 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node11 [label="ChamiUI.PresentationLayer.\lViewModels.ImportEnvironmentWindow\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model.html",tooltip="Viewmodel for the import window."];
+  Node10 -> Node12 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node12 [label="ChamiUI.PresentationLayer.\lViewModels.NewEnvironmentViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_new_environment_view_model.html",tooltip="Viewmodel for the new environment window"];
+  Node1 -> Node13 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node13 [label="ChamiUI.PresentationLayer.\lViewModels.RenameEnvironmentViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_rename_environment_view_model.html",tooltip="Viewmodel used by the rename environment window."];
+  Node1 -> Node14 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node14 [label="ChamiUI.PresentationLayer.\lViewModels.SettingCategoryView\lModelBase",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_setting_category_view_model_base.html",tooltip="Marker class that gives the default ExplicitSaveOnlyAttribute value (false)"];
+  Node14 -> Node15 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node15 [label="ChamiUI.PresentationLayer.\lViewModels.ConsoleAppearanceViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_console_appearance_view_model.html",tooltip="Contains information about how the console should appear in the application."];
+  Node14 -> Node16 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node16 [label="ChamiUI.PresentationLayer.\lViewModels.LanguageSelectorViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model.html",tooltip="Viewmodel for the LanguageSelectorControl"];
+  Node14 -> Node17 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node17 [label="ChamiUI.PresentationLayer.\lViewModels.LoggingSettingsViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model.html",tooltip="Viewmodel for the LogginSettingsEditor control."];
+  Node14 -> Node18 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node18 [label="ChamiUI.PresentationLayer.\lViewModels.MainWindowSavedBehaviour\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_saved_behaviour_view_model.html",tooltip="Contains the main window state that can be saved to the database and restored when the application is..."];
+  Node14 -> Node19 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node19 [label="ChamiUI.PresentationLayer.\lViewModels.SafeVariableViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_safe_variable_view_model.html",tooltip=" "];
+  Node14 -> Node20 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node20 [label="ChamiUI.PresentationLayer.\lViewModels.WatchedApplicationControl\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_control_view_model.html",tooltip="Viewmodel for the watched applications control."];
+  Node1 -> Node21 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node21 [label="ChamiUI.PresentationLayer.\lViewModels.SettingsViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html",tooltip="Represents all the configurable aspects of the Chami application and enables the application to react..."];
+  Node1 -> Node22 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node22 [label="ChamiUI.PresentationLayer.\lViewModels.SettingsWindowViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_window_view_model.html",tooltip="Viewmodel class for the settings window."];
+  Node1 -> Node23 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node23 [label="ChamiUI.PresentationLayer.\lViewModels.WatchedApplicationViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_watched_application_view_model.html",tooltip="Viewmodel for watched applications."];
+  Node1 -> Node24 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node24 [label="ChamiUI.Taskbar.TaskbarBehaviour\lViewModel",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$class_chami_u_i_1_1_taskbar_1_1_taskbar_behaviour_view_model.html",tooltip="Viewmodel for the taskbar icon"];
+}

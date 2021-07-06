@@ -4,5 +4,6 @@ var namespace_chami_tests =
     [ "DbTests", "class_chami_tests_1_1_db_tests.html", "class_chami_tests_1_1_db_tests" ],
     [ "ExportTests", "class_chami_tests_1_1_export_tests.html", "class_chami_tests_1_1_export_tests" ],
     [ "JsonTests", "class_chami_tests_1_1_json_tests.html", "class_chami_tests_1_1_json_tests" ],
-    [ "RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", "class_chami_tests_1_1_registry_retriever_tests" ]
+    [ "RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", "class_chami_tests_1_1_registry_retriever_tests" ],
+    [ "ResourceTest", "class_chami_tests_1_1_resource_test.html", "class_chami_tests_1_1_resource_test" ]
 ];

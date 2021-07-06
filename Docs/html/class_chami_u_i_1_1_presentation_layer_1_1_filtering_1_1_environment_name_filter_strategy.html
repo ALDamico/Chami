@@ -24,7 +24,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="chameleon128x128.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="chameleon256x256.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Chami
    </div>
@@ -85,9 +85,7 @@ $(document).ready(function(){initNavTree('class_chami_u_i_1_1_presentation_layer
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="#properties">Properties</a> &#124;
-<a href="#events">Events</a> &#124;
 <a href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy Class Reference</div>  </div>
@@ -103,62 +101,177 @@ Inheritance diagram for ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilte
 <area shape="rect" title=" " alt="" coords="132,5,291,32"/>
 </map>
 <center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
-<div class="dynheader">
-Collaboration diagram for ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy:</div>
-<div class="dyncontent">
-<div class="center"><img src="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy__coll__graph.png" border="0" usemap="#a_chami_u_i_8_presentation_layer_8_filtering_8_environment_name_filter_strategy_coll__map" alt="Collaboration graph"/></div>
-<map name="a_chami_u_i_8_presentation_layer_8_filtering_8_environment_name_filter_strategy_coll__map" id="a_chami_u_i_8_presentation_layer_8_filtering_8_environment_name_filter_strategy_coll__map">
-<area shape="rect" title=" " alt="" coords="31,80,237,136"/>
-<area shape="rect" href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html" title=" " alt="" coords="5,5,108,32"/>
-<area shape="rect" title=" " alt="" coords="132,5,291,32"/>
-</map>
-<center><span class="legend">[<a target="top" href="graph_legend.html">legend</a>]</span></center></div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:ad39b9afc9ceec5aff6a8045ae317ba9d"><td class="memItemLeft" align="right" valign="top"><a id="ad39b9afc9ceec5aff6a8045ae317ba9d"></a>
-void&#160;</td><td class="memItemRight" valign="bottom"><b>OnFilter</b> (object sender, FilterEventArgs args)</td></tr>
+<tr class="memitem:aeba579b3cbdbb59c7fceda769fe9cdac"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#aeba579b3cbdbb59c7fceda769fe9cdac">EnvironmentNameFilterStrategy</a> ()</td></tr>
+<tr class="memdesc:aeba579b3cbdbb59c7fceda769fe9cdac"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructs a new <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html">EnvironmentNameFilterStrategy</a> and sets its name.  <a href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#aeba579b3cbdbb59c7fceda769fe9cdac">More...</a><br /></td></tr>
+<tr class="separator:aeba579b3cbdbb59c7fceda769fe9cdac"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad39b9afc9ceec5aff6a8045ae317ba9d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#ad39b9afc9ceec5aff6a8045ae317ba9d">OnFilter</a> (object sender, FilterEventArgs args)</td></tr>
+<tr class="memdesc:ad39b9afc9ceec5aff6a8045ae317ba9d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Filters a CollectionViewSource. An EnvironmentViewModel is accepted if it matches any of the following criteria: </p><ol>
+<li>
+The <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#a5c37e5b1adccd1ca8fe01fee9dada3a0">SearchedText</a> property is null (i.e., no filtering is being performed). </li>
+<li>
+The EnvironmentViewModel's Name property contains the <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#a5c37e5b1adccd1ca8fe01fee9dada3a0">SearchedText</a>. </li>
+</ol>
+ <a href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#ad39b9afc9ceec5aff6a8045ae317ba9d">More...</a><br /></td></tr>
 <tr class="separator:ad39b9afc9ceec5aff6a8045ae317ba9d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
-Protected Member Functions</h2></td></tr>
-<tr class="memitem:a7d8e05cb84cf69c7fdea245fef09bd5a"><td class="memItemLeft" align="right" valign="top"><a id="a7d8e05cb84cf69c7fdea245fef09bd5a"></a>
-virtual void&#160;</td><td class="memItemRight" valign="bottom"><b>OnPropertyChanged</b> ([CallerMemberName] string propertyName=null)</td></tr>
-<tr class="separator:a7d8e05cb84cf69c7fdea245fef09bd5a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:ae98323663ebcffeb6c66a01a1f318b32"><td class="memItemLeft" align="right" valign="top"><a id="ae98323663ebcffeb6c66a01a1f318b32"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>Name</b><code> [get]</code></td></tr>
+<tr class="memitem:ae98323663ebcffeb6c66a01a1f318b32"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#ae98323663ebcffeb6c66a01a1f318b32">Name</a><code> [get]</code></td></tr>
 <tr class="separator:ae98323663ebcffeb6c66a01a1f318b32"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c37e5b1adccd1ca8fe01fee9dada3a0"><td class="memItemLeft" align="right" valign="top"><a id="a5c37e5b1adccd1ca8fe01fee9dada3a0"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>SearchedText</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a5c37e5b1adccd1ca8fe01fee9dada3a0"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#a5c37e5b1adccd1ca8fe01fee9dada3a0">SearchedText</a><code> [get, set]</code></td></tr>
 <tr class="separator:a5c37e5b1adccd1ca8fe01fee9dada3a0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a439d4be1871c2e9e540b6e6732d0b705"><td class="memItemLeft" align="right" valign="top"><a id="a439d4be1871c2e9e540b6e6732d0b705"></a>
-StringComparison&#160;</td><td class="memItemRight" valign="bottom"><b>Comparison</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a439d4be1871c2e9e540b6e6732d0b705"><td class="memItemLeft" align="right" valign="top">StringComparison&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#a439d4be1871c2e9e540b6e6732d0b705">Comparison</a><code> [get, set]</code></td></tr>
 <tr class="separator:a439d4be1871c2e9e540b6e6732d0b705"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="inherit_header properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td colspan="2" onclick="javascript:toggleInherit('properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy')"><img src="closed.png" alt="-"/>&#160;Properties inherited from <a class="el" href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html">ChamiUI.PresentationLayer.Filtering.IFilterStrategy</a></td></tr>
-<tr class="memitem:aac847598321f107d6b0aae9e42f06809 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memItemLeft" align="right" valign="top"><a id="aac847598321f107d6b0aae9e42f06809"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>Name</b><code> [get]</code></td></tr>
+<tr class="memitem:aac847598321f107d6b0aae9e42f06809 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html#aac847598321f107d6b0aae9e42f06809">Name</a><code> [get]</code></td></tr>
+<tr class="memdesc:aac847598321f107d6b0aae9e42f06809 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="mdescLeft">&#160;</td><td class="mdescRight">A friendly name of the filter strategy for use by the UI.  <a href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html#aac847598321f107d6b0aae9e42f06809">More...</a><br /></td></tr>
 <tr class="separator:aac847598321f107d6b0aae9e42f06809 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0989f1bcb4089ae35989285987ac6081 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memItemLeft" align="right" valign="top"><a id="a0989f1bcb4089ae35989285987ac6081"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>SearchedText</b><code> [get, set]</code></td></tr>
+<tr class="memitem:a0989f1bcb4089ae35989285987ac6081 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html#a0989f1bcb4089ae35989285987ac6081">SearchedText</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a0989f1bcb4089ae35989285987ac6081 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The text to search for.  <a href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html#a0989f1bcb4089ae35989285987ac6081">More...</a><br /></td></tr>
 <tr class="separator:a0989f1bcb4089ae35989285987ac6081 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad99fadd394596fa1949cbae26c1f3ab1 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memItemLeft" align="right" valign="top"><a id="ad99fadd394596fa1949cbae26c1f3ab1"></a>
-StringComparison&#160;</td><td class="memItemRight" valign="bottom"><b>Comparison</b><code> [get, set]</code></td></tr>
+<tr class="memitem:ad99fadd394596fa1949cbae26c1f3ab1 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memItemLeft" align="right" valign="top">StringComparison&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html#ad99fadd394596fa1949cbae26c1f3ab1">Comparison</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:ad99fadd394596fa1949cbae26c1f3ab1 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="mdescLeft">&#160;</td><td class="mdescRight">The StringComparison to use when filtering.  <a href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html#ad99fadd394596fa1949cbae26c1f3ab1">More...</a><br /></td></tr>
 <tr class="separator:ad99fadd394596fa1949cbae26c1f3ab1 inherit properties_interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="events"></a>
-Events</h2></td></tr>
-<tr class="memitem:ab8569837a15c2fa4d4c6e1e226e238bf"><td class="memItemLeft" align="right" valign="top"><a id="ab8569837a15c2fa4d4c6e1e226e238bf"></a>
-PropertyChangedEventHandler&#160;</td><td class="memItemRight" valign="bottom"><b>PropertyChanged</b></td></tr>
-<tr class="separator:ab8569837a15c2fa4d4c6e1e226e238bf"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_environment_name_filter_strategy_8cs_source.html#l00011">11</a> of file <a class="el" href="_environment_name_filter_strategy_8cs_source.html">EnvironmentNameFilterStrategy.cs</a>.</p>
-</div><hr/>The documentation for this class was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/PresentationLayer/Filtering/<a class="el" href="_environment_name_filter_strategy_8cs_source.html">EnvironmentNameFilterStrategy.cs</a></li>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aeba579b3cbdbb59c7fceda769fe9cdac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aeba579b3cbdbb59c7fceda769fe9cdac">&#9670;&nbsp;</a></span>EnvironmentNameFilterStrategy()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy.EnvironmentNameFilterStrategy </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructs a new <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html">EnvironmentNameFilterStrategy</a> and sets its name. </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="ad39b9afc9ceec5aff6a8045ae317ba9d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ad39b9afc9ceec5aff6a8045ae317ba9d">&#9670;&nbsp;</a></span>OnFilter()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy.OnFilter </td>
+          <td>(</td>
+          <td class="paramtype">object&#160;</td>
+          <td class="paramname"><em>sender</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">FilterEventArgs&#160;</td>
+          <td class="paramname"><em>args</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Filters a CollectionViewSource. An EnvironmentViewModel is accepted if it matches any of the following criteria: </p><ol>
+<li>
+The <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#a5c37e5b1adccd1ca8fe01fee9dada3a0">SearchedText</a> property is null (i.e., no filtering is being performed). </li>
+<li>
+The EnvironmentViewModel's Name property contains the <a class="el" href="class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_name_filter_strategy.html#a5c37e5b1adccd1ca8fe01fee9dada3a0">SearchedText</a>. </li>
+</ol>
+</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">sender</td><td>The object that initiated the Filter event.</td></tr>
+    <tr><td class="paramname">args</td><td>Determines if an item is accepted or rejected by the Filter event.</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>CollectionViewSource</dd></dl>
+
+<p>Implements <a class="el" href="interface_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_i_filter_strategy.html#a40ba6aafb3b39ea44b34dee779192c3c">ChamiUI.PresentationLayer.Filtering.IFilterStrategy</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="a439d4be1871c2e9e540b6e6732d0b705"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a439d4be1871c2e9e540b6e6732d0b705">&#9670;&nbsp;</a></span>Comparison</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">StringComparison ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy.Comparison</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="ae98323663ebcffeb6c66a01a1f318b32"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae98323663ebcffeb6c66a01a1f318b32">&#9670;&nbsp;</a></span>Name</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy.Name</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a id="a5c37e5b1adccd1ca8fe01fee9dada3a0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a5c37e5b1adccd1ca8fe01fee9dada3a0">&#9670;&nbsp;</a></span>SearchedText</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ChamiUI.PresentationLayer.Filtering.EnvironmentNameFilterStrategy.SearchedText</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span><span class="mlabel">set</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<hr/>The documentation for this class was generated from the following file:<ul>
+<li>Chami/ChamiUI/PresentationLayer/Filtering/<a class="el" href="_environment_name_filter_strategy_8cs.html">EnvironmentNameFilterStrategy.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

@@ -24,7 +24,7 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
-  <td id="projectlogo"><img alt="Logo" src="chameleon128x128.png"/></td>
+  <td id="projectlogo"><img alt="Logo" src="chameleon256x256.png"/></td>
   <td id="projectalign" style="padding-left: 0.5em;">
    <div id="projectname">Chami
    </div>
@@ -91,30 +91,140 @@ $(document).ready(function(){initNavTree('struct_chami_u_i_1_1_presentation_laye
 <div class="title">ChamiUI.PresentationLayer.Progress.CmdExecutorProgress Struct Reference</div>  </div>
 </div><!--header-->
 <div class="contents">
+
+<p>Notifies progress of a CmdExecutorBase. Notification messages can be Streams or strings.  
+ <a href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#details">More...</a></p>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a9b7edb74ac4e74749318af16003827b4"><td class="memItemLeft" align="right" valign="top"><a id="a9b7edb74ac4e74749318af16003827b4"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>CmdExecutorProgress</b> (float percentage, Stream outputStream, string message)</td></tr>
+<tr class="memitem:a9b7edb74ac4e74749318af16003827b4"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a9b7edb74ac4e74749318af16003827b4">CmdExecutorProgress</a> (float percentage, Stream outputStream, string message)</td></tr>
 <tr class="separator:a9b7edb74ac4e74749318af16003827b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="properties"></a>
 Properties</h2></td></tr>
-<tr class="memitem:a71fbb6dba48e8780581946454a16554e"><td class="memItemLeft" align="right" valign="top"><a id="a71fbb6dba48e8780581946454a16554e"></a>
-float&#160;</td><td class="memItemRight" valign="bottom"><b>Percentage</b><code> [get]</code></td></tr>
+<tr class="memitem:a71fbb6dba48e8780581946454a16554e"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a71fbb6dba48e8780581946454a16554e">Percentage</a><code> [get]</code></td></tr>
+<tr class="memdesc:a71fbb6dba48e8780581946454a16554e"><td class="mdescLeft">&#160;</td><td class="mdescRight">The execution percentage. No special checks are made to ensure that this property isn't greater than 100.  <a href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a71fbb6dba48e8780581946454a16554e">More...</a><br /></td></tr>
 <tr class="separator:a71fbb6dba48e8780581946454a16554e"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1597d283c2bf66013189fbd2c549f297"><td class="memItemLeft" align="right" valign="top"><a id="a1597d283c2bf66013189fbd2c549f297"></a>
-Stream&#160;</td><td class="memItemRight" valign="bottom"><b>OutputStream</b><code> [get]</code></td></tr>
+<tr class="memitem:a1597d283c2bf66013189fbd2c549f297"><td class="memItemLeft" align="right" valign="top">Stream&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a1597d283c2bf66013189fbd2c549f297">OutputStream</a><code> [get]</code></td></tr>
+<tr class="memdesc:a1597d283c2bf66013189fbd2c549f297"><td class="mdescLeft">&#160;</td><td class="mdescRight">A Stream object that we want to include in the progress reporting. It can be, for example, the standard output of a shell command.  <a href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#a1597d283c2bf66013189fbd2c549f297">More...</a><br /></td></tr>
 <tr class="separator:a1597d283c2bf66013189fbd2c549f297"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acba95fa744c52ec62154b10e9fb9f410"><td class="memItemLeft" align="right" valign="top"><a id="acba95fa744c52ec62154b10e9fb9f410"></a>
-string&#160;</td><td class="memItemRight" valign="bottom"><b>Message</b><code> [get]</code></td></tr>
+<tr class="memitem:acba95fa744c52ec62154b10e9fb9f410"><td class="memItemLeft" align="right" valign="top">string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#acba95fa744c52ec62154b10e9fb9f410">Message</a><code> [get]</code></td></tr>
+<tr class="memdesc:acba95fa744c52ec62154b10e9fb9f410"><td class="mdescLeft">&#160;</td><td class="mdescRight">A programmer-defined message included in the progress reporting.  <a href="struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html#acba95fa744c52ec62154b10e9fb9f410">More...</a><br /></td></tr>
 <tr class="separator:acba95fa744c52ec62154b10e9fb9f410"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock">
-<p class="definition">Definition at line <a class="el" href="_cmd_executor_progress_8cs_source.html#l00005">5</a> of file <a class="el" href="_cmd_executor_progress_8cs_source.html">CmdExecutorProgress.cs</a>.</p>
-</div><hr/>The documentation for this struct was generated from the following file:<ul>
-<li>D:/code/Chami/ChamiUI/PresentationLayer/Progress/<a class="el" href="_cmd_executor_progress_8cs_source.html">CmdExecutorProgress.cs</a></li>
+<div class="textblock"><p>Notifies progress of a CmdExecutorBase. Notification messages can be Streams or strings. </p>
+<dl class="section see"><dt>See also</dt><dd>CmdExecutorBase</dd></dl>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a9b7edb74ac4e74749318af16003827b4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a9b7edb74ac4e74749318af16003827b4">&#9670;&nbsp;</a></span>CmdExecutorProgress()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">ChamiUI.PresentationLayer.Progress.CmdExecutorProgress.CmdExecutorProgress </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>percentage</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Stream&#160;</td>
+          <td class="paramname"><em>outputStream</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">string&#160;</td>
+          <td class="paramname"><em>message</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<h2 class="groupheader">Property Documentation</h2>
+<a id="acba95fa744c52ec62154b10e9fb9f410"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acba95fa744c52ec62154b10e9fb9f410">&#9670;&nbsp;</a></span>Message</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">string ChamiUI.PresentationLayer.Progress.CmdExecutorProgress.Message</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A programmer-defined message included in the progress reporting. </p>
+
+</div>
+</div>
+<a id="a1597d283c2bf66013189fbd2c549f297"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1597d283c2bf66013189fbd2c549f297">&#9670;&nbsp;</a></span>OutputStream</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Stream ChamiUI.PresentationLayer.Progress.CmdExecutorProgress.OutputStream</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>A Stream object that we want to include in the progress reporting. It can be, for example, the standard output of a shell command. </p>
+
+</div>
+</div>
+<a id="a71fbb6dba48e8780581946454a16554e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a71fbb6dba48e8780581946454a16554e">&#9670;&nbsp;</a></span>Percentage</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">float ChamiUI.PresentationLayer.Progress.CmdExecutorProgress.Percentage</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">get</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>The execution percentage. No special checks are made to ensure that this property isn't greater than 100. </p>
+
+</div>
+</div>
+<hr/>The documentation for this struct was generated from the following file:<ul>
+<li>Chami/ChamiUI/PresentationLayer/Progress/<a class="el" href="_cmd_executor_progress_8cs.html">CmdExecutorProgress.cs</a></li>
 </ul>
 </div><!-- contents -->
 </div><!-- doc-content -->

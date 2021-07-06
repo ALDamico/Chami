@@ -1,16 +1,9 @@
 var searchData=
 [
-  ['macroattribute_679',['MacroAttribute',['../class_chami_u_i_1_1_annotations_1_1_macro_attribute.html',1,'ChamiUI::Annotations']]],
-  ['mainwindow_680',['MainWindow',['../class_chami_u_i_1_1_windows_1_1_main_window_1_1_main_window.html',1,'ChamiUI::Windows::MainWindow']]],
-  ['mainwindowsavedbehaviourviewmodel_681',['MainWindowSavedBehaviourViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_saved_behaviour_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
-  ['mainwindowstate_682',['MainWindowState',['../class_chami_db_migrations_1_1_migrations_1_1_main_window_state.html',1,'ChamiDbMigrations::Migrations']]],
-  ['mainwindowviewmodel_683',['MainWindowViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
-  ['meansimplicituseattribute_684',['MeansImplicitUseAttribute',['../class_chami_u_i_1_1_annotations_1_1_means_implicit_use_attribute.html',1,'ChamiUI::Annotations']]],
-  ['minimizationbehaviourcontrol_685',['MinimizationBehaviourControl',['../class_chami_u_i_1_1_controls_1_1_minimization_behaviour_control.html',1,'ChamiUI::Controls']]],
-  ['minimizationbehaviourviewmodel_686',['MinimizationBehaviourViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_minimization_behaviour_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
-  ['minimizationstrategyconverter_687',['MinimizationStrategyConverter',['../class_chami_u_i_1_1_business_layer_1_1_converters_1_1_minimization_strategy_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
-  ['minimizebehaviour_688',['MinimizeBehaviour',['../class_chami_db_migrations_1_1_migrations_1_1_minimize_behaviour.html',1,'ChamiDbMigrations::Migrations']]],
-  ['minimizetotaskbarstrategy_689',['MinimizeToTaskbarStrategy',['../class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_taskbar_strategy.html',1,'ChamiUI::PresentationLayer::Minimizing']]],
-  ['minimizetotraystrategy_690',['MinimizeToTrayStrategy',['../class_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_minimize_to_tray_strategy.html',1,'ChamiUI::PresentationLayer::Minimizing']]],
-  ['mustusereturnvalueattribute_691',['MustUseReturnValueAttribute',['../class_chami_u_i_1_1_annotations_1_1_must_use_return_value_attribute.html',1,'ChamiUI::Annotations']]]
+  ['languageselectorcontrol_1084',['LanguageSelectorControl',['../class_chami_u_i_1_1_controls_1_1_language_selector_control.html',1,'ChamiUI::Controls']]],
+  ['languageselectorviewmodel_1085',['LanguageSelectorViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
+  ['linqtunnelattribute_1086',['LinqTunnelAttribute',['../class_chami_u_i_1_1_annotations_1_1_linq_tunnel_attribute.html',1,'ChamiUI::Annotations']]],
+  ['localizationrequiredattribute_1087',['LocalizationRequiredAttribute',['../class_chami_u_i_1_1_annotations_1_1_localization_required_attribute.html',1,'ChamiUI::Annotations']]],
+  ['loggingsettingseditor_1088',['LoggingSettingsEditor',['../class_chami_u_i_1_1_controls_1_1_logging_settings_editor.html',1,'ChamiUI::Controls']]],
+  ['loggingsettingsviewmodel_1089',['LoggingSettingsViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]]
 ];

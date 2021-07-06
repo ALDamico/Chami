@@ -1,8 +1,21 @@
 var searchData=
 [
-  ['uilanguage_741',['UiLanguage',['../class_chami_1_1_db_1_1_entities_1_1_ui_language.html',1,'Chami::Db::Entities']]],
-  ['uilanguagerepository_742',['UiLanguageRepository',['../class_chami_1_1_db_1_1_repositories_1_1_ui_language_repository.html',1,'Chami::Db::Repositories']]],
-  ['unwrappingconverter_743',['UnwrappingConverter',['../class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
-  ['unwrappingconverter_3c_20ifilterstrategy_20_3e_744',['UnwrappingConverter&lt; IFilterStrategy &gt;',['../class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
-  ['usedimplicitlyattribute_745',['UsedImplicitlyAttribute',['../class_chami_u_i_1_1_annotations_1_1_used_implicitly_attribute.html',1,'ChamiUI::Annotations']]]
+  ['safevariableeditor_1139',['SafeVariableEditor',['../class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html',1,'ChamiUI::Controls']]],
+  ['safevariableviewmodel_1140',['SafeVariableViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_safe_variable_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
+  ['setting_1141',['Setting',['../class_chami_1_1_db_1_1_entities_1_1_setting.html',1,'Chami::Db::Entities']]],
+  ['settingcategoryviewmodelbase_1142',['SettingCategoryViewModelBase',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_setting_category_view_model_base.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
+  ['settingsdataadapter_1143',['SettingsDataAdapter',['../class_chami_u_i_1_1_business_layer_1_1_adapters_1_1_settings_data_adapter.html',1,'ChamiUI::BusinessLayer::Adapters']]],
+  ['settingsrepository_1144',['SettingsRepository',['../class_chami_1_1_db_1_1_repositories_1_1_settings_repository.html',1,'Chami::Db::Repositories']]],
+  ['settingssavedeventargs_1145',['SettingsSavedEventArgs',['../class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_settings_saved_event_args.html',1,'ChamiUI::PresentationLayer::Events']]],
+  ['settingsviewmodel_1146',['SettingsViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
+  ['settingsviewmodelfactory_1147',['SettingsViewModelFactory',['../class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory.html',1,'ChamiUI::BusinessLayer::Factories']]],
+  ['settingswindow_1148',['SettingsWindow',['../class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html',1,'ChamiUI::Windows::SettingsWindow']]],
+  ['settingswindowviewmodel_1149',['SettingsWindowViewModel',['../class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_settings_window_view_model.html',1,'ChamiUI::PresentationLayer::ViewModels']]],
+  ['shellcommandbase_1150',['ShellCommandBase',['../class_chami_u_i_1_1_business_layer_1_1_shell_command_base.html',1,'ChamiUI::BusinessLayer']]],
+  ['showwindowcommand_1151',['ShowWindowCommand',['../class_chami_u_i_1_1_taskbar_1_1_commands_1_1_show_window_command.html',1,'ChamiUI::Taskbar::Commands']]],
+  ['sortdescriptionconverter_1152',['SortDescriptionConverter',['../class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['sortdescriptionutils_1153',['SortDescriptionUtils',['../class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_sort_description_utils.html',1,'ChamiUI::PresentationLayer::Utils']]],
+  ['sourcetemplateattribute_1154',['SourceTemplateAttribute',['../class_chami_u_i_1_1_annotations_1_1_source_template_attribute.html',1,'ChamiUI::Annotations']]],
+  ['stringconverter_1155',['StringConverter',['../class_chami_u_i_1_1_business_layer_1_1_converters_1_1_string_converter.html',1,'ChamiUI::BusinessLayer::Converters']]],
+  ['stringformatmethodattribute_1156',['StringFormatMethodAttribute',['../class_chami_u_i_1_1_annotations_1_1_string_format_method_attribute.html',1,'ChamiUI::Annotations']]]
 ];

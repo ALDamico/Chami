@@ -3,6 +3,7 @@ var annotated_dup =
     [ "Chami", "namespace_chami.html", [
       [ "Db", "namespace_chami_1_1_db.html", [
         [ "Annotations", "namespace_chami_1_1_db_1_1_annotations.html", [
+          [ "AnnotationUtils", "class_chami_1_1_db_1_1_annotations_1_1_annotation_utils.html", "class_chami_1_1_db_1_1_annotations_1_1_annotation_utils" ],
           [ "TableNameAttribute", "class_chami_1_1_db_1_1_annotations_1_1_table_name_attribute.html", "class_chami_1_1_db_1_1_annotations_1_1_table_name_attribute" ]
         ] ],
         [ "Entities", "namespace_chami_1_1_db_1_1_entities.html", [
@@ -39,7 +40,8 @@ var annotated_dup =
       [ "DbTests", "class_chami_tests_1_1_db_tests.html", "class_chami_tests_1_1_db_tests" ],
       [ "ExportTests", "class_chami_tests_1_1_export_tests.html", "class_chami_tests_1_1_export_tests" ],
       [ "JsonTests", "class_chami_tests_1_1_json_tests.html", "class_chami_tests_1_1_json_tests" ],
-      [ "RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", "class_chami_tests_1_1_registry_retriever_tests" ]
+      [ "RegistryRetrieverTests", "class_chami_tests_1_1_registry_retriever_tests.html", "class_chami_tests_1_1_registry_retriever_tests" ],
+      [ "ResourceTest", "class_chami_tests_1_1_resource_test.html", "class_chami_tests_1_1_resource_test" ]
     ] ],
     [ "ChamiUI", "namespace_chami_u_i.html", [
       [ "Annotations", "namespace_chami_u_i_1_1_annotations.html", [
@@ -142,12 +144,19 @@ var annotated_dup =
           [ "ISettingConverter", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_setting_converter.html", "interface_chami_u_i_1_1_business_layer_1_1_converters_1_1_i_setting_converter" ],
           [ "MinimizationStrategyConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_minimization_strategy_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_minimization_strategy_converter" ],
           [ "SortDescriptionConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_sort_description_converter" ],
+          [ "StringConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_string_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_string_converter" ],
           [ "UnwrappingConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_unwrapping_converter" ],
           [ "WatchedApplicationConverter", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_watched_application_converter.html", "class_chami_u_i_1_1_business_layer_1_1_converters_1_1_watched_application_converter" ]
         ] ],
         [ "Exporters", "namespace_chami_u_i_1_1_business_layer_1_1_exporters.html", [
           [ "EnvironmentExcelExporter", "class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter.html", "class_chami_u_i_1_1_business_layer_1_1_exporters_1_1_environment_excel_exporter" ],
           [ "IChamiExporter", "interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter.html", "interface_chami_u_i_1_1_business_layer_1_1_exporters_1_1_i_chami_exporter" ]
+        ] ],
+        [ "Factories", "namespace_chami_u_i_1_1_business_layer_1_1_factories.html", [
+          [ "EnvironmentReaderFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_reader_factory.html", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_reader_factory" ],
+          [ "EnvironmentVariableCommandFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory.html", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_environment_variable_command_factory" ],
+          [ "OpenFileDialogFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_open_file_dialog_factory.html", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_open_file_dialog_factory" ],
+          [ "SettingsViewModelFactory", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory.html", "class_chami_u_i_1_1_business_layer_1_1_factories_1_1_settings_view_model_factory" ]
         ] ],
         [ "Logger", "namespace_chami_u_i_1_1_business_layer_1_1_logger.html", [
           [ "ChamiLogger", "class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger.html", "class_chami_u_i_1_1_business_layer_1_1_logger_1_1_chami_logger" ]
@@ -163,10 +172,12 @@ var annotated_dup =
           [ "EnvironmentViewModelValidator", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_view_model_validator.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_environment_view_model_validator" ],
           [ "IValidationResult", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result.html", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validation_result" ],
           [ "IValidator", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator.html", "interface_chami_u_i_1_1_business_layer_1_1_validators_1_1_i_validator" ],
-          [ "ValidationResult", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result" ]
+          [ "ValidationResult", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_result" ],
+          [ "ValidationUtils", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_utils.html", "class_chami_u_i_1_1_business_layer_1_1_validators_1_1_validation_utils" ]
         ] ],
         [ "CmdExecutor", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor.html", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor" ],
         [ "CmdExecutorBase", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base.html", "class_chami_u_i_1_1_business_layer_1_1_cmd_executor_base" ],
+        [ "EnvironmentBackupper", "class_chami_u_i_1_1_business_layer_1_1_environment_backupper.html", "class_chami_u_i_1_1_business_layer_1_1_environment_backupper" ],
         [ "EnvironmentDotEnvReader", "class_chami_u_i_1_1_business_layer_1_1_environment_dot_env_reader.html", "class_chami_u_i_1_1_business_layer_1_1_environment_dot_env_reader" ],
         [ "EnvironmentJsonReader", "class_chami_u_i_1_1_business_layer_1_1_environment_json_reader.html", "class_chami_u_i_1_1_business_layer_1_1_environment_json_reader" ],
         [ "EnvironmentVariableApplicationCommand", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command.html", "class_chami_u_i_1_1_business_layer_1_1_environment_variable_application_command" ],
@@ -187,9 +198,12 @@ var annotated_dup =
         [ "SafeVariableEditor", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor.html", "class_chami_u_i_1_1_controls_1_1_safe_variable_editor" ]
       ] ],
       [ "Localization", "namespace_chami_u_i_1_1_localization.html", [
-        [ "ChamiUIStrings", "class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html", null ]
+        [ "ChamiUIStrings", "class_chami_u_i_1_1_localization_1_1_chami_u_i_strings.html", "class_chami_u_i_1_1_localization_1_1_chami_u_i_strings" ]
       ] ],
       [ "PresentationLayer", "namespace_chami_u_i_1_1_presentation_layer.html", [
+        [ "Commands", "namespace_chami_u_i_1_1_presentation_layer_1_1_commands.html", [
+          [ "MainWindowCommandsProvider", "class_chami_u_i_1_1_presentation_layer_1_1_commands_1_1_main_window_commands_provider.html", "class_chami_u_i_1_1_presentation_layer_1_1_commands_1_1_main_window_commands_provider" ]
+        ] ],
         [ "Converters", "namespace_chami_u_i_1_1_presentation_layer_1_1_converters.html", [
           [ "BooleanToStringComparisonConverter", "class_chami_u_i_1_1_presentation_layer_1_1_converters_1_1_boolean_to_string_comparison_converter.html", "class_chami_u_i_1_1_presentation_layer_1_1_converters_1_1_boolean_to_string_comparison_converter" ]
         ] ],
@@ -199,6 +213,9 @@ var annotated_dup =
           [ "EnvironmentRenamedEventArgs", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_environment_renamed_event_args.html", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_environment_renamed_event_args" ],
           [ "EnvironmentSavedEventArgs", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_environment_saved_event_args.html", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_environment_saved_event_args" ],
           [ "SettingsSavedEventArgs", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_settings_saved_event_args.html", "class_chami_u_i_1_1_presentation_layer_1_1_events_1_1_settings_saved_event_args" ]
+        ] ],
+        [ "Factories", "namespace_chami_u_i_1_1_presentation_layer_1_1_factories.html", [
+          [ "DurationFactory", "class_chami_u_i_1_1_presentation_layer_1_1_factories_1_1_duration_factory.html", "class_chami_u_i_1_1_presentation_layer_1_1_factories_1_1_duration_factory" ]
         ] ],
         [ "Filtering", "namespace_chami_u_i_1_1_presentation_layer_1_1_filtering.html", [
           [ "EnvironmentAndVariableNameAndValueFilterStrategy", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy.html", "class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy" ],
@@ -214,6 +231,11 @@ var annotated_dup =
         [ "Progress", "namespace_chami_u_i_1_1_presentation_layer_1_1_progress.html", [
           [ "CmdExecutorProgress", "struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress.html", "struct_chami_u_i_1_1_presentation_layer_1_1_progress_1_1_cmd_executor_progress" ]
         ] ],
+        [ "Utils", "namespace_chami_u_i_1_1_presentation_layer_1_1_utils.html", [
+          [ "ProcessUtils", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_process_utils.html", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_process_utils" ],
+          [ "ResourceUtils", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_resource_utils.html", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_resource_utils" ],
+          [ "SortDescriptionUtils", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_sort_description_utils.html", "class_chami_u_i_1_1_presentation_layer_1_1_utils_1_1_sort_description_utils" ]
+        ] ],
         [ "ViewModels", "namespace_chami_u_i_1_1_presentation_layer_1_1_view_models.html", [
           [ "ApplicationLanguageViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_application_language_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_application_language_view_model" ],
           [ "ConsoleAppearanceViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_console_appearance_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_console_appearance_view_model" ],
@@ -221,7 +243,6 @@ var annotated_dup =
           [ "EnvironmentVariableViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_variable_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_variable_view_model" ],
           [ "EnvironmentViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_environment_view_model" ],
           [ "ExportWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_export_window_view_model" ],
-          [ "FindWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_find_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_find_window_view_model" ],
           [ "ImportEnvironmentWindowViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_import_environment_window_view_model" ],
           [ "LanguageSelectorViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_language_selector_view_model" ],
           [ "LoggingSettingsViewModel", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model.html", "class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_logging_settings_view_model" ],
@@ -274,9 +295,13 @@ var annotated_dup =
           [ "SettingsWindow", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window.html", "class_chami_u_i_1_1_windows_1_1_settings_window_1_1_settings_window" ]
         ] ]
       ] ],
-      [ "App", "class_chami_u_i_1_1_app.html", "class_chami_u_i_1_1_app" ]
+      [ "App", "class_chami_u_i_1_1_app.html", "class_chami_u_i_1_1_app" ],
+      [ "EnvironmentVariableSafetyFilter", "class_chami_u_i_1_1_environment_variable_safety_filter.html", "class_chami_u_i_1_1_environment_variable_safety_filter" ]
     ] ],
     [ "WhereAmI", "namespace_where_am_i.html", [
       [ "Program", "class_where_am_i_1_1_program.html", null ]
+    ] ],
+    [ "XamlGeneratedNamespace", "namespace_xaml_generated_namespace.html", [
+      [ "GeneratedInternalTypeHelper", "class_xaml_generated_namespace_1_1_generated_internal_type_helper.html", "class_xaml_generated_namespace_1_1_generated_internal_type_helper" ]
     ] ]
 ];

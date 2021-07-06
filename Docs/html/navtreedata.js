@@ -38,22 +38,30 @@ var NAVTREE =
       [ "Class Hierarchy", "hierarchy.html", "hierarchy" ],
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", "functions_dup" ],
-        [ "Functions", "functions_func.html", null ],
-        [ "Properties", "functions_prop.html", "functions_prop" ]
+        [ "Functions", "functions_func.html", "functions_func" ],
+        [ "Variables", "functions_vars.html", null ],
+        [ "Properties", "functions_prop.html", "functions_prop" ],
+        [ "Events", "functions_evnt.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
-      [ "File List", "files.html", "files_dup" ]
+      [ "File List", "files.html", "files_dup" ],
+      [ "File Members", "globals.html", [
+        [ "All", "globals.html", null ],
+        [ "Typedefs", "globals_type.html", null ]
+      ] ]
     ] ]
   ] ]
 ];
 
 var NAVTREEINDEX =
 [
-"",
-"class_chami_tests_1_1_business_tests.html#a7db9afa9b66fb176279e2c0d43265f8f",
-"class_chami_u_i_1_1_business_layer_1_1_converters_1_1_environment_export_converter.html#a35cf22130d2582a4df61f235137d815b",
-"class_chami_u_i_1_1_presentation_layer_1_1_view_models_1_1_main_window_view_model.html#aa1ddcd0fc534bfb35e82ffad196ce9dd",
+"20210620___initial_8cs.html",
+"_show_window_command_8cs.html",
+"class_chami_u_i_1_1_annotations_1_1_notify_property_changed_invocator_attribute.html#aa5319c50998da2284e5f343ac9cf9200",
+"class_chami_u_i_1_1_controls_1_1_console_appearance_editor.html#aecb5f52bb53281d507fa1fa6dd6ca2ea",
+"class_chami_u_i_1_1_presentation_layer_1_1_filtering_1_1_environment_and_variable_name_and_value_filter_strategy.html#acafff8554cc252152e5946f15d214b28",
+"class_chami_u_i_1_1_windows_1_1_new_environment_window_1_1_new_environment_window.html#a37bf42ee400a405c18d8ebe299f9e4bb",
 "interface_chami_u_i_1_1_presentation_layer_1_1_minimizing_1_1_i_minimization_strategy.html#a826ae7ab54450ff6f0c6776078c8caa0"
 ];
 
