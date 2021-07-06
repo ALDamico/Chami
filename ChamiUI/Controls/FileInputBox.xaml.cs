@@ -65,11 +65,10 @@ namespace ChamiUI.Controls
         private void BrowseButton_OnClick(object sender, RoutedEventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.CreatePrompt = true;
             saveFileDialog.OverwritePrompt = true;
             saveFileDialog.InitialDirectory = SpecialDirectories.MyDocuments;
             saveFileDialog.AddExtension = true;
-            saveFileDialog.Filter = "Excel Open XML File|*.xlsx";
+            saveFileDialog.Filter = "Excel Open XML File|*.xlsx|Json file|*.json";
             var shouldSave = saveFileDialog.ShowDialog();
             if (shouldSave.GetValueOrDefault())
             {
