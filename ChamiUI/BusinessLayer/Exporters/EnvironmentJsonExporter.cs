@@ -10,18 +10,16 @@ namespace ChamiUI.BusinessLayer.Exporters
 {
     public class EnvironmentJsonExporter : IChamiExporter
     {
-        public EnvironmentJsonExporter(ICollection<Environment> environments) : this()
+        public EnvironmentJsonExporter(ICollection<Environment> environments):this()
         {
             _environments = environments.ToList();
         }
-
         public EnvironmentJsonExporter()
         {
             _environments = new List<Environment>();
         }
 
         private readonly List<Environment> _environments;
-
 
         public void Export(string filename)
         {
