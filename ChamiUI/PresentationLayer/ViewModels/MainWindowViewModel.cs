@@ -421,7 +421,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
-                if (SelectedEnvironment == null)
+                if (SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled))
                 {
                     return "/Assets/Svg/play_disabled.svg";
                 }
