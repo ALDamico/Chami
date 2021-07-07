@@ -73,9 +73,8 @@ namespace ChamiUI.Windows.MainWindow
         private void ResetProgressBar()
         {
             //Avoids animating the progressbar when its value is reset to zero.
-            //ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, new DoubleAnimation(0, Duration.Automatic));
+            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, new DoubleAnimation(0, Duration.Automatic));
             ConsoleProgressBar.Value = 0.0;
-            //06b025
 
             ConsoleProgressBar.Foreground = ResourceUtils.DefaultProgressBarColor;
         }
@@ -84,7 +83,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (ViewModel.ExecuteButtonPlayEnabled)
             {
-                //ResetProgressBar();
+                ResetProgressBar();
                 FocusConsoleTab();
                 var previousEnvironment = ViewModel.ActiveEnvironment;
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
@@ -109,7 +108,6 @@ namespace ChamiUI.Windows.MainWindow
                     PrintTaskCancelledMessageToConsole();
                     ViewModel.SelectedEnvironment = previousEnvironment;
                     await ViewModel.ChangeEnvironmentAsync(progress);
-                    //MessageBox.Show(ex.Message);
                 }
             }
             else
