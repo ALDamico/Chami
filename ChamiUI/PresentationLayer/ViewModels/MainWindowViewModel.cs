@@ -590,9 +590,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void DeleteSelectedVariable()
         {
             SelectedVariable.MarkForDeletion();
-/*            _dataAdapter.DeleteVariable(SelectedVariable);
-            SelectedEnvironment.EnvironmentVariables.Remove(SelectedVariable);
-            DisableEditing();*/
         }
 
         /// <summary>

@@ -94,9 +94,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     environmentList.Add(environment);
                 }
             }
-            
 
-            var exporter = new EnvironmentExcelExporter(environmentList);
+            IChamiExporter exporter;
+            if (Filename.EndsWith("json"))
+            {
+                exporter = new EnvironmentJsonExporter(environmentList);
+            }
+            else
+            {
+                exporter = new EnvironmentExcelExporter(environmentList);
+            }
+
             await exporter.ExportAsync(Filename);
         }
 
@@ -119,6 +127,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironments.Remove(removedItem as EnvironmentExportWindowViewModel);
             }
+
             var addedItems = e.AddedItems;
             foreach (var addedItem in addedItems)
             {

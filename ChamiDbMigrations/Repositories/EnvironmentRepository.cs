@@ -219,6 +219,22 @@ namespace Chami.Db.Repositories
         /// <returns>The newly-inserted or updated <see cref="Environment"/></returns>
         public Environment UpsertEnvironment(Environment environment)
         {
+            var environmentInDatabase = GetEnvironmentByName(environment.Name);
+            if (environmentInDatabase != null)
+            {
+                environment.EnvironmentId = environmentInDatabase.EnvironmentId;
+                foreach (var environmentVariable in environment.EnvironmentVariables)
+                {
+                    var correspondingVariable =
+                        environmentInDatabase.EnvironmentVariables.FirstOrDefault(v =>
+                            v.Name.Equals(environmentVariable.Name));
+                    if (correspondingVariable != null)
+                    {
+                        environmentVariable.EnvironmentId = environment.EnvironmentId;
+                        environmentVariable.EnvironmentVariableId = correspondingVariable.EnvironmentVariableId;
+                    }
+                }
+            }
             if (environment.EnvironmentId == 0)
             {
                 return InsertEnvironment(environment);

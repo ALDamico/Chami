@@ -25,7 +25,11 @@ namespace ChamiUI.BusinessLayer.Converters
 
             if (viewModel == null)
             {
-                return;
+                viewModel = new EnvironmentConverter().To(value as Environment);
+                if (viewModel == null)
+                {
+                    return;
+                }
             }
 
             JObject jObjectToWrite = new JObject {{"name", viewModel.Name}};
@@ -54,7 +58,7 @@ namespace ChamiUI.BusinessLayer.Converters
             {
                 throw new NotSupportedException($"The converter cannot handle type {objectType}!");
             }
-            
+
             JObject jObject = JObject.Load(reader);
             var viewModel = new EnvironmentViewModel
             {
