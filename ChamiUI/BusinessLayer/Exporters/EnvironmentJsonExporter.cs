@@ -8,24 +8,26 @@ using Newtonsoft.Json;
 
 namespace ChamiUI.BusinessLayer.Exporters
 {
-    public class EnvironmentJsonExporter:IChamiExporter
+    public class EnvironmentJsonExporter : IChamiExporter
     {
-        public EnvironmentJsonExporter(ICollection<Environment> environments):this()
+        public EnvironmentJsonExporter(ICollection<Environment> environments) : this()
         {
             _environments = environments.ToList();
         }
+
         public EnvironmentJsonExporter()
         {
             _environments = new List<Environment>();
         }
-        private List<Environment> _environments;
-        
-        
-        
+
+        private readonly List<Environment> _environments;
+
+
         public void Export(string filename)
         {
             var writer = File.CreateText(filename);
-            writer.Write(JsonConvert.SerializeObject(_environments, Formatting.Indented, new JsonConverter[] {new EnvironmentViewModelJsonConverter()}));
+            writer.Write(JsonConvert.SerializeObject(_environments, Formatting.Indented,
+                new JsonConverter[] {new EnvironmentViewModelJsonConverter()}));
             writer.Close();
         }
 
