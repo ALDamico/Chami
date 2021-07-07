@@ -658,4 +658,10 @@ Fix the issues and try saving again.</value>
   <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="DataGridMarkedForDeletionColumn" xml:space="preserve">
+    <value>Delete?</value>
+  </data>
+  <data name="DataGridMarkedForDeletionColumn_Header" xml:space="preserve">
+    <value>Delete?</value>
+  </data>
 </root>

@@ -20,6 +20,7 @@ namespace ChamiUI.BusinessLayer.Converters
             environmentVariable.Name = model.Name;
             environmentVariable.Value = model.Value;
             environmentVariable.EnvironmentVariableId = model.Id;
+            environmentVariable.MarkedForDeletion = model.MarkedForDeletion;
             return environmentVariable;
         }
         
@@ -34,6 +35,10 @@ namespace ChamiUI.BusinessLayer.Converters
             viewModel.Name = entity.Name;
             viewModel.Value = entity.Value;
             viewModel.Id = entity.EnvironmentVariableId;
+            if (entity.MarkedForDeletion)
+            {
+                viewModel.MarkForDeletion();
+            }
             return viewModel;
         }
     }

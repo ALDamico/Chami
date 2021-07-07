@@ -658,4 +658,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
     <value>Esci</value>
   </data>
+  <data name="DataGridMarkedForDeletionColumn" xml:space="preserve">
+    <value>Cancellare?</value>
+  </data>
+  <data name="DataGridMarkedForDeletionColumn_Header" xml:space="preserve">
+    <value>Cancellare?</value>
+  </data>
 </root>

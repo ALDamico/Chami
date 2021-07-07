@@ -322,6 +322,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete?.
+        /// </summary>
+        public static string DataGridMarkedForDeletionColumn {
+            get {
+                return ResourceManager.GetString("DataGridMarkedForDeletionColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delete?.
+        /// </summary>
+        public static string DataGridMarkedForDeletionColumn_Header {
+            get {
+                return ResourceManager.GetString("DataGridMarkedForDeletionColumn_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string DataGridNameColumn {

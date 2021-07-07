@@ -233,6 +233,14 @@ namespace Chami.Db.Repositories
                 InsertVariable(environmentVariable, environment.EnvironmentId);
             }
 
+            foreach (var oldEnvironmentVariable in environment.EnvironmentVariables)
+            {
+                if (oldEnvironmentVariable.MarkedForDeletion)
+                {
+                    DeleteVariableById(oldEnvironmentVariable.EnvironmentVariableId);
+                }
+            }
+
             return GetEnvironmentById(environment.EnvironmentId);
         }
 
