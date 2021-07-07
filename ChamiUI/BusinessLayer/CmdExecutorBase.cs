@@ -63,12 +63,12 @@ namespace ChamiUI.BusinessLayer
             CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, message);
             progress?.Report(cmdExecutorProgress);
             int currentIndex = 0;
-
+            int count = CommandQueue.Count;
             do
             {
                 var environmentVariable = CommandQueue.Dequeue();
                 currentIndex++;
-                float percentage = 100.0F * currentIndex / CommandQueue.Count;
+                float percentage = 100.0F * currentIndex / count;
                 await environmentVariable.ExecuteAsync(progress, percentage, cancellationToken);
             } while (CommandQueue.Count > 0);
 
