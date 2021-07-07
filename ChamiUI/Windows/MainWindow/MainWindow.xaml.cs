@@ -81,7 +81,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.ExecuteButtonPlayEnabled)
+            if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
             {
                 ResetProgressBar();
                 FocusConsoleTab();
@@ -101,7 +101,7 @@ namespace ChamiUI.Windows.MainWindow
                         }
                     }
                 }
-                catch (TaskCanceledException ex)
+                catch (Exception ex) when(ex is TaskCanceledException or OperationCanceledException)
                 {
                     (Application.Current as App)?.Logger.GetLogger().Information("{Message}", ex.Message);
                     (Application.Current as App)?.Logger.GetLogger().Information("{StackTrace}", ex.StackTrace);

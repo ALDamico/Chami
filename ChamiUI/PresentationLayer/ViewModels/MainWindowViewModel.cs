@@ -235,7 +235,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Determines if the Apply button in the window is enabled (i.e., there's no editing and no environment
         /// switching on progress.
         /// </summary>
-        public bool ExecuteButtonPlayEnabled => !EditingEnabled && !_isChangeInProgress;
+        public bool ExecuteButtonPlayEnabled => !EditingEnabled;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
@@ -286,6 +286,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private bool _isChangeInProgress;
+        public bool IsChangeInProgress => _isChangeInProgress;
 
         private void SetIsChangeInProgress(bool value)
         {
@@ -426,7 +427,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     return "/Assets/Svg/play_disabled.svg";
                 }
 
-                if (ExecuteButtonPlayEnabled)
+                if (ExecuteButtonPlayEnabled && !_isChangeInProgress)
                 {
                     return "/Assets/Svg/play.svg";
                 }
