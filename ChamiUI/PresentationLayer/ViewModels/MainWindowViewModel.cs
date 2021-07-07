@@ -421,7 +421,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
-                if (SelectedEnvironment == null)
+                if (SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled))
                 {
                     return "/Assets/Svg/play_disabled.svg";
                 }
@@ -589,9 +589,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public void DeleteSelectedVariable()
         {
-            _dataAdapter.DeleteVariable(SelectedVariable);
+            SelectedVariable.MarkForDeletion();
+/*            _dataAdapter.DeleteVariable(SelectedVariable);
             SelectedEnvironment.EnvironmentVariables.Remove(SelectedVariable);
-            DisableEditing();
+            DisableEditing();*/
         }
 
         /// <summary>

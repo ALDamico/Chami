@@ -9,10 +9,32 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// </summary>
     public class EnvironmentVariableViewModel : ViewModelBase
     {
+        public EnvironmentVariableViewModel()
+        {
+            _markedForDeletion = false;
+        }
         private string _name;
         private string _value;
         private DateTime _addedOn;
         private bool? _isValid;
+        private bool _markedForDeletion;
+
+        public bool MarkedForDeletion
+        {
+            get => _markedForDeletion;
+            set
+            {
+                _markedForDeletion = value;
+                OnPropertyChanged(nameof(MarkedForDeletion));
+            }
+        }
+        
+
+        public void MarkForDeletion()
+        {
+            _markedForDeletion = true;
+            OnPropertyChanged(nameof(MarkedForDeletion));
+        }
 
         /// <summary>
         /// The result of a <see cref="ValidationRule"/> that has been run on this variable.

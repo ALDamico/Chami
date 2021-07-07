@@ -398,6 +398,7 @@ namespace ChamiUI.Windows.MainWindow
         private void UndoEditing_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             ViewModel.ResetCurrentEnvironmentFromDatasource();
+            ViewModel.DisableEditing();
         }
 
         private void MainWindow_OnStateChanged(object sender, EventArgs e)

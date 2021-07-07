@@ -9,6 +9,7 @@ namespace Chami.Db.Entities
     [TableName("EnvironmentVariables")]
     public class EnvironmentVariable : IChamiEntity
     {
+        public bool MarkedForDeletion { get; set; }
         /// <summary>
         /// Constructs a new <see cref="EnvironmentVariable"/> object with default values.
         /// </summary>
