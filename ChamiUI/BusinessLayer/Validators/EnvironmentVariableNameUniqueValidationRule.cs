@@ -30,8 +30,18 @@ namespace ChamiUI.BusinessLayer.Validators
             if (environmentVariable != null)
             {
                 environmentVariable.IsValid = true;
+                if (environmentVariable.MarkedForDeletion)
+                {
+                    return System.Windows.Controls.ValidationResult.ValidResult;
+                }
+                
                 if (environmentVariableCollection?.Count(v => v.Name == environmentVariable.Name) > 1)
                 {
+                    if (environmentVariableCollection.Any(
+                        v => v.MarkedForDeletion && v.Name == environmentVariable.Name))
+                    {
+                        return System.Windows.Controls.ValidationResult.ValidResult;
+                    }
                     var errorMessage = ChamiUIStrings.EnvironmentVariableNameNotUniqueErrorMessage;
                     var environmentName = environmentVariable.Environment?.Name;
                     errorMessage = string.Format(errorMessage, environmentVariable.Name, environmentName);
