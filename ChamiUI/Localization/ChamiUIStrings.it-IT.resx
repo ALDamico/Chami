@@ -636,7 +636,7 @@ Risolvi i problemi e riprova il salvataggio.</value>
   </data>
   <data name="FilteringCaseSensitivityIcon_ToolTip" xml:space="preserve">
     <value>Maiuscole/minuscole</value>
-    </data>
+  </data>
   <data name="MinimizationBehaviourControlLabel_Content" xml:space="preserve">
     <value>Quando ridotto a icona:</value>
   </data>
@@ -663,5 +663,26 @@ Risolvi i problemi e riprova il salvataggio.</value>
   </data>
   <data name="DataGridMarkedForDeletionColumn_Header" xml:space="preserve">
     <value>Cancellare?</value>
+  </data>
+  <data name="NewTemplateEnvironmentDataGridNameColumn" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="NewTemplateEnvironmentDataGridValueColumn" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="NewTemplateEnvironmentWindowCancelButton" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="NewTemplateEnvironmentWindowSaveButton_Content" xml:space="preserve">
+    <value>Salva</value>
+  </data>
+  <data name="TemplateNameLabel_Content" xml:space="preserve">
+    <value>Nome template</value>
+  </data>
+  <data name="TaskbarShowChamiMenuItem" xml:space="preserve">
+    <value>Mostra Chami</value>
+  </data>
+  <data name="TemplateEnvironmentLabel_Content" xml:space="preserve">
+    <value>Template</value>
   </data>
 </root>

@@ -20,8 +20,8 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary 
-                                    Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
+                <ResourceDictionary
+                    Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
                 <ResourceDictionary>
                     <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                                           Source="{Binding Path=Environment.EnvironmentVariables}" />
@@ -32,6 +32,7 @@
     </Window.Resources>
     <Grid Margin="5, 5, 5, 5">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
@@ -69,7 +70,15 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-        <DataGrid Grid.Row="2"
+        <Label Grid.Row="2"
+               Grid.Column="0" x:Name="TemplateEnvironmentLabel" Content="{lex:Loc}" />
+        <ComboBox Grid.Row="2" Grid.Column="1" 
+                  ItemsSource="{Binding TemplateEnvironments}" 
+                  DisplayMemberPath="Name" 
+                  SelectedItem="{Binding CurrentTemplate}"
+                  x:Name="TemplateEnvironmentCombobox" 
+                  SelectionChanged="TemplateEnvironmentCombobox_OnSelectionChanged" />
+        <DataGrid Grid.Row="3"
                   x:Name="VariablesDatagrid"
                   Grid.Column="0"
                   Grid.ColumnSpan="2"
@@ -96,7 +105,7 @@
                                     Binding="{Binding Value, NotifyOnSourceUpdated=True}" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="3"
+        <StackPanel Grid.Row="4"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
                     HorizontalAlignment="Center"

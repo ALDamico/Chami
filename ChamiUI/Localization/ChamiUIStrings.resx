@@ -645,17 +645,17 @@ Fix the issues and try saving again.</value>
   </data>
   <data name="MinimizationCategory" xml:space="preserve">
     <value>Minimization</value>
-    </data>
+  </data>
   <data name="FilteringCaseSensitivityIcon_ToolTip" xml:space="preserve">
     <value>Case sensitive</value>
   </data>
-  <data name="TaskbarShowChamiMenuItem_Header" xml:space="preserve">
+  <data name="TaskbarShowChamiMenuItem" xml:space="preserve">
     <value>Show Chami</value>
   </data>
-  <data name="TaskbarHideChamiMenuItem_Header" xml:space="preserve">
+  <data name="TaskbarHideChamiMenuItem" xml:space="preserve">
     <value>Hide Chami</value>
   </data>
-  <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
+  <data name="TaskbarExitMenuItem" xml:space="preserve">
     <value>Exit</value>
   </data>
   <data name="DataGridMarkedForDeletionColumn" xml:space="preserve">
@@ -663,5 +663,26 @@ Fix the issues and try saving again.</value>
   </data>
   <data name="DataGridMarkedForDeletionColumn_Header" xml:space="preserve">
     <value>Delete?</value>
+  </data>
+  <data name="NewTemplateEnvironmentDataGridNameColumn" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewTemplateEnvironmentDataGridValueColumn" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="NewTemplateEnvironmentWindowCancelButton_Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="NewTemplateEnvironmentWindowSaveButton_Content" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="TemplateNameLabel_Content" xml:space="preserve">
+    <value>Template name</value>
+  </data>
+  <data name="TaskbarShowChamiMenuItem_Header" xml:space="preserve">
+    <value>Show Chami</value>
+  </data>
+  <data name="TemplateEnvironmentLabel_Content" xml:space="preserve">
+    <value>Template</value>
   </data>
 </root>

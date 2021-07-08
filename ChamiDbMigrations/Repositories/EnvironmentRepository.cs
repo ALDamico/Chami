@@ -338,17 +338,13 @@ namespace Chami.Db.Repositories
             }
         }
 
-        /// <summary>
-        /// Get all the environments marked as normal environments in the datastore.
-        /// </summary>
-        /// <returns>An <see cref="ICollection{Environment}"/> containing all the environments in the datastore.</returns>
-        public ICollection<Environment> GetEnvironments()
+        private ICollection<Environment> GetEnvironmentsByType(EnvironmentType type)
         {
             var queryString = @"
                 SELECT *
                 FROM Environments
                 LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
-                WHERE EnvironmentType = 0
+                WHERE EnvironmentType = ?
 ";
             using (var connection = GetConnection())
             {
@@ -371,9 +367,27 @@ namespace Chami.Db.Repositories
 
 
                     return env;
-                }, splitOn: "EnvironmentVariableId");
+                }, splitOn: "EnvironmentVariableId", param: new {type});
                 return dict.Values.ToList();
             }
+        }
+        
+        /// <summary>
+        /// Get all the environments marked as normal environments in the datastore.
+        /// </summary>
+        /// <returns>An <see cref="ICollection{Environment}"/> containing all the environments in the datastore.</returns>
+        public ICollection<Environment> GetTemplateEnvironments()
+        {
+            return GetEnvironmentsByType(EnvironmentType.TemplateEnvironment);
+        }
+
+        /// <summary>
+        /// Get all the environments marked as normal environments in the datastore.
+        /// </summary>
+        /// <returns>An <see cref="ICollection{Environment}"/> containing all the environments in the datastore.</returns>
+        public ICollection<Environment> GetEnvironments()
+        {
+            return GetEnvironmentsByType(EnvironmentType.NormalEnvironment);
         }
 
         /// <summary>
@@ -463,5 +477,6 @@ namespace Chami.Db.Repositories
                 connection.Execute(queryString, new {selectedVariableId});
             }
         }
+
     }
 }

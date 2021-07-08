@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+using ChamiUI.BusinessLayer.Mementos;
 using ChamiUI.Windows.NewEnvironmentWindow;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -14,6 +16,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public NewEnvironmentViewModel()
         {
             Environment = new EnvironmentViewModel();
+            TemplateEnvironments = new ObservableCollection<EnvironmentViewModel>(DataAdapter.GetTemplateEnvironments());
+            TemplateEnvironments.Add(CurrentTemplate);
+            CurrentTemplate = new EnvironmentViewModel(){Name = "None"};
+            EnvironmentCaretaker = new EnvironmentCaretaker();
         }
 
         private EnvironmentViewModel _environment;
@@ -27,6 +33,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Environment = DataAdapter.GetEnvironmentByName(EnvironmentName);
             return Environment;
         }
+        
+        public EnvironmentCaretaker EnvironmentCaretaker { get; }
 
         /// <summary>
         /// Converts the new <see cref="EnvironmentViewModel"/> to a <see cref="Environment"/> entity and saves it to
@@ -36,6 +44,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public EnvironmentViewModel SaveEnvironment()
         {
             return DataAdapter.InsertEnvironment(Environment);
+        }
+
+        public ObservableCollection<EnvironmentViewModel> TemplateEnvironments
+        {
+            get;
         }
 
         /// <summary>
@@ -74,6 +87,39 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _environment = value;
                 OnPropertyChanged(nameof(Environment));
+            }
+        }
+
+        private EnvironmentViewModel _currentTemplate;
+
+        public EnvironmentViewModel CurrentTemplate
+        {
+            get => _currentTemplate;
+            set
+            {
+                _currentTemplate = value;
+                OnPropertyChanged(nameof(CurrentTemplate));
+            }
+        }
+
+        public void ChangeTemplate()
+        {
+            var oldEnvironment = Environment;
+            EnvironmentCaretaker.SaveState();
+        }
+
+        public void SaveMemento()
+        {
+            EnvironmentCaretaker.SaveState(CurrentTemplate.Name, Environment);
+        }
+
+        public void RestoreMemento()
+        {
+            
+            var state = EnvironmentCaretaker.RestoreState(CurrentTemplate.Name);
+            if (state != null)
+            {
+                CurrentTemplate = state;
             }
         }
     }

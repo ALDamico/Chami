@@ -1216,6 +1216,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string NewTemplateEnvironmentDataGridNameColumn {
+            get {
+                return ResourceManager.GetString("NewTemplateEnvironmentDataGridNameColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string NewTemplateEnvironmentDataGridValueColumn {
+            get {
+                return ResourceManager.GetString("NewTemplateEnvironmentDataGridValueColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string NewTemplateEnvironmentWindowCancelButton_Content {
+            get {
+                return ResourceManager.GetString("NewTemplateEnvironmentWindowCancelButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save.
+        /// </summary>
+        public static string NewTemplateEnvironmentWindowSaveButton_Content {
+            get {
+                return ResourceManager.GetString("NewTemplateEnvironmentWindowSaveButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New template.
         /// </summary>
         public static string NewTemplateMenuItem_Header {
@@ -1572,18 +1608,18 @@ namespace ChamiUI.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Exit.
         /// </summary>
-        public static string TaskbarExitMenuItem_Header {
+        public static string TaskbarExitMenuItem {
             get {
-                return ResourceManager.GetString("TaskbarExitMenuItem_Header", resourceCulture);
+                return ResourceManager.GetString("TaskbarExitMenuItem", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Hide Chami.
         /// </summary>
-        public static string TaskbarHideChamiMenuItem_Header {
+        public static string TaskbarHideChamiMenuItem {
             get {
-                return ResourceManager.GetString("TaskbarHideChamiMenuItem_Header", resourceCulture);
+                return ResourceManager.GetString("TaskbarHideChamiMenuItem", resourceCulture);
             }
         }
         
@@ -1617,9 +1653,36 @@ namespace ChamiUI.Localization {
         /// <summary>
         ///   Looks up a localized string similar to Show Chami.
         /// </summary>
+        public static string TaskbarShowChamiMenuItem {
+            get {
+                return ResourceManager.GetString("TaskbarShowChamiMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show Chami.
+        /// </summary>
         public static string TaskbarShowChamiMenuItem_Header {
             get {
                 return ResourceManager.GetString("TaskbarShowChamiMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template.
+        /// </summary>
+        public static string TemplateEnvironmentLabel_Content {
+            get {
+                return ResourceManager.GetString("TemplateEnvironmentLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template name.
+        /// </summary>
+        public static string TemplateNameLabel_Content {
+            get {
+                return ResourceManager.GetString("TemplateNameLabel_Content", resourceCulture);
             }
         }
         

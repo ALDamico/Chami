@@ -623,8 +623,11 @@ namespace ChamiUI.Windows.MainWindow
             string allowedExtensions =
                 $"{ChamiUIStrings.DotEnvFileDialogDescription}|*.env|{ChamiUIStrings.JsonFileDialogDescription}|*.json|{ChamiUIStrings.AllSupportedFilesFileDialogDescription}|*.env;*.json";
             var dialog = OpenFileDialogFactory.GetOpenFileDialog(allowedExtensions, true);
-            dialog.ShowDialog(this);
-            DoEnvironmentImporting(dialog.FileNames);
+            var response = dialog.ShowDialog(this);
+            if (response == true)
+            {
+                DoEnvironmentImporting(dialog.FileNames);
+            }
         }
 
         private void CreateTemplateCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
