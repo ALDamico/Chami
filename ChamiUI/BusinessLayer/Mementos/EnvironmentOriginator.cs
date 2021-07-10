@@ -4,16 +4,22 @@ namespace ChamiUI.BusinessLayer.Mementos
 {
     public class EnvironmentOriginator
     {
-        public EnvironmentViewModel State { get; set; }
+        private EnvironmentViewModel _state;
+        public EnvironmentViewModel State => _state;
 
-        public EnvironmentMemento SaveMemento()
+        public void SetState(EnvironmentViewModel state)
         {
-            return new EnvironmentMemento(State);
+            _state = state;
         }
 
-        public void RestoreMemento(EnvironmentMemento memento)
+        public IMemento<EnvironmentViewModel> CreateMemento()
         {
-            State = memento.Environment;
+            return new EnvironmentMemento(_state);
+        }
+
+        public void RestoreState(IMemento<EnvironmentViewModel> memento)
+        {
+            _state = memento.State;
         }
     }
 }

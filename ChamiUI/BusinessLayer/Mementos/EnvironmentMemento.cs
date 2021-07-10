@@ -2,12 +2,17 @@
 
 namespace ChamiUI.BusinessLayer.Mementos
 {
-    public class EnvironmentMemento
+    public class EnvironmentMemento : IMemento<EnvironmentViewModel>
     {
-        public EnvironmentMemento(EnvironmentViewModel environment)
+        private readonly EnvironmentViewModel _state;
+        
+        public EnvironmentMemento(EnvironmentViewModel state)
         {
-            Environment = environment;
+            _state = state;
         }
-        public EnvironmentViewModel Environment { get; }
+        public EnvironmentViewModel State
+        {
+            get => _state;
+        }
     }
 }

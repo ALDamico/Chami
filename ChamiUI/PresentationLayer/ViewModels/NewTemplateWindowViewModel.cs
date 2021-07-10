@@ -1,16 +1,7 @@
-﻿
-using Chami.Db.Entities;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ChamiUI.BusinessLayer.Mementos;
-
-namespace ChamiUI.PresentationLayer.ViewModels
+﻿namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class NewTemplateWindowViewModel : NewEnvironmentViewModelBase
     {
-        public EnvironmentCaretaker Caretaker { get; set; }
         public NewTemplateWindowViewModel()
         {
             Environment = new EnvironmentViewModel();

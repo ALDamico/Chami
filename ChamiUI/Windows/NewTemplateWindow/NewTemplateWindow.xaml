@@ -57,9 +57,16 @@
                Content="{lex:Loc}"/>
         <TextBox Grid.Row="1" 
                  Grid.Column="1"
-                 Text="{Binding TemplateName, UpdateSourceTrigger=PropertyChanged}"
                  VerticalContentAlignment="Center"
-                 ></TextBox>
+                 >
+            <TextBox.Text>
+                <Binding Path="TemplateName" UpdateSourceTrigger="PropertyChanged">
+                    <Binding.ValidationRules>
+                        <vr:EnvironmentNameValidationRule />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
         <DataGrid Grid.Row="2"
                   x:Name="VariablesDatagrid"
                   Grid.Column="0"

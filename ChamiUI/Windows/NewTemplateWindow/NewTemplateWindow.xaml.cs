@@ -1,6 +1,4 @@
-﻿using System;
-using System.Windows;
-using ChamiUI.BusinessLayer.Mementos;
+﻿using System.Windows;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.NewTemplateWindow

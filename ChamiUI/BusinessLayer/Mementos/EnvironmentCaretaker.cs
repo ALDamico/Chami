@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Mementos
@@ -7,28 +8,42 @@ namespace ChamiUI.BusinessLayer.Mementos
     {
         public EnvironmentCaretaker()
         {
-            TemplateDictionary = new Dictionary<string, EnvironmentMemento>();
+            _states = new Dictionary<string, EnvironmentMemento>();
             _originator = new EnvironmentOriginator();
         }
-        public Dictionary<string, EnvironmentMemento> TemplateDictionary { get; }
-        private EnvironmentOriginator _originator;
 
-        public void SaveState(string templateName, EnvironmentViewModel state)
-        {
-            _originator.State = state;
-            TemplateDictionary[templateName] = _originator.SaveMemento();
-        }
+        private readonly Dictionary<string, EnvironmentMemento> _states;
+        private readonly EnvironmentOriginator _originator;
 
-        public EnvironmentViewModel RestoreState(string templateName)
+        public EnvironmentViewModel ResumeState(string stateName)
         {
-            TemplateDictionary.TryGetValue(templateName, out var val);
-            if (val != null)
+            if (stateName == null)
             {
-                _originator.State = val.Environment;    
+                throw new InvalidOperationException();
             }
 
+            var stateFound = _states.TryGetValue(stateName, out var memento);
             
-            return _originator.State;
+            if (stateFound)
+            {
+                _originator.RestoreState(memento);
+                return memento.State;
+            }
+
+            return null;
+        }
+
+        public void SaveState(string stateName, EnvironmentViewModel model)
+        {
+            if (string.IsNullOrWhiteSpace(stateName))
+            {
+                stateName = "None";
+            }
+
+            _originator.SetState(model);
+            _states[stateName] = _originator.CreateMemento() as EnvironmentMemento;
+            
+            
         }
     }
 }

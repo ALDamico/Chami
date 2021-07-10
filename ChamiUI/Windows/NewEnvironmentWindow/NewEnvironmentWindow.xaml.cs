@@ -69,14 +69,7 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
 
         private void TemplateEnvironmentCombobox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            EnvironmentViewModel old = null;
-            EnvironmentViewModel newEnv = null;
-            if (e.AddedItems.Count > 0)
-            {
-                newEnv = e.AddedItems[0] as EnvironmentViewModel;
-            }
-
-            _viewModel.ChangeTemplate(newEnv.Name);
+            _viewModel.ChangeTemplate();
         }
     }
 }
