@@ -1,0 +1,51 @@
+﻿namespace ChamiUI.PresentationLayer.ViewModels
+{
+    public class NewTemplateWindowViewModel : NewEnvironmentViewModelBase
+    {
+        public NewTemplateWindowViewModel()
+        {
+            Environment = new EnvironmentViewModel();
+        }
+        private EnvironmentViewModel _environment;
+        public EnvironmentViewModel Environment
+        {
+            get => _environment;
+            set
+            {
+                _environment = value;
+                OnPropertyChanged(nameof(Environment));
+            }
+        }
+
+        public string TemplateName
+        {
+            get => Environment.Name;
+            set
+            {
+                Environment.Name = value;
+                OnPropertyChanged(nameof(TemplateName));
+                OnPropertyChanged(nameof(Environment));
+            }
+        }
+
+        public void SaveTemplate()
+        {
+            DataAdapter.SaveTemplateEnvironment(Environment);
+        }
+
+
+        public override bool IsSaveButtonEnabled
+        {
+            get
+            {
+                var validationResult = Validator.Validate(Environment);
+                if (validationResult.IsValid)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+        }
+    }
+}

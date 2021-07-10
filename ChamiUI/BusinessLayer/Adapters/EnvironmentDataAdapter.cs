@@ -24,6 +24,21 @@ namespace ChamiUI.BusinessLayer.Adapters
         private EnvironmentRepository _repository;
 
         /// <summary>
+        /// Saves a new template <see cref="EnvironmentViewModel"/> to the datastore.
+        /// </summary>
+        public EnvironmentViewModel SaveTemplateEnvironment(EnvironmentViewModel environment)
+        {
+            var converter = new EnvironmentConverter();
+            var entity = converter.From(environment);
+            entity.EnvironmentType = EnvironmentType.TemplateEnvironment;
+
+            _repository.InsertEnvironment(entity);
+
+            return converter.To(entity);
+        }
+
+
+        /// <summary>
         /// Get the <see cref="EnvironmentViewModel"/> with the specified id.
         /// </summary>
         /// <param name="id">The id of the <see cref="EnvironmentViewModel"/> to retrieve.</param>
@@ -163,6 +178,20 @@ namespace ChamiUI.BusinessLayer.Adapters
         public void DeleteVariable(EnvironmentVariableViewModel selectedVariable)
         {
             _repository.DeleteVariableById(selectedVariable.Id);
+        }
+
+        public ICollection<EnvironmentViewModel> GetTemplateEnvironments()
+        {
+            var environments = _repository.GetTemplateEnvironments();
+            
+            var output = new List<EnvironmentViewModel>();
+            var converter = new EnvironmentConverter();
+            foreach (var environment in environments)
+            {
+                output.Add(converter.To(environment));
+            }
+
+            return output;
         }
     }
 }

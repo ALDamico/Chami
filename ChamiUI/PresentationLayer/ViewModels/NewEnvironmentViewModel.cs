@@ -1,3 +1,6 @@
+using System;
+using System.Collections.ObjectModel;
+using ChamiUI.BusinessLayer.Mementos;
 using ChamiUI.Windows.NewEnvironmentWindow;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -14,6 +17,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public NewEnvironmentViewModel()
         {
             Environment = new EnvironmentViewModel();
+            TemplateEnvironments = new ObservableCollection<EnvironmentViewModel>();
+            CurrentTemplate = new EnvironmentViewModel(){Name = "None"};
+            TemplateEnvironments.Add(CurrentTemplate);
+
+            var templates = DataAdapter.GetTemplateEnvironments();
+            foreach (var template in templates)
+            {
+                TemplateEnvironments.Add(template);
+            }
+
+            _caretaker = new EnvironmentCaretaker();
         }
 
         private EnvironmentViewModel _environment;
@@ -27,6 +41,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Environment = DataAdapter.GetEnvironmentByName(EnvironmentName);
             return Environment;
         }
+        
 
         /// <summary>
         /// Converts the new <see cref="EnvironmentViewModel"/> to a <see cref="Environment"/> entity and saves it to
@@ -36,6 +51,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public EnvironmentViewModel SaveEnvironment()
         {
             return DataAdapter.InsertEnvironment(Environment);
+        }
+
+        public ObservableCollection<EnvironmentViewModel> TemplateEnvironments
+        {
+            get;
         }
 
         /// <summary>
@@ -74,6 +94,45 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _environment = value;
                 OnPropertyChanged(nameof(Environment));
+                OnPropertyChanged(nameof(IsSaveButtonEnabled));
+                OnPropertyChanged(nameof(EnvironmentName));
+            }
+        }
+
+        private EnvironmentViewModel _currentTemplate;
+        private EnvironmentViewModel _previousTemplate;
+
+        public EnvironmentViewModel CurrentTemplate
+        {
+            get => _currentTemplate;
+            set
+            {
+                _previousTemplate = _currentTemplate;
+                _currentTemplate = value;
+                OnPropertyChanged(nameof(CurrentTemplate));
+            }
+        }
+
+        private EnvironmentCaretaker _caretaker;
+
+        public void ChangeTemplate()
+        {
+            _caretaker.SaveState(_previousTemplate?.Name, Environment);
+            var state = _caretaker.ResumeState(_currentTemplate.Name);
+            if (state == null)
+            {
+                var environment = new EnvironmentViewModel();
+                environment.Name = EnvironmentName;
+                foreach (var environmentVariable in CurrentTemplate.EnvironmentVariables)
+                {
+                    environment.EnvironmentVariables.Add(new EnvironmentVariableViewModel(){Name = environmentVariable.Name, Value = environmentVariable.Value, Environment = Environment});
+                }
+
+                Environment = environment;
+            }
+            else
+            {
+                Environment = state;
             }
         }
     }

@@ -4,6 +4,7 @@ using System;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using ChamiUI.Localization;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
@@ -64,6 +65,11 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                 MessageBox.Show(ChamiUIStrings.ValidationFailedMessageBoxText,
                     ChamiUIStrings.ValidationFailedMessageBoxCaption);
             }
+        }
+
+        private void TemplateEnvironmentCombobox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _viewModel.ChangeTemplate();
         }
     }
 }
