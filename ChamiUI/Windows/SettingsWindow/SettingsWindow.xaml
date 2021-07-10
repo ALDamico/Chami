@@ -10,6 +10,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
     x:Name="SettingsWindowTitle"
+    WindowStartupLocation="CenterOwner"
     Title="{lex:Loc}"
     Width="500"
     Height="300"

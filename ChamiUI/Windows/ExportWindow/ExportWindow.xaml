@@ -10,6 +10,7 @@
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         d:DataContext="{d:DesignInstance vm:ExportWindowViewModel, IsDesignTimeCreatable=True}"
+        WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         x:Name="ChamiExportWindow"
         Title="{lex:Loc}" Height="450" Width="400">

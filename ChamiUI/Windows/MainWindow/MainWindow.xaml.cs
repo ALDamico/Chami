@@ -245,7 +245,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var childWindow = new SettingsWindow.SettingsWindow();
+            var childWindow = new SettingsWindow.SettingsWindow(this);
             childWindow.SettingsSaved += OnSettingsSaved;
             childWindow.ShowDialog();
         }
@@ -265,7 +265,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            new AboutBox.AboutBox().ShowDialog();
+            new AboutBox.AboutBox(this).ShowDialog();
         }
 
         private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
@@ -298,7 +298,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow();
+            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(this);
             childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
         }
@@ -320,7 +320,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void ExportMenuItem_Click(object sender, RoutedEventArgs e)
         {
-            var exportWindow = new ExportWindow.ExportWindow(ViewModel.Environments);
+            var exportWindow = new ExportWindow.ExportWindow(this, ViewModel.Environments);
             exportWindow.ShowDialog();
         }
 
@@ -447,10 +447,7 @@ namespace ChamiUI.Windows.MainWindow
         private void RenameEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var currentName = ViewModel.SelectedEnvironment.Name;
-            var childWindow = new RenameEnvironmentWindow.RenameEnvironmentWindow(currentName)
-            {
-                Owner = this, WindowStartupLocation = WindowStartupLocation.CenterOwner
-            };
+            var childWindow = new RenameEnvironmentWindow.RenameEnvironmentWindow(this, currentName);
             childWindow.EnvironmentRenamed += OnEnvironmentRenamed;
             childWindow.ShowDialog();
         }
@@ -602,7 +599,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             List<EnvironmentViewModel> viewModels = ViewModel.StartImportFiles(filenames);
 
-            var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow();
+            var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow(this);
             importWindow.EnvironmentSaved += OnEnvironmentSaved;
             importWindow.SetEnvironments(viewModels);
             importWindow.ShowDialog();
@@ -637,9 +634,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void CreateTemplateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            // TODO Implement
-            var newTemplateWindow = new NewTemplateWindow.NewTemplateWindow();
-            newTemplateWindow.Owner = this;
+            var newTemplateWindow = new NewTemplateWindow.NewTemplateWindow(this);
             newTemplateWindow.ShowDialog();
         }
 

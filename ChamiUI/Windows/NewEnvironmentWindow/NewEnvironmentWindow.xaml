@@ -9,6 +9,7 @@
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:vr="clr-namespace:ChamiUI.BusinessLayer.Validators"
         d:DataContext="{d:DesignInstance viewModels:NewEnvironmentViewModel, IsDesignTimeCreatable=True}"
+        WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         x:Name="NewEnvironmentWindowTitle"
         Title="{lex:Loc}"

@@ -15,8 +15,9 @@ namespace ChamiUI.Windows.SettingsWindow
             _settingsWindowViewModel.SaveSettings();
         }
 
-        public SettingsWindow()
+        public SettingsWindow(Window owner)
         {
+            Owner = owner;
             _settingsWindowViewModel = new SettingsWindowViewModel();
             DataContext = _settingsWindowViewModel;
             InitializeComponent();

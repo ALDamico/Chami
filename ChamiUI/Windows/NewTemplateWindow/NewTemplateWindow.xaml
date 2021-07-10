@@ -2,11 +2,11 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
+        WindowStartupLocation="CenterOwner"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
-        xmlns:local="clr-namespace:ChamiUI.Windows.NewTemplateWindow" 
+        xmlns:local="clr-namespace:ChamiUI.Windows.NewTemplateWindow"
         xmlns:vr="clr-namespace:ChamiUI.BusinessLayer.Validators"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,14 +16,13 @@
         Height="450"
         Width="300"
         ResizeMode="NoResize"
-        d:DataContext="{d:DesignInstance vm:NewTemplateWindowViewModel, IsDesignTimeCreatable=True}"
-        >
+        d:DataContext="{d:DesignInstance vm:NewTemplateWindowViewModel, IsDesignTimeCreatable=True}">
     <Window.Resources>
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary 
-                                    Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
+                <ResourceDictionary
+                    Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
                 <ResourceDictionary>
                     <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                                           Source="{Binding Path=Environment.EnvironmentVariables}" />
@@ -40,8 +39,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0"
                Grid.Column="0"
@@ -51,14 +50,13 @@
                FontSize="20"
                x:Name="NewTemplateWindowHeaderTitle"
                Content="{lex:Loc}" />
-        <Label Grid.Row="1" 
-               Grid.Column="0" 
-               x:Name="TemplateNameLabel" 
-               Content="{lex:Loc}"/>
-        <TextBox Grid.Row="1" 
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               x:Name="TemplateNameLabel"
+               Content="{lex:Loc}" />
+        <TextBox Grid.Row="1"
                  Grid.Column="1"
-                 VerticalContentAlignment="Center"
-                 >
+                 VerticalContentAlignment="Center">
             <TextBox.Text>
                 <Binding Path="TemplateName" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>

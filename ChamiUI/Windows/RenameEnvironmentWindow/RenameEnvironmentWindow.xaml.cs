@@ -16,8 +16,9 @@ namespace ChamiUI.Windows.RenameEnvironmentWindow
             InitializeComponent();
         }
 
-        public RenameEnvironmentWindow(string initialName)
+        public RenameEnvironmentWindow(Window owner, string initialName)
         {
+            Owner = owner;
             _viewModel = new RenameEnvironmentViewModel(initialName);
             DataContext = _viewModel;
             InitializeComponent();

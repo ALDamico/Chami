@@ -5,8 +5,9 @@ namespace ChamiUI.Windows.NewTemplateWindow
 {
     public partial class NewTemplateWindow : Window
     {
-        public NewTemplateWindow()
+        public NewTemplateWindow(Window owner)
         {
+            Owner = owner;
             _viewmodel = new NewTemplateWindowViewModel();
             DataContext = _viewmodel;
             InitializeComponent();

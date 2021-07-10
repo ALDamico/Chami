@@ -4,8 +4,9 @@ namespace ChamiUI.Windows.AboutBox
 {
     public partial class AboutBox
     {
-        public AboutBox()
+        public AboutBox(Window owner)
         {
+            Owner = owner;
             InitializeComponent();
         }
 

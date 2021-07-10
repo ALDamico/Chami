@@ -11,6 +11,7 @@
         x:Name="ChamiAboutBox"
         Title="{lex:Loc}" Height="300" Width="350"
         ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
         >
     <Grid>
         <StackPanel Orientation="Vertical">

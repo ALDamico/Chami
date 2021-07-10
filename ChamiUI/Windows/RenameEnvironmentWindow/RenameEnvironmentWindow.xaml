@@ -13,6 +13,7 @@
         Title="{lex:Loc}" 
         ResizeMode="NoResize"
         d:DataContext="{d:DesignInstance vm:RenameEnvironmentViewModel}"
+        WindowStartupLocation="CenterOwner"
         SizeToContent="WidthAndHeight"
         WindowStyle="ToolWindow"
         >

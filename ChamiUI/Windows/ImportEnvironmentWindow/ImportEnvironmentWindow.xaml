@@ -9,6 +9,7 @@
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         x:Name="ImportEnvironmentWindowTitle"
         d:DataContext="{d:DesignInstance viewModels:ImportEnvironmentWindowViewModel, IsDesignTimeCreatable=True}"
+        WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Title="{lex:Loc}" Height="450" Width="800"
         Loaded="NewEnvironmentWindow_OnLoaded"
