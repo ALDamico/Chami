@@ -26,25 +26,16 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <TreeView
+        <ListView
             x:Name="CategoriesTree"
             Grid.Row="0"
             Grid.Column="0"
-            SelectedItemChanged="CategoriesTree_OnSelectedItemChanged">
-            <TreeViewItem x:Name="ViewCategory" 
-                          Header="{lex:Loc Key=ViewCategory}" />
-            <TreeViewItem x:Name="DetectorCategory" 
-                          Header="{lex:Loc Key=DetectorCategory}" />
-            <TreeViewItem x:Name="SafetyCategory" 
-                          Header="{lex:Loc Key=SafetyCategory}" />
-            <TreeViewItem x:Name="LoggingCategory" 
-                          Header="{lex:Loc Key=LoggingCategory}" />
-            <TreeViewItem x:Name="LanguageCategory" 
-                          Header="{lex:Loc Key=LanguageCategory}"/>
-            <TreeViewItem x:Name="MinimizationCategory" 
-                          Header="{lex:Loc Key=MinimizationCategory}"/>
-
-        </TreeView>
+            SelectionChanged="CategoriesTree_OnSelectedItemChanged"
+            ItemsSource="{Binding AvailableControls}"
+            DisplayMemberPath="ControlDisplayName"
+            SelectedIndex="{Binding DisplayedControl}"
+            >
+        </ListView>
         <UserControl
             x:Name="SectionViewport"
             Grid.Row="0"

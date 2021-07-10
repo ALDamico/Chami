@@ -1,7 +1,9 @@
+using System;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Controls;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using ChamiUI.Localization;
@@ -25,21 +27,28 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
             Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
                 _languageDataAdapter);
-            _controls = new Dictionary<string, UserControl>();
+            AvailableControls = new ObservableCollection<ControlKeyWrapper>();
 
             var viewKey = ChamiUIStrings.ViewCategory;
-            _controls[viewKey] = new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings);
+            var viewKeyWrapper = new ControlKeyWrapper(viewKey, new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings));
+            AvailableControls.Add(viewKeyWrapper);
+            
             var loggingKey = ChamiUIStrings.LoggingCategory;
-            _controls[loggingKey] = new LoggingSettingsEditor(Settings.LoggingSettings);
+            var loggingKeyWrapper = new ControlKeyWrapper(loggingKey, new LoggingSettingsEditor(Settings.LoggingSettings));
+            AvailableControls.Add(loggingKeyWrapper);
             var safetyKey = ChamiUIStrings.SafetyCategory;
-            _controls[safetyKey] = new SafeVariableEditor(Settings.SafeVariableSettings);
+            var safetyKeyWrapper = new ControlKeyWrapper(safetyKey, new SafeVariableEditor(Settings.SafeVariableSettings));
+            AvailableControls.Add(safetyKeyWrapper);
             var detectorKey = ChamiUIStrings.DetectorCategory;
-            _controls[detectorKey] = new ApplicationDetectorControl(Settings.WatchedApplicationSettings);
+            var detectorKeyWrapper = new ControlKeyWrapper(detectorKey, new ApplicationDetectorControl(Settings.WatchedApplicationSettings));
+            AvailableControls.Add(detectorKeyWrapper);
             var languageKey = ChamiUIStrings.LanguageCategory;
-            _controls[languageKey] = new LanguageSelectorControl(Settings.LanguageSettings);
-            DisplayedControl = _controls.Values.FirstOrDefault();
+            var languageKeyWrapper = new ControlKeyWrapper(languageKey, new LanguageSelectorControl(Settings.LanguageSettings));
+            AvailableControls.Add(languageKeyWrapper);
             var minimizationKey = ChamiUIStrings.MinimizationCategory;
-            _controls[minimizationKey] = new MinimizationBehaviourControl(Settings.MinimizationBehaviour);
+            var minimizationKeyWrapper = new ControlKeyWrapper(minimizationKey, new MinimizationBehaviourControl(Settings.MinimizationBehaviour));
+            DisplayedControl = AvailableControls.FirstOrDefault()?.Control;
+            
         }
 
         /// <summary>
@@ -51,28 +60,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
                 .WatchedApplications);
         }
+        
+        public ObservableCollection<ControlKeyWrapper> AvailableControls { get; }
 
         private SettingsDataAdapter _dataAdapter;
         private WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
         private ApplicationLanguageDataAdapter _languageDataAdapter;
-        private Dictionary<string, UserControl> _controls;
-
-        /// <summary>
-        /// Changes the displayed control when the user clicks on a different entry in the side bar.
-        /// </summary>
-        /// <param name="name">The name of the control to get.</param>
-        public void ChangeControl(string name)
-        {
-            var controlExists = _controls.TryGetValue(name, out var control);
-            if (controlExists)
-            {
-                DisplayedControl = control;
-            }
-            else
-            {
-                DisplayedControl = null;
-            }
-        }
+        
 
         private UserControl _displayedControl;
 
@@ -102,6 +96,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _settingsViewModel = value;
                 OnPropertyChanged(nameof(Settings));
             }
+        }
+
+        /// <summary>
+        /// Changes the displayed control
+        /// </summary>
+        /// <param name="controlKey">The key to use to find the control to set.</param>
+        public void ChangeControl(ControlKeyWrapper controlKey)
+        {
+            DisplayedControl = AvailableControls.FirstOrDefault(c => c.Guid.Equals(controlKey.Guid))?.Control;
         }
     }
 }
