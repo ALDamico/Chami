@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
+using Gapotchenko.FX.Diagnostics;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -40,8 +41,15 @@ namespace ChamiUI.BusinessLayer
                     var match = Regex.Match(process.ProcessName, application.Name, RegexOptions.IgnoreCase);
                     if (match.Success)
                     {
-                        application.ProcessName = process.ProcessName;
-                        output.Add(application);
+                        var watchedApplicationOutput = new WatchedApplicationViewModel();
+                        var processEnvironmentVariables = process.ReadEnvironmentVariables();
+                        if (processEnvironmentVariables.ContainsKey("_CHAMI_ENV"))
+                        {
+                            watchedApplicationOutput.ChamiEnvironmentName = processEnvironmentVariables["_CHAMI_ENV"];
+                        }
+                        watchedApplicationOutput.ProcessName = process.ProcessName;
+                        watchedApplicationOutput.Pid = process.Id;
+                        output.Add(watchedApplicationOutput);
                     }
                 }
             }

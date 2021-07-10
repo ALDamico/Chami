@@ -53,5 +53,29 @@
                 OnPropertyChanged(nameof(value));
             }
         }
+
+        private int _pid;
+
+        public int Pid
+        {
+            get => _pid;
+            set
+            {
+                _pid = value;
+                OnPropertyChanged(nameof(Pid));
+            }
+        }
+
+        private string _chamiEnvironmentName;
+
+        public string ChamiEnvironmentName
+        {
+            get => _chamiEnvironmentName;
+            set
+            {
+                _chamiEnvironmentName = value;
+                OnPropertyChanged(nameof(ChamiEnvironmentName));
+            }
+        }
     }
 }

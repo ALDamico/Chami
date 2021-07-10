@@ -685,4 +685,13 @@ Fix the issues and try saving again.</value>
   <data name="TemplateEnvironmentLabel_Content" xml:space="preserve">
     <value>Template</value>
   </data>
+  <data name="ApplicationsDetectedFirstParagraph_Text" xml:space="preserve">
+    <value>Chami has detected that the following applications are currently running:</value>
+  </data>
+  <data name="ApplicationsDetectedSecondParagraph_Text" xml:space="preserve">
+    <value>Chami can try and close those applications for you, or you could close them manually. Once done, click "Close".</value>
+  </data>
+  <data name="RefreshButtonLabel_Content" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
 </root>

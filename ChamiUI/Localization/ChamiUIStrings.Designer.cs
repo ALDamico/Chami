@@ -196,6 +196,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Chami has detected that the following applications are currently running:.
+        /// </summary>
+        public static string ApplicationsDetectedFirstParagraph_Text {
+            get {
+                return ResourceManager.GetString("ApplicationsDetectedFirstParagraph_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chami can try and close those applications for you, or you could close them manually. Once done, click &quot;Close&quot;..
+        /// </summary>
+        public static string ApplicationsDetectedSecondParagraph_Text {
+            get {
+                return ResourceManager.GetString("ApplicationsDetectedSecondParagraph_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string ApplyEnvironmentButton_Tooltip {
@@ -1331,6 +1349,15 @@ namespace ChamiUI.Localization {
         public static string QuitMessageBoxText {
             get {
                 return ResourceManager.GetString("QuitMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Refresh.
+        /// </summary>
+        public static string RefreshButtonLabel_Content {
+            get {
+                return ResourceManager.GetString("RefreshButtonLabel_Content", resourceCulture);
             }
         }
         

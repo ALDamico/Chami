@@ -17,6 +17,7 @@ using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
+using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -477,6 +478,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private readonly EnvironmentDataAdapter _dataAdapter;
 
+        public event EventHandler<ApplicationsDetectedEventArgs> ApplicationsDetected;
+
         /// <summary>
         /// Constructs the message to show in the messagebox that appears when a running application is detected after
         /// changing the environment.
@@ -492,9 +495,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var detectedApplications = applicationDetector.Detect();
                 if (detectedApplications is {Count: > 0})
                 {
+                    /*
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.AppendLine(
-                        ChamiUIStrings.DetectorMessageBoxTextPart1);
+                        ChamiUIStrings.DetectorMessageBoxTextPart1);*/
                     foreach (var detectedApplication in detectedApplications)
                     {
                         var processName = detectedApplication.ProcessName;
@@ -503,11 +507,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
                             processName = detectedApplication.Name;
                         }
 
-                        stringBuilder.AppendLine(processName);
+                        //stringBuilder.AppendLine(processName);
                     }
+                    var window = new DetectedApplicationsWindow();
+                    ApplicationsDetected += window.OnApplicationsDetected;
+                    window.Show();
+                    ApplicationsDetected?.Invoke(this, new ApplicationsDetectedEventArgs(detectedApplications));
+                    
+                    
+                    //stringBuilder.Append(ChamiUIStrings.DetectorMessageBoxTextPart2);
+                    //return stringBuilder.ToString();
 
-                    stringBuilder.Append(ChamiUIStrings.DetectorMessageBoxTextPart2);
-                    return stringBuilder.ToString();
+                    return null;
                 }
             }
 
