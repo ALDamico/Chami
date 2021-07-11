@@ -1,4 +1,5 @@
-﻿using ChamiUI.PresentationLayer.ViewModels;
+﻿using System;
+using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -42,14 +43,26 @@ namespace ChamiUI.BusinessLayer
                     if (match.Success)
                     {
                         var watchedApplicationOutput = new WatchedApplicationViewModel();
-                        var processEnvironmentVariables = process.ReadEnvironmentVariables();
-                        if (processEnvironmentVariables.ContainsKey("_CHAMI_ENV"))
+                        try
                         {
-                            watchedApplicationOutput.ChamiEnvironmentName = processEnvironmentVariables["_CHAMI_ENV"];
+                            var processEnvironmentVariables = process.ReadEnvironmentVariables();
+                            if (processEnvironmentVariables.ContainsKey("_CHAMI_ENV"))
+                            {
+                                watchedApplicationOutput.ChamiEnvironmentName =
+                                    processEnvironmentVariables["_CHAMI_ENV"];
+                            }
+
+                            watchedApplicationOutput.ProcessName = process.ProcessName;
+                            watchedApplicationOutput.Pid = process.Id;
+                            watchedApplicationOutput.Name = application.Name;
+                            
+                            output.Add(watchedApplicationOutput);
                         }
-                        watchedApplicationOutput.ProcessName = process.ProcessName;
-                        watchedApplicationOutput.Pid = process.Id;
-                        output.Add(watchedApplicationOutput);
+                        catch (InvalidOperationException)
+                        {
+                            //The application has already been terminated
+                        }
+                        
                     }
                 }
             }

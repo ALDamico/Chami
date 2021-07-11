@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
@@ -19,6 +20,7 @@ using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -198,7 +200,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private bool _isCaseSensitiveSearch;
-        
+
         /// <summary>
         /// Determines if the filtering component should work in a case-sensitive fashion or not.
         /// </summary>
@@ -509,12 +511,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
                         //stringBuilder.AppendLine(processName);
                     }
+
                     var window = new DetectedApplicationsWindow();
                     ApplicationsDetected += window.OnApplicationsDetected;
                     window.Show();
                     ApplicationsDetected?.Invoke(this, new ApplicationsDetectedEventArgs(detectedApplications));
-                    
-                    
+
+
                     //stringBuilder.Append(ChamiUIStrings.DetectorMessageBoxTextPart2);
                     //return stringBuilder.ToString();
 
@@ -721,22 +724,36 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public List<EnvironmentViewModel> StartImportFiles(string[] dialogFileNames)
         {
             List<EnvironmentViewModel> output = new List<EnvironmentViewModel>();
+            var rejectedFiles = new List<string>();
             foreach (var fileName in dialogFileNames)
             {
-                var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
                 try
                 {
-                    var viewModel = reader.Process();
-                    output.Add(viewModel);
-                }
-                catch (JsonReaderException)
-                {
-                    var viewModels = reader.ProcessMultiple();
-                    foreach (var model in viewModels)
+                    var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
+                    try
                     {
-                        output.Add(model);
+                        var viewModel = reader.Process();
+                        output.Add(viewModel);
+                    }
+                    catch (JsonReaderException)
+                    {
+                        var viewModels = reader.ProcessMultiple();
+                        foreach (var model in viewModels)
+                        {
+                            output.Add(model);
+                        }
                     }
                 }
+                catch (NotSupportedException)
+                {
+                    rejectedFiles.Add(fileName + "\n");
+                }
+            }
+
+            if (rejectedFiles.Any())
+            {
+                System.Windows.MessageBox.Show(string.Concat(rejectedFiles), "Some files were rejected!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return output;

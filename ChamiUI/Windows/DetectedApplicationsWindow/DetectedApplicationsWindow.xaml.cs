@@ -34,5 +34,17 @@ namespace ChamiUI.Windows.DetectedApplicationsWindow
         {
            _viewModel.RefreshDetection();
         }
+
+        private async void TerminateMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.TerminateSelectedApplication();
+            _viewModel.RefreshDetection();
+        }
+
+        private async void TerminateAllMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            await _viewModel.TerminateAll();
+            _viewModel.RefreshDetection();
+        }
     }
 }

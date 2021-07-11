@@ -694,4 +694,10 @@ Fix the issues and try saving again.</value>
   <data name="RefreshButtonLabel_Content" xml:space="preserve">
     <value>Refresh</value>
   </data>
+  <data name="AllFilesRejectedCaption" xml:space="preserve">
+    <value>All files were rejected!</value>
+  </data>
+  <data name="AllFilesRejectedText" xml:space="preserve">
+    <value>All the files you tried to import were rejected!</value>
+  </data>
 </root>

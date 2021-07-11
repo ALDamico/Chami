@@ -1,4 +1,9 @@
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using ChamiUI.BusinessLayer;
 
@@ -14,6 +19,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private RunningApplicationDetector _detector;
         public ObservableCollection<WatchedApplicationViewModel> DetectedApplications { get; }
 
+        private WatchedApplicationViewModel _selectedApplication;
+
+        public WatchedApplicationViewModel SelectedApplication
+        {
+            get => _selectedApplication;
+            set
+            {
+                _selectedApplication = value;
+                OnPropertyChanged(nameof(SelectedApplication));
+            }
+        }
+
         public void RefreshDetection()
         {
             DetectedApplications.Clear();
@@ -26,6 +43,45 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 DetectedApplications.Add(app);
             }
+        }
+
+        public async Task TerminateSelectedApplication()
+        {
+            var pid = SelectedApplication.Pid;
+
+            await KillProcessByPid(pid);
+            
+            
+        }
+
+        private async Task KillProcessByPid(int pid)
+        {
+            if (pid == 4)
+            {
+                return;
+            }
+            var process = Process.GetProcessById(pid);
+            try
+            {
+                process.Kill();
+                await process.WaitForExitAsync();
+            }
+            catch (Exception ex)
+            {
+                var logger = ((App) Application.Current).GetLogger();
+                logger.Error(ex, "{ex}");
+            }
+        }
+
+        public async Task TerminateAll()
+        {
+            var tasks = new List<Task>();
+            foreach (var application in DetectedApplications)
+            {
+                tasks.Add(KillProcessByPid(application.Pid));
+            }
+
+            await Task.WhenAll(tasks);
         }
     }
 }

@@ -694,4 +694,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="RefreshButtonLabel_Content" xml:space="preserve">
     <value>Aggiorna</value>
   </data>
+  <data name="AllFilesRejectedCaption" xml:space="preserve">
+    <value>Tutti i file sono stati rifiutati!</value>
+  </data>
+  <data name="AllFilesRejectedText" xml:space="preserve">
+    <value>Tutti i file che hai cercato di importare sono stati rifiutati!</value>
+  </data>
 </root>

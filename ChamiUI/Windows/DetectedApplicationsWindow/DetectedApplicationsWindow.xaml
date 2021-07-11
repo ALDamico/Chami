@@ -10,6 +10,12 @@
         mc:Ignorable="d"
         Title="DetectedApplicationsWindow" Height="450" Width="800"
         d:DataContext="{d:DesignInstance viewModels:DetectedApplicationsViewModel, IsDesignTimeCreatable=True}">
+    <Window.Resources>
+        <ContextMenu x:Key="RowContextMenu">
+            <MenuItem Header="Terminate" x:Name="TerminateMenuItem" Click="TerminateMenuItem_OnClick"></MenuItem>
+            <MenuItem Header="Terminate all" Click="TerminateAllMenuItem_OnClick"></MenuItem>
+        </ContextMenu>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -31,10 +37,17 @@
                 
             </Button.Content>
         </Button>
-        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding DetectedApplications}">
+        <ListView Grid.Row="1" 
+                  Grid.Column="0" 
+                  Grid.ColumnSpan="2" 
+                  ItemsSource="{Binding DetectedApplications}"
+                  SelectedItem="{Binding SelectedApplication}"
+                  ContextMenu="{StaticResource RowContextMenu}"
+                  >
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Pid}" Header="PID"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Pid}" 
+                                    Header="PID"></GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}"
                                     Header="Name" />
                     <GridViewColumn DisplayMemberBinding="{Binding ProcessName}"

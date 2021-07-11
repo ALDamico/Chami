@@ -101,7 +101,7 @@ namespace ChamiUI.Windows.MainWindow
                         }
                     }
                 }
-                catch (Exception ex) when(ex is TaskCanceledException or OperationCanceledException)
+                catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
                 {
                     (Application.Current as App)?.Logger.GetLogger().Information("{Message}", ex.Message);
                     (Application.Current as App)?.Logger.GetLogger().Information("{StackTrace}", ex.StackTrace);
@@ -362,7 +362,7 @@ namespace ChamiUI.Windows.MainWindow
 
             ViewModel.IsDescendingSorting = sortDescription.Direction == ListSortDirection.Descending;
             ViewModel.FilterStrategy = ViewModel.FilterStrategies.FirstOrDefault(fs =>
-                fs.GetType().FullName == settings.SearchPath.GetType().FullName); 
+                fs.GetType().FullName == settings.SearchPath.GetType().FullName);
         }
 
         private void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -599,10 +599,18 @@ namespace ChamiUI.Windows.MainWindow
         {
             List<EnvironmentViewModel> viewModels = ViewModel.StartImportFiles(filenames);
 
-            var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow(this);
-            importWindow.EnvironmentSaved += OnEnvironmentSaved;
-            importWindow.SetEnvironments(viewModels);
-            importWindow.ShowDialog();
+            if (viewModels.Count > 0)
+            {
+                var importWindow = new ImportEnvironmentWindow.ImportEnvironmentWindow(this);
+                importWindow.EnvironmentSaved += OnEnvironmentSaved;
+                importWindow.SetEnvironments(viewModels);
+                importWindow.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show(ChamiUIStrings.AllFilesRejectedText, ChamiUIStrings.AllFilesRejectedCaption,
+                    MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
 

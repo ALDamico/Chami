@@ -178,6 +178,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to All files were rejected!.
+        /// </summary>
+        public static string AllFilesRejectedCaption {
+            get {
+                return ResourceManager.GetString("AllFilesRejectedCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All the files you tried to import were rejected!.
+        /// </summary>
+        public static string AllFilesRejectedText {
+            get {
+                return ResourceManager.GetString("AllFilesRejectedText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to All supported formats.
         /// </summary>
         public static string AllSupportedFilesFileDialogDescription {
