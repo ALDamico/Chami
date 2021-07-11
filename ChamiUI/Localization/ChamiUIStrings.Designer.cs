@@ -340,6 +340,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string CloseDetectedApplicationsWindowButton_Content {
+            get {
+                return ResourceManager.GetString("CloseDetectedApplicationsWindowButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Console.
         /// </summary>
         public static string ConsoleTabItem_Header {
@@ -1728,6 +1737,15 @@ namespace ChamiUI.Localization {
         public static string TemplateNameLabel_Content {
             get {
                 return ResourceManager.GetString("TemplateNameLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminate all.
+        /// </summary>
+        public static string TerminateAllButton_Content {
+            get {
+                return ResourceManager.GetString("TerminateAllButton_Content", resourceCulture);
             }
         }
         

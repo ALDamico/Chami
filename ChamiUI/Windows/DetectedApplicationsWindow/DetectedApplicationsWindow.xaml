@@ -57,6 +57,19 @@
                 </GridView>
             </ListView.View>
         </ListView>
-        <TextBlock Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{lex:Loc}" x:Name="ApplicationsDetectedSecondParagraph" TextWrapping="Wrap"></TextBlock>
+        <TextBlock Grid.Row="2" 
+                   Grid.Column="0" 
+                   Grid.ColumnSpan="2" 
+                   Text="{lex:Loc}" 
+                   x:Name="ApplicationsDetectedSecondParagraph" 
+                   TextWrapping="Wrap"></TextBlock>
+        <StackPanel Grid.Row="3" 
+                    Grid.Column="0" 
+                    Grid.ColumnSpan="2" 
+                    Orientation="Horizontal" 
+                    HorizontalAlignment="Right">
+            <Button Content="{lex:Loc}" x:Name="TerminateAllButton" Margin="5, 0, 5, 0" Click="TerminateAllButton_OnClick"></Button>
+            <Button Content="{lex:Loc}" x:Name="CloseDetectedApplicationsWindowButton" Click="CloseDetectedApplicationsWindowButton_OnClick"></Button>
+        </StackPanel>
     </Grid>
 </Window>

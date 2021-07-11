@@ -700,4 +700,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="AllFilesRejectedText" xml:space="preserve">
     <value>Tutti i file che hai cercato di importare sono stati rifiutati!</value>
   </data>
+  <data name="TerminateAllButton_Content" xml:space="preserve">
+    <value>Termina tutti</value>
+  </data>
+  <data name="CloseDetectedApplicationsWindowButton_Content" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
 </root>

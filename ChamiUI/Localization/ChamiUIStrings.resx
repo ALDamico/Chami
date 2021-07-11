@@ -700,4 +700,10 @@ Fix the issues and try saving again.</value>
   <data name="AllFilesRejectedText" xml:space="preserve">
     <value>All the files you tried to import were rejected!</value>
   </data>
+  <data name="TerminateAllButton_Content" xml:space="preserve">
+    <value>Terminate all</value>
+  </data>
+  <data name="CloseDetectedApplicationsWindowButton_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

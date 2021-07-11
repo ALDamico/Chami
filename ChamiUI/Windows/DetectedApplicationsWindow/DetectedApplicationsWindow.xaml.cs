@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using ChamiUI.BusinessLayer;
 using ChamiUI.PresentationLayer.Events;
@@ -43,8 +44,23 @@ namespace ChamiUI.Windows.DetectedApplicationsWindow
 
         private async void TerminateAllMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            await TerminateAll();
+        }
+
+        private void CloseDetectedApplicationsWindowButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private async Task TerminateAll()
+        {
             await _viewModel.TerminateAll();
             _viewModel.RefreshDetection();
+        }
+
+        private async  void TerminateAllButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            await TerminateAll();
         }
     }
 }
