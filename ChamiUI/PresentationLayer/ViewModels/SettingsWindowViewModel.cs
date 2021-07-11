@@ -47,6 +47,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             AvailableControls.Add(languageKeyWrapper);
             var minimizationKey = ChamiUIStrings.MinimizationCategory;
             var minimizationKeyWrapper = new ControlKeyWrapper(minimizationKey, new MinimizationBehaviourControl(Settings.MinimizationBehaviour));
+            AvailableControls.Add(minimizationKeyWrapper);
             DisplayedControl = AvailableControls.FirstOrDefault()?.Control;
             
         }
