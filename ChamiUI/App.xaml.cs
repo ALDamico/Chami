@@ -13,7 +13,9 @@ using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
+using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
+using ChamiUI.BusinessLayer;
 using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
@@ -43,6 +45,8 @@ namespace ChamiUI
 #endif
             _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
 
+            InitCmdExecutorMessages();
+
 
             MigrateDatabase();
             try
@@ -54,6 +58,12 @@ namespace ChamiUI
             {
                 MigrateDatabase();
             }
+        }
+
+        private void InitCmdExecutorMessages()
+        {
+            CmdExecutorBase.StartingExecutionMessage = ChamiUIStrings.StartingExecutionMessage;
+            CmdExecutorBase.CompletedExecutionMessage = ChamiUIStrings.ExecutionCompleteMessage;
         }
 
         private readonly IServiceProvider _serviceProvider;

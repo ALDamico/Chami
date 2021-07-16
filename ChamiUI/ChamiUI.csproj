@@ -1132,6 +1132,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\Chami.CmdExecutor\Chami.CmdExecutor.csproj" />
       <ProjectReference Include="..\ChamiDbMigrations\Chami.Db.csproj" />
     </ItemGroup>
 

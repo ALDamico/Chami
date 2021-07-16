@@ -1,18 +1,11 @@
-using ChamiUI.PresentationLayer.Progress;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Resources;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
+using Chami.CmdExecutor;
+using Chami.CmdExecutor.Progress;
 using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
-using ChamiUI.Windows.MainWindow;
-using WPFLocalizeExtension.Providers;
 using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer

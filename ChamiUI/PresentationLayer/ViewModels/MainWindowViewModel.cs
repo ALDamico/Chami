@@ -2,17 +2,16 @@ using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.PresentationLayer.Events;
-using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
@@ -20,7 +19,6 @@ using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
-using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
 using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels

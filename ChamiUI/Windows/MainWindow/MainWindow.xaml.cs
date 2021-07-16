@@ -1,6 +1,5 @@
 ﻿using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.PresentationLayer.Events;
-using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -19,6 +18,7 @@ using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
+using Chami.CmdExecutor.Progress;
 using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.Windows.MainWindow

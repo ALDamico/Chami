@@ -1,5 +1,6 @@
 using System;
 using System.Reflection;
+using Chami.CmdExecutor;
 using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer.Factories

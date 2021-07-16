@@ -1,7 +1,6 @@
 using System.IO;
-using ChamiUI.BusinessLayer;
 
-namespace ChamiUI.PresentationLayer.Progress
+namespace Chami.CmdExecutor.Progress
 {
     /// <summary>
     /// Notifies progress of a <see cref="CmdExecutorBase"/>.

@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.Localization;
-using ChamiUI.PresentationLayer.Events;
-using ChamiUI.PresentationLayer.Progress;
+using Chami.CmdExecutor.Progress;
 
-namespace ChamiUI.BusinessLayer
+namespace Chami.CmdExecutor
 {
     /// <summary>
     /// Base class for executing queues of Windows shell commands.
@@ -21,6 +18,9 @@ namespace ChamiUI.BusinessLayer
         {
             CommandQueue = new Queue<IShellCommand>();
         }
+        
+        public static string StartingExecutionMessage { get; set; }
+        public static string CompletedExecutionMessage { get; set; }
 
         /// <summary>
         /// The sequence of commands to execute.
@@ -59,7 +59,7 @@ namespace ChamiUI.BusinessLayer
         public virtual async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress,
             CancellationToken cancellationToken)
         {
-            var message = ChamiUIStrings.StartingExecutionMessage;
+            var message = StartingExecutionMessage;
             CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, message);
             progress?.Report(cmdExecutorProgress);
             int currentIndex = 0;
@@ -73,7 +73,7 @@ namespace ChamiUI.BusinessLayer
             } while (CommandQueue.Count > 0);
 
 
-            progress?.Report(new CmdExecutorProgress(100, null, ChamiUIStrings.ExecutionCompleteMessage));
+            progress?.Report(new CmdExecutorProgress(100, null, CompletedExecutionMessage));
         }
     }
 }

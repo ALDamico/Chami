@@ -2,10 +2,9 @@
 using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Chami.Db.Entities;
-using ChamiUI.PresentationLayer.Progress;
+using Chami.CmdExecutor.Progress;
 
-namespace ChamiUI.BusinessLayer
+namespace Chami.CmdExecutor
 {
     /// <summary>
     /// Base class that provides common protected methods for classes that implement <see cref="IShellCommand"/>.

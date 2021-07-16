@@ -1,7 +1,8 @@
-using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using Chami.CmdExecutor;
+using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 
 namespace ChamiUI.BusinessLayer

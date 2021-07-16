@@ -1,10 +1,9 @@
-using ChamiUI.PresentationLayer.Progress;
 using System;
 using System.Threading;
 using System.Threading.Tasks;
-using Chami.Db.Entities;
+using Chami.CmdExecutor.Progress;
 
-namespace ChamiUI.BusinessLayer
+namespace Chami.CmdExecutor
 {
     /// <summary>
     /// Interface for executing shell commands for use by <see cref="CmdExecutorBase"/>.
