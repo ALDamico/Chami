@@ -12,6 +12,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public EnvironmentVariableViewModel()
         {
             _markedForDeletion = false;
+            Value = "";
         }
         private string _name;
         private string _value;
