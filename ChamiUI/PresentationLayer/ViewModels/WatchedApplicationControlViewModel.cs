@@ -3,6 +3,7 @@ using System.Linq;
 using System;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -68,6 +69,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             appVm.Name = name;
             WatchedApplications.Add(appVm);
             return true;
+        }
+
+        /// <summary>
+        /// Marks a <see cref="WatchedApplicationViewModel"/> for deletion so that it will be removed from the datastore
+        /// when the settings are saved.
+        /// </summary>
+        /// <param name="viewModel">The <see cref="WatchedApplicationViewModel"/> to mark for deletion.</param>
+        internal void DeleteWatchedApplication(WatchedApplicationViewModel viewModel)
+        {
+            viewModel.Id = -1;
         }
 
         private string _newApplicationName;

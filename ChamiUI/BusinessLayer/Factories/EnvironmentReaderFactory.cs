@@ -29,7 +29,7 @@ namespace ChamiUI.BusinessLayer.Factories
                 return new EnvironmentJsonReader(filename);
             }
 
-            throw new NotSupportedException(ChamiUIStrings.EnvironmentReaderFactoryNotSupportedMessage);
+            throw new NotSupportedException(string.Format(ChamiUIStrings.EnvironmentReaderFactoryNotSupportedMessage, extension));
         }
     }
 }

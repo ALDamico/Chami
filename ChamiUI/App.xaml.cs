@@ -23,6 +23,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
+using ChamiUI.BusinessLayer.Factories;
 
 namespace ChamiUI
 {
@@ -40,21 +41,14 @@ namespace ChamiUI
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
-            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
+            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
 
-            
+
             MigrateDatabase();
             try
             {
-                Settings = new SettingsDataAdapter(GetConnectionString()).GetSettings();
-                var watchedApplications =
-                    new WatchedApplicationDataAdapter(GetConnectionString()).GetActiveWatchedApplications();
-                Settings.WatchedApplicationSettings.WatchedApplications =
-                    new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
-                var availableLanguages =
-                    new ApplicationLanguageDataAdapter(GetConnectionString()).GetAllApplicationLanguages();
-                Settings.LanguageSettings.AvailableLanguages =
-                    new ObservableCollection<ApplicationLanguageViewModel>(availableLanguages);
+                var connectionString = GetConnectionString();
+                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString), new WatchedApplicationDataAdapter(connectionString), new ApplicationLanguageDataAdapter(connectionString));
             }
             catch (SQLiteException)
             {
@@ -96,7 +90,7 @@ namespace ChamiUI
                 // A unit test is running. Use its connection string instead
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
-            
+
         }
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)

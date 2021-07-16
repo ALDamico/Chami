@@ -20,7 +20,7 @@ namespace ChamiUI.BusinessLayer.Factories
         public static SettingsViewModel GetSettings(SettingsDataAdapter dataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter, ApplicationLanguageDataAdapter languageDataAdapter)
         {
             var settings = dataAdapter.GetSettings();
-            var watchedApplications = watchedApplicationDataAdapter.GetActiveWatchedApplications();
+            var watchedApplications = watchedApplicationDataAdapter.GetWatchedApplications();
             settings.WatchedApplicationSettings.WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
             var availableLanguages = languageDataAdapter.GetAllApplicationLanguages();
             var currentLanguage =

@@ -685,4 +685,31 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="TemplateEnvironmentLabel_Content" xml:space="preserve">
     <value>Template</value>
   </data>
+  <data name="ApplicationsDetectedFirstParagraph_Text" xml:space="preserve">
+    <value>Chami ha rilevato che le seguenti applicazioni sono in esecuzione:</value>
+  </data>
+  <data name="ApplicationsDetectedSecondParagraph_Text" xml:space="preserve">
+    <value>Chami può provare a chiuderle automaticamente oppure puoi chiuderle manualmente. Una volta fatto, fai clic sul pulsante "Chiudi".</value>
+  </data>
+  <data name="RefreshButtonLabel_Content" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="AllFilesRejectedCaption" xml:space="preserve">
+    <value>Tutti i file sono stati rifiutati!</value>
+  </data>
+  <data name="AllFilesRejectedText" xml:space="preserve">
+    <value>Tutti i file che hai cercato di importare sono stati rifiutati!</value>
+  </data>
+  <data name="TerminateAllButton_Content" xml:space="preserve">
+    <value>Termina tutti</value>
+  </data>
+  <data name="CloseDetectedApplicationsWindowButton_Content" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="IsWatchEnabledColumn" xml:space="preserve">
+    <value>Abilitato?</value>
+  </data>
+  <data name="ProcessNameColumn" xml:space="preserve">
+    <value>Nome processo</value>
+  </data>
 </root>

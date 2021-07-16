@@ -32,7 +32,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var viewKey = ChamiUIStrings.ViewCategory;
             var viewKeyWrapper = new ControlKeyWrapper(viewKey, new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings));
             AvailableControls.Add(viewKeyWrapper);
-            
+
             var loggingKey = ChamiUIStrings.LoggingCategory;
             var loggingKeyWrapper = new ControlKeyWrapper(loggingKey, new LoggingSettingsEditor(Settings.LoggingSettings));
             AvailableControls.Add(loggingKeyWrapper);
@@ -41,6 +41,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             AvailableControls.Add(safetyKeyWrapper);
             var detectorKey = ChamiUIStrings.DetectorCategory;
             var detectorKeyWrapper = new ControlKeyWrapper(detectorKey, new ApplicationDetectorControl(Settings.WatchedApplicationSettings));
+
+            
             AvailableControls.Add(detectorKeyWrapper);
             var languageKey = ChamiUIStrings.LanguageCategory;
             var languageKeyWrapper = new ControlKeyWrapper(languageKey, new LanguageSelectorControl(Settings.LanguageSettings));
@@ -49,7 +51,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var minimizationKeyWrapper = new ControlKeyWrapper(minimizationKey, new MinimizationBehaviourControl(Settings.MinimizationBehaviour));
             AvailableControls.Add(minimizationKeyWrapper);
             DisplayedControl = AvailableControls.FirstOrDefault()?.Control;
-            
         }
 
         /// <summary>
@@ -58,16 +59,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void SaveSettings()
         {
             _dataAdapter.SaveSettings(Settings);
-            _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
-                .WatchedApplications);
+            Settings.WatchedApplicationSettings
+                .WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(_watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
+                .WatchedApplications));
         }
-        
+
         public ObservableCollection<ControlKeyWrapper> AvailableControls { get; }
 
         private SettingsDataAdapter _dataAdapter;
         private WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
         private ApplicationLanguageDataAdapter _languageDataAdapter;
-        
+
 
         private UserControl _displayedControl;
 

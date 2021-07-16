@@ -36,9 +36,6 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="InputFiles\chami.db" />
-      <Content Include="InputFiles\chami.db">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </Content>
       <None Remove="InputFiles\chami-sample.env" />
       <Content Include="InputFiles\chami-sample.env">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

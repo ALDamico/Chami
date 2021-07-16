@@ -685,4 +685,31 @@ Fix the issues and try saving again.</value>
   <data name="TemplateEnvironmentLabel_Content" xml:space="preserve">
     <value>Template</value>
   </data>
+  <data name="ApplicationsDetectedFirstParagraph_Text" xml:space="preserve">
+    <value>Chami has detected that the following applications are currently running:</value>
+  </data>
+  <data name="ApplicationsDetectedSecondParagraph_Text" xml:space="preserve">
+    <value>Chami can try and close those applications for you, or you could close them manually. Once done, click "Close".</value>
+  </data>
+  <data name="RefreshButtonLabel_Content" xml:space="preserve">
+    <value>Refresh</value>
+  </data>
+  <data name="AllFilesRejectedCaption" xml:space="preserve">
+    <value>All files were rejected!</value>
+  </data>
+  <data name="AllFilesRejectedText" xml:space="preserve">
+    <value>All the files you tried to import were rejected!</value>
+  </data>
+  <data name="TerminateAllButton_Content" xml:space="preserve">
+    <value>Terminate all</value>
+  </data>
+  <data name="CloseDetectedApplicationsWindowButton_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="IsWatchEnabledColumn" xml:space="preserve">
+    <value>Enabled?</value>
+  </data>
+  <data name="ProcessNameColumn" xml:space="preserve">
+    <value>Process name</value>
+  </data>
 </root>

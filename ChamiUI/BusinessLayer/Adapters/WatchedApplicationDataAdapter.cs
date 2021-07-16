@@ -45,6 +45,24 @@ namespace ChamiUI.BusinessLayer.Adapters
         }
 
         /// <summary>
+        /// Gets all the <see cref="WatchedApplication"/> objects and converts them to <see cref="WatchedApplicationViewModel"/>s.
+        /// </summary>
+        /// <returns>A <see cref="List{T}"/> of all <see cref="WatchedApplicationViewModel"/>s.</returns>
+        public IEnumerable<WatchedApplicationViewModel> GetWatchedApplications()
+        {
+            var watchedApplications = _repository.GetWatchedApplications();
+            var output = new List<WatchedApplicationViewModel>();
+            var converter = new WatchedApplicationConverter();
+            foreach (var watchedApplication in watchedApplications)
+            {
+                var viewModel = converter.To(watchedApplication);
+                output.Add(viewModel);
+            }
+
+            return output;
+        }
+
+        /// <summary>
         /// Converts a <see cref="WatchedApplicationViewModel"/> to <see cref="WatchedApplication"/> and inserts it in the datastore.
         /// </summary>
         /// <param name="watchedApplication">The <see cref="WatchedApplicationViewModel"/> to convert and insert.</param>
@@ -70,7 +88,7 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// Converts a <see cref="WatchedApplicationViewModel"/> to a <see cref="WatchedApplication"/> entity and inserts it if it's not yet been persisted. Otherwise, updates the existing entity.
         /// </summary>
         /// <param name="watchedApplications"></param>
-        public void SaveWatchedApplications(IEnumerable<WatchedApplicationViewModel> watchedApplications)
+        public IEnumerable<WatchedApplicationViewModel> SaveWatchedApplications(IEnumerable<WatchedApplicationViewModel> watchedApplications)
         {
             var converter = new WatchedApplicationConverter();
             foreach (var watchedApplication in watchedApplications)
@@ -79,11 +97,24 @@ namespace ChamiUI.BusinessLayer.Adapters
                 {
                     InsertWatchedApplication(watchedApplication);
                 }
+                else if (watchedApplication.Id == -1)
+                {
+                    DeleteWatchedApplication(watchedApplication);
+                }
                 else
                 {
                     UpdateWatchedApplication(watchedApplication);
                 }
             }
+            
+            return GetWatchedApplications();
+        }
+
+        public void DeleteWatchedApplication(WatchedApplicationViewModel watchedApplication)
+        {
+            var converter = new WatchedApplicationConverter();
+            var entity = converter.From(watchedApplication);
+            _repository.DeleteApplication(entity);
         }
     }
 }

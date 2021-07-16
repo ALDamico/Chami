@@ -135,6 +135,22 @@ namespace Chami.Db.Repositories
         }
 
         /// <summary>
+        /// Deletes an <see cref="WatchedApplication"/> row from the datastore based on its name.
+        /// </summary>
+        /// <param name="entity">The entity to delete.</param>
+        public void DeleteApplication(WatchedApplication entity)
+        {
+            var sql = @"
+                DELETE FROM WatchedApplications
+                WHERE Name = ?
+";
+            using (var connection = GetConnection())
+            {
+                connection.Execute(sql, new { entity.Name });
+            }
+        }
+
+        /// <summary>
         /// Gets the <see cref="WatchedApplication"/> with the specified name.
         /// </summary>
         /// <param name="name">The name of the application to retrieve.</param>

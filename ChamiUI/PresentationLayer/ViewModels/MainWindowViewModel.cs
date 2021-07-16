@@ -12,12 +12,16 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
+using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
+using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -153,7 +157,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
             _settingsDataAdapter = new SettingsDataAdapter(connectionString);
-            _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
             Environments = GetEnvironments();
             EditingEnabled = false;
             if (Environments.Any())
@@ -161,7 +164,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 SelectedEnvironment = ActiveEnvironment ?? Environments.First();
             }
 
-            Settings = GetSettingsViewModel();
+            Settings = SettingsUtils.GetAppSettings();
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             //EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
 
@@ -197,7 +200,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private bool _isCaseSensitiveSearch;
-        
+
         /// <summary>
         /// Determines if the filtering component should work in a case-sensitive fashion or not.
         /// </summary>
@@ -238,20 +241,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public bool ExecuteButtonPlayEnabled => !EditingEnabled;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
-        private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
-
-        /// <summary>
-        /// Reads the settings from the datastore.
-        /// </summary>
-        /// <returns>The <see cref="SettingsViewModel"/> read from the datastore.</returns>
-        private SettingsViewModel GetSettingsViewModel()
-        {
-            var settings = _settingsDataAdapter.GetSettings();
-            var watchedApplications = _watchedApplicationDataAdapter.GetActiveWatchedApplications();
-            settings.WatchedApplicationSettings.WatchedApplications =
-                new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
-            return settings;
-        }
 
         /// <summary>
         /// Reacts to the EnvironmentChanged event.
@@ -477,6 +466,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private readonly EnvironmentDataAdapter _dataAdapter;
 
+        public event EventHandler<ApplicationsDetectedEventArgs> ApplicationsDetected;
+
         /// <summary>
         /// Constructs the message to show in the messagebox that appears when a running application is detected after
         /// changing the environment.
@@ -492,9 +483,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var detectedApplications = applicationDetector.Detect();
                 if (detectedApplications is {Count: > 0})
                 {
+                    /*
                     StringBuilder stringBuilder = new StringBuilder();
                     stringBuilder.AppendLine(
-                        ChamiUIStrings.DetectorMessageBoxTextPart1);
+                        ChamiUIStrings.DetectorMessageBoxTextPart1);*/
                     foreach (var detectedApplication in detectedApplications)
                     {
                         var processName = detectedApplication.ProcessName;
@@ -503,11 +495,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
                             processName = detectedApplication.Name;
                         }
 
-                        stringBuilder.AppendLine(processName);
+                        //stringBuilder.AppendLine(processName);
                     }
 
-                    stringBuilder.Append(ChamiUIStrings.DetectorMessageBoxTextPart2);
-                    return stringBuilder.ToString();
+                    var window = new DetectedApplicationsWindow();
+                    ApplicationsDetected += window.OnApplicationsDetected;
+                    window.Show();
+                    ApplicationsDetected?.Invoke(this, new ApplicationsDetectedEventArgs(detectedApplications));
+
+
+                    //stringBuilder.Append(ChamiUIStrings.DetectorMessageBoxTextPart2);
+                    //return stringBuilder.ToString();
+
+                    return null;
                 }
             }
 
@@ -710,22 +710,36 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public List<EnvironmentViewModel> StartImportFiles(string[] dialogFileNames)
         {
             List<EnvironmentViewModel> output = new List<EnvironmentViewModel>();
+            var rejectedFiles = new List<string>();
             foreach (var fileName in dialogFileNames)
             {
-                var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
                 try
                 {
-                    var viewModel = reader.Process();
-                    output.Add(viewModel);
-                }
-                catch (JsonReaderException)
-                {
-                    var viewModels = reader.ProcessMultiple();
-                    foreach (var model in viewModels)
+                    var reader = EnvironmentReaderFactory.GetEnvironmentReaderByExtension(fileName);
+                    try
                     {
-                        output.Add(model);
+                        var viewModel = reader.Process();
+                        output.Add(viewModel);
+                    }
+                    catch (JsonReaderException)
+                    {
+                        var viewModels = reader.ProcessMultiple();
+                        foreach (var model in viewModels)
+                        {
+                            output.Add(model);
+                        }
                     }
                 }
+                catch (NotSupportedException)
+                {
+                    rejectedFiles.Add(fileName + "\n");
+                }
+            }
+
+            if (rejectedFiles.Any())
+            {
+                System.Windows.MessageBox.Show(string.Concat(rejectedFiles), "Some files were rejected!",
+                    MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             return output;
