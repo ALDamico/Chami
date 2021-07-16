@@ -48,5 +48,29 @@ namespace ChamiUI.Controls
                     MessageBoxImage.Error);
             }
         }
+
+
+        private void WatchedApplicationsDataGrid_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Delete)
+            {
+                var datagrid = (DataGrid)sender;
+                if (datagrid != null)
+                {
+                    var selectedRows = datagrid.SelectedItems;
+                    if (selectedRows.Count == 0)
+                    {
+                        return;
+                    }
+
+                    foreach (var row in selectedRows)
+                    {
+                        var viewModel = row as WatchedApplicationViewModel;
+                        _viewModel.DeleteWatchedApplication(viewModel);
+                        e.Handled = true;
+                    }
+                }
+            }
+        }
     }
 }

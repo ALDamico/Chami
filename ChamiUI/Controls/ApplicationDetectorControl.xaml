@@ -13,6 +13,21 @@
     d:DesignWidth="300"
     Background="White"
     mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="ErrorStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Padding" Value="-2" />
+            <Setter Property="Background" Value="White"></Setter>
+            <Style.Triggers>
+                
+                <DataTrigger Binding="{Binding MarkedForDeletion}"
+                             Value="True">
+                    <Setter Property="Background" Value="OrangeRed">
+                                        
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -48,30 +63,24 @@
                     </CheckBox>
 
                 </StackPanel>
-                <StackPanel
-                    Grid.Row="1"
-                    Grid.Column="0"
-                    Orientation="Horizontal">
-                    <Label x:Name="AppNameLabel" Content="{lex:Loc}" />
-                    <TextBox
-                        Width="150"
-                        VerticalContentAlignment="Center"
-                        IsEnabled="{Binding ControlsEnabled}"
-                        Text="{Binding NewApplicationName, UpdateSourceTrigger=PropertyChanged}" />
-                    <Button
-                        x:Name="AddApplicationButton"
-                        MinWidth="55"
-                        Margin="10,0,0,0"
-                        Click="AddApplicationButton_OnClick"
-                        Content="{lex:Loc}"
-                        IsEnabled="{Binding ControlsEnabled}" />
-                </StackPanel>
+                <DataGrid Grid.Row="2" Grid.Column="0" ItemsSource="{Binding WatchedApplications}" IsEnabled="{Binding ControlsEnabled}"
+                          AutoGenerateColumns="False"
+                          x:Name="WatchedApplicationsDataGrid"
+                          PreviewKeyDown="WatchedApplicationsDataGrid_PreviewKeyDown"
+                          RowStyle="{StaticResource ErrorStyle}"
+                          >
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="ProcessNameColumn" Header="{lex:Loc Key=ProcessNameColumn}" Binding="{Binding Name}"></DataGridTextColumn>
+                        <DataGridCheckBoxColumn x:Name="IsWatchEnabledColumn" Header="{lex:Loc Key=IsWatchEnabledColumn}" Binding="{Binding IsWatchEnabled}"></DataGridCheckBoxColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <!--
                 <ListBox
                     Grid.Row="2"
                     Grid.Column="0"
                     DisplayMemberPath="Name"
                     IsEnabled="{Binding ControlsEnabled}"
-                    ItemsSource="{Binding WatchedApplications}" />
+                    ItemsSource="{Binding WatchedApplications}" />-->
             </Grid>
         </GroupBox>
     </Grid>

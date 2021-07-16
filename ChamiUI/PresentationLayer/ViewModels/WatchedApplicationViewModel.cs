@@ -3,14 +3,25 @@
     /// <summary>
     /// Viewmodel for watched applications.
     /// </summary>
-    public class WatchedApplicationViewModel: ViewModelBase
+    public class WatchedApplicationViewModel : ViewModelBase
     {
         /// <summary>
         /// The ID used by the datastore.
         /// </summary>
-        public int Id { get; set; }
+        public int Id
+        {
+            get => _id;
+            set
+            {
+                _id = value;
+                OnPropertyChanged(nameof(Id));
+                OnPropertyChanged(nameof(MarkedForDeletion));
+            }
+        }
+
+        private int _id;
         private bool _isWatchEnabled;
-        
+
         /// <summary>
         /// True if Chami is detecting this application is running.
         /// </summary>
@@ -24,8 +35,13 @@
             }
         }
 
+        /// <summary>
+        /// Determines if a viewmodel is marked for deletion.
+        /// </summary>
+        public bool MarkedForDeletion => Id < 0;
+
         private string _name;
-        
+
         /// <summary>
         /// The name of the application.
         /// </summary>

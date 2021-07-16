@@ -706,4 +706,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="CloseDetectedApplicationsWindowButton_Content" xml:space="preserve">
     <value>Chiudi</value>
   </data>
+  <data name="IsWatchEnabledColumn" xml:space="preserve">
+    <value>Abilitato?</value>
+  </data>
+  <data name="ProcessNameColumn" xml:space="preserve">
+    <value>Nome processo</value>
+  </data>
 </root>

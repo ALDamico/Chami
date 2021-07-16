@@ -21,6 +21,7 @@ using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using MessageBox = Xceed.Wpf.Toolkit.MessageBox;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -164,7 +165,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 SelectedEnvironment = ActiveEnvironment ?? Environments.First();
             }
 
-            Settings = GetSettingsViewModel();
+            Settings = SettingsUtils.GetAppSettings();
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             //EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
 
@@ -241,20 +242,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public bool ExecuteButtonPlayEnabled => !EditingEnabled;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
-        private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
-
-        /// <summary>
-        /// Reads the settings from the datastore.
-        /// </summary>
-        /// <returns>The <see cref="SettingsViewModel"/> read from the datastore.</returns>
-        private SettingsViewModel GetSettingsViewModel()
-        {
-            var settings = _settingsDataAdapter.GetSettings();
-            var watchedApplications = _watchedApplicationDataAdapter.GetActiveWatchedApplications();
-            settings.WatchedApplicationSettings.WatchedApplications =
-                new ObservableCollection<WatchedApplicationViewModel>(watchedApplications);
-            return settings;
-        }
 
         /// <summary>
         /// Reacts to the EnvironmentChanged event.

@@ -706,4 +706,10 @@ Fix the issues and try saving again.</value>
   <data name="CloseDetectedApplicationsWindowButton_Content" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="IsWatchEnabledColumn" xml:space="preserve">
+    <value>Enabled?</value>
+  </data>
+  <data name="ProcessNameColumn" xml:space="preserve">
+    <value>Process name</value>
+  </data>
 </root>
