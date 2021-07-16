@@ -23,11 +23,12 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
 
         public void SetEnvironments(IEnumerable<EnvironmentViewModel> viewModels)
         {
-            if (viewModels == null || viewModels.Count() == 0)
+            var environmentViewModels = viewModels.ToList();
+            if (!environmentViewModels.Any())
             {
                 return;
             }
-            foreach (var viewModel in viewModels)
+            foreach (var viewModel in environmentViewModels)
             {
                 _viewModel.NewEnvironments.Add(viewModel);
             }

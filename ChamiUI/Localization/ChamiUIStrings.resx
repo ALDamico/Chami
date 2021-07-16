@@ -712,4 +712,13 @@ Fix the issues and try saving again.</value>
   <data name="ProcessNameColumn" xml:space="preserve">
     <value>Process name</value>
   </data>
+  <data name="NewTemplateEnvironmentWindowCancelButton" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="TaskbarHideChamiMenuItem_Header" xml:space="preserve">
+    <value>Hide Chami</value>
+  </data>
+  <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
+    <value>Exit</value>
+  </data>
 </root>

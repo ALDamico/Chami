@@ -3,7 +3,6 @@ using System.Linq;
 using System;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.Localization;
-using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

@@ -37,7 +37,7 @@ namespace ChamiUI.BusinessLayer
             var output = new List<WatchedApplicationViewModel>();
             foreach (var process in processes)
             {
-                foreach (var application in WatchedApplications.Where(a => a.IsWatchEnabled == true))
+                foreach (var application in WatchedApplications.Where(a => a.IsWatchEnabled))
                 {
                     var match = Regex.Match(process.ProcessName, application.Name, RegexOptions.IgnoreCase);
                     if (match.Success)

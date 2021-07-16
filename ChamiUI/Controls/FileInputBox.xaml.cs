@@ -8,7 +8,7 @@ namespace ChamiUI.Controls
     /// <summary>
     /// A control for selecting a file to save.
     /// </summary>
-    public partial class FileInputBox : UserControl
+    public partial class FileInputBox
     {
         /// <summary>
         /// Constructs a new <see cref="FileInputBox"/> object.

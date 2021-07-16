@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Windows.Controls;
@@ -34,10 +35,12 @@ namespace ChamiUI.BusinessLayer.Validators
                 {
                     return System.Windows.Controls.ValidationResult.ValidResult;
                 }
-                
-                if (environmentVariableCollection?.Count(v => v.Name == environmentVariable.Name) > 1)
+
+                var environmentVariableViewModels = (environmentVariableCollection ??
+                                                     Array.Empty<EnvironmentVariableViewModel>()).ToList();
+                if (environmentVariableViewModels?.Count(v => v.Name == environmentVariable.Name) > 1)
                 {
-                    if (environmentVariableCollection.Any(
+                    if (environmentVariableViewModels.Any(
                         v => v.MarkedForDeletion && v.Name == environmentVariable.Name))
                     {
                         return System.Windows.Controls.ValidationResult.ValidResult;

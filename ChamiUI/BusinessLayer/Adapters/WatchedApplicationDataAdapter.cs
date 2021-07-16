@@ -1,10 +1,6 @@
 ﻿using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.PresentationLayer.ViewModels;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 
@@ -90,7 +86,6 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <param name="watchedApplications"></param>
         public IEnumerable<WatchedApplicationViewModel> SaveWatchedApplications(IEnumerable<WatchedApplicationViewModel> watchedApplications)
         {
-            var converter = new WatchedApplicationConverter();
             foreach (var watchedApplication in watchedApplications)
             {
                 if (watchedApplication.Id == 0)

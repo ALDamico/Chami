@@ -1,12 +1,11 @@
 using ChamiUI.PresentationLayer.ViewModels;
-using System.Windows.Controls;
 
 namespace ChamiUI.Controls
 {
     /// <summary>
     /// Control for managing the logging settings of the Chami application.
     /// </summary>
-    public partial class LoggingSettingsEditor : UserControl
+    public partial class LoggingSettingsEditor
     {
         /// <summary>
         /// Constructs a new <see cref="LoggingSettingsEditor"/> object.
@@ -22,11 +21,8 @@ namespace ChamiUI.Controls
         /// <param name="loggingSettings">The starting <see cref="LoggingSettingsViewModel"/>.</param>
         public LoggingSettingsEditor(LoggingSettingsViewModel loggingSettings)
         {
-            _viewModel = loggingSettings;
-            DataContext = _viewModel;
+            DataContext = loggingSettings;
             InitializeComponent();
         }
-
-        private LoggingSettingsViewModel _viewModel;
     }
 }

@@ -6,9 +6,9 @@ using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.RenameEnvironmentWindow
 {
-    public partial class RenameEnvironmentWindow : Window
+    public partial class RenameEnvironmentWindow
     {
-        private RenameEnvironmentViewModel _viewModel;
+        private readonly RenameEnvironmentViewModel _viewModel;
         public RenameEnvironmentWindow()
         {
             _viewModel = new RenameEnvironmentViewModel();

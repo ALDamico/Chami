@@ -25,8 +25,9 @@ namespace ChamiUI.BusinessLayer.Factories
             var availableLanguages = languageDataAdapter.GetAllApplicationLanguages();
             var currentLanguage =
                 languageDataAdapter.GetApplicationLanguageByCode(settings.LanguageSettings.CurrentLanguage.Code);
-            settings.LanguageSettings.AvailableLanguages = new ObservableCollection<ApplicationLanguageViewModel>(availableLanguages);
-            settings.LanguageSettings.CurrentLanguage = availableLanguages?.Where(l => l.Code == currentLanguage.Code).FirstOrDefault();
+            var applicationLanguageViewModels = availableLanguages.ToList();
+            settings.LanguageSettings.AvailableLanguages = new ObservableCollection<ApplicationLanguageViewModel>(applicationLanguageViewModels);
+            settings.LanguageSettings.CurrentLanguage = applicationLanguageViewModels?.Where(l => l.Code == currentLanguage.Code).FirstOrDefault();
             return settings;
         }
     }

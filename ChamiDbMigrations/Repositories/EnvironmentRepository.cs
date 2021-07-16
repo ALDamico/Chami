@@ -154,7 +154,7 @@ namespace Chami.Db.Repositories
                     connection.Execute(environmentVariableInsertQuery,
                         new
                         {
-                            Name = environmentVariable.Name,
+                            environmentVariable.Name,
                             environmentVariable.Value,
                             environmentVariable.AddedOn,
                             environmentVariable.EnvironmentId
@@ -199,9 +199,9 @@ namespace Chami.Db.Repositories
 ";
                     var updObj = new
                     {
-                        Name = environmentVariable.Name,
-                        Value = environmentVariable.Value,
-                        EnvironmentVariableId = environmentVariable.EnvironmentVariableId
+                        environmentVariable.Name,
+                        environmentVariable.Value,
+                        environmentVariable.EnvironmentVariableId
                     };
 
                     connection.Execute(envVarUpdateQuery, updObj);
@@ -291,7 +291,7 @@ namespace Chami.Db.Repositories
             {
                 var updObj = new
                 {
-                    Name = environmentVariable.Name,
+                    environmentVariable.Name,
                     environmentVariable.Value,
                     environmentVariable.AddedOn,
                     environmentId
@@ -315,7 +315,7 @@ namespace Chami.Db.Repositories
             using (var connection = GetConnection())
             {
                 var dict = new Dictionary<int, Environment>();
-                var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
+                connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
                 {
                     Environment env;
 
@@ -349,7 +349,7 @@ namespace Chami.Db.Repositories
             using (var connection = GetConnection())
             {
                 var dict = new Dictionary<int, Environment>();
-                var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
+                connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
                 {
                     Environment env;
 

@@ -1,7 +1,5 @@
-﻿using System;
-using ChamiUI.BusinessLayer.Adapters;
+﻿using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Validators;
-using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

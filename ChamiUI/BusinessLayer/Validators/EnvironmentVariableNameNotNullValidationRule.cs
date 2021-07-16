@@ -1,8 +1,6 @@
 using System.Globalization;
 using System.Windows.Controls;
-using System.Windows.Data;
 using ChamiUI.Localization;
-using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Validators
 {

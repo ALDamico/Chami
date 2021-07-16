@@ -131,7 +131,7 @@ namespace ChamiUI.Windows.MainWindow
                 ConsoleTextBox.Text = "";
             }
 
-            TabControls.SelectedIndex = CONSOLE_TAB_INDEX;
+            TabControls.SelectedIndex = ConsoleTabIndex;
         }
 
         private void HandleProgressReport(CmdExecutorProgress o)
@@ -183,12 +183,12 @@ namespace ChamiUI.Windows.MainWindow
             FocusEnvironmentVariablesTab();
         }
 
-        private const int ENVIRONMENT_VARIABLES_TAB_INDEX = 0;
-        private const int CONSOLE_TAB_INDEX = 1;
+        private const int EnvironmentVariablesTabIndex = 0;
+        private const int ConsoleTabIndex = 1;
 
         private void FocusEnvironmentVariablesTab()
         {
-            TabControls.SelectedIndex = ENVIRONMENT_VARIABLES_TAB_INDEX;
+            TabControls.SelectedIndex = EnvironmentVariablesTabIndex;
         }
 
         private void EnvironmentsListbox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -344,7 +344,6 @@ namespace ChamiUI.Windows.MainWindow
             switch (sortDescription.PropertyName)
             {
                 default:
-                case "Id":
                     SortByIdRadioButton.IsChecked = true;
                     break;
                 case "Name":
@@ -650,8 +649,8 @@ namespace ChamiUI.Windows.MainWindow
         {
             var sortDescription = GetCurrentSortDescriptionOrDefault();
             ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
-            App.Current.Shutdown(
-                0); // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
+            // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
+            Application.Current.Shutdown(0); 
         }
     }
 }

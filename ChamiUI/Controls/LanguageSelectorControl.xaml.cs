@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Windows.Controls;
 using ChamiUI.PresentationLayer.ViewModels;
 
@@ -8,7 +6,7 @@ namespace ChamiUI.Controls
     /// <summary>
     /// The control for changing the application language.
     /// </summary>
-    public partial class LanguageSelectorControl : UserControl
+    public partial class LanguageSelectorControl
     {
         /// <summary>
         /// Initializes the <see cref="LanguageSelectorControl"/>.

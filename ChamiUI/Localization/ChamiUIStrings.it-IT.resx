@@ -712,4 +712,13 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="ProcessNameColumn" xml:space="preserve">
     <value>Nome processo</value>
   </data>
+  <data name="NewTemplateEnvironmentWindowCancelButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
+  <data name="TaskbarExitMenuItem" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="TaskbarHideChamiMenuItem" xml:space="preserve">
+    <value>Nascondi Chami</value>
+  </data>
 </root>

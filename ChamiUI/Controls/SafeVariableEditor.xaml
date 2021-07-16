@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
              d:DataContext="{d:DesignInstance vm:SafeVariableViewModel, IsDesignTimeCreatable=True}"
-             xmlns:local="clr-namespace:ChamiUI.Controls"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300">

@@ -3,7 +3,7 @@ using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.NewTemplateWindow
 {
-    public partial class NewTemplateWindow : Window
+    public partial class NewTemplateWindow
     {
         public NewTemplateWindow(Window owner)
         {
@@ -13,7 +13,7 @@ namespace ChamiUI.Windows.NewTemplateWindow
             InitializeComponent();
         }
 
-        private NewTemplateWindowViewModel _viewmodel;
+        private readonly NewTemplateWindowViewModel _viewmodel;
         
 
         private void NewEnvironmentWindowSaveButton_OnClick(object sender, RoutedEventArgs e)

@@ -6,7 +6,6 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
-        xmlns:local="clr-namespace:ChamiUI.Windows.NewTemplateWindow"
         xmlns:vr="clr-namespace:ChamiUI.BusinessLayer.Validators"
         xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"

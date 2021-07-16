@@ -1,4 +1,3 @@
-using System;
 using Chami.Db.Entities;
 using ChamiUI.PresentationLayer.ViewModels;
 

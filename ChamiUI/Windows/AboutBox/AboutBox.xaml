@@ -6,7 +6,6 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
-        xmlns:local="clr-namespace:ChamiUI.Windows.AboutBox"
         mc:Ignorable="d"
         x:Name="ChamiAboutBox"
         Title="{lex:Loc}" Height="300" Width="350"

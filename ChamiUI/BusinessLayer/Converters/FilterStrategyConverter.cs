@@ -1,6 +1,4 @@
-﻿using System;
-using System.Reflection;
-using Chami.Db.Entities;
+﻿using Chami.Db.Entities;
 using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.BusinessLayer.Converters

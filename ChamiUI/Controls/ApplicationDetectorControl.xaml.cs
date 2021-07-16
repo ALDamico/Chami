@@ -1,9 +1,5 @@
 using ChamiUI.PresentationLayer.ViewModels;
-using System.Media;
-using System.Windows;
 using System.Windows.Controls;
-using System;
-using ChamiUI.Localization;
 
 namespace ChamiUI.Controls
 {
@@ -25,30 +21,6 @@ namespace ChamiUI.Controls
         }
 
         private readonly WatchedApplicationControlViewModel _viewModel;
-
-        /// <summary>
-        /// Reacts to the user clicking the <see cref="AddApplicationButton"/>.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void AddApplicationButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                var added = _viewModel.AddWatchedApplication();
-                if (added == false)
-                {
-                    // Play a system sound if we're trying to add an application that already exists
-                    SystemSounds.Beep.Play();
-                }
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show(ex.Message, ChamiUIStrings.GenericExceptionMessageBoxCaption, MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-        }
-
 
         private void WatchedApplicationsDataGrid_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {

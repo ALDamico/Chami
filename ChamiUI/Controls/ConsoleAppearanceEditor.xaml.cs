@@ -1,16 +1,13 @@
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Markup;
 using System.Windows.Media;
-using ChamiUI.Localization;
 
 namespace ChamiUI.Controls
 {
     /// <summary>
     /// This is the control that allows the user to customize the console in the main window.
     /// </summary>
-    public partial class ConsoleAppearanceEditor : UserControl
+    public partial class ConsoleAppearanceEditor
     {
         /// <summary>
         /// Constructs a new <see cref="ConsoleAppearanceEditor"/> control and sets its viewmodel.

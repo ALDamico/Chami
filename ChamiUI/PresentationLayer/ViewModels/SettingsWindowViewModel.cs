@@ -1,8 +1,6 @@
-using System;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Controls;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
@@ -24,9 +22,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var connectionString = App.GetConnectionString();
             _dataAdapter = new SettingsDataAdapter(connectionString);
             _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
-            _languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
+            var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
             Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
-                _languageDataAdapter);
+                languageDataAdapter);
             AvailableControls = new ObservableCollection<ControlKeyWrapper>();
 
             var viewKey = ChamiUIStrings.ViewCategory;
@@ -66,9 +64,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public ObservableCollection<ControlKeyWrapper> AvailableControls { get; }
 
-        private SettingsDataAdapter _dataAdapter;
-        private WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
-        private ApplicationLanguageDataAdapter _languageDataAdapter;
+        private readonly SettingsDataAdapter _dataAdapter;
+        private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
 
 
         private UserControl _displayedControl;

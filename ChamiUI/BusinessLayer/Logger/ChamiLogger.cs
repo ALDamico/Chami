@@ -1,5 +1,4 @@
 using Serilog;
-using Serilog.Configuration;
 
 namespace ChamiUI.BusinessLayer.Logger
 {

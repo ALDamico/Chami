@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using ChamiUI.BusinessLayer.Mementos;
 using ChamiUI.Windows.NewEnvironmentWindow;

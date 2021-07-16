@@ -1,26 +1,26 @@
 using ChamiUI.PresentationLayer.ViewModels;
-using System.Windows.Controls;
 
 namespace ChamiUI.Controls
 {
     /// <summary>
     /// Control for managing safety. Currently unused and non functional.
     /// </summary>
-    public partial class SafeVariableEditor : UserControl
+    public partial class SafeVariableEditor
     {
+        private readonly SafeVariableViewModel _settingsSafeVariableSettings;
+
         public SafeVariableEditor()
         {
-            _viewModel = new SafeVariableViewModel();
-            DataContext = _viewModel;
+            var viewModel = new SafeVariableViewModel();
+            DataContext = viewModel;
             InitializeComponent();
         }
 
-        private SafeVariableViewModel _viewModel;
-
         public SafeVariableEditor(SafeVariableViewModel settingsSafeVariableSettings)
         {
-            _viewModel = new SafeVariableViewModel();
-            DataContext = _viewModel;
+            _settingsSafeVariableSettings = settingsSafeVariableSettings;
+            var viewModel = new SafeVariableViewModel();
+            DataContext = viewModel;
             InitializeComponent();
         }
     }

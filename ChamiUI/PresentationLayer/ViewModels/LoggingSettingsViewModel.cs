@@ -1,7 +1,9 @@
+using ChamiUI.Controls;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     /// <summary>
-    /// Viewmodel for the <see cref="LogginSettingsEditor"/> control.
+    /// Viewmodel for the <see cref="LoggingSettingsEditor"/> control.
     /// </summary>
     public class LoggingSettingsViewModel : SettingCategoryViewModelBase
     {

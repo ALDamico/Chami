@@ -34,7 +34,6 @@
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}" />
     </Window.InputBindings>
     <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <converters:BooleanToStringComparisonConverter x:Key="BooleanToStringComparisonConverter" />
         <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}"
                               Filter="EnvironmentsViewSource_OnFilter" />

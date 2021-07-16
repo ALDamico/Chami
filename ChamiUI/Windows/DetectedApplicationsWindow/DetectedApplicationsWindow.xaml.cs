@@ -1,13 +1,11 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
-using ChamiUI.BusinessLayer;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.DetectedApplicationsWindow
 {
-    public partial class DetectedApplicationsWindow : Window
+    public partial class DetectedApplicationsWindow
     {
         public DetectedApplicationsWindow()
         {

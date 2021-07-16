@@ -1,10 +1,8 @@
-﻿using System.Windows.Controls;
-using ChamiUI.PresentationLayer.Minimizing;
-using ChamiUI.PresentationLayer.ViewModels;
+﻿using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Controls
 {
-    public partial class MinimizationBehaviourControl : UserControl
+    public partial class MinimizationBehaviourControl
     {
         /// <summary>
         /// Constructs a new <see cref="MinimizationBehaviourControl"/> and sets its viewmodel.

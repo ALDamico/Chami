@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Globalization;
 using Chami.Db.Entities;
-using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.BusinessLayer.Converters
 {

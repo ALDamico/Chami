@@ -736,7 +736,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             if (rejectedFiles.Any())
             {
-                System.Windows.MessageBox.Show(string.Concat(rejectedFiles), "Some files were rejected!",
+                MessageBox.Show(string.Concat(rejectedFiles), "Some files were rejected!",
                     MessageBoxButton.OK, MessageBoxImage.Error);
             }
 

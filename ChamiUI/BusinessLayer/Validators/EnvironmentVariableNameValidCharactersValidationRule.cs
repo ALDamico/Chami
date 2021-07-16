@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
-using Microsoft.VisualBasic;
 
 namespace ChamiUI.BusinessLayer.Validators
 {

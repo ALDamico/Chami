@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.Win32;
 
@@ -50,7 +49,6 @@ namespace ChamiUI.BusinessLayer
         /// <returns>An array of strings containing the names of all environment variables for the current user.</returns>
         private string[] GetVariableNames()
         {
-            var list = new List<string>();
             var registryKey = Registry.CurrentUser.OpenSubKey(SubKey);
             if (registryKey != null)
             {

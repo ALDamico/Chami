@@ -4,6 +4,8 @@
         <TargetFramework>net5.0</TargetFramework>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Authors>Andrea Luciano Damico</Authors>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <RepositoryUrl>https://github.com/ALDamico/Chami</RepositoryUrl>
     </PropertyGroup>
 
 </Project>
