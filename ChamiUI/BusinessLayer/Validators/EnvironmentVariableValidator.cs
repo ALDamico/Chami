@@ -24,11 +24,11 @@ namespace ChamiUI.BusinessLayer.Validators
                 return validationResult;
             }
 
-            if (string.IsNullOrWhiteSpace(environmentVariable.Value))
+            /*if (string.IsNullOrWhiteSpace(environmentVariable.Value))
             {
                 validationResult.IsValid = false;
                 validationResult.Message = "The Value attribute was null!";
-            }
+            }*/
 
             if (string.IsNullOrWhiteSpace(environmentVariable.Name))
             {
