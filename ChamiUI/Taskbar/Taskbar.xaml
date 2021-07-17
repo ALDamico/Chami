@@ -3,21 +3,21 @@
                     xmlns:tb="http://www.hardcodet.net/taskbar"
                     xmlns:vm="clr-namespace:ChamiUI.Taskbar"
                     xmlns:lex="http://wpflocalizeextension.codeplex.com">
-    
+
     <ContextMenu x:Shared="False" x:Key="ChamiSystemTrayMenu">
-        <MenuItem Header="{lex:Loc}" x:Name="TaskbarShowChamiMenuItem" Command="{Binding ShowWindowCommand}"></MenuItem>
-        <MenuItem Header="{lex:Loc}" x:Name="TaskbarHideChamiMenuItem" Command="{Binding HideWindowCommand}"></MenuItem>
-        <Separator/>
-        <MenuItem Header="{lex:Loc}" x:Name="TaskbarExitMenuItem" Command="{Binding ExitApplicationCommand}"></MenuItem>
+        <MenuItem Header="{lex:Loc Key=TaskbarShowChamiMenuItem}" x:Name="TaskbarShowChamiMenuItem"
+                  Command="{Binding ShowWindowCommand}" />
+        <MenuItem Header="{lex:Loc}" x:Name="TaskbarHideChamiMenuItem" Command="{Binding HideWindowCommand}" />
+        <Separator />
+        <MenuItem Header="{lex:Loc}" x:Name="TaskbarExitMenuItem" Command="{Binding ExitApplicationCommand}" />
     </ContextMenu>
-    <tb:TaskbarIcon x:Key="ChamiTaskbarIcon" 
-                    IconSource="../Assets/chameleon16x16.ico" 
+    <tb:TaskbarIcon x:Key="ChamiTaskbarIcon"
+                    IconSource="../Assets/chameleon16x16.ico"
                     ToolTipText="{Binding TooltipText}"
                     ContextMenu="{StaticResource ChamiSystemTrayMenu}"
-                    DoubleClickCommand="{Binding ShowWindowCommand}"
-                    >
+                    DoubleClickCommand="{Binding ShowWindowCommand}">
         <tb:TaskbarIcon.DataContext>
-            <vm:TaskbarBehaviourViewModel></vm:TaskbarBehaviourViewModel>
+            <vm:TaskbarBehaviourViewModel />
         </tb:TaskbarIcon.DataContext>
     </tb:TaskbarIcon>
 </ResourceDictionary>

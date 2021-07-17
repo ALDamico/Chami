@@ -41,11 +41,7 @@ namespace ChamiUI
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
-            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
-
             InitCmdExecutorMessages();
-
-
             MigrateDatabase();
             try
             {
@@ -120,7 +116,7 @@ namespace ChamiUI
             return Logger.GetLogger();
         }
 
-        private readonly TaskbarIcon _taskbarIcon;
+        private TaskbarIcon _taskbarIcon;
 
         private void DetectOtherInstance()
         {
@@ -147,7 +143,7 @@ namespace ChamiUI
             var mainWindow = new MainWindow();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
-
+            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
             
             if (_taskbarIcon != null)
