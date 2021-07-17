@@ -721,4 +721,16 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="TaskbarHideChamiMenuItem" xml:space="preserve">
     <value>Nascondi Chami</value>
   </data>
+  <data name="ViewMenuItem_Header" xml:space="preserve">
+    <value>Visualizza</value>
+  </data>
+  <data name="ShowNormalEnvironmentsMenuItem_Header" xml:space="preserve">
+    <value>Ambienti normali</value>
+  </data>
+  <data name="ShowBackupEnvironmentsMenuItem_Header" xml:space="preserve">
+    <value>Ambienti di backup</value>
+  </data>
+  <data name="ShowTemplateEnvironmentsMenuItem_Header" xml:space="preserve">
+    <value>Ambienti template</value>
+  </data>
 </root>

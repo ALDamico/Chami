@@ -19,7 +19,9 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
+using Chami.Db.Entities;
 using ChamiUI.PresentationLayer.Filtering;
+using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -45,6 +47,8 @@ namespace ChamiUI.Windows.MainWindow
             {
                 collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
             }
+
+            ShowNormalEnvironmentsMenuItem.IsChecked = true;
         }
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
@@ -649,6 +653,30 @@ namespace ChamiUI.Windows.MainWindow
             ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
             // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
             Application.Current.Shutdown(0); 
+        }
+
+        private void ShowNormalEnvironmentsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowTemplateEnvironmentsMenuItem.IsChecked = false;
+            ShowBackupEnvironmentsMenuItem.IsChecked = false;
+            ShowNormalEnvironmentsMenuItem.IsChecked = true;
+            ViewModel.ChangeShownEnvironmentType(EnvironmentType.NormalEnvironment);
+        }
+
+        private void ShowBackupEnvironmentsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowTemplateEnvironmentsMenuItem.IsChecked = false;
+            ShowNormalEnvironmentsMenuItem.IsChecked = false;
+            ShowBackupEnvironmentsMenuItem.IsChecked = true;
+            ViewModel.ChangeShownEnvironmentType(EnvironmentType.BackupEnvironment);
+        }
+
+        private void ShowTemplateEnvironmentsMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowTemplateEnvironmentsMenuItem.IsChecked = true;
+            ShowNormalEnvironmentsMenuItem.IsChecked = false;
+            ShowBackupEnvironmentsMenuItem.IsChecked = false;
+            ViewModel.ChangeShownEnvironmentType(EnvironmentType.TemplateEnvironment);
         }
     }
 }

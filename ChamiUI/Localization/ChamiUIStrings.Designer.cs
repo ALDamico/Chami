@@ -1597,6 +1597,33 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup Environments.
+        /// </summary>
+        public static string ShowBackupEnvironmentsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ShowBackupEnvironmentsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Normal Environments.
+        /// </summary>
+        public static string ShowNormalEnvironmentsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ShowNormalEnvironmentsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template environments.
+        /// </summary>
+        public static string ShowTemplateEnvironmentsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ShowTemplateEnvironmentsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By date added.
         /// </summary>
         public static string SortByDateAddedRadioButton_Content {
@@ -1846,6 +1873,15 @@ namespace ChamiUI.Localization {
         public static string ViewCategory {
             get {
                 return ResourceManager.GetString("ViewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to View.
+        /// </summary>
+        public static string ViewMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ViewMenuItem_Header", resourceCulture);
             }
         }
         

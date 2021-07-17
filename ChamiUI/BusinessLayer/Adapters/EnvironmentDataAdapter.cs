@@ -37,6 +37,24 @@ namespace ChamiUI.BusinessLayer.Adapters
             return converter.To(entity);
         }
 
+        /// <summary>
+        /// Gets all the <see cref="EnvironmentViewModel"/>s of a specific <see cref="EnvironmentType"/>.
+        /// </summary>
+        /// <param name="environmentType">The <see cref="EnvironmentType"/> of the environments to retrieve.</param>
+        /// <returns>An <see cref="IEnumerable{T}"/> containing all the requested environments.</returns>
+        public IEnumerable<EnvironmentViewModel> GetEnvironmentsByType(EnvironmentType environmentType)
+        {
+            var converter = new EnvironmentConverter();
+            var output = new List<EnvironmentViewModel>();
+            var entities = _repository.GetEnvironmentsByType(environmentType);
+            foreach (var environment in entities)
+            {
+                output.Add(converter.To(environment));
+            }
+
+            return output;
+        }
+
 
         /// <summary>
         /// Get the <see cref="EnvironmentViewModel"/> with the specified id.

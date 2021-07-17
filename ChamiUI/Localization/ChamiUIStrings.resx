@@ -721,4 +721,16 @@ Fix the issues and try saving again.</value>
   <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="ViewMenuItem_Header" xml:space="preserve">
+    <value>View</value>
+  </data>
+  <data name="ShowNormalEnvironmentsMenuItem_Header" xml:space="preserve">
+    <value>Normal Environments</value>
+  </data>
+  <data name="ShowBackupEnvironmentsMenuItem_Header" xml:space="preserve">
+    <value>Backup Environments</value>
+  </data>
+  <data name="ShowTemplateEnvironmentsMenuItem_Header" xml:space="preserve">
+    <value>Template environments</value>
+  </data>
 </root>

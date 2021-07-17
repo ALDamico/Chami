@@ -338,7 +338,7 @@ namespace Chami.Db.Repositories
             }
         }
 
-        private ICollection<Environment> GetEnvironmentsByType(EnvironmentType type)
+        public ICollection<Environment> GetEnvironmentsByType(EnvironmentType type)
         {
             var queryString = @"
                 SELECT *

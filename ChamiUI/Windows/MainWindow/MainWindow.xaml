@@ -108,7 +108,6 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
-
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding x:Name="SaveCommandBinding"
@@ -197,6 +196,12 @@
                               Unchecked="SortDescendingMenuItem_OnUnchecked" />
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="ViewMenuItem">
+                <MenuItem Header="{lex:Loc}" x:Name="ShowNormalEnvironmentsMenuItem" IsCheckable="True" Click="ShowNormalEnvironmentsMenuItem_OnClick"></MenuItem>
+                <MenuItem Header="{lex:Loc}" x:Name="ShowBackupEnvironmentsMenuItem" IsCheckable="True" Click="ShowBackupEnvironmentsMenuItem_OnClick"></MenuItem>
+                <MenuItem Header="{lex:Loc}" x:Name="ShowTemplateEnvironmentsMenuItem" IsCheckable="True" Click="ShowTemplateEnvironmentsMenuItem_OnClick"></MenuItem>
+            </MenuItem>
+            
             <MenuItem Header="{lex:Loc}"
                       x:Name="OptionsMenuItem">
                 <MenuItem Header="{lex:Loc}"
