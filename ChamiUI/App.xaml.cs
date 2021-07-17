@@ -147,6 +147,9 @@ namespace ChamiUI
             var mainWindow = new MainWindow();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
+
+            HandleCommandLineArguments(e);
+            
             if (_taskbarIcon != null)
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)
@@ -159,6 +162,20 @@ namespace ChamiUI
             }
 
             MainWindow.Show();
+        }
+
+        private void HandleCommandLineArguments(StartupEventArgs e)
+        {
+            if (e.Args.Length > 0)
+            {
+                if (e.Args.Any(arg => arg == "/ResetWindowLocation"))
+                {
+                    MainWindow.Top = 0;
+                    MainWindow.Left = 0;
+                    MainWindow.Width = 600;
+                    MainWindow.Height = 400;
+                }
+            }
         }
 
         internal void InitLocalization()

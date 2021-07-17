@@ -327,7 +327,6 @@ namespace ChamiUI.Windows.MainWindow
         private void MainWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             ViewModel.DetectCurrentEnvironment();
-            ResumeState();
         }
 
         public void ResumeState()
@@ -337,7 +336,6 @@ namespace ChamiUI.Windows.MainWindow
             Height = settings.Height;
             Top = settings.YPosition;
             Left = settings.XPosition;
-            //ViewModel.FilterStrategy = settings.SearchPath;
             Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
             var sortDescription = ViewModel.Settings.MainWindowBehaviourSettings.SortDescription;
             collectionViewSource.SortDescriptions.Add(sortDescription);
