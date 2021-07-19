@@ -81,6 +81,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
+            ViewModel.CanUserInterrupt = true;
             if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
             {
                 ResetProgressBar();
@@ -89,6 +90,7 @@ namespace ChamiUI.Windows.MainWindow
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
                 try
                 {
+                    
                     await ViewModel.ChangeEnvironmentAsync(progress);
                     var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
                     if (watchedApplicationSettings.IsDetectionEnabled)
@@ -107,7 +109,9 @@ namespace ChamiUI.Windows.MainWindow
                     (Application.Current as App)?.Logger.GetLogger().Information("{StackTrace}", ex.StackTrace);
                     PrintTaskCancelledMessageToConsole();
                     ViewModel.SelectedEnvironment = previousEnvironment;
+                    ViewModel.CanUserInterrupt = false;
                     await ViewModel.ChangeEnvironmentAsync(progress);
+                    ViewModel.CanUserInterrupt = true;
                 }
             }
             else
