@@ -409,7 +409,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
-                if (SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled))
+                if (SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled) || !CanUserInterrupt)
                 {
                     return "/Assets/Svg/play_disabled.svg";
                 }
@@ -694,10 +694,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (SelectedEnvironment.Equals(ActiveEnvironment))
             {
                 ActiveEnvironment = newSelectedEnvironment;
+                CanUserInterrupt = false;
                 await ChangeEnvironmentAsync(progress);
             }
 
             SelectedEnvironment.Name = argsNewName;
+            CanUserInterrupt = true;
         }
 
         /// <summary>
@@ -741,6 +743,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             return output;
+        }
+
+        private bool _canUserInterrupt;
+
+        public bool CanUserInterrupt
+        {
+            get => _canUserInterrupt;
+            set
+            {
+                _canUserInterrupt = value;
+                OnPropertyChanged(nameof(CanUserInterrupt));
+            }
         }
 
         /// <summary>
