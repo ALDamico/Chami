@@ -169,6 +169,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
             _cancellationTokenSource = new CancellationTokenSource();
+            CanUserInterrupt = true;
         }
 
         /// <summary>
@@ -236,7 +237,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Determines if the Apply button in the window is enabled (i.e., there's no editing and no environment
         /// switching on progress.
         /// </summary>
-        public bool ExecuteButtonPlayEnabled => !EditingEnabled;
+        public bool ExecuteButtonPlayEnabled => !EditingEnabled && CanUserInterrupt;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
 
@@ -754,6 +755,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _canUserInterrupt = value;
                 OnPropertyChanged(nameof(CanUserInterrupt));
+                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
+                OnPropertyChanged(nameof(ExecuteButtonIcon));
             }
         }
 
