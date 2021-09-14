@@ -649,10 +649,15 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            var sortDescription = GetCurrentSortDescriptionOrDefault();
-            ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
+            SaveState();
             // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
             Application.Current.Shutdown(0); 
+        }
+
+        public void SaveState()
+        {
+            var sortDescription = GetCurrentSortDescriptionOrDefault();
+            ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
         }
     }
 }

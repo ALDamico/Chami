@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using ChamiUI.Windows.MainWindow;
 
 namespace ChamiUI.Taskbar.Commands
 {
@@ -14,10 +15,11 @@ namespace ChamiUI.Taskbar.Commands
 
         public void Execute(object parameter)
         {
-            var mainWindow = Application.Current.MainWindow;
+            var mainWindow = Application.Current.MainWindow as MainWindow;
 
             if (mainWindow != null)
             {
+                mainWindow.SaveState();
                 mainWindow.Hide();
             }
                 
