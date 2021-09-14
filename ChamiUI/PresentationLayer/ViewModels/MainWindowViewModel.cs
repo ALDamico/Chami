@@ -104,6 +104,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _filterStrategy = value;
                 OnPropertyChanged(nameof(FilterStrategy));
                 OnPropertyChanged(nameof(FilterStrategyComboboxToolTip));
+                OnPropertyChanged(nameof(IsCaseSensitiveSearch));
             }
         }
 
@@ -163,11 +164,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             Settings = SettingsUtils.GetAppSettings();
-            IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
+            
             //EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
+            IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             _cancellationTokenSource = new CancellationTokenSource();
             CanUserInterrupt = true;
         }
