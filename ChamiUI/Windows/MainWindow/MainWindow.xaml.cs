@@ -90,17 +90,11 @@ namespace ChamiUI.Windows.MainWindow
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
                 try
                 {
-                    
                     await ViewModel.ChangeEnvironmentAsync(progress);
                     var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
                     if (watchedApplicationSettings.IsDetectionEnabled)
                     {
-                        var message = ViewModel.GetDetectedApplicationsMessage();
-                        if (message != null)
-                        {
-                            MessageBox.Show(message, ChamiUIStrings.DetectorMessageBoxCaption, MessageBoxButton.OK,
-                                MessageBoxImage.Information);
-                        }
+                        ViewModel.DetectApplicationsAndShowWindow();
                     }
                 }
                 catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)

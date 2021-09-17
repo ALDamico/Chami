@@ -721,4 +721,19 @@ Fix the issues and try saving again.</value>
   <data name="TaskbarExitMenuItem_Header" xml:space="preserve">
     <value>Exit</value>
   </data>
+  <data name="DetectedApplicationsWindowTitle" xml:space="preserve">
+    <value>Detected Applications</value>
+  </data>
+  <data name="DetectedApplicationsWindowPidColumn" xml:space="preserve">
+    <value>PID</value>
+  </data>
+  <data name="DetectedApplicationsWindowNameColumn" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="DetectedApplicationsWindowProcessNameColumn" xml:space="preserve">
+    <value>Process name</value>
+  </data>
+  <data name="DetectedApplicationsWindowProcessChamiEnvironmentColumn" xml:space="preserve">
+    <value>Chami environment</value>
+  </data>
 </root>

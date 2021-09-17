@@ -474,7 +474,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// changing the environment.
         /// </summary>
         /// <returns>The content of the messagebox.</returns>
-        public string GetDetectedApplicationsMessage()
+        public void DetectApplicationsAndShowWindow()
         {
             var watchedApplicationSettings = Settings.WatchedApplicationSettings;
             if (watchedApplicationSettings.IsDetectionEnabled)
@@ -484,35 +484,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var detectedApplications = applicationDetector.Detect();
                 if (detectedApplications is {Count: > 0})
                 {
-                    /*
-                    StringBuilder stringBuilder = new StringBuilder();
-                    stringBuilder.AppendLine(
-                        ChamiUIStrings.DetectorMessageBoxTextPart1);*/
-                    foreach (var detectedApplication in detectedApplications)
-                    {
-                        var processName = detectedApplication.ProcessName;
-                        if (string.IsNullOrWhiteSpace(processName))
-                        {
-                            processName = detectedApplication.Name;
-                        }
-
-                        //stringBuilder.AppendLine(processName);
-                    }
-
                     var window = new DetectedApplicationsWindow();
+                    window.Owner = App.Current.MainWindow;
+                    window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
                     ApplicationsDetected += window.OnApplicationsDetected;
                     window.Show();
                     ApplicationsDetected?.Invoke(this, new ApplicationsDetectedEventArgs(detectedApplications));
-
-
-                    //stringBuilder.Append(ChamiUIStrings.DetectorMessageBoxTextPart2);
-                    //return stringBuilder.ToString();
-
-                    return null;
                 }
             }
-
-            return null;
         }
 
         /// <summary>
