@@ -1840,6 +1840,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Terminate all.
+        /// </summary>
+        public static string TerminateAllMenuItem_Header {
+            get {
+                return ResourceManager.GetString("TerminateAllMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminate.
+        /// </summary>
+        public static string TerminateMenuItem_Header {
+            get {
+                return ResourceManager.GetString("TerminateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error!.
         /// </summary>
         public static string UnableToInsertEnvironmentMessageBoxCaption {

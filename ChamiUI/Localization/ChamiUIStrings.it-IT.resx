@@ -736,4 +736,10 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="DetectedApplicationsWindowProcessChamiEnvironmentColumn" xml:space="preserve">
     <value>Ambiente Chami</value>
   </data>
+  <data name="TerminateMenuItem_Header" xml:space="preserve">
+    <value>Termina</value>
+  </data>
+  <data name="TerminateAllMenuItem_Header" xml:space="preserve">
+    <value>Termina tutti</value>
+  </data>
 </root>

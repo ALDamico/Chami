@@ -12,8 +12,8 @@
         d:DataContext="{d:DesignInstance viewModels:DetectedApplicationsViewModel, IsDesignTimeCreatable=True}">
     <Window.Resources>
         <ContextMenu x:Key="RowContextMenu">
-            <MenuItem Header="Terminate" x:Name="TerminateMenuItem" Click="TerminateMenuItem_OnClick"></MenuItem>
-            <MenuItem Header="Terminate all" Click="TerminateAllMenuItem_OnClick"></MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="TerminateMenuItem" Click="TerminateMenuItem_OnClick"></MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="TerminateAllMenuItem" Click="TerminateAllMenuItem_OnClick"></MenuItem>
         </ContextMenu>
     </Window.Resources>
     <Grid>
