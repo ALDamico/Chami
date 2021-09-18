@@ -751,7 +751,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="sortDescription">The sorting used by the listview.</param>
         /// <seealso cref="MainWindowSavedBehaviourViewModel"/>
         /// <seealso cref="SettingsDataAdapter"/>
-        public void SaveWindowState(double width, double height, double xPosition, double yPosition,
+        public void SaveWindowState(double width, double height, double xPosition, double yPosition, WindowState windowState,
             SortDescription sortDescription)
         {
             var settings = Settings.MainWindowBehaviourSettings;
@@ -762,6 +762,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
             settings.YPosition = yPosition;
             settings.SearchPath = FilterStrategy;
             settings.SortDescription = sortDescription;
+            
+            // Avoid starting minimized on next application start.
+            if (windowState == WindowState.Minimized)
+            {
+                windowState = WindowState.Normal;
+            }
+            settings.WindowState = windowState;
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
     }

@@ -334,6 +334,7 @@ namespace ChamiUI.Windows.MainWindow
             Height = settings.Height;
             Top = settings.YPosition;
             Left = settings.XPosition;
+            WindowState = settings.WindowState;
             Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
             var sortDescription = ViewModel.Settings.MainWindowBehaviourSettings.SortDescription;
             collectionViewSource.SortDescriptions.Add(sortDescription);
@@ -401,7 +402,7 @@ namespace ChamiUI.Windows.MainWindow
                 var sortDescription = GetCurrentSortDescriptionOrDefault();
 
                 ViewModel.MinimizationStrategy.Minimize(this,
-                    () => { ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription); });
+                    () => { ViewModel.SaveWindowState(Width, Height, Left, Top, WindowState, sortDescription); });
             }
         }
 
@@ -651,7 +652,7 @@ namespace ChamiUI.Windows.MainWindow
         public void SaveState()
         {
             var sortDescription = GetCurrentSortDescriptionOrDefault();
-            ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
+            ViewModel.SaveWindowState(Width, Height, Left, Top, WindowState, sortDescription);
         }
     }
 }

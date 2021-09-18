@@ -80,7 +80,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                     try
                     {
                         var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
-                            BindingFlags.Default, null, args: new object[] {setting.Value}, null, null);
+                            BindingFlags.Default, null, args: new object[] { setting.Value }, null, null);
                         if (objectWrapper != null)
                         {
                             propertyValue = objectWrapper.Unwrap();
@@ -97,7 +97,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                                 var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
                                 if (methodInfo != null)
                                 {
-                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new object[] {setting});
+                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new object[] { setting });
                                 }
                             }
                         }
@@ -111,7 +111,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                         $"The requested property {settingPInfo.Name} has no publicly-accessible setter!");
                 }
 
-                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] {propertyValue});
+                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] { propertyValue });
 
                 pInfo.SetValue(viewModel, pInfo.GetValue(viewModel));
             }
@@ -197,7 +197,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                 // those are updated explicitly by a dedicated method
                 var isExplicitSaveOnlyAttribute =
                     propertyInfo.PropertyType.GetCustomAttribute<ExplicitSaveOnlyAttribute>();
-                if (isExplicitSaveOnlyAttribute is {IsExplicitSaveOnly: true})
+                if (isExplicitSaveOnlyAttribute is { IsExplicitSaveOnly: true })
                 {
                     continue;
                 }
@@ -206,10 +206,11 @@ namespace ChamiUI.BusinessLayer.Adapters
                 foreach (var property in propertiesToSave)
                 {
                     var isNonPersistent = property.GetCustomAttribute<NonPersistentSettingAttribute>();
-                    if (isNonPersistent is {IsNonPersistent: true})
+                    if (isNonPersistent is { IsNonPersistent: true })
                     {
                         continue;
                     }
+
                     string valueString = null;
                     var propertyName = property.Name;
                     var propertyValue = property.GetValue(propertyInfo.GetValue(settings));
@@ -250,6 +251,8 @@ namespace ChamiUI.BusinessLayer.Adapters
             var sortDescriptionValue = sortDescriptionConverter.GetSettingValue(mainWinSettings.SortDescription);
             _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.SortDescription),
                 sortDescriptionValue);
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.WindowState),
+                ((int)mainWinSettings.WindowState).ToString());
         }
     }
 }

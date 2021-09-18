@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.Windows;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
@@ -52,5 +53,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Describes how the window should behave when it's minimized.
         /// </summary>
         public IMinimizationStrategy MinimizationStrategy { get; set; }
+
+        /// <summary>
+        /// Describes the state of the main window on loading.
+        /// </summary>
+        public WindowState WindowState { get; set; }
     }
 }
