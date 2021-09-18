@@ -48,11 +48,16 @@ namespace ChamiUI.BusinessLayer
         {
             var arguments = $"/C REG delete HKCU\\Environment /F /V {EnvironmentVariable.Name}";
             var fullCmd = "cmd.exe " + arguments;
-            progress?.Report(new CmdExecutorProgress(0, null, fullCmd));
+            progress?.Report(new CmdExecutorProgress((int)percentage, fullCmd));
             var process = PrepareProcess(arguments);
+            
             process.Start();
+            SubscribeToAllOutput((sender, args) =>
+            {
+                progress?.Report(new CmdExecutorProgress((int)percentage, args.Data));
+            });
             await process.WaitForExitAsync(cancellationToken);
-            progress?.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream, null));
+            //progress?.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream, null));
         }
     }
 }

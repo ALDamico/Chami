@@ -44,7 +44,30 @@ namespace Chami.CmdExecutor
             {
                 StartInfo = processStartInfo
             };
+            ProcessToExecute = process;
+            
+            
             return process;
         }
+
+        public void SubscribeToOutputReceived(DataReceivedEventHandler callback)
+        {
+            ProcessToExecute.BeginOutputReadLine();
+            ProcessToExecute.OutputDataReceived += callback;
+        }
+
+        public void SubscribeToErrorReceived(DataReceivedEventHandler callback)
+        {
+            ProcessToExecute.BeginErrorReadLine();
+            ProcessToExecute.ErrorDataReceived += callback;
+        }
+
+        public void SubscribeToAllOutput(DataReceivedEventHandler callback)
+        {
+            SubscribeToErrorReceived(callback);
+            SubscribeToOutputReceived(callback);
+        }
+        
+        protected Process ProcessToExecute { get; private set; }
     }
 }

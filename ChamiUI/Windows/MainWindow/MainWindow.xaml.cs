@@ -73,7 +73,7 @@ namespace ChamiUI.Windows.MainWindow
         private void ResetProgressBar()
         {
             //Avoids animating the progressbar when its value is reset to zero.
-            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, new DoubleAnimation(0, Duration.Automatic));
+            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, null);
             ConsoleProgressBar.Value = 0.0;
 
             ConsoleProgressBar.Foreground = ResourceUtils.DefaultProgressBarColor;

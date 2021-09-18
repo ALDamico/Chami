@@ -15,6 +15,20 @@ namespace Chami.CmdExecutor.Progress
             OutputStream = outputStream;
             Message = message;
         }
+
+        public CmdExecutorProgress(float percentage, string message)
+        {
+            Percentage = percentage;
+            OutputStream = null;
+            Message = message;
+        }
+
+        public CmdExecutorProgress(float percentage, Stream outputStream)
+        {
+            Percentage = percentage;
+            OutputStream = outputStream;
+            Message = null;
+        }
         /// <summary>
         /// The execution percentage. No special checks are made to ensure that this property isn't greater than 100.
         /// </summary>

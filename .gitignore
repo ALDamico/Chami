@@ -14,3 +14,4 @@ Installer/MultiLanguage.exe
 Installer/chami-installer.target.nsi
 ChamiTests/OutputFiles/chami-output-test.json
 identifier.sqlite
+Installer/ChamiInstaller.zip

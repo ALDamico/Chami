@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.CmdExecutor;
@@ -40,14 +41,16 @@ namespace ChamiUI.BusinessLayer
         {
             var arguments = $"/C SETX \"{EnvironmentVariable.Name}\" \"{EnvironmentVariable.Value}\"";
             var commandLineFull = "cmd.exe " + arguments;
+            progress?.Report(new CmdExecutorProgress((int) percentage, commandLineFull));
             var process = PrepareProcess(arguments);
+            
             process.Start();
-            await process.WaitForExitAsync(cancellationToken);
-            if (progress != null)
+            SubscribeToAllOutput((sender, args) =>
             {
-                progress.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream,
-                    commandLineFull));
-            }
+                progress?.Report(new CmdExecutorProgress((int)percentage, args.Data));
+            });
+            
+            await process.WaitForExitAsync(cancellationToken);
         }
     }
 }

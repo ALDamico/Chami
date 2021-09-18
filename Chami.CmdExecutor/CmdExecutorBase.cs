@@ -73,7 +73,7 @@ namespace Chami.CmdExecutor
             } while (CommandQueue.Count > 0);
 
 
-            progress?.Report(new CmdExecutorProgress(100, null, CompletedExecutionMessage));
+            progress?.Report(new CmdExecutorProgress(100, CompletedExecutionMessage));
         }
     }
 }
