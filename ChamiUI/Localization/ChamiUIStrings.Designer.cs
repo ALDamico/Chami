@@ -493,6 +493,51 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string DetectedApplicationsWindowNameColumn {
+            get {
+                return ResourceManager.GetString("DetectedApplicationsWindowNameColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PID.
+        /// </summary>
+        public static string DetectedApplicationsWindowPidColumn {
+            get {
+                return ResourceManager.GetString("DetectedApplicationsWindowPidColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chami environment.
+        /// </summary>
+        public static string DetectedApplicationsWindowProcessChamiEnvironmentColumn {
+            get {
+                return ResourceManager.GetString("DetectedApplicationsWindowProcessChamiEnvironmentColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Process name.
+        /// </summary>
+        public static string DetectedApplicationsWindowProcessNameColumn {
+            get {
+                return ResourceManager.GetString("DetectedApplicationsWindowProcessNameColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detected Applications.
+        /// </summary>
+        public static string DetectedApplicationsWindowTitle {
+            get {
+                return ResourceManager.GetString("DetectedApplicationsWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Detector.
         /// </summary>
         public static string DetectorCategory {
@@ -1791,6 +1836,24 @@ namespace ChamiUI.Localization {
         public static string TerminateAllButton_Content {
             get {
                 return ResourceManager.GetString("TerminateAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminate all.
+        /// </summary>
+        public static string TerminateAllMenuItem_Header {
+            get {
+                return ResourceManager.GetString("TerminateAllMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terminate.
+        /// </summary>
+        public static string TerminateMenuItem_Header {
+            get {
+                return ResourceManager.GetString("TerminateMenuItem_Header", resourceCulture);
             }
         }
         

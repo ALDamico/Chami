@@ -7,12 +7,13 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         mc:Ignorable="d"
-        Title="DetectedApplicationsWindow" Height="450" Width="800"
+        x:Name="DetectedApplicationsWindowTitle"
+        Title="{lex:Loc}" Height="450" Width="800"
         d:DataContext="{d:DesignInstance viewModels:DetectedApplicationsViewModel, IsDesignTimeCreatable=True}">
     <Window.Resources>
         <ContextMenu x:Key="RowContextMenu">
-            <MenuItem Header="Terminate" x:Name="TerminateMenuItem" Click="TerminateMenuItem_OnClick"></MenuItem>
-            <MenuItem Header="Terminate all" Click="TerminateAllMenuItem_OnClick"></MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="TerminateMenuItem" Click="TerminateMenuItem_OnClick"></MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="TerminateAllMenuItem" Click="TerminateAllMenuItem_OnClick"></MenuItem>
         </ContextMenu>
     </Window.Resources>
     <Grid>
@@ -46,13 +47,17 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Pid}" 
-                                    Header="PID"></GridViewColumn>
+                                    x:Name="DetectedApplicationsWindowPidColumn"
+                                    Header="{lex:Loc Key=DetectedApplicationsWindowPidColumn}"></GridViewColumn>
                     <GridViewColumn DisplayMemberBinding="{Binding Name}"
-                                    Header="Name" />
+                                    x:Name="DetectedApplicationsWindowNameColumn"
+                                    Header="{lex:Loc Key=DetectedApplicationsWindowNameColumn}" />
                     <GridViewColumn DisplayMemberBinding="{Binding ProcessName}"
-                                    Header="Process Name" />
+                                    x:Name="DetectedApplicationsWindowProcessNameColumn"
+                                    Header="{lex:Loc Key=DetectedApplicationsWindowProcessNameColumn}" />
                     <GridViewColumn DisplayMemberBinding="{Binding ChamiEnvironmentName}"
-                                    Header="Chami environment" />
+                                    x:Name="DetectedApplicationsWindowProcessChamiEnvironmentColumn"
+                                    Header="{lex:Loc Key=DetectedApplicationsWindowProcessChamiEnvironmentColumn}" />
                 </GridView>
             </ListView.View>
         </ListView>

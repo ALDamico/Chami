@@ -721,4 +721,25 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="TaskbarHideChamiMenuItem" xml:space="preserve">
     <value>Nascondi Chami</value>
   </data>
+  <data name="DetectedApplicationsWindowTitle" xml:space="preserve">
+    <value>Applicazioni rilevate</value>
+  </data>
+  <data name="DetectedApplicationsWindowPidColumn" xml:space="preserve">
+    <value>PID</value>
+  </data>
+  <data name="DetectedApplicationsWindowNameColumn" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="DetectedApplicationsWindowProcessNameColumn" xml:space="preserve">
+    <value>Nome processo</value>
+  </data>
+  <data name="DetectedApplicationsWindowProcessChamiEnvironmentColumn" xml:space="preserve">
+    <value>Ambiente Chami</value>
+  </data>
+  <data name="TerminateMenuItem_Header" xml:space="preserve">
+    <value>Termina</value>
+  </data>
+  <data name="TerminateAllMenuItem_Header" xml:space="preserve">
+    <value>Termina tutti</value>
+  </data>
 </root>

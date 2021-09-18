@@ -90,17 +90,11 @@ namespace ChamiUI.Windows.MainWindow
                 var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
                 try
                 {
-                    
                     await ViewModel.ChangeEnvironmentAsync(progress);
                     var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
                     if (watchedApplicationSettings.IsDetectionEnabled)
                     {
-                        var message = ViewModel.GetDetectedApplicationsMessage();
-                        if (message != null)
-                        {
-                            MessageBox.Show(message, ChamiUIStrings.DetectorMessageBoxCaption, MessageBoxButton.OK,
-                                MessageBoxImage.Information);
-                        }
+                        ViewModel.DetectApplicationsAndShowWindow();
                     }
                 }
                 catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
@@ -649,10 +643,15 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MainWindow_OnClosing(object sender, CancelEventArgs e)
         {
-            var sortDescription = GetCurrentSortDescriptionOrDefault();
-            ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
+            SaveState();
             // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
             Application.Current.Shutdown(0); 
+        }
+
+        public void SaveState()
+        {
+            var sortDescription = GetCurrentSortDescriptionOrDefault();
+            ViewModel.SaveWindowState(Width, Height, Left, Top, sortDescription);
         }
     }
 }

@@ -17,6 +17,7 @@ namespace ChamiUI.Taskbar.Commands
         {
             var mainWindow = new MainWindow();
             Application.Current.MainWindow = mainWindow;
+            mainWindow.ResumeState();
             mainWindow.Show();
         }
 
