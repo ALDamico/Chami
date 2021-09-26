@@ -305,11 +305,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Performs an environment change.
         /// </summary>
         /// <param name="progress">Reports progress notification.</param>
-        public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress)
+        public async Task ChangeEnvironmentAsync(Action<CmdExecutorProgress> progress)
         {
             SetIsChangeInProgress(true);
             var cmdExecutor = new CmdExecutor(SelectedEnvironment);
+            
             cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
+            cmdExecutor.SetProgressHandler(progress);
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
             var cancellationToken = GetNewCancellationToken();
             if (currentEnvironmentName != null)
@@ -342,7 +344,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 cmdExecutor.AddCommand(newCommand);
             }
 
-            await cmdExecutor.ExecuteAsync(progress, cancellationToken);
+            await cmdExecutor.ExecuteAsync(cancellationToken);
             SetIsChangeInProgress(false);
         }
 
@@ -373,7 +375,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Synchronous version of <see cref="ChangeEnvironment"/>. Chami doesn't make use of it.
         /// </summary>
         /// <param name="progress"></param>
-        public void ChangeEnvironment(IProgress<CmdExecutorProgress> progress)
+        public void ChangeEnvironment(Action<CmdExecutorProgress> progress)
         {
             ChangeEnvironmentAsync(progress).GetAwaiter().GetResult();
         }
@@ -484,9 +486,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var detectedApplications = applicationDetector.Detect();
                 if (detectedApplications is {Count: > 0})
                 {
-                    var window = new DetectedApplicationsWindow();
-                    window.Owner = App.Current.MainWindow;
-                    window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    var window = new DetectedApplicationsWindow
+                    {
+                        Owner = Application.Current.MainWindow,
+                        WindowStartupLocation = WindowStartupLocation.CenterOwner
+                    };
                     ApplicationsDetected += window.OnApplicationsDetected;
                     window.Show();
                     ApplicationsDetected?.Invoke(this, new ApplicationsDetectedEventArgs(detectedApplications));
@@ -578,17 +582,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         /// <param name="progress">Used for progress reporting.</param>
         /// <param name="cancellationToken">Enabled canceling the task.</param>
-        public async Task ResetEnvironmentAsync(IProgress<CmdExecutorProgress> progress,
+        public async Task ResetEnvironmentAsync(Action<CmdExecutorProgress> progress,
             CancellationToken cancellationToken)
         {
-            if (progress != null)
-            {
-                CmdExecutorProgress executorProgress =
-                    new CmdExecutorProgress(0, null, ChamiUIStrings.RevertToOriginalEnvironmentMessage);
-                progress.Report(executorProgress);
-            }
-
             var cmdExecutor = new CmdExecutor();
+            cmdExecutor.SetProgressHandler(progress);
+            
             var detector = new EnvironmentVariableRegistryRetriever();
 
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
@@ -612,18 +611,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
                             chamiEnvVariable);
                     cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
-                    await cmdExecutor.ExecuteAsync(progress, cancellationToken);
                 }
             }
             else
             {
-                if (progress != null)
-                {
-                    CmdExecutorProgress executorProgress = new CmdExecutorProgress(100, null,
-                        ChamiUIStrings.RevertToOriginalEnvironmentNop);
-                    progress.Report(executorProgress);
-                }
+                NopCommand nopCommand = new NopCommand(ChamiUIStrings.RevertToOriginalEnvironmentNop);
+                cmdExecutor.AddCommand(nopCommand);
             }
+            await cmdExecutor.ExecuteAsync(cancellationToken);
 
             OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(null));
         }
@@ -664,7 +659,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         /// <param name="argsNewName">The new name of the environment.</param>
         /// <param name="progress">Reports progress.</param>
-        public async Task RenameEnvironment(string argsNewName, Progress<CmdExecutorProgress> progress)
+        public async Task RenameEnvironment(string argsNewName, Action<CmdExecutorProgress> progress)
         {
             var environmentToSave = SelectedEnvironment;
             environmentToSave.Name = argsNewName;
@@ -748,6 +743,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="height">The height of the window.</param>
         /// <param name="xPosition">The position of the top left corner of the window on the screen on the X coordinate.</param>
         /// <param name="yPosition">The position of the top left corner of the window on the screen on the Y coordinate.</param>
+        /// <param name="windowState">The current state of the main window.</param>
         /// <param name="sortDescription">The sorting used by the listview.</param>
         /// <seealso cref="MainWindowSavedBehaviourViewModel"/>
         /// <seealso cref="SettingsDataAdapter"/>

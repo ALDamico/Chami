@@ -25,6 +25,8 @@ namespace Chami.CmdExecutor
         /// <param name="cancellationToken">Allows cancelling the task.</param>
         /// <returns>Asynchronous method.</returns>
         /// <seealso cref="IProgress{T}"/>
-        Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage, CancellationToken cancellationToken);
+        Task ExecuteAsync(float percentage, CancellationToken cancellationToken);
+        
+        IProgress<CmdExecutorProgress> Progress { get; set; }
     }
 }

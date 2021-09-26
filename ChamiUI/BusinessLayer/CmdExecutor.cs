@@ -22,7 +22,6 @@ namespace ChamiUI.BusinessLayer
         /// <seealso cref="CmdExecutorBase"/>
         public CmdExecutor()
         {
-            
         }
 
         /// <summary>
@@ -46,7 +45,7 @@ namespace ChamiUI.BusinessLayer
             var convertedEnvironment = converter.From(targetEnvironmentViewModel);
             TargetEnvironment = convertedEnvironment;
         }
-        
+
         /// <summary>
         /// The environment to target.
         /// </summary>
@@ -59,7 +58,7 @@ namespace ChamiUI.BusinessLayer
         /// </summary>
         /// <param name="sender">The object that sends the request. Unused.</param>
         /// <param name="args">Information about the environment that has changed.</param>
-        protected virtual void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
+        protected virtual void OnEnvironmentChanged(EnvironmentChangedEventArgs args)
         {
             EnvironmentChanged?.Invoke(this, args);
         }
@@ -70,16 +69,15 @@ namespace ChamiUI.BusinessLayer
         /// </summary>
         /// <param name="progress">Notifies of progress.</param>
         /// <param name="cancellationToken">Allows canceling the execution midway and revert to a previous state.</param>
-        public override async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, CancellationToken cancellationToken)
+        public async Task ExecuteAsync(CancellationToken cancellationToken)
         {
-            await base.ExecuteAsync(progress, cancellationToken);
+            await base.ExecuteAsync(cancellationToken);
             if (TargetEnvironment != null)
             {
                 var converter = new EnvironmentConverter();
                 var convertedViewModel = converter.To(TargetEnvironment);
-                OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(convertedViewModel));
+                OnEnvironmentChanged(new EnvironmentChangedEventArgs(convertedViewModel));
             }
-            
         }
     }
 }

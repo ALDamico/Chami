@@ -17,6 +17,12 @@ namespace Chami.CmdExecutor
         public CmdExecutorBase()
         {
             CommandQueue = new Queue<IShellCommand>();
+            Progress = new Progress<CmdExecutorProgress>();
+        }
+
+        public void SetProgressHandler(Action<CmdExecutorProgress> handler)
+        {
+            Progress = new Progress<CmdExecutorProgress>(handler);
         }
         
         public static string StartingExecutionMessage { get; set; }
@@ -33,6 +39,10 @@ namespace Chami.CmdExecutor
         /// <param name="command">The command to add to the execution queue.</param>
         public void AddCommand(IShellCommand command)
         {
+            if (command != null)
+            {
+                command.Progress = Progress;
+            }
             CommandQueue.Enqueue(command);
         }
 
@@ -56,12 +66,12 @@ namespace Chami.CmdExecutor
         /// <param name="progress">Notifies its caller of progress.</param>
         /// <param name="cancellationToken">Enables canceling</param>
         /// <seealso cref="IProgress{T}"/> 
-        public virtual async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress,
+        public virtual async Task ExecuteAsync(
             CancellationToken cancellationToken)
         {
             var message = StartingExecutionMessage;
             CmdExecutorProgress cmdExecutorProgress = new CmdExecutorProgress(0, null, message);
-            progress?.Report(cmdExecutorProgress);
+            Progress?.Report(cmdExecutorProgress);
             int currentIndex = 0;
             int count = CommandQueue.Count;
             do
@@ -69,11 +79,13 @@ namespace Chami.CmdExecutor
                 var environmentVariable = CommandQueue.Dequeue();
                 currentIndex++;
                 float percentage = 100.0F * currentIndex / count;
-                await environmentVariable.ExecuteAsync(progress, percentage, cancellationToken);
+                await environmentVariable.ExecuteAsync(percentage, cancellationToken);
             } while (CommandQueue.Count > 0);
 
 
-            progress?.Report(new CmdExecutorProgress(100, CompletedExecutionMessage));
+            Progress?.Report(new CmdExecutorProgress(100, CompletedExecutionMessage));
         }
+        
+        public IProgress<CmdExecutorProgress> Progress { get; set; }
     }
 }
