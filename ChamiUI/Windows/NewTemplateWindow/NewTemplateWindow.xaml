@@ -100,6 +100,7 @@
             <Button Content="{lex:Loc}"
                     x:Name="NewTemplateEnvironmentWindowSaveButton"
                     Click="NewEnvironmentWindowSaveButton_OnClick"
+                    IsEnabled="{Binding IsSaveButtonEnabled}"
                     Margin="5, 5,5,5" />
             <Button Content="{lex:Loc}"
                     x:Name="NewTemplateEnvironmentWindowCancelButton"

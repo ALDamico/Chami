@@ -25,6 +25,7 @@
                 Environment.Name = value;
                 OnPropertyChanged(nameof(TemplateName));
                 OnPropertyChanged(nameof(Environment));
+                OnPropertyChanged(nameof(IsSaveButtonEnabled));
             }
         }
 
@@ -38,6 +39,10 @@
         {
             get
             {
+                if (string.IsNullOrWhiteSpace(TemplateName))
+                {
+                    return false;
+                }
                 var validationResult = Validator.Validate(Environment);
                 if (validationResult.IsValid)
                 {
