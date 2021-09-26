@@ -44,17 +44,17 @@ namespace ChamiUI.BusinessLayer
         /// <param name="progress">Notifies the caller of progress.</param>
         /// <param name="percentage">Used for progress notification</param>
         /// <param name="cancellationToken">Enables cancelling the task.</param>
-        public override async Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage, CancellationToken cancellationToken)
+        public override async Task ExecuteAsync(float percentage, CancellationToken cancellationToken)
         {
             var arguments = $"/C REG delete HKCU\\Environment /F /V {EnvironmentVariable.Name}";
             var fullCmd = "cmd.exe " + arguments;
-            progress?.Report(new CmdExecutorProgress((int)percentage, fullCmd));
+            Progress?.Report(new CmdExecutorProgress((int)percentage, fullCmd));
             var process = PrepareProcess(arguments);
             
             process.Start();
             SubscribeToAllOutput((sender, args) =>
             {
-                progress?.Report(new CmdExecutorProgress((int)percentage, args.Data));
+                Progress?.Report(new CmdExecutorProgress((int)percentage, args.Data));
             });
             await process.WaitForExitAsync(cancellationToken);
             //progress?.Report(new CmdExecutorProgress((int) percentage, process.StandardOutput.BaseStream, null));

@@ -87,7 +87,7 @@ namespace ChamiUI.Windows.MainWindow
                 ResetProgressBar();
                 FocusConsoleTab();
                 var previousEnvironment = ViewModel.ActiveEnvironment;
-                var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
+                Action<CmdExecutorProgress> progress = HandleProgressReport;
                 try
                 {
                     await ViewModel.ChangeEnvironmentAsync(progress);
@@ -310,9 +310,8 @@ namespace ChamiUI.Windows.MainWindow
                     MessageBoxResult.No);
             if (response == MessageBoxResult.Yes)
             {
-                var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
                 FocusConsoleTab();
-                await ViewModel.ResetEnvironmentAsync(progress, CancellationToken.None);
+                await ViewModel.ResetEnvironmentAsync(HandleProgressReport, CancellationToken.None);
             }
         }
 
@@ -435,9 +434,8 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs args)
         {
-            var progress = new Progress<CmdExecutorProgress>(HandleProgressReport);
             FocusConsoleTab();
-            await ViewModel.RenameEnvironment(args.NewName, progress);
+            await ViewModel.RenameEnvironment(args.NewName, HandleProgressReport);
         }
 
         private void RenameEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)

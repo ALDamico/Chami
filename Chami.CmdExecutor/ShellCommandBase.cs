@@ -24,8 +24,10 @@ namespace Chami.CmdExecutor
         /// <param name="percentage">Percentage of overall completion</param>
         /// <param name="cancellationToken">Allows cancelling the task.</param>
         /// <returns></returns>
-        public abstract Task ExecuteAsync(IProgress<CmdExecutorProgress> progress, float percentage,
+        public abstract Task ExecuteAsync(float percentage,
             CancellationToken cancellationToken);
+
+        public IProgress<CmdExecutorProgress> Progress { get; set; }
 
         /// <summary>
         /// Creates a new <see cref="Process"/> object that can be started by an inheritor.
