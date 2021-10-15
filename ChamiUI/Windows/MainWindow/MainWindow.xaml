@@ -339,11 +339,12 @@
                      x:Name="EnvironmentsListbox"
                      SelectedItem="{Binding SelectedEnvironment}"
                      SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
-                     MouseDoubleClick="EnvironmentsListbox_OnMouseDoubleClick">
+                     >
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="ListBoxItem">
                         <Setter Property="ContextMenu"
                                 Value="{StaticResource EnvironmentListBoxContextMenu}" />
+                        <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListbox_OnMouseDoubleClick"></EventSetter>
                     </Style>
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
