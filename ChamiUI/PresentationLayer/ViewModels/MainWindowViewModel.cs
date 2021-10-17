@@ -7,12 +7,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Commands;
+using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
@@ -52,8 +55,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(EditingEnabled));
                 OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
+                OnPropertyChanged(nameof(IsDatagridReadonly));
             }
         }
+
+        public bool IsDatagridReadonly => !EditingEnabled;
 
         /// <summary>
         /// A list of available <see cref="FilterStrategies"/> for use by the filtering component.
@@ -456,8 +462,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _selectedVariable = value;
                 OnPropertyChanged(nameof(SelectedVariable));
                 OnPropertyChanged(nameof(SelectedEnvironment.EnvironmentVariables));
+                OnPropertyChanged(nameof(SelectedVariableIsFolder));
             }
         }
+
+        public bool? SelectedVariableIsFolder => SelectedVariable.IsFolder;
 
         private EnvironmentVariableViewModel _selectedVariable;
 
@@ -766,6 +775,25 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
             settings.WindowState = windowState;
             _settingsDataAdapter.SaveMainWindowState(Settings);
+        }
+
+        /// <summary>
+        /// Opens the folder pointed by the <see cref="SelectedVariable"/>.
+        /// </summary>
+        /// <exception cref="ChamiFolderException">If the folder doesn't exist, an exception is thrown.</exception>
+        public void OpenFolder()
+        {
+            // We need to call the Replace method because explorer.exe doesn't treat / as a directory separator and opens the Documents folder instead.
+            var folderPath = System.Environment.ExpandEnvironmentVariables(SelectedVariable.Value).Replace("/", "\\");
+            if (Directory.Exists(folderPath))
+            {
+                var openInExplorerCommand = new OpenInExplorerCommand(folderPath);
+                openInExplorerCommand.Execute();
+            }
+            else
+            {
+                throw new ChamiFolderException(ChamiUIStrings.UnableToOpenAsFolderMessage);
+            }
         }
     }
 }

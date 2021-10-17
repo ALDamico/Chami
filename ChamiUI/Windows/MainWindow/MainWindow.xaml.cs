@@ -19,6 +19,7 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
+using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.Windows.MainWindow
@@ -655,6 +656,19 @@ namespace ChamiUI.Windows.MainWindow
         {
             var sortDescription = GetCurrentSortDescriptionOrDefault();
             ViewModel.SaveWindowState(Width, Height, Left, Top, WindowState, sortDescription);
+        }
+
+        private void OpenAsFolderMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ViewModel.OpenFolder();
+            }
+            catch (ChamiFolderException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
     }
 }

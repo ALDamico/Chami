@@ -20,6 +20,7 @@ namespace ChamiUI.BusinessLayer.Converters
             environmentVariable.Value = model.Value;
             environmentVariable.EnvironmentVariableId = model.Id;
             environmentVariable.MarkedForDeletion = model.MarkedForDeletion;
+            environmentVariable.IsFolder = model.IsFolder;
             return environmentVariable;
         }
         
@@ -34,6 +35,8 @@ namespace ChamiUI.BusinessLayer.Converters
             viewModel.Name = entity.Name;
             viewModel.Value = entity.Value;
             viewModel.Id = entity.EnvironmentVariableId;
+            var isFolder = entity.IsFolder.HasValue ? entity.IsFolder.Value : false;
+            viewModel.IsFolder = isFolder;
             if (entity.MarkedForDeletion)
             {
                 viewModel.MarkForDeletion();

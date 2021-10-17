@@ -19,6 +19,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private DateTime _addedOn;
         private bool? _isValid;
         private bool _markedForDeletion;
+        private bool _isFolder;
+
+        public bool IsFolder
+        {
+            get => _isFolder;
+            set
+            {
+                _isFolder = value;
+                OnPropertyChanged(nameof(IsFolder));
+            }
+        }
 
         public bool MarkedForDeletion
         {

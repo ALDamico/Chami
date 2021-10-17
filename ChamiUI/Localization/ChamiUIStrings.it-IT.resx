@@ -742,4 +742,13 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="TerminateAllMenuItem_Header" xml:space="preserve">
     <value>Termina tutti</value>
   </data>
+  <data name="DataGridIsFolderColumn" xml:space="preserve">
+    <value>È una cartella?</value>
+  </data>
+  <data name="OpenAsFolderMenuItem_Header" xml:space="preserve">
+    <value>Apri cartella</value>
+  </data>
+  <data name="UnableToOpenAsFolderMessage" xml:space="preserve">
+    <value>Questa variabile non è un percorso valido!</value>
+  </data>
 </root>

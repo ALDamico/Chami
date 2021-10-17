@@ -742,4 +742,13 @@ Fix the issues and try saving again.</value>
   <data name="TerminateAllMenuItem_Header" xml:space="preserve">
     <value>Terminate all</value>
   </data>
+  <data name="DataGridIsFolderColumn" xml:space="preserve">
+    <value>Is folder?</value>
+  </data>
+  <data name="OpenAsFolderMenuItem_Header" xml:space="preserve">
+    <value>Open folder</value>
+  </data>
+  <data name="UnableToOpenAsFolderMessage" xml:space="preserve">
+    <value>This variable is not a valid path!</value>
+  </data>
 </root>

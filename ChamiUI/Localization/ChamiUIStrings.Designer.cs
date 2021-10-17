@@ -367,6 +367,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is folder?.
+        /// </summary>
+        public static string DataGridIsFolderColumn {
+            get {
+                return ResourceManager.GetString("DataGridIsFolderColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete?.
         /// </summary>
         public static string DataGridMarkedForDeletionColumn {
@@ -1387,6 +1396,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Open folder.
+        /// </summary>
+        public static string OpenAsFolderMenuItem_Header {
+            get {
+                return ResourceManager.GetString("OpenAsFolderMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An operation was cancelled!
         ///.
         /// </summary>
@@ -1872,6 +1890,15 @@ namespace ChamiUI.Localization {
         public static string UnableToInsertEnvironmentMessageBoxText {
             get {
                 return ResourceManager.GetString("UnableToInsertEnvironmentMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This variable is not a valid path!.
+        /// </summary>
+        public static string UnableToOpenAsFolderMessage {
+            get {
+                return ResourceManager.GetString("UnableToOpenAsFolderMessage", resourceCulture);
             }
         }
         

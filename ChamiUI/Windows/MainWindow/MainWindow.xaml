@@ -72,6 +72,11 @@
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
                 </MenuItem.Icon>
             </MenuItem>
+            <MenuItem Header="{lex:Loc}" 
+                      x:Name="OpenAsFolderMenuItem" 
+                      Click="OpenAsFolderMenuItem_OnClick"
+                      IsEnabled="{Binding IsFolder}"
+                      ></MenuItem>
             <Separator />
             <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentVariableMenuItem"
@@ -377,7 +382,7 @@
                           AutoGenerateColumns="False"
                           CanUserAddRows="{Binding EditingEnabled}"
                           CanUserDeleteRows="{Binding EditingEnabled}"
-                          IsEnabled="{Binding EditingEnabled}"
+                          IsReadOnly="{Binding IsDatagridReadonly}"
                           SelectedItem="{Binding SelectedVariable}"
                           PreviewKeyDown="CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown"
                           RowStyle="{StaticResource ErrorStyle}"
@@ -403,6 +408,9 @@
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
                                             x:Name="DataGridValueColumn"
                                             Binding="{Binding Value, NotifyOnValidationError=True}" />
+                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
+                                                x:Name="DataGridIsFolderColumn"
+                                                Binding="{Binding IsFolder}"></DataGridCheckBoxColumn>
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}" 
                                                 x:Name="DataGridMarkedForDeletionColumn"
                                                 Binding="{Binding MarkedForDeletion}"

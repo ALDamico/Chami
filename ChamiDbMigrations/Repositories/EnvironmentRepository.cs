@@ -138,8 +138,8 @@ namespace Chami.Db.Repositories
                 connection.Execute(queryString,
                     new {environment.Name, environment.AddedOn, environment.EnvironmentType});
                 var environmentVariableInsertQuery = @"
-                INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId, IsFolder)
+                VALUES (?, ?, ?, ?, ?)
 ";
                 var selectQuery = @"
                     SELECT * 
@@ -157,7 +157,8 @@ namespace Chami.Db.Repositories
                             environmentVariable.Name,
                             environmentVariable.Value,
                             environmentVariable.AddedOn,
-                            environmentVariable.EnvironmentId
+                            environmentVariable.EnvironmentId,
+                            environmentVariable.IsFolder
                         });
                 }
 
@@ -194,13 +195,15 @@ namespace Chami.Db.Repositories
                     var envVarUpdateQuery = @"
                     UPDATE EnvironmentVariables 
                     SET Name = ?,
-                        Value = ?
+                        Value = ?,
+                        IsFolder = ?
                     WHERE EnvironmentVariableId = ?
 ";
                     var updObj = new
                     {
                         environmentVariable.Name,
                         environmentVariable.Value,
+                        environmentVariable.IsFolder,
                         environmentVariable.EnvironmentVariableId
                     };
 
