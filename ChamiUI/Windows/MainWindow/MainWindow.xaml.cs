@@ -81,6 +81,10 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (ViewModel.IsChangeInProgress)
+            {
+                return;
+            }
             ViewModel.CanUserInterrupt = true;
             if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
             {
@@ -360,7 +364,7 @@ namespace ChamiUI.Windows.MainWindow
                 fs.GetType().FullName == settings.SearchPath.GetType().FullName);
         }
 
-        private void EnvironmentsListbox_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void EnvironmentsListboxItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ApplyEnvironmentButton_OnClick(sender, e);
         }

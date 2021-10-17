@@ -344,7 +344,7 @@
                     <Style TargetType="ListBoxItem">
                         <Setter Property="ContextMenu"
                                 Value="{StaticResource EnvironmentListBoxContextMenu}" />
-                        <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListbox_OnMouseDoubleClick"></EventSetter>
+                        <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListboxItem_OnMouseDoubleClick"></EventSetter>
                     </Style>
                 </ListBox.ItemContainerStyle>
                 <ListBox.ItemTemplate>
