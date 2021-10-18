@@ -402,15 +402,15 @@
                     </DataGrid.RowValidationRules>
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="65"
-                                            Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True}"
+                                            Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                             x:Name="DataGridNameColumn"
                                             Header="{lex:Loc Key=DataGridNameColumn}" />
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
                                             x:Name="DataGridValueColumn"
-                                            Binding="{Binding Value, NotifyOnValidationError=True}" />
+                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" />
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
                                                 x:Name="DataGridIsFolderColumn"
-                                                Binding="{Binding IsFolder}"></DataGridCheckBoxColumn>
+                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}" 
                                                 x:Name="DataGridMarkedForDeletionColumn"
                                                 Binding="{Binding MarkedForDeletion}"
