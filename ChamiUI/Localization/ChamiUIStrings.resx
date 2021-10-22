@@ -742,4 +742,19 @@ Fix the issues and try saving again.</value>
   <data name="TerminateAllMenuItem_Header" xml:space="preserve">
     <value>Terminate all</value>
   </data>
+  <data name="VariableEnabledDatagridColumn" xml:space="preserve">
+    <value>Enabled</value>
+  </data>
+  <data name="VariableNameDatagridColumn" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="VariableInitialValueDatagridColumn" xml:space="preserve">
+    <value>Initial value</value>
+  </data>
+  <data name="VariableIsWindowsDefaultDatagridColumn" xml:space="preserve">
+    <value>Windows default?</value>
+  </data>
+  <data name="SafeVariableEditorBudyIndicator_BusyContent" xml:space="preserve">
+    <value>Reading data...</value>
+  </data>
 </root>

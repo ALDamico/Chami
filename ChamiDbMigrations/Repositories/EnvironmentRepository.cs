@@ -478,5 +478,17 @@ namespace Chami.Db.Repositories
             }
         }
 
+        public async Task<IEnumerable<EnvironmentVariableBlacklist>> GetBlacklistedVariablesAsync()
+        {
+            var queryString = @"
+                SELECT *
+                FROM EnvironmentVariableBlacklist
+";
+
+            using (var connection = GetConnection())
+            {
+                return await connection.QueryAsync<EnvironmentVariableBlacklist>(queryString);
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@ using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 
@@ -192,6 +193,21 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
 
             return output;
+        }
+
+        public async Task<ICollection<EnvironmentVariableBlacklistViewModel>> GetBlacklistedVariablesAsync()
+        {
+            var blacklistedVariables = await _repository.GetBlacklistedVariablesAsync();
+            var converter = new EnvironmentVariableBlacklistConverter();
+            var outputList = new List<EnvironmentVariableBlacklistViewModel>();
+
+            foreach (var blacklistedVariable in blacklistedVariables)
+            {
+                var viewModel = converter.To(blacklistedVariable);
+                outputList.Add(viewModel);
+            }
+
+            return outputList;
         }
     }
 }

@@ -1579,6 +1579,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Reading data....
+        /// </summary>
+        public static string SafeVariableEditorBudyIndicator_BusyContent {
+            get {
+                return ResourceManager.GetString("SafeVariableEditorBudyIndicator_BusyContent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string SaveEnvironmentMenuItem_Header {
@@ -1891,6 +1900,42 @@ namespace ChamiUI.Localization {
         public static string ValidationFailedMessageBoxText {
             get {
                 return ResourceManager.GetString("ValidationFailedMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string VariableEnabledDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableEnabledDatagridColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial value.
+        /// </summary>
+        public static string VariableInitialValueDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableInitialValueDatagridColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows default?.
+        /// </summary>
+        public static string VariableIsWindowsDefaultDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableIsWindowsDefaultDatagridColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string VariableNameDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableNameDatagridColumn", resourceCulture);
             }
         }
         

@@ -1142,15 +1142,16 @@
     </ItemGroup>
 
     <ItemGroup>
+      <EmbeddedResource Update="Localization\ChamiUIStrings.resx">
+        <Generator>PublicResXFileCodeGenerator</Generator>
+        <LastGenOutput>ChamiUIStrings.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
       <EmbeddedResource Update="Localization\ChamiUIStrings.it-IT.resx">
         <DependentUpon>Localization\ChamiUIStrings.resx</DependentUpon>
         <SubType>Designer</SubType>
         <Generator>ResXFileCodeGenerator</Generator>
       </EmbeddedResource>
-      <EmbeddedResource Update="Localization\ChamiUIStrings.resx">
-        <Generator>PublicResXFileCodeGenerator</Generator>
-        <LastGenOutput>ChamiUIStrings.Designer.cs</LastGenOutput>
-      </EmbeddedResource>
+      
     </ItemGroup>
 
     <ItemGroup>
