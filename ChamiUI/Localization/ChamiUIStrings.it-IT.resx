@@ -757,4 +757,8 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="SafeVariableEditorBudyIndicator_BusyContent" xml:space="preserve">
     <value>Lettura dati...</value>
   </data>
+  <data name="NopCommandMessage" xml:space="preserve">
+    <value>La variabile {0} è in blacklist.
+Nessuna azione intrapresa.</value>
+  </data>
 </root>

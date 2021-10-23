@@ -757,4 +757,8 @@ Fix the issues and try saving again.</value>
   <data name="SafeVariableEditorBudyIndicator_BusyContent" xml:space="preserve">
     <value>Reading data...</value>
   </data>
+  <data name="NopCommandMessage" xml:space="preserve">
+    <value>Variable {0} is blacklisted.
+No action taken.</value>
+  </data>
 </root>

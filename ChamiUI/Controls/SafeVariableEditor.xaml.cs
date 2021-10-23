@@ -20,8 +20,7 @@ namespace ChamiUI.Controls
         public SafeVariableEditor(SafeVariableViewModel settingsSafeVariableSettings)
         {
             _settingsSafeVariableSettings = settingsSafeVariableSettings;
-            var viewModel = new SafeVariableViewModel();
-            DataContext = viewModel;
+            DataContext = _settingsSafeVariableSettings;
             InitializeComponent();
         }
 

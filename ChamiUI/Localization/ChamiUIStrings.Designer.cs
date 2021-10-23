@@ -1387,6 +1387,16 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variable {0} is blacklisted.
+        ///No action taken..
+        /// </summary>
+        public static string NopCommandMessage {
+            get {
+                return ResourceManager.GetString("NopCommandMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to An operation was cancelled!
         ///.
         /// </summary>
