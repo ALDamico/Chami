@@ -11,6 +11,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Chami.CmdExecutor;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.Localization;
@@ -308,6 +309,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public async Task ChangeEnvironmentAsync(IProgress<CmdExecutorProgress> progress)
         {
             SetIsChangeInProgress(true);
+            var isSafetyEnabled = ((App) (Application.Current)).Settings.SafeVariableSettings.EnableSafeVars;
+            var safeVariableSettings = ((App) (Application.Current)).Settings.SafeVariableSettings;
+            
             var cmdExecutor = new CmdExecutor(SelectedEnvironment);
             cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
@@ -321,9 +325,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
                     {
-                        var newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
-                                environmentVariable);
+                        IShellCommand newCommand;
+                        var isCurrentVariableDisabled =
+                            safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
+                                v.Name == environmentVariable.Name) != null;
+                        if (isCurrentVariableDisabled && isSafetyEnabled)
+                        {
+                            newCommand =
+                                EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand),
+                                    environmentVariable);
+                        }
+                        else
+                        {
+                            newCommand =
+                                EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                                    environmentVariable);
+                        }
+                        
                         cmdExecutor.AddCommand(newCommand);
                     }
                 }
@@ -336,9 +354,22 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
-                var newCommand = EnvironmentVariableCommandFactory.GetCommand(
-                    typeof(EnvironmentVariableApplicationCommand),
-                    environmentVariable);
+                IShellCommand newCommand;
+                var isCurrentVariableDisabled =
+                    safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
+                        v.Name == environmentVariable.Name) != null;
+                if (isCurrentVariableDisabled && isSafetyEnabled) 
+                {
+                    newCommand =
+                        EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand), environmentVariable);
+                }
+                else
+                {
+                    newCommand = EnvironmentVariableCommandFactory.GetCommand(
+                        typeof(EnvironmentVariableApplicationCommand),
+                        environmentVariable);
+                }
+
                 cmdExecutor.AddCommand(newCommand);
             }
 

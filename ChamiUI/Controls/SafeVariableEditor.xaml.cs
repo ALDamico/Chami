@@ -14,25 +14,20 @@ namespace ChamiUI.Controls
         {
             var viewModel = new SafeVariableViewModel();
             DataContext = viewModel;
+            _settingsSafeVariableSettings = viewModel;
             InitializeComponent();
         }
 
         public SafeVariableEditor(SafeVariableViewModel settingsSafeVariableSettings)
         {
             _settingsSafeVariableSettings = settingsSafeVariableSettings;
-            var viewModel = new SafeVariableViewModel();
-            DataContext = viewModel;
+            DataContext = _settingsSafeVariableSettings;
             InitializeComponent();
         }
 
         private async void SafeVariableEditor_OnLoaded(object sender, RoutedEventArgs e)
         {
-            //Loads data only if this is the first time the control is being loaded
-            if (DataContext is not SafeVariableViewModel dataContext) return;
-            if (dataContext.ForbiddenVariables.Count == 0)
-            {
-                await dataContext.LoadForbiddenVariables();
-            }
+            await _settingsSafeVariableSettings.LoadForbiddenVariables();
         }
     }
 }
