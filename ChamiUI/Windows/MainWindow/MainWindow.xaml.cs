@@ -256,6 +256,14 @@ namespace ChamiUI.Windows.MainWindow
         private void OnSettingsSaved(object sender, SettingsSavedEventArgs args)
         {
             ViewModel.Settings = args.Settings;
+            var newBlacklsitedVariabled = ViewModel
+                .SaveBlacklistedVariables(args.Settings.SafeVariableSettings.ForbiddenVariables).GetAwaiter()
+                .GetResult();
+            args.Settings.SafeVariableSettings.ForbiddenVariables.Clear();
+            foreach (var variable in newBlacklsitedVariabled)
+            {
+                args.Settings.SafeVariableSettings.ForbiddenVariables.Add(variable);
+            }
 
             ((App) Application.Current).Settings = args.Settings;
             ((App) Application.Current)?.InitLocalization();
@@ -649,7 +657,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             SaveState();
             // Required because otherwise the app won't shutdown properly if it's called by taskbar icon.
-            Application.Current.Shutdown(0); 
+            Application.Current.Shutdown(0);
         }
 
         public void SaveState()

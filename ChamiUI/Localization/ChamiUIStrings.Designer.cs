@@ -1396,6 +1396,16 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variable {0} is blacklisted.
+        ///No action taken..
+        /// </summary>
+        public static string NopCommandMessage {
+            get {
+                return ResourceManager.GetString("NopCommandMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open folder.
         /// </summary>
         public static string OpenAsFolderMenuItem_Header {
@@ -1593,6 +1603,15 @@ namespace ChamiUI.Localization {
         public static string SafetyGroupbox_Header {
             get {
                 return ResourceManager.GetString("SafetyGroupbox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Reading data....
+        /// </summary>
+        public static string SafeVariableEditorBudyIndicator_BusyContent {
+            get {
+                return ResourceManager.GetString("SafeVariableEditorBudyIndicator_BusyContent", resourceCulture);
             }
         }
         
@@ -1918,6 +1937,42 @@ namespace ChamiUI.Localization {
         public static string ValidationFailedMessageBoxText {
             get {
                 return ResourceManager.GetString("ValidationFailedMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enabled.
+        /// </summary>
+        public static string VariableEnabledDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableEnabledDatagridColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Initial value.
+        /// </summary>
+        public static string VariableInitialValueDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableInitialValueDatagridColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Windows default?.
+        /// </summary>
+        public static string VariableIsWindowsDefaultDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableIsWindowsDefaultDatagridColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        public static string VariableNameDatagridColumn {
+            get {
+                return ResourceManager.GetString("VariableNameDatagridColumn", resourceCulture);
             }
         }
         

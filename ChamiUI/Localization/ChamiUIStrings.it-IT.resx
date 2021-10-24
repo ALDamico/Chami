@@ -742,6 +742,25 @@ Risolvi i problemi e riprova il salvataggio.</value>
   <data name="TerminateAllMenuItem_Header" xml:space="preserve">
     <value>Termina tutti</value>
   </data>
+  <data name="VariableEnabledDatagridColumn" xml:space="preserve">
+    <value>Abilitato</value>
+  </data>
+  <data name="VariableNameDatagridColumn" xml:space="preserve">
+    <value>Nome</value>
+  </data>
+  <data name="VariableInitialValueDatagridColumn" xml:space="preserve">
+    <value>Valore iniziale</value>
+  </data>
+  <data name="VariableIsWindowsDefaultDatagridColumn" xml:space="preserve">
+    <value>Predefinita di Windows?</value>
+  </data>
+  <data name="SafeVariableEditorBudyIndicator_BusyContent" xml:space="preserve">
+    <value>Lettura dati...</value>
+  </data>
+  <data name="NopCommandMessage" xml:space="preserve">
+    <value>La variabile {0} è in blacklist.
+Nessuna azione intrapresa.</value>
+  </data>
   <data name="DataGridIsFolderColumn" xml:space="preserve">
     <value>È una cartella?</value>
   </data>

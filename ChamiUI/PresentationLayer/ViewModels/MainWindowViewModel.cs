@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using Chami.CmdExecutor;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Commands;
@@ -314,6 +315,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public async Task ChangeEnvironmentAsync(Action<CmdExecutorProgress> progress)
         {
             SetIsChangeInProgress(true);
+            var isSafetyEnabled = ((App) (Application.Current)).Settings.SafeVariableSettings.EnableSafeVars;
+            var safeVariableSettings = ((App) (Application.Current)).Settings.SafeVariableSettings;
+            
             var cmdExecutor = new CmdExecutor(SelectedEnvironment);
             
             cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
@@ -329,9 +333,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
                     {
-                        var newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
-                                environmentVariable);
+                        IShellCommand newCommand;
+                        var isCurrentVariableDisabled =
+                            safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
+                                v.Name == environmentVariable.Name) != null;
+                        if (isCurrentVariableDisabled && isSafetyEnabled)
+                        {
+                            newCommand =
+                                EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand),
+                                    environmentVariable);
+                        }
+                        else
+                        {
+                            newCommand =
+                                EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                                    environmentVariable);
+                        }
+                        
                         cmdExecutor.AddCommand(newCommand);
                     }
                 }
@@ -344,9 +362,22 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
-                var newCommand = EnvironmentVariableCommandFactory.GetCommand(
-                    typeof(EnvironmentVariableApplicationCommand),
-                    environmentVariable);
+                IShellCommand newCommand;
+                var isCurrentVariableDisabled =
+                    safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
+                        v.Name == environmentVariable.Name) != null;
+                if (isCurrentVariableDisabled && isSafetyEnabled) 
+                {
+                    newCommand =
+                        EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand), environmentVariable);
+                }
+                else
+                {
+                    newCommand = EnvironmentVariableCommandFactory.GetCommand(
+                        typeof(EnvironmentVariableApplicationCommand),
+                        environmentVariable);
+                }
+
                 cmdExecutor.AddCommand(newCommand);
             }
 
@@ -777,6 +808,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
 
+        public async Task<IEnumerable<EnvironmentVariableBlacklistViewModel>> SaveBlacklistedVariables(
+            IEnumerable<EnvironmentVariableBlacklistViewModel> blacklistedVariables)
+        {
+            var tasks = new List<Task<EnvironmentVariableBlacklistViewModel>>();
+            var output = new List<EnvironmentVariableBlacklistViewModel>();
+            foreach (var variable in blacklistedVariables)
+            {
+                Task<EnvironmentVariableBlacklistViewModel> task = _dataAdapter.SaveBlacklistedVariableAsync(variable);
+                tasks.Add(task);
+                task.ContinueWith(async v =>
+                {
+                    var awaitedVariable = await v;
+                    output.Add(awaitedVariable);
+                });
+
+            }
+
+            await Task.WhenAll(tasks);
+            return output;
+        }
+
         /// <summary>
         /// Opens the folder pointed by the <see cref="SelectedVariable"/>.
         /// </summary>
@@ -796,4 +848,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
     }
-}
+
+       
+    }

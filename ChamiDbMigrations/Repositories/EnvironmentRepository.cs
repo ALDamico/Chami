@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
@@ -238,6 +239,7 @@ namespace Chami.Db.Repositories
                     }
                 }
             }
+
             if (environment.EnvironmentId == 0)
             {
                 return InsertEnvironment(environment);
@@ -374,7 +376,7 @@ namespace Chami.Db.Repositories
                 return dict.Values.ToList();
             }
         }
-        
+
         /// <summary>
         /// Get all the environments marked as normal environments in the datastore.
         /// </summary>
@@ -481,5 +483,116 @@ namespace Chami.Db.Repositories
             }
         }
 
+        public async Task<IEnumerable<EnvironmentVariableBlacklist>> GetBlacklistedVariablesAsync()
+        {
+            var queryString = @"
+                SELECT *
+                FROM EnvironmentVariableBlacklist
+";
+
+            using (var connection = GetConnection())
+            {
+                return await connection.QueryAsync<EnvironmentVariableBlacklist>(queryString);
+            }
+        }
+
+        public async Task<EnvironmentVariableBlacklist> InsertBlacklistedVariableAsync(
+            EnvironmentVariableBlacklist blackistedVariable)
+        {
+            if (blackistedVariable == null)
+            {
+                throw new InvalidOperationException("Attempting to persist null entity.");
+            }
+
+            if (blackistedVariable.Id > 0)
+            {
+                throw new NotSupportedException("Attempting to insert duplicate item in the database");
+            }
+
+            var queryString = @"
+                INSERT INTO EnvironmentVariableBlacklist (Name, InitialValue, IsWindowsDefault, IsEnabled, AddedOn)
+                VALUES (?, ?, ?, ?, ?)
+";
+            using (var connection = GetConnection())
+            {
+                var transaction = await connection.BeginTransactionAsync();
+                await connection.ExecuteAsync(queryString,
+                    new
+                    {
+                        blackistedVariable.Name,
+                        blackistedVariable.InitialValue,
+                        blackistedVariable.IsWindowsDefault,
+                        blackistedVariable.IsEnabled, 
+                        AddedOn = DateTime.Now
+                    });
+
+                var insertedId = await connection.QueryAsync<int>("SELECT last_insert_rowid()");
+                if (insertedId.Count() == 1)
+                {
+                    blackistedVariable.Id = insertedId.First();
+                    await transaction.CommitAsync();
+                }
+                else
+                {
+                    throw new DataException("An unknown error occurred when trying to save the entity!");
+                }
+
+                return blackistedVariable;
+            }
+        }
+
+        public async Task<EnvironmentVariableBlacklist> UpdateBlacklistedVariableAsync(
+            EnvironmentVariableBlacklist blacklistedVariable)
+        {
+            if (blacklistedVariable == null)
+            {
+                throw new InvalidOperationException("Attempting to update null entity.");
+            }
+
+            if (blacklistedVariable.Id == 0)
+            {
+                throw new NotSupportedException("Attempting to update non-persisted entity");
+            }
+
+            var queryString = @"
+                UPDATE EnvironmentVariableBlacklist
+                SET Name = ?,
+                    InitialValue = ?,
+                    IsWindowsDefault = ?,
+                    IsEnabled = ?
+                WHERE Id = ?
+";
+            using (var connection = GetConnection())
+            {
+                var transaction = await connection.BeginTransactionAsync();
+                await connection.ExecuteAsync(queryString, new
+                {
+                    Name = blacklistedVariable.Name, InitialValue = blacklistedVariable.InitialValue,
+                    IsWindowsDefault = blacklistedVariable.IsWindowsDefault, IsEnabled = blacklistedVariable.IsEnabled,
+                    Id = blacklistedVariable.Id
+                });
+
+                await transaction.CommitAsync();
+                return blacklistedVariable;
+            }
+        }
+
+        public async Task<EnvironmentVariableBlacklist> UpsertBlacklistedVariableAsync(
+            EnvironmentVariableBlacklist blacklistedVariable)
+        {
+            if (blacklistedVariable == null)
+            {
+                throw new InvalidOperationException("Attempting to persist null entity.");
+            }
+
+            if (blacklistedVariable.Id == 0)
+            {
+                return await InsertBlacklistedVariableAsync(blacklistedVariable);
+            }
+
+            return await UpdateBlacklistedVariableAsync(blacklistedVariable);
+        }
     }
+    
+    
 }

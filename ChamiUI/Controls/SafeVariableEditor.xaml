@@ -7,41 +7,68 @@
              d:DataContext="{d:DesignInstance vm:SafeVariableViewModel, IsDesignTimeCreatable=True}"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              mc:Ignorable="d"
-             d:DesignHeight="300" d:DesignWidth="300">
-    <StackPanel x:Name="DisabledSafetyFeatureStackPanel" ToolTip="{lex:Loc}">
-        <Grid IsEnabled="False">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <GroupBox x:Name="SafetyGroupbox" Header="{lex:Loc}">
-                <Grid>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="Auto"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <Label Grid.Row="0" 
-                           Grid.Column="0" 
-                           x:Name="EnableSafetyFeaturesLabel"
-                           Content="{lex:Loc}"/>
-                    <CheckBox Grid.Row="0" 
-                              Grid.Column="1" 
-                              IsChecked="{Binding EnableSafeVars}"></CheckBox>
-                    <Label Grid.Row="1" 
-                           Grid.Column="0" 
-                           x:Name="SafetyFeaturesVariablesLabel"
-                           Content="{lex:Loc}"></Label>
-                    <DataGrid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding ForbiddenVariables}"></DataGrid>
-                </Grid>
-            </GroupBox>
-        </Grid>
-    </StackPanel>
-    
+             d:DesignHeight="300" d:DesignWidth="300"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             Loaded="SafeVariableEditor_OnLoaded"
+             >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <GroupBox x:Name="SafetyGroupbox" Header="{lex:Loc}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       x:Name="EnableSafetyFeaturesLabel"
+                       Content="{lex:Loc}" />
+                <CheckBox Grid.Row="0"
+                          Grid.Column="1"
+                          IsChecked="{Binding EnableSafeVars}" />
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       x:Name="SafetyFeaturesVariablesLabel"
+                       Content="{lex:Loc}" />
+                <xctk:BusyIndicator x:Name="SafeVariableEditorBudyIndicator" 
+                                    Grid.Row="2" 
+                                    Grid.Column="0" 
+                                    Grid.ColumnSpan="2" 
+                                    IsBusy="{Binding IsBusy}" 
+                                    BusyContent="{lex:Loc}">
+                    <DataGrid
+                        ItemsSource="{Binding ForbiddenVariables}"
+                        AutoGenerateColumns="False"
+                        IsEnabled="{Binding EnableSafeVars}">
+                        <DataGrid.Columns>
+                            <DataGridCheckBoxColumn x:Name="VariableEnabledDatagridColumn"
+                                                    Binding="{Binding IsEnabled}"
+                                                    Header="{lex:Loc Key=VariableEnabledDatagridColumn}" />
+                            <DataGridTextColumn x:Name="VariableNameDatagridColumn"
+                                                Binding="{Binding Name}"
+                                                Header="{lex:Loc Key=VariableNameDatagridColumn}"/>
+                            <DataGridTextColumn x:Name="VariableInitialValueDatagridColumn"
+                                                Binding="{Binding InitialValue}"
+                                                Header="{lex:Loc VariableInitialValueDatagridColumn}" />
+                            <DataGridCheckBoxColumn x:Name="VariableIsWindowsDefaultDatagridColumn"
+                                                    Binding="{Binding IsWindowsDefault}"
+                                                    Header="{lex:Loc VariableIsWindowsDefaultDatagridColumn}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+                </xctk:BusyIndicator>
+            </Grid>
+        </GroupBox>
+    </Grid>
+
 </UserControl>
