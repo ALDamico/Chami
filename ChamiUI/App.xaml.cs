@@ -24,6 +24,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.Windows.SplashScreen;
 
 namespace ChamiUI
 {
@@ -158,6 +159,10 @@ namespace ChamiUI
             }
 
             MainWindow.Show();
+            
+            // TODO Rewrite me
+            var splashScreen = new ChamiSplashScreen();
+            splashScreen.Show();
         }
 
         private void HandleCommandLineArguments(StartupEventArgs e)

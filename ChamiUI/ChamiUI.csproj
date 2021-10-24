@@ -1129,6 +1129,10 @@
       <Resource Include="Assets\Svg\sync.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\chameleon512x512.png" />
+      <Resource Include="Assets\chameleon512x512.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
