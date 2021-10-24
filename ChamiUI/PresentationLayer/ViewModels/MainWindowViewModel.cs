@@ -802,5 +802,25 @@ namespace ChamiUI.PresentationLayer.ViewModels
             settings.WindowState = windowState;
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
+
+        public async Task<IEnumerable<EnvironmentVariableBlacklistViewModel>> SaveBlacklistedVariables(IEnumerable<EnvironmentVariableBlacklistViewModel> blacklistedVariables)
+        {
+            var tasks = new List<Task<EnvironmentVariableBlacklistViewModel>>();
+            var output = new List<EnvironmentVariableBlacklistViewModel>();
+            foreach (var variable in blacklistedVariables)
+            {
+                Task<EnvironmentVariableBlacklistViewModel> task = _dataAdapter.SaveBlacklistedVariableAsync(variable);
+                tasks.Add(task);
+                task.ContinueWith(async v =>
+                {
+                    var awaitedVariable = await v;
+                    output.Add(awaitedVariable);
+                });
+               
+            }
+
+            await Task.WhenAll(tasks);
+            return output;
+        }
     }
 }

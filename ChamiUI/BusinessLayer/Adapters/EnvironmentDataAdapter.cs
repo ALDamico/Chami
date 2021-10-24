@@ -209,5 +209,16 @@ namespace ChamiUI.BusinessLayer.Adapters
 
             return outputList;
         }
+
+        public async Task<EnvironmentVariableBlacklistViewModel> SaveBlacklistedVariableAsync(
+            EnvironmentVariableBlacklistViewModel blacklistedVariable)
+        {
+            var converter = new EnvironmentVariableBlacklistConverter();
+            var entity = converter.From(blacklistedVariable);
+
+            await _repository.UpsertBlacklistedVariableAsync(entity);
+
+            return converter.To(entity);
+        }
     }
 }
