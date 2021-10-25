@@ -151,6 +151,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="3*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -374,7 +375,16 @@
             </Button>
 
         </Grid>
-        <TabControl Grid.Row="4"
+        <GridSplitter Grid.Row="4" 
+                      Grid.Column="0" 
+                      Height="2" 
+                      ResizeBehavior="PreviousAndNext" 
+                      ResizeDirection="Rows" 
+                      ShowsPreview="True" 
+                      Background="Black"
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Center"></GridSplitter>
+        <TabControl Grid.Row="5"
                     Grid.Column="0"
                     x:Name="TabControls">
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
