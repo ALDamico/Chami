@@ -770,4 +770,10 @@ Nessuna azione intrapresa.</value>
   <data name="UnableToOpenAsFolderMessage" xml:space="preserve">
     <value>Questa variabile non è un percorso valido!</value>
   </data>
+  <data name="ConsoleCopyMenuItem_Header" xml:space="preserve">
+    <value>Copia</value>
+  </data>
+  <data name="ConsoleClearMenuItem" xml:space="preserve">
+    <value>Pulisci</value>
+  </data>
 </root>

@@ -349,6 +349,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        public static string ConsoleClearMenuItem {
+            get {
+                return ResourceManager.GetString("ConsoleClearMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string ConsoleCopyMenuItem_Header {
+            get {
+                return ResourceManager.GetString("ConsoleCopyMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Console.
         /// </summary>
         public static string ConsoleTabItem_Header {

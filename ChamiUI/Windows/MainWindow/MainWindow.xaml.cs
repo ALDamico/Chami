@@ -676,7 +676,27 @@ namespace ChamiUI.Windows.MainWindow
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void ConsoleClearMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ConsoleTextBox.Clear();
+        }
+
+        private void ConsoleCopyMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(ConsoleTextBox.Text))
+            {
+                return;
+            }
             
+            var selectedText = ConsoleTextBox.SelectedText;
+            if (string.IsNullOrWhiteSpace(selectedText))
+            {
+                selectedText = ConsoleTextBox.Text;
+            }
+
+            Clipboard.SetText(selectedText);
         }
     }
 }

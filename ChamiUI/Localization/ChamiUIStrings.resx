@@ -770,4 +770,10 @@ No action taken.</value>
   <data name="UnableToOpenAsFolderMessage" xml:space="preserve">
     <value>This variable is not a valid path!</value>
   </data>
+  <data name="ConsoleCopyMenuItem_Header" xml:space="preserve">
+    <value>Copy</value>
+  </data>
+  <data name="ConsoleClearMenuItem" xml:space="preserve">
+    <value>Clear</value>
+  </data>
 </root>

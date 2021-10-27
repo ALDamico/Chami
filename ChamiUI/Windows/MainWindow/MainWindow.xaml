@@ -445,7 +445,16 @@
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              TextWrapping="Wrap"
-                             IsReadOnly="True" />
+                             IsReadOnly="True" >
+                        <TextBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="ConsoleCopyMenuItem" Header="{lex:Loc}" Click="ConsoleCopyMenuItem_OnClick"></MenuItem>
+                                <Separator></Separator>
+                                <MenuItem x:Name="ConsoleClearMenuItem" Header="{lex:Loc}" Click="ConsoleClearMenuItem_OnClick"></MenuItem>
+                            </ContextMenu>
+                        </TextBox.ContextMenu>
+                        
+                    </TextBox>
                     <ProgressBar Grid.Row="1"
                                  x:Name="ConsoleProgressBar"
                                  MinHeight="16"
