@@ -16,6 +16,7 @@
         xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
         xmlns:controls="clr-namespace:ChamiUI.Controls"
         xmlns:chamiUi="clr-namespace:ChamiUI"
+        xmlns:contentTemplateSelectors="clr-namespace:ChamiUI.Controls.ContentTemplateSelectors"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         WindowStartupLocation="Manual"
@@ -63,13 +64,13 @@
         </ContextMenu>
 
         <Style TargetType="DataGridRow" />
-        
+
         <ResourceDictionary x:Key="ExternalResources">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
-        
+
     </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding x:Name="SaveCommandBinding"
@@ -345,17 +346,22 @@
                     <TextBlock Text="{Binding TabTitle}" />
                 </DataTemplate>
             </TabControl.ItemTemplate>
-            <TabControl.ContentTemplate>
-                
-                
-                <DataTemplate DataType="{x:Type viewModels:ConsoleTabViewModel}">
-                    <UserControl Content="{Binding Control}" />
-                </DataTemplate>
-                
-                <DataTemplate DataType="{x:Type chamiUi:VariablesDataGridViewModel}">
-                    <UserControl Content="{Binding Control}" />
-                </DataTemplate>
-            </TabControl.ContentTemplate>
+            <TabControl.ContentTemplateSelector>
+                <contentTemplateSelectors:MainWindowContentTemplateSelector>
+                    <contentTemplateSelectors:MainWindowContentTemplateSelector.ConsoleDataTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:ConsoleTabViewModel}">
+                            <UserControl Content="{Binding Control}" />
+                        </DataTemplate>
+                    </contentTemplateSelectors:MainWindowContentTemplateSelector.ConsoleDataTemplate>
+
+                    <contentTemplateSelectors:MainWindowContentTemplateSelector.VariablesDataTemplate>
+                        <DataTemplate DataType="{x:Type chamiUi:VariablesDataGridViewModel}">
+                            <UserControl Content="{Binding Control}" />
+                        </DataTemplate>
+                    </contentTemplateSelectors:MainWindowContentTemplateSelector.VariablesDataTemplate>
+                </contentTemplateSelectors:MainWindowContentTemplateSelector>
+
+            </TabControl.ContentTemplateSelector>
             <!-- <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
                 
             </TabItem>

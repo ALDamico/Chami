@@ -181,11 +181,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _cancellationTokenSource = new CancellationTokenSource();
             CanUserInterrupt = true;
             TabbedControls = new ObservableCollection<TabbedControlViewModel>();
-            var variablesDataGrid = new TabbedControlViewModel()
-            {
-                Control = new VariablesDataGrid(this), IsLocked = IsChangeInProgress,
-                TabTitle = ChamiUIStrings.VariablesTabItem_Header
-            };
+            var variablesDataGrid = new VariablesDataGridViewModel(this);
             var consoleTab = new ConsoleTabViewModel();
             consoleTab.Control.DataContext = this;
             TabbedControls.Add(variablesDataGrid);
