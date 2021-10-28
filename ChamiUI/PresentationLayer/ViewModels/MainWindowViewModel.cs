@@ -17,6 +17,7 @@ using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Commands;
 using ChamiUI.BusinessLayer.Exceptions;
+using ChamiUI.Controls;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
@@ -171,7 +172,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             Settings = SettingsUtils.GetAppSettings();
-            
+
             //EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
@@ -179,6 +180,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             _cancellationTokenSource = new CancellationTokenSource();
             CanUserInterrupt = true;
+            TabbedControls = new ObservableCollection<TabbedControlViewModel>();
+            var variablesDataGrid = new TabbedControlViewModel()
+            {
+                Control = new VariablesDataGrid(this), IsLocked = IsChangeInProgress,
+                TabTitle = ChamiUIStrings.VariablesTabItem_Header
+            };
+            var consoleTab = new ConsoleTabViewModel();
+            consoleTab.Control.DataContext = this;
+            TabbedControls.Add(variablesDataGrid);
+            TabbedControls.Add(consoleTab);
         }
 
         /// <summary>
@@ -315,11 +326,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public async Task ChangeEnvironmentAsync(Action<CmdExecutorProgress> progress)
         {
             SetIsChangeInProgress(true);
-            var isSafetyEnabled = ((App) (Application.Current)).Settings.SafeVariableSettings.EnableSafeVars;
-            var safeVariableSettings = ((App) (Application.Current)).Settings.SafeVariableSettings;
-            
+            var isSafetyEnabled = ((App)(Application.Current)).Settings.SafeVariableSettings.EnableSafeVars;
+            var safeVariableSettings = ((App)(Application.Current)).Settings.SafeVariableSettings;
+
             var cmdExecutor = new CmdExecutor(SelectedEnvironment);
-            
+
             cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
             cmdExecutor.SetProgressHandler(progress);
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
@@ -349,7 +360,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                                 EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
                                     environmentVariable);
                         }
-                        
+
                         cmdExecutor.AddCommand(newCommand);
                     }
                 }
@@ -358,7 +369,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var newEnvironment = _dataAdapter.GetEnvironmentEntityById(SelectedEnvironment.Id);
             cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand(
                 typeof(EnvironmentVariableApplicationCommand),
-                new EnvironmentVariable() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
+                new EnvironmentVariable() { Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name }));
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
@@ -366,7 +377,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var isCurrentVariableDisabled =
                     safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
                         v.Name == environmentVariable.Name) != null;
-                if (isCurrentVariableDisabled && isSafetyEnabled) 
+                if (isCurrentVariableDisabled && isSafetyEnabled)
                 {
                     newCommand =
                         EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand), environmentVariable);
@@ -524,7 +535,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var applicationDetector =
                     new RunningApplicationDetector(watchedApplicationSettings.WatchedApplications);
                 var detectedApplications = applicationDetector.Detect();
-                if (detectedApplications is {Count: > 0})
+                if (detectedApplications is { Count: > 0 })
                 {
                     var window = new DetectedApplicationsWindow
                     {
@@ -627,7 +638,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var cmdExecutor = new CmdExecutor();
             cmdExecutor.SetProgressHandler(progress);
-            
+
             var detector = new EnvironmentVariableRegistryRetriever();
 
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
@@ -646,7 +657,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         cmdExecutor.AddCommand(newCommand);
                     }
 
-                    var chamiEnvVariable = new EnvironmentVariable() {Name = "_CHAMI_ENV"};
+                    var chamiEnvVariable = new EnvironmentVariable() { Name = "_CHAMI_ENV" };
                     var chamiEnvVarRemovalCommand =
                         EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
                             chamiEnvVariable);
@@ -658,6 +669,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 NopCommand nopCommand = new NopCommand(ChamiUIStrings.RevertToOriginalEnvironmentNop);
                 cmdExecutor.AddCommand(nopCommand);
             }
+
             await cmdExecutor.ExecuteAsync(cancellationToken);
 
             OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(null));
@@ -665,9 +677,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         internal EnvironmentVariableViewModel CreateEnvironmentVariable()
         {
-            var newVariable = new EnvironmentVariableViewModel {Environment = SelectedEnvironment};
+            var newVariable = new EnvironmentVariableViewModel { Environment = SelectedEnvironment };
             SelectedVariable = newVariable;
-            //SelectedEnvironment.EnvironmentVariables.Add(newVariable);
             return newVariable;
         }
 
@@ -787,7 +798,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="sortDescription">The sorting used by the listview.</param>
         /// <seealso cref="MainWindowSavedBehaviourViewModel"/>
         /// <seealso cref="SettingsDataAdapter"/>
-        public void SaveWindowState(double width, double height, double xPosition, double yPosition, WindowState windowState,
+        public void SaveWindowState(double width, double height, double xPosition, double yPosition,
+            WindowState windowState,
             SortDescription sortDescription)
         {
             var settings = Settings.MainWindowBehaviourSettings;
@@ -798,15 +810,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             settings.YPosition = yPosition;
             settings.SearchPath = FilterStrategy;
             settings.SortDescription = sortDescription;
-            
+
             // Avoid starting minimized on next application start.
             if (windowState == WindowState.Minimized)
             {
                 windowState = WindowState.Normal;
             }
+
             settings.WindowState = windowState;
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
+
 
         public async Task<IEnumerable<EnvironmentVariableBlacklistViewModel>> SaveBlacklistedVariables(
             IEnumerable<EnvironmentVariableBlacklistViewModel> blacklistedVariables)
@@ -822,7 +836,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     var awaitedVariable = await v;
                     output.Add(awaitedVariable);
                 });
-
             }
 
             await Task.WhenAll(tasks);
@@ -847,7 +860,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 throw new ChamiFolderException(ChamiUIStrings.UnableToOpenAsFolderMessage);
             }
         }
-    }
 
-       
+        public ObservableCollection<TabbedControlViewModel> TabbedControls { get; }
+        private TabbedControlViewModel _selectedTab;
+
+        public TabbedControlViewModel SelectedTab
+        {
+            get => _selectedTab;
+            set
+            {
+                _selectedTab = value;
+                OnPropertyChanged(nameof(SelectedTab));
+            }
+        }
+
+        public void FocusConsoleTab()
+        {
+            SelectedTab = TabbedControls.FirstOrDefault(t => t.Control is ConsoleTextBox);
+        }
     }
+}

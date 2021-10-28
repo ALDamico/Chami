@@ -20,6 +20,7 @@ using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
 using ChamiUI.BusinessLayer.Exceptions;
+using ChamiUI.Controls;
 using ChamiUI.PresentationLayer.Filtering;
 
 namespace ChamiUI.Windows.MainWindow
@@ -38,6 +39,7 @@ namespace ChamiUI.Windows.MainWindow
 
             ViewModel = new MainWindowViewModel(connectionString);
             ViewModel.EnvironmentExists += OnEnvironmentExists;
+            _consoleTextBox = (ConsoleTextBox)ViewModel.TabbedControls.FirstOrDefault(c => c.Control is ConsoleTextBox).Control;
 
             DataContext = ViewModel;
             InitializeComponent();
@@ -47,6 +49,8 @@ namespace ChamiUI.Windows.MainWindow
                 collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
             }
         }
+
+        private ConsoleTextBox _consoleTextBox;
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
         {
@@ -73,11 +77,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void ResetProgressBar()
         {
-            //Avoids animating the progressbar when its value is reset to zero.
-            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, null);
-            ConsoleProgressBar.Value = 0.0;
-
-            ConsoleProgressBar.Foreground = ResourceUtils.DefaultProgressBarColor;
+            _consoleTextBox.ResetProgressBar();
         }
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
@@ -121,53 +121,22 @@ namespace ChamiUI.Windows.MainWindow
 
         private void PrintTaskCancelledMessageToConsole()
         {
-            SystemSounds.Exclamation.Play();
-            ConsoleTextBox.Text += ChamiUIStrings.OperationCanceledMessage;
-            ConsoleTextBox.Text += "Reverting back to previous environment.";
-            ConsoleProgressBar.Foreground = System.Windows.Media.Brushes.Red;
+            _consoleTextBox.PrintTaskCancelledMessageToConsole();
+            
         }
 
         private void FocusConsoleTab(bool clearTextBox = true)
         {
+            ViewModel.FocusConsoleTab();
             if (clearTextBox)
             {
-                ConsoleTextBox.Text = "";
+                _consoleTextBox.ClearConsole();
             }
 
-            TabControls.SelectedIndex = ConsoleTabIndex;
+            //TabControls.SelectedIndex = ConsoleTabIndex;
         }
 
-        private void HandleProgressReport(CmdExecutorProgress o)
-        {
-            if (o.Message != null)
-            {
-                var message = o.Message;
-                message.TrimStart('\n');
-                if (!o.Message.EndsWith("\n"))
-                {
-                    message += "\n";
-                }
-
-                ConsoleTextBox.Text += message;
-            }
-
-            if (o.OutputStream != null)
-            {
-                StreamReader reader = new StreamReader(o.OutputStream);
-                ConsoleTextBox.Text += reader.ReadToEnd();
-            }
-
-            ConsoleTextBox.ScrollToEnd();
-            AnimateProgressBar(o);
-        }
-
-        private void AnimateProgressBar(CmdExecutorProgress o)
-        {
-            var duration = DurationFactory.FromMilliseconds(250);
-            DoubleAnimation doubleAnimation = new DoubleAnimation(o.Percentage, duration);
-            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, doubleAnimation);
-            ConsoleProgressBar.Value = o.Percentage;
-        }
+        
 
         private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
         {
@@ -284,28 +253,9 @@ namespace ChamiUI.Windows.MainWindow
             ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
         }
 
-        private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetText(ViewModel.SelectedVariable.Value);
-        }
+        
 
-        private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var selectedEnvironmentVariables = new List<object>();
-            foreach (var envVar in CurrentEnvironmentVariablesDataGrid.SelectedItems)
-            {
-                selectedEnvironmentVariables.Add(envVar);
-            }
-
-            foreach (var environmentVariable in selectedEnvironmentVariables)
-            {
-                if (environmentVariable is EnvironmentVariableViewModel vm)
-                {
-                    ViewModel.SelectedVariable = vm;
-                    ViewModel.DeleteSelectedVariable();
-                }
-            }
-        }
+       
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
@@ -376,22 +326,6 @@ namespace ChamiUI.Windows.MainWindow
         private void EnvironmentsListboxItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ApplyEnvironmentButton_OnClick(sender, e);
-        }
-
-        private void CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Delete)
-            {
-                foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
-                {
-                    if (row is EnvironmentVariableViewModel environmentVariableViewModel)
-                    {
-                        ViewModel.SelectedVariable = environmentVariableViewModel;
-                        ViewModel.DeleteSelectedVariable();
-                        e.Handled = true;
-                    }
-                }
-            }
         }
 
         private void UndoEditing_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -666,37 +600,11 @@ namespace ChamiUI.Windows.MainWindow
             ViewModel.SaveWindowState(Width, Height, Left, Top, WindowState, sortDescription);
         }
 
-        private void OpenAsFolderMenuItem_OnClick(object sender, RoutedEventArgs e)
+        private void HandleProgressReport(CmdExecutorProgress o)
         {
-            try
-            {
-                ViewModel.OpenFolder();
-            }
-            catch (ChamiFolderException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            _consoleTextBox.HandleProgressReport(o);
         }
 
-        private void ConsoleClearMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            ConsoleTextBox.Clear();
-        }
-
-        private void ConsoleCopyMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(ConsoleTextBox.Text))
-            {
-                return;
-            }
-            
-            var selectedText = ConsoleTextBox.SelectedText;
-            if (string.IsNullOrWhiteSpace(selectedText))
-            {
-                selectedText = ConsoleTextBox.Text;
-            }
-
-            Clipboard.SetText(selectedText);
-        }
+        
     }
 }

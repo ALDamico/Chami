@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="ChamiUI.Controls.VariablesDataGrid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChamiUI.Controls"
+             xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300"
+             d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel}"
+             >
+    <UserControl.Resources>
+        <ContextMenu x:Key="EnvironmentVariablesContextMenu">
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="CopyEnvironmentVariableMenuItem"
+                      Click="CopyEnvironmentVariableMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svgc:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
+                </MenuItem.Icon>
+            </MenuItem>
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="OpenAsFolderMenuItem"
+                      Click="OpenAsFolderMenuItem_OnClick"
+                      IsEnabled="{Binding IsFolder}" />
+            <Separator />
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="DeleteEnvironmentVariableMenuItem"
+                      Click="DeleteEnvironmentVariableMenuItem_OnClick">
+                <MenuItem.Icon>
+                    <svgc:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
+                </MenuItem.Icon>
+            </MenuItem>
+        </ContextMenu>
+        <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
+                              Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
+        
+        <Style x:Key="ErrorStyle" TargetType="{x:Type DataGridRow}">
+            <Setter Property="Padding" Value="-2" />
+            <Setter Property="ContextMenu"
+                    Value="{StaticResource EnvironmentVariablesContextMenu}" />
+            <Setter Property="Background" Value="White" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="True">
+                    <Setter Property="BorderBrush" Value="Red" />
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={RelativeSource Self},
+                Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+                <DataTrigger Binding="{Binding MarkedForDeletion}"
+                             Value="True">
+                    <Setter Property="Background" Value="OrangeRed" />
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="{Binding EditingEnabled}"
+                  CanUserDeleteRows="{Binding EditingEnabled}"
+                  IsReadOnly="{Binding IsDatagridReadonly}"
+                  SelectedItem="{Binding SelectedVariable}"
+                  PreviewKeyDown=" CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDow"
+                  RowStyle="{StaticResource ErrorStyle}"
+                  x:Name="CurrentEnvironmentVariablesDataGrid">
+                    <DataGrid.RowValidationRules>
+                        <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue"
+                            ValidatesOnTargetUpdated="True" />
+                        <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue"
+                            ValidatesOnTargetUpdated="True" />
+                        <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047"
+                            ValidationStep="UpdatedValue" ValidatesOnTargetUpdated="True" />
+                        <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule
+                            ValidationStep="UpdatedValue" ValidatesOnTargetUpdated="True" />
+                        <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
+                            ValidatesOnTargetUpdated="True"
+                            EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
+                    </DataGrid.RowValidationRules>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="65"
+                                            Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                            x:Name="DataGridNameColumn"
+                                            Header="{lex:Loc Key=DataGridNameColumn}" />
+                        <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
+                                            x:Name="DataGridValueColumn"
+                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" />
+                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
+                                                x:Name="DataGridIsFolderColumn"
+                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}" 
+                                                x:Name="DataGridMarkedForDeletionColumn"
+                                                Binding="{Binding MarkedForDeletion}"
+                                                IsReadOnly="True"
+                                                ></DataGridCheckBoxColumn>
+                    </DataGrid.Columns>
+                </DataGrid>
+    </Grid>
+</UserControl>
