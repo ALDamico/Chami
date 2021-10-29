@@ -4,32 +4,31 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.ViewModels;
+using ChamiUI.PresentationLayer.ViewModels.Interfaces;
 
 namespace ChamiUI.Controls
 {
     public partial class VariablesDataGrid : UserControl
     {
-        public VariablesDataGrid(ViewModelBase viewModel)
+        public VariablesDataGrid(IEnvironmentDatagridModel viewModel)
         {
             DataContext = viewModel;
+            ViewModel = viewModel;
             InitializeComponent();
         }
 
+        private IEnvironmentDatagridModel ViewModel { get; set; }
+
         private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var viewModel = DataContext as MainWindowViewModel;
-            if (viewModel != null)
-            {
-                Clipboard.SetText(viewModel.SelectedVariable.Value);
-            }
+            Clipboard.SetText(ViewModel.SelectedVariable.Value);
         }
 
         private void OpenAsFolderMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var viewModel = DataContext as MainWindowViewModel;
             try
             {
-                viewModel.OpenFolder();
+                ViewModel.OpenFolder();
             }
             catch (ChamiFolderException ex)
             {
@@ -45,12 +44,8 @@ namespace ChamiUI.Controls
                 {
                     if (row is EnvironmentVariableViewModel environmentVariableViewModel)
                     {
-                        var viewModel = DataContext as MainWindowViewModel;
-                        if (viewModel != null)
-                        {
-                            viewModel.SelectedVariable = environmentVariableViewModel;
-                            viewModel.DeleteSelectedVariable();
-                        }
+                        ViewModel.SelectedVariable = environmentVariableViewModel;
+                        ViewModel.DeleteSelectedVariable();
 
                         e.Handled = true;
                     }
@@ -60,7 +55,6 @@ namespace ChamiUI.Controls
 
         private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var viewModel = DataContext as MainWindowViewModel;
             var selectedEnvironmentVariables = new List<object>();
             foreach (var envVar in CurrentEnvironmentVariablesDataGrid.SelectedItems)
             {
@@ -71,8 +65,8 @@ namespace ChamiUI.Controls
             {
                 if (environmentVariable is EnvironmentVariableViewModel vm)
                 {
-                    viewModel.SelectedVariable = vm;
-                    viewModel.DeleteSelectedVariable();
+                    ViewModel.SelectedVariable = vm;
+                    ViewModel.DeleteSelectedVariable();
                 }
             }
         }

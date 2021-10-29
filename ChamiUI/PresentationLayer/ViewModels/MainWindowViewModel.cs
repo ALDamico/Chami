@@ -25,10 +25,11 @@ using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.Utils;
+using ChamiUI.PresentationLayer.ViewModels.Interfaces;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class MainWindowViewModel : ViewModelBase
+    public class MainWindowViewModel : ViewModelBase, IEnvironmentDatagridModel
     {
         /// <summary>
         /// How the window should behave when it's minimized.

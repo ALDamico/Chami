@@ -253,10 +253,6 @@ namespace ChamiUI.Windows.MainWindow
             ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
         }
 
-        
-
-       
-
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(this);

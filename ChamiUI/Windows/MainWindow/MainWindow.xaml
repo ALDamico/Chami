@@ -359,6 +359,11 @@
                             <UserControl Content="{Binding Control}" />
                         </DataTemplate>
                     </contentTemplateSelectors:MainWindowContentTemplateSelector.VariablesDataTemplate>
+                    <contentTemplateSelectors:MainWindowContentTemplateSelector.DefaultDataTemplate>
+                        <DataTemplate DataType="{x:Type viewModels:TabbedControlViewModel}">
+                            <UserControl Content="{Binding Control}"></UserControl>
+                        </DataTemplate>
+                    </contentTemplateSelectors:MainWindowContentTemplateSelector.DefaultDataTemplate>
                 </contentTemplateSelectors:MainWindowContentTemplateSelector>
 
             </TabControl.ContentTemplateSelector>
