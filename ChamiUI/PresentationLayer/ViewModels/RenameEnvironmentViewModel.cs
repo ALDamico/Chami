@@ -1,4 +1,5 @@
 using System.Windows.Input;
+using Chami.Plugins.Contracts.ViewModels;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

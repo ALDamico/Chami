@@ -1,6 +1,6 @@
-﻿using ChamiUI.Controls;
+﻿using Chami.Plugins.Contracts.ViewModels;
+using ChamiUI.Controls;
 using ChamiUI.Localization;
-using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

@@ -1133,6 +1133,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Chami.CmdExecutor\Chami.CmdExecutor.csproj" />
+      <ProjectReference Include="..\Chami.Plugins.Contracts\Chami.Plugins.Contracts.csproj" />
       <ProjectReference Include="..\ChamiDbMigrations\Chami.Db.csproj" />
     </ItemGroup>
 

@@ -1,4 +1,5 @@
-﻿using ChamiUI.BusinessLayer.Adapters;
+﻿using Chami.Plugins.Contracts.ViewModels;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Validators;
 
 namespace ChamiUI.PresentationLayer.ViewModels

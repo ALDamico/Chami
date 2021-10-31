@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
+using Chami.Plugins.Contracts.ViewModels;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exporters;
 

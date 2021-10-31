@@ -1,7 +1,6 @@
-﻿using System.Windows;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
-namespace ChamiUI.PresentationLayer.ViewModels
+namespace Chami.Plugins.Contracts.ViewModels
 {
     public class TabbedControlViewModel : ViewModelBase
     {

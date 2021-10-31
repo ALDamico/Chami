@@ -1,7 +1,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace ChamiUI.PresentationLayer.ViewModels
+namespace Chami.Plugins.Contracts.ViewModels
 {
     /// <summary>
     /// Base abstract class for all viewmodels in Chami that implements the <see cref="INotifyPropertyChanged"/>
@@ -16,7 +16,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Notify the UI a property has changed
         /// </summary>
         /// <param name="propertyName">The name of the property.</param>
-        [NotifyPropertyChangedInvocator]
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

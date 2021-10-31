@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Controls;
+using Chami.Plugins.Contracts.ViewModels;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Controls.ContentTemplateSelectors

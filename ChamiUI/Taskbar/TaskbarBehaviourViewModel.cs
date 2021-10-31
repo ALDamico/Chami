@@ -1,4 +1,5 @@
 ﻿using System.Windows.Input;
+using Chami.Plugins.Contracts.ViewModels;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.Taskbar.Commands;

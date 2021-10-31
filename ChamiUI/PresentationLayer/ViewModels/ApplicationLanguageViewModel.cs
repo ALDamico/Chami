@@ -1,4 +1,5 @@
 using Chami.Db.Entities;
+using Chami.Plugins.Contracts.ViewModels;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

@@ -1,4 +1,5 @@
-﻿using ChamiUI.BusinessLayer.Annotations;
+﻿using Chami.Plugins.Contracts.ViewModels;
+using ChamiUI.BusinessLayer.Annotations;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

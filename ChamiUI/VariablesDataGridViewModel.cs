@@ -1,4 +1,5 @@
-﻿using ChamiUI.Controls;
+﻿using Chami.Plugins.Contracts.ViewModels;
+using ChamiUI.Controls;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.PresentationLayer.ViewModels.Interfaces;

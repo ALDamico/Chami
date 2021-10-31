@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using Chami.Plugins.Contracts.ViewModels;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Minimizing;
 

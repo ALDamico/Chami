@@ -1,3 +1,5 @@
+using Chami.Plugins.Contracts.ViewModels;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     /// <summary>

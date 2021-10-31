@@ -4,6 +4,7 @@ using ChamiUI.Controls;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
+using Chami.Plugins.Contracts.ViewModels;
 using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels

@@ -4,17 +4,20 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
+using Chami.Plugins.Contracts.ViewModels;
 using ChamiUI.BusinessLayer;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class DetectedApplicationsViewModel:ViewModelBase
+    public class DetectedApplicationsViewModel : ViewModelBase
     {
         public DetectedApplicationsViewModel()
         {
             DetectedApplications = new ObservableCollection<WatchedApplicationViewModel>();
-            _detector = new RunningApplicationDetector(((App) Application.Current).Settings.WatchedApplicationSettings.WatchedApplications);
+            _detector = new RunningApplicationDetector(((App)Application.Current).Settings.WatchedApplicationSettings
+                .WatchedApplications);
         }
+
         private RunningApplicationDetector _detector;
         public ObservableCollection<WatchedApplicationViewModel> DetectedApplications { get; }
 
@@ -38,6 +41,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 return;
             }
+
             foreach (var app in newApplications)
             {
                 DetectedApplications.Add(app);
@@ -49,8 +53,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var pid = SelectedApplication.Pid;
 
             await KillProcessByPid(pid);
-            
-            
         }
 
         private async Task KillProcessByPid(int pid)
@@ -59,6 +61,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 return;
             }
+
             var process = Process.GetProcessById(pid);
             try
             {
@@ -67,7 +70,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
             catch (Exception ex)
             {
-                var logger = ((App) Application.Current).GetLogger();
+                var logger = ((App)Application.Current).GetLogger();
                 logger.Error(ex, "{ex}");
             }
         }

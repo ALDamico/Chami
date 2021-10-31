@@ -1,4 +1,6 @@
-﻿namespace ChamiUI.PresentationLayer.ViewModels
+﻿using Chami.Plugins.Contracts.ViewModels;
+
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     /// <summary>
     /// Viewmodel for watched applications.

@@ -11,12 +11,11 @@
         xmlns:svg="http://sharpvectors.codeplex.com/svgc/"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:commandProvider="clr-namespace:ChamiUI.PresentationLayer.Commands"
-        xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
-        xmlns:controls="clr-namespace:ChamiUI.Controls"
         xmlns:chamiUi="clr-namespace:ChamiUI"
         xmlns:contentTemplateSelectors="clr-namespace:ChamiUI.Controls.ContentTemplateSelectors"
+        xmlns:pluginsViewModels="clr-namespace:Chami.Plugins.Contracts.ViewModels;assembly=Chami.Plugins.Contracts"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         WindowStartupLocation="Manual"
@@ -360,7 +359,7 @@
                         </DataTemplate>
                     </contentTemplateSelectors:MainWindowContentTemplateSelector.VariablesDataTemplate>
                     <contentTemplateSelectors:MainWindowContentTemplateSelector.DefaultDataTemplate>
-                        <DataTemplate DataType="{x:Type viewModels:TabbedControlViewModel}">
+                        <DataTemplate DataType="{x:Type pluginsViewModels:TabbedControlViewModel}">
                             <UserControl Content="{Binding Control}"></UserControl>
                         </DataTemplate>
                     </contentTemplateSelectors:MainWindowContentTemplateSelector.DefaultDataTemplate>

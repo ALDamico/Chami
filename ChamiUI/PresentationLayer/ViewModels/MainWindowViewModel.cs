@@ -15,6 +15,7 @@ using System.Windows;
 using Chami.CmdExecutor;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
+using Chami.Plugins.Contracts.ViewModels;
 using ChamiUI.BusinessLayer.Commands;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.Controls;
