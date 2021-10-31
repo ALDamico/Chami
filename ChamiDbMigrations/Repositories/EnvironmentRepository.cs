@@ -289,8 +289,8 @@ namespace Chami.Db.Repositories
             }
 
             var environmentVariableInsertQuery = @"
-                INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId, IsFolder)
+                VALUES (?, ?, ?, ?, ?)
 ";
             using (var connection = GetConnection())
             {
@@ -299,7 +299,8 @@ namespace Chami.Db.Repositories
                     environmentVariable.Name,
                     environmentVariable.Value,
                     environmentVariable.AddedOn,
-                    environmentId
+                    environmentId,
+                    environmentVariable.IsFolder
                 };
                 connection.Execute(environmentVariableInsertQuery, updObj);
             }
