@@ -776,4 +776,7 @@ No action taken.</value>
   <data name="ConsoleClearMenuItem" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="PluginLoadErrorMessage" xml:space="preserve">
+    <value>Can't find plugin directory "{0}".</value>
+  </data>
 </root>

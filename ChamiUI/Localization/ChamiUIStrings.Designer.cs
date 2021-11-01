@@ -1462,6 +1462,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t find plugin directory &quot;{0}&quot;..
+        /// </summary>
+        public static string PluginLoadErrorMessage {
+            get {
+                return ResourceManager.GetString("PluginLoadErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process name.
         /// </summary>
         public static string ProcessNameColumn {

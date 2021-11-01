@@ -13,6 +13,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
+using Chami.Plugins.Contracts;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.Localization;
 using ChamiUI.Taskbar;
@@ -24,6 +25,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.BusinessLayer.PluginLoader;
 
 namespace ChamiUI
 {
@@ -41,6 +43,17 @@ namespace ChamiUI
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
+            LoadedPlugins = new List<IChamiPlugin>();
+            try
+            {
+                LoadPlugins();
+            }
+            catch (ChamiPluginException e)
+            {
+                Logger.GetLogger().Warning("Plugins folder not found. Will be created");
+                Directory.CreateDirectory("Plugins");
+            }
+            
             InitCmdExecutorMessages();
             MigrateDatabase();
             try
@@ -72,6 +85,16 @@ namespace ChamiUI
                 .AddLogging(l => l.AddSerilog(GetLogger())).BuildServiceProvider();
         }
 
+        private void LoadPlugins()
+        {
+            var pluginLoader = new ChamiPluginLoader(Environment.CurrentDirectory);
+            var plugins =  pluginLoader.LoadPlugins();
+            foreach (var plugin in plugins)
+            {
+                LoadedPlugins.Add(plugin);
+            }
+        }
+
         private void MigrateDatabase()
         {
             var runner = _serviceProvider.GetRequiredService<IMigrationRunner>();
@@ -81,6 +104,8 @@ namespace ChamiUI
         public ChamiLogger Logger { get; }
 
         public SettingsViewModel Settings { get; set; }
+        
+        public List<IChamiPlugin> LoadedPlugins { get; }
 
         public static string GetConnectionString()
         {
@@ -150,6 +175,10 @@ namespace ChamiUI
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)
                 {
+                    foreach (var plugin in LoadedPlugins)
+                    {
+                        viewModel.TabbedControls.Add(plugin.PluginInterface);
+                    }
                     if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
                     {
                         viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;

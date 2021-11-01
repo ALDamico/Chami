@@ -776,4 +776,7 @@ Nessuna azione intrapresa.</value>
   <data name="ConsoleClearMenuItem" xml:space="preserve">
     <value>Pulisci</value>
   </data>
+  <data name="PluginLoadErrorMessage" xml:space="preserve">
+    <value>Impossibile trovare la cartella dei plugin "{0}".</value>
+  </data>
 </root>
