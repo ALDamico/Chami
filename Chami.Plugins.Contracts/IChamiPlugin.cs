@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using Chami.Plugins.Contracts.ViewModels;
+using FluentMigrator;
 
 namespace Chami.Plugins.Contracts
 {
@@ -6,5 +8,6 @@ namespace Chami.Plugins.Contracts
     {
         TabbedControlViewModel PluginInterface { get; }
         ChamiPluginInfo PluginInfo { get; }
+        List<Migration> PluginMigrations { get; }
     }
 }

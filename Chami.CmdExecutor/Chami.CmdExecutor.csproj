@@ -6,6 +6,9 @@
         <Authors>Andrea Luciano Damico</Authors>
         <PackageLicenseExpression>MIT</PackageLicenseExpression>
         <RepositoryUrl>https://github.com/ALDamico/Chami</RepositoryUrl>
+        <PackageVersion>1.0.1</PackageVersion>
+        <Title>CmdExecutor</Title>
+        <PackageProjectUrl>https://github.com/ALDamico/Chami</PackageProjectUrl>
     </PropertyGroup>
 
 </Project>

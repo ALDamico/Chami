@@ -38,7 +38,6 @@ namespace ChamiUI
         {
             Logger = new ChamiLogger();
             Logger.AddFileSink("chami.log");
-            _serviceProvider = CreateServices();
             InitializeComponent();
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
@@ -53,13 +52,15 @@ namespace ChamiUI
                 Logger.GetLogger().Warning("Plugins folder not found. Will be created");
                 Directory.CreateDirectory("Plugins");
             }
-            
+            _serviceProvider = CreateServices();
             InitCmdExecutorMessages();
             MigrateDatabase();
             try
             {
                 var connectionString = GetConnectionString();
-                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString), new WatchedApplicationDataAdapter(connectionString), new ApplicationLanguageDataAdapter(connectionString));
+                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
+                    new WatchedApplicationDataAdapter(connectionString),
+                    new ApplicationLanguageDataAdapter(connectionString));
             }
             catch (SQLiteException)
             {
@@ -77,18 +78,38 @@ namespace ChamiUI
 
         private IServiceProvider CreateServices()
         {
-            return new ServiceCollection()
-                .AddFluentMigratorCore()
-                .ConfigureRunner(r =>
-                    r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
-                        .Migrations())
-                .AddLogging(l => l.AddSerilog(GetLogger())).BuildServiceProvider();
+            var serviceCollection = new ServiceCollection()
+                    .AddFluentMigratorCore()
+                    .ConfigureRunner(r =>
+                        {
+                            r.AddSQLite().WithGlobalConnectionString(GetConnectionString())
+                                .ScanIn(typeof(Initial).Assembly)
+                                .For
+                                .Migrations();
+                            
+                            // Scan for migrations in loaded plugins
+                            foreach (var plugin in LoadedPlugins)
+                            {
+                                if (plugin.PluginMigrations != null)
+                                {
+                                    r.ScanIn(plugin.GetType().Assembly)
+                                        .For
+                                        .Migrations();
+                                }
+                            }
+                        }
+                    )
+                ;
+
+
+            serviceCollection.AddLogging(l => l.AddSerilog(GetLogger()));
+            return serviceCollection.BuildServiceProvider();
         }
 
         private void LoadPlugins()
         {
             var pluginLoader = new ChamiPluginLoader(Environment.CurrentDirectory);
-            var plugins =  pluginLoader.LoadPlugins();
+            var plugins = pluginLoader.LoadPlugins();
             foreach (var plugin in plugins)
             {
                 LoadedPlugins.Add(plugin);
@@ -104,7 +125,7 @@ namespace ChamiUI
         public ChamiLogger Logger { get; }
 
         public SettingsViewModel Settings { get; set; }
-        
+
         public List<IChamiPlugin> LoadedPlugins { get; }
 
         public static string GetConnectionString()
@@ -119,7 +140,6 @@ namespace ChamiUI
                 // A unit test is running. Use its connection string instead
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
-
         }
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
@@ -170,7 +190,7 @@ namespace ChamiUI
             MainWindow = mainWindow;
             _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
-            
+
             if (_taskbarIcon != null)
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)
@@ -179,6 +199,7 @@ namespace ChamiUI
                     {
                         viewModel.TabbedControls.Add(plugin.PluginInterface);
                     }
+
                     if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
                     {
                         viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
