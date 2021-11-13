@@ -11,6 +11,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
 using Chami.Plugins.Contracts;
@@ -52,6 +53,7 @@ namespace ChamiUI
                 Logger.GetLogger().Warning("Plugins folder not found. Will be created");
                 Directory.CreateDirectory("Plugins");
             }
+
             _serviceProvider = CreateServices();
             InitCmdExecutorMessages();
             MigrateDatabase();
@@ -86,16 +88,13 @@ namespace ChamiUI
                                 .ScanIn(typeof(Initial).Assembly)
                                 .For
                                 .Migrations();
-                            
+
                             // Scan for migrations in loaded plugins
                             foreach (var plugin in LoadedPlugins)
                             {
-                                if (plugin.PluginMigrations != null)
-                                {
-                                    r.ScanIn(plugin.GetType().Assembly)
-                                        .For
-                                        .Migrations();
-                                }
+                                r.ScanIn(plugin.GetType().Assembly)
+                                    .For
+                                    .Migrations();
                             }
                         }
                     )
@@ -186,6 +185,26 @@ namespace ChamiUI
             InitLocalization();
             DetectOtherInstance();
             var mainWindow = new MainWindow();
+            foreach (var plugin in LoadedPlugins)
+            {
+                ToolBar toolbar = null;
+                try
+                {
+                    toolbar = plugin.GetPluginToolbar();
+                }
+                catch (NotImplementedException ex)
+                {
+                    GetLogger().Warning(
+                        "Plugin {PluginName} threw a NotImplementedException. If a plugin shouldn't expose a toolbar, the GetPluginToolbar should return null. Exception: {ExceptionMessage}",
+                        plugin.PluginInfo.PluginName, ex.Message);
+                }
+
+                if (toolbar != null)
+                {
+                    mainWindow.MainWindowToolbarTray.ToolBars.Add(toolbar);
+                }
+            }
+
             mainWindow.ResumeState();
             MainWindow = mainWindow;
             _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
