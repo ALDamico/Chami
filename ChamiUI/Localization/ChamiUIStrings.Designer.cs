@@ -610,6 +610,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Disable.
+        /// </summary>
+        public static string DisablePluginButton_Content {
+            get {
+                return ResourceManager.GetString("DisablePluginButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dotEnv files.
         /// </summary>
         public static string DotEnvFileDialogDescription {
@@ -633,6 +642,15 @@ namespace ChamiUI.Localization {
         public static string EnableLoggingLabel_Content {
             get {
                 return ResourceManager.GetString("EnableLoggingLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable.
+        /// </summary>
+        public static string EnablePluginButton_Content {
+            get {
+                return ResourceManager.GetString("EnablePluginButton_Content", resourceCulture);
             }
         }
         
@@ -1467,6 +1485,42 @@ namespace ChamiUI.Localization {
         public static string PluginLoadErrorMessage {
             get {
                 return ResourceManager.GetString("PluginLoadErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin Manager.
+        /// </summary>
+        public static string PluginManager_Title {
+            get {
+                return ResourceManager.GetString("PluginManager_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can manage your Chami plugins from this window..
+        /// </summary>
+        public static string PluginManagerHelpText_Content {
+            get {
+                return ResourceManager.GetString("PluginManagerHelpText_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin Manager.
+        /// </summary>
+        public static string PluginManagerMenuItem {
+            get {
+                return ResourceManager.GetString("PluginManagerMenuItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Plugin Name.
+        /// </summary>
+        public static string PluginManagerPluginNameColumn {
+            get {
+                return ResourceManager.GetString("PluginManagerPluginNameColumn", resourceCulture);
             }
         }
         

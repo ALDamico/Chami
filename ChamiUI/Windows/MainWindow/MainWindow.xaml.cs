@@ -601,6 +601,12 @@ namespace ChamiUI.Windows.MainWindow
             _consoleTextBox.HandleProgressReport(o);
         }
 
-        
+
+        private void PluginManagerMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var pluginWindow = new PluginManager.PluginManager();
+            pluginWindow.Owner = this;
+            pluginWindow.ShowDialog();
+        }
     }
 }

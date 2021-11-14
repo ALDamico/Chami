@@ -169,6 +169,11 @@
                           Click="BackupEnvironmentMenuItem_OnClick" />
                 <Separator />
                 <MenuItem Header="{lex:Loc}"
+                          x:Name="PluginManagerMenuItem"
+                          Click="PluginManagerMenuItem_OnClick"
+                          ></MenuItem>
+                <Separator />
+                <MenuItem Header="{lex:Loc}"
                           x:Name="SettingsMenuItem"
                           Click="SettingsMenuItem_OnClick">
                     <MenuItem.Icon>

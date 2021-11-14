@@ -779,4 +779,22 @@ No action taken.</value>
   <data name="PluginLoadErrorMessage" xml:space="preserve">
     <value>Can't find plugin directory "{0}".</value>
   </data>
+  <data name="PluginManagerMenuItem" xml:space="preserve">
+    <value>Plugin Manager</value>
+  </data>
+  <data name="PluginManager_Title" xml:space="preserve">
+    <value>Plugin Manager</value>
+  </data>
+  <data name="PluginManagerHelpText_Content" xml:space="preserve">
+    <value>You can manage your Chami plugins from this window.</value>
+  </data>
+  <data name="DisablePluginButton_Content" xml:space="preserve">
+    <value>Disable</value>
+  </data>
+  <data name="EnablePluginButton_Content" xml:space="preserve">
+    <value>Enable</value>
+  </data>
+  <data name="PluginManagerPluginNameColumn" xml:space="preserve">
+    <value>Plugin Name</value>
+  </data>
 </root>
