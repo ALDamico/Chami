@@ -258,6 +258,8 @@ namespace ChamiUI
             var currentCulture = dataAdapter.GetCultureInfoByCode(Settings.LanguageSettings.CurrentLanguage.Code);
             LocalizeDictionary.Instance.Culture = currentCulture;
             ChamiUIStrings.Culture = currentCulture;
+            CultureInfo.CurrentCulture = currentCulture;
+            CultureInfo.CurrentUICulture = currentCulture;
         }
 
         private void App_OnExit(object sender, ExitEventArgs e)

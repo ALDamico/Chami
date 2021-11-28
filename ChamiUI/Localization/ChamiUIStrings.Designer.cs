@@ -1516,11 +1516,47 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Author.
+        /// </summary>
+        public static string PluginManagerPluginAuthorColumn {
+            get {
+                return ResourceManager.GetString("PluginManagerPluginAuthorColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Creation date.
+        /// </summary>
+        public static string PluginManagerPluginCreationDateColumn {
+            get {
+                return ResourceManager.GetString("PluginManagerPluginCreationDateColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {MM/dd/yyyy}.
+        /// </summary>
+        public static string PluginManagerPluginCreationDateColumnFormat {
+            get {
+                return ResourceManager.GetString("PluginManagerPluginCreationDateColumnFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Plugin Name.
         /// </summary>
         public static string PluginManagerPluginNameColumn {
             get {
                 return ResourceManager.GetString("PluginManagerPluginNameColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Version.
+        /// </summary>
+        public static string PluginManagerPluginVersionColumn {
+            get {
+                return ResourceManager.GetString("PluginManagerPluginVersionColumn", resourceCulture);
             }
         }
         

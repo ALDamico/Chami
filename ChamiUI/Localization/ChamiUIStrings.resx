@@ -797,4 +797,16 @@ No action taken.</value>
   <data name="PluginManagerPluginNameColumn" xml:space="preserve">
     <value>Plugin Name</value>
   </data>
+  <data name="PluginManagerPluginVersionColumn" xml:space="preserve">
+    <value>Version</value>
+  </data>
+  <data name="PluginManagerPluginAuthorColumn" xml:space="preserve">
+    <value>Author</value>
+  </data>
+  <data name="PluginManagerPluginCreationDateColumn" xml:space="preserve">
+    <value>Creation date</value>
+  </data>
+  <data name="PluginManagerPluginCreationDateColumnFormat" xml:space="preserve">
+    <value>{MM/dd/yyyy}</value>
+  </data>
 </root>

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:ChamiUI.Windows.PluginManager"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        xmlns:gl="clr-namespace:System.Globalization;assembly=System.Runtime"
         mc:Ignorable="d"
         Title="{lex:Loc Key=PluginManager_Title}" Height="600" Width="400"
         ResizeMode="NoResize"
@@ -42,6 +43,14 @@
                         <GridViewColumn x:Name="PluginManagerPluginVersionColumn"
                                         Header="{lex:Loc Key=PluginManagerPluginVersionColumn}"
                                         DisplayMemberBinding="{Binding Version}"
+                                        ></GridViewColumn>
+                        <GridViewColumn x:Name="PluginManagerPluginAuthorColumn"
+                                        Header="{lex:Loc Key=PluginManagerPluginAuthorColumn}"
+                                        DisplayMemberBinding="{Binding Author}"
+                                        ></GridViewColumn>
+                        <GridViewColumn x:Name="PluginManagerPluginCreationDateColumn" 
+                                        Header="{lex:Loc Key=PluginManagerPluginCreationDateColumn}"
+                                        DisplayMemberBinding="{Binding CreationDate, StringFormat='g', ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
                                         ></GridViewColumn>
                     </GridView.Columns>
                 </GridView>
