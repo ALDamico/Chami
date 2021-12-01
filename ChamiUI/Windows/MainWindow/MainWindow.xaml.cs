@@ -58,6 +58,7 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private MainWindowViewModel ViewModel { get; set; }
+        
 
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -86,6 +87,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
+
             ViewModel.CanUserInterrupt = true;
             if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
             {
@@ -563,7 +565,13 @@ namespace ChamiUI.Windows.MainWindow
 
         private void FilterTextbox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            SubscribeToFilterEvent("EnvironmentsViewSource");
+            SubscribeToFilterEvent("BackupEnvironmentsViewSource");
+        }
+
+        private void SubscribeToFilterEvent(string viewSourceName)
+        {
+            Resources.TryGetCollectionViewSource(viewSourceName, out var collectionViewSource);
             if (collectionViewSource != null)
             {
                 collectionViewSource.Filter += ViewModel.FilterStrategy.OnFilter;
@@ -689,7 +697,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
-            
+
             var selectedText = ConsoleTextBox.SelectedText;
             if (string.IsNullOrWhiteSpace(selectedText))
             {
@@ -699,24 +707,22 @@ namespace ChamiUI.Windows.MainWindow
             Clipboard.SetText(selectedText);
         }
 
-        private const int TABITEM_ENVIRONMENTS_IDX = 0;
-        private const int TABITEM_TEMPLATES_IDX = 1;
-        private const int TABITEM_BACKUPS_IDX = 2;
+       
 
         private void EnvironmentTypeTabItem_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_ENVIRONMENTS_IDX)
+            // ReSharper disable once PossibleUnintendedReferenceComparison
+            if (e.Source != EnvironmentTypeTabItem)
             {
-                ViewModel.SelectedEnvironment = ViewModel.Environments.FirstOrDefault();
+                return;
             }
-            else if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_TEMPLATES_IDX)
-            {
-                ViewModel.SelectedEnvironment = ViewModel.Templates.FirstOrDefault();
-            }
-            else if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_BACKUPS_IDX)
-            {
-                ViewModel.SelectedEnvironment = ViewModel.Backups.FirstOrDefault();
-            }
+
+            
+        }
+
+        private void BackupEnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            ViewModel.FilterStrategy.OnFilter(sender, e);
         }
     }
 }

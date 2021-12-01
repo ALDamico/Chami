@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Chami.Db.Entities;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -133,5 +134,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             return environmentViewModel2.Id == Id;
         }
+
+        private EnvironmentType _environmentType;
+
+        public EnvironmentType EnvironmentType
+        {
+            get => _environmentType;
+            set
+            {
+                _environmentType = value;
+                OnPropertyChanged(nameof(EnvironmentType));
+                OnPropertyChanged(nameof(IsEditable));
+            }
+        }
+
+        public bool IsEditable => EnvironmentType != EnvironmentType.BackupEnvironment;
     }
 }

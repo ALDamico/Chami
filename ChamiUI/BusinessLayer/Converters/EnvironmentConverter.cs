@@ -20,6 +20,7 @@ namespace ChamiUI.BusinessLayer.Converters
             environment.Name = model.Name;
             environment.AddedOn = model.AddedOn;
             environment.EnvironmentId = model.Id;
+            environment.EnvironmentType = model.EnvironmentType;
 
             var variableConverter = new EnvironmentVariableConverter();
             foreach (var variable in model.EnvironmentVariables)
@@ -28,7 +29,8 @@ namespace ChamiUI.BusinessLayer.Converters
                 var isValid = variableEntityValidator.Validate(variable);
                 if (isValid.IsValid)
                 {
-                    environment.EnvironmentVariables.Add(variableConverter.From(variable));
+                    var convertedVariable = variableConverter.From(variable);
+                    environment.EnvironmentVariables.Add(convertedVariable);
                 }
             }
 
@@ -46,11 +48,14 @@ namespace ChamiUI.BusinessLayer.Converters
             viewModel.Id = entity.EnvironmentId;
             viewModel.Name = entity.Name;
             viewModel.AddedOn = entity.AddedOn;
+            viewModel.EnvironmentType = entity.EnvironmentType;
 
             var variableConverter = new EnvironmentVariableConverter();
             foreach (var variable in entity.EnvironmentVariables)
             {
-                viewModel.EnvironmentVariables.Add(variableConverter.To(variable));
+                var convertedEntity = variableConverter.To(variable);
+                convertedEntity.Environment = viewModel;
+                viewModel.EnvironmentVariables.Add(convertedEntity);
             }
 
             return viewModel;

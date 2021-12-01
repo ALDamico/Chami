@@ -58,5 +58,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Describes the state of the main window on loading.
         /// </summary>
         public WindowState WindowState { get; set; }
+        
+        /// <summary>
+        /// The index of the selected environment type tab.
+        /// </summary>
+        public int SelectedEnvironmentTypeTab { get; set; }
+        
+        /// <summary>
+        /// Represents which tab is selected
+        /// </summary>
+        public int TabControlsIndex { get; set; }
     }
 }

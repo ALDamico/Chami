@@ -776,4 +776,10 @@ No action taken.</value>
   <data name="ConsoleClearMenuItem" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="BackupEnvironmentsTabItem_Header" xml:space="preserve">
+    <value>Backups</value>
+  </data>
+  <data name="BackupDefaultName" xml:space="preserve">
+    <value>Backup of {0}</value>
+  </data>
 </root>

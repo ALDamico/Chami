@@ -248,9 +248,38 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Determines if the Apply button in the window is enabled (i.e., there's no editing and no environment
         /// switching on progress.
         /// </summary>
-        public bool ExecuteButtonPlayEnabled => !EditingEnabled && CanUserInterrupt;
+        public bool ExecuteButtonPlayEnabled => !EditingEnabled && CanUserInterrupt && SelectedEnvironmentTypeTabIndex == 0;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
+
+        private int _selectedEnvironmentTypeTabIndex;
+
+        public int SelectedEnvironmentTypeTabIndex
+        {
+            get => _selectedEnvironmentTypeTabIndex;
+            set
+            {
+                _selectedEnvironmentTypeTabIndex = value;
+                if (_selectedEnvironmentTypeTabIndex == TABITEM_NORMAL_ENV_IDX)
+                {
+                    SelectedEnvironment = Environments.FirstOrDefault();
+                }
+                else if (_selectedEnvironmentTypeTabIndex == TABITEM_BACKUP_ENV_IDX)
+                {
+                    SelectedEnvironment = Backups.FirstOrDefault();
+                }
+                else if (_selectedEnvironmentTypeTabIndex == TABITEM_TEMPLATE_ENV_IDX)
+                {
+                    SelectedEnvironment = Templates.FirstOrDefault();
+                }
+                OnPropertyChanged(nameof(SelectedEnvironmentTypeTabIndex));
+                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
+            }
+        }
+        
+        private const int TABITEM_NORMAL_ENV_IDX = 0;
+        private const int TABITEM_BACKUP_ENV_IDX = 2;
+        private const int TABITEM_TEMPLATE_ENV_IDX = 1;
 
         /// <summary>
         /// Reacts to the EnvironmentChanged event.
@@ -456,7 +485,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
-                if (SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled) || !CanUserInterrupt)
+                if ((SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled) ||
+                     !CanUserInterrupt) || SelectedEnvironmentTypeTabIndex != 0)
                 {
                     return "/Assets/Svg/play_disabled.svg";
                 }
@@ -562,6 +592,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _dataAdapter.DeleteEnvironment(SelectedEnvironment);
             Environments.Remove(SelectedEnvironment);
+            Backups.Remove(SelectedEnvironment);
+            Templates.Remove(SelectedEnvironment);
             SelectedEnvironment = null;
         }
 
@@ -624,6 +656,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void BackupEnvironment()
         {
             _dataAdapter.BackupEnvironment();
+            Backups = GetBackupEnvironments();
         }
 
         /// <summary>
@@ -722,7 +755,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             environmentToSave.Name = argsNewName;
             var newSelectedEnvironment = _dataAdapter.SaveEnvironment(environmentToSave);
             Environments = GetEnvironments();
-            OnPropertyChanged(nameof(Environments));
+            Backups = GetBackupEnvironments();
+            Templates = GetTemplateEnvironments();
 
             SelectedEnvironment = newSelectedEnvironment;
             if (SelectedEnvironment.Equals(ActiveEnvironment))

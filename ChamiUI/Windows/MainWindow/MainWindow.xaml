@@ -20,8 +20,7 @@
         StateChanged="MainWindow_OnStateChanged"
         AllowDrop="True"
         Drop="MainWindow_OnDrop"
-        Closing="MainWindow_OnClosing"
->
+        Closing="MainWindow_OnClosing">
     <Window.InputBindings>
         <KeyBinding
             Key="Escape"
@@ -38,11 +37,16 @@
         <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}"
                               Filter="EnvironmentsViewSource_OnFilter" />
 
+        <CollectionViewSource x:Key="BackupEnvironmentsViewSource" Source="{Binding Backups}"
+                              Filter="BackupEnvironmentsViewSource_OnFilter" />
+
         <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                               Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
-        <ContextMenu x:Key="EnvironmentListBoxContextMenu">
+        <ContextMenu x:Key="EnvironmentListBoxContextMenu"
+                     d:DataContext="{d:DesignInstance viewModels:EnvironmentViewModel}">
             <MenuItem Header="{lex:Loc}"
                       x:Name="EditEnvironmentMenuItem"
+                      IsEnabled="{Binding IsEditable}"
                       Click="EditEnvironmentMenuItem_OnClick">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
@@ -52,7 +56,7 @@
                       x:Name="RenameEnvironmentMenuItem"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
                       InputGestureText="F2" />
-            <MenuItem Header="Delete"
+            <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentMenuItem"
                       Click="DeleteEnvironmentMenuItem_OnClick">
                 <MenuItem.Icon>
@@ -61,9 +65,7 @@
             </MenuItem>
         </ContextMenu>
 
-        <Style TargetType="DataGridRow">
-            
-        </Style>
+        <Style TargetType="DataGridRow" />
         <ContextMenu x:Key="EnvironmentVariablesContextMenu">
             <MenuItem Header="{lex:Loc}"
                       x:Name="CopyEnvironmentVariableMenuItem"
@@ -72,11 +74,10 @@
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
                 </MenuItem.Icon>
             </MenuItem>
-            <MenuItem Header="{lex:Loc}" 
-                      x:Name="OpenAsFolderMenuItem" 
+            <MenuItem Header="{lex:Loc}"
+                      x:Name="OpenAsFolderMenuItem"
                       Click="OpenAsFolderMenuItem_OnClick"
-                      IsEnabled="{Binding IsFolder}"
-                      ></MenuItem>
+                      IsEnabled="{Binding IsFolder}" />
             <Separator />
             <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentVariableMenuItem"
@@ -87,10 +88,11 @@
             </MenuItem>
         </ContextMenu>
         <Style x:Key="ErrorStyle" TargetType="{x:Type DataGridRow}">
+
             <Setter Property="Padding" Value="-2" />
             <Setter Property="ContextMenu"
                     Value="{StaticResource EnvironmentVariablesContextMenu}" />
-            <Setter Property="Background" Value="White"></Setter>
+            <Setter Property="Background" Value="White" />
             <Style.Triggers>
                 <Trigger Property="Validation.HasError" Value="True">
                     <Setter Property="BorderBrush" Value="Red" />
@@ -101,9 +103,7 @@
                 </Trigger>
                 <DataTrigger Binding="{Binding MarkedForDeletion}"
                              Value="True">
-                    <Setter Property="Background" Value="OrangeRed">
-                                        
-                    </Setter>
+                    <Setter Property="Background" Value="OrangeRed" />
                 </DataTrigger>
             </Style.Triggers>
         </Style>
@@ -143,7 +143,7 @@
         <CommandBinding x:Name="CreateTemplateCommandBinding"
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.CreateTemplateEnvironmentCommand}"
                         CanExecute="CreateTemplateCommandBinding_OnCanExecute"
-                        Executed="CreateTemplateCommandBinding_OnExecuted"></CommandBinding>
+                        Executed="CreateTemplateCommandBinding_OnExecuted" />
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -165,9 +165,9 @@
                 <MenuItem Header="{lex:Loc}"
                           x:Name="NewEnvironmentMenuItem"
                           Command="New" />
-                <MenuItem x:Name="NewTemplateMenuItem" 
-                          Header="{lex:Loc}" 
-                          Command="{x:Static commandProvider:MainWindowCommandsProvider.CreateTemplateEnvironmentCommand}"></MenuItem>
+                <MenuItem x:Name="NewTemplateMenuItem"
+                          Header="{lex:Loc}"
+                          Command="{x:Static commandProvider:MainWindowCommandsProvider.CreateTemplateEnvironmentCommand}" />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="SaveEnvironmentMenuItem"
                           Command="Save" />
@@ -182,7 +182,7 @@
                           x:Name="QuitApplicationMenuItem"
                           Click="QuitApplicationMenuItem_OnClick" />
             </MenuItem>
-            
+
             <MenuItem Header="{lex:Loc}" x:Name="MainWindowEditMenuItem">
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
@@ -280,8 +280,7 @@
                                       x:Name="DescendingSortingCheckBox"
                                       IsChecked="{Binding IsDescendingSorting}"
                                       Checked="SortDescendingMenuItem_OnChecked"
-                                      Unchecked="SortDescendingMenuItem_OnUnchecked" 
-                                      />
+                                      Unchecked="SortDescendingMenuItem_OnUnchecked" />
                         </StackPanel>
 
                     </GroupBox>
@@ -297,11 +296,11 @@
                             </Grid.ColumnDefinitions>
 
                             <Label Grid.Row="0" Grid.Column="0" x:Name="FilteringStrategyLabel" Content="{lex:Loc}" />
-                            <svg:SvgViewbox MaxHeight="16" MaxWidth="16" Grid.Row="1" Grid.Column="0" ToolTip="{lex:Loc}" x:Name="FilteringCaseSensitivityIcon" Source="/ChamiUI;component/Assets/Svg/font.svg">
-                                
-                            </svg:SvgViewbox>
-                            
-                           <!-- <Label Grid.Row="1" Grid.Column="0" x:Name="FilteringCaseSensitivityLabel"
+                            <svg:SvgViewbox MaxHeight="16" MaxWidth="16" Grid.Row="1" Grid.Column="0"
+                                            ToolTip="{lex:Loc}" x:Name="FilteringCaseSensitivityIcon"
+                                            Source="/ChamiUI;component/Assets/Svg/font.svg" />
+
+                            <!-- <Label Grid.Row="1" Grid.Column="0" x:Name="FilteringCaseSensitivityLabel"
                                    Content="{lex:Loc}" />-->
                             <ComboBox Grid.Row="0"
                                       Grid.Column="1"
@@ -310,12 +309,11 @@
                                       SelectionChanged="FilterStrategySelector_OnSelectionChanged"
                                       Width="150"
                                       MaxWidth="150"
-                                      ToolTip="{Binding FilterStrategyComboboxToolTip}"
-                                      >
+                                      ToolTip="{Binding FilterStrategyComboboxToolTip}">
                                 <ComboBox.ItemTemplate>
                                     <DataTemplate>
-                                        <TextBlock Text="{Binding Name}" 
-                                                   ToolTip="{Binding Name}"></TextBlock>
+                                        <TextBlock Text="{Binding Name}"
+                                                   ToolTip="{Binding Name}" />
                                     </DataTemplate>
                                 </ComboBox.ItemTemplate>
                             </ComboBox>
@@ -339,20 +337,22 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem" SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged">
+            <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem"
+                        SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged"
+                        SelectedIndex="{Binding SelectedEnvironmentTypeTabIndex}">
                 <TabItem Header="Ambienti">
-                    <ListBox 
+                    <ListBox
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
                         x:Name="EnvironmentsListbox"
                         SelectedItem="{Binding SelectedEnvironment}"
-                        SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
-                    >
+                        SelectionChanged="EnvironmentsListbox_OnSelectionChanged">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="ContextMenu"
                                         Value="{StaticResource EnvironmentListBoxContextMenu}" />
-                                <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListboxItem_OnMouseDoubleClick"></EventSetter>
+                                <EventSetter Event="MouseDoubleClick"
+                                             Handler="EnvironmentsListboxItem_OnMouseDoubleClick" />
                             </Style>
                         </ListBox.ItemContainerStyle>
                         <ListBox.ItemTemplate>
@@ -364,15 +364,17 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </TabItem>
-                <TabItem Header="Template"></TabItem>
-                <TabItem Header="Backup">
+                <TabItem Header="Template" />
+                <TabItem x:Name="BackupEnvironmentsTabItem" Header="{lex:Loc}">
                     <ListBox Margin="5,5,5,5" SelectedItem="{Binding SelectedEnvironment}"
-                             SelectionChanged="EnvironmentsListbox_OnSelectionChanged" ItemsSource="{Binding Backups}">
+                             SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
+                             ItemsSource="{Binding Source={StaticResource BackupEnvironmentsViewSource}}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="ContextMenu"
                                         Value="{StaticResource EnvironmentListBoxContextMenu}" />
-                                <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListboxItem_OnMouseDoubleClick"></EventSetter>
+                                <EventSetter Event="MouseDoubleClick"
+                                             Handler="EnvironmentsListboxItem_OnMouseDoubleClick" />
                             </Style>
                         </ListBox.ItemContainerStyle>
                         <ListBox.ItemTemplate>
@@ -385,30 +387,29 @@
                     </ListBox>
                 </TabItem>
             </TabControl>
-            
+
             <Button Grid.Column="1"
                     ToolTip="{lex:Loc}"
                     MaxWidth="22"
                     MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
                     Click="ApplyEnvironmentButton_OnClick"
-                    IsEnabled="{Binding ExecuteButtonPlayEnabled}"
-                    >
+                    IsEnabled="{Binding ExecuteButtonPlayEnabled}">
                 <svg:SvgViewbox MaxWidth="16"
                                 MaxHeight="16"
                                 Source="{Binding ExecuteButtonIcon}" />
             </Button>
 
         </Grid>
-        <GridSplitter Grid.Row="4" 
-                      Grid.Column="0" 
-                      Height="2" 
-                      ResizeBehavior="PreviousAndNext" 
-                      ResizeDirection="Rows" 
-                      ShowsPreview="True" 
+        <GridSplitter Grid.Row="4"
+                      Grid.Column="0"
+                      Height="2"
+                      ResizeBehavior="PreviousAndNext"
+                      ResizeDirection="Rows"
+                      ShowsPreview="True"
                       Background="Black"
-                      HorizontalAlignment="Stretch" 
-                      VerticalAlignment="Center"></GridSplitter>
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center" />
         <TabControl Grid.Row="5"
                     Grid.Column="0"
                     x:Name="TabControls">
@@ -422,6 +423,12 @@
                           PreviewKeyDown="CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown"
                           RowStyle="{StaticResource ErrorStyle}"
                           x:Name="CurrentEnvironmentVariablesDataGrid">
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell">
+                            <Setter Property="ToolTip"
+                                    Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Text}" />
+                        </Style>
+                    </DataGrid.CellStyle>
                     <DataGrid.RowValidationRules>
                         <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue"
                             ValidatesOnTargetUpdated="True" />
@@ -441,16 +448,16 @@
                                             x:Name="DataGridNameColumn"
                                             Header="{lex:Loc Key=DataGridNameColumn}" />
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
+                                            Width="300"
                                             x:Name="DataGridValueColumn"
                                             Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" />
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
                                                 x:Name="DataGridIsFolderColumn"
-                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>
-                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}" 
+                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}" />
+                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}"
                                                 x:Name="DataGridMarkedForDeletionColumn"
                                                 Binding="{Binding MarkedForDeletion}"
-                                                IsReadOnly="True"
-                                                ></DataGridCheckBoxColumn>
+                                                IsReadOnly="True" />
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
@@ -470,15 +477,17 @@
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              TextWrapping="Wrap"
-                             IsReadOnly="True" >
+                             IsReadOnly="True">
                         <TextBox.ContextMenu>
                             <ContextMenu>
-                                <MenuItem x:Name="ConsoleCopyMenuItem" Header="{lex:Loc}" Click="ConsoleCopyMenuItem_OnClick"></MenuItem>
-                                <Separator></Separator>
-                                <MenuItem x:Name="ConsoleClearMenuItem" Header="{lex:Loc}" Click="ConsoleClearMenuItem_OnClick"></MenuItem>
+                                <MenuItem x:Name="ConsoleCopyMenuItem" Header="{lex:Loc}"
+                                          Click="ConsoleCopyMenuItem_OnClick" />
+                                <Separator />
+                                <MenuItem x:Name="ConsoleClearMenuItem" Header="{lex:Loc}"
+                                          Click="ConsoleClearMenuItem_OnClick" />
                             </ContextMenu>
                         </TextBox.ContextMenu>
-                        
+
                     </TextBox>
                     <ProgressBar Grid.Row="1"
                                  x:Name="ConsoleProgressBar"
