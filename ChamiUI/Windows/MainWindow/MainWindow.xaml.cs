@@ -698,5 +698,25 @@ namespace ChamiUI.Windows.MainWindow
 
             Clipboard.SetText(selectedText);
         }
+
+        private const int TABITEM_ENVIRONMENTS_IDX = 0;
+        private const int TABITEM_TEMPLATES_IDX = 1;
+        private const int TABITEM_BACKUPS_IDX = 2;
+
+        private void EnvironmentTypeTabItem_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_ENVIRONMENTS_IDX)
+            {
+                ViewModel.SelectedEnvironment = ViewModel.Environments.FirstOrDefault();
+            }
+            else if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_TEMPLATES_IDX)
+            {
+                ViewModel.SelectedEnvironment = ViewModel.Templates.FirstOrDefault();
+            }
+            else if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_BACKUPS_IDX)
+            {
+                ViewModel.SelectedEnvironment = ViewModel.Backups.FirstOrDefault();
+            }
+        }
     }
 }

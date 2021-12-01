@@ -164,6 +164,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
             _settingsDataAdapter = new SettingsDataAdapter(connectionString);
             Environments = GetEnvironments();
+            Backups = GetBackupEnvironments();
+            Templates = GetTemplateEnvironments();
             EditingEnabled = false;
             if (Environments.Any())
             {
@@ -421,6 +423,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Contains all environments present in the datastore.
         /// </summary>
         public ObservableCollection<EnvironmentViewModel> Environments { get; set; }
+        
+        public ObservableCollection<EnvironmentViewModel> Templates { get; set; }
+        public ObservableCollection<EnvironmentViewModel> Backups { get; set; }
 
         private EnvironmentViewModel _selectedEnvironment;
 
@@ -505,6 +510,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             Environments = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
             return Environments;
+        }
+
+        private ObservableCollection<EnvironmentViewModel> GetBackupEnvironments()
+        {
+            Backups = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetBackupEnvironments());
+            return Backups;
+        }
+
+        private ObservableCollection<EnvironmentViewModel> GetTemplateEnvironments()
+        {
+            Templates = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetTemplateEnvironments());
+            return Templates;
         }
 
         private readonly EnvironmentDataAdapter _dataAdapter;

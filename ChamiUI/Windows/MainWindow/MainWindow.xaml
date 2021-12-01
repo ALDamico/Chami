@@ -339,28 +339,53 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <ListBox Grid.Column="0"
-                     Margin="5,5,5,5"
-                     ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
-                     x:Name="EnvironmentsListbox"
-                     SelectedItem="{Binding SelectedEnvironment}"
-                     SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
-                     >
-                <ListBox.ItemContainerStyle>
-                    <Style TargetType="ListBoxItem">
-                        <Setter Property="ContextMenu"
-                                Value="{StaticResource EnvironmentListBoxContextMenu}" />
-                        <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListboxItem_OnMouseDoubleClick"></EventSetter>
-                    </Style>
-                </ListBox.ItemContainerStyle>
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding DisplayName}"
-                                   FontWeight="{Binding TextFontWeight}"
-                                   Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem" SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged">
+                <TabItem Header="Ambienti">
+                    <ListBox 
+                        Margin="5,5,5,5"
+                        ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
+                        x:Name="EnvironmentsListbox"
+                        SelectedItem="{Binding SelectedEnvironment}"
+                        SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
+                    >
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="ContextMenu"
+                                        Value="{StaticResource EnvironmentListBoxContextMenu}" />
+                                <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListboxItem_OnMouseDoubleClick"></EventSetter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}"
+                                           FontWeight="{Binding TextFontWeight}"
+                                           Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+                <TabItem Header="Template"></TabItem>
+                <TabItem Header="Backup">
+                    <ListBox Margin="5,5,5,5" SelectedItem="{Binding SelectedEnvironment}"
+                             SelectionChanged="EnvironmentsListbox_OnSelectionChanged" ItemsSource="{Binding Backups}">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="ContextMenu"
+                                        Value="{StaticResource EnvironmentListBoxContextMenu}" />
+                                <EventSetter Event="MouseDoubleClick" Handler="EnvironmentsListboxItem_OnMouseDoubleClick"></EventSetter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}"
+                                           FontWeight="{Binding TextFontWeight}"
+                                           Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+            </TabControl>
+            
             <Button Grid.Column="1"
                     ToolTip="{lex:Loc}"
                     MaxWidth="22"
