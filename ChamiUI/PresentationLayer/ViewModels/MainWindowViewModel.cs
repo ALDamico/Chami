@@ -368,7 +368,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var isCurrentVariableDisabled =
                     safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
                         v.Name == environmentVariable.Name) != null;
-                if (isCurrentVariableDisabled && isSafetyEnabled) 
+                if (isCurrentVariableDisabled && isSafetyEnabled)
                 {
                     newCommand =
                         EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand), environmentVariable);
@@ -422,10 +422,33 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Contains all environments present in the datastore.
         /// </summary>
-        public ObservableCollection<EnvironmentViewModel> Environments { get; set; }
-        
-        public ObservableCollection<EnvironmentViewModel> Templates { get; set; }
-        public ObservableCollection<EnvironmentViewModel> Backups { get; set; }
+        public ObservableCollection<EnvironmentViewModel> Environments { get; }
+
+        /// <summary>
+        /// Contains all template environments to be shown in the main window.
+        /// </summary>
+        public ObservableCollection<EnvironmentViewModel> Templates { get; }
+
+        /// <summary>
+        /// Contains all backup environments to be shown in the main window.
+        /// </summary>
+        public ObservableCollection<EnvironmentViewModel> Backups { get; }
+
+        public void ChangeTab(EnvironmentType type)
+        {
+            switch (type)
+            {
+                case EnvironmentType.TemplateEnvironment:
+                    SelectedEnvironment = Templates.FirstOrDefault();
+                    break;
+                case EnvironmentType.BackupEnvironment:
+                    SelectedEnvironment = Backups.FirstOrDefault();
+                    break;
+                default:
+                    SelectedEnvironment = Environments.FirstOrDefault();
+                    break;
+            }
+        }
 
         private EnvironmentViewModel _selectedEnvironment;
 
@@ -508,20 +531,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private ObservableCollection<EnvironmentViewModel> GetEnvironments()
         {
-            Environments = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
-            return Environments;
+            return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
         }
 
         private ObservableCollection<EnvironmentViewModel> GetBackupEnvironments()
         {
-            Backups = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetBackupEnvironments());
-            return Backups;
+            return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetBackupEnvironments());
         }
 
         private ObservableCollection<EnvironmentViewModel> GetTemplateEnvironments()
         {
-            Templates = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetTemplateEnvironments());
-            return Templates;
+            return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetTemplateEnvironments());
         }
 
         private readonly EnvironmentDataAdapter _dataAdapter;
@@ -562,6 +582,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _dataAdapter.DeleteEnvironment(SelectedEnvironment);
             Environments.Remove(SelectedEnvironment);
+            Backups.Remove(SelectedEnvironment);
+            Templates.Remove(SelectedEnvironment);
             SelectedEnvironment = null;
         }
 
@@ -624,6 +646,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void BackupEnvironment()
         {
             _dataAdapter.BackupEnvironment();
+            Backups.Clear();
+            var backups = GetBackupEnvironments();
+            foreach (var backup in backups)
+            {
+                Backups.Add(backup);
+            }
         }
 
         /// <summary>
@@ -644,7 +672,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var cmdExecutor = new CmdExecutor();
             cmdExecutor.SetProgressHandler(progress);
-            
+
             var detector = new EnvironmentVariableRegistryRetriever();
 
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
@@ -721,7 +749,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var environmentToSave = SelectedEnvironment;
             environmentToSave.Name = argsNewName;
             var newSelectedEnvironment = _dataAdapter.SaveEnvironment(environmentToSave);
-            Environments = GetEnvironments();
+            var environments = GetEnvironments();
+            foreach (var environment in environments)
+            {
+                Environments.Add(environment);
+            }
+
+            var backups = GetBackupEnvironments();
+            foreach (var environment in backups)
+            {
+                Backups.Add(environment);
+            }
+
+            var templates = GetTemplateEnvironments();
+            foreach (var environment in templates)
+            {
+                Templates.Add(environment);
+            }
+
             OnPropertyChanged(nameof(Environments));
 
             SelectedEnvironment = newSelectedEnvironment;
@@ -804,7 +849,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="sortDescription">The sorting used by the listview.</param>
         /// <seealso cref="MainWindowSavedBehaviourViewModel"/>
         /// <seealso cref="SettingsDataAdapter"/>
-        public void SaveWindowState(double width, double height, double xPosition, double yPosition, WindowState windowState,
+        public void SaveWindowState(double width, double height, double xPosition, double yPosition,
+            WindowState windowState,
             SortDescription sortDescription)
         {
             var settings = Settings.MainWindowBehaviourSettings;
@@ -839,7 +885,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     var awaitedVariable = await v;
                     output.Add(awaitedVariable);
                 });
-
             }
 
             await Task.WhenAll(tasks);
@@ -865,6 +910,4 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
     }
-
-       
-    }
+}

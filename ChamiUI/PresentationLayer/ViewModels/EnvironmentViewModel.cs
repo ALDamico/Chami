@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Windows;
+using Chami.Db.Entities;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -115,6 +116,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _addedOn = value;
                 OnPropertyChanged(nameof(AddedOn));
+            }
+        }
+
+        private EnvironmentType _environmentType;
+
+        public EnvironmentType EnvironmentType
+        {
+            get => _environmentType;
+            set
+            {
+                _environmentType = value;
+                OnPropertyChanged(nameof(EnvironmentType));
             }
         }
 

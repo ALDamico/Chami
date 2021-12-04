@@ -700,6 +700,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Environments.
+        /// </summary>
+        public static string EnvironmentsTabItem_Header {
+            get {
+                return ResourceManager.GetString("EnvironmentsTabItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The environment variable name contains invalid characters at positions {0}..
         /// </summary>
         public static string EnvironmentVariableNameInvalidCharactersErrorMessage {

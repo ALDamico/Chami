@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
 
@@ -24,6 +25,11 @@ namespace ChamiUI.BusinessLayer.Validators
             var environmentVariable = ValidationUtils.ConvertObjectToValidate(value);
             if (environmentVariable != null)
             {
+                var environment = environmentVariable.Environment;
+                if (environment != null && environment.EnvironmentType == EnvironmentType.BackupEnvironment)
+                {
+                    return System.Windows.Controls.ValidationResult.ValidResult;
+                }
                 var environmentVariableName = environmentVariable.Name;
                 environmentVariable.IsValid = true;
                 if (environmentVariableName == null)

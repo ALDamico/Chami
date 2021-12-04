@@ -19,8 +19,10 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
+using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -86,6 +88,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
+
             ViewModel.CanUserInterrupt = true;
             if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
             {
@@ -689,7 +692,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
-            
+
             var selectedText = ConsoleTextBox.SelectedText;
             if (string.IsNullOrWhiteSpace(selectedText))
             {
@@ -705,17 +708,23 @@ namespace ChamiUI.Windows.MainWindow
 
         private void EnvironmentTypeTabItem_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_ENVIRONMENTS_IDX)
+            if (!e.Source.Equals(EnvironmentTypeTabItem))
             {
-                ViewModel.SelectedEnvironment = ViewModel.Environments.FirstOrDefault();
+                return;
             }
-            else if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_TEMPLATES_IDX)
+
+            switch (EnvironmentTypeTabItem.SelectedIndex)
             {
-                ViewModel.SelectedEnvironment = ViewModel.Templates.FirstOrDefault();
-            }
-            else if (EnvironmentTypeTabItem.SelectedIndex == TABITEM_BACKUPS_IDX)
-            {
-                ViewModel.SelectedEnvironment = ViewModel.Backups.FirstOrDefault();
+                case TABITEM_ENVIRONMENTS_IDX:
+                default:
+                    ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
+                    break;
+                case TABITEM_TEMPLATES_IDX:
+                    ViewModel.ChangeTab(EnvironmentType.TemplateEnvironment);
+                    break;
+                case TABITEM_BACKUPS_IDX:
+                    ViewModel.ChangeTab(EnvironmentType.BackupEnvironment);
+                    break;
             }
         }
     }

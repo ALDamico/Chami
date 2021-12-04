@@ -340,7 +340,7 @@
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem" SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged">
-                <TabItem Header="Ambienti">
+                <TabItem Header="{lex:Loc}" x:Name="EnvironmentsTabItem">
                     <ListBox 
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
@@ -413,7 +413,7 @@
                     Grid.Column="0"
                     x:Name="TabControls">
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
-                <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}}"
+                <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}, IsAsync=True}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="{Binding EditingEnabled}"
                           CanUserDeleteRows="{Binding EditingEnabled}"
@@ -436,20 +436,26 @@
                             EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
                     </DataGrid.RowValidationRules>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="65"
+                        <DataGridTextColumn Width="*"
                                             Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                             x:Name="DataGridNameColumn"
-                                            Header="{lex:Loc Key=DataGridNameColumn}" />
+                                            Header="{lex:Loc Key=DataGridNameColumn}" 
+                                            />
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
                                             x:Name="DataGridValueColumn"
-                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" />
+                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                                            Width="3*"
+                                            />
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
                                                 x:Name="DataGridIsFolderColumn"
-                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}"></DataGridCheckBoxColumn>
+                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                ></DataGridCheckBoxColumn>
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}" 
                                                 x:Name="DataGridMarkedForDeletionColumn"
                                                 Binding="{Binding MarkedForDeletion}"
                                                 IsReadOnly="True"
+                                                Width="*"
                                                 ></DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
