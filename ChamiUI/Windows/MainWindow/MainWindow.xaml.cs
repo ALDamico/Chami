@@ -389,8 +389,7 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     if (row is EnvironmentVariableViewModel environmentVariableViewModel)
                     {
-                        ViewModel.SelectedVariable = environmentVariableViewModel;
-                        ViewModel.DeleteSelectedVariable();
+                        ViewModel.DeleteVariable(environmentVariableViewModel);
                         e.Handled = true;
                     }
                 }
