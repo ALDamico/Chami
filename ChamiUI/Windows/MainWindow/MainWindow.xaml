@@ -34,12 +34,16 @@
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}" />
     </Window.InputBindings>
     <Window.Resources>
+        
+        <!-- Converters -->
         <converters:BooleanToStringComparisonConverter x:Key="BooleanToStringComparisonConverter" />
         <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}"
                               Filter="EnvironmentsViewSource_OnFilter" />
 
         <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                               Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
+        
+        <!-- Context menus -->
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
             <MenuItem Header="{lex:Loc}"
                       x:Name="EditEnvironmentMenuItem"
@@ -60,14 +64,13 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
-
-        <Style TargetType="DataGridRow">
-            
-        </Style>
         <ContextMenu x:Key="EnvironmentVariablesContextMenu">
+            <ContextMenu.CommandBindings>
+                <CommandBinding x:Name="AdvancedCopyCommand" Command="Copy" CanExecute="AdvancedCopyCommand_OnCanExecute" Executed="AdvancedCopyCommand_OnExecuted"></CommandBinding>
+            </ContextMenu.CommandBindings>
             <MenuItem Header="{lex:Loc}"
                       x:Name="CopyEnvironmentVariableMenuItem"
-                      Click="CopyEnvironmentVariableMenuItem_OnClick">
+                      Command="Copy">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
                 </MenuItem.Icon>
@@ -75,6 +78,7 @@
             <MenuItem Header="{lex:Loc}" 
                       x:Name="OpenAsFolderMenuItem" 
                       Click="OpenAsFolderMenuItem_OnClick"
+                      d:DataContext="{d:DesignInstance viewModels:EnvironmentVariableViewModel}"
                       IsEnabled="{Binding IsFolder}"
                       ></MenuItem>
             <Separator />
@@ -86,6 +90,8 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
+        
+        <!-- Styles -->
         <Style x:Key="ErrorStyle" TargetType="{x:Type DataGridRow}">
             <Setter Property="Padding" Value="-2" />
             <Setter Property="ContextMenu"
@@ -107,6 +113,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        
+        <!-- Resource dictionaries -->
         <ResourceDictionary x:Key="ExternalResources">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
@@ -409,6 +417,7 @@
                       Background="Black"
                       HorizontalAlignment="Stretch" 
                       VerticalAlignment="Center"></GridSplitter>
+        <FrameworkElement x:Name="dummyElement" Visibility="Collapsed"/>
         <TabControl Grid.Row="5"
                     Grid.Column="0"
                     x:Name="TabControls">
@@ -436,7 +445,7 @@
                             EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
                     </DataGrid.RowValidationRules>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="*"
+                        <DataGridTextColumn Width="2*"
                                             Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                             x:Name="DataGridNameColumn"
                                             Header="{lex:Loc Key=DataGridNameColumn}" 
@@ -444,7 +453,7 @@
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
                                             x:Name="DataGridValueColumn"
                                             Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
-                                            Width="3*"
+                                            Width="5*"
                                             />
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
                                                 x:Name="DataGridIsFolderColumn"
@@ -456,6 +465,7 @@
                                                 Binding="{Binding MarkedForDeletion}"
                                                 IsReadOnly="True"
                                                 Width="*"
+                                                Visibility="{Binding DataContext.EditingEnabled, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference dummyElement}}"
                                                 ></DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>

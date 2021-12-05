@@ -663,6 +663,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         /// <summary>
+        /// Marks the specified <seealso cref="EnvironmentVariableViewModel"/> for deletion.
+        /// </summary>
+        /// <param name="variableViewModel"></param>
+        public void DeleteVariable(EnvironmentVariableViewModel variableViewModel)
+        {
+            variableViewModel.MarkForDeletion();
+        }
+
+        /// <summary>
         /// Removes all Chami environment variables from the current environment.
         /// </summary>
         /// <param name="progress">Used for progress reporting.</param>
@@ -739,6 +748,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        private void AddEnvironmentToCorrectCollection(EnvironmentViewModel environmentViewModel)
+        {
+            switch (environmentViewModel.EnvironmentType)
+            {
+                case EnvironmentType.NormalEnvironment:
+                default:
+                    Environments.Add(environmentViewModel);
+                    break;
+                case EnvironmentType.BackupEnvironment:
+                    Backups.Add(environmentViewModel);
+                    break;
+                case EnvironmentType.TemplateEnvironment:
+                    Templates.Add(environmentViewModel);
+                    break;
+            }
+        }
+
+
         /// <summary>
         /// Renames an environment.
         /// </summary>
@@ -749,25 +776,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var environmentToSave = SelectedEnvironment;
             environmentToSave.Name = argsNewName;
             var newSelectedEnvironment = _dataAdapter.SaveEnvironment(environmentToSave);
-            var environments = GetEnvironments();
-            foreach (var environment in environments)
-            {
-                Environments.Add(environment);
-            }
-
-            var backups = GetBackupEnvironments();
-            foreach (var environment in backups)
-            {
-                Backups.Add(environment);
-            }
-
-            var templates = GetTemplateEnvironments();
-            foreach (var environment in templates)
-            {
-                Templates.Add(environment);
-            }
-
-            OnPropertyChanged(nameof(Environments));
+            Environments.Remove(SelectedEnvironment);
+            Backups.Remove(SelectedEnvironment);
+            Templates.Remove(SelectedEnvironment);
+            AddEnvironmentToCorrectCollection(newSelectedEnvironment);
 
             SelectedEnvironment = newSelectedEnvironment;
             if (SelectedEnvironment.Equals(ActiveEnvironment))
