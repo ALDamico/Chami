@@ -776,6 +776,9 @@ Nessuna azione intrapresa.</value>
   <data name="ConsoleClearMenuItem" xml:space="preserve">
     <value>Pulisci</value>
   </data>
+  <data name="EnvironmentsTabItem_Header" xml:space="preserve">
+    <value>Ambienti</value>
+  </data>
   <data name="BackupEnvironmentsTabItem_Header" xml:space="preserve">
     <value>Backup</value>
   </data>

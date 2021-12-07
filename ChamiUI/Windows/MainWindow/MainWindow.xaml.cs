@@ -19,8 +19,10 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
+using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -388,8 +390,7 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     if (row is EnvironmentVariableViewModel environmentVariableViewModel)
                     {
-                        ViewModel.SelectedVariable = environmentVariableViewModel;
-                        ViewModel.DeleteSelectedVariable();
+                        ViewModel.DeleteVariable(environmentVariableViewModel);
                         e.Handled = true;
                     }
                 }
@@ -711,10 +712,23 @@ namespace ChamiUI.Windows.MainWindow
 
         private void EnvironmentTypeTabItem_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // ReSharper disable once PossibleUnintendedReferenceComparison
-            if (e.Source != EnvironmentTypeTabItem)
+            if (!e.Source.Equals(EnvironmentTypeTabItem))
             {
                 return;
+            }
+
+            switch (EnvironmentTypeTabItem.SelectedIndex)
+            {
+                case TABITEM_ENVIRONMENTS_IDX:
+                default:
+                    ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
+                    break;
+                case TABITEM_TEMPLATES_IDX:
+                    ViewModel.ChangeTab(EnvironmentType.TemplateEnvironment);
+                    break;
+                case TABITEM_BACKUPS_IDX:
+                    ViewModel.ChangeTab(EnvironmentType.BackupEnvironment);
+                    break;
             }
 
             

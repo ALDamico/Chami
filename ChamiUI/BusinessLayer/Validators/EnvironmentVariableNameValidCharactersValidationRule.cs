@@ -25,6 +25,11 @@ namespace ChamiUI.BusinessLayer.Validators
             var environmentVariable = ValidationUtils.ConvertObjectToValidate(value);
             if (environmentVariable != null)
             {
+                var environment = environmentVariable.Environment;
+                if (environment != null && environment.EnvironmentType == EnvironmentType.BackupEnvironment)
+                {
+                    return System.Windows.Controls.ValidationResult.ValidResult;
+                }
                 var environmentVariableName = environmentVariable.Name;
                 if (environmentVariable.Environment != null)
                 {

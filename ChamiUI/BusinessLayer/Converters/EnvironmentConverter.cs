@@ -53,9 +53,9 @@ namespace ChamiUI.BusinessLayer.Converters
             var variableConverter = new EnvironmentVariableConverter();
             foreach (var variable in entity.EnvironmentVariables)
             {
-                var convertedEntity = variableConverter.To(variable);
-                convertedEntity.Environment = viewModel;
-                viewModel.EnvironmentVariables.Add(convertedEntity);
+                var convertedVariable = variableConverter.To(variable);
+                convertedVariable.Environment = viewModel;
+                viewModel.EnvironmentVariables.Add(convertedVariable);
             }
 
             return viewModel;

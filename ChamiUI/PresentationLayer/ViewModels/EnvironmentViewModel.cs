@@ -119,6 +119,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        private EnvironmentType _environmentType;
+
+        public EnvironmentType EnvironmentType
+        {
+            get => _environmentType;
+            set
+            {
+                _environmentType = value;
+                OnPropertyChanged(nameof(EnvironmentType));
+            }
+        }
+
         /// <summary>
         /// Compares two environments by their id.
         /// </summary>

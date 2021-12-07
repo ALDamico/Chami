@@ -33,7 +33,12 @@
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}" />
     </Window.InputBindings>
     <Window.Resources>
+        
+        <!-- Converters -->
         <converters:BooleanToStringComparisonConverter x:Key="BooleanToStringComparisonConverter" />
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
+        
+        <!-- CollectionViewSources -->
         <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}"
                               Filter="EnvironmentsViewSource_OnFilter" />
 
@@ -42,8 +47,9 @@
 
         <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                               Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
-        <ContextMenu x:Key="EnvironmentListBoxContextMenu"
-                     d:DataContext="{d:DesignInstance viewModels:EnvironmentViewModel}">
+        
+        <!-- Context menus -->
+        <ContextMenu x:Key="EnvironmentListBoxContextMenu">
             <MenuItem Header="{lex:Loc}"
                       x:Name="EditEnvironmentMenuItem"
                       IsEnabled="{Binding IsEditable}"
@@ -64,12 +70,13 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
-
-        <Style TargetType="DataGridRow" />
         <ContextMenu x:Key="EnvironmentVariablesContextMenu">
+            <ContextMenu.CommandBindings>
+                <CommandBinding x:Name="AdvancedCopyCommand" Command="Copy" CanExecute="AdvancedCopyCommand_OnCanExecute" Executed="AdvancedCopyCommand_OnExecuted"></CommandBinding>
+            </ContextMenu.CommandBindings>
             <MenuItem Header="{lex:Loc}"
                       x:Name="CopyEnvironmentVariableMenuItem"
-                      Click="CopyEnvironmentVariableMenuItem_OnClick">
+                      Command="Copy">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/copy.svg" />
                 </MenuItem.Icon>
@@ -77,7 +84,9 @@
             <MenuItem Header="{lex:Loc}"
                       x:Name="OpenAsFolderMenuItem"
                       Click="OpenAsFolderMenuItem_OnClick"
-                      IsEnabled="{Binding IsFolder}" />
+                      d:DataContext="{d:DesignInstance viewModels:EnvironmentVariableViewModel}"
+                      IsEnabled="{Binding IsFolder}"
+                      ></MenuItem>
             <Separator />
             <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentVariableMenuItem"
@@ -87,6 +96,8 @@
                 </MenuItem.Icon>
             </MenuItem>
         </ContextMenu>
+        
+        <!-- Styles -->
         <Style x:Key="ErrorStyle" TargetType="{x:Type DataGridRow}">
 
             <Setter Property="Padding" Value="-2" />
@@ -107,6 +118,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        
+        <!-- Resource dictionaries -->
         <ResourceDictionary x:Key="ExternalResources">
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
@@ -337,11 +350,9 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem"
-                        SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged"
-                        SelectedIndex="{Binding SelectedEnvironmentTypeTabIndex}">
-                <TabItem Header="Ambienti">
-                    <ListBox
+            <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem" SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged">
+                <TabItem Header="{lex:Loc}" x:Name="EnvironmentsTabItem">
+                    <ListBox 
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
                         x:Name="EnvironmentsListbox"
@@ -408,13 +419,14 @@
                       ResizeDirection="Rows"
                       ShowsPreview="True"
                       Background="Black"
-                      HorizontalAlignment="Stretch"
-                      VerticalAlignment="Center" />
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Center"></GridSplitter>
+        <FrameworkElement x:Name="dummyElement" Visibility="Collapsed"/>
         <TabControl Grid.Row="5"
                     Grid.Column="0"
                     x:Name="TabControls">
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
-                <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}}"
+                <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}, IsAsync=True}"
                           AutoGenerateColumns="False"
                           CanUserAddRows="{Binding EditingEnabled}"
                           CanUserDeleteRows="{Binding EditingEnabled}"
@@ -443,21 +455,29 @@
                             EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
                     </DataGrid.RowValidationRules>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Width="65"
+                        <DataGridTextColumn Width="2*"
                                             Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                             x:Name="DataGridNameColumn"
-                                            Header="{lex:Loc Key=DataGridNameColumn}" />
+                                            Header="{lex:Loc Key=DataGridNameColumn}" 
+                                            />
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
                                             Width="300"
                                             x:Name="DataGridValueColumn"
-                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" />
+                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
+                                            Width="5*"
+                                            />
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
                                                 x:Name="DataGridIsFolderColumn"
-                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}" />
-                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}"
+                                                Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}"
+                                                Width="*"
+                                                ></DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}" 
                                                 x:Name="DataGridMarkedForDeletionColumn"
                                                 Binding="{Binding MarkedForDeletion}"
-                                                IsReadOnly="True" />
+                                                IsReadOnly="True"
+                                                Width="*"
+                                                Visibility="{Binding DataContext.EditingEnabled, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference dummyElement}}"
+                                                ></DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>
