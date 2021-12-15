@@ -72,7 +72,7 @@
         </ContextMenu>
         <ContextMenu x:Key="EnvironmentVariablesContextMenu">
             <ContextMenu.CommandBindings>
-                <CommandBinding x:Name="AdvancedCopyCommand" Command="Copy" CanExecute="AdvancedCopyCommand_OnCanExecute" Executed="AdvancedCopyCommand_OnExecuted"></CommandBinding>
+                <CommandBinding x:Name="AdvancedCopyCommand" Command="Copy"></CommandBinding>
             </ContextMenu.CommandBindings>
             <MenuItem Header="{lex:Loc}"
                       x:Name="CopyEnvironmentVariableMenuItem"
@@ -428,6 +428,7 @@
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
                 <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}, IsAsync=True}"
                           AutoGenerateColumns="False"
+                          SelectionUnit="CellOrRowHeader"
                           CanUserAddRows="{Binding EditingEnabled}"
                           CanUserDeleteRows="{Binding EditingEnabled}"
                           IsReadOnly="{Binding IsDatagridReadonly}"
@@ -461,7 +462,6 @@
                                             Header="{lex:Loc Key=DataGridNameColumn}" 
                                             />
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
-                                            Width="300"
                                             x:Name="DataGridValueColumn"
                                             Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
                                             Width="5*"

@@ -719,14 +719,14 @@ namespace ChamiUI.Windows.MainWindow
 
             switch (EnvironmentTypeTabItem.SelectedIndex)
             {
-                case TABITEM_ENVIRONMENTS_IDX:
+                case 0:
                 default:
                     ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
                     break;
-                case TABITEM_TEMPLATES_IDX:
+                case 3:
                     ViewModel.ChangeTab(EnvironmentType.TemplateEnvironment);
                     break;
-                case TABITEM_BACKUPS_IDX:
+                case 1:
                     ViewModel.ChangeTab(EnvironmentType.BackupEnvironment);
                     break;
             }
