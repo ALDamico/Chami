@@ -44,6 +44,9 @@
 
         <CollectionViewSource x:Key="BackupEnvironmentsViewSource" Source="{Binding Backups}"
                               Filter="BackupEnvironmentsViewSource_OnFilter" />
+        
+        <CollectionViewSource x:Key="TemplateEnvironmentsViewSource" Source="{Binding Templates}"
+                              Filter="TemplateEnvironmentsViewSource_OnFilter"></CollectionViewSource>
 
         <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                               Source="{Binding SelectedEnvironment.EnvironmentVariables}" />

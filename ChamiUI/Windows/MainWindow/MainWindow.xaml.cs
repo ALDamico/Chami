@@ -723,18 +723,21 @@ namespace ChamiUI.Windows.MainWindow
                 default:
                     ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
                     break;
-                case 3:
+                case 1:
                     ViewModel.ChangeTab(EnvironmentType.TemplateEnvironment);
                     break;
-                case 1:
+                case 2:
                     ViewModel.ChangeTab(EnvironmentType.BackupEnvironment);
                     break;
             }
-
-            
         }
 
         private void BackupEnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            ViewModel.FilterStrategy.OnFilter(sender, e);
+        }
+
+        private void TemplateEnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
         {
             ViewModel.FilterStrategy.OnFilter(sender, e);
         }

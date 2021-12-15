@@ -477,6 +477,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     SelectedEnvironment = Environments.FirstOrDefault();
                     break;
             }
+
+            SelectedVariable = SelectedEnvironment?.EnvironmentVariables.FirstOrDefault();
         }
 
         private EnvironmentViewModel _selectedEnvironment;
