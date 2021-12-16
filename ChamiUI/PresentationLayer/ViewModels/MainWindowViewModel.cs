@@ -469,12 +469,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 case EnvironmentType.TemplateEnvironment:
                     SelectedEnvironment = Templates.FirstOrDefault();
+                    SelectedEnvironmentTypeTabIndex = 2;
                     break;
                 case EnvironmentType.BackupEnvironment:
                     SelectedEnvironment = Backups.FirstOrDefault();
+                    SelectedEnvironmentTypeTabIndex = 1;
                     break;
                 default:
                     SelectedEnvironment = Environments.FirstOrDefault();
+                    SelectedEnvironmentTypeTabIndex = 0;
                     break;
             }
 
