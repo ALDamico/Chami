@@ -60,7 +60,6 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private MainWindowViewModel ViewModel { get; set; }
-        
 
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -177,9 +176,21 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (args != null)
             {
-                if (!ViewModel.CheckEnvironmentExists(args.EnvironmentViewModel))
+                var environmentViewModel = args.EnvironmentViewModel;
+                if (!ViewModel.CheckEnvironmentExists(environmentViewModel))
                 {
-                    ViewModel.Environments.Add(args.EnvironmentViewModel);
+                    if (environmentViewModel.EnvironmentType == EnvironmentType.BackupEnvironment)
+                    {
+                        ViewModel.Backups.Add(environmentViewModel);
+                    }
+                    else if (environmentViewModel.EnvironmentType == EnvironmentType.TemplateEnvironment)
+                    {
+                        ViewModel.Templates.Add(environmentViewModel);
+                    }
+                    else
+                    {
+                        ViewModel.Environments.Add(args.EnvironmentViewModel);
+                    }
                 }
             }
         }
@@ -293,24 +304,6 @@ namespace ChamiUI.Windows.MainWindow
             Clipboard.SetText(ViewModel.SelectedVariable.Value);
         }
 
-        private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var selectedEnvironmentVariables = new List<object>();
-            foreach (var envVar in CurrentEnvironmentVariablesDataGrid.SelectedItems)
-            {
-                selectedEnvironmentVariables.Add(envVar);
-            }
-
-            foreach (var environmentVariable in selectedEnvironmentVariables)
-            {
-                if (environmentVariable is EnvironmentVariableViewModel vm)
-                {
-                    ViewModel.SelectedVariable = vm;
-                    ViewModel.DeleteSelectedVariable();
-                }
-            }
-        }
-
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(this);
@@ -386,14 +379,24 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (e.Key == Key.Delete)
             {
-                foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
+                if (!ViewModel.EditingEnabled)
                 {
-                    if (row is EnvironmentVariableViewModel environmentVariableViewModel)
-                    {
-                        ViewModel.DeleteVariable(environmentVariableViewModel);
-                        e.Handled = true;
-                    }
+                    return;
                 }
+                foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedCells)
+                {
+                    DeleteVariableInner(row.Item);
+
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void DeleteVariableInner(object row)
+        {
+            if (row is EnvironmentVariableViewModel environmentVariableViewModel)
+            {
+                ViewModel.DeleteVariable(environmentVariableViewModel);
             }
         }
 
@@ -659,6 +662,7 @@ namespace ChamiUI.Windows.MainWindow
         private void CreateTemplateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var newTemplateWindow = new NewTemplateWindow.NewTemplateWindow(this);
+            newTemplateWindow.EnvironmentSaved += OnEnvironmentSaved;
             newTemplateWindow.ShowDialog();
         }
 
@@ -708,7 +712,6 @@ namespace ChamiUI.Windows.MainWindow
             Clipboard.SetText(selectedText);
         }
 
-       
 
         private void EnvironmentTypeTabItem_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -740,6 +743,21 @@ namespace ChamiUI.Windows.MainWindow
         private void TemplateEnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
         {
             ViewModel.FilterStrategy.OnFilter(sender, e);
+        }
+
+        private void DeleteEnvironmentVariableCommand_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.IsSelectedVariableDeletable();
+        }
+
+        private void DeleteEnvironmentVariableCommand_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
+            {
+                DeleteVariableInner(row);
+
+                e.Handled = true;
+            }
         }
     }
 }

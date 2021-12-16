@@ -662,7 +662,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <returns>True if the environment exists in the collection, otherwise null.</returns>
         public bool CheckEnvironmentExists(EnvironmentViewModel environment)
         {
-            if (Environments.Any(e => e.Name == environment.Name))
+            var collection = Environments;
+            if (environment.EnvironmentType == EnvironmentType.BackupEnvironment)
+            {
+                collection = Backups;
+            }
+
+            if (environment.EnvironmentType == EnvironmentType.TemplateEnvironment)
+            {
+                collection = Templates;
+            }
+            
+            if (collection.Any(e => e.Name == environment.Name))
             {
                 EnvironmentExists?.Invoke(this, new EnvironmentExistingEventArgs(environment.Name));
                 return true;
@@ -952,6 +963,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 throw new ChamiFolderException(ChamiUIStrings.UnableToOpenAsFolderMessage);
             }
+        }
+
+        public bool IsSelectedVariableDeletable()
+        {
+            return SelectedEnvironment?.EnvironmentType != EnvironmentType.BackupEnvironment;
         }
     }
 }

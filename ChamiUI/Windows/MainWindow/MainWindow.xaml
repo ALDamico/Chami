@@ -5,6 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         d:DataContext="{d:DesignInstance viewModels:MainWindowViewModel, IsDesignTimeCreatable=False}"
         mc:Ignorable="d"
+        d:DesignHeight="600"
+        d:DesignWidth="800"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         lex:ResxLocalizationProvider.DefaultAssembly="ChamiUI"
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
@@ -92,11 +94,13 @@
                       ></MenuItem>
             <Separator />
             <MenuItem Header="{lex:Loc}"
-                      x:Name="DeleteEnvironmentVariableMenuItem"
-                      Click="DeleteEnvironmentVariableMenuItem_OnClick">
+                      x:Name="DeleteEnvironmentVariableMenuItem" Command="Delete">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
                 </MenuItem.Icon>
+                <MenuItem.CommandBindings>
+                    <CommandBinding Command="Delete" x:Name="DeleteEnvironmentVariableCommand" CanExecute="DeleteEnvironmentVariableCommand_OnCanExecute" Executed="DeleteEnvironmentVariableCommand_OnExecuted"></CommandBinding>
+                </MenuItem.CommandBindings>
             </MenuItem>
         </ContextMenu>
         
@@ -358,6 +362,30 @@
                     <ListBox 
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
+                        x:Name="TemplateEnvironmentsListbox"
+                        SelectedItem="{Binding SelectedEnvironment}"
+                        SelectionChanged="EnvironmentsListbox_OnSelectionChanged">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="ContextMenu"
+                                        Value="{StaticResource EnvironmentListBoxContextMenu}" />
+                                <EventSetter Event="MouseDoubleClick"
+                                             Handler="EnvironmentsListboxItem_OnMouseDoubleClick" />
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding DisplayName}"
+                                           FontWeight="{Binding TextFontWeight}"
+                                           Width="{Binding Width, RelativeSource={RelativeSource AncestorType={x:Type ListBoxItem}}}" />
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </TabItem>
+                <TabItem Header="Template" >
+                    <ListBox 
+                        Margin="5,5,5,5"
+                        ItemsSource="{Binding Source={StaticResource TemplateEnvironmentsViewSource}}"
                         x:Name="EnvironmentsListbox"
                         SelectedItem="{Binding SelectedEnvironment}"
                         SelectionChanged="EnvironmentsListbox_OnSelectionChanged">
@@ -378,7 +406,6 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </TabItem>
-                <TabItem Header="Template" />
                 <TabItem x:Name="BackupEnvironmentsTabItem" Header="{lex:Loc}">
                     <ListBox Margin="5,5,5,5" SelectedItem="{Binding SelectedEnvironment}"
                              SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
