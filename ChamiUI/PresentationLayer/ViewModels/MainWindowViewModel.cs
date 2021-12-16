@@ -248,7 +248,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Determines if the Apply button in the window is enabled (i.e., there's no editing and no environment
         /// switching on progress.
         /// </summary>
-        public bool ExecuteButtonPlayEnabled => !EditingEnabled && CanUserInterrupt && SelectedEnvironmentTypeTabIndex == 0;
+        public bool ExecuteButtonPlayEnabled =>
+            !EditingEnabled && CanUserInterrupt && SelectedEnvironmentTypeTabIndex == 0;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
 
@@ -272,6 +273,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     SelectedEnvironment = Templates.FirstOrDefault();
                 }
+
                 OnPropertyChanged(nameof(SelectedEnvironmentTypeTabIndex));
                 OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
             }
@@ -291,7 +293,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (args != null)
             {
                 ActiveEnvironment = args.NewActiveEnvironment;
-                SelectedEnvironment = ActiveEnvironment;
+                if (ActiveEnvironment != null)
+                {
+                    SelectedEnvironment = ActiveEnvironment;
+                }
             }
             else
             {
@@ -758,6 +763,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 NopCommand nopCommand = new NopCommand(ChamiUIStrings.RevertToOriginalEnvironmentNop);
                 cmdExecutor.AddCommand(nopCommand);
             }
+
             await cmdExecutor.ExecuteAsync(cancellationToken);
 
             OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(null));
@@ -925,6 +931,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 windowState = WindowState.Normal;
             }
+
             settings.WindowState = windowState;
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
