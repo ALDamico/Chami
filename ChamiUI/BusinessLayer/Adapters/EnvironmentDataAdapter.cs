@@ -195,6 +195,19 @@ namespace ChamiUI.BusinessLayer.Adapters
             return output;
         }
 
+        public IEnumerable<EnvironmentViewModel> GetBackupEnvironments()
+        {
+            var environments = _repository.GetBackupEnvironments();
+            var converter = new EnvironmentConverter();
+            var output = new List<EnvironmentViewModel>();
+            foreach (var environment in environments)
+            {
+                output.Add(converter.To(environment));
+            }
+
+            return output;
+        }
+
         public async Task<ICollection<EnvironmentVariableBlacklistViewModel>> GetBlacklistedVariablesAsync()
         {
             var blacklistedVariables = await _repository.GetBlacklistedVariablesAsync();

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
+using ChamiUI.Localization;
 using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer
@@ -48,7 +49,7 @@ namespace ChamiUI.BusinessLayer
 
             var backupEnvironment = new Environment();
 
-            var environmentName = $"Backup of {DateTime.Now:s}";
+            var environmentName = string.Format(ChamiUIStrings.BackupDefaultName, DateTime.Now);
             backupEnvironment.Name = environmentName;
             backupEnvironment.EnvironmentType = EnvironmentType.BackupEnvironment;
 

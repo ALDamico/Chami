@@ -19,8 +19,10 @@ using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
+using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -86,6 +88,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
+
             ViewModel.CanUserInterrupt = true;
             if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
             {
@@ -173,9 +176,21 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (args != null)
             {
-                if (!ViewModel.CheckEnvironmentExists(args.EnvironmentViewModel))
+                var environmentViewModel = args.EnvironmentViewModel;
+                if (!ViewModel.CheckEnvironmentExists(environmentViewModel))
                 {
-                    ViewModel.Environments.Add(args.EnvironmentViewModel);
+                    if (environmentViewModel.EnvironmentType == EnvironmentType.BackupEnvironment)
+                    {
+                        ViewModel.Backups.Add(environmentViewModel);
+                    }
+                    else if (environmentViewModel.EnvironmentType == EnvironmentType.TemplateEnvironment)
+                    {
+                        ViewModel.Templates.Add(environmentViewModel);
+                    }
+                    else
+                    {
+                        ViewModel.Environments.Add(args.EnvironmentViewModel);
+                    }
                 }
             }
         }
@@ -289,24 +304,6 @@ namespace ChamiUI.Windows.MainWindow
             Clipboard.SetText(ViewModel.SelectedVariable.Value);
         }
 
-        private void DeleteEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var selectedEnvironmentVariables = new List<object>();
-            foreach (var envVar in CurrentEnvironmentVariablesDataGrid.SelectedItems)
-            {
-                selectedEnvironmentVariables.Add(envVar);
-            }
-
-            foreach (var environmentVariable in selectedEnvironmentVariables)
-            {
-                if (environmentVariable is EnvironmentVariableViewModel vm)
-                {
-                    ViewModel.SelectedVariable = vm;
-                    ViewModel.DeleteSelectedVariable();
-                }
-            }
-        }
-
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(this);
@@ -382,15 +379,24 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (e.Key == Key.Delete)
             {
-                foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
+                if (!ViewModel.EditingEnabled)
                 {
-                    if (row is EnvironmentVariableViewModel environmentVariableViewModel)
-                    {
-                        ViewModel.SelectedVariable = environmentVariableViewModel;
-                        ViewModel.DeleteSelectedVariable();
-                        e.Handled = true;
-                    }
+                    return;
                 }
+                foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedCells)
+                {
+                    DeleteVariableInner(row.Item);
+
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void DeleteVariableInner(object row)
+        {
+            if (row is EnvironmentVariableViewModel environmentVariableViewModel)
+            {
+                ViewModel.DeleteVariable(environmentVariableViewModel);
             }
         }
 
@@ -563,7 +569,13 @@ namespace ChamiUI.Windows.MainWindow
 
         private void FilterTextbox_OnTextChanged(object sender, TextChangedEventArgs e)
         {
-            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            SubscribeToFilterEvent("EnvironmentsViewSource");
+            SubscribeToFilterEvent("BackupEnvironmentsViewSource");
+        }
+
+        private void SubscribeToFilterEvent(string viewSourceName)
+        {
+            Resources.TryGetCollectionViewSource(viewSourceName, out var collectionViewSource);
             if (collectionViewSource != null)
             {
                 collectionViewSource.Filter += ViewModel.FilterStrategy.OnFilter;
@@ -650,6 +662,7 @@ namespace ChamiUI.Windows.MainWindow
         private void CreateTemplateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var newTemplateWindow = new NewTemplateWindow.NewTemplateWindow(this);
+            newTemplateWindow.EnvironmentSaved += OnEnvironmentSaved;
             newTemplateWindow.ShowDialog();
         }
 
@@ -689,7 +702,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 return;
             }
-            
+
             var selectedText = ConsoleTextBox.SelectedText;
             if (string.IsNullOrWhiteSpace(selectedText))
             {
@@ -697,6 +710,54 @@ namespace ChamiUI.Windows.MainWindow
             }
 
             Clipboard.SetText(selectedText);
+        }
+
+
+        private void EnvironmentTypeTabItem_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (!e.Source.Equals(EnvironmentTypeTabItem))
+            {
+                return;
+            }
+
+            switch (EnvironmentTypeTabItem.SelectedIndex)
+            {
+                case 0:
+                default:
+                    ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
+                    break;
+                case 1:
+                    ViewModel.ChangeTab(EnvironmentType.TemplateEnvironment);
+                    break;
+                case 2:
+                    ViewModel.ChangeTab(EnvironmentType.BackupEnvironment);
+                    break;
+            }
+        }
+
+        private void BackupEnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            ViewModel.FilterStrategy.OnFilter(sender, e);
+        }
+
+        private void TemplateEnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
+        {
+            ViewModel.FilterStrategy.OnFilter(sender, e);
+        }
+
+        private void DeleteEnvironmentVariableCommand_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.IsSelectedVariableDeletable();
+        }
+
+        private void DeleteEnvironmentVariableCommand_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
+            {
+                DeleteVariableInner(row);
+
+                e.Handled = true;
+            }
         }
     }
 }

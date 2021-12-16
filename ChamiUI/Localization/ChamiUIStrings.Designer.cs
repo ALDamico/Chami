@@ -286,11 +286,29 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Backup of {0}.
+        /// </summary>
+        public static string BackupDefaultName {
+            get {
+                return ResourceManager.GetString("BackupDefaultName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Backup current environment.
         /// </summary>
         public static string BackupEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("BackupEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Backups.
+        /// </summary>
+        public static string BackupEnvironmentsTabItem_Header {
+            get {
+                return ResourceManager.GetString("BackupEnvironmentsTabItem_Header", resourceCulture);
             }
         }
         
@@ -696,6 +714,15 @@ namespace ChamiUI.Localization {
         public static string EnvironmentReaderFactoryNotSupportedMessage {
             get {
                 return ResourceManager.GetString("EnvironmentReaderFactoryNotSupportedMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environments.
+        /// </summary>
+        public static string EnvironmentsTabItem_Header {
+            get {
+                return ResourceManager.GetString("EnvironmentsTabItem_Header", resourceCulture);
             }
         }
         

@@ -164,6 +164,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
             _settingsDataAdapter = new SettingsDataAdapter(connectionString);
             Environments = GetEnvironments();
+            Backups = GetBackupEnvironments();
+            Templates = GetTemplateEnvironments();
             EditingEnabled = false;
             if (Environments.Any())
             {
@@ -246,9 +248,40 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Determines if the Apply button in the window is enabled (i.e., there's no editing and no environment
         /// switching on progress.
         /// </summary>
-        public bool ExecuteButtonPlayEnabled => !EditingEnabled && CanUserInterrupt;
+        public bool ExecuteButtonPlayEnabled =>
+            !EditingEnabled && CanUserInterrupt && SelectedEnvironmentTypeTabIndex == 0;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
+
+        private int _selectedEnvironmentTypeTabIndex;
+
+        public int SelectedEnvironmentTypeTabIndex
+        {
+            get => _selectedEnvironmentTypeTabIndex;
+            set
+            {
+                _selectedEnvironmentTypeTabIndex = value;
+                if (_selectedEnvironmentTypeTabIndex == TABITEM_NORMAL_ENV_IDX)
+                {
+                    SelectedEnvironment = Environments.FirstOrDefault();
+                }
+                else if (_selectedEnvironmentTypeTabIndex == TABITEM_BACKUP_ENV_IDX)
+                {
+                    SelectedEnvironment = Backups.FirstOrDefault();
+                }
+                else if (_selectedEnvironmentTypeTabIndex == TABITEM_TEMPLATE_ENV_IDX)
+                {
+                    SelectedEnvironment = Templates.FirstOrDefault();
+                }
+
+                OnPropertyChanged(nameof(SelectedEnvironmentTypeTabIndex));
+                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
+            }
+        }
+        
+        private const int TABITEM_NORMAL_ENV_IDX = 0;
+        private const int TABITEM_BACKUP_ENV_IDX = 2;
+        private const int TABITEM_TEMPLATE_ENV_IDX = 1;
 
         /// <summary>
         /// Reacts to the EnvironmentChanged event.
@@ -260,7 +293,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (args != null)
             {
                 ActiveEnvironment = args.NewActiveEnvironment;
-                SelectedEnvironment = ActiveEnvironment;
+                if (ActiveEnvironment != null)
+                {
+                    SelectedEnvironment = ActiveEnvironment;
+                }
             }
             else
             {
@@ -366,7 +402,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var isCurrentVariableDisabled =
                     safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
                         v.Name == environmentVariable.Name) != null;
-                if (isCurrentVariableDisabled && isSafetyEnabled) 
+                if (isCurrentVariableDisabled && isSafetyEnabled)
                 {
                     newCommand =
                         EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand), environmentVariable);
@@ -420,7 +456,38 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Contains all environments present in the datastore.
         /// </summary>
-        public ObservableCollection<EnvironmentViewModel> Environments { get; set; }
+        public ObservableCollection<EnvironmentViewModel> Environments { get; }
+
+        /// <summary>
+        /// Contains all template environments to be shown in the main window.
+        /// </summary>
+        public ObservableCollection<EnvironmentViewModel> Templates { get; }
+
+        /// <summary>
+        /// Contains all backup environments to be shown in the main window.
+        /// </summary>
+        public ObservableCollection<EnvironmentViewModel> Backups { get; }
+
+        public void ChangeTab(EnvironmentType type)
+        {
+            switch (type)
+            {
+                case EnvironmentType.TemplateEnvironment:
+                    SelectedEnvironment = Templates.FirstOrDefault();
+                    SelectedEnvironmentTypeTabIndex = 2;
+                    break;
+                case EnvironmentType.BackupEnvironment:
+                    SelectedEnvironment = Backups.FirstOrDefault();
+                    SelectedEnvironmentTypeTabIndex = 1;
+                    break;
+                default:
+                    SelectedEnvironment = Environments.FirstOrDefault();
+                    SelectedEnvironmentTypeTabIndex = 0;
+                    break;
+            }
+
+            SelectedVariable = SelectedEnvironment?.EnvironmentVariables.FirstOrDefault();
+        }
 
         private EnvironmentViewModel _selectedEnvironment;
 
@@ -451,7 +518,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
-                if (SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled) || !CanUserInterrupt)
+                if ((SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled) ||
+                     !CanUserInterrupt) || SelectedEnvironmentTypeTabIndex != 0)
                 {
                     return "/Assets/Svg/play_disabled.svg";
                 }
@@ -503,8 +571,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private ObservableCollection<EnvironmentViewModel> GetEnvironments()
         {
-            Environments = new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
-            return Environments;
+            return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());
+        }
+
+        private ObservableCollection<EnvironmentViewModel> GetBackupEnvironments()
+        {
+            return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetBackupEnvironments());
+        }
+
+        private ObservableCollection<EnvironmentViewModel> GetTemplateEnvironments()
+        {
+            return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetTemplateEnvironments());
         }
 
         private readonly EnvironmentDataAdapter _dataAdapter;
@@ -545,6 +622,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _dataAdapter.DeleteEnvironment(SelectedEnvironment);
             Environments.Remove(SelectedEnvironment);
+            Backups.Remove(SelectedEnvironment);
+            Templates.Remove(SelectedEnvironment);
             SelectedEnvironment = null;
         }
 
@@ -591,7 +670,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <returns>True if the environment exists in the collection, otherwise null.</returns>
         public bool CheckEnvironmentExists(EnvironmentViewModel environment)
         {
-            if (Environments.Any(e => e.Name == environment.Name))
+            var collection = Environments;
+            if (environment.EnvironmentType == EnvironmentType.BackupEnvironment)
+            {
+                collection = Backups;
+            }
+
+            if (environment.EnvironmentType == EnvironmentType.TemplateEnvironment)
+            {
+                collection = Templates;
+            }
+            
+            if (collection.Any(e => e.Name == environment.Name))
             {
                 EnvironmentExists?.Invoke(this, new EnvironmentExistingEventArgs(environment.Name));
                 return true;
@@ -607,6 +697,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void BackupEnvironment()
         {
             _dataAdapter.BackupEnvironment();
+            Backups.Clear();
+            var backups = GetBackupEnvironments();
+            foreach (var backup in backups)
+            {
+                Backups.Add(backup);
+            }
         }
 
         /// <summary>
@@ -615,6 +711,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void DeleteSelectedVariable()
         {
             SelectedVariable.MarkForDeletion();
+        }
+
+        /// <summary>
+        /// Marks the specified <seealso cref="EnvironmentVariableViewModel"/> for deletion.
+        /// </summary>
+        /// <param name="variableViewModel"></param>
+        public void DeleteVariable(EnvironmentVariableViewModel variableViewModel)
+        {
+            variableViewModel.MarkForDeletion();
         }
 
         /// <summary>
@@ -627,7 +732,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var cmdExecutor = new CmdExecutor();
             cmdExecutor.SetProgressHandler(progress);
-            
+
             var detector = new EnvironmentVariableRegistryRetriever();
 
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
@@ -658,6 +763,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 NopCommand nopCommand = new NopCommand(ChamiUIStrings.RevertToOriginalEnvironmentNop);
                 cmdExecutor.AddCommand(nopCommand);
             }
+
             await cmdExecutor.ExecuteAsync(cancellationToken);
 
             OnEnvironmentChanged(this, new EnvironmentChangedEventArgs(null));
@@ -694,6 +800,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        private void AddEnvironmentToCorrectCollection(EnvironmentViewModel environmentViewModel)
+        {
+            switch (environmentViewModel.EnvironmentType)
+            {
+                case EnvironmentType.NormalEnvironment:
+                default:
+                    Environments.Add(environmentViewModel);
+                    break;
+                case EnvironmentType.BackupEnvironment:
+                    Backups.Add(environmentViewModel);
+                    break;
+                case EnvironmentType.TemplateEnvironment:
+                    Templates.Add(environmentViewModel);
+                    break;
+            }
+        }
+
+
         /// <summary>
         /// Renames an environment.
         /// </summary>
@@ -704,8 +828,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var environmentToSave = SelectedEnvironment;
             environmentToSave.Name = argsNewName;
             var newSelectedEnvironment = _dataAdapter.SaveEnvironment(environmentToSave);
-            Environments = GetEnvironments();
-            OnPropertyChanged(nameof(Environments));
+            Environments.Remove(SelectedEnvironment);
+            Backups.Remove(SelectedEnvironment);
+            Templates.Remove(SelectedEnvironment);
+            AddEnvironmentToCorrectCollection(newSelectedEnvironment);
 
             SelectedEnvironment = newSelectedEnvironment;
             if (SelectedEnvironment.Equals(ActiveEnvironment))
@@ -787,7 +913,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="sortDescription">The sorting used by the listview.</param>
         /// <seealso cref="MainWindowSavedBehaviourViewModel"/>
         /// <seealso cref="SettingsDataAdapter"/>
-        public void SaveWindowState(double width, double height, double xPosition, double yPosition, WindowState windowState,
+        public void SaveWindowState(double width, double height, double xPosition, double yPosition,
+            WindowState windowState,
             SortDescription sortDescription)
         {
             var settings = Settings.MainWindowBehaviourSettings;
@@ -804,6 +931,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 windowState = WindowState.Normal;
             }
+
             settings.WindowState = windowState;
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
@@ -822,7 +950,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     var awaitedVariable = await v;
                     output.Add(awaitedVariable);
                 });
-
             }
 
             await Task.WhenAll(tasks);
@@ -847,7 +974,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 throw new ChamiFolderException(ChamiUIStrings.UnableToOpenAsFolderMessage);
             }
         }
-    }
 
-       
+        public bool IsSelectedVariableDeletable()
+        {
+            return SelectedEnvironment?.EnvironmentType != EnvironmentType.BackupEnvironment;
+        }
     }
+}

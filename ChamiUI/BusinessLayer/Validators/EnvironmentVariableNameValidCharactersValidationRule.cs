@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using Chami.Db.Entities;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
 
@@ -24,12 +25,26 @@ namespace ChamiUI.BusinessLayer.Validators
             var environmentVariable = ValidationUtils.ConvertObjectToValidate(value);
             if (environmentVariable != null)
             {
+                var environment = environmentVariable.Environment;
+                if (environment != null && environment.EnvironmentType == EnvironmentType.BackupEnvironment)
+                {
+                    return System.Windows.Controls.ValidationResult.ValidResult;
+                }
                 var environmentVariableName = environmentVariable.Name;
+                if (environmentVariable.Environment != null)
+                {
+                    if (environmentVariable.Environment.EnvironmentType == EnvironmentType.BackupEnvironment)
+                    {
+                        return System.Windows.Controls.ValidationResult.ValidResult;
+                    }
+                }
+
                 environmentVariable.IsValid = true;
                 if (environmentVariableName == null)
                 {
                     return System.Windows.Controls.ValidationResult.ValidResult;
                 }
+
                 if (Regex.IsMatch(environmentVariableName, "^[A-Za-z0-9_]*$"))
                 {
                     return System.Windows.Controls.ValidationResult.ValidResult;
@@ -51,7 +66,9 @@ namespace ChamiUI.BusinessLayer.Validators
                 string errorMessage;
                 if (positions.Count == 1)
                 {
-                    errorMessage = string.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessageSingular, positionString);
+                    errorMessage =
+                        string.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessageSingular,
+                            positionString);
                 }
                 else
                 {
