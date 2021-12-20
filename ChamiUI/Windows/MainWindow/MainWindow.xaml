@@ -360,6 +360,7 @@
             <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem" SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged">
                 <TabItem Header="{lex:Loc}" x:Name="EnvironmentsTabItem">
                     <ListBox 
+                        TextSearch.TextPath="Name"
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
                         x:Name="TemplateEnvironmentsListbox"
