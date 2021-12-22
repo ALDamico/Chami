@@ -459,7 +459,7 @@
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
                 <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}, IsAsync=True}"
                           AutoGenerateColumns="False"
-                          SelectionUnit="CellOrRowHeader"
+                          SelectionMode="Single"
                           CanUserAddRows="{Binding EditingEnabled}"
                           CanUserDeleteRows="{Binding EditingEnabled}"
                           IsReadOnly="{Binding IsDatagridReadonly}"

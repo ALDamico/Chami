@@ -83,7 +83,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EditingEnabled = false;
             // We're using the SelectedVariable property to tell the application that every edit has been completed and
             // it's okay to try to save
-            SelectedVariable = null;
+            //SelectedVariable = null;
         }
 
         /// <summary>
@@ -474,11 +474,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 case EnvironmentType.TemplateEnvironment:
                     SelectedEnvironment = Templates.FirstOrDefault();
-                    SelectedEnvironmentTypeTabIndex = 2;
+                    SelectedEnvironmentTypeTabIndex = 1;
                     break;
                 case EnvironmentType.BackupEnvironment:
                     SelectedEnvironment = Backups.FirstOrDefault();
-                    SelectedEnvironmentTypeTabIndex = 1;
+                    SelectedEnvironmentTypeTabIndex = 2;
                     break;
                 default:
                     SelectedEnvironment = Environments.FirstOrDefault();
