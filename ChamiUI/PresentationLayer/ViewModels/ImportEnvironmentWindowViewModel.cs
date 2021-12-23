@@ -62,7 +62,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public string SelectedEnvironmentName
         {
-            get => SelectedEnvironment.Name;
+            get => SelectedEnvironment?.Name;
             set
             {
                 SelectedEnvironment.Name = value;
