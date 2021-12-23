@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Input;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -28,9 +30,17 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
             {
                 return;
             }
+
+            var converter = new ImportEnvironmentViewModelConverter();
             foreach (var viewModel in environmentViewModels)
             {
-                _viewModel.NewEnvironments.Add(viewModel);
+                var importViewModel = converter.To(viewModel);
+                if (importViewModel != null)
+                {
+                    importViewModel.ShouldImport = true;
+                    _viewModel.NewEnvironments.Add(importViewModel);
+                }
+               
             }
 
             _viewModel.SelectedEnvironment ??= _viewModel.NewEnvironments[0];
@@ -90,6 +100,14 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
                 }
 
                 Close();
+            }
+        }
+
+        private void DeleteCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (_viewModel.SelectedEnvironment != null)
+            {
+                e.CanExecute = true;
             }
         }
     }

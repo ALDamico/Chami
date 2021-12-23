@@ -13,8 +13,11 @@
         Title="{lex:Loc}" Height="450" Width="800"
         Loaded="NewEnvironmentWindow_OnLoaded"
         >
+    <Window.CommandBindings>
+        <CommandBinding Command="Delete" x:Name="DeleteCommandBinding" CanExecute="DeleteCommandBinding_OnCanExecute"></CommandBinding>
+    </Window.CommandBindings>
     <Window.Resources>
-
+        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
@@ -41,16 +44,20 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <ListBox Grid.Row="2" 
+        <ListView Grid.Row="2" 
                  Grid.Column="0" Margin="0, 0, 5, 0" 
                  ItemsSource="{Binding NewEnvironments}"
                  SelectedItem="{Binding SelectedEnvironment}" >
-            <ListBox.ItemTemplate>
+            <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock ToolTip="{Binding DisplayName}" Text="{Binding Name}" />
+                    <StackPanel Orientation="Horizontal">
+                        <CheckBox IsChecked="{Binding ShouldImport}"></CheckBox>
+                        <TextBlock ToolTip="{Binding DisplayName}" Text="{Binding Name}" />
+                    </StackPanel>
+                    
                 </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <Label Grid.Row="0"
                Grid.Column="0"

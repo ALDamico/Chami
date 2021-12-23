@@ -14,13 +14,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public ImportEnvironmentWindowViewModel()
         {
-            NewEnvironments = new ObservableCollection<EnvironmentViewModel>();
+            NewEnvironments = new ObservableCollection<ImportEnvironmentViewModel>();
         }
 
         /// <summary>
         /// The list of new environments to import.
         /// </summary>
-        public ObservableCollection<EnvironmentViewModel> NewEnvironments { get; }
+        public ObservableCollection<ImportEnvironmentViewModel> NewEnvironments { get; }
 
         private EnvironmentViewModel _selectedEnvironment;
 
@@ -79,8 +79,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var environments = new List<EnvironmentViewModel>();
             foreach (var environmentViewModel in NewEnvironments)
             {
-                var environment = DataAdapter.SaveEnvironment(environmentViewModel);
-                environments.Add(environment);
+                if (environmentViewModel.ShouldImport)
+                {
+                    var environment = DataAdapter.SaveEnvironment(environmentViewModel);
+                    environments.Add(environment);
+                }
             }
 
             return environments;
