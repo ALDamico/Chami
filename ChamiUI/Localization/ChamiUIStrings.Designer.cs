@@ -1670,11 +1670,50 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An error occurred while trying to save!.
+        /// </summary>
+        public static string SaveEnvironmentErrorCaption {
+            get {
+                return ResourceManager.GetString("SaveEnvironmentErrorCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An environment named {0} already exists.
+        ///Use a different name and try again..
+        /// </summary>
+        public static string SaveEnvironmentErrorMessage {
+            get {
+                return ResourceManager.GetString("SaveEnvironmentErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save.
         /// </summary>
         public static string SaveEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("SaveEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error!.
+        /// </summary>
+        public static string SaveEnvironmentUnknownErrorCaption {
+            get {
+                return ResourceManager.GetString("SaveEnvironmentUnknownErrorCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unknown error has occurred. A detailed stacktrace follows:
+        ///{0}
+        ///{1}.
+        /// </summary>
+        public static string SaveEnvironmentUnknownErrorMessage {
+            get {
+                return ResourceManager.GetString("SaveEnvironmentUnknownErrorMessage", resourceCulture);
             }
         }
         

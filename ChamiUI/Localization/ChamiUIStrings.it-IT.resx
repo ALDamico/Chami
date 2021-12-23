@@ -797,4 +797,19 @@ Nessuna azione intrapresa.</value>
   <data name="WindowStatusMessageReady" xml:space="preserve">
     <value>Pronto</value>
   </data>
+  <data name="SaveEnvironmentErrorMessage" xml:space="preserve">
+    <value>Esiste già un altro ambiente chiamato {0}.
+Usa un nome diverso e riprova il salvataggio.</value>
+  </data>
+  <data name="SaveEnvironmentErrorCaption" xml:space="preserve">
+    <value>Si è verificato un errore durante il salvataggio!</value>
+  </data>
+  <data name="SaveEnvironmentUnknownErrorMessage" xml:space="preserve">
+    <value>Si è verificato un errore sconosciuto. Segue lo stacktrace dettagliato:
+{0}
+{1}</value>
+  </data>
+  <data name="SaveEnvironmentUnknownErrorCaption" xml:space="preserve">
+    <value>Errore sconosciuto!</value>
+  </data>
 </root>

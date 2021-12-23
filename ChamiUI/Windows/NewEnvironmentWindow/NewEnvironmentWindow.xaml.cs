@@ -2,10 +2,13 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.ComponentModel;
+using System.Data.SQLite;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
 {
@@ -15,6 +18,7 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
         {
             Owner = owner;
         }
+
         public NewEnvironmentWindow()
         {
             _viewModel = new NewEnvironmentViewModel();
@@ -58,11 +62,41 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             if (_viewModel.IsSaveButtonEnabled &&
                 _viewModel.Environment.EnvironmentVariables.All(v => v.IsValid == null || v.IsValid == true)
                 && !string.IsNullOrWhiteSpace(_viewModel.EnvironmentName)
-            )
+               )
             {
-                var inserted = _viewModel.SaveEnvironment();
-                EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(inserted));
-                Close();
+                try
+                {
+                    var inserted = _viewModel.SaveEnvironment();
+                    EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(inserted));
+                    Close();
+                }
+                catch (SQLiteException ex)
+                {
+                    var loggingEnabled = SettingsUtils.GetAppSettings().LoggingSettings.LoggingEnabled;
+                    if (loggingEnabled)
+                    {
+                        var logger = (App.Current as ChamiUI.App).GetLogger();
+                        logger.Error(ex.Message);
+                        logger.Error(ex.StackTrace);
+                    }
+
+                    var exceptionMessage = ex.Message;
+                    string message = "";
+                    string caption = "";
+                    if (Regex.IsMatch(exceptionMessage, "UNIQUE"))
+                    {
+                        message = string.Format(ChamiUIStrings.SaveEnvironmentErrorMessage, _viewModel.EnvironmentName);
+                        caption = ChamiUIStrings.SaveEnvironmentErrorCaption;
+                    }
+                    else
+                    {
+                        message = string.Format(ChamiUIStrings.SaveEnvironmentUnknownErrorMessage, ex.Message,
+                            ex.StackTrace);
+                        caption = ChamiUIStrings.SaveEnvironmentUnknownErrorCaption;
+                    }
+                    MessageBox.Show(message, caption, MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
             }
             else
             {
