@@ -44,6 +44,7 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
             }
 
             _viewModel.SelectedEnvironment ??= _viewModel.NewEnvironments[0];
+            _viewModel.UpdatePropertyChanged();
         }
 
         protected override void OnClosing(CancelEventArgs e)
@@ -109,6 +110,11 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
             {
                 e.CanExecute = true;
             }
+        }
+
+        private void UpdateCheckedStatus(object sender, RoutedEventArgs e)
+        {
+            _viewModel.UpdatePropertyChanged();
         }
     }
 }

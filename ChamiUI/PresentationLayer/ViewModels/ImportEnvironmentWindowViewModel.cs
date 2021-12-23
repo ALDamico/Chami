@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Chami.Db.Entities;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -15,6 +16,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public ImportEnvironmentWindowViewModel()
         {
             NewEnvironments = new ObservableCollection<ImportEnvironmentViewModel>();
+            UpdatePropertyChanged();
         }
 
         /// <summary>
@@ -45,6 +47,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
+                if (NewEnvironments.All(e => !e.ShouldImport))
+                {
+                    return false;
+                }
                 foreach (var environment in NewEnvironments)
                 {
                     if (!Validator.Validate(environment).IsValid)
@@ -87,6 +93,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             return environments;
+        }
+
+        public void UpdatePropertyChanged()
+        {
+           OnPropertyChanged(nameof(NewEnvironments));
+           OnPropertyChanged(nameof(IsSaveButtonEnabled));
         }
     }
 }
