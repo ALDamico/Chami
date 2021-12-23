@@ -785,4 +785,16 @@ No action taken.</value>
   <data name="BackupDefaultName" xml:space="preserve">
     <value>Backup of {0}</value>
   </data>
+  <data name="ActiveEnvironmentStatusBarItem_Tooltip" xml:space="preserve">
+    <value>The currently-active environment.</value>
+  </data>
+  <data name="WindowStatusMessageChangeInProgress" xml:space="preserve">
+    <value>Applying environment {0}... Please wait.</value>
+  </data>
+  <data name="WindowStatusMessageEditingMode" xml:space="preserve">
+    <value>Editing mode</value>
+  </data>
+  <data name="WindowStatusMessageReady" xml:space="preserve">
+    <value>Ready</value>
+  </data>
 </root>

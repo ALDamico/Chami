@@ -549,5 +549,16 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <StatusBar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
+            <StatusBarItem x:Name="ActiveEnvironmentStatusBarItem" ToolTip="{lex:Loc}">
+                <TextBlock Text="{Binding ActiveEnvironment.Name}"></TextBlock>
+            </StatusBarItem>
+            <Separator></Separator>
+            <StatusBarItem x:Name="MainWindowStatusBarItem">
+                <StatusBarItem.Content>
+                    <TextBlock Text="{Binding WindowStatusMessage}"></TextBlock>
+                </StatusBarItem.Content>
+            </StatusBarItem>
+        </StatusBar>
     </Grid>
 </Window>

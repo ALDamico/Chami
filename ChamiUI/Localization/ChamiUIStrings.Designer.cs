@@ -133,6 +133,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The currently-active environment..
+        /// </summary>
+        public static string ActiveEnvironmentStatusBarItem_Tooltip {
+            get {
+                return ResourceManager.GetString("ActiveEnvironmentStatusBarItem_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string AddApplicationButton_Content {
@@ -2045,6 +2054,33 @@ namespace ChamiUI.Localization {
         public static string WebsiteMenuItem_Header {
             get {
                 return ResourceManager.GetString("WebsiteMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Applying environment {0}... Please wait..
+        /// </summary>
+        public static string WindowStatusMessageChangeInProgress {
+            get {
+                return ResourceManager.GetString("WindowStatusMessageChangeInProgress", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Editing mode.
+        /// </summary>
+        public static string WindowStatusMessageEditingMode {
+            get {
+                return ResourceManager.GetString("WindowStatusMessageEditingMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ready.
+        /// </summary>
+        public static string WindowStatusMessageReady {
+            get {
+                return ResourceManager.GetString("WindowStatusMessageReady", resourceCulture);
             }
         }
     }
