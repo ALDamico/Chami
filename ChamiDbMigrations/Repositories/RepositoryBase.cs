@@ -19,6 +19,7 @@ namespace Chami.Db.Repositories
         protected SQLiteConnection GetConnection()
         {
             var connection = new SQLiteConnection(ConnectionString);
+            connection.SetExtendedResultCodes(true);
             connection.Open();
             return connection;
         }

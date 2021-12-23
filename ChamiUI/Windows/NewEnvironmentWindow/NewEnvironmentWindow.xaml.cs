@@ -80,10 +80,10 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                         logger.Error(ex.StackTrace);
                     }
 
-                    var exceptionMessage = ex.Message;
                     string message = "";
                     string caption = "";
-                    if (Regex.IsMatch(exceptionMessage, "UNIQUE"))
+                    
+                    if (ex.ErrorCode == (int) SQLiteErrorCode.Constraint_Unique)
                     {
                         message = string.Format(ChamiUIStrings.SaveEnvironmentErrorMessage, _viewModel.EnvironmentName);
                         caption = ChamiUIStrings.SaveEnvironmentErrorCaption;
