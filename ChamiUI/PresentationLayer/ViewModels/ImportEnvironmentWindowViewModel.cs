@@ -100,5 +100,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
            OnPropertyChanged(nameof(NewEnvironments));
            OnPropertyChanged(nameof(IsSaveButtonEnabled));
         }
+
+        public void SelectAllEnvironments()
+        {
+            foreach (var environment in NewEnvironments)
+            {
+                environment.ShouldImport = true;
+            }
+        }
+
+        public void DeselectAllEnvironments()
+        {
+            foreach (var environment in NewEnvironments)
+            {
+                environment.ShouldImport = false;
+            }
+        }
     }
 }

@@ -116,5 +116,15 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
         {
             _viewModel.UpdatePropertyChanged();
         }
+
+        private void ImportSelectAllButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _viewModel.SelectAllEnvironments();
+        }
+
+        private void ImportDeselectAllButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _viewModel.DeselectAllEnvironments();
+        }
     }
 }

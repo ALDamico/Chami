@@ -1107,6 +1107,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Deselect All.
+        /// </summary>
+        public static string ImportDeselectAllButton_Content {
+            get {
+                return ResourceManager.GetString("ImportDeselectAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Import environments.
         /// </summary>
         public static string ImportEnvironmentWindowHeaderTitle_Content {
@@ -1157,6 +1166,15 @@ namespace ChamiUI.Localization {
         public static string ImportMenuItem_Header {
             get {
                 return ResourceManager.GetString("ImportMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        public static string ImportSelectAllButton_Content {
+            get {
+                return ResourceManager.GetString("ImportSelectAllButton_Content", resourceCulture);
             }
         }
         
