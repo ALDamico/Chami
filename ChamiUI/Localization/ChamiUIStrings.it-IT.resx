@@ -812,4 +812,10 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="SaveEnvironmentUnknownErrorCaption" xml:space="preserve">
     <value>Errore sconosciuto!</value>
   </data>
+  <data name="ImportSelectAllButton_Content" xml:space="preserve">
+    <value>Seleziona tutti</value>
+  </data>
+  <data name="ImportDeselectAllButton_Content" xml:space="preserve">
+    <value>Deseleziona tutti</value>
+  </data>
 </root>
