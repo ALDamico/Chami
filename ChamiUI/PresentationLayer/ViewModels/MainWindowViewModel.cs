@@ -58,6 +58,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
                 OnPropertyChanged(nameof(IsDatagridReadonly));
                 OnPropertyChanged(nameof(WindowStatusMessage));
+                OnPropertyChanged(nameof(CanDeleteEnvironment));
             }
         }
 
@@ -328,6 +329,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
             OnPropertyChanged(nameof(ExecuteButtonIcon));
             OnPropertyChanged(nameof(WindowStatusMessage));
+            OnPropertyChanged(nameof(CanDeleteEnvironment));
         }
 
         /// <summary>
@@ -507,6 +509,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(SelectedVariable));
                 OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
+                OnPropertyChanged(nameof(CanDeleteEnvironment));
             }
         }
 
@@ -998,5 +1001,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 return ChamiUIStrings.WindowStatusMessageReady;
             }
         }
+
+        public bool CanDeleteEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
     }
 }

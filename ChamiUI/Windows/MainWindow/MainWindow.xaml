@@ -33,6 +33,12 @@
         <KeyBinding Key="F"
                     Modifiers="Control"
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}" />
+        <KeyBinding Key="E" 
+                    Command="{x:Static commandProvider:MainWindowCommandsProvider.EditEnvironmentCommand}"
+                    Modifiers="Control"></KeyBinding>
+        <KeyBinding Key="Delete"
+                    Command="Delete"
+                    ></KeyBinding>
     </Window.InputBindings>
     <Window.Resources>
         
@@ -58,7 +64,8 @@
             <MenuItem Header="{lex:Loc}"
                       x:Name="EditEnvironmentMenuItem"
                       IsEnabled="{Binding IsEditable}"
-                      Click="EditEnvironmentMenuItem_OnClick">
+                      InputGestureText="Ctrl+E"
+                      Command="{x:Static commandProvider:MainWindowCommandsProvider.EditEnvironmentCommand}">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/edit.svg" />
                 </MenuItem.Icon>
@@ -69,7 +76,8 @@
                       InputGestureText="F2" />
             <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentMenuItem"
-                      Click="DeleteEnvironmentMenuItem_OnClick">
+                      Command="{x:Static commandProvider:MainWindowCommandsProvider.DeleteEnvironmentCommand}"
+                      InputGestureText="CANC">
                 <MenuItem.Icon>
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
                 </MenuItem.Icon>
@@ -164,6 +172,16 @@
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.CreateTemplateEnvironmentCommand}"
                         CanExecute="CreateTemplateCommandBinding_OnCanExecute"
                         Executed="CreateTemplateCommandBinding_OnExecuted" />
+        <CommandBinding x:Name="EditEnvironmentCommandBinding"
+                        Command="{x:Static commandProvider:MainWindowCommandsProvider.EditEnvironmentCommand}" 
+                        CanExecute="EditEnvironmentCommandBinding_OnCanExecute"
+                        Executed="EditEnvironmentCommandBinding_OnExecuted"
+                        />
+        <CommandBinding x:Name="DeleteEnvironmentCommandBinding"
+                        Command="Delete"
+                        CanExecute="DeleteEnvironmentCommandBinding_OnCanExecute"
+                        Executed="DeleteEnvironmentCommandBinding_OnExecuted"
+                        ></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>

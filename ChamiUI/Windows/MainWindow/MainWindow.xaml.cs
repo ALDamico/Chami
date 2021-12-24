@@ -214,29 +214,6 @@ namespace ChamiUI.Windows.MainWindow
             ViewModel.DisableEditing();
         }
 
-        private void DeleteEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            var selectedEnvironmentName = ViewModel.SelectedEnvironment.Name;
-            var selectedEnvironmentVariableCount = ViewModel.SelectedEnvironment.EnvironmentVariables.Count;
-            string message;
-            if (selectedEnvironmentVariableCount == 0)
-            {
-                message = string.Format(ChamiUIStrings.DeleteEnvironmentNoVariablesText, selectedEnvironmentName);
-            }
-            else
-            {
-                message = string.Format(ChamiUIStrings.DeleteEnvironmentWithVariablesText, selectedEnvironmentName,
-                    selectedEnvironmentVariableCount);
-            }
-
-            var result = MessageBox.Show(message, ChamiUIStrings.DeleteEnvironmentCaption, MessageBoxButton.OKCancel,
-                MessageBoxImage.Warning);
-            if (result == MessageBoxResult.OK)
-            {
-                ViewModel.DeleteSelectedEnvironment();
-            }
-        }
-
         private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             ViewModel.SaveCurrentEnvironment();
@@ -757,6 +734,56 @@ namespace ChamiUI.Windows.MainWindow
                 DeleteVariableInner(row);
 
                 e.Handled = true;
+            }
+        }
+
+        private void EditEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            if (!ViewModel.EditingEnabled)
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void EditEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewModel.EnableEditing();
+            FocusEnvironmentVariablesTab();
+        }
+
+        private void DeleteEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            /*if (!EnvironmentsListbox.IsFocused)
+            {
+                e.CanExecute = false;
+                return;
+            }*/
+            if (ViewModel.CanDeleteEnvironment)
+            {
+                e.CanExecute = true;
+            }
+        }
+
+        private void DeleteEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var selectedEnvironmentName = ViewModel.SelectedEnvironment.Name;
+            var selectedEnvironmentVariableCount = ViewModel.SelectedEnvironment.EnvironmentVariables.Count;
+            string message;
+            if (selectedEnvironmentVariableCount == 0)
+            {
+                message = string.Format(ChamiUIStrings.DeleteEnvironmentNoVariablesText, selectedEnvironmentName);
+            }
+            else
+            {
+                message = string.Format(ChamiUIStrings.DeleteEnvironmentWithVariablesText, selectedEnvironmentName,
+                    selectedEnvironmentVariableCount);
+            }
+
+            var result = MessageBox.Show(message, ChamiUIStrings.DeleteEnvironmentCaption, MessageBoxButton.OKCancel,
+                MessageBoxImage.Warning);
+            if (result == MessageBoxResult.OK)
+            {
+                ViewModel.DeleteSelectedEnvironment();
             }
         }
     }
