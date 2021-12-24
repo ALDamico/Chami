@@ -725,6 +725,10 @@ namespace ChamiUI.Windows.MainWindow
         private void DeleteEnvironmentVariableCommand_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = ViewModel.IsSelectedVariableDeletable();
+            if (!ViewModel.EditingEnabled)
+            {
+                e.CanExecute = false;
+            }
         }
 
         private void DeleteEnvironmentVariableCommand_OnExecuted(object sender, ExecutedRoutedEventArgs e)
