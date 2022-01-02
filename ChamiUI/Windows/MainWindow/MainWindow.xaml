@@ -198,6 +198,9 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
+        <ToolBarTray Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="MainWindowToolbarTray">
+            <ToolBar><Button>Pulsante host</Button></ToolBar>
+        </ToolBarTray>
         <StackPanel Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"

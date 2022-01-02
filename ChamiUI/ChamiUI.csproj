@@ -1137,6 +1137,10 @@
       <Resource Include="Assets\Svg\sync.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Assets\Svg\check-circle-green.svg" />
+      <Content Include="Assets\Svg\check-circle-green.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>

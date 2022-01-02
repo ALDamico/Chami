@@ -30,5 +30,10 @@ namespace ChamiUI.Windows.PluginManager
             }
             
         }
+
+        private void DisablePluginButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            _viewModel.DisableSelectedPlugin();
+        }
     }
 }

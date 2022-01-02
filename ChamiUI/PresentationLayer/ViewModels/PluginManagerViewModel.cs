@@ -13,5 +13,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public ObservableCollection<ChamiPluginInfoViewModel> AvailablePlugins { get;  }
         public ChamiPluginInfoViewModel SelectedPlugin { get; set; }
         public ObservableCollection<ChamiPluginInfoViewModel> SelectedPlugins { get; set; }
+
+        public void DisableSelectedPlugin()
+        {
+            (App.Current as ChamiUI.App).LoadedPlugins.RemoveAll(p =>
+                p.PluginInfo.InstanceGuid == SelectedPlugin.InstanceGuid);
+            SelectedPlugin.IsEnabled = false;
+        }
     }
 }

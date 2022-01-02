@@ -7,51 +7,57 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         xmlns:gl="clr-namespace:System.Globalization;assembly=System.Runtime"
+        xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+        xmlns:viewModels1="clr-namespace:Chami.Plugins.Contracts.ViewModels;assembly=Chami.Plugins.Contracts"
         mc:Ignorable="d"
         Title="{lex:Loc Key=PluginManager_Title}" Height="600" Width="400"
         ResizeMode="NoResize"
         WindowStyle="ToolWindow"
         WindowStartupLocation="CenterOwner"
         d:DataContext="{d:DesignInstance viewModels:PluginManagerViewModel}"
-        Loaded="PluginManager_OnLoaded"
-        >
+        Loaded="PluginManager_OnLoaded">
     <Grid Margin="5">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" x:Name="PluginManagerHelpText" Content="{lex:Loc}" IsEnabled="False"></Label>
+        <Label Grid.Row="0" Grid.Column="0" x:Name="PluginManagerHelpText" Content="{lex:Loc}" IsEnabled="False" />
         <DockPanel Grid.Row="1" Grid.Column="0">
-            <Button DockPanel.Dock="Right" x:Name="DisablePluginButton" Content="{lex:Loc}" Margin="5, 0"></Button>
-            <Button DockPanel.Dock="Right" x:Name="EnablePluginButton" Content="{lex:Loc}" Margin="5, 0"></Button>
+            <Button DockPanel.Dock="Right" x:Name="DisablePluginButton" Content="{lex:Loc}" Margin="5, 0" Click="DisablePluginButton_OnClick" />
+            <Button DockPanel.Dock="Right" x:Name="EnablePluginButton" Content="{lex:Loc}" Margin="5, 0" />
         </DockPanel>
-        <Separator Grid.Row="2" Grid.Column="0"></Separator>
-        <ListView Grid.Row="3" Grid.Column="0" ItemsSource="{Binding AvailablePlugins}" 
-                  SelectedItem="{Binding SelectedPlugin}"
-                  >
+        <Separator Grid.Row="2" Grid.Column="0" />
+        <ListView Grid.Row="3" Grid.Column="0" ItemsSource="{Binding AvailablePlugins}"
+                  SelectedItem="{Binding SelectedPlugin}">
             <ListView.View>
                 <GridView AllowsColumnReorder="False">
                     <GridView.Columns>
-                        <GridViewColumn x:Name="PluginManagerPluginNameColumn" 
-                                        Header="{lex:Loc Key=PluginManagerPluginNameColumn}" 
-                                        DisplayMemberBinding="{Binding PluginName}"></GridViewColumn>
+                        <GridViewColumn>
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate DataType="viewModels1:ChamiPluginInfoViewModel">
+                                    <svgc:SvgViewbox Height="8" 
+                                                     Width="8" 
+                                                     Source="{Binding IsEnabledIconPath}" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="PluginManagerPluginNameColumn"
+                                        Header="{lex:Loc Key=PluginManagerPluginNameColumn}"
+                                        DisplayMemberBinding="{Binding PluginName}" />
                         <GridViewColumn x:Name="PluginManagerPluginVersionColumn"
                                         Header="{lex:Loc Key=PluginManagerPluginVersionColumn}"
-                                        DisplayMemberBinding="{Binding Version}"
-                                        ></GridViewColumn>
+                                        DisplayMemberBinding="{Binding Version}" />
                         <GridViewColumn x:Name="PluginManagerPluginAuthorColumn"
                                         Header="{lex:Loc Key=PluginManagerPluginAuthorColumn}"
-                                        DisplayMemberBinding="{Binding Author}"
-                                        ></GridViewColumn>
-                        <GridViewColumn x:Name="PluginManagerPluginCreationDateColumn" 
+                                        DisplayMemberBinding="{Binding Author}" />
+                        <GridViewColumn x:Name="PluginManagerPluginCreationDateColumn"
                                         Header="{lex:Loc Key=PluginManagerPluginCreationDateColumn}"
-                                        DisplayMemberBinding="{Binding CreationDate, StringFormat='g', ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}"
-                                        ></GridViewColumn>
+                                        DisplayMemberBinding="{Binding CreationDate, StringFormat='g', ConverterCulture={x:Static gl:CultureInfo.CurrentCulture}}" />
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

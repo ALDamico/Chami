@@ -5,6 +5,15 @@ namespace Chami.Plugins.Contracts
 {
     public class ChamiPluginInfo
     {
+        public ChamiPluginInfo()
+        {
+            _instanceGuid = Guid.NewGuid();
+        }
+        public Guid InstanceGuid
+        {
+            get => _instanceGuid;
+        }
+        private Guid _instanceGuid;
         public string Author { get; set; }
         public Version Version { get; set; }
         public DateTime CreationDate { get; set; }
@@ -19,7 +28,8 @@ namespace Chami.Plugins.Contracts
                 Version = Version.ToString(),
                 CreationDate = CreationDate,
                 PluginName = PluginName,
-                IsEnabled = true
+                IsEnabled = true,
+                InstanceGuid = InstanceGuid
             };
         }
     }

@@ -9,6 +9,29 @@ namespace Chami.Plugins.Contracts.ViewModels
         private DateTime _creationDate;
         private string _pluginName;
         private bool _isEnabled;
+        private Guid _instanceGuid;
+
+        public Guid InstanceGuid
+        {
+            init
+            {
+                _instanceGuid = value;
+            }
+            get => _instanceGuid;
+        }
+
+        public string IsEnabledIconPath
+        {
+            get
+            {
+                if (_isEnabled)
+                {
+                    return "/Assets/Svg/check-circle-green.svg";
+                }
+
+                return "/Assets/Svg/times.svg";
+            }
+        }
 
         public string Author
         {
@@ -57,6 +80,7 @@ namespace Chami.Plugins.Contracts.ViewModels
             {
                 _isEnabled = value;
                 OnPropertyChanged(nameof(IsEnabled));
+                OnPropertyChanged(nameof(IsEnabledIconPath));
             }
         }
     }

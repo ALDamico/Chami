@@ -27,6 +27,7 @@ using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.BusinessLayer.PluginLoader;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI
 {
@@ -269,5 +270,7 @@ namespace ChamiUI
                 _taskbarIcon.Dispose();
             }
         }
+
+        public event EventHandler<PluginUnloadRequestedEventArgs> PluginUnloadRequested;
     }
 }
