@@ -222,6 +222,22 @@
             </MenuItem>
 
             <MenuItem Header="{lex:Loc}" x:Name="MainWindowEditMenuItem">
+                <MenuItem Header="{lex:Loc}" x:Name="MainWindowToolbarsMenuItem" ItemsSource="{Binding Settings.ToolbarInfo}">
+                    <MenuItem.ItemContainerStyle>
+                        <Style TargetType="MenuItem">
+                            <Setter Property="IsCheckable" Value="True"></Setter>
+                            <Setter Property="IsChecked" Value="{Binding IsVisible}"></Setter>
+                            <EventSetter x:Name="CheckedEventSetter" Event="Checked" Handler="CheckedEventSetter_OnChecked"></EventSetter>
+                            <EventSetter x:Name="UncheckedEventSetter" Event="Unchecked" Handler="UncheckedEventSetter_OnUnchecked"></EventSetter>
+                        </Style>
+                    </MenuItem.ItemContainerStyle>
+                    <MenuItem.ItemTemplate>
+                        <DataTemplate DataType="viewModels:ToolbarInfoViewModel">
+                            <TextBlock Text="{Binding ToolbarFriendlyName}"></TextBlock>
+                        </DataTemplate>
+                    </MenuItem.ItemTemplate>
+                </MenuItem>
+                <Separator/>
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                           InputGestureText="Ctrl+F">
@@ -275,6 +291,11 @@
                 </MenuItem>
             </MenuItem>
         </Menu>
+        
+        <ToolBarTray Orientation="Horizontal" Background="LightGreen" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="MainWindowToolbarTray" >
+            
+        </ToolBarTray>
+       
         <StackPanel Grid.Row="1"
                     Grid.Column="0"
                     Grid.ColumnSpan="2"
@@ -401,7 +422,7 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </TabItem>
-                <TabItem Header="Template" >
+                <TabItem x:Name="TemplateTabItem" Header="{lex:Loc}" >
                     <ListBox 
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource TemplateEnvironmentsViewSource}}"

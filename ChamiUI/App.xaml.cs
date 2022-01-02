@@ -11,6 +11,7 @@ using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
@@ -24,6 +25,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.PresentationLayer.Toolbars;
 
 namespace ChamiUI
 {
@@ -46,12 +48,42 @@ namespace ChamiUI
             try
             {
                 var connectionString = GetConnectionString();
-                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString), new WatchedApplicationDataAdapter(connectionString), new ApplicationLanguageDataAdapter(connectionString));
+                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
+                    new WatchedApplicationDataAdapter(connectionString),
+                    new ApplicationLanguageDataAdapter(connectionString));
             }
             catch (SQLiteException)
             {
                 MigrateDatabase();
             }
+
+            _serviceCollection.AddToolbarLocator(Settings.ToolbarInfo);
+            _serviceProvider = _serviceCollection.BuildServiceProvider();
+
+            var toolbarLocator = _serviceProvider.GetService<ToolbarLocator>();;
+
+            if (toolbarLocator != null)
+            {
+                var resourceDictionary = new System.Windows.ResourceDictionary();
+                resourceDictionary.Source = new Uri("ChamiUI;component/PresentationLayer/Toolbars/MainWindowToolbars.xaml",
+                    UriKind.RelativeOrAbsolute);
+                toolbarLocator.AddSource(resourceDictionary);
+                var toolbars = toolbarLocator.GetToolbars();
+                _discoveredToolBars = toolbars;
+                foreach (var toolbar in toolbars)
+                {
+                    Logger.GetLogger().Information("Recovered toolbar named {toolbarName}", toolbar.Name);
+                }
+            }
+            else
+            {
+                Logger.GetLogger().Warning("No toolbars could be found!");
+            }
+        }
+
+        public IEnumerable<ToolBar> GetDiscoveredToolbars()
+        {
+            return _discoveredToolBars;
         }
 
         private void InitCmdExecutorMessages()
@@ -61,15 +93,19 @@ namespace ChamiUI
         }
 
         private readonly IServiceProvider _serviceProvider;
+        private static IEnumerable<ToolBar> _discoveredToolBars;
+        private IServiceCollection _serviceCollection;
 
         private IServiceProvider CreateServices()
         {
-            return new ServiceCollection()
+            _serviceCollection = new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations())
-                .AddLogging(l => l.AddSerilog(GetLogger())).BuildServiceProvider();
+                .AddLogging(l => l.AddSerilog(GetLogger()));
+
+            return _serviceCollection.BuildServiceProvider();
         }
 
         private void MigrateDatabase()
@@ -94,7 +130,6 @@ namespace ChamiUI
                 // A unit test is running. Use its connection string instead
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
-
         }
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
@@ -143,9 +178,9 @@ namespace ChamiUI
             var mainWindow = new MainWindow();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
-            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
+            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
-            
+
             if (_taskbarIcon != null)
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)

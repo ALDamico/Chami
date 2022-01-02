@@ -1279,6 +1279,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Toolbars.
+        /// </summary>
+        public static string MainWindowToolbarsMenuItem_Header {
+            get {
+                return ResourceManager.GetString("MainWindowToolbarsMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When minimized:.
         /// </summary>
         public static string MinimizationBehaviourControlLabel_Content {
@@ -1975,6 +1984,15 @@ namespace ChamiUI.Localization {
         public static string TemplateNameLabel_Content {
             get {
                 return ResourceManager.GetString("TemplateNameLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Templates.
+        /// </summary>
+        public static string TemplateTabItem_Header {
+            get {
+                return ResourceManager.GetString("TemplateTabItem_Header", resourceCulture);
             }
         }
         

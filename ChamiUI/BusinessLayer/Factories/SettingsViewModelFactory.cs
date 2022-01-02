@@ -28,6 +28,22 @@ namespace ChamiUI.BusinessLayer.Factories
             var applicationLanguageViewModels = availableLanguages.ToList();
             settings.LanguageSettings.AvailableLanguages = new ObservableCollection<ApplicationLanguageViewModel>(applicationLanguageViewModels);
             settings.LanguageSettings.CurrentLanguage = applicationLanguageViewModels?.Where(l => l.Code == currentLanguage.Code).FirstOrDefault();
+            
+            // TODO REMOVEME
+            var fileToolbarInfo = new ToolbarInfoViewModel(null)
+            {
+                BandOccupied = 0, IsVisible = true, ToolbarName = "FileToolbar", ToolbarFriendlyName = "File",
+                OrdinalPositionInBand = 0
+            };
+            var editToolbarInfo = new ToolbarInfoViewModel(null)
+            {
+                BandOccupied = 1, IsVisible = true, ToolbarName = "EditToolbar", ToolbarFriendlyName = "Modifica",
+                OrdinalPositionInBand = 0
+            };
+            settings.ToolbarInfo.Add(fileToolbarInfo);
+            settings.ToolbarInfo.Add(editToolbarInfo);
+            //TODO
+            
             return settings;
         }
     }

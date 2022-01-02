@@ -48,6 +48,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
             }
+            PopulateToolbars();
         }
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
@@ -578,6 +579,19 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
+        private void PopulateToolbars()
+        {
+            var toolbars = (Application.Current as App)?.GetDiscoveredToolbars();
+            if (toolbars == null)
+            {
+                return;
+            }
+            foreach (var toolbar in toolbars)
+            {
+                MainWindowToolbarTray.ToolBars.Add(toolbar);
+            }
+        }
+
         private void FilterStrategySelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var newStrategy = e.AddedItems[0] as IFilterStrategy;
@@ -788,6 +802,62 @@ namespace ChamiUI.Windows.MainWindow
             if (result == MessageBoxResult.OK)
             {
                 ViewModel.DeleteSelectedEnvironment();
+            }
+        }
+
+        private void CheckedEventSetter_OnChecked(object sender, RoutedEventArgs e)
+        {
+            var control = e.Source as Control;
+            if (control?.DataContext is not ToolbarInfoViewModel dataContext) return;
+            dataContext.IsVisible = true;
+
+            var toolbar = dataContext.ToolBar;
+            
+            if (!MainWindowToolbarTray.ToolBars.Contains(dataContext.ToolBar))
+            {
+                MainWindowToolbarTray.ToolBars.Add(dataContext.ToolBar);    
+            }
+
+            int band = dataContext.BandOccupied;
+            int bandIndex = dataContext.OrdinalPositionInBand;
+
+            RearrangeToolbarTray(toolbar, band, bandIndex);
+        }
+
+        private void RearrangeToolbarTray(ToolBar addedToolbar, int band, int bandIndex)
+        {
+            foreach (var currentToolbar in MainWindowToolbarTray.ToolBars)
+            {
+                if (currentToolbar == addedToolbar)
+                {
+                    currentToolbar.Band = band;
+                    currentToolbar.BandIndex = bandIndex;
+                    continue;
+                }
+
+                if (currentToolbar.Band >= band)
+                {
+                    currentToolbar.Band++;
+                }
+            }
+        }
+
+        private void UncheckedEventSetter_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            var control = e.Source as Control;
+            if (control == null)
+            {
+                return;
+            }
+
+            if (control.DataContext is ToolbarInfoViewModel dataContext)
+            {
+                dataContext.IsVisible = false;
+
+                if (MainWindowToolbarTray.ToolBars.Contains(dataContext.ToolBar))
+                {
+                    MainWindowToolbarTray.ToolBars.Remove(dataContext.ToolBar);
+                }
             }
         }
     }

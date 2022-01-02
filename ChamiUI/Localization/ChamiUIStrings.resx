@@ -818,4 +818,10 @@ Use a different name and try again.</value>
   <data name="ImportDeselectAllButton_Content" xml:space="preserve">
     <value>Deselect All</value>
   </data>
+  <data name="MainWindowToolbarsMenuItem_Header" xml:space="preserve">
+    <value>Toolbars</value>
+  </data>
+  <data name="TemplateTabItem_Header" xml:space="preserve">
+    <value>Templates</value>
+  </data>
 </root>

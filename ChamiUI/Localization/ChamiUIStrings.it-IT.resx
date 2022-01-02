@@ -818,4 +818,10 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="ImportDeselectAllButton_Content" xml:space="preserve">
     <value>Deseleziona tutti</value>
   </data>
+  <data name="MainWindowToolbarsMenuItem_Header" xml:space="preserve">
+    <value>Barre degli strumenti</value>
+  </data>
+  <data name="TemplateTabItem_Header" xml:space="preserve">
+    <value>Template</value>
+  </data>
 </root>

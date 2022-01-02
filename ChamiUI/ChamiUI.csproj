@@ -1129,6 +1129,10 @@
       <Resource Include="Assets\Svg\sync.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <Page Remove="PresentationLayer\Toolbars\MainWindowToolbars.xaml" />
+      <Resource Include="PresentationLayer\Toolbars\MainWindowToolbars.xaml">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
