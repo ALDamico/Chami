@@ -818,4 +818,19 @@ Use a different name and try again.</value>
   <data name="ImportDeselectAllButton_Content" xml:space="preserve">
     <value>Deselect All</value>
   </data>
+  <data name="ConfirmUpdateFromTemplateCaption" xml:space="preserve">
+    <value>Confirm update</value>
+  </data>
+  <data name="ConfirmUpdateFromTemplateText" xml:space="preserve">
+    <value>A template environment has been updated. Do you want to update the environments based on this template?</value>
+  </data>
+  <data name="TemplateUpdateHeader_Content" xml:space="preserve">
+    <value>Template update</value>
+  </data>
+  <data name="TemplateUpdateDescription" xml:space="preserve">
+    <value>The template {0} has been modified. The following environments will be updated:</value>
+  </data>
+  <data name="TemplateUpdateWindowTitle" xml:space="preserve">
+    <value>Template update</value>
+  </data>
 </root>

@@ -19,6 +19,7 @@ using ChamiUI.BusinessLayer.Commands;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
+using ChamiUI.PresentationLayer.Factories;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
@@ -75,6 +76,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void EnableEditing()
         {
             EditingEnabled = true;
+            EnvironmentMemento.EnvironmentViewModel = SelectedEnvironment;
         }
 
         /// <summary>
@@ -83,6 +85,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void DisableEditing()
         {
             EditingEnabled = false;
+            EnvironmentMemento.Clear();
             // We're using the SelectedVariable property to tell the application that every edit has been completed and
             // it's okay to try to save
             //SelectedVariable = null;
@@ -182,6 +185,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             InitFilterStrategies();
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             _cancellationTokenSource = new CancellationTokenSource();
+            EnvironmentMemento = new MementoViewModel();
             CanUserInterrupt = true;
         }
 
@@ -495,6 +499,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private EnvironmentViewModel _selectedEnvironment;
 
+        private MementoViewModel _environmentMemento;
+
+        public MementoViewModel EnvironmentMemento
+        {
+            get => _environmentMemento;
+            set
+            {
+                _environmentMemento = value;
+                OnPropertyChanged(nameof(EnvironmentMemento));
+            }
+        }
+
         /// <summary>
         /// The environment selected in the listbox.
         /// </summary>
@@ -641,7 +657,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = environment;
             OnPropertyChanged(nameof(Environments));
             OnPropertyChanged(nameof(SelectedEnvironment));
-            DisableEditing();
+          //  DisableEditing();
         }
 
         /// <summary>
@@ -725,6 +741,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void DeleteVariable(EnvironmentVariableViewModel variableViewModel)
         {
             variableViewModel.MarkForDeletion();
+            EnvironmentMemento.RemovedItems.Remove(variableViewModel);
+            EnvironmentMemento.EditedItems.Remove(variableViewModel);
+            EnvironmentMemento.AddedItems.Remove(variableViewModel);
+            EnvironmentMemento.RemovedItems.Add(variableViewModel);
         }
 
         /// <summary>
@@ -1003,5 +1023,34 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         public bool CanDeleteEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
+
+        public void UpdateEnvironmentsFromTemplate(EnvironmentViewModel template)
+        {
+            if (template.EnvironmentType != EnvironmentType.TemplateEnvironment)
+            {
+                return;
+            }
+
+            _dataAdapter.UpdateEnvironmentsFromTemplateId(template.Id);
+        }
+
+        public void HandleEditedVariable(EnvironmentVariableViewModel item)
+        {
+            if (!EnvironmentMemento.AddedItems.Contains(item))
+            {
+                EnvironmentMemento.EditedItems.Add(item);
+            }
+        }
+
+        public void HandleAddedVariable(EnvironmentVariableViewModel item)
+        {
+            EnvironmentMemento.AddedItems.Add(item);
+            EnvironmentMemento.EditedItems.Remove(item);
+        }
+
+        public TemplateUpdateWindowViewModel GetTemplateUpdateWindowViewModel()
+        {
+            return TemplateUpdateWindowViewModelFactory.GetViewModel(_dataAdapter, EnvironmentMemento);
+        }
     }
 }

@@ -217,6 +217,25 @@ namespace ChamiUI.Windows.MainWindow
         private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             ViewModel.SaveCurrentEnvironment();
+            if (ViewModel.SelectedEnvironment.EnvironmentType == EnvironmentType.TemplateEnvironment)
+            {
+                // A template has been edited. Asking the user if he wants to update all environments
+                var messageBoxCaption = ChamiUIStrings.ConfirmUpdateFromTemplateCaption;
+                var messageBoxText = ChamiUIStrings.ConfirmUpdateFromTemplateText;
+
+                var promptResponse = MessageBox.Show(messageBoxText, messageBoxCaption, MessageBoxButton.YesNo, MessageBoxImage.Question,
+                    MessageBoxResult.No);
+
+                if (promptResponse == MessageBoxResult.Yes)
+                {
+                    var win = new TemplateUpdateWindow.TemplateUpdateWindow();
+                    win.DataContext = ViewModel.GetTemplateUpdateWindowViewModel();
+                    win.ShowDialog();
+//                    ViewModel.UpdateEnvironmentsFromTemplate(ViewModel.SelectedEnvironment);
+                }
+            }
+            
+            ViewModel.DisableEditing();
         }
 
         private void NewEnvironmentCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -789,6 +808,18 @@ namespace ChamiUI.Windows.MainWindow
             {
                 ViewModel.DeleteSelectedEnvironment();
             }
+        }
+
+        private void CurrentEnvironmentVariablesDataGrid_OnRowEditEnding(object? sender, DataGridRowEditEndingEventArgs e)
+        {
+            var item = e.Row.Item as EnvironmentVariableViewModel;
+            ViewModel.HandleEditedVariable(item);
+        }
+
+        private void CurrentEnvironmentVariablesDataGrid_OnAddingNewItem(object? sender, AddingNewItemEventArgs e)
+        {
+            var item = e.NewItem as EnvironmentVariableViewModel;
+            ViewModel.HandleAddedVariable(item);
         }
     }
 }

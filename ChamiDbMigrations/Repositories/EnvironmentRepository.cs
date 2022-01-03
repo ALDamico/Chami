@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -523,7 +524,7 @@ namespace Chami.Db.Repositories
                         blackistedVariable.Name,
                         blackistedVariable.InitialValue,
                         blackistedVariable.IsWindowsDefault,
-                        blackistedVariable.IsEnabled, 
+                        blackistedVariable.IsEnabled,
                         AddedOn = DateTime.Now
                     });
 
@@ -593,7 +594,36 @@ namespace Chami.Db.Repositories
 
             return await UpdateBlacklistedVariableAsync(blacklistedVariable);
         }
+
+        public IEnumerable<Environment> GetEnvironmentsByTemplateId(int? templateId)
+        {
+            if (templateId is null or 0)
+            {
+                return ImmutableList<Environment>.Empty;
+            }
+
+            var queryString = @"
+                SELECT *
+                FROM Environments template
+                JOIN Environments implementations ON template.EnvironmentId = implementations.TemplateId
+                WHERE template.EnvironmentId = ?
+";
+            using var connection = GetConnection();
+            return connection.Query<Environment>(queryString, new {EnvironmentId = templateId});
+        }
+
+        public IEnumerable<Environment> UpdateEnvironmentsByTemplateId(int templateId)
+        {
+            var templateEnvironment = GetEnvironmentById(templateId);
+
+            var environmentsToUpdate = GetEnvironmentsByTemplateId(templateId);
+
+            foreach (var environment in environmentsToUpdate)
+            {
+                
+            }
+
+            return null; //TODO
+        }
     }
-    
-    
 }

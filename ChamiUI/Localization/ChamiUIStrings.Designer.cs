@@ -376,6 +376,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm update.
+        /// </summary>
+        public static string ConfirmUpdateFromTemplateCaption {
+            get {
+                return ResourceManager.GetString("ConfirmUpdateFromTemplateCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A template environment has been updated. Do you want to update the environments based on this template?.
+        /// </summary>
+        public static string ConfirmUpdateFromTemplateText {
+            get {
+                return ResourceManager.GetString("ConfirmUpdateFromTemplateText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string ConsoleClearMenuItem {
@@ -1975,6 +1993,33 @@ namespace ChamiUI.Localization {
         public static string TemplateNameLabel_Content {
             get {
                 return ResourceManager.GetString("TemplateNameLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The template {0} has been modified. The following environments will be updated:.
+        /// </summary>
+        public static string TemplateUpdateDescription {
+            get {
+                return ResourceManager.GetString("TemplateUpdateDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template update.
+        /// </summary>
+        public static string TemplateUpdateHeader_Content {
+            get {
+                return ResourceManager.GetString("TemplateUpdateHeader_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Template update.
+        /// </summary>
+        public static string TemplateUpdateWindowTitle {
+            get {
+                return ResourceManager.GetString("TemplateUpdateWindowTitle", resourceCulture);
             }
         }
         

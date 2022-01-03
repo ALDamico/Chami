@@ -233,5 +233,25 @@ namespace ChamiUI.BusinessLayer.Adapters
 
             return converter.To(entity);
         }
+
+        public IEnumerable<EnvironmentViewModel> UpdateEnvironmentsFromTemplateId(int templateId)
+        {
+            IEnumerable<Environment> environments = _repository.UpdateEnvironmentsByTemplateId(templateId);
+            throw new System.NotImplementedException();
+        }
+
+        public IEnumerable<EnvironmentViewModel> GetEnvironmentsByTemplateId(int id)
+        {
+            var environments = _repository.GetEnvironmentsByTemplateId(id);
+            var converter = new EnvironmentConverter();
+            var updateConverter = new EnvironmentUpdateViewModelConverter();
+            var output = new List<EnvironmentViewModel>();
+            foreach (var element in environments)
+            {
+                output.Add(updateConverter.To(converter.To(element)));
+            }
+
+            return output;
+        }
     }
 }

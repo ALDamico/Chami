@@ -21,6 +21,7 @@ namespace ChamiUI.BusinessLayer.Converters
             environment.AddedOn = model.AddedOn;
             environment.EnvironmentId = model.Id;
             environment.EnvironmentType = model.EnvironmentType;
+            environment.TemplateId = model?.Template?.Id;
 
             var variableConverter = new EnvironmentVariableConverter();
             foreach (var variable in model.EnvironmentVariables)
@@ -32,6 +33,11 @@ namespace ChamiUI.BusinessLayer.Converters
                     var convertedVariable = variableConverter.From(variable);
                     environment.EnvironmentVariables.Add(convertedVariable);
                 }
+            }
+
+            if (model.Template != null)
+            {
+                environment.Template = From(model.Template);
             }
 
             return environment;
@@ -56,6 +62,11 @@ namespace ChamiUI.BusinessLayer.Converters
                 var convertedVariable = variableConverter.To(variable);
                 convertedVariable.Environment = viewModel;
                 viewModel.EnvironmentVariables.Add(convertedVariable);
+            }
+
+            if (entity.Template != null)
+            {
+                viewModel.Template = To(entity.Template);
             }
 
             return viewModel;

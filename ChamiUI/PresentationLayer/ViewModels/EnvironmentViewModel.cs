@@ -49,6 +49,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     return FontWeights.Bold;
                 }
+
                 return FontWeights.Regular;
             }
         }
@@ -69,7 +70,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 return Name;
             }
         }
-        
+
         private int _id;
         private DateTime _addedOn;
         private string _name;
@@ -147,7 +148,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return environmentViewModel2.Id == Id;
         }
 
-       
+
+        private EnvironmentViewModel _template;
+
+        public EnvironmentViewModel Template
+        {
+            get => _template;
+            set
+            {
+                _template = value;
+                OnPropertyChanged(nameof(Template));
+            }
+        }
 
         public bool IsEditable => EnvironmentType != EnvironmentType.BackupEnvironment;
     }

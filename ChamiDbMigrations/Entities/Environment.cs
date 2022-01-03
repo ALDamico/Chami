@@ -42,5 +42,7 @@ namespace Chami.Db.Entities
         /// </summary>
         /// <seealso cref="EnvironmentType"/>
         public EnvironmentType EnvironmentType { get; set; }
+        public int? TemplateId { get; set; }
+        public Environment Template { get; set; }
     }
 }

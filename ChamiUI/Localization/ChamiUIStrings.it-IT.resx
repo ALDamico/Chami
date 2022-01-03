@@ -818,4 +818,19 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="ImportDeselectAllButton_Content" xml:space="preserve">
     <value>Deseleziona tutti</value>
   </data>
+  <data name="ConfirmUpdateFromTemplateCaption" xml:space="preserve">
+    <value>Conferma l'aggiornamento</value>
+  </data>
+  <data name="ConfirmUpdateFromTemplateText" xml:space="preserve">
+    <value>Hai aggiornato un template. Vuoi procedere con l'aggiornamento degli ambienti basati su questo template?</value>
+  </data>
+  <data name="TemplateUpdateHeader_Content" xml:space="preserve">
+    <value>Aggiornamento template</value>
+  </data>
+  <data name="TemplateUpdateDescription" xml:space="preserve">
+    <value>Il template {0} è stato modificato. Verranno aggiornati i seguenti ambienti:</value>
+  </data>
+  <data name="TemplateUpdateWindowTitle" xml:space="preserve">
+    <value>Aggiornamento template</value>
+  </data>
 </root>

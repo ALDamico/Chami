@@ -483,6 +483,8 @@
                           IsReadOnly="{Binding IsDatagridReadonly}"
                           SelectedItem="{Binding SelectedVariable}"
                           PreviewKeyDown="CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown"
+                          RowEditEnding="CurrentEnvironmentVariablesDataGrid_OnRowEditEnding"
+                          AddingNewItem="CurrentEnvironmentVariablesDataGrid_OnAddingNewItem"
                           RowStyle="{StaticResource ErrorStyle}"
                           x:Name="CurrentEnvironmentVariablesDataGrid">
                     <DataGrid.CellStyle>
