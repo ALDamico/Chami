@@ -24,7 +24,7 @@ LicenseFile=D:\code\Chami\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
-OutputBaseFilename=output
+OutputBaseFilename=chami-1.0-installer
 Compression=lzma
 SolidCompression=yes
 WizardStyle=modern
@@ -40,6 +40,9 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Source: "D:\code\Chami\ChamiUI\bin\Release\net5.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; 
 Source: "D:\code\Chami\ChamiUI\bin\Release\net5.0-windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: "chami.db,chami.log"
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+
+[Dirs]
+Name: "{app}/Data"; Permissions: users-full
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; IconFilename: "D:\code\Chami\ChamiUI\Assets\chami.ico"

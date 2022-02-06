@@ -16,3 +16,5 @@ ChamiTests/OutputFiles/chami-output-test.json
 identifier.sqlite
 Installer/ChamiInstaller.zip
 *.db
+Inno Setup/Output/output.exe
+Inno Setup/Output

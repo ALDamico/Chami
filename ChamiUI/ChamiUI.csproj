@@ -1129,6 +1129,10 @@
       <Resource Include="Assets\Svg\sync.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
+      <None Remove="Data\README" />
+      <Content Include="Data\README">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
     </ItemGroup>
 
     <ItemGroup>
