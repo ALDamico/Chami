@@ -1,5 +1,3 @@
-using System.Collections.ObjectModel;
-using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Converters

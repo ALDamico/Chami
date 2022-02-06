@@ -24,6 +24,7 @@ using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.Utils;
+using IShellCommand = Chami.CmdExecutor.IShellCommand;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {

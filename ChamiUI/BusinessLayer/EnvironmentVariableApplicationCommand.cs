@@ -1,5 +1,3 @@
-using System;
-using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.CmdExecutor;
@@ -33,7 +31,6 @@ namespace ChamiUI.BusinessLayer
         /// Optionally reports progress.
         /// Can be canceled.
         /// </summary>
-        /// <param name="progress">Notifies caller of progress.</param>
         /// <param name="percentage">The progress percentage.</param>
         /// <param name="cancellationToken">Allows task cancellation.</param>
         public override async Task ExecuteAsync(float percentage,
@@ -45,7 +42,7 @@ namespace ChamiUI.BusinessLayer
             var process = PrepareProcess(arguments);
             
             process.Start();
-            SubscribeToAllOutput((sender, args) =>
+            SubscribeToAllOutput((_, args) =>
             {
                 Progress?.Report(new CmdExecutorProgress((int)percentage, args.Data));
             });

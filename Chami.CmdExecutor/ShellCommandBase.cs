@@ -20,7 +20,6 @@ namespace Chami.CmdExecutor
         /// <summary>
         /// Derived classes must implement the <see cref="ExecuteAsync"/> method.
         /// </summary>
-        /// <param name="progress">Notifies the caller of progress.</param>
         /// <param name="percentage">Percentage of overall completion</param>
         /// <param name="cancellationToken">Allows cancelling the task.</param>
         /// <returns></returns>

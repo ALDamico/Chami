@@ -14,13 +14,12 @@ namespace Chami.CmdExecutor
         /// Execute a shell command synchronously.
         /// </summary>
         void Execute();
-        
+
         /// <summary>
         /// Execute a shell command asynchronously.
         /// Can optionally report progress to caller.
         /// Can be cancelled.
         /// </summary>
-        /// <param name="progress">Object to report progress to caller.</param>
         /// <param name="percentage">Execution percentage. Used by <see cref="CmdExecutorBase"/> for progress reporting.</param>
         /// <param name="cancellationToken">Allows cancelling the task.</param>
         /// <returns>Asynchronous method.</returns>

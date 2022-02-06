@@ -148,7 +148,10 @@ namespace Chami.Db.Repositories
                     WHERE e.AddedOn = ?";
                 var results = connection.Query<Environment>(selectQuery, new {environment.AddedOn});
                 var result = results.FirstOrDefault();
-                environment.EnvironmentId = result.EnvironmentId;
+                if (result != null)
+                {
+                    environment.EnvironmentId = result.EnvironmentId;    
+                }
                 foreach (var environmentVariable in environment.EnvironmentVariables)
                 {
                     environmentVariable.EnvironmentId = environment.EnvironmentId;
@@ -528,9 +531,10 @@ namespace Chami.Db.Repositories
                     });
 
                 var insertedId = await connection.QueryAsync<int>("SELECT last_insert_rowid()");
-                if (insertedId.Count() == 1)
+                var list = insertedId.ToList();
+                if (list.Count() == 1)
                 {
-                    blackistedVariable.Id = insertedId.First();
+                    blackistedVariable.Id = list.First();
                     await transaction.CommitAsync();
                 }
                 else
@@ -568,8 +572,15 @@ namespace Chami.Db.Repositories
                 var transaction = await connection.BeginTransactionAsync();
                 await connection.ExecuteAsync(queryString, new
                 {
-                    Name = blacklistedVariable.Name, InitialValue = blacklistedVariable.InitialValue,
-                    IsWindowsDefault = blacklistedVariable.IsWindowsDefault, IsEnabled = blacklistedVariable.IsEnabled,
+                    // ReSharper disable once RedundantAnonymousTypePropertyName
+                    Name = blacklistedVariable.Name, 
+                    // ReSharper disable once RedundantAnonymousTypePropertyName
+                    InitialValue = blacklistedVariable.InitialValue,
+                    // ReSharper disable once RedundantAnonymousTypePropertyName
+                    IsWindowsDefault = blacklistedVariable.IsWindowsDefault, 
+                    // ReSharper disable once RedundantAnonymousTypePropertyName
+                    IsEnabled = blacklistedVariable.IsEnabled,
+                    // ReSharper disable once RedundantAnonymousTypePropertyName
                     Id = blacklistedVariable.Id
                 });
 

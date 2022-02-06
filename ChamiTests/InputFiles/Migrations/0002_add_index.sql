@@ -1,0 +1,1 @@
+CREATE INDEX ix_date ON Environments(AddedOn);

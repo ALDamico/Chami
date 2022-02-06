@@ -63,7 +63,6 @@ namespace Chami.CmdExecutor
         /// Optionally, notifies of progress.
         /// Can be canceled.
         /// </summary>
-        /// <param name="progress">Notifies its caller of progress.</param>
         /// <param name="cancellationToken">Enables canceling</param>
         /// <seealso cref="IProgress{T}"/> 
         public virtual async Task ExecuteAsync(

@@ -21,7 +21,7 @@ namespace ChamiUI.BusinessLayer.Factories
         /// <seealso cref="IShellCommand"/>
         /// <seealso cref="EnvironmentVariableApplicationCommand"/>
         /// <seealso cref="EnvironmentVariableRemovalCommand"/>
-        public static IShellCommand GetCommand(Type targetType, EnvironmentVariable environmentVariable)
+        public static Chami.CmdExecutor.IShellCommand GetCommand(Type targetType, EnvironmentVariable environmentVariable)
         {
             ConstructorInfo constructorInfo = targetType.GetConstructor(new[] { typeof(EnvironmentVariable) });
             if (constructorInfo == null)
