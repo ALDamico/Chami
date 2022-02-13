@@ -9,7 +9,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// Represents an environment (i.e., a collection of environment variables) saved in the datastore and converted
     /// for use by the Chami UI.
     /// </summary>
-    public class EnvironmentViewModel : ViewModelBase
+    public class EnvironmentViewModel : ViewModelBase, ICloneable<EnvironmentViewModel>
     {
         /// <summary>
         /// Constructs a new <see cref="EnvironmentViewModel"/> object and initializes it to its default state.
@@ -49,6 +49,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     return FontWeights.Bold;
                 }
+
                 return FontWeights.Regular;
             }
         }
@@ -69,7 +70,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 return Name;
             }
         }
-        
+
         private int _id;
         private DateTime _addedOn;
         private string _name;
@@ -131,6 +132,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        public EnvironmentViewModel Clone()
+        {
+            var clone = new EnvironmentViewModel()
+                { Name = Name , 
+                    EnvironmentType =EnvironmentType, 
+                    IsActive = false, 
+                    Id = 0
+                };
+
+            foreach (var variable in EnvironmentVariables)
+            {
+                clone.EnvironmentVariables.Add(variable.Clone());
+            }
+
+            return clone;
+        }
+
         /// <summary>
         /// Compares two environments by their id.
         /// </summary>
@@ -147,7 +165,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return environmentViewModel2.Id == Id;
         }
 
-       
+        object ICloneable.Clone()
+        {
+            return Clone();
+        }
+
 
         public bool IsEditable => EnvironmentType != EnvironmentType.BackupEnvironment;
     }

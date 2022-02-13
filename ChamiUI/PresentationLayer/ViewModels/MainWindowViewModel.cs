@@ -60,6 +60,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(IsDatagridReadonly));
                 OnPropertyChanged(nameof(WindowStatusMessage));
                 OnPropertyChanged(nameof(CanDeleteEnvironment));
+                OnPropertyChanged(nameof(CanDuplicateEnvironment));
             }
         }
 
@@ -328,6 +329,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             OnPropertyChanged(nameof(ExecuteButtonIcon));
             OnPropertyChanged(nameof(WindowStatusMessage));
             OnPropertyChanged(nameof(CanDeleteEnvironment));
+            OnPropertyChanged(nameof(CanDuplicateEnvironment));
         }
 
         /// <summary>
@@ -520,6 +522,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
                 OnPropertyChanged(nameof(ExecuteButtonIcon));
                 OnPropertyChanged(nameof(CanDeleteEnvironment));
+                OnPropertyChanged(nameof(CanDuplicateEnvironment));
             }
         }
 
@@ -1017,5 +1020,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         public bool CanDeleteEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
+        
+        public bool CanDuplicateEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
+
+        public void DuplicateCurrentEnvironment()
+        {
+            var environment = SelectedEnvironment.Clone();
+            environment.Name = $"{environment.Name} {ChamiUIStrings.IsEnvironmentCopy}";
+            SelectedEnvironment = environment;
+            Environments.Add(environment);
+            EnableEditing();
+        }
     }
 }

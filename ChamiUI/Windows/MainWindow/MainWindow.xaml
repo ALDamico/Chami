@@ -33,32 +33,34 @@
         <KeyBinding Key="F"
                     Modifiers="Control"
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}" />
-        <KeyBinding Key="E" 
+        <KeyBinding Key="E"
                     Command="{x:Static commandProvider:MainWindowCommandsProvider.EditEnvironmentCommand}"
-                    Modifiers="Control"></KeyBinding>
+                    Modifiers="Control">
+        </KeyBinding>
         <KeyBinding Key="Delete"
-                    Command="Delete"
-                    ></KeyBinding>
+                    Command="Delete">
+        </KeyBinding>
     </Window.InputBindings>
     <Window.Resources>
-        
+
         <!-- Converters -->
         <converters:BooleanToStringComparisonConverter x:Key="BooleanToStringComparisonConverter" />
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"></BooleanToVisibilityConverter>
-        
+
         <!-- CollectionViewSources -->
         <CollectionViewSource x:Key="EnvironmentsViewSource" Source="{Binding Environments}"
                               Filter="EnvironmentsViewSource_OnFilter" />
 
         <CollectionViewSource x:Key="BackupEnvironmentsViewSource" Source="{Binding Backups}"
                               Filter="BackupEnvironmentsViewSource_OnFilter" />
-        
+
         <CollectionViewSource x:Key="TemplateEnvironmentsViewSource" Source="{Binding Templates}"
-                              Filter="TemplateEnvironmentsViewSource_OnFilter"></CollectionViewSource>
+                              Filter="TemplateEnvironmentsViewSource_OnFilter">
+        </CollectionViewSource>
 
         <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                               Source="{Binding SelectedEnvironment.EnvironmentVariables}" />
-        
+
         <!-- Context menus -->
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
             <MenuItem Header="{lex:Loc}"
@@ -74,6 +76,12 @@
                       x:Name="RenameEnvironmentMenuItem"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
                       InputGestureText="F2" />
+
+            <MenuItem x:Name="DuplicateEnvironmentMenuItem" Header="{lex:Loc}"
+                      IsEnabled="{Binding CanDuplicateEnvironment}"
+                      Command="{x:Static commandProvider:MainWindowCommandsProvider.DuplicateEnvironmentCommand}">
+            </MenuItem>
+            <Separator/>
             <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentMenuItem"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.DeleteEnvironmentCommand}"
@@ -98,8 +106,8 @@
                       x:Name="OpenAsFolderMenuItem"
                       Click="OpenAsFolderMenuItem_OnClick"
                       d:DataContext="{d:DesignInstance viewModels:EnvironmentVariableViewModel}"
-                      IsEnabled="{Binding IsFolder}"
-                      ></MenuItem>
+                      IsEnabled="{Binding IsFolder}">
+            </MenuItem>
             <Separator />
             <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentVariableMenuItem" Command="Delete">
@@ -107,11 +115,14 @@
                     <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/times.svg" />
                 </MenuItem.Icon>
                 <MenuItem.CommandBindings>
-                    <CommandBinding Command="Delete" x:Name="DeleteEnvironmentVariableCommand" CanExecute="DeleteEnvironmentVariableCommand_OnCanExecute" Executed="DeleteEnvironmentVariableCommand_OnExecuted"></CommandBinding>
+                    <CommandBinding Command="Delete" x:Name="DeleteEnvironmentVariableCommand"
+                                    CanExecute="DeleteEnvironmentVariableCommand_OnCanExecute"
+                                    Executed="DeleteEnvironmentVariableCommand_OnExecuted">
+                    </CommandBinding>
                 </MenuItem.CommandBindings>
             </MenuItem>
         </ContextMenu>
-        
+
         <!-- Styles -->
         <Style x:Key="ErrorStyle" TargetType="{x:Type DataGridRow}">
 
@@ -133,7 +144,7 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
         <!-- Resource dictionaries -->
         <ResourceDictionary x:Key="ExternalResources">
             <ResourceDictionary.MergedDictionaries>
@@ -160,6 +171,11 @@
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.RenameEnvironmentCommand}"
                         CanExecute="RenameEnvironmentCommandBinding_OnCanExecute"
                         Executed="RenameEnvironmentCommandBinding_OnExecuted" />
+        <CommandBinding x:Name="DuplicateEnvironmentCommandBinding"
+                        CanExecute="DuplicateEnvironmentCommandBinding_OnCanExecute"
+                        Executed="DuplicateEnvironmentCommandBinding_OnExecuted"
+                        Command="{x:Static commandProvider:MainWindowCommandsProvider.DuplicateEnvironmentCommand}">
+        </CommandBinding>
         <CommandBinding x:Name="ShowFindWindowCommandBinding"
                         Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                         CanExecute="FocusFilterTextboxCommandBinding_OnCanExecute"
@@ -173,15 +189,14 @@
                         CanExecute="CreateTemplateCommandBinding_OnCanExecute"
                         Executed="CreateTemplateCommandBinding_OnExecuted" />
         <CommandBinding x:Name="EditEnvironmentCommandBinding"
-                        Command="{x:Static commandProvider:MainWindowCommandsProvider.EditEnvironmentCommand}" 
+                        Command="{x:Static commandProvider:MainWindowCommandsProvider.EditEnvironmentCommand}"
                         CanExecute="EditEnvironmentCommandBinding_OnCanExecute"
-                        Executed="EditEnvironmentCommandBinding_OnExecuted"
-                        />
+                        Executed="EditEnvironmentCommandBinding_OnExecuted" />
         <CommandBinding x:Name="DeleteEnvironmentCommandBinding"
                         Command="Delete"
                         CanExecute="DeleteEnvironmentCommandBinding_OnCanExecute"
-                        Executed="DeleteEnvironmentCommandBinding_OnExecuted"
-                        ></CommandBinding>
+                        Executed="DeleteEnvironmentCommandBinding_OnExecuted">
+        </CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -375,9 +390,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem" SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged">
+            <TabControl Grid.Column="0" TabStripPlacement="Left" x:Name="EnvironmentTypeTabItem"
+                        SelectionChanged="EnvironmentTypeTabItem_OnSelectionChanged">
                 <TabItem Header="{lex:Loc}" x:Name="EnvironmentsTabItem">
-                    <ListBox 
+                    <ListBox
                         TextSearch.TextPath="Name"
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
@@ -401,8 +417,8 @@
                         </ListBox.ItemTemplate>
                     </ListBox>
                 </TabItem>
-                <TabItem Header="Template" >
-                    <ListBox 
+                <TabItem Header="Template">
+                    <ListBox
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource TemplateEnvironmentsViewSource}}"
                         x:Name="EnvironmentsListbox"
@@ -468,9 +484,10 @@
                       ResizeDirection="Rows"
                       ShowsPreview="True"
                       Background="Black"
-                      HorizontalAlignment="Stretch" 
-                      VerticalAlignment="Center"></GridSplitter>
-        <FrameworkElement x:Name="dummyElement" Visibility="Collapsed"/>
+                      HorizontalAlignment="Stretch"
+                      VerticalAlignment="Center">
+        </GridSplitter>
+        <FrameworkElement x:Name="dummyElement" Visibility="Collapsed" />
         <TabControl Grid.Row="5"
                     Grid.Column="0"
                     x:Name="TabControls">
@@ -508,25 +525,23 @@
                         <DataGridTextColumn Width="2*"
                                             Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
                                             x:Name="DataGridNameColumn"
-                                            Header="{lex:Loc Key=DataGridNameColumn}" 
-                                            />
+                                            Header="{lex:Loc Key=DataGridNameColumn}" />
                         <DataGridTextColumn Header="{lex:Loc Key=DataGridValueColumn}"
                                             x:Name="DataGridValueColumn"
-                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}" 
-                                            Width="5*"
-                                            />
+                                            Binding="{Binding Value, NotifyOnValidationError=True, UpdateSourceTrigger=PropertyChanged}"
+                                            Width="5*" />
                         <DataGridCheckBoxColumn Header="{lex:Loc Key=DataGridIsFolderColumn}"
                                                 x:Name="DataGridIsFolderColumn"
                                                 Binding="{Binding IsFolder, UpdateSourceTrigger=PropertyChanged}"
-                                                Width="*"
-                                                ></DataGridCheckBoxColumn>
-                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}" 
+                                                Width="*">
+                        </DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn Header="{lex:Loc Key=DatagridMarkedForDeletionColumn}"
                                                 x:Name="DataGridMarkedForDeletionColumn"
                                                 Binding="{Binding MarkedForDeletion}"
                                                 IsReadOnly="True"
                                                 Width="*"
-                                                Visibility="{Binding DataContext.EditingEnabled, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference dummyElement}}"
-                                                ></DataGridCheckBoxColumn>
+                                                Visibility="{Binding DataContext.EditingEnabled, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference dummyElement}}">
+                        </DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

@@ -790,5 +790,15 @@ namespace ChamiUI.Windows.MainWindow
                 ViewModel.DeleteSelectedEnvironment();
             }
         }
+
+        private void DuplicateEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.CanDuplicateEnvironment;
+        }
+
+        private void DuplicateEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewModel.DuplicateCurrentEnvironment();
+        }
     }
 }

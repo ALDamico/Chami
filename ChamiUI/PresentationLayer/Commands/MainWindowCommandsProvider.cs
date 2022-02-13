@@ -15,6 +15,7 @@ namespace ChamiUI.PresentationLayer.Commands
             CreateTemplateEnvironmentCommand = new RoutedCommand();
             EditEnvironmentCommand = new RoutedCommand();
             DeleteEnvironmentCommand = new RoutedCommand();
+            DuplicateEnvironmentCommand = new RoutedCommand();
         }
 
         public static RoutedCommand CancelEditingCommand;
@@ -23,5 +24,6 @@ namespace ChamiUI.PresentationLayer.Commands
         public static RoutedCommand CreateTemplateEnvironmentCommand;
         public static RoutedCommand EditEnvironmentCommand;
         public static RoutedCommand DeleteEnvironmentCommand;
+        public static RoutedCommand DuplicateEnvironmentCommand;
     }
 }
