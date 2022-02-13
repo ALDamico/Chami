@@ -818,4 +818,10 @@ Use a different name and try again.</value>
   <data name="ImportDeselectAllButton_Content" xml:space="preserve">
     <value>Deselect All</value>
   </data>
+  <data name="DuplicateEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Duplicate</value>
+  </data>
+  <data name="IsEnvironmentCopy" xml:space="preserve">
+    <value>(Copy)</value>
+  </data>
 </root>

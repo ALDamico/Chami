@@ -818,4 +818,10 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="ImportDeselectAllButton_Content" xml:space="preserve">
     <value>Deseleziona tutti</value>
   </data>
+  <data name="DuplicateEnvironmentMenuItem_Header" xml:space="preserve">
+    <value>Duplica</value>
+  </data>
+  <data name="IsEnvironmentCopy" xml:space="preserve">
+    <value>(Copia)</value>
+  </data>
 </root>

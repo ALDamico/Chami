@@ -7,13 +7,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// <summary>
     /// Viewmodel that represents a <see cref="EnvironmentVariable"/> in the Chami application.
     /// </summary>
-    public class EnvironmentVariableViewModel : ViewModelBase
+    public class EnvironmentVariableViewModel : ViewModelBase, ICloneable<EnvironmentVariableViewModel>
     {
         public EnvironmentVariableViewModel()
         {
             _markedForDeletion = false;
             Value = "";
         }
+
         private string _name;
         private string _value;
         private DateTime _addedOn;
@@ -40,7 +41,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(MarkedForDeletion));
             }
         }
-        
+
 
         public void MarkForDeletion()
         {
@@ -60,11 +61,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(_isValid));
             }
         }
-        
+
         /// <summary>
         /// The Id used by the database.
         /// </summary>
         public int Id { get; set; }
+
         private EnvironmentViewModel _environment;
 
         /// <summary>
@@ -117,6 +119,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _value = value;
                 OnPropertyChanged(nameof(Value));
             }
+        }
+
+        public EnvironmentVariableViewModel Clone()
+        {
+            var clone = new EnvironmentVariableViewModel()
+            {
+                IsFolder = IsFolder,
+                IsValid = IsValid, 
+                MarkedForDeletion = false, 
+                Name = Name, 
+                Value = Value
+            };
+            return clone;
+        }
+
+        object ICloneable.Clone()
+        {
+            return Clone();
         }
     }
 }

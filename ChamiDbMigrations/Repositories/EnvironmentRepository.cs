@@ -137,7 +137,7 @@ namespace Chami.Db.Repositories
             {
                 var transaction = connection.BeginTransaction();
                 connection.Execute(queryString,
-                    new {environment.Name, environment.AddedOn, environment.EnvironmentType});
+                    new { environment.Name, environment.AddedOn, environment.EnvironmentType });
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId, IsFolder)
                 VALUES (?, ?, ?, ?, ?)
@@ -146,28 +146,39 @@ namespace Chami.Db.Repositories
                     SELECT * 
                     FROM Environments e
                     WHERE e.AddedOn = ?";
-                var results = connection.Query<Environment>(selectQuery, new {environment.AddedOn});
+                var results = connection.Query<Environment>(selectQuery, new { environment.AddedOn });
                 var result = results.FirstOrDefault();
                 if (result != null)
                 {
-                    environment.EnvironmentId = result.EnvironmentId;    
+                    environment.EnvironmentId = result.EnvironmentId;
                 }
-                foreach (var environmentVariable in environment.EnvironmentVariables)
+
+                var environmentVariables = new List<EnvironmentVariable>(environment.EnvironmentVariables);
+                environment.EnvironmentVariables.Clear();
+
+                foreach (var environmentVariable in environmentVariables)
                 {
-                    environmentVariable.EnvironmentId = environment.EnvironmentId;
-                    connection.Execute(environmentVariableInsertQuery,
-                        new
-                        {
-                            environmentVariable.Name,
-                            environmentVariable.Value,
-                            environmentVariable.AddedOn,
-                            environmentVariable.EnvironmentId,
-                            environmentVariable.IsFolder
-                        });
+                    if (!environmentVariable.MarkedForDeletion)
+                    {
+                        environmentVariable.EnvironmentId = environment.EnvironmentId;
+                        connection.Execute(environmentVariableInsertQuery,
+                            new
+                            {
+                                environmentVariable.Name,
+                                environmentVariable.Value,
+                                environmentVariable.AddedOn,
+                                environmentVariable.EnvironmentId,
+                                environmentVariable.IsFolder
+                            });
+                        
+                        environment.EnvironmentVariables.Add(environmentVariable);
+                    }
                 }
 
                 transaction.Commit();
             }
+            
+            
 
             return environment;
         }
@@ -250,7 +261,7 @@ namespace Chami.Db.Repositories
 
             UpdateEnvironment(environment);
 
-            var newVariables = environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0);
+            var newVariables = environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0 && !v.MarkedForDeletion);
 
             foreach (var environmentVariable in newVariables)
             {

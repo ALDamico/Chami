@@ -646,6 +646,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duplicate.
+        /// </summary>
+        public static string DuplicateEnvironmentMenuItem_Header {
+            get {
+                return ResourceManager.GetString("DuplicateEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string EditEnvironmentMenuItem_Header {
@@ -1175,6 +1184,15 @@ namespace ChamiUI.Localization {
         public static string ImportSelectAllButton_Content {
             get {
                 return ResourceManager.GetString("ImportSelectAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (Copy).
+        /// </summary>
+        public static string IsEnvironmentCopy {
+            get {
+                return ResourceManager.GetString("IsEnvironmentCopy", resourceCulture);
             }
         }
         
