@@ -86,7 +86,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             EditingEnabled = false;
             // We're using the SelectedVariable property to tell the application that every edit has been completed and
             // it's okay to try to save
-            //SelectedVariable = null;
         }
 
         /// <summary>
@@ -176,8 +175,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             Settings = SettingsUtils.GetAppSettings();
-            
-            //EnvironmentsViewSource = new CollectionViewSource {Source = Environments};
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
@@ -281,7 +278,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
             }
         }
-        
+
         private const int TABITEM_NORMAL_ENV_IDX = 0;
         private const int TABITEM_BACKUP_ENV_IDX = 2;
         private const int TABITEM_TEMPLATE_ENV_IDX = 1;
@@ -358,44 +355,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SetIsChangeInProgress(true);
             var isSafetyEnabled = ((App) (Application.Current)).Settings.SafeVariableSettings.EnableSafeVars;
             var safeVariableSettings = ((App) (Application.Current)).Settings.SafeVariableSettings;
-            
+
             var cmdExecutor = new CmdExecutor(SelectedEnvironment);
-            
+
             cmdExecutor.EnvironmentChanged += OnEnvironmentChanged;
             cmdExecutor.SetProgressHandler(progress);
             var currentEnvironmentName = System.Environment.GetEnvironmentVariable("_CHAMI_ENV");
             var cancellationToken = GetNewCancellationToken();
             if (currentEnvironmentName != null)
             {
-                var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
-                // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
-                // corresponding entity
-                if (currentOsEnvironment != null)
-                {
-                    foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
-                    {
-                        IShellCommand newCommand;
-                        var isCurrentVariableDisabled =
-                            safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
-                                v.Name == environmentVariable.Name) != null;
-                        if (isCurrentVariableDisabled && isSafetyEnabled)
-                        {
-                            newCommand =
-                                EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand),
-                                    environmentVariable);
-                        }
-                        else
-                        {
-                            newCommand =
-                                EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
-                                    environmentVariable);
-                        }
-                        
-                        cmdExecutor.AddCommand(newCommand);
-                    }
-                }
+                AddRemovalCommands(currentEnvironmentName, safeVariableSettings, isSafetyEnabled, cmdExecutor);
             }
 
+            AddVariableApplicationCommands(cmdExecutor, safeVariableSettings, isSafetyEnabled);
+
+            await cmdExecutor.ExecuteAsync(cancellationToken);
+            SetIsChangeInProgress(false);
+        }
+
+        private void AddVariableApplicationCommands(CmdExecutor cmdExecutor, SafeVariableViewModel safeVariableSettings,
+            bool isSafetyEnabled)
+        {
             var newEnvironment = _dataAdapter.GetEnvironmentEntityById(SelectedEnvironment.Id);
             cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand(
                 typeof(EnvironmentVariableApplicationCommand),
@@ -421,9 +401,38 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
                 cmdExecutor.AddCommand(newCommand);
             }
+        }
 
-            await cmdExecutor.ExecuteAsync(cancellationToken);
-            SetIsChangeInProgress(false);
+        private void AddRemovalCommands(string? currentEnvironmentName, SafeVariableViewModel safeVariableSettings,
+            bool isSafetyEnabled, CmdExecutor cmdExecutor)
+        {
+            var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
+            // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
+            // corresponding entity
+            if (currentOsEnvironment != null)
+            {
+                foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
+                {
+                    IShellCommand newCommand;
+                    var isCurrentVariableDisabled =
+                        safeVariableSettings.ForbiddenVariables.FirstOrDefault(v =>
+                            v.Name == environmentVariable.Name) != null;
+                    if (isCurrentVariableDisabled && isSafetyEnabled)
+                    {
+                        newCommand =
+                            EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand),
+                                environmentVariable);
+                    }
+                    else
+                    {
+                        newCommand =
+                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                                environmentVariable);
+                    }
+
+                    cmdExecutor.AddCommand(newCommand);
+                }
+            }
         }
 
         /// <summary>
@@ -650,7 +659,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public event EventHandler<EnvironmentExistingEventArgs> EnvironmentExists;
 
-        private string _windowTitle = "Chami";
+        private readonly string _windowTitle = "Chami";
 
         /// <summary>
         /// The title of the main window. If no environment is active, it defaults to the application name. If there is
@@ -660,12 +669,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
+                var windowTitle = _windowTitle;
                 if (ActiveEnvironment != null)
                 {
-                    return $"{_windowTitle} - {ActiveEnvironment.Name}";
+                    windowTitle = $"{_windowTitle} - {ActiveEnvironment.Name}";
                 }
 
-                return _windowTitle;
+#if DEBUG
+                windowTitle += " [DEBUG BUILD]";
+#endif
+
+                return windowTitle;
             }
         }
 
@@ -686,7 +700,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 collection = Templates;
             }
-            
+
             if (collection.Any(e => e.Name == environment.Name))
             {
                 EnvironmentExists?.Invoke(this, new EnvironmentExistingEventArgs(environment.Name));
@@ -779,7 +793,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var newVariable = new EnvironmentVariableViewModel {Environment = SelectedEnvironment};
             SelectedVariable = newVariable;
-            //SelectedEnvironment.EnvironmentVariables.Add(newVariable);
             return newVariable;
         }
 
@@ -810,7 +823,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             switch (environmentViewModel.EnvironmentType)
             {
-                case EnvironmentType.NormalEnvironment:
                 default:
                     Environments.Add(environmentViewModel);
                     break;
@@ -931,7 +943,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             settings.YPosition = yPosition;
             settings.SearchPath = FilterStrategy;
             settings.SortDescription = sortDescription;
-            
+
             // Avoid starting minimized on next application start.
             if (windowState == WindowState.Minimized)
             {
@@ -994,6 +1006,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     return string.Format(ChamiUIStrings.WindowStatusMessageChangeInProgress, SelectedEnvironment.Name);
                 }
+
                 if (EditingEnabled)
                 {
                     return ChamiUIStrings.WindowStatusMessageEditingMode;
