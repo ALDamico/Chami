@@ -283,7 +283,13 @@ namespace ChamiUI.Windows.MainWindow
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(this);
+            CreateNewEnvironmentWindow(this);
+        }
+
+        private void CreateNewEnvironmentWindow(Window owner, EnvironmentViewModel dataContext = null)
+        {
+            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(owner);
+            childWindow.SetEnvironment(dataContext);
             childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
         }
@@ -798,7 +804,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void DuplicateEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            ViewModel.DuplicateCurrentEnvironment();
+            CreateNewEnvironmentWindow(this, ViewModel.SelectedEnvironment.Clone());
         }
     }
 }
