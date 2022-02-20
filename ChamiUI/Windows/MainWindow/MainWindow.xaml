@@ -24,6 +24,11 @@
         Drop="MainWindow_OnDrop"
         Closing="MainWindow_OnClosing">
     <Window.InputBindings>
+        <KeyBinding Key="U"
+                    Modifiers="Control"
+                    Command="{x:Static commandProvider:MainWindowCommandsProvider.MassUpdateCommand}">
+        </KeyBinding>
+
         <KeyBinding
             Key="Escape"
             Command="{x:Static commandProvider:MainWindowCommandsProvider.CancelEditingCommand}" />
@@ -81,7 +86,7 @@
                       IsEnabled="{Binding CanDuplicateEnvironment}"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.DuplicateEnvironmentCommand}">
             </MenuItem>
-            <Separator/>
+            <Separator />
             <MenuItem Header="{lex:Loc}"
                       x:Name="DeleteEnvironmentMenuItem"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.DeleteEnvironmentCommand}"
@@ -155,6 +160,11 @@
 
     </Window.Resources>
     <Window.CommandBindings>
+        <CommandBinding x:Name="MassUpdateCommandBinding"
+                        Command="{x:Static commandProvider:MainWindowCommandsProvider.MassUpdateCommand}"
+                        CanExecute="MassUpdateCommandBinding_OnCanExecute"
+                        Executed="MassUpdateCommandBinding_OnExecuted">
+        </CommandBinding>
         <CommandBinding x:Name="SaveCommandBinding"
                         Command="Save"
                         CanExecute="SaveCommandBinding_OnCanExecute"
@@ -237,6 +247,12 @@
             </MenuItem>
 
             <MenuItem Header="{lex:Loc}" x:Name="MainWindowEditMenuItem">
+                <MenuItem x:Name="MassUpdateMenuItem" Header="{lex:Loc}"
+                          Command="{x:Static commandProvider:MainWindowCommandsProvider.MassUpdateCommand}"
+                          InputGestureText="Ctrl+U"
+                          >
+                    <Separator/>
+                </MenuItem>
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                           InputGestureText="Ctrl+F">

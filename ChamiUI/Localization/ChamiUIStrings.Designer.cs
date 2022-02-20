@@ -1297,6 +1297,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mass update.
+        /// </summary>
+        public static string MassUpdateMenuItem_Header {
+            get {
+                return ResourceManager.GetString("MassUpdateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mass update.
+        /// </summary>
+        public static string MassUpdateWindowTitle_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateWindowTitle_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When minimized:.
         /// </summary>
         public static string MinimizationBehaviourControlLabel_Content {

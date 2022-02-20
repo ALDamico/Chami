@@ -824,4 +824,10 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="IsEnvironmentCopy" xml:space="preserve">
     <value>(Copia)</value>
   </data>
+  <data name="MassUpdateMenuItem_Header" xml:space="preserve">
+    <value>Aggiornamento massivo</value>
+  </data>
+  <data name="MassUpdateWindowTitle_Content" xml:space="preserve">
+    <value>Aggiornamento massivo</value>
+  </data>
 </root>

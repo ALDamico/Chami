@@ -22,6 +22,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
                     Source="../../PresentationLayer/Resources/DatagridValidationResources.xaml" />
+                <ResourceDictionary Source="../../PresentationLayer/Resources/TitleLabelStyles.xaml"></ResourceDictionary>
                 <ResourceDictionary>
                     <CollectionViewSource x:Key="EnvironmentVariablesViewSource"
                                           Source="{Binding Path=Environment.EnvironmentVariables}" />
@@ -44,9 +45,7 @@
         <Label Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="2"
-               HorizontalContentAlignment="Center"
-               FontWeight="DemiBold"
-               FontSize="20"
+               Style="{StaticResource TitleLabelStyle}"
                x:Name="NewTemplateWindowHeaderTitle"
                Content="{lex:Loc}" />
         <Label Grid.Row="1"

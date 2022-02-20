@@ -61,6 +61,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(WindowStatusMessage));
                 OnPropertyChanged(nameof(CanDeleteEnvironment));
                 OnPropertyChanged(nameof(CanDuplicateEnvironment));
+                OnPropertyChanged(nameof(CanExecuteMassUpdate));
             }
         }
 
@@ -330,6 +331,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             OnPropertyChanged(nameof(WindowStatusMessage));
             OnPropertyChanged(nameof(CanDeleteEnvironment));
             OnPropertyChanged(nameof(CanDuplicateEnvironment));
+            OnPropertyChanged(nameof(CanExecuteMassUpdate));
         }
 
         /// <summary>
@@ -1022,6 +1024,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public bool CanDeleteEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
         
         public bool CanDuplicateEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
+
+        public bool CanExecuteMassUpdate => !IsChangeInProgress && !EditingEnabled;
 
         public void DuplicateCurrentEnvironment()
         {

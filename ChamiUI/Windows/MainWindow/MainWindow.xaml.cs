@@ -806,5 +806,16 @@ namespace ChamiUI.Windows.MainWindow
         {
             CreateNewEnvironmentWindow(this, ViewModel.SelectedEnvironment.Clone());
         }
+
+        private void MassUpdateCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.CanExecuteMassUpdate;
+        }
+
+        private void MassUpdateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            // TODO Implementare tramite nuova finestra?
+            throw new NotImplementedException();
+        }
     }
 }

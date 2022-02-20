@@ -824,4 +824,10 @@ Use a different name and try again.</value>
   <data name="IsEnvironmentCopy" xml:space="preserve">
     <value>(Copy)</value>
   </data>
+  <data name="MassUpdateMenuItem_Header" xml:space="preserve">
+    <value>Mass update</value>
+  </data>
+  <data name="MassUpdateWindowTitle_Content" xml:space="preserve">
+    <value>Mass update</value>
+  </data>
 </root>
