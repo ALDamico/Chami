@@ -251,8 +251,9 @@
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.MassUpdateCommand}"
                           InputGestureText="Ctrl+U"
                           >
-                    <Separator/>
+                    
                 </MenuItem>
+                <Separator/>
                 <MenuItem Header="{lex:Loc}" x:Name="MainWindowFindMenuItem"
                           Command="{x:Static commandProvider:MainWindowCommandsProvider.FocusFilterTextbox}"
                           InputGestureText="Ctrl+F">

@@ -814,8 +814,8 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MassUpdateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            // TODO Implementare tramite nuova finestra?
-            throw new NotImplementedException();
+            var childWindow = new MassUpdateWindow.MassUpdateWindow();
+            childWindow.ShowDialog();
         }
     }
 }

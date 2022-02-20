@@ -412,6 +412,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Create variable if missing.
+        /// </summary>
+        public static string CreateVariableIfNotFoundLabel_Content {
+            get {
+                return ResourceManager.GetString("CreateVariableIfNotFoundLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If checked, Chami will create automatically this variable if it does not already exist..
+        /// </summary>
+        public static string CreateVariableIfNotFoundLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("CreateVariableIfNotFoundLabel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Is folder?.
         /// </summary>
         public static string DataGridIsFolderColumn {
@@ -1306,6 +1324,69 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Update all.
+        /// </summary>
+        public static string MassUpdateStrategyName_UpdateAll {
+            get {
+                return ResourceManager.GetString("MassUpdateStrategyName_UpdateAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update selected.
+        /// </summary>
+        public static string MassUpdateStrategyName_UpdateSelected {
+            get {
+                return ResourceManager.GetString("MassUpdateStrategyName_UpdateSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update mode.
+        /// </summary>
+        public static string MassUpdateStrategySelectorLabel_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateStrategySelectorLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable.
+        /// </summary>
+        public static string MassUpdateVariableComboboxLabel_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateVariableComboboxLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string MassUpdateWindowSelectAllButton_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateWindowSelectAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select none.
+        /// </summary>
+        public static string MassUpdateWindowSelectNoneButton_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateWindowSelectNoneButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mass update.
+        /// </summary>
+        public static string MassUpdateWindowTitle {
+            get {
+                return ResourceManager.GetString("MassUpdateWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mass update.
         /// </summary>
         public static string MassUpdateWindowTitle_Content {
@@ -1768,6 +1849,15 @@ namespace ChamiUI.Localization {
         public static string SaveEnvironmentUnknownErrorMessage {
             get {
                 return ResourceManager.GetString("SaveEnvironmentUnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment to update.
+        /// </summary>
+        public static string SelectAllSelectorLabel_Content {
+            get {
+                return ResourceManager.GetString("SelectAllSelectorLabel_Content", resourceCulture);
             }
         }
         

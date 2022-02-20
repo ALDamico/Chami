@@ -830,4 +830,34 @@ Use a different name and try again.</value>
   <data name="MassUpdateWindowTitle_Content" xml:space="preserve">
     <value>Mass update</value>
   </data>
+  <data name="MassUpdateVariableComboboxLabel_Content" xml:space="preserve">
+    <value>Variable</value>
+  </data>
+  <data name="MassUpdateWindowTitle" xml:space="preserve">
+    <value>Mass update</value>
+  </data>
+  <data name="CreateVariableIfNotFoundLabel_Content" xml:space="preserve">
+    <value>Create variable if missing</value>
+  </data>
+  <data name="CreateVariableIfNotFoundLabel_ToolTip" xml:space="preserve">
+    <value>If checked, Chami will create automatically this variable if it does not already exist.</value>
+  </data>
+  <data name="SelectAllSelectorLabel_Content" xml:space="preserve">
+    <value>Environment to update</value>
+  </data>
+  <data name="MassUpdateStrategyName_UpdateAll" xml:space="preserve">
+    <value>Update all</value>
+  </data>
+  <data name="MassUpdateStrategyName_UpdateSelected" xml:space="preserve">
+    <value>Update selected</value>
+  </data>
+  <data name="MassUpdateStrategySelectorLabel_Content" xml:space="preserve">
+    <value>Update mode</value>
+  </data>
+  <data name="MassUpdateWindowSelectAllButton_Content" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="MassUpdateWindowSelectNoneButton_Content" xml:space="preserve">
+    <value>Select none</value>
+  </data>
 </root>

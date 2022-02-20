@@ -4,8 +4,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows.MassUpdateWindow"
+        xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         mc:Ignorable="d"
-        Title="MassUpdateWindow" Height="450" Width="800">
+        Title="{lex:Loc Key=MassUpdateWindowTitle}" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance viewModels:MassUpdateWindowViewModel}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -13,15 +16,61 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid>
+    
+    <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource TitleLabelStyle}" x:Name="MassUpdateWindowTitle"></Label>
+        <Label Grid.Row="0" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2" 
+               Style="{StaticResource TitleLabelStyle}"
+               x:Name="MassUpdateWindowTitle" 
+               Content="{lex:Loc}">
+        </Label>
+        <Label Grid.Row="1" 
+               Grid.Column="0" 
+               x:Name="MassUpdateVariableComboboxLabel" 
+               Content="{lex:Loc}"></Label>
+        <ComboBox Grid.Row="1" 
+                  Grid.Column="1"
+                  IsEditable="True"
+                  ItemsSource="{Binding KnownVariables}"
+                  SelectedItem="{Binding VariableToUpdate}"
+                  ></ComboBox>
+        <CheckBox Grid.Row="2" 
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  VerticalAlignment="Center"
+                  ToolTip="{lex:Loc Key=CreateVariableIfNotFoundLabel_ToolTip}"
+                  IsChecked="{Binding CreateVariableIfNotExists}"
+                  x:Name="CreateVariableIfNotFoundLabel"
+                  Content="{lex:Loc}"
+        >
+        </CheckBox>
+        <Label Grid.Row="3" 
+               Grid.Column="0" 
+               x:Name="MassUpdateStrategySelectorLabel"
+               Content="{lex:Loc}"
+               >
+        </Label>
+        <ComboBox Grid.Row="3" 
+                  Grid.Column="1" 
+                  ItemsSource="{Binding UpdateStrategies}" 
+                  SelectedItem="{Binding SelectedUpdateStrategy}" 
+                  DisplayMemberPath="Name">
+        </ComboBox>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button DockPanel.Dock="Right" Padding="2,0" x:Name="MassUpdateWindowSelectAllButton" Content="{lex:Loc}"></Button>
+            <Button DockPanel.Dock="Right" Padding="2,0" x:Name="MassUpdateWindowSelectNoneButton" Content="{lex:Loc}"></Button>
+        </StackPanel>
     </Grid>
 </Window>
