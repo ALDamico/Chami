@@ -860,4 +860,20 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="MassUpdateWindowSelectNoneButton_Content" xml:space="preserve">
     <value>Deseleziona tutti</value>
   </data>
+  <data name="VariableValueLabel_Content" xml:space="preserve">
+    <value>Valore</value>
+  </data>
+  <data name="ConfirmCloseWindowText" xml:space="preserve">
+    <value>Sei sicuro di voler chiudere questa finestra?
+Tutte le modifiche non salvate andranno perse.</value>
+  </data>
+  <data name="ConfirmCloseWindowCaption" xml:space="preserve">
+    <value>Conferma chiusura</value>
+  </data>
+  <data name="ExecuteUpdateButton_Content" xml:space="preserve">
+    <value>Aggiorna</value>
+  </data>
+  <data name="CloseWindowButton_Content" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
 </root>

@@ -860,4 +860,23 @@ Use a different name and try again.</value>
   <data name="MassUpdateWindowSelectNoneButton_Content" xml:space="preserve">
     <value>Select none</value>
   </data>
+  <data name="VariableValueLabel_Content" xml:space="preserve">
+    <value>Value</value>
+  </data>
+  <data name="ConfirmCloseWindowText" xml:space="preserve">
+    <value>Are you sure you want to close this window? 
+A
+
+
+ny unsaved changes will be lost.</value>
+  </data>
+  <data name="ConfirmCloseWindowCaption" xml:space="preserve">
+    <value>Confirm close</value>
+  </data>
+  <data name="ExecuteUpdateButton_Content" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="CloseWindowButton_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
 </root>

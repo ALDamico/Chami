@@ -615,6 +615,17 @@ namespace Chami.Db.Repositories
 
             return await UpdateBlacklistedVariableAsync(blacklistedVariable);
         }
+
+        public Task<IEnumerable<string>> GetVariableNamesAsync()
+        {
+            var sql = @"
+                SELECT DISTINCT ev.Name
+                FROM EnvironmentVariables ev
+";
+
+            using var connection = GetConnection();
+            return connection.QueryAsync<string>(sql);
+        }
     }
     
     

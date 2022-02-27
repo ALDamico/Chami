@@ -1,3 +1,5 @@
+using ChamiUI.Localization;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MassUpdateStrategyViewModel : ViewModelBase
@@ -11,6 +13,22 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _name = value;
                 OnPropertyChanged(nameof(Name));
+            }
+        }
+
+        private static MassUpdateStrategyViewModel _defaultUpdateStrategy;
+
+        public static MassUpdateStrategyViewModel DefaultUpdateStrategy
+        {
+            get
+            {
+                if (_defaultUpdateStrategy == null)
+                {
+                    _defaultUpdateStrategy = new MassUpdateStrategyViewModel()
+                        { Name = ChamiUIStrings.MassUpdateStrategyName_UpdateAll };
+                }
+
+                return _defaultUpdateStrategy;
             }
         }
     }

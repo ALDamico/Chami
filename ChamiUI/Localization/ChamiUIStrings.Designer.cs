@@ -376,6 +376,37 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string CloseWindowButton_Content {
+            get {
+                return ResourceManager.GetString("CloseWindowButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm close.
+        /// </summary>
+        public static string ConfirmCloseWindowCaption {
+            get {
+                return ResourceManager.GetString("ConfirmCloseWindowCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to close this window? 
+        ///A
+        ///
+        ///
+        ///ny unsaved changes will be lost..
+        /// </summary>
+        public static string ConfirmCloseWindowText {
+            get {
+                return ResourceManager.GetString("ConfirmCloseWindowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string ConsoleClearMenuItem {
@@ -823,6 +854,15 @@ namespace ChamiUI.Localization {
         public static string ExampleTextTextBox_Text {
             get {
                 return ResourceManager.GetString("ExampleTextTextBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string ExecuteUpdateButton_Content {
+            get {
+                return ResourceManager.GetString("ExecuteUpdateButton_Content", resourceCulture);
             }
         }
         
@@ -2219,6 +2259,15 @@ namespace ChamiUI.Localization {
         public static string VariablesTabItem_Header {
             get {
                 return ResourceManager.GetString("VariablesTabItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string VariableValueLabel_Content {
+            get {
+                return ResourceManager.GetString("VariableValueLabel_Content", resourceCulture);
             }
         }
         

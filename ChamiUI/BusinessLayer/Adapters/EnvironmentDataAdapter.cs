@@ -233,5 +233,10 @@ namespace ChamiUI.BusinessLayer.Adapters
 
             return converter.To(entity);
         }
+
+        public async Task<IEnumerable<string>> GetVariableNamesAsync()
+        {
+            return await _repository.GetVariableNamesAsync();
+        }
     }
 }
