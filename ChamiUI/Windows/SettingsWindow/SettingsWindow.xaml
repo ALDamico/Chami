@@ -34,8 +34,7 @@
             Grid.Column="0"
             ItemsSource="{Binding SettingsCategories}"
             SelectedItem="{Binding CurrentSection}"
-            SelectedIndex="{Binding DisplayedControl}"
-            >
+            SelectedIndex="{Binding DisplayedControl}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DockPanel ToolTip="{Binding Description}">
@@ -46,18 +45,19 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <GridSplitter Grid.Row="0" Grid.Column="1" Width="2" ResizeBehavior="PreviousAndNext" ShowsPreview="True" ResizeDirection="Columns" ></GridSplitter>
-        <UserControl 
+        <GridSplitter Grid.Row="0" Grid.Column="1" Width="2" ResizeBehavior="PreviousAndNext" ShowsPreview="True"
+                      ResizeDirection="Columns">
+        </GridSplitter>
+        <UserControl
             x:Name="SectionViewport"
             Grid.Row="0"
             Grid.Column="2"
-            Content="{Binding CurrentSection}"
-        >
+            Content="{Binding CurrentSection}">
             <UserControl.ContentTemplateSelector>
                 <dataTemplateSelectors:SettingsWindowDataTemplateSelector>
                     <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
                         <DataTemplate>
-                            <controls:LanguageSelectorControl/>
+                            <controls:LanguageSelectorControl />
                         </DataTemplate>
                     </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
                     <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
@@ -65,8 +65,29 @@
                             <controls:LoggingSettingsEditor></controls:LoggingSettingsEditor>
                         </DataTemplate>
                     </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
+                        <DataTemplate>
+                            <controls:ConsoleAppearanceEditor />
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
+                        <DataTemplate>
+                            <controls:MinimizationBehaviourControl/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
+                        <DataTemplate>
+                            <controls:ApplicationDetectorControl/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
+                        <DataTemplate>
+                            <controls:SafeVariableEditor/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
                 </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
-               
+
+
             </UserControl.ContentTemplateSelector>
         </UserControl>
         <StackPanel

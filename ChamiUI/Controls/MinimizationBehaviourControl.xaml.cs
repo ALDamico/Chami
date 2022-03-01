@@ -5,13 +5,10 @@ namespace ChamiUI.Controls
     public partial class MinimizationBehaviourControl
     {
         /// <summary>
-        /// Constructs a new <see cref="MinimizationBehaviourControl"/> and sets its viewmodel.
+        /// Constructs a new <see cref="MinimizationBehaviourControl"/>.
         /// </summary>
-        /// <param name="minimizationBehaviourViewModel">The starting viewmodel.</param>
-        public MinimizationBehaviourControl(MinimizationBehaviourViewModel minimizationBehaviourViewModel)
+        public MinimizationBehaviourControl()
         {
-            var viewModel = minimizationBehaviourViewModel;
-            DataContext = viewModel;
             InitializeComponent();
         }
     }

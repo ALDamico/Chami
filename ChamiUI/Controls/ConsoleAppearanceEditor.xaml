@@ -8,6 +8,7 @@
              xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             DataContextChanged="ConsoleAppearanceEditor_OnDataContextChanged"
              d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="200" d:DesignWidth="405">
     <UserControl.Resources>

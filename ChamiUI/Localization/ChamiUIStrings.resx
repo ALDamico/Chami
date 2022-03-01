@@ -833,4 +833,13 @@ Use a different name and try again.</value>
   <data name="ViewCategoryDescription" xml:space="preserve">
     <value>Customize the look and feel of the console window.</value>
   </data>
+  <data name="SafetyCategoryDescription" xml:space="preserve">
+    <value>Manage if and which variables Chami shouldn't try to overwrite.</value>
+  </data>
+  <data name="DetectorCategoryDescription" xml:space="preserve">
+    <value>Manage the applications Chami will warn you about restarting when switching environments.</value>
+  </data>
+  <data name="MinimizationCategoryDescription" xml:space="preserve">
+    <value>Set how Chami behaves when minimizing the application.</value>
+  </data>
 </root>

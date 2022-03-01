@@ -32,32 +32,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SettingsCategories.Add(Settings.ConsoleAppearanceSettings);
             Settings.LoggingSettings = SettingsCategoriesFactory.GetLoggingSettingCategory(Settings);
             SettingsCategories.Add(Settings.LoggingSettings);
+            Settings.SafeVariableSettings = SettingsCategoriesFactory.GetSafeVariableSettingCategory(Settings);
             SettingsCategories.Add(Settings.SafeVariableSettings);
+            Settings.WatchedApplicationSettings =
+                SettingsCategoriesFactory.GetWatchedApplicationsSettingCategory(Settings);
             SettingsCategories.Add(Settings.WatchedApplicationSettings);
             Settings.LanguageSettings = SettingsCategoriesFactory.GetLanguageSettingCategory(Settings);
             SettingsCategories.Add(Settings.LanguageSettings);
+            Settings.MinimizationBehaviour =
+                SettingsCategoriesFactory.GetMinimizationBehaviourSettingCategory(Settings);
             SettingsCategories.Add(Settings.MinimizationBehaviour);
-            
-            AvailableControls = new ObservableCollection<ControlKeyWrapper>();
 
-          
-
-            
-            var safetyKey = ChamiUIStrings.SafetyCategory;
-            var safetyKeyWrapper = new ControlKeyWrapper(safetyKey, new SafeVariableEditor(Settings.SafeVariableSettings));
-            AvailableControls.Add(safetyKeyWrapper);
-            var detectorKey = ChamiUIStrings.DetectorCategory;
-            var detectorKeyWrapper = new ControlKeyWrapper(detectorKey, new ApplicationDetectorControl(Settings.WatchedApplicationSettings));
-
-            
-            AvailableControls.Add(detectorKeyWrapper);
-            var languageKey = ChamiUIStrings.LanguageCategory;
-            //var languageKeyWrapper = new ControlKeyWrapper(languageKey, new LanguageSelectorControl(Settings.LanguageSettings));
-            //AvailableControls.Add(languageKeyWrapper);
-            var minimizationKey = ChamiUIStrings.MinimizationCategory;
-            var minimizationKeyWrapper = new ControlKeyWrapper(minimizationKey, new MinimizationBehaviourControl(Settings.MinimizationBehaviour));
-            AvailableControls.Add(minimizationKeyWrapper);
-            DisplayedControl = AvailableControls.FirstOrDefault()?.Control;
+            CurrentSection = SettingsCategories.FirstOrDefault();
         }
 
         /// <summary>
@@ -82,8 +68,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(CurrentSection));
             }
         }
-
-        public ObservableCollection<ControlKeyWrapper> AvailableControls { get; }
         public ObservableCollection<SettingCategoryViewModelBase> SettingsCategories { get; }
 
         private readonly SettingsDataAdapter _dataAdapter;
@@ -118,15 +102,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _settingsViewModel = value;
                 OnPropertyChanged(nameof(Settings));
             }
-        }
-
-        /// <summary>
-        /// Changes the displayed control
-        /// </summary>
-        /// <param name="controlKey">The key to use to find the control to set.</param>
-        public void ChangeControl(ControlKeyWrapper controlKey)
-        {
-            DisplayedControl = AvailableControls.FirstOrDefault(c => c.Guid.Equals(controlKey.Guid))?.Control;
         }
     }
 }

@@ -24,16 +24,6 @@ namespace ChamiUI.Windows.SettingsWindow
         }
         public event EventHandler<SettingsSavedEventArgs> SettingsSaved;
 
-        private void CategoriesTree_OnSelectedItemChanged(object sender, SelectionChangedEventArgs selectionChangedEventArgs)
-        {
-            if (selectionChangedEventArgs.AddedItems.Count == 0)
-            {
-                return;
-            }
-            var controlKey = selectionChangedEventArgs.AddedItems[0] as ControlKeyWrapper;
-            _settingsWindowViewModel.ChangeControl(controlKey); 
-        }
-
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
         {
             Close();

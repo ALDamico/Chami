@@ -10,16 +10,12 @@ namespace ChamiUI.Controls
     public partial class ConsoleAppearanceEditor
     {
         /// <summary>
-        /// Constructs a new <see cref="ConsoleAppearanceEditor"/> control and sets its viewmodel.
+        /// Constructs a new <see cref="ConsoleAppearanceEditor"/> control.
         /// </summary>
-        /// <param name="viewModel">The object containing the control's state.</param>
-        public ConsoleAppearanceEditor(ConsoleAppearanceViewModel viewModel)
+        public ConsoleAppearanceEditor()
         {
-            _viewModel = viewModel;
-            DataContext = viewModel;
-            
             InitializeComponent();
-            SetColors();
+            //SetColors();
         }
 
         /// <summary>
@@ -28,18 +24,21 @@ namespace ChamiUI.Controls
         /// </summary>
         private void SetColors()
         {
-            if (_viewModel.BackgroundColor is SolidColorBrush backgroundColorBrush)
+            if (GetDataContextAsConsoleAppearanceViewModel() == null)
+            {
+                return;
+            }
+
+            if (GetDataContextAsConsoleAppearanceViewModel().BackgroundColor is SolidColorBrush backgroundColorBrush)
             {
                 BackgroundColorPicker.SelectedColor = backgroundColorBrush.Color;
             }
 
-            if (_viewModel.ForegroundColor is SolidColorBrush foregroundColorBrush)
+            if (GetDataContextAsConsoleAppearanceViewModel().ForegroundColor is SolidColorBrush foregroundColorBrush)
             {
                 ForegroundColorPicker.SelectedColor = foregroundColorBrush.Color;
             }
         }
-
-        private readonly ConsoleAppearanceViewModel _viewModel;
 
         /// <summary>
         /// Handles color changing on the <see cref="BackgroundColorPicker"/>.
@@ -52,7 +51,7 @@ namespace ChamiUI.Controls
             if (newColor != null)
             {
                 var brush = new SolidColorBrush(newColor.Value);
-                _viewModel.ChangeBackgroundColor(brush);
+                GetDataContextAsConsoleAppearanceViewModel().ChangeBackgroundColor(brush);
             }
         }
 
@@ -68,8 +67,18 @@ namespace ChamiUI.Controls
             if (newColor != null)
             {
                 var brush = new SolidColorBrush(newColor.Value);
-                _viewModel.ChangeForegroundColor(brush);
+                GetDataContextAsConsoleAppearanceViewModel().ChangeForegroundColor(brush);
             }
+        }
+
+        public ConsoleAppearanceViewModel GetDataContextAsConsoleAppearanceViewModel()
+        {
+            return DataContext as ConsoleAppearanceViewModel;
+        }
+
+        private void ConsoleAppearanceEditor_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            SetColors();
         }
     }
 }

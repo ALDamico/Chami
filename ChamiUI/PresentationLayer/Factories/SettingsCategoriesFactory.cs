@@ -28,5 +28,30 @@ namespace ChamiUI.PresentationLayer.Factories
             consoleAppearanceSettings.Description = ChamiUIStrings.ViewCategoryDescription;
             return consoleAppearanceSettings;
         }
+
+        public static SafeVariableViewModel GetSafeVariableSettingCategory(SettingsViewModel settings)
+        {
+            var safeVariableSettings = settings.SafeVariableSettings;
+            safeVariableSettings.DisplayName = ChamiUIStrings.SafetyCategory;
+            safeVariableSettings.Description = ChamiUIStrings.SafetyCategoryDescription;
+            return safeVariableSettings;
+        }
+
+        public static WatchedApplicationControlViewModel GetWatchedApplicationsSettingCategory(
+            SettingsViewModel settings)
+        {
+            var watchedApplicationViewModel = settings.WatchedApplicationSettings;
+            watchedApplicationViewModel.DisplayName = ChamiUIStrings.DetectorCategory;
+            watchedApplicationViewModel.Description = ChamiUIStrings.DetectorCategoryDescription;
+            return watchedApplicationViewModel;
+        }
+
+        public static MinimizationBehaviourViewModel GetMinimizationBehaviourSettingCategory(SettingsViewModel settings)
+        {
+            var minimizationBehaviour = settings.MinimizationBehaviour;
+            minimizationBehaviour.DisplayName = ChamiUIStrings.MinimizationCategory;
+            minimizationBehaviour.Description = ChamiUIStrings.MinimizationCategoryDescription;
+            return minimizationBehaviour;
+        }
     }
 }

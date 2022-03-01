@@ -601,6 +601,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage the applications Chami will warn you about restarting when switching environments..
+        /// </summary>
+        public static string DetectorCategoryDescription {
+            get {
+                return ResourceManager.GetString("DetectorCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restart applications!.
         /// </summary>
         public static string DetectorMessageBoxCaption {
@@ -1333,6 +1342,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set how Chami behaves when minimizing the application..
+        /// </summary>
+        public static string MinimizationCategoryDescription {
+            get {
+                return ResourceManager.GetString("MinimizationCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Minimize to Taskbar.
         /// </summary>
         public static string MinimizeToTaskbarStrategyName {
@@ -1693,6 +1711,15 @@ namespace ChamiUI.Localization {
         public static string SafetyCategory {
             get {
                 return ResourceManager.GetString("SafetyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage if and which variables Chami shouldn&apos;t try to overwrite..
+        /// </summary>
+        public static string SafetyCategoryDescription {
+            get {
+                return ResourceManager.GetString("SafetyCategoryDescription", resourceCulture);
             }
         }
         
