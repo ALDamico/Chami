@@ -17,11 +17,11 @@
     Height="300"
     d:DataContext="{d:DesignInstance vm:SettingsWindowViewModel,
                                      IsDesignTimeCreatable=False}"
-    ResizeMode="NoResize"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="4"></ColumnDefinition>
             <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -46,10 +46,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <GridSplitter Grid.Row="0" Grid.Column="1" Width="2" ResizeBehavior="PreviousAndNext" ShowsPreview="True" ResizeDirection="Columns" ></GridSplitter>
         <UserControl 
             x:Name="SectionViewport"
             Grid.Row="0"
-            Grid.Column="1"
+            Grid.Column="2"
             Content="{Binding CurrentSection}"
         >
             <UserControl.ContentTemplateSelector>
@@ -70,7 +71,7 @@
         </UserControl>
         <StackPanel
             Grid.Row="1"
-            Grid.Column="1"
+            Grid.Column="2"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button

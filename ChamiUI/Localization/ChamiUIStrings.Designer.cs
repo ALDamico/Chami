@@ -1270,6 +1270,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Configure how Chami handles logging..
+        /// </summary>
+        public static string LoggingCategoryDescription {
+            get {
+                return ResourceManager.GetString("LoggingCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logging.
         /// </summary>
         public static string LoggingGroupBox_Header {
@@ -2129,6 +2138,15 @@ namespace ChamiUI.Localization {
         public static string ViewCategory {
             get {
                 return ResourceManager.GetString("ViewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the look and feel of the console window..
+        /// </summary>
+        public static string ViewCategoryDescription {
+            get {
+                return ResourceManager.GetString("ViewCategoryDescription", resourceCulture);
             }
         }
         

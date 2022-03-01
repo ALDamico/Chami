@@ -27,7 +27,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
                 languageDataAdapter);
             SettingsCategories = new ObservableCollection<SettingCategoryViewModelBase>();
+            Settings.ConsoleAppearanceSettings =
+                SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);
             SettingsCategories.Add(Settings.ConsoleAppearanceSettings);
+            Settings.LoggingSettings = SettingsCategoriesFactory.GetLoggingSettingCategory(Settings);
             SettingsCategories.Add(Settings.LoggingSettings);
             SettingsCategories.Add(Settings.SafeVariableSettings);
             SettingsCategories.Add(Settings.WatchedApplicationSettings);
@@ -37,13 +40,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             
             AvailableControls = new ObservableCollection<ControlKeyWrapper>();
 
-            var viewKey = ChamiUIStrings.ViewCategory;
-            var viewKeyWrapper = new ControlKeyWrapper(viewKey, new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings));
-            AvailableControls.Add(viewKeyWrapper);
+          
 
-            var loggingKey = ChamiUIStrings.LoggingCategory;
-            var loggingKeyWrapper = new ControlKeyWrapper(loggingKey, new LoggingSettingsEditor(Settings.LoggingSettings));
-            AvailableControls.Add(loggingKeyWrapper);
+            
             var safetyKey = ChamiUIStrings.SafetyCategory;
             var safetyKeyWrapper = new ControlKeyWrapper(safetyKey, new SafeVariableEditor(Settings.SafeVariableSettings));
             AvailableControls.Add(safetyKeyWrapper);

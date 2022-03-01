@@ -827,4 +827,10 @@ Use a different name and try again.</value>
   <data name="LanguageCategoryDescription" xml:space="preserve">
     <value>Customize Chami localization settings.</value>
   </data>
+  <data name="LoggingCategoryDescription" xml:space="preserve">
+    <value>Configure how Chami handles logging.</value>
+  </data>
+  <data name="ViewCategoryDescription" xml:space="preserve">
+    <value>Customize the look and feel of the console window.</value>
+  </data>
 </root>
