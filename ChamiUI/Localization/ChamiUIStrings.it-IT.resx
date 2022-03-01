@@ -824,4 +824,7 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="IsEnvironmentCopy" xml:space="preserve">
     <value>(Copia)</value>
   </data>
+  <data name="LanguageCategoryDescription" xml:space="preserve">
+    <value>Personalizza le impostazioni di localizzazione di Chami.</value>
+  </data>
 </root>

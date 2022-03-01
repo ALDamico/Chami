@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Factories;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -25,6 +26,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
             Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
                 languageDataAdapter);
+            SettingsCategories = new ObservableCollection<SettingCategoryViewModelBase>();
+            SettingsCategories.Add(Settings.ConsoleAppearanceSettings);
+            SettingsCategories.Add(Settings.LoggingSettings);
+            SettingsCategories.Add(Settings.SafeVariableSettings);
+            SettingsCategories.Add(Settings.WatchedApplicationSettings);
+            Settings.LanguageSettings = SettingsCategoriesFactory.GetLanguageSettingCategory(Settings);
+            SettingsCategories.Add(Settings.LanguageSettings);
+            SettingsCategories.Add(Settings.MinimizationBehaviour);
+            
             AvailableControls = new ObservableCollection<ControlKeyWrapper>();
 
             var viewKey = ChamiUIStrings.ViewCategory;
@@ -43,8 +53,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             
             AvailableControls.Add(detectorKeyWrapper);
             var languageKey = ChamiUIStrings.LanguageCategory;
-            var languageKeyWrapper = new ControlKeyWrapper(languageKey, new LanguageSelectorControl(Settings.LanguageSettings));
-            AvailableControls.Add(languageKeyWrapper);
+            //var languageKeyWrapper = new ControlKeyWrapper(languageKey, new LanguageSelectorControl(Settings.LanguageSettings));
+            //AvailableControls.Add(languageKeyWrapper);
             var minimizationKey = ChamiUIStrings.MinimizationCategory;
             var minimizationKeyWrapper = new ControlKeyWrapper(minimizationKey, new MinimizationBehaviourControl(Settings.MinimizationBehaviour));
             AvailableControls.Add(minimizationKeyWrapper);
@@ -62,7 +72,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 .WatchedApplications));
         }
 
+        private SettingCategoryViewModelBase _currentSection;
+
+        public SettingCategoryViewModelBase CurrentSection
+        {
+            get => _currentSection;
+            set
+            {
+                _currentSection = value;
+                OnPropertyChanged(nameof(CurrentSection));
+            }
+        }
+
         public ObservableCollection<ControlKeyWrapper> AvailableControls { get; }
+        public ObservableCollection<SettingCategoryViewModelBase> SettingsCategories { get; }
 
         private readonly SettingsDataAdapter _dataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;

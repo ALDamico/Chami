@@ -8,6 +8,8 @@
     lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+    xmlns:dataTemplateSelectors="clr-namespace:ChamiUI.PresentationLayer.DataTemplateSelectors"
+    xmlns:controls="clr-namespace:ChamiUI.Controls"
     x:Name="SettingsWindowTitle"
     WindowStartupLocation="CenterOwner"
     Title="{lex:Loc}"
@@ -30,17 +32,42 @@
             x:Name="CategoriesTree"
             Grid.Row="0"
             Grid.Column="0"
-            SelectionChanged="CategoriesTree_OnSelectedItemChanged"
-            ItemsSource="{Binding AvailableControls}"
-            DisplayMemberPath="ControlDisplayName"
+            ItemsSource="{Binding SettingsCategories}"
+            SelectedItem="{Binding CurrentSection}"
             SelectedIndex="{Binding DisplayedControl}"
             >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel ToolTip="{Binding Description}">
+                        <!-- TODO Implement image somehow -->
+                        <Image DockPanel.Dock="Left" Width="16" Height="16"></Image>
+                        <TextBlock Text="{Binding DisplayName}"></TextBlock>
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
-        <UserControl
+        <UserControl 
             x:Name="SectionViewport"
             Grid.Row="0"
             Grid.Column="1"
-            Content="{Binding DisplayedControl}" />
+            Content="{Binding CurrentSection}"
+        >
+            <UserControl.ContentTemplateSelector>
+                <dataTemplateSelectors:SettingsWindowDataTemplateSelector>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
+                        <DataTemplate>
+                            <controls:LanguageSelectorControl/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
+                        <DataTemplate>
+                            <controls:LoggingSettingsEditor></controls:LoggingSettingsEditor>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
+                </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
+               
+            </UserControl.ContentTemplateSelector>
+        </UserControl>
         <StackPanel
             Grid.Row="1"
             Grid.Column="1"

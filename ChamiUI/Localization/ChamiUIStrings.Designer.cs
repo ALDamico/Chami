@@ -1243,6 +1243,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customize Chami localization settings..
+        /// </summary>
+        public static string LanguageCategoryDescription {
+            get {
+                return ResourceManager.GetString("LanguageCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string LanguageSelectorLabel_Content {

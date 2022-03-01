@@ -824,4 +824,7 @@ Use a different name and try again.</value>
   <data name="IsEnvironmentCopy" xml:space="preserve">
     <value>(Copy)</value>
   </data>
+  <data name="LanguageCategoryDescription" xml:space="preserve">
+    <value>Customize Chami localization settings.</value>
+  </data>
 </root>
