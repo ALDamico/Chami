@@ -41,7 +41,7 @@
             Grid.Column="0"
             ItemsSource="{Binding SettingsCategories}"
             SelectedItem="{Binding CurrentSection}"
-            SelectedIndex="{Binding DisplayedControl}">
+           >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DockPanel ToolTip="{Binding Description}">
@@ -100,7 +100,8 @@
         </UserControl>
         <StackPanel
             Grid.Row="3"
-            Grid.Column="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button

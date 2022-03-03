@@ -52,8 +52,7 @@
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Height="24"
-                                           VerticalAlignment="Center"
+                                <TextBlock
                                            Text="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}"
                                            FontFamily="{Binding}" />
                             </StackPanel>

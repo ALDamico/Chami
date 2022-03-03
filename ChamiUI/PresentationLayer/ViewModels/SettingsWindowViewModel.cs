@@ -64,7 +64,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             get => _currentSection;
             set
             {
-                _currentSection = value;
+                if (value != null)
+                {
+                    _currentSection = value;    
+                }
+                
                 OnPropertyChanged(nameof(CurrentSection));
             }
         }
@@ -72,22 +76,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private readonly SettingsDataAdapter _dataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
-
-
-        private UserControl _displayedControl;
-
-        /// <summary>
-        /// The currently-displayed control.
-        /// </summary>
-        public UserControl DisplayedControl
-        {
-            get => _displayedControl;
-            set
-            {
-                _displayedControl = value;
-                OnPropertyChanged(nameof(DisplayedControl));
-            }
-        }
 
         private SettingsViewModel _settingsViewModel;
 

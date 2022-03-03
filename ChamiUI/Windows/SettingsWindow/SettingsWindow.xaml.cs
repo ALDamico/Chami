@@ -17,10 +17,11 @@ namespace ChamiUI.Windows.SettingsWindow
 
         public SettingsWindow(Window owner)
         {
+            InitializeComponent();
             Owner = owner;
             _settingsWindowViewModel = new SettingsWindowViewModel();
             DataContext = _settingsWindowViewModel;
-            InitializeComponent();
+            
         }
         public event EventHandler<SettingsSavedEventArgs> SettingsSaved;
 
