@@ -46,11 +46,14 @@
                 <ComboBox Grid.Row="0"
                           Grid.Column="1"
                           SelectedItem="{Binding FontFamily}"
-                          ItemsSource="{Binding FontFamilies}">
+                          ItemsSource="{Binding FontFamilies}"
+                          IsTextSearchEnabled="True"
+                >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock Height="24"
+                                           VerticalAlignment="Center"
                                            Text="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}"
                                            FontFamily="{Binding}" />
                             </StackPanel>
