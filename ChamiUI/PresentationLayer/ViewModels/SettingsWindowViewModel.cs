@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows.Controls;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Factories;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -25,30 +26,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
             Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
                 languageDataAdapter);
-            AvailableControls = new ObservableCollection<ControlKeyWrapper>();
+            SettingsCategories = new ObservableCollection<SettingCategoryViewModelBase>();
+            Settings.ConsoleAppearanceSettings =
+                SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);
+            SettingsCategories.Add(Settings.ConsoleAppearanceSettings);
+            Settings.LoggingSettings = SettingsCategoriesFactory.GetLoggingSettingCategory(Settings);
+            SettingsCategories.Add(Settings.LoggingSettings);
+            Settings.SafeVariableSettings = SettingsCategoriesFactory.GetSafeVariableSettingCategory(Settings);
+            SettingsCategories.Add(Settings.SafeVariableSettings);
+            Settings.WatchedApplicationSettings =
+                SettingsCategoriesFactory.GetWatchedApplicationsSettingCategory(Settings);
+            SettingsCategories.Add(Settings.WatchedApplicationSettings);
+            Settings.LanguageSettings = SettingsCategoriesFactory.GetLanguageSettingCategory(Settings);
+            SettingsCategories.Add(Settings.LanguageSettings);
+            Settings.MinimizationBehaviour =
+                SettingsCategoriesFactory.GetMinimizationBehaviourSettingCategory(Settings);
+            SettingsCategories.Add(Settings.MinimizationBehaviour);
 
-            var viewKey = ChamiUIStrings.ViewCategory;
-            var viewKeyWrapper = new ControlKeyWrapper(viewKey, new ConsoleAppearanceEditor(Settings.ConsoleAppearanceSettings));
-            AvailableControls.Add(viewKeyWrapper);
-
-            var loggingKey = ChamiUIStrings.LoggingCategory;
-            var loggingKeyWrapper = new ControlKeyWrapper(loggingKey, new LoggingSettingsEditor(Settings.LoggingSettings));
-            AvailableControls.Add(loggingKeyWrapper);
-            var safetyKey = ChamiUIStrings.SafetyCategory;
-            var safetyKeyWrapper = new ControlKeyWrapper(safetyKey, new SafeVariableEditor(Settings.SafeVariableSettings));
-            AvailableControls.Add(safetyKeyWrapper);
-            var detectorKey = ChamiUIStrings.DetectorCategory;
-            var detectorKeyWrapper = new ControlKeyWrapper(detectorKey, new ApplicationDetectorControl(Settings.WatchedApplicationSettings));
-
-            
-            AvailableControls.Add(detectorKeyWrapper);
-            var languageKey = ChamiUIStrings.LanguageCategory;
-            var languageKeyWrapper = new ControlKeyWrapper(languageKey, new LanguageSelectorControl(Settings.LanguageSettings));
-            AvailableControls.Add(languageKeyWrapper);
-            var minimizationKey = ChamiUIStrings.MinimizationCategory;
-            var minimizationKeyWrapper = new ControlKeyWrapper(minimizationKey, new MinimizationBehaviourControl(Settings.MinimizationBehaviour));
-            AvailableControls.Add(minimizationKeyWrapper);
-            DisplayedControl = AvailableControls.FirstOrDefault()?.Control;
+            CurrentSection = SettingsCategories.FirstOrDefault();
         }
 
         /// <summary>
@@ -62,26 +57,25 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 .WatchedApplications));
         }
 
-        public ObservableCollection<ControlKeyWrapper> AvailableControls { get; }
+        private SettingCategoryViewModelBase _currentSection;
+
+        public SettingCategoryViewModelBase CurrentSection
+        {
+            get => _currentSection;
+            set
+            {
+                if (value != null)
+                {
+                    _currentSection = value;    
+                }
+                
+                OnPropertyChanged(nameof(CurrentSection));
+            }
+        }
+        public ObservableCollection<SettingCategoryViewModelBase> SettingsCategories { get; }
 
         private readonly SettingsDataAdapter _dataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
-
-
-        private UserControl _displayedControl;
-
-        /// <summary>
-        /// The currently-displayed control.
-        /// </summary>
-        public UserControl DisplayedControl
-        {
-            get => _displayedControl;
-            set
-            {
-                _displayedControl = value;
-                OnPropertyChanged(nameof(DisplayedControl));
-            }
-        }
 
         private SettingsViewModel _settingsViewModel;
 
@@ -96,15 +90,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _settingsViewModel = value;
                 OnPropertyChanged(nameof(Settings));
             }
-        }
-
-        /// <summary>
-        /// Changes the displayed control
-        /// </summary>
-        /// <param name="controlKey">The key to use to find the control to set.</param>
-        public void ChangeControl(ControlKeyWrapper controlKey)
-        {
-            DisplayedControl = AvailableControls.FirstOrDefault(c => c.Guid.Equals(controlKey.Guid))?.Control;
         }
     }
 }

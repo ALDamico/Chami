@@ -8,26 +8,19 @@ namespace ChamiUI.Controls
     /// </summary>
     public partial class SafeVariableEditor
     {
-        private readonly SafeVariableViewModel _settingsSafeVariableSettings;
-
         public SafeVariableEditor()
         {
-            var viewModel = new SafeVariableViewModel();
-            DataContext = viewModel;
-            _settingsSafeVariableSettings = viewModel;
-            InitializeComponent();
-        }
-
-        public SafeVariableEditor(SafeVariableViewModel settingsSafeVariableSettings)
-        {
-            _settingsSafeVariableSettings = settingsSafeVariableSettings;
-            DataContext = _settingsSafeVariableSettings;
             InitializeComponent();
         }
 
         private async void SafeVariableEditor_OnLoaded(object sender, RoutedEventArgs e)
         {
-            await _settingsSafeVariableSettings.LoadForbiddenVariables();
+            await GetDataContextAsSafeVariableViewModel().LoadForbiddenVariables();
+        }
+
+        public SafeVariableViewModel GetDataContextAsSafeVariableViewModel()
+        {
+            return DataContext as SafeVariableViewModel;
         }
     }
 }

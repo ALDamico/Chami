@@ -8,6 +8,9 @@
     lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+    xmlns:dataTemplateSelectors="clr-namespace:ChamiUI.PresentationLayer.DataTemplateSelectors"
+    xmlns:mah="http://metro.mahapps.com/winfx/xaml/iconpacks"
+    xmlns:controls="clr-namespace:ChamiUI.Controls"
     x:Name="SettingsWindowTitle"
     WindowStartupLocation="CenterOwner"
     Title="{lex:Loc}"
@@ -15,35 +18,90 @@
     Height="300"
     d:DataContext="{d:DesignInstance vm:SettingsWindowViewModel,
                                      IsDesignTimeCreatable=False}"
-    ResizeMode="NoResize"
     mc:Ignorable="d">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="4"></ColumnDefinition>
             <ColumnDefinition Width="5*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+        
+        <Label Grid.Row="0" Grid.Column="0">Categories</Label>
+        <Separator Grid.Row="1" Grid.Column="0"></Separator>
+        
         <ListView
             x:Name="CategoriesTree"
-            Grid.Row="0"
+            Grid.Row="2"
             Grid.Column="0"
-            SelectionChanged="CategoriesTree_OnSelectedItemChanged"
-            ItemsSource="{Binding AvailableControls}"
-            DisplayMemberPath="ControlDisplayName"
-            SelectedIndex="{Binding DisplayedControl}"
-            >
+            ItemsSource="{Binding SettingsCategories}"
+            SelectedItem="{Binding CurrentSection}"
+           >
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <DockPanel ToolTip="{Binding Description}">
+                        <mah:PackIconFontAwesome Width="24" Height="24" Kind="{Binding IconPath}"></mah:PackIconFontAwesome>
+                        <TextBlock VerticalAlignment="Center" Margin="3, 0, 0, 0" Text="{Binding DisplayName}"></TextBlock>
+                    </DockPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
+        <GridSplitter Grid.Row="2" Grid.Column="1" Width="2" ResizeBehavior="PreviousAndNext" ShowsPreview="True"
+                      ResizeDirection="Columns">
+        </GridSplitter>
         <UserControl
             x:Name="SectionViewport"
-            Grid.Row="0"
-            Grid.Column="1"
-            Content="{Binding DisplayedControl}" />
+            Grid.Row="2"
+            Grid.Column="2"
+            Content="{Binding CurrentSection}"
+            Margin="6"
+            >
+            <UserControl.ContentTemplateSelector>
+                <dataTemplateSelectors:SettingsWindowDataTemplateSelector>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
+                        <DataTemplate>
+                            <controls:LanguageSelectorControl />
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
+                        <DataTemplate>
+                            <controls:LoggingSettingsEditor></controls:LoggingSettingsEditor>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
+                        <DataTemplate>
+                            <controls:ConsoleAppearanceEditor />
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
+                        <DataTemplate>
+                            <controls:MinimizationBehaviourControl/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
+                        <DataTemplate>
+                            <controls:ApplicationDetectorControl/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
+                        <DataTemplate>
+                            <controls:SafeVariableEditor/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
+                </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
+
+
+            </UserControl.ContentTemplateSelector>
+        </UserControl>
         <StackPanel
-            Grid.Row="1"
-            Grid.Column="1"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
             HorizontalAlignment="Right"
             Orientation="Horizontal">
             <Button

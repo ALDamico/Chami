@@ -601,6 +601,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Manage the applications Chami will warn you about restarting when switching environments..
+        /// </summary>
+        public static string DetectorCategoryDescription {
+            get {
+                return ResourceManager.GetString("DetectorCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Restart applications!.
         /// </summary>
         public static string DetectorMessageBoxCaption {
@@ -1243,6 +1252,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Customize Chami localization settings..
+        /// </summary>
+        public static string LanguageCategoryDescription {
+            get {
+                return ResourceManager.GetString("LanguageCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string LanguageSelectorLabel_Content {
@@ -1257,6 +1275,15 @@ namespace ChamiUI.Localization {
         public static string LoggingCategory {
             get {
                 return ResourceManager.GetString("LoggingCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Configure how Chami handles logging..
+        /// </summary>
+        public static string LoggingCategoryDescription {
+            get {
+                return ResourceManager.GetString("LoggingCategoryDescription", resourceCulture);
             }
         }
         
@@ -1311,6 +1338,15 @@ namespace ChamiUI.Localization {
         public static string MinimizationCategory {
             get {
                 return ResourceManager.GetString("MinimizationCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Set how Chami behaves when minimizing the application..
+        /// </summary>
+        public static string MinimizationCategoryDescription {
+            get {
+                return ResourceManager.GetString("MinimizationCategoryDescription", resourceCulture);
             }
         }
         
@@ -1675,6 +1711,15 @@ namespace ChamiUI.Localization {
         public static string SafetyCategory {
             get {
                 return ResourceManager.GetString("SafetyCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage if and which variables Chami shouldn&apos;t try to overwrite..
+        /// </summary>
+        public static string SafetyCategoryDescription {
+            get {
+                return ResourceManager.GetString("SafetyCategoryDescription", resourceCulture);
             }
         }
         
@@ -2120,6 +2165,15 @@ namespace ChamiUI.Localization {
         public static string ViewCategory {
             get {
                 return ResourceManager.GetString("ViewCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customize the look and feel of the console window..
+        /// </summary>
+        public static string ViewCategoryDescription {
+            get {
+                return ResourceManager.GetString("ViewCategoryDescription", resourceCulture);
             }
         }
         

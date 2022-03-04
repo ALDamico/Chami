@@ -23,8 +23,7 @@
         <Label Grid.Column="0" x:Name="LanguageSelectorLabel" Content="{lex:Loc}" />
         <ComboBox Grid.Column="1" x:Name="AvalableLanguagesCombobox"
                   ItemsSource="{Binding AvailableLanguages}"
-                  SelectedItem="{Binding CurrentLanguage}"
-                  SelectionChanged="AvalableLanguagesCombobox_OnSelectionChanged">
+                  SelectedItem="{Binding CurrentLanguage}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal">

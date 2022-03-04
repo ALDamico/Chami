@@ -62,6 +62,7 @@
                                                 Header="{lex:Loc VariableInitialValueDatagridColumn}" />
                             <DataGridCheckBoxColumn x:Name="VariableIsWindowsDefaultDatagridColumn"
                                                     Binding="{Binding IsWindowsDefault}"
+                                                    IsReadOnly="True"
                                                     Header="{lex:Loc VariableIsWindowsDefaultDatagridColumn}" />
                         </DataGrid.Columns>
                     </DataGrid>
