@@ -8,6 +8,7 @@
              xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             DataContextChanged="ConsoleAppearanceEditor_OnDataContextChanged"
              d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="200" d:DesignWidth="405">
     <UserControl.Resources>
@@ -45,11 +46,13 @@
                 <ComboBox Grid.Row="0"
                           Grid.Column="1"
                           SelectedItem="{Binding FontFamily}"
-                          ItemsSource="{Binding FontFamilies}">
+                          ItemsSource="{Binding FontFamilies}"
+                          IsTextSearchEnabled="True"
+                >
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Height="24"
+                                <TextBlock
                                            Text="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}"
                                            FontFamily="{Binding}" />
                             </StackPanel>

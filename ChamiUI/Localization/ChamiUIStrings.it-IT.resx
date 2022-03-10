@@ -824,4 +824,22 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="IsEnvironmentCopy" xml:space="preserve">
     <value>(Copia)</value>
   </data>
+  <data name="LanguageCategoryDescription" xml:space="preserve">
+    <value>Personalizza le impostazioni di localizzazione di Chami.</value>
+  </data>
+  <data name="LoggingCategoryDescription" xml:space="preserve">
+    <value>Configura come Chami gestisce il log dell'applicazione.</value>
+  </data>
+  <data name="ViewCategoryDescription" xml:space="preserve">
+    <value>Personalizza l'aspetto della finestra della console.</value>
+  </data>
+  <data name="SafetyCategoryDescription" xml:space="preserve">
+    <value>Determina se e quali variabili Chami non dovrà cercare di sovrascrivere.</value>
+  </data>
+  <data name="DetectorCategoryDescription" xml:space="preserve">
+    <value>Gestisci le applicazioni che Chami ti avviserà di riavviare quando si passa a un nuovo ambiente.</value>
+  </data>
+  <data name="MinimizationCategoryDescription" xml:space="preserve">
+    <value>Imposta come Chami si comporta quando riduci la finestra dell'applicazione a icona.</value>
+  </data>
 </root>

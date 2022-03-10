@@ -13,14 +13,15 @@ namespace ChamiUI.Controls
         /// Constructs a new <see cref="ApplicationDetectorControl"/>,
         /// </summary>
         /// <param name="viewModel">The viewModel containing window state.</param>
-        public ApplicationDetectorControl(WatchedApplicationControlViewModel viewModel)
+        public ApplicationDetectorControl()
         {
-            _viewModel = viewModel;
-            DataContext = _viewModel;
             InitializeComponent();
         }
 
-        private readonly WatchedApplicationControlViewModel _viewModel;
+        private WatchedApplicationControlViewModel GetDataContextAsWatchedApplicationViewModel()
+        {
+            return DataContext as WatchedApplicationControlViewModel;
+        }
 
         private void WatchedApplicationsDataGrid_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
         {
@@ -38,7 +39,7 @@ namespace ChamiUI.Controls
                     foreach (var row in selectedRows)
                     {
                         var viewModel = row as WatchedApplicationViewModel;
-                        _viewModel.DeleteWatchedApplication(viewModel);
+                        GetDataContextAsWatchedApplicationViewModel().DeleteWatchedApplication(viewModel);
                         e.Handled = true;
                     }
                 }
