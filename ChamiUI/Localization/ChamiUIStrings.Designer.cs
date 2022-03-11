@@ -1625,6 +1625,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There are no environments to update!.
+        /// </summary>
+        public static string NoEnvironmentsToUpdateErrorMessage {
+            get {
+                return ResourceManager.GetString("NoEnvironmentsToUpdateErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Variable {0} is blacklisted.
         ///No action taken..
         /// </summary>

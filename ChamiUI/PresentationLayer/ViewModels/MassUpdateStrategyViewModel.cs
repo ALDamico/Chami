@@ -1,3 +1,6 @@
+using System;
+using System.Threading.Tasks;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels

@@ -876,4 +876,7 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="CloseWindowButton_Content" xml:space="preserve">
     <value>Chiudi</value>
   </data>
+  <data name="NoEnvironmentsToUpdateErrorMessage" xml:space="preserve">
+    <value>Non è stato fornito alcun ambiente da aggiornare!</value>
+  </data>
 </root>

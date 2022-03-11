@@ -47,8 +47,7 @@ namespace ChamiUI.Windows.MassUpdateWindow
 
         private void ExecuteCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            // TODO Implement actual update logic
-            throw new System.NotImplementedException();
+            _viewModel.ExecuteUpdate().GetAwaiter().GetResult();
         }
 
         private void ExecuteCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)

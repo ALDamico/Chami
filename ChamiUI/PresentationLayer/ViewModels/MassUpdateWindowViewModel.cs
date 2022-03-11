@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -165,6 +166,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void DeselectAllEnvironments()
         {
             SelectedEnvironments.Clear();
+        }
+
+        public async Task ExecuteUpdate()
+        {
+            var massUpdateStrategy = MassUpdateStrategyFactory.GetMassUpdateStrategyByViewModel(SelectedUpdateStrategy, VariableToUpdate, NewValue, SelectedEnvironments);
+            await massUpdateStrategy.ExecuteUpdateAsync(_environmentDataAdapter);
         }
     }
 }

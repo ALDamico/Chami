@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
@@ -625,6 +626,33 @@ namespace Chami.Db.Repositories
 
             using var connection = GetConnection();
             return connection.QueryAsync<string>(sql);
+        }
+
+        public async Task UpdateVariableByNameAsync(string variableName, string variableValue)
+        {
+            var sql = GetUpdateVariableByNameQuery();
+            var connection = GetConnection();
+            await connection.ExecuteAsync(sql, new {variableValue, variableName});
+        }
+
+        private string GetUpdateVariableByNameQuery()
+        {
+            return @"
+                UPDATE EnvironmentVariables
+                SET Value = ?
+                WHERE Name = ?
+";
+        }
+
+        public async Task UpdateVariableByNameAndEnvironmentIdsAsync(string variableName, string variableValue, ImmutableList<int> environmentIds)
+        {
+            var environmentIdString = string.Join(',', environmentIds);
+            var sql = GetUpdateVariableByNameQuery() + " AND EnvironmentId IN (?)";
+
+            using var connection = GetConnection();
+
+            await connection.ExecuteAsync(sql, new {variableValue, variableName, environmentIds});
+
         }
     }
     

@@ -879,4 +879,7 @@ ny unsaved changes will be lost.</value>
   <data name="CloseWindowButton_Content" xml:space="preserve">
     <value>Close</value>
   </data>
+  <data name="NoEnvironmentsToUpdateErrorMessage" xml:space="preserve">
+    <value>There are no environments to update!</value>
+  </data>
 </root>
