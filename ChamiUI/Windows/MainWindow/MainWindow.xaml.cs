@@ -144,8 +144,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (o.Message != null)
             {
-                var message = o.Message;
-                message.TrimStart('\n');
+                var message = o.Message.TrimStart('\n');
                 if (!o.Message.EndsWith("\n"))
                 {
                     message += "\n";
@@ -805,6 +804,11 @@ namespace ChamiUI.Windows.MainWindow
         private void DuplicateEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             CreateNewEnvironmentWindow(this, ViewModel.SelectedEnvironment.Clone());
+        }
+
+        public void OnHealthChecked(object sender, HealthCheckedEventArgs e)
+        {
+            ViewModel.HandleCheckedHealth(e);
         }
     }
 }

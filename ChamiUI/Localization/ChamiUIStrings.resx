@@ -842,4 +842,7 @@ Use a different name and try again.</value>
   <data name="MinimizationCategoryDescription" xml:space="preserve">
     <value>Set how Chami behaves when minimizing the application.</value>
   </data>
+  <data name="NullHealthCheckStrategyExceptionMessage" xml:space="preserve">
+    <value>Invalid Health check strategy.</value>
+  </data>
 </root>

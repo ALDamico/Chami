@@ -842,4 +842,7 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="MinimizationCategoryDescription" xml:space="preserve">
     <value>Imposta come Chami si comporta quando riduci la finestra dell'applicazione a icona.</value>
   </data>
+  <data name="NullHealthCheckStrategyExceptionMessage" xml:space="preserve">
+    <value>Straegia di controllo salute non valida.</value>
+  </data>
 </root>

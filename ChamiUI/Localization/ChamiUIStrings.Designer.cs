@@ -1532,6 +1532,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid Health check strategy..
+        /// </summary>
+        public static string NullHealthCheckStrategyExceptionMessage {
+            get {
+                return ResourceManager.GetString("NullHealthCheckStrategyExceptionMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Open folder.
         /// </summary>
         public static string OpenAsFolderMenuItem_Header {

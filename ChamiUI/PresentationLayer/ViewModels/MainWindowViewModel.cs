@@ -654,6 +654,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = environment;
             OnPropertyChanged(nameof(Environments));
             OnPropertyChanged(nameof(SelectedEnvironment));
+            EnvironmentChanged?.Invoke(this, new EnvironmentChangedEventArgs(environment));
             DisableEditing();
         }
 
@@ -1030,6 +1031,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = environment;
             Environments.Add(environment);
             EnableEditing();
+        }
+
+        private EnvironmentHealthViewModel _environmentHealth;
+
+        public EnvironmentHealthViewModel EnvironmentHealth
+        {
+            get => _environmentHealth;
+            set
+            {
+                _environmentHealth = value;
+                OnPropertyChanged(nameof(EnvironmentHealth));
+            }
+        }
+
+        public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs)
+        {
+            var healthViewModel = new EnvironmentHealthViewModel()
+            {
+                HealthIndex = healthCheckedEventArgs.Health
+            };
+            EnvironmentHealth = healthViewModel;
         }
     }
 }
