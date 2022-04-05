@@ -158,16 +158,11 @@ namespace Chami.Db.Repositories
                 var transaction = await connection.BeginTransactionAsync();
                 await connection.ExecuteAsync(queryString, new
                 {
-                    // ReSharper disable once RedundantAnonymousTypePropertyName
-                    Name = blacklistedVariable.Name, 
-                    // ReSharper disable once RedundantAnonymousTypePropertyName
-                    InitialValue = blacklistedVariable.InitialValue,
-                    // ReSharper disable once RedundantAnonymousTypePropertyName
-                    IsWindowsDefault = blacklistedVariable.IsWindowsDefault, 
-                    // ReSharper disable once RedundantAnonymousTypePropertyName
-                    IsEnabled = blacklistedVariable.IsEnabled,
-                    // ReSharper disable once RedundantAnonymousTypePropertyName
-                    Id = blacklistedVariable.Id
+                    blacklistedVariable.Name, 
+                    blacklistedVariable.InitialValue,
+                    blacklistedVariable.IsWindowsDefault, 
+                    blacklistedVariable.IsEnabled,
+                    blacklistedVariable.Id
                 });
 
                 await transaction.CommitAsync();
