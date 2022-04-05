@@ -583,7 +583,7 @@
             </TabItem>
         </TabControl>
         <StatusBar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <StatusBarItem x:Name="EnvironmentHealthStatusBarItem" IsEnabled="{Binding IsEnvironmentHealthEnabled}">
+            <StatusBarItem x:Name="EnvironmentHealthStatusBarItem" Visibility="{Binding IsEnvironmentHealthEnabled, Converter={StaticResource BooleanToVisibilityConverter}}" IsEnabled="{Binding IsEnvironmentHealthEnabled}">
                 <StackPanel Orientation="Horizontal">
                     <Ellipse Width="10" Height="10" Fill="{Binding EnvironmentHealth.FillColor}" Margin="2, 0"></Ellipse>
                     <TextBlock Text="{Binding EnvironmentHealth.Message}"></TextBlock>

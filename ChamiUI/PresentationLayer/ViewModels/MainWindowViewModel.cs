@@ -1029,6 +1029,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs)
         {
+            if (EditingEnabled)
+            {
+                return;
+            }
             var healthViewModel = new EnvironmentHealthViewModel()
             {
                 HealthIndex = healthCheckedEventArgs.Health

@@ -77,7 +77,7 @@ namespace ChamiUI
             _healthCheckerTimer = new DispatcherTimer();
             _healthCheckerTimer.Interval = TimeSpan.FromMilliseconds(HealthCheckerConfiguration.CheckInterval);
             _healthCheckerTimer.Tick += HealthCheckerTimerOnElapsed;
-            if (_healthCheckerTimer.IsEnabled)
+            if (Settings.HealthCheckSettings.IsEnabled)
             {
                 _healthCheckerTimer.Start();
             }
@@ -86,7 +86,7 @@ namespace ChamiUI
         private void HealthCheckerTimerOnElapsed(object sender, EventArgs e)
         {
             ExecuteHealthCheck();
-            if (_healthCheckerTimer.IsEnabled)
+            if (Settings.HealthCheckSettings.IsEnabled)
             {
                 _healthCheckerTimer.Start();
             }
