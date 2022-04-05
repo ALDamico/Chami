@@ -22,7 +22,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             _repository = new EnvironmentRepository(connectionString);
         }
 
-        private EnvironmentRepository _repository;
+        private readonly EnvironmentRepository _repository;
 
         /// <summary>
         /// Saves a new template <see cref="EnvironmentViewModel"/> to the datastore.
@@ -221,17 +221,6 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
 
             return outputList;
-        }
-
-        public async Task<EnvironmentVariableBlacklistViewModel> SaveBlacklistedVariableAsync(
-            EnvironmentVariableBlacklistViewModel blacklistedVariable)
-        {
-            var converter = new EnvironmentVariableBlacklistConverter();
-            var entity = converter.From(blacklistedVariable);
-
-            await _repository.UpsertBlacklistedVariableAsync(entity);
-
-            return converter.To(entity);
         }
     }
 }

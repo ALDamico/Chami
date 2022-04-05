@@ -59,6 +59,12 @@ namespace ChamiUI
 
             InitHealthChecker();
         }
+        
+        public void OnSettingsSaved(object sender, SettingsSavedEventArgs args)
+        {
+            Settings = args.Settings;
+            InitLocalization();
+        }
 
         private void InitHealthChecker()
         {

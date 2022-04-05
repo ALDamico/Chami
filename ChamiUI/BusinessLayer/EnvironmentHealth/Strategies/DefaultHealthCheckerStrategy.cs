@@ -1,4 +1,4 @@
-using Chami.Db.Entities;
+using System;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.EnvironmentHealth.Strategies
@@ -33,13 +33,20 @@ namespace ChamiUI.BusinessLayer.EnvironmentHealth.Strategies
                 }
             }
 
-            var temporaryFoundResult = found * configuration.MaxScore / environment.EnvironmentVariables.Count;
+            var environmentVariablesCount = environment.EnvironmentVariables.Count;
+
+            var temporaryFoundResult = 0.0;
+            if (environmentVariablesCount > 0)
+            {
+                temporaryFoundResult = found * configuration.MaxScore / environmentVariablesCount;
+            }
+            
             for (int i = 0; i < mismatchedValue; i++)
             {
                 temporaryFoundResult -= configuration.MismatchPenalty;
             }
 
-            return temporaryFoundResult;
+            return Math.Max(0.0, temporaryFoundResult);
         }
     }
 }

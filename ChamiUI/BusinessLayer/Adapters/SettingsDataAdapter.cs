@@ -6,6 +6,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.Remoting;
+using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Annotations;
@@ -285,6 +286,38 @@ namespace ChamiUI.BusinessLayer.Adapters
                 sortDescriptionValue);
             _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.WindowState),
                 ((int)mainWinSettings.WindowState).ToString());
+        }
+
+        public async Task<EnvironmentVariableBlacklistViewModel> SaveBlacklistedVariableAsync(EnvironmentVariableBlacklistViewModel variable)
+        {
+            var converter = new EnvironmentVariableBlacklistConverter();
+            var entity = converter.From(variable);
+
+            await _repository.UpsertBlacklistedVariableAsync(entity);
+
+            return converter.To(entity);
+        }
+
+        public async Task<IEnumerable<EnvironmentVariableBlacklistViewModel>> SaveBlacklistedVariableListAsync(
+            IEnumerable<EnvironmentVariableBlacklistViewModel> variables)
+        {
+            var tasks = new List<Task<EnvironmentVariableBlacklist>>();
+            var output = new List<EnvironmentVariableBlacklistViewModel>();
+            var converter = new EnvironmentVariableBlacklistConverter();
+            foreach (var variable in variables)
+            {
+                var converted = converter.From(variable);
+                var task = _repository.UpsertBlacklistedVariableAsync(converted);
+                tasks.Add(task);
+            }
+
+            await Task.WhenAll(tasks);
+
+            foreach (var task in tasks)
+            {
+                output.Add(converter.To(task.Result));
+            }
+            return output;
         }
     }
 }

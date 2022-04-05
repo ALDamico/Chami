@@ -10,11 +10,6 @@ namespace ChamiUI.Windows.SettingsWindow
     {
         private readonly SettingsWindowViewModel _settingsWindowViewModel;
 
-        public void SaveSettings()
-        {
-            _settingsWindowViewModel.SaveSettings();
-        }
-
         public SettingsWindow(Window owner)
         {
             InitializeComponent();

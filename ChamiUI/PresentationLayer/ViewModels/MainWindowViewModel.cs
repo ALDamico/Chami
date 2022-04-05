@@ -12,7 +12,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Chami.CmdExecutor;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Commands;
@@ -405,7 +404,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private void AddRemovalCommands(string? currentEnvironmentName, SafeVariableViewModel safeVariableSettings,
+        private void AddRemovalCommands(string currentEnvironmentName, SafeVariableViewModel safeVariableSettings,
             bool isSafetyEnabled, CmdExecutor cmdExecutor)
         {
             var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
@@ -457,6 +456,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _activeEnvironment = value;
                 OnPropertyChanged(nameof(ActiveEnvironment));
                 OnPropertyChanged(nameof(WindowTitle));
+                OnPropertyChanged(nameof(IsEnvironmentHealthEnabled));
             }
         }
 
@@ -958,26 +958,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
 
-        public async Task<IEnumerable<EnvironmentVariableBlacklistViewModel>> SaveBlacklistedVariables(
-            IEnumerable<EnvironmentVariableBlacklistViewModel> blacklistedVariables)
-        {
-            var tasks = new List<Task<EnvironmentVariableBlacklistViewModel>>();
-            var output = new List<EnvironmentVariableBlacklistViewModel>();
-            foreach (var variable in blacklistedVariables)
-            {
-                Task<EnvironmentVariableBlacklistViewModel> task = _dataAdapter.SaveBlacklistedVariableAsync(variable);
-                tasks.Add(task);
-                task.ContinueWith(async v =>
-                {
-                    var awaitedVariable = await v;
-                    output.Add(awaitedVariable);
-                });
-            }
-
-            await Task.WhenAll(tasks);
-            return output;
-        }
-
         /// <summary>
         /// Opens the folder pointed by the <see cref="SelectedVariable"/>.
         /// </summary>
@@ -1045,6 +1025,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        public bool IsEnvironmentHealthEnabled => ActiveEnvironment != null;
+
         public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs)
         {
             var healthViewModel = new EnvironmentHealthViewModel()
@@ -1052,6 +1034,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 HealthIndex = healthCheckedEventArgs.Health
             };
             EnvironmentHealth = healthViewModel;
+        }
+
+        public void HandleSettingsSaved(SettingsSavedEventArgs args)
+        {
+            Settings = args.Settings;
         }
     }
 }
