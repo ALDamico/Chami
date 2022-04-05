@@ -61,5 +61,14 @@ namespace ChamiUI.PresentationLayer.Factories
             minimizationBehaviour.IconPath = Enum.GetName(PackIconFontAwesomeKind.WindowMaximizeRegular);
             return minimizationBehaviour;
         }
+
+        public static HealthCheckSettingsViewModel GetHealthCheckSettingCategory(SettingsViewModel settings)
+        {
+            var healthCheckSettings = settings.HealthCheckSettings;
+            healthCheckSettings.DisplayName = ChamiUIStrings.HealthCheckCategory;
+            healthCheckSettings.Description = ChamiUIStrings.HealthCheckCategoryDescription;
+            healthCheckSettings.IconPath = Enum.GetName(PackIconFontAwesomeKind.UserNurseSolid);
+            return healthCheckSettings;
+        }
     }
 }

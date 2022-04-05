@@ -41,17 +41,24 @@
             Grid.Column="0"
             ItemsSource="{Binding SettingsCategories}"
             SelectedItem="{Binding CurrentSection}"
+            SelectionMode="Single"
            >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DockPanel ToolTip="{Binding Description}">
-                        <mah:PackIconFontAwesome Width="24" Height="24" Kind="{Binding IconPath}"></mah:PackIconFontAwesome>
-                        <TextBlock VerticalAlignment="Center" Margin="3, 0, 0, 0" Text="{Binding DisplayName}"></TextBlock>
+                        <mah:PackIconFontAwesome Width="24" 
+                                                 Height="24" 
+                                                 Kind="{Binding IconPath}"></mah:PackIconFontAwesome>
+                        <TextBlock VerticalAlignment="Center" 
+                                   Margin="3, 0, 0, 0" 
+                                   Text="{Binding DisplayName}"></TextBlock>
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <GridSplitter Grid.Row="2" Grid.Column="1" Width="2" ResizeBehavior="PreviousAndNext" ShowsPreview="True"
+        <GridSplitter Grid.Row="2" Grid.Column="1" Width="2" 
+                      ResizeBehavior="PreviousAndNext" 
+                      ShowsPreview="True"
                       ResizeDirection="Columns">
         </GridSplitter>
         <UserControl
@@ -93,6 +100,11 @@
                             <controls:SafeVariableEditor/>
                         </DataTemplate>
                     </dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
+                        <DataTemplate>
+                            <controls:HealthCheckControl/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
                 </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
 
 

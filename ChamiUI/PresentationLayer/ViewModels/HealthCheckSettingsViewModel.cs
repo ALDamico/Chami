@@ -1,18 +1,28 @@
+using System;
+using ChamiUI.BusinessLayer.Annotations;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class HealthCheckSettingsViewModel : ViewModelBase
+    public class HealthCheckSettingsViewModel : SettingCategoryViewModelBase
     {
-        private double _milliseconds;
         private bool _isEnabled;
+        private TimeSpan _timeToCheck;
 
-        public double Milliseconds
+        public TimeSpan TimeToCheck
         {
-            get => _milliseconds;
+            get => _timeToCheck;
             set
             {
-                _milliseconds = value;
+                _timeToCheck = value;
+                OnPropertyChanged(nameof(TimeToCheck));
                 OnPropertyChanged(nameof(Milliseconds));
             }
+        }
+
+        [NonPersistentSetting]
+        public double Milliseconds
+        {
+            get => TimeToCheck.Milliseconds;
         }
 
         public bool IsEnabled

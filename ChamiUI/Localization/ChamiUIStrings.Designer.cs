@@ -1125,6 +1125,51 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Environment health.
+        /// </summary>
+        public static string HealthCheckCategory {
+            get {
+                return ResourceManager.GetString("HealthCheckCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage settings related to the health state of the environment..
+        /// </summary>
+        public static string HealthCheckCategoryDescription {
+            get {
+                return ResourceManager.GetString("HealthCheckCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment health.
+        /// </summary>
+        public static string HealthCheckGroupBox_Header {
+            get {
+                return ResourceManager.GetString("HealthCheckGroupBox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable environment health check.
+        /// </summary>
+        public static string HealthCheckIsEnabledLabel_Content {
+            get {
+                return ResourceManager.GetString("HealthCheckIsEnabledLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check every.
+        /// </summary>
+        public static string HealthCheckTimeSpanUpDownLabel_Content {
+            get {
+                return ResourceManager.GetString("HealthCheckTimeSpanUpDownLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deselect All.
         /// </summary>
         public static string ImportDeselectAllButton_Content {

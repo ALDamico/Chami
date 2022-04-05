@@ -1,3 +1,4 @@
+using System;
 using FluentMigrator;
 using Chami.Db.Entities;
 
@@ -29,11 +30,13 @@ namespace ChamiDbMigrations.Migrations
         
         private static readonly Setting _healthCheckTimeoutSetting = new Setting()
         {
-            SettingName = "Milliseconds",
+            SettingName = "TimeToCheck",
             ViewModelName = "ChamiUI.PresentationLayer.ViewModels.HealthCheckSettingsViewModel",
             PropertyName = "HealthCheckSettings",
-            Type = "double",
-            Value = "60000"
+            Type = "System.TimeSpan",
+            Value = "60000",
+            Converter = "ChamiUI.BusinessLayer.Converters.TimeSpanConverter",
+            AssemblyName = "System.Private.CoreLib"
         };
     }
 }

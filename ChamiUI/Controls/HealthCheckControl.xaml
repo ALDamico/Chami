@@ -1,0 +1,45 @@
+<UserControl x:Class="ChamiUI.Controls.HealthCheckControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChamiUI.Controls"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             d:DataContext="{d:DesignInstance viewModels:HealthCheckSettingsViewModel}"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            
+        </Grid.RowDefinitions>
+        <GroupBox Grid.Row="0" Grid.Column="0" x:Name="HealthCheckGroupBox" Header="{lex:Loc}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" 
+                       Grid.Column="0" 
+                       x:Name="HealthCheckIsEnabledLabel" 
+                       Content="{lex:Loc}"></Label>
+                <CheckBox Grid.Row="0" 
+                          Grid.Column="1" 
+                          IsChecked="{Binding IsEnabled}"></CheckBox>
+                <Label Grid.Row="1" Grid.Column="0" x:Name="HealthCheckTimeSpanUpDownLabel" Content="{lex:Loc}"></Label>
+                <xctk:TimeSpanUpDown Grid.Row="1" Grid.Column="1" Value="{Binding TimeToCheck}"></xctk:TimeSpanUpDown>
+            </Grid>
+        </GroupBox>
+    </Grid>
+    
+</UserControl>

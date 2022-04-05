@@ -845,4 +845,19 @@ Use a different name and try again.</value>
   <data name="NullHealthCheckStrategyExceptionMessage" xml:space="preserve">
     <value>Invalid Health check strategy.</value>
   </data>
+  <data name="HealthCheckIsEnabledLabel_Content" xml:space="preserve">
+    <value>Enable environment health check</value>
+  </data>
+  <data name="HealthCheckCategory" xml:space="preserve">
+    <value>Environment health</value>
+  </data>
+  <data name="HealthCheckCategoryDescription" xml:space="preserve">
+    <value>Manage settings related to the health state of the environment.</value>
+  </data>
+  <data name="HealthCheckGroupBox_Header" xml:space="preserve">
+    <value>Environment health</value>
+  </data>
+  <data name="HealthCheckTimeSpanUpDownLabel_Content" xml:space="preserve">
+    <value>Check every</value>
+  </data>
 </root>

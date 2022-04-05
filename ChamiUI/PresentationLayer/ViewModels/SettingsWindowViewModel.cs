@@ -42,6 +42,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings.MinimizationBehaviour =
                 SettingsCategoriesFactory.GetMinimizationBehaviourSettingCategory(Settings);
             SettingsCategories.Add(Settings.MinimizationBehaviour);
+            Settings.HealthCheckSettings = SettingsCategoriesFactory.GetHealthCheckSettingCategory(Settings);
+            SettingsCategories.Add(Settings.HealthCheckSettings);
 
             CurrentSection = SettingsCategories.FirstOrDefault();
         }

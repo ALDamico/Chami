@@ -843,6 +843,21 @@ Usa un nome diverso e riprova il salvataggio.</value>
     <value>Imposta come Chami si comporta quando riduci la finestra dell'applicazione a icona.</value>
   </data>
   <data name="NullHealthCheckStrategyExceptionMessage" xml:space="preserve">
-    <value>Straegia di controllo salute non valida.</value>
+    <value>Strategia di controllo salute non valida.</value>
+  </data>
+  <data name="HealthCheckIsEnabledLabel_Content" xml:space="preserve">
+    <value>Abilita il controllo di qualità dell'ambiente</value>
+  </data>
+  <data name="HealthCheckCategory" xml:space="preserve">
+    <value>Qualità ambiente</value>
+  </data>
+  <data name="HealthCheckCategoryDescription" xml:space="preserve">
+    <value>Gestisci le impostazioni relative allo stato qualitativo dell'ambiente.</value>
+  </data>
+  <data name="HealthCheckGroupBox_Header" xml:space="preserve">
+    <value>Qualità ambiente</value>
+  </data>
+  <data name="HealthCheckTimeSpanUpDownLabel_Content" xml:space="preserve">
+    <value>Controlla ogni</value>
   </data>
 </root>
