@@ -1,5 +1,6 @@
 using System;
 using System.Windows.Media;
+using ChamiUI.Localization;
 using Brush = System.Drawing.Brush;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -14,6 +15,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _healthIndex = value;
                 OnPropertyChanged(nameof(HealthIndex));
                 OnPropertyChanged(nameof(FillColor));
+                OnPropertyChanged(nameof(ToolTip));
+            }
+        }
+
+        public string ToolTip
+        {
+            get
+            {
+                if (Math.Abs(HealthIndex - 1.0) < 1e-10)
+                {
+                    return ChamiUIStrings.HealthCheckerTooltipOk;
+                }
+
+                if (HealthIndex >= 0.75)
+                {
+                    return ChamiUIStrings.HealthCheckerTooltipDegraded;
+                }
+
+                return HealthIndex >= 0.5
+                    ? ChamiUIStrings.HealthCheckerTooltipBadlyDegraded
+                    : ChamiUIStrings.HealthCheckerTooltipError;
             }
         }
 
@@ -52,6 +74,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 return HealthIndex >= 0.5 ? Brushes.Orange : Brushes.Red;
             }
         }
+
         private double _healthIndex;
     }
 }

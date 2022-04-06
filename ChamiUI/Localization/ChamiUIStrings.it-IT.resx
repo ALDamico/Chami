@@ -860,4 +860,16 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="HealthCheckTimeSpanUpDownLabel_Content" xml:space="preserve">
     <value>Controlla ogni</value>
   </data>
+  <data name="HealthCheckerTooltipOk" xml:space="preserve">
+    <value>L'ambiente non è stato modificato esternamente.</value>
+  </data>
+  <data name="HealthCheckerTooltipDegraded" xml:space="preserve">
+    <value>Alcune variabili sono state modificate esternamente. L'ambiente è degradato.</value>
+  </data>
+  <data name="HealthCheckerTooltipBadlyDegraded" xml:space="preserve">
+    <value>Parecchie variabili sono state modificate esternamente. L'ambiente è gravemente degradato.</value>
+  </data>
+  <data name="HealthCheckerTooltipError" xml:space="preserve">
+    <value>L'ambiente Windows è completamente differente dall'ambiente Chami. Le applicazioni potrebbero comportarsi in maniera inattesa.</value>
+  </data>
 </root>

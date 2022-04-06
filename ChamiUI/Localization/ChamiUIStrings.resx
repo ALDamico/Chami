@@ -860,4 +860,16 @@ Use a different name and try again.</value>
   <data name="HealthCheckTimeSpanUpDownLabel_Content" xml:space="preserve">
     <value>Check every</value>
   </data>
+  <data name="HealthCheckerTooltipOk" xml:space="preserve">
+    <value>The environment has not been modified externally.</value>
+  </data>
+  <data name="HealthCheckerTooltipDegraded" xml:space="preserve">
+    <value>Some variables have been modified externally. The environment is degraded.</value>
+  </data>
+  <data name="HealthCheckerTooltipBadlyDegraded" xml:space="preserve">
+    <value>Quite a few variables have been modified externally. The environment is badly degraded.</value>
+  </data>
+  <data name="HealthCheckerTooltipError" xml:space="preserve">
+    <value>The Windows environment is completely unlike the Chami environment. Applications may not work as expected.</value>
+  </data>
 </root>

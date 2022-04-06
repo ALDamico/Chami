@@ -1143,6 +1143,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quite a few variables have been modified externally. The environment is badly degraded..
+        /// </summary>
+        public static string HealthCheckerTooltipBadlyDegraded {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipBadlyDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some variables have been modified externally. The environment is degraded..
+        /// </summary>
+        public static string HealthCheckerTooltipDegraded {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Windows environment is completely unlike the Chami environment. Applications may not work as expected..
+        /// </summary>
+        public static string HealthCheckerTooltipError {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment has not been modified externally..
+        /// </summary>
+        public static string HealthCheckerTooltipOk {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Environment health.
         /// </summary>
         public static string HealthCheckGroupBox_Header {
