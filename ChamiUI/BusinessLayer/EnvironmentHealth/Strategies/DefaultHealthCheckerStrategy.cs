@@ -21,9 +21,9 @@ namespace ChamiUI.BusinessLayer.EnvironmentHealth.Strategies
             {
                 var variableName = environmentVariable.Name;
                 var variableValue = environmentVariable.Value;
-                var correspondingVariable = systemEnvironmentVariables[variableName];
+                var exists = systemEnvironmentVariables.TryGetValue(variableName, out var correspondingVariable);
 
-                if (correspondingVariable != null)
+                if (exists)
                 {
                     found++;
                     if (correspondingVariable != variableValue)

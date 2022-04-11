@@ -22,7 +22,7 @@ namespace ChamiUI.Taskbar
         /// Command that, when triggered, hides the main window.
         /// </summary>
         public ICommand HideWindowCommand => new HideWindowCommand();
-        
+
         /// <summary>
         /// Command to close the application.
         /// </summary>
@@ -49,12 +49,16 @@ namespace ChamiUI.Taskbar
         {
             get
             {
+                var returnValue = $"Chami - {_currentEnvironmentName}";
                 if (_currentEnvironmentName == null)
                 {
-                    return "Chami - No environment active";
+                    returnValue = "Chami - No environment active";
                 }
+#if DEBUG
+                returnValue += " [DEBUG BUILD]";
+#endif
 
-                return $"Chami - {_currentEnvironmentName}";
+                return returnValue;
             }
         }
     }
