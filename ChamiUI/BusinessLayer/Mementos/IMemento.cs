@@ -1,6 +1,6 @@
 ﻿namespace ChamiUI.BusinessLayer.Mementos
 {
-    public interface IMemento<T>
+    public interface IMemento<out T>
     {
         T State { get; }
     }

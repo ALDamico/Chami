@@ -21,7 +21,7 @@ namespace ChamiUI.BusinessLayer
             _stream = File.Open(inputFile, FileMode.Open);
         }
 
-        private Stream _stream;
+        private readonly Stream _stream;
 
         /// <summary>
         /// Reads a JSON file containing a single environment using the <see cref="EnvironmentViewModelJsonConverter"/>.
@@ -33,7 +33,7 @@ namespace ChamiUI.BusinessLayer
         {
             if (_stream == null)
             {
-                throw new NullReferenceException("The input stream was null!");
+                throw new InvalidDataException("The input stream was null!");
             }
 
             ResetStream();
@@ -54,7 +54,7 @@ namespace ChamiUI.BusinessLayer
         {
             if (_stream == null)
             {
-                throw new NullReferenceException("The input stream was null!");
+                throw new InvalidDataException("The input stream was null!");
             }
 
             ResetStream();

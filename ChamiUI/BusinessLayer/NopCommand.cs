@@ -26,7 +26,7 @@ namespace ChamiUI.BusinessLayer
         /// </summary>
         public void Execute()
         {
-            
+            // No op.
         }
 
         /// <summary>

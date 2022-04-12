@@ -35,7 +35,7 @@ namespace ChamiUI.BusinessLayer.Converters
             viewModel.Name = entity.Name;
             viewModel.Value = entity.Value;
             viewModel.Id = entity.EnvironmentVariableId;
-            var isFolder = entity.IsFolder.HasValue ? entity.IsFolder.Value : false;
+            var isFolder = entity.IsFolder.HasValue && entity.IsFolder.Value;
             viewModel.IsFolder = isFolder;
             if (entity.MarkedForDeletion)
             {

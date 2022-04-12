@@ -30,13 +30,12 @@ namespace ChamiUI.BusinessLayer.Validators
                 {
                     return System.Windows.Controls.ValidationResult.ValidResult;
                 }
+
                 var environmentVariableName = environmentVariable.Name;
-                if (environmentVariable.Environment != null)
+
+                if (environmentVariable.Environment?.EnvironmentType == EnvironmentType.BackupEnvironment)
                 {
-                    if (environmentVariable.Environment.EnvironmentType == EnvironmentType.BackupEnvironment)
-                    {
-                        return System.Windows.Controls.ValidationResult.ValidResult;
-                    }
+                    return System.Windows.Controls.ValidationResult.ValidResult;
                 }
 
                 environmentVariable.IsValid = true;
@@ -52,34 +51,41 @@ namespace ChamiUI.BusinessLayer.Validators
 
                 environmentVariable.IsValid = false;
 
-                // Regex explanation
-                // Match one or more characters not matching the characters in the intervals A-Z, a-z, 0-9 and the
-                // character underscore and also isn't the end of the string.
-                var invalidCharacterPositions = Regex.Matches(environmentVariableName, "(?![A-Za-z0-9_])+(?!$)");
-                var positions = new List<int>();
-                foreach (Match match in invalidCharacterPositions)
-                {
-                    positions.Add(match.Index);
-                }
-
-                var positionString = string.Join(", ", positions);
-                string errorMessage;
-                if (positions.Count == 1)
-                {
-                    errorMessage =
-                        string.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessageSingular,
-                            positionString);
-                }
-                else
-                {
-                    errorMessage = string.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessage,
-                        positionString);
-                }
+                var errorMessage = ApplyRegex(environmentVariableName);
 
                 return new System.Windows.Controls.ValidationResult(false, errorMessage);
             }
 
             return System.Windows.Controls.ValidationResult.ValidResult;
+        }
+
+        private static string ApplyRegex(string environmentVariableName)
+        {
+            // Regex explanation
+            // Match one or more characters not matching the characters in the intervals A-Z, a-z, 0-9 and the
+            // character underscore and also isn't the end of the string.
+            var invalidCharacterPositions = Regex.Matches(environmentVariableName, "(?![A-Za-z0-9_])+(?!$)");
+            var positions = new List<int>();
+            foreach (Match match in invalidCharacterPositions)
+            {
+                positions.Add(match.Index);
+            }
+
+            var positionString = string.Join(", ", positions);
+            string errorMessage;
+            if (positions.Count == 1)
+            {
+                errorMessage =
+                    string.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessageSingular,
+                        positionString);
+            }
+            else
+            {
+                errorMessage = string.Format(ChamiUIStrings.EnvironmentVariableNameInvalidCharactersErrorMessage,
+                    positionString);
+            }
+
+            return errorMessage;
         }
     }
 }

@@ -15,7 +15,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             DetectedApplications = new ObservableCollection<WatchedApplicationViewModel>();
             _detector = new RunningApplicationDetector(((App) Application.Current).Settings.WatchedApplicationSettings.WatchedApplications);
         }
-        private RunningApplicationDetector _detector;
+        private readonly RunningApplicationDetector _detector;
         public ObservableCollection<WatchedApplicationViewModel> DetectedApplications { get; }
 
         private WatchedApplicationViewModel _selectedApplication;

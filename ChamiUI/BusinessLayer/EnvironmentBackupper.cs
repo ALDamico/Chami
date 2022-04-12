@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Linq;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.Localization;
@@ -26,10 +27,9 @@ namespace ChamiUI.BusinessLayer
                 var currentEnvironment = repository.GetEnvironmentByName(currentEnvironmentName.ToString());
                 if (currentEnvironment != null)
                 {
-                    foreach (var variable in currentEnvironment.EnvironmentVariables)
+                    foreach (var variable in currentEnvironment.EnvironmentVariables.Select(v => v.Name))
                     {
-                        var variableName = variable.Name;
-                        environmentVariables.Remove(variableName);
+                        environmentVariables.Remove(variable);
                     }
                 }
             }

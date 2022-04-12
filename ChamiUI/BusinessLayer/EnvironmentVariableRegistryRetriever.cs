@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.Win32;
 
@@ -55,7 +56,7 @@ namespace ChamiUI.BusinessLayer
                 return registryKey.GetValueNames();
             }
 
-            return null;
+            return Array.Empty<string>();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             _repository = new WatchedApplicationRepository(connectionString);
         }
 
-        private WatchedApplicationRepository _repository;
+        private readonly WatchedApplicationRepository _repository;
 
         /// <summary>
         /// Gets all the <see cref="WatchedApplication"/> objects whose state is active and converts them to <see cref="WatchedApplicationViewModel"/>s.

@@ -7,7 +7,7 @@ namespace ChamiUI.BusinessLayer.Commands
 {
     public class OpenInExplorerCommand : ShellCommandBase
     {
-        private string _path;
+        private readonly string _path;
         public OpenInExplorerCommand(string path)
         {
             _path = path;

@@ -16,13 +16,9 @@ namespace ChamiUI.BusinessLayer.Validators
         /// <returns></returns>
         public static EnvironmentVariableViewModel ConvertObjectToValidate(object value)
         {
-            if (value is BindingGroup bindingGroup)
+            if (value is BindingGroup bindingGroup && bindingGroup.Items.Count > 0)
             {
-                if (bindingGroup.Items.Count > 0)
-                {
-                    return (bindingGroup.Items[0] as EnvironmentVariableViewModel);                    
-                }
-                
+                return (bindingGroup.Items[0] as EnvironmentVariableViewModel);       
             }
 
             if (value is EnvironmentVariableViewModel viewModel)

@@ -19,12 +19,9 @@ namespace ChamiUI.BusinessLayer.Validators
         /// <seealso cref="System.Windows.Controls.ValidationResult"/>
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
-            if (value is string environmentName)
+            if (value is string environmentName && !string.IsNullOrWhiteSpace(environmentName))
             {
-                if (!string.IsNullOrWhiteSpace(environmentName))
-                {
-                    return System.Windows.Controls.ValidationResult.ValidResult;
-                }
+                return System.Windows.Controls.ValidationResult.ValidResult;
             }
 
             return new System.Windows.Controls.ValidationResult(false,

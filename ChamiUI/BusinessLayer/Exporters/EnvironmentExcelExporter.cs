@@ -12,7 +12,7 @@ namespace ChamiUI.BusinessLayer.Exporters
     /// Exports a list of <see cref="Environment"/> entities to an Excel spreadsheet.
     /// Requires the NetOffice package.
     /// </summary>
-    public class EnvironmentExcelExporter:IChamiExporter, IDisposable
+    public sealed class EnvironmentExcelExporter : IChamiExporter, IDisposable
     {
         /// <summary>
         /// Constructs a new <see cref="EnvironmentExcelExporter"/> and inizializes its list of environments to process.
@@ -21,6 +21,7 @@ namespace ChamiUI.BusinessLayer.Exporters
         {
             _environments = new List<Environment>();
         }
+
         /// <summary>
         /// Constructs a new <see cref="EnvironmentExcelExporter"/> and initializes its list with the elements in the parameter.
         /// </summary>
@@ -38,6 +39,7 @@ namespace ChamiUI.BusinessLayer.Exporters
         {
             _environments.Add(environment);
         }
+
         private readonly List<Environment> _environments;
         private Application _excelApplication;
         private Workbook _workbook;
@@ -51,7 +53,7 @@ namespace ChamiUI.BusinessLayer.Exporters
         {
             await Task.Run(() => Export(filename));
         }
-        
+
         /// <summary>
         /// Exports an Excel spreadsheet synchronously.
         /// Each environment in the list of elements to process gets its own worksheet.
@@ -69,14 +71,15 @@ namespace ChamiUI.BusinessLayer.Exporters
             {
                 worksheet = (Worksheet) _workbook.Worksheets.Add();
             }
+
             int sheetNumber = 1;
             foreach (var environment in _environments)
             {
-                
                 if (sheetNumber > 1)
                 {
                     worksheet = (Worksheet) _workbook.Worksheets.Add();
                 }
+
                 worksheet.Name = environment.Name;
 
                 var cells = worksheet.Cells;
@@ -97,6 +100,7 @@ namespace ChamiUI.BusinessLayer.Exporters
 
                 sheetNumber++;
             }
+
             _workbook.SaveAs(filename);
             _excelApplication.Quit();
         }
@@ -144,10 +148,10 @@ namespace ChamiUI.BusinessLayer.Exporters
                 }
                 catch (MethodCOMException)
                 {
-                    
+                    // We're not dealing with COM fuckery
                 }
-                
-                _excelApplication.Dispose();    
+
+                _excelApplication.Dispose();
             }
         }
     }

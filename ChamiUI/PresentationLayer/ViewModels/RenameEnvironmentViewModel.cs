@@ -8,15 +8,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
     public class RenameEnvironmentViewModel : ViewModelBase
     {
         /// <summary>
-        /// Initializes the commands of this viewmodel.
-        /// </summary>
-        static RenameEnvironmentViewModel()
-        {
-            RenameEnvironmentCommand = new RoutedCommand();
-            CancelRenamingCommand = new RoutedCommand();
-        }
-        
-        /// <summary>
         /// Default constructor that does nothing.
         /// </summary>
         public RenameEnvironmentViewModel()
@@ -52,8 +43,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// True if the name is valid, otherwise false.
         /// </summary>
         public bool IsNameValid => !string.IsNullOrWhiteSpace(Name);
-        public static readonly RoutedCommand RenameEnvironmentCommand;
-        public static readonly RoutedCommand CancelRenamingCommand;
+        public static readonly RoutedCommand RenameEnvironmentCommand = new RoutedCommand();
+        public static readonly RoutedCommand CancelRenamingCommand = new RoutedCommand();
 
     }
 }

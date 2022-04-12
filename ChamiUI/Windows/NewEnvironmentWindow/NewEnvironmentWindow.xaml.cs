@@ -19,30 +19,25 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             Owner = owner;
         }
 
-        public void SetEnvironment(EnvironmentViewModel environmentViewModel)
-        {
-            _viewModel.Environment = environmentViewModel;
-            _viewModel.EnvironmentName = environmentViewModel.Name;
-        }
-
         public NewEnvironmentWindow()
         {
             _viewModel = new NewEnvironmentViewModel();
             DataContext = _viewModel;
             InitializeComponent();
         }
+        
+        public void SetEnvironment(EnvironmentViewModel environmentViewModel)
+        {
+            _viewModel.Environment = environmentViewModel;
+            _viewModel.EnvironmentName = environmentViewModel.Name;
+        }
 
         private readonly NewEnvironmentViewModel _viewModel;
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            e.Cancel = !HandleClosing();
+            e.Cancel = false;
             base.OnClosing(e);
-        }
-
-        private bool HandleClosing()
-        {
-            return true;
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)

@@ -21,7 +21,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             _repository = new UiLanguageRepository(connectionString);
         }
 
-        private UiLanguageRepository _repository;
+        private readonly UiLanguageRepository _repository;
 
         /// <summary>
         /// Gets an <see cref="ApplicationLanguageViewModel"/> by its ISO-639 code.

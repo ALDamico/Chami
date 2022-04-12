@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Threading.Tasks;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exporters;
 using Microsoft.VisualBasic.FileIO;
@@ -8,7 +9,7 @@ using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiTests
 {
-    public class ExportTests : IDisposable
+    public sealed class ExportTests : IDisposable
     {
         private readonly string _asyncFileLocation = SpecialDirectories.MyDocuments + "/test_async.xlsx";
         private readonly string _fileLocation = SpecialDirectories.MyDocuments + "/test.xlsx";
@@ -24,7 +25,7 @@ namespace ChamiTests
         }
 
         [Fact]
-        public async void TestExcelExportAsync()
+        public async Task TestExcelExportAsync()
         {
             using (var exporter = new EnvironmentExcelExporter())
             {

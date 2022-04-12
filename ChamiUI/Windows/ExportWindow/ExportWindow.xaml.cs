@@ -25,7 +25,6 @@ namespace ChamiUI.Windows.ExportWindow
 
         private void CancelCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            //TODO Probably will need to change this
             e.CanExecute = true;
         }
 

@@ -11,7 +11,7 @@ namespace ChamiUI.BusinessLayer
     /// </summary>
     public class EnvironmentDotEnvReader : IEnvironmentReader<EnvironmentViewModel>
     {
-        private string _inputFile;
+        private readonly string _inputFile;
 
         /// <summary>
         /// Constructs a new <see cref="EnvironmentDotEnvReader"/> object.

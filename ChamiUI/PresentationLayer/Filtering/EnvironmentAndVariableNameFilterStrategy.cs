@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Windows.Data;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -49,13 +50,8 @@ namespace ChamiUI.PresentationLayer.Filtering
                     args.Accepted = true;
                 }
 
-                foreach (var environmentVariable in viewModel.EnvironmentVariables)
-                {
-                    if (environmentVariable.Name.Contains(SearchedText, Comparison))
-                    {
-                        args.Accepted = true;
-                    }
-                }
+
+                args.Accepted = viewModel.EnvironmentVariables.Any(v => v.Name.Contains(SearchedText, Comparison));
             }
         }
 

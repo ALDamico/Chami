@@ -27,7 +27,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _repository = new EnvironmentRepository(connectionString);
         }
 
-        private EnvironmentRepository _repository;
+        
 
         /// <summary>
         /// Constructs a new <see cref="ExportWindowViewModel"/> object and adds an initial set of environment
@@ -43,6 +43,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Environments.Add(converted);
             }
         }
+        
+        private readonly EnvironmentRepository _repository;
 
         /// <summary>
         /// The environments available for exporting.

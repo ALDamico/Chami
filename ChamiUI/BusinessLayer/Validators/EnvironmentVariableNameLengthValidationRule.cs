@@ -21,15 +21,14 @@ namespace ChamiUI.BusinessLayer.Validators
             {
                 environmentVariable.IsValid = true;
                 var name = environmentVariable.Name;
-                if (name != null)
+                if (name?.Length > MaxLength)
                 {
-                    if (name.Length > MaxLength)
-                    {
+                    
                         environmentVariable.IsValid = false;
                         var errorMessage = string.Format(ChamiUIStrings.EnvironmentVariableNameLengthErrorMessage,
                             MaxLength, name.Length);
                         return new System.Windows.Controls.ValidationResult(false, errorMessage);
-                    }
+                    
                 }
             }
             

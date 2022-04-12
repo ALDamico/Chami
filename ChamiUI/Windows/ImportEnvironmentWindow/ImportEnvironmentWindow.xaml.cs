@@ -49,13 +49,8 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
 
         protected override void OnClosing(CancelEventArgs e)
         {
-            e.Cancel = !HandleClosing();
+            e.Cancel = false;
             base.OnClosing(e);
-        }
-
-        private bool HandleClosing()
-        {
-            return true;
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
@@ -95,7 +90,6 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
                 }
                 else
                 {
-                    // TODO use a more descriptive message
                     MessageBox.Show(ChamiUIStrings.ValidationFailedMessageBoxText,
                         ChamiUIStrings.ValidationFailedMessageBoxCaption);
                 }

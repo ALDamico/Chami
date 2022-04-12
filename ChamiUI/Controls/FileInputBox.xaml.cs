@@ -32,21 +32,10 @@ namespace ChamiUI.Controls
         }
 
         /// <summary>
-        /// Initializes the static properties (i.e., dependency properties) of this control.
-        /// </summary>
-        static FileInputBox()
-        {
-            FilenameProperty =
-                DependencyProperty.Register(nameof(Filename), typeof(string), typeof(FileInputBox));
-            FilenameChangedEvent =
-                EventManager.RegisterRoutedEvent(nameof(FilenameChanged), RoutingStrategy.Bubble,
-                    typeof(RoutedEventHandler), typeof(FileInputBox));
-        }
-
-        /// <summary>
         /// Dependency property for the file name.
         /// </summary>
-        public static readonly DependencyProperty FilenameProperty;
+        public static readonly DependencyProperty FilenameProperty =
+            DependencyProperty.Register(nameof(Filename), typeof(string), typeof(FileInputBox));
 
         /// <summary>
         /// The full path to the file to save.
@@ -88,6 +77,8 @@ namespace ChamiUI.Controls
         /// <summary>
         /// Event that occurs when file <see cref="Filename"/> property changes.
         /// </summary>
-        public static readonly RoutedEvent FilenameChangedEvent;
+        public static readonly RoutedEvent FilenameChangedEvent = EventManager.RegisterRoutedEvent(
+            nameof(FilenameChanged), RoutingStrategy.Bubble,
+            typeof(RoutedEventHandler), typeof(FileInputBox));
     }
 }

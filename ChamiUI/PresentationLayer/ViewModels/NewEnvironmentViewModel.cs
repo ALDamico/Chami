@@ -112,7 +112,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private EnvironmentCaretaker _caretaker;
+        private readonly EnvironmentCaretaker _caretaker;
 
         public void ChangeTemplate()
         {

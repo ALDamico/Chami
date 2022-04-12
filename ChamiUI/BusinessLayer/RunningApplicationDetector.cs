@@ -1,6 +1,7 @@
 ﻿using System;
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Diagnostics;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -37,9 +38,9 @@ namespace ChamiUI.BusinessLayer
             var output = new List<WatchedApplicationViewModel>();
             foreach (var process in processes)
             {
-                foreach (var application in WatchedApplications.Where(a => a.IsWatchEnabled))
+                foreach (var applicationName in WatchedApplications.Where(a => a.IsWatchEnabled).Select(a => a.Name))
                 {
-                    var match = Regex.Match(process.ProcessName, application.Name, RegexOptions.IgnoreCase);
+                    var match = Regex.Match(process.ProcessName, applicationName, RegexOptions.IgnoreCase);
                     if (match.Success)
                     {
                         var watchedApplicationOutput = new WatchedApplicationViewModel();
@@ -54,7 +55,7 @@ namespace ChamiUI.BusinessLayer
 
                             watchedApplicationOutput.ProcessName = process.ProcessName;
                             watchedApplicationOutput.Pid = process.Id;
-                            watchedApplicationOutput.Name = application.Name;
+                            watchedApplicationOutput.Name = applicationName;
                             
                             output.Add(watchedApplicationOutput);
                         }
@@ -65,10 +66,6 @@ namespace ChamiUI.BusinessLayer
                         
                     }
                 }
-            }
-            if (output.Count == 0)
-            {
-                return null;
             }
             return output;
         }

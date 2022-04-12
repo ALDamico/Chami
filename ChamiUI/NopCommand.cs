@@ -26,7 +26,7 @@ namespace ChamiUI
 
         public override void Execute()
         {
-            return;
+            // No op
         }
 
         public override Task ExecuteAsync(float percentage,
