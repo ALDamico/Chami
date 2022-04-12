@@ -36,8 +36,8 @@ namespace ChamiUI.Windows.NewTemplateWindow
                 if (loggingEnabled)
                 {
                     var logger = (App.Current as ChamiUI.App).GetLogger();
-                    logger.Error(ex.Message);
-                    logger.Error(ex.StackTrace);
+                    logger.Error("{Message}", ex.Message);
+                    logger.Error("{StackTrace}", ex.StackTrace);
                 }
 
                 string message = "";

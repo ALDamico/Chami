@@ -37,6 +37,7 @@ namespace ChamiUI.BusinessLayer
         public async Task ExecuteAsync(float percentage, CancellationToken cancellationToken)
         {
             Progress.Report(new CmdExecutorProgress(percentage, _customMessage));
+            await Task.CompletedTask;
         }
 
         /// <summary>
