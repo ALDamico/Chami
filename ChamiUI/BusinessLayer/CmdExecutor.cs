@@ -69,7 +69,7 @@ namespace ChamiUI.BusinessLayer
         /// </summary>
         /// <param name="progress">Notifies of progress.</param>
         /// <param name="cancellationToken">Allows canceling the execution midway and revert to a previous state.</param>
-        public async Task ExecuteAsync(CancellationToken cancellationToken)
+        public override async Task ExecuteAsync(CancellationToken cancellationToken)
         {
             await base.ExecuteAsync(cancellationToken);
             if (TargetEnvironment != null)

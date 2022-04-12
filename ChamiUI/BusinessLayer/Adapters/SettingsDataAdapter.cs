@@ -120,6 +120,64 @@ namespace ChamiUI.BusinessLayer.Adapters
             return viewModel;
         }
 
+        private object AttemptConversion(string targetTypeName, Setting setting)
+        {
+            object propertyValue = null;
+            try
+            {
+                propertyValue = GetBoxedConvertedObject(targetTypeName, setting.Value);
+            }
+            catch (InvalidCastException)
+            {
+                var assemblyName = setting.AssemblyName;
+                try
+                {
+                    var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
+                        BindingFlags.Default, null, args: new object[] {setting.Value}, null, null);
+                    if (objectWrapper != null)
+                    {
+                        propertyValue = objectWrapper.Unwrap();
+                    }
+                }
+                catch (MissingMethodException)
+                {
+                    propertyValue = ConvertViaUnwrapping(setting);
+                }
+                catch (TypeLoadException)
+                {
+                    propertyValue = ConvertViaUnwrapping(setting);
+                }
+            }
+
+            return propertyValue;
+        }
+
+        private static object ConvertViaUnwrapping(Setting setting)
+        {
+            try
+            {
+                var converter = Activator.CreateInstance(null, setting.Converter);
+                object propertyValue = null;
+                var unwrappedConverter = converter.Unwrap();
+                if (unwrappedConverter != null)
+                {
+                    var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
+                    if (methodInfo != null)
+                    {
+                        propertyValue = methodInfo.Invoke(unwrappedConverter, new object[] {setting});
+                    }
+                }
+
+                return propertyValue;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
+            return null;
+        }
+
         private readonly SettingsRepository _repository;
 
         /// <summary>
