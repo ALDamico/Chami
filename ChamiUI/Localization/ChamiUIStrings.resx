@@ -893,4 +893,22 @@ Use a different name and try again.</value>
   <data name="EnvironmentHealthCheckerMessageError" xml:space="preserve">
     <value>Error</value>
   </data>
+  <data name="EnvironmentHealthWindowHeader_Content" xml:space="preserve">
+    <value>Environment Health</value>
+  </data>
+  <data name="EnvironmentHealthWindowCaption_Text" xml:space="preserve">
+    <value>This window shows a recap of the current health state of the environment.</value>
+  </data>
+  <data name="EnvironmentHealthWindowTitle" xml:space="preserve">
+    <value>Environment Health</value>
+  </data>
+  <data name="EnvironmentHealthWindowCloseButton_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="EnvironmentHealthMenuItem_Header" xml:space="preserve">
+    <value>Environment health details...</value>
+  </data>
+  <data name="EnvironmentHealthWindowListBoxHeader_Content" xml:space="preserve">
+    <value>Variables</value>
+  </data>
 </root>

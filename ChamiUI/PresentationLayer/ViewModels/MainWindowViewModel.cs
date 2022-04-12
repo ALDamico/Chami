@@ -1037,6 +1037,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 HealthIndex = healthCheckedEventArgs.Health
             };
+
+            var healthStatusList = healthCheckedEventArgs.HealthStatusList;
+            if (healthStatusList != null)
+            {
+                foreach (var healthStatus in healthStatusList)
+                {
+                    healthViewModel.HealthStatuses.Add(healthStatus);
+                }
+            }
+            
             EnvironmentHealth = healthViewModel;
         }
 

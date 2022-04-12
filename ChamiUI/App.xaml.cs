@@ -209,7 +209,7 @@ namespace ChamiUI
             ExecuteHealthCheck();
         }
 
-        private void OnEnvironmentChanged(object? sender, EnvironmentChangedEventArgs e)
+        private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs e)
         {
             _activeEnvironment = e.NewActiveEnvironment;
         }

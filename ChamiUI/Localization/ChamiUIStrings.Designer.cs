@@ -754,6 +754,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Environment health details....
+        /// </summary>
+        public static string EnvironmentHealthMenuItem_Header {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (double click for details...).
         /// </summary>
         public static string EnvironmentHealthStatusBarItemDoubleClickHint_Text {
@@ -777,6 +786,51 @@ namespace ChamiUI.Localization {
         public static string EnvironmentHealthStatusBarItemToolTipHeader_Text {
             get {
                 return ResourceManager.GetString("EnvironmentHealthStatusBarItemToolTipHeader_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This window shows a recap of the current health state of the environment..
+        /// </summary>
+        public static string EnvironmentHealthWindowCaption_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowCaption_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string EnvironmentHealthWindowCloseButton_Content {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowCloseButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Health.
+        /// </summary>
+        public static string EnvironmentHealthWindowHeader_Content {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowHeader_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        public static string EnvironmentHealthWindowListBoxHeader_Content {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowListBoxHeader_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Health.
+        /// </summary>
+        public static string EnvironmentHealthWindowTitle {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowTitle", resourceCulture);
             }
         }
         

@@ -1,5 +1,7 @@
 using System;
+using System.Collections.ObjectModel;
 using System.Windows.Media;
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.Localization;
 using Brush = System.Drawing.Brush;
 
@@ -7,6 +9,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class EnvironmentHealthViewModel : ViewModelBase
     {
+        public EnvironmentHealthViewModel()
+        {
+            HealthStatuses = new ObservableCollection<EnvironmentVariableHealthStatus>();
+        }
+        public ObservableCollection<EnvironmentVariableHealthStatus> HealthStatuses { get; }
         public double HealthIndex
         {
             get => _healthIndex;

@@ -246,15 +246,27 @@
                     </MenuItem.Icon>
                 </MenuItem>
                 <MenuItem Header="{lex:Loc}" x:Name="SortingOptionsMenuItem">
-                    <MenuItem Header="{lex:Loc}" x:Name="SortByIdMenuItem" Click="SortByIdMenuItem_OnClick" />
-                    <MenuItem Header="{lex:Loc}" x:Name="SortByNameMenuItem" Click="SortByNameMenuItem_OnClick" />
-                    <MenuItem Header="{lex:Loc}" x:Name="SortByDateMenuItem" Click="SortByDateMenuItem_OnClick" />
+                    <MenuItem Header="{lex:Loc}" 
+                              x:Name="SortByIdMenuItem" 
+                              Click="SortByIdMenuItem_OnClick" />
+                    <MenuItem Header="{lex:Loc}" 
+                              x:Name="SortByNameMenuItem" 
+                              Click="SortByNameMenuItem_OnClick" />
+                    <MenuItem Header="{lex:Loc}" 
+                              x:Name="SortByDateMenuItem" 
+                              Click="SortByDateMenuItem_OnClick" />
+                    
                     <Separator />
-                    <MenuItem Header="{lex:Loc}" x:Name="SortDescendingMenuItem" IsCheckable="True"
+                    <MenuItem Header="{lex:Loc}" 
+                              x:Name="SortDescendingMenuItem" 
+                              IsCheckable="True"
                               IsChecked="{Binding IsDescendingSorting}"
                               Checked="SortDescendingMenuItem_OnChecked"
                               Unchecked="SortDescendingMenuItem_OnUnchecked" />
                 </MenuItem>
+                <Separator/>
+                <MenuItem Header="{lex:Loc}"
+                          x:Name="EnvironmentHealthMenuItem" Click="EnvironmentHealthMenuItem_OnClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
                       x:Name="OptionsMenuItem">
@@ -585,7 +597,9 @@
         <StatusBar Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
             <StatusBarItem x:Name="EnvironmentHealthStatusBarItem"
                            Visibility="{Binding IsEnvironmentHealthEnabled, Converter={StaticResource BooleanToVisibilityConverter}}"
-                           IsEnabled="{Binding IsEnvironmentHealthEnabled}">
+                           IsEnabled="{Binding IsEnvironmentHealthEnabled}"
+                           MouseDoubleClick="EnvironmentHealthStatusBarItem_OnMouseDoubleClick"
+                           >
                 <StatusBarItem.ToolTip>
                     <StackPanel MaxWidth="275">
                         <TextBlock x:Name="EnvironmentHealthStatusBarItemToolTipHeader" Text="{lex:Loc}"

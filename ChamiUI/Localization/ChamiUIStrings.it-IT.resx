@@ -893,4 +893,22 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="EnvironmentHealthCheckerMessageError" xml:space="preserve">
     <value>Errore</value>
   </data>
+  <data name="EnvironmentHealthWindowHeader_Content" xml:space="preserve">
+    <value>Stato di salute dell'ambiente</value>
+  </data>
+  <data name="EnvironmentHealthWindowCaption_Text" xml:space="preserve">
+    <value>Questa finestra mostra un riepilogo dello stato di salute attuale dell'ambiente.</value>
+  </data>
+  <data name="EnvironmentHealthWindowTitle" xml:space="preserve">
+    <value>Stato di salute dell'ambiente</value>
+  </data>
+  <data name="EnvironmentHealthWindowCloseButton_Content" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="EnvironmentHealthMenuItem_Header" xml:space="preserve">
+    <value>Dettagli stato di salute...</value>
+  </data>
+  <data name="EnvironmentHealthWindowListBoxHeader_Content" xml:space="preserve">
+    <value>Variabili</value>
+  </data>
 </root>

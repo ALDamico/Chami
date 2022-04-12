@@ -28,7 +28,7 @@ namespace ChamiUI.BusinessLayer.EnvironmentHealth
         public double CheckEnvironment(EnvironmentViewModel environment)
         {
             var result = _checkStrategy.CheckHealth(environment, _configuration);
-            HealthChecked?.Invoke(this, new HealthCheckedEventArgs(result));
+            HealthChecked?.Invoke(this, new HealthCheckedEventArgs(result, _checkStrategy.HealthStatuses));
             return result;
         }
 

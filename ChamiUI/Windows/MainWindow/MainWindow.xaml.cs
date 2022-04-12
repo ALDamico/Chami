@@ -22,6 +22,7 @@ using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
+using ChamiUI.Windows.EnvironmentHealth;
 using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
@@ -800,5 +801,38 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.HandleCheckedHealth(e);
         }
+
+        private void EnvironmentHealthStatusBarItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ShowEnvironmentHealthWindow();
+        }
+
+        private void ShowEnvironmentHealthWindow()
+        {
+            if (_healthWindow != null)
+            {
+                _healthWindow.Focus();
+                return;
+            }
+            var window = new EnvironmentHealthWindow();
+            window.DataContext = ViewModel.EnvironmentHealth;
+           // window.Owner = this;
+            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            window.Closing += EnvironmentHealthWindowOnClosing;
+            _healthWindow = window;
+            window.Show();
+        }
+
+        private void EnvironmentHealthWindowOnClosing(object sender, CancelEventArgs e)
+        {
+            _healthWindow = null;
+        }
+
+        private void EnvironmentHealthMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowEnvironmentHealthWindow();
+        }
+
+        private EnvironmentHealthWindow _healthWindow;
     }
 }
