@@ -872,4 +872,25 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="HealthCheckerTooltipError" xml:space="preserve">
     <value>L'ambiente Windows è completamente differente dall'ambiente Chami. Le applicazioni potrebbero comportarsi in maniera inattesa.</value>
   </data>
+  <data name="EnvironmentHealthStatusBarItemToolTipHeader_Text" xml:space="preserve">
+    <value>Stato di salute dell'ambiente</value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemScoreCaption_Text" xml:space="preserve">
+    <value>Punteggio: </value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemDoubleClickHint_Text" xml:space="preserve">
+    <value>(doppio clic per ulteriori dettagli...)</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageDegraded" xml:space="preserve">
+    <value>Degradato</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageBadlyDegraded" xml:space="preserve">
+    <value>Gravemente degradato</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageError" xml:space="preserve">
+    <value>Errore</value>
+  </data>
 </root>

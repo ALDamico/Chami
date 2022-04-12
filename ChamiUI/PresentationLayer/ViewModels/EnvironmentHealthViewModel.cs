@@ -16,6 +16,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(HealthIndex));
                 OnPropertyChanged(nameof(FillColor));
                 OnPropertyChanged(nameof(ToolTip));
+                OnPropertyChanged(nameof(HealthIndexPercentage));
+            }
+        }
+
+        public string HealthIndexPercentage
+        {
+            get
+            {
+                var value = HealthIndex * 100;
+                return $"{value:F2}%";
             }
         }
 
@@ -45,15 +55,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 if (Math.Abs(HealthIndex - 1.0) < 1e-10)
                 {
-                    return "Ok";
+                    return ChamiUIStrings.EnvironmentHealthCheckerMessageOk;
                 }
 
                 if (HealthIndex >= 0.75)
                 {
-                    return "Degraded";
+                    return ChamiUIStrings.EnvironmentHealthCheckerMessageDegraded;
                 }
 
-                return HealthIndex >= 0.5 ? "Badly degraded" : "Error";
+                return HealthIndex >= 0.5
+                    ? ChamiUIStrings.EnvironmentHealthCheckerMessageBadlyDegraded
+                    : ChamiUIStrings.EnvironmentHealthCheckerMessageError;
             }
         }
 

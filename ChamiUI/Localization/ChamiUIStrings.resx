@@ -872,4 +872,25 @@ Use a different name and try again.</value>
   <data name="HealthCheckerTooltipError" xml:space="preserve">
     <value>The Windows environment is completely unlike the Chami environment. Applications may not work as expected.</value>
   </data>
+  <data name="EnvironmentHealthStatusBarItemToolTipHeader_Text" xml:space="preserve">
+    <value>Environment Health</value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemScoreCaption_Text" xml:space="preserve">
+    <value>Score: </value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemDoubleClickHint_Text" xml:space="preserve">
+    <value>(double click for details...)</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageDegraded" xml:space="preserve">
+    <value>Degraded</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageBadlyDegraded" xml:space="preserve">
+    <value>Badly degraded</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageError" xml:space="preserve">
+    <value>Error</value>
+  </data>
 </root>

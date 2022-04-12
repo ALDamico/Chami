@@ -718,6 +718,69 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Badly degraded.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageBadlyDegraded {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageBadlyDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Degraded.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageDegraded {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageError {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageOk {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (double click for details...).
+        /// </summary>
+        public static string EnvironmentHealthStatusBarItemDoubleClickHint_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthStatusBarItemDoubleClickHint_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score: .
+        /// </summary>
+        public static string EnvironmentHealthStatusBarItemScoreCaption_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthStatusBarItemScoreCaption_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Health.
+        /// </summary>
+        public static string EnvironmentHealthStatusBarItemToolTipHeader_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthStatusBarItemToolTipHeader_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In environment name.
         /// </summary>
         public static string EnvironmentNameFilterStrategyName {

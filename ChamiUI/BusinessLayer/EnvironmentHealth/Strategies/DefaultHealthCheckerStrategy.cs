@@ -19,6 +19,10 @@ namespace ChamiUI.BusinessLayer.EnvironmentHealth.Strategies
 
             foreach (var environmentVariable in environment.EnvironmentVariables)
             {
+                if (environmentVariable.Name == null)
+                {
+                    continue;
+                }
                 var variableName = environmentVariable.Name;
                 var variableValue = environmentVariable.Value;
                 var exists = systemEnvironmentVariables.TryGetValue(variableName, out var correspondingVariable);
