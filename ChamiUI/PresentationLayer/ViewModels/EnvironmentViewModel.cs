@@ -172,5 +172,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
 
         public bool IsEditable => EnvironmentType != EnvironmentType.BackupEnvironment;
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Id, EnvironmentType);
+        }
     }
 }
