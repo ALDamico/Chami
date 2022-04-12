@@ -1167,4 +1167,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Windows\EnvironmentHealth" />
+    </ItemGroup>
+
 </Project>

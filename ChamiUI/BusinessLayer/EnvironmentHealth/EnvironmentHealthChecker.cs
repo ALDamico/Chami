@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -22,7 +24,7 @@ namespace ChamiUI.BusinessLayer.EnvironmentHealth
 
         private readonly EnvironmentHealthCheckerConfiguration _configuration;
         private readonly IEnvironmentHealthCheckerStrategy _checkStrategy;
-        
+
         public double CheckEnvironment(EnvironmentViewModel environment)
         {
             var result = _checkStrategy.CheckHealth(environment, _configuration);
@@ -31,5 +33,10 @@ namespace ChamiUI.BusinessLayer.EnvironmentHealth
         }
 
         public event EventHandler<HealthCheckedEventArgs> HealthChecked;
+
+        public List<EnvironmentVariableHealthStatus> GetHealthStatusReport()
+        {
+            return _checkStrategy.HealthStatuses;
+        }
     }
 }
