@@ -65,12 +65,14 @@ namespace ChamiUI.Windows.MainWindow
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            Log.Logger.Debug("Attempt to quit application");
             var result = MessageBox.Show(ChamiUIStrings.QuitMessageBoxText, ChamiUIStrings.QuitMessageBoxCaption,
                 MessageBoxButton.OKCancel,
                 MessageBoxImage.Question);
+            Log.Logger.Debug("User responded with {Result}", result);
             if (result == MessageBoxResult.OK)
             {
-                Environment.Exit(0);
+                Application.Current.Shutdown(0);
             }
         }
 
@@ -146,7 +148,7 @@ namespace ChamiUI.Windows.MainWindow
             if (o.Message != null)
             {
                 var message = o.Message;
-                message.TrimStart('\n');
+                message = message.TrimStart('\n');
                 if (!o.Message.EndsWith("\n"))
                 {
                     message += "\n";
@@ -257,8 +259,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 args.Settings.SafeVariableSettings.ForbiddenVariables.Add(variable);
             }
-
-            ((App) Application.Current).Settings = args.Settings;
+            
             ((App) Application.Current)?.InitLocalization();
         }
 
@@ -710,8 +711,7 @@ namespace ChamiUI.Windows.MainWindow
 
             switch (EnvironmentTypeTabItem.SelectedIndex)
             {
-                case 0:
-                default:
+                default: // case 0
                     ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
                     break;
                 case 1:
@@ -768,11 +768,6 @@ namespace ChamiUI.Windows.MainWindow
 
         private void DeleteEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            /*if (!EnvironmentsListbox.IsFocused)
-            {
-                e.CanExecute = false;
-                return;
-            }*/
             if (ViewModel.CanDeleteEnvironment)
             {
                 e.CanExecute = true;

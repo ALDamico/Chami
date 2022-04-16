@@ -708,7 +708,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             if (collection.Any(e => e.Name == environment.Name))
             {
-                EnvironmentExists?.Invoke(this, new EnvironmentExistingEventArgs(environment.Name));
+                var eventArgs = new EnvironmentExistingEventArgs(environment.Name);
+                Log.Logger.Debug("EnvironmentExists event fired: {@Args}", eventArgs);
+                EnvironmentExists?.Invoke(this, eventArgs);
                 return true;
             }
 

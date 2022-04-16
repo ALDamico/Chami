@@ -1,5 +1,7 @@
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.ViewModels;
 using Serilog;
+using Serilog.Core;
 
 namespace ChamiUI.BusinessLayer.Logger
 {
@@ -22,6 +24,15 @@ namespace ChamiUI.BusinessLayer.Logger
                     Name = args?.NewActiveEnvironment?.Name,
                     NumberOfVariables = args?.NewActiveEnvironment?.EnvironmentVariables.Count
                 });
+            _loggerConfiguration.Destructure.ByTransforming<WatchedApplicationViewModel>(watchedApp =>
+                new
+                {
+                    ProcessName = watchedApp.ProcessName,
+                    ChamiEnvironmentName = watchedApp.ChamiEnvironmentName
+                }
+            );
+
+            _loggerConfiguration.Destructure.ByTransforming<EnvironmentExistingEventArgs>(args => new {args.Name});
         }
 
         /// <summary>

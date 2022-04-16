@@ -1,4 +1,5 @@
 using ChamiUI.Controls;
+using Serilog.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -8,6 +9,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     public class LoggingSettingsViewModel : SettingCategoryViewModelBase
     {
         private bool _loggingEnabled;
+        private LogEventLevel _minimumLogLevel;
 
         /// <summary>
         /// Determines if the Chami application will log error messages or not.
@@ -19,6 +21,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _loggingEnabled = value;
                 OnPropertyChanged(nameof(LoggingEnabled));
+            }
+        }
+
+        public LogEventLevel MinimumLogLevel
+        {
+            get => _minimumLogLevel;
+            set
+            {
+                _minimumLogLevel = value;
+                OnPropertyChanged(nameof(MinimumLogLevel));
             }
         }
     }

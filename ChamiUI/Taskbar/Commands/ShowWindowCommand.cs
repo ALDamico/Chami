@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using ChamiUI.Localization;
 using ChamiUI.Windows.MainWindow;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,8 +11,9 @@ namespace ChamiUI.Taskbar.Commands
     {
         public bool CanExecute(object parameter)
         {
-            return Application.Current.MainWindow == null ||
-                   Application.Current.MainWindow.Visibility.Equals(Visibility.Hidden);
+            var mainWindow = Application.Current.MainWindow;
+            return mainWindow == null ||
+                   mainWindow.Visibility.Equals(Visibility.Hidden);
         }
 
         public void Execute(object parameter)
@@ -20,7 +22,7 @@ namespace ChamiUI.Taskbar.Commands
             Application.Current.MainWindow = mainWindow;
             if (mainWindow == null)
             {
-                throw new InvalidOperationException()
+                throw new InvalidOperationException(ChamiUIStrings.MainWindowInitError);
             }
             mainWindow.ResumeState();
             mainWindow.Show();

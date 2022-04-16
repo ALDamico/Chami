@@ -36,20 +36,19 @@ namespace ChamiUI
         {
             _serviceProvider = CreateServices();
 
-           InitializeComponent();
+            InitializeComponent();
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
             InitCmdExecutorMessages();
-            MigrateDatabase();
+
             try
             {
-                var connectionString = GetConnectionString();
-                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString), new WatchedApplicationDataAdapter(connectionString), new ApplicationLanguageDataAdapter(connectionString));
-            }
-            catch (SQLiteException)
-            {
                 MigrateDatabase();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
             }
         }
 
@@ -73,8 +72,16 @@ namespace ChamiUI
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations())
                 .AddLogging(l => l.AddSerilog())
-                .AddSingleton<MainWindow>();
-            
+                .AddSingleton<MainWindow>()
+                .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
+                .AddTransient(serviceProvider =>
+                {
+                    var connectionString = GetConnectionString();
+                    return SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
+                        new WatchedApplicationDataAdapter(connectionString),
+                        new ApplicationLanguageDataAdapter(connectionString));
+                });
+
             return serviceCollection.BuildServiceProvider();
         }
 
@@ -84,7 +91,7 @@ namespace ChamiUI
             runner.MigrateUp();
         }
 
-        public SettingsViewModel Settings { get; set; }
+        public SettingsViewModel Settings => _serviceProvider.GetRequiredService<SettingsViewModel>();
 
         public static string GetConnectionString()
         {
@@ -98,7 +105,6 @@ namespace ChamiUI
                 // A unit test is running. Use its connection string instead
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
-
         }
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
@@ -119,11 +125,12 @@ namespace ChamiUI
 
         private void DetectOtherInstance()
         {
+            // We don't want this to happen when we're developing (An official release of Chami may be running)
+#if !DEBUG
             var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly()?.Location);
             var otherInstances = Process.GetProcessesByName(processName)
                 .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
-            // We don't want this to happen when we're developing (An official release of Chami may be running)
-#if !DEBUG
+            
             if (otherInstances.Length >= 1)
             {
                 var otherInstance = otherInstances[0];
@@ -142,9 +149,9 @@ namespace ChamiUI
             var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
-            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
+            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
-            
+
             if (_taskbarIcon != null)
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)
@@ -192,10 +199,13 @@ namespace ChamiUI
 
         private void App_OnExit(object sender, ExitEventArgs e)
         {
+            Log.Logger.Information("Chami is exiting");
             if (!_taskbarIcon.IsDisposed)
             {
                 _taskbarIcon.Dispose();
             }
+
+            Log.CloseAndFlush();
         }
     }
 }
