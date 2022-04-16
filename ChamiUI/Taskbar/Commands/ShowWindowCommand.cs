@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Input;
 using ChamiUI.Windows.MainWindow;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.Taskbar.Commands
 {
@@ -15,8 +16,12 @@ namespace ChamiUI.Taskbar.Commands
 
         public void Execute(object parameter)
         {
-            var mainWindow = new MainWindow();
+            var mainWindow = (Application.Current as App)?.ServiceProvider.GetRequiredService<MainWindow>();
             Application.Current.MainWindow = mainWindow;
+            if (mainWindow == null)
+            {
+                throw new InvalidOperationException()
+            }
             mainWindow.ResumeState();
             mainWindow.Show();
         }

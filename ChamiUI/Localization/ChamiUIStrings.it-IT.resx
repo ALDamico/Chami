@@ -842,4 +842,7 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="MinimizationCategoryDescription" xml:space="preserve">
     <value>Imposta come Chami si comporta quando riduci la finestra dell'applicazione a icona.</value>
   </data>
+  <data name="MainWindowInitError" xml:space="preserve">
+    <value>Si è verificato un errore sconosciuto mentre Chami tentava di visualizzare la finestra dell'applicazione.</value>
+  </data>
 </root>

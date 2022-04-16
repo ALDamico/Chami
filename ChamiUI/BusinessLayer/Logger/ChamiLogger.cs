@@ -1,3 +1,4 @@
+using ChamiUI.PresentationLayer.Events;
 using Serilog;
 
 namespace ChamiUI.BusinessLayer.Logger
@@ -15,6 +16,12 @@ namespace ChamiUI.BusinessLayer.Logger
         public ChamiLogger()
         {
             _loggerConfiguration = new LoggerConfiguration();
+            _loggerConfiguration.Destructure.ByTransforming<EnvironmentChangedEventArgs>(args =>
+                new
+                {
+                    Name = args?.NewActiveEnvironment?.Name,
+                    NumberOfVariables = args?.NewActiveEnvironment?.EnvironmentVariables.Count
+                });
         }
 
         /// <summary>

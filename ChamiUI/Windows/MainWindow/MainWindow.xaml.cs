@@ -22,6 +22,7 @@ using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
+using Serilog;
 using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
@@ -107,8 +108,8 @@ namespace ChamiUI.Windows.MainWindow
                 }
                 catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
                 {
-                    (Application.Current as App)?.Logger.GetLogger().Information("{Message}", ex.Message);
-                    (Application.Current as App)?.Logger.GetLogger().Information("{StackTrace}", ex.StackTrace);
+                    Log.Logger.Information("{Message}", ex.Message);
+                    Log.Logger.Information("{StackTrace}", ex.StackTrace);
                     PrintTaskCancelledMessageToConsole();
                     ViewModel.SelectedEnvironment = previousEnvironment;
                     ViewModel.CanUserInterrupt = false;
@@ -289,7 +290,10 @@ namespace ChamiUI.Windows.MainWindow
         private void CreateNewEnvironmentWindow(Window owner, EnvironmentViewModel dataContext = null)
         {
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(owner);
-            childWindow.SetEnvironment(dataContext);
+            if (dataContext != null)
+            {
+                childWindow.SetEnvironment(dataContext);
+            }
             childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
         }
@@ -366,6 +370,7 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     return;
                 }
+
                 foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedCells)
                 {
                     DeleteVariableInner(row.Item);

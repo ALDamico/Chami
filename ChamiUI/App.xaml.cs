@@ -34,10 +34,9 @@ namespace ChamiUI
     {
         public App()
         {
-            Logger = new ChamiLogger();
-            Logger.AddFileSink("chami.log");
             _serviceProvider = CreateServices();
-            InitializeComponent();
+
+           InitializeComponent();
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
@@ -61,15 +60,22 @@ namespace ChamiUI
         }
 
         private readonly IServiceProvider _serviceProvider;
+        public IServiceProvider ServiceProvider => _serviceProvider;
 
         private IServiceProvider CreateServices()
         {
-            return new ServiceCollection()
+            var chamiLogger = new ChamiLogger();
+            chamiLogger.AddFileSink("chami.log");
+            Log.Logger = chamiLogger.GetLogger();
+            var serviceCollection = new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations())
-                .AddLogging(l => l.AddSerilog(GetLogger())).BuildServiceProvider();
+                .AddLogging(l => l.AddSerilog())
+                .AddSingleton<MainWindow>();
+            
+            return serviceCollection.BuildServiceProvider();
         }
 
         private void MigrateDatabase()
@@ -77,8 +83,6 @@ namespace ChamiUI
             var runner = _serviceProvider.GetRequiredService<IMigrationRunner>();
             runner.MigrateUp();
         }
-
-        public ChamiLogger Logger { get; }
 
         public SettingsViewModel Settings { get; set; }
 
@@ -105,16 +109,11 @@ namespace ChamiUI
                 MessageBoxImage.Error);
             if (Settings.LoggingSettings.LoggingEnabled)
             {
-                var logger = Logger.GetLogger();
-                logger.Error("{Message}", exceptionMessage);
-                logger.Error("{Message}", args.Exception.StackTrace);
+                Log.Logger.Error("{Message}", exceptionMessage);
+                Log.Logger.Error("{Message}", args.Exception.StackTrace);
             }
         }
 
-        public Logger GetLogger()
-        {
-            return Logger.GetLogger();
-        }
 
         private TaskbarIcon _taskbarIcon;
 
@@ -140,7 +139,7 @@ namespace ChamiUI
         {
             InitLocalization();
             DetectOtherInstance();
-            var mainWindow = new MainWindow();
+            var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
             _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");

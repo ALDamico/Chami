@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Utils;
+using Serilog;
 
 namespace ChamiUI.Windows.NewEnvironmentWindow
 {
@@ -70,9 +71,8 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
                     var loggingEnabled = SettingsUtils.GetAppSettings().LoggingSettings.LoggingEnabled;
                     if (loggingEnabled)
                     {
-                        var logger = (App.Current as ChamiUI.App).GetLogger();
-                        logger.Error(ex.Message);
-                        logger.Error(ex.StackTrace);
+                        Log.Logger.Error(ex.Message);
+                        Log.Logger.Error(ex.StackTrace);
                     }
 
                     string message = "";

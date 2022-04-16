@@ -1324,6 +1324,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred while trying to show Chami&apos;s application window..
+        /// </summary>
+        public static string MainWindowInitError {
+            get {
+                return ResourceManager.GetString("MainWindowInitError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When minimized:.
         /// </summary>
         public static string MinimizationBehaviourControlLabel_Content {

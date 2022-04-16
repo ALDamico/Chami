@@ -842,4 +842,7 @@ Use a different name and try again.</value>
   <data name="MinimizationCategoryDescription" xml:space="preserve">
     <value>Set how Chami behaves when minimizing the application.</value>
   </data>
+  <data name="MainWindowInitError" xml:space="preserve">
+    <value>An unknown error occurred while trying to show Chami's application window.</value>
+  </data>
 </root>

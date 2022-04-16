@@ -12,7 +12,6 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Chami.CmdExecutor;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Commands;
@@ -24,6 +23,7 @@ using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.Utils;
+using Serilog;
 using IShellCommand = Chami.CmdExecutor.IShellCommand;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -291,19 +291,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="args">Information about the environment change.</param>
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs args)
         {
+            Log.Logger.Debug("EnvironmentChanged event fired");
             if (args != null)
             {
+                Log.Logger.Information("Changing environment to {@Args}", args);
                 ActiveEnvironment = args.NewActiveEnvironment;
                 if (ActiveEnvironment != null)
                 {
                     SelectedEnvironment = ActiveEnvironment;
                 }
+                Log.Logger.Information("Environment changed to {@Args}", args);
             }
             else
             {
                 ActiveEnvironment = null;
             }
-
             ChangeActiveEnvironment();
             EnvironmentChanged?.Invoke(this, args);
         }

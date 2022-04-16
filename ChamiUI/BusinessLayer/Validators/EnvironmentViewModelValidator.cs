@@ -17,6 +17,12 @@ namespace ChamiUI.BusinessLayer.Validators
         {
             ValidationResult result = new ValidationResult();
             result.IsValid = true;
+
+            if (viewModel == null)
+            {
+                return result;
+            }
+            
             if (String.IsNullOrWhiteSpace(viewModel.Name))
             {
                 result.IsValid = false;
