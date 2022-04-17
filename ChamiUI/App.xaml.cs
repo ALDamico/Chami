@@ -206,12 +206,20 @@ namespace ChamiUI
 
             
             MainWindow.Show();
-            ExecuteHealthCheck();
+            if (Settings.HealthCheckSettings.IsEnabled)
+            {
+                ExecuteHealthCheck();
+            }
+            
         }
 
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs e)
         {
             _activeEnvironment = e.NewActiveEnvironment;
+            if (Settings.HealthCheckSettings.IsEnabled)
+            {
+                ExecuteHealthCheck();
+            }
         }
 
         private void HandleCommandLineArguments(StartupEventArgs e)

@@ -279,7 +279,10 @@ namespace ChamiUI.Windows.MainWindow
         private void CreateNewEnvironmentWindow(Window owner, EnvironmentViewModel dataContext = null)
         {
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(owner);
-            childWindow.SetEnvironment(dataContext);
+            if (dataContext != null)
+            {
+                childWindow.SetEnvironment(dataContext);
+            }
             childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
         }
