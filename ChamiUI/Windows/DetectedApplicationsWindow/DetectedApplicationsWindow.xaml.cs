@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
+using Serilog;
 
 namespace ChamiUI.Windows.DetectedApplicationsWindow
 {
@@ -21,6 +22,7 @@ namespace ChamiUI.Windows.DetectedApplicationsWindow
         {
             if (args != null)
             {
+                Log.Logger.Debug("The following applications are running: {@WatchedApplications}", args.DetectedApplications);
                 var detectedApplications = args.DetectedApplications;
                 foreach (var detectedApplication in detectedApplications)
                 {

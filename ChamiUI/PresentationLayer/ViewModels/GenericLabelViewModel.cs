@@ -1,4 +1,5 @@
-﻿using ChamiUI.BusinessLayer.Annotations;
+﻿using System.Windows.Media;
+using ChamiUI.BusinessLayer.Annotations;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -6,7 +7,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// Marker class that gives the default <see cref="ExplicitSaveOnlyAttribute"/> value (false)
     /// </summary>
     [ExplicitSaveOnly(false)]
-    public abstract class SettingCategoryViewModelBase : ViewModelBase
+    public abstract class GenericLabelViewModel : ViewModelBase
     {
         public string Description
         {
@@ -39,8 +40,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        [NonPersistentSetting]
+        public Brush ForegroundColor
+        {
+            get => _foregroundColor;
+            set
+            {
+                _foregroundColor = value;
+                OnPropertyChanged(nameof(ForegroundColor));
+            }
+        }
+
         private string _displayName;
         private string _description;
         private string _iconPath;
+        private Brush _foregroundColor;
     }
 }

@@ -5,6 +5,7 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using ChamiUI.BusinessLayer;
+using Serilog;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -67,8 +68,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
             catch (Exception ex)
             {
-                var logger = ((App) Application.Current).GetLogger();
-                logger.Error(ex, "{ex}");
+                Log.Logger.Error(ex, "{ex}");
             }
         }
 

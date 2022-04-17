@@ -22,6 +22,7 @@ using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
+using Serilog;
 using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
@@ -64,12 +65,14 @@ namespace ChamiUI.Windows.MainWindow
 
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
+            Log.Logger.Debug("Attempt to quit application");
             var result = MessageBox.Show(ChamiUIStrings.QuitMessageBoxText, ChamiUIStrings.QuitMessageBoxCaption,
                 MessageBoxButton.OKCancel,
                 MessageBoxImage.Question);
+            Log.Logger.Debug("User responded with {Result}", result);
             if (result == MessageBoxResult.OK)
             {
-                Environment.Exit(0);
+                Application.Current.Shutdown(0);
             }
         }
 
@@ -107,8 +110,8 @@ namespace ChamiUI.Windows.MainWindow
                 }
                 catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
                 {
-                    (Application.Current as App)?.Logger.GetLogger().Information("{Message}", ex.Message);
-                    (Application.Current as App)?.Logger.GetLogger().Information("{StackTrace}", ex.StackTrace);
+                    Log.Logger.Information("{Message}", ex.Message);
+                    Log.Logger.Information("{StackTrace}", ex.StackTrace);
                     PrintTaskCancelledMessageToConsole();
                     ViewModel.SelectedEnvironment = previousEnvironment;
                     ViewModel.CanUserInterrupt = false;
@@ -145,7 +148,7 @@ namespace ChamiUI.Windows.MainWindow
             if (o.Message != null)
             {
                 var message = o.Message;
-                message.TrimStart('\n');
+                message = message.TrimStart('\n');
                 if (!o.Message.EndsWith("\n"))
                 {
                     message += "\n";
@@ -256,8 +259,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 args.Settings.SafeVariableSettings.ForbiddenVariables.Add(variable);
             }
-
-            ((App) Application.Current).Settings = args.Settings;
+            
             ((App) Application.Current)?.InitLocalization();
         }
 
@@ -289,7 +291,10 @@ namespace ChamiUI.Windows.MainWindow
         private void CreateNewEnvironmentWindow(Window owner, EnvironmentViewModel dataContext = null)
         {
             var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(owner);
-            childWindow.SetEnvironment(dataContext);
+            if (dataContext != null)
+            {
+                childWindow.SetEnvironment(dataContext);
+            }
             childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
         }
@@ -366,6 +371,7 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     return;
                 }
+
                 foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedCells)
                 {
                     DeleteVariableInner(row.Item);
@@ -705,8 +711,7 @@ namespace ChamiUI.Windows.MainWindow
 
             switch (EnvironmentTypeTabItem.SelectedIndex)
             {
-                case 0:
-                default:
+                default: // case 0
                     ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
                     break;
                 case 1:
@@ -763,11 +768,6 @@ namespace ChamiUI.Windows.MainWindow
 
         private void DeleteEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            /*if (!EnvironmentsListbox.IsFocused)
-            {
-                e.CanExecute = false;
-                return;
-            }*/
             if (ViewModel.CanDeleteEnvironment)
             {
                 e.CanExecute = true;

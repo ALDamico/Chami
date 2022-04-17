@@ -24,6 +24,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using Serilog.Events;
 
 namespace ChamiUI
 {
@@ -34,24 +35,45 @@ namespace ChamiUI
     {
         public App()
         {
-            Logger = new ChamiLogger();
-            Logger.AddFileSink("chami.log");
             _serviceProvider = CreateServices();
+
             InitializeComponent();
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
             InitCmdExecutorMessages();
-            MigrateDatabase();
+
             try
-            {
-                var connectionString = GetConnectionString();
-                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString), new WatchedApplicationDataAdapter(connectionString), new ApplicationLanguageDataAdapter(connectionString));
-            }
-            catch (SQLiteException)
             {
                 MigrateDatabase();
             }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
+            }
+        }
+
+        private ChamiLogger InitLogger(bool readSettings = false)
+        {
+            var chamiLogger = new ChamiLogger();
+            chamiLogger.AddFileSink("chami.log");
+
+            if (readSettings)
+            {
+                var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
+                var loggingSettings = settings.LoggingSettings;
+                
+                var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
+                if (loggingSettings.LoggingEnabled)
+                {
+                    minimumLogLevel = LogEventLevel.Fatal;
+                }
+
+                chamiLogger.SetMinumumLevel(minimumLogLevel);
+            }
+
+            return chamiLogger;
+
         }
 
         private void InitCmdExecutorMessages()
@@ -61,15 +83,29 @@ namespace ChamiUI
         }
 
         private readonly IServiceProvider _serviceProvider;
+        public IServiceProvider ServiceProvider => _serviceProvider;
 
         private IServiceProvider CreateServices()
         {
-            return new ServiceCollection()
+            var chamiLogger = InitLogger();
+            Log.Logger = chamiLogger.GetLogger();
+            var serviceCollection = new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations())
-                .AddLogging(l => l.AddSerilog(GetLogger())).BuildServiceProvider();
+                .AddLogging(l => l.AddSerilog())
+                .AddSingleton<MainWindow>()
+                .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
+                .AddSingleton(serviceProvider =>
+                {
+                    var connectionString = GetConnectionString();
+                    return SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
+                        new WatchedApplicationDataAdapter(connectionString),
+                        new ApplicationLanguageDataAdapter(connectionString));
+                });
+
+            return serviceCollection.BuildServiceProvider();
         }
 
         private void MigrateDatabase()
@@ -78,9 +114,7 @@ namespace ChamiUI
             runner.MigrateUp();
         }
 
-        public ChamiLogger Logger { get; }
-
-        public SettingsViewModel Settings { get; set; }
+        public SettingsViewModel Settings => _serviceProvider.GetRequiredService<SettingsViewModel>();
 
         public static string GetConnectionString()
         {
@@ -94,7 +128,6 @@ namespace ChamiUI
                 // A unit test is running. Use its connection string instead
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
-
         }
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
@@ -105,26 +138,22 @@ namespace ChamiUI
                 MessageBoxImage.Error);
             if (Settings.LoggingSettings.LoggingEnabled)
             {
-                var logger = Logger.GetLogger();
-                logger.Error("{Message}", exceptionMessage);
-                logger.Error("{Message}", args.Exception.StackTrace);
+                Log.Logger.Error("{Message}", exceptionMessage);
+                Log.Logger.Error("{Message}", args.Exception.StackTrace);
             }
         }
 
-        public Logger GetLogger()
-        {
-            return Logger.GetLogger();
-        }
 
         private TaskbarIcon _taskbarIcon;
 
         private void DetectOtherInstance()
         {
+            // We don't want this to happen when we're developing (An official release of Chami may be running)
+#if !DEBUG
             var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly()?.Location);
             var otherInstances = Process.GetProcessesByName(processName)
                 .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
-            // We don't want this to happen when we're developing (An official release of Chami may be running)
-#if !DEBUG
+            
             if (otherInstances.Length >= 1)
             {
                 var otherInstance = otherInstances[0];
@@ -140,12 +169,12 @@ namespace ChamiUI
         {
             InitLocalization();
             DetectOtherInstance();
-            var mainWindow = new MainWindow();
+            var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
-            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
+            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
-            
+
             if (_taskbarIcon != null)
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)
@@ -193,10 +222,13 @@ namespace ChamiUI
 
         private void App_OnExit(object sender, ExitEventArgs e)
         {
+            Log.Logger.Information("Chami is exiting");
             if (!_taskbarIcon.IsDisposed)
             {
                 _taskbarIcon.Dispose();
             }
+
+            Log.CloseAndFlush();
         }
     }
 }

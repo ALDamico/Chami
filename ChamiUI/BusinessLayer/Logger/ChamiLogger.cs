@@ -1,4 +1,8 @@
+using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.ViewModels;
 using Serilog;
+using Serilog.Core;
+using Serilog.Events;
 
 namespace ChamiUI.BusinessLayer.Logger
 {
@@ -15,6 +19,21 @@ namespace ChamiUI.BusinessLayer.Logger
         public ChamiLogger()
         {
             _loggerConfiguration = new LoggerConfiguration();
+            _loggerConfiguration.Destructure.ByTransforming<EnvironmentChangedEventArgs>(args =>
+                new
+                {
+                    Name = args?.NewActiveEnvironment?.Name,
+                    NumberOfVariables = args?.NewActiveEnvironment?.EnvironmentVariables.Count
+                });
+            _loggerConfiguration.Destructure.ByTransforming<WatchedApplicationViewModel>(watchedApp =>
+                new
+                {
+                    ProcessName = watchedApp.ProcessName,
+                    ChamiEnvironmentName = watchedApp.ChamiEnvironmentName
+                }
+            );
+
+            _loggerConfiguration.Destructure.ByTransforming<EnvironmentExistingEventArgs>(args => new {args.Name});
         }
 
         /// <summary>
@@ -24,6 +43,11 @@ namespace ChamiUI.BusinessLayer.Logger
         public void AddFileSink(string filename)
         {
             _loggerConfiguration.WriteTo.File(filename);
+        }
+
+        public void SetMinumumLevel(LogEventLevel minimumLevel)
+        {
+            _loggerConfiguration.MinimumLevel.ControlledBy(new LoggingLevelSwitch(minimumLevel));
         }
 
         /// <summary>

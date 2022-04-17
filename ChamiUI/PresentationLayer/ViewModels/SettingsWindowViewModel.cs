@@ -26,7 +26,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
             Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
                 languageDataAdapter);
-            SettingsCategories = new ObservableCollection<SettingCategoryViewModelBase>();
+            SettingsCategories = new ObservableCollection<GenericLabelViewModel>();
             Settings.ConsoleAppearanceSettings =
                 SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);
             SettingsCategories.Add(Settings.ConsoleAppearanceSettings);
@@ -57,9 +57,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 .WatchedApplications));
         }
 
-        private SettingCategoryViewModelBase _currentSection;
+        private GenericLabelViewModel _currentSection;
 
-        public SettingCategoryViewModelBase CurrentSection
+        public GenericLabelViewModel CurrentSection
         {
             get => _currentSection;
             set
@@ -72,7 +72,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(CurrentSection));
             }
         }
-        public ObservableCollection<SettingCategoryViewModelBase> SettingsCategories { get; }
+        public ObservableCollection<GenericLabelViewModel> SettingsCategories { get; }
 
         private readonly SettingsDataAdapter _dataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;

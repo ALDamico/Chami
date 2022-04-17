@@ -842,4 +842,46 @@ Use a different name and try again.</value>
   <data name="MinimizationCategoryDescription" xml:space="preserve">
     <value>Set how Chami behaves when minimizing the application.</value>
   </data>
+  <data name="MainWindowInitError" xml:space="preserve">
+    <value>An unknown error occurred while trying to show Chami's application window.</value>
+  </data>
+  <data name="VerbosityLevelLabel_Content" xml:space="preserve">
+    <value>Log level</value>
+  </data>
+  <data name="LogLevelVerbose" xml:space="preserve">
+    <value>Verbose</value>
+  </data>
+  <data name="LogLevelVerboseDescription" xml:space="preserve">
+    <value>Log everything.</value>
+  </data>
+  <data name="LogLevelDebug" xml:space="preserve">
+    <value>Debug</value>
+  </data>
+  <data name="LogLevelDebugDescription" xml:space="preserve">
+    <value>Log information useful for debugging and troubleshooting. Useful for contributors to the Chami codebase.</value>
+  </data>
+  <data name="LogLevelInformation" xml:space="preserve">
+    <value>Information</value>
+  </data>
+  <data name="LogLevelInformationDescription" xml:space="preserve">
+    <value>The default log level. This is the best option for most people.</value>
+  </data>
+  <data name="LogLevelWarning" xml:space="preserve">
+    <value>Warning</value>
+  </data>
+  <data name="LogLevelWarningDescription" xml:space="preserve">
+    <value>Log only events related to a degradation of Chami's internal state.</value>
+  </data>
+  <data name="LogLevelError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="LogLevelErrorDescription" xml:space="preserve">
+    <value>Write only error events to the log. For those who wish to live dangerously.</value>
+  </data>
+  <data name="LogLevelFatal" xml:space="preserve">
+    <value>Fatal</value>
+  </data>
+  <data name="LogLevelFatalDescription" xml:space="preserve">
+    <value>Log only the most severe errors that prevent Chami for running.</value>
+  </data>
 </root>

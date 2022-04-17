@@ -1297,6 +1297,114 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Debug.
+        /// </summary>
+        public static string LogLevelDebug {
+            get {
+                return ResourceManager.GetString("LogLevelDebug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log information useful for debugging and troubleshooting. Useful for contributors to the Chami codebase..
+        /// </summary>
+        public static string LogLevelDebugDescription {
+            get {
+                return ResourceManager.GetString("LogLevelDebugDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string LogLevelError {
+            get {
+                return ResourceManager.GetString("LogLevelError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Write only error events to the log. For those who wish to live dangerously..
+        /// </summary>
+        public static string LogLevelErrorDescription {
+            get {
+                return ResourceManager.GetString("LogLevelErrorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fatal.
+        /// </summary>
+        public static string LogLevelFatal {
+            get {
+                return ResourceManager.GetString("LogLevelFatal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log only the most severe errors that prevent Chami for running..
+        /// </summary>
+        public static string LogLevelFatalDescription {
+            get {
+                return ResourceManager.GetString("LogLevelFatalDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Information.
+        /// </summary>
+        public static string LogLevelInformation {
+            get {
+                return ResourceManager.GetString("LogLevelInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The default log level. This is the best option for most people..
+        /// </summary>
+        public static string LogLevelInformationDescription {
+            get {
+                return ResourceManager.GetString("LogLevelInformationDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Verbose.
+        /// </summary>
+        public static string LogLevelVerbose {
+            get {
+                return ResourceManager.GetString("LogLevelVerbose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log everything..
+        /// </summary>
+        public static string LogLevelVerboseDescription {
+            get {
+                return ResourceManager.GetString("LogLevelVerboseDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Warning.
+        /// </summary>
+        public static string LogLevelWarning {
+            get {
+                return ResourceManager.GetString("LogLevelWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log only events related to a degradation of Chami&apos;s internal state..
+        /// </summary>
+        public static string LogLevelWarningDescription {
+            get {
+                return ResourceManager.GetString("LogLevelWarningDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Edit.
         /// </summary>
         public static string MainWindowEditMenuItem_Header {
@@ -1320,6 +1428,15 @@ namespace ChamiUI.Localization {
         public static string MainWindowFindMenuItem_Header {
             get {
                 return ResourceManager.GetString("MainWindowFindMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred while trying to show Chami&apos;s application window..
+        /// </summary>
+        public static string MainWindowInitError {
+            get {
+                return ResourceManager.GetString("MainWindowInitError", resourceCulture);
             }
         }
         
@@ -2156,6 +2273,15 @@ namespace ChamiUI.Localization {
         public static string VariablesTabItem_Header {
             get {
                 return ResourceManager.GetString("VariablesTabItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Log level.
+        /// </summary>
+        public static string VerbosityLevelLabel_Content {
+            get {
+                return ResourceManager.GetString("VerbosityLevelLabel_Content", resourceCulture);
             }
         }
         

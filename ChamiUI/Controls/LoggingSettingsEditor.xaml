@@ -22,7 +22,8 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" 
                        Grid.Column="0" 
@@ -31,6 +32,18 @@
                 <CheckBox Grid.Row="0" 
                           Grid.Column="1" 
                           IsChecked="{Binding LoggingEnabled}"></CheckBox>
+                <Label Grid.Row="1" Grid.Column="0" x:Name="VerbosityLevelLabel" Content="{lex:Loc}"></Label>
+                <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding SelectedMinimumLogLevel}" ItemsSource="{Binding AvailableLogLevels}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock VerticalAlignment="Center" 
+                                       Text="{Binding DisplayName}" 
+                                       Foreground="{Binding ForegroundColor}" 
+                                       ToolTip="{Binding Description}" 
+                                       FontWeight="SemiBold"></TextBlock>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
+                </ComboBox>
             </Grid>
         </GroupBox>
     </Grid>

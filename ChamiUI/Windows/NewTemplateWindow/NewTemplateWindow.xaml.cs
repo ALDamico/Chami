@@ -5,6 +5,7 @@ using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.PresentationLayer.ViewModels;
+using Serilog;
 
 namespace ChamiUI.Windows.NewTemplateWindow
 {
@@ -35,9 +36,8 @@ namespace ChamiUI.Windows.NewTemplateWindow
                 var loggingEnabled = SettingsUtils.GetAppSettings().LoggingSettings.LoggingEnabled;
                 if (loggingEnabled)
                 {
-                    var logger = (App.Current as ChamiUI.App).GetLogger();
-                    logger.Error("{Message}", ex.Message);
-                    logger.Error("{StackTrace}", ex.StackTrace);
+                    Log.Logger.Error("{Message}", ex.Message);
+                    Log.Logger.Error("{StackTrace}", ex.StackTrace);
                 }
 
                 string message = "";

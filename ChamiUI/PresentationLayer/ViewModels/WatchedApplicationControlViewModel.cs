@@ -9,7 +9,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// <summary>
     /// Viewmodel for the watched applications control.
     /// </summary>
-    public class WatchedApplicationControlViewModel : SettingCategoryViewModelBase
+    public class WatchedApplicationControlViewModel : GenericLabelViewModel
     {
         /// <summary>
         /// Constructs a new <see cref="WatchedApplicationControlViewModel"/>.
