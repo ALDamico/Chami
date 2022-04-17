@@ -589,6 +589,32 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private EnvironmentVariableViewModel _selectedVariable;
 
+        public void RefreshEnvironments()
+        {
+            Environments.Clear();
+            Backups.Clear();
+            Templates.Clear();
+
+            var environments = GetEnvironments();
+            var backups = GetBackupEnvironments();
+            var templates = GetTemplateEnvironments();
+
+            foreach (var environment in environments)
+            {
+                Environments.Add(environment);
+            }
+
+            foreach (var environment in backups)
+            {
+                Backups.Add(environment);
+            }
+
+            foreach (var environment in templates)
+            {
+                Templates.Add(environment);
+            }
+        }
+
         private ObservableCollection<EnvironmentViewModel> GetEnvironments()
         {
             return new ObservableCollection<EnvironmentViewModel>(_dataAdapter.GetEnvironments());

@@ -145,7 +145,7 @@ namespace ChamiUI.Windows.MainWindow
             if (o.Message != null)
             {
                 var message = o.Message;
-                message.TrimStart('\n');
+                message = message.TrimStart('\n');
                 if (!o.Message.EndsWith("\n"))
                 {
                     message += "\n";
@@ -710,7 +710,7 @@ namespace ChamiUI.Windows.MainWindow
 
             switch (EnvironmentTypeTabItem.SelectedIndex)
             {
-                case 0:
+                //case 0:
                 default:
                     ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
                     break;
@@ -768,11 +768,6 @@ namespace ChamiUI.Windows.MainWindow
 
         private void DeleteEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            /*if (!EnvironmentsListbox.IsFocused)
-            {
-                e.CanExecute = false;
-                return;
-            }*/
             if (ViewModel.CanDeleteEnvironment)
             {
                 e.CanExecute = true;
@@ -820,7 +815,14 @@ namespace ChamiUI.Windows.MainWindow
         private void MassUpdateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var childWindow = new MassUpdateWindow.MassUpdateWindow();
+            
+            childWindow.MassUpdateExecuted += OnMassUpdateExecuted;
             childWindow.ShowDialog();
+        }
+
+        private void OnMassUpdateExecuted(object sender, MassUpdateEventArgs e)
+        {
+            ViewModel.RefreshEnvironments();
         }
     }
 }

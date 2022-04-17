@@ -1,7 +1,9 @@
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.MassUpdateWindow
@@ -48,6 +50,7 @@ namespace ChamiUI.Windows.MassUpdateWindow
         private void ExecuteCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             _viewModel.ExecuteUpdate().GetAwaiter().GetResult();
+            OnMassUpdateExecuted(new MassUpdateEventArgs());
         }
 
         private void ExecuteCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -66,6 +69,13 @@ namespace ChamiUI.Windows.MassUpdateWindow
         private void MassUpdateWindowSelectNoneButton_OnClick(object sender, RoutedEventArgs e)
         {
             _viewModel.DeselectAllEnvironments();
+        }
+        
+        public event EventHandler<MassUpdateEventArgs> MassUpdateExecuted;
+
+        protected virtual void OnMassUpdateExecuted(MassUpdateEventArgs e)
+        {
+            MassUpdateExecuted?.Invoke(this, e);
         }
     }
 }

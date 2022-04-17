@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -6,6 +7,7 @@ using ChamiDbMigrations.Migrations;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
