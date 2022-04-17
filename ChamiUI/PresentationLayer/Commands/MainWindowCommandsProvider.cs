@@ -14,5 +14,6 @@ namespace ChamiUI.PresentationLayer.Commands
         public static readonly RoutedCommand EditEnvironmentCommand = new RoutedCommand();
         public static readonly RoutedCommand DeleteEnvironmentCommand = new RoutedCommand();
         public static readonly RoutedCommand DuplicateEnvironmentCommand = new RoutedCommand();
+        public static readonly RoutedCommand MassUpdateCommand = new RoutedCommand();
     }
 }

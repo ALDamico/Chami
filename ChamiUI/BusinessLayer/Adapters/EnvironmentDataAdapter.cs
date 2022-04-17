@@ -1,10 +1,15 @@
+using System;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Linq;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
+using ChamiUI.Localization;
+using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
@@ -43,7 +48,7 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// Get the <see cref="EnvironmentViewModel"/> with the specified id.
         /// </summary>
         /// <param name="id">The id of the <see cref="EnvironmentViewModel"/> to retrieve.</param>
-        /// <returns>If an <see cref="Environment"/> with the specified id is found, converts it to an <see cref="EnvironmentViewModel"/>. If not, returns null.</returns>
+        /// <returns>If an <see cref="Chami.Db.Entities.Environment"/> with the specified id is found, converts it to an <see cref="EnvironmentViewModel"/>. If not, returns null.</returns>
         public EnvironmentViewModel GetEnvironmentById(int id)
         {
             var result = _repository.GetEnvironmentById(id);
@@ -90,10 +95,10 @@ namespace ChamiUI.BusinessLayer.Adapters
         }
 
         /// <summary>
-        /// Gets the <see cref="Environment"/> with the specified id.
+        /// Gets the <see cref="Chami.Db.Entities.Environment"/> with the specified id.
         /// </summary>
         /// <param name="id">If a match is found, returns it. Otherwise, returns null.</param>
-        /// <returns>The <see cref="Environment"/> with the specified id.</returns>
+        /// <returns>The <see cref="Chami.Db.Entities.Environment"/> with the specified id.</returns>
         public Environment GetEnvironmentEntityById(int id)
         {
             return _repository.GetEnvironmentById(id);
@@ -232,6 +237,29 @@ namespace ChamiUI.BusinessLayer.Adapters
             await _repository.UpsertBlacklistedVariableAsync(entity);
 
             return converter.To(entity);
+        }
+
+        public async Task<IEnumerable<string>> GetVariableNamesAsync()
+        {
+            return await _repository.GetVariableNamesAsync();
+        }
+
+        public async Task UpdateVariableByNameAsync(string variableName, string variableValue)
+        {
+            await _repository.UpdateVariableByNameAsync(variableName, variableValue);
+        }
+
+        public async Task UpdateVariableByNameAndEnvironmentIdsAsync(string variableName, string variableValue,
+            IEnumerable<EnvironmentViewModel> environments)
+        {
+            var environmentViewModels = environments.ToList();
+            if (environments == null || !environmentViewModels.Any())
+            {
+                throw new InvalidOperationException(ChamiUIStrings.NoEnvironmentsToUpdateErrorMessage);
+            }
+            var environmentIds = environmentViewModels.Select(e => e.Id).ToImmutableList();
+            
+            await _repository.UpdateVariableByNameAndEnvironmentIdsAsync(variableName, variableValue, environmentIds);
         }
     }
 }

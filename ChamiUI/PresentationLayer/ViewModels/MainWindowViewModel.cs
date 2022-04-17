@@ -61,6 +61,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(WindowStatusMessage));
                 OnPropertyChanged(nameof(CanDeleteEnvironment));
                 OnPropertyChanged(nameof(CanDuplicateEnvironment));
+                OnPropertyChanged(nameof(CanExecuteMassUpdate));
             }
         }
 
@@ -332,6 +333,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             OnPropertyChanged(nameof(WindowStatusMessage));
             OnPropertyChanged(nameof(CanDeleteEnvironment));
             OnPropertyChanged(nameof(CanDuplicateEnvironment));
+            OnPropertyChanged(nameof(CanExecuteMassUpdate));
         }
 
         /// <summary>
@@ -588,6 +590,32 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public bool? SelectedVariableIsFolder => SelectedVariable.IsFolder;
 
         private EnvironmentVariableViewModel _selectedVariable;
+
+        public void RefreshEnvironments()
+        {
+            Environments.Clear();
+            Backups.Clear();
+            Templates.Clear();
+
+            var environments = GetEnvironments();
+            var backups = GetBackupEnvironments();
+            var templates = GetTemplateEnvironments();
+
+            foreach (var environment in environments)
+            {
+                Environments.Add(environment);
+            }
+
+            foreach (var environment in backups)
+            {
+                Backups.Add(environment);
+            }
+
+            foreach (var environment in templates)
+            {
+                Templates.Add(environment);
+            }
+        }
 
         private ObservableCollection<EnvironmentViewModel> GetEnvironments()
         {
@@ -1026,6 +1054,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public bool CanDeleteEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
         
         public bool CanDuplicateEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
+
+        public bool CanExecuteMassUpdate => !IsChangeInProgress && !EditingEnabled;
 
         public void DuplicateCurrentEnvironment()
         {

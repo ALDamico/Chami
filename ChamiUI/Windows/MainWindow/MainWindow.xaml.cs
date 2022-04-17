@@ -711,7 +711,8 @@ namespace ChamiUI.Windows.MainWindow
 
             switch (EnvironmentTypeTabItem.SelectedIndex)
             {
-                default: // case 0
+                //case 0:
+                default:
                     ViewModel.ChangeTab(EnvironmentType.NormalEnvironment);
                     break;
                 case 1:
@@ -805,6 +806,24 @@ namespace ChamiUI.Windows.MainWindow
         private void DuplicateEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             CreateNewEnvironmentWindow(this, ViewModel.SelectedEnvironment.Clone());
+        }
+
+        private void MassUpdateCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.CanExecuteMassUpdate;
+        }
+
+        private void MassUpdateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            var childWindow = new MassUpdateWindow.MassUpdateWindow();
+            
+            childWindow.MassUpdateExecuted += OnMassUpdateExecuted;
+            childWindow.ShowDialog();
+        }
+
+        private void OnMassUpdateExecuted(object sender, MassUpdateEventArgs e)
+        {
+            ViewModel.RefreshEnvironments();
         }
     }
 }

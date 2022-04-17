@@ -376,6 +376,37 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string CloseWindowButton_Content {
+            get {
+                return ResourceManager.GetString("CloseWindowButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirm close.
+        /// </summary>
+        public static string ConfirmCloseWindowCaption {
+            get {
+                return ResourceManager.GetString("ConfirmCloseWindowCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Are you sure you want to close this window? 
+        ///A
+        ///
+        ///
+        ///ny unsaved changes will be lost..
+        /// </summary>
+        public static string ConfirmCloseWindowText {
+            get {
+                return ResourceManager.GetString("ConfirmCloseWindowText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string ConsoleClearMenuItem {
@@ -408,6 +439,24 @@ namespace ChamiUI.Localization {
         public static string CopyEnvironmentVariableMenuItem_Header {
             get {
                 return ResourceManager.GetString("CopyEnvironmentVariableMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Create variable if missing.
+        /// </summary>
+        public static string CreateVariableIfNotFoundLabel_Content {
+            get {
+                return ResourceManager.GetString("CreateVariableIfNotFoundLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If checked, Chami will create automatically this variable if it does not already exist..
+        /// </summary>
+        public static string CreateVariableIfNotFoundLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("CreateVariableIfNotFoundLabel_ToolTip", resourceCulture);
             }
         }
         
@@ -814,6 +863,15 @@ namespace ChamiUI.Localization {
         public static string ExampleTextTextBox_Text {
             get {
                 return ResourceManager.GetString("ExampleTextTextBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update.
+        /// </summary>
+        public static string ExecuteUpdateButton_Content {
+            get {
+                return ResourceManager.GetString("ExecuteUpdateButton_Content", resourceCulture);
             }
         }
         
@@ -1432,6 +1490,85 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mass update.
+        /// </summary>
+        public static string MassUpdateMenuItem_Header {
+            get {
+                return ResourceManager.GetString("MassUpdateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update all.
+        /// </summary>
+        public static string MassUpdateStrategyName_UpdateAll {
+            get {
+                return ResourceManager.GetString("MassUpdateStrategyName_UpdateAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update selected.
+        /// </summary>
+        public static string MassUpdateStrategyName_UpdateSelected {
+            get {
+                return ResourceManager.GetString("MassUpdateStrategyName_UpdateSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update mode.
+        /// </summary>
+        public static string MassUpdateStrategySelectorLabel_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateStrategySelectorLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable.
+        /// </summary>
+        public static string MassUpdateVariableComboboxLabel_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateVariableComboboxLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string MassUpdateWindowSelectAllButton_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateWindowSelectAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select none.
+        /// </summary>
+        public static string MassUpdateWindowSelectNoneButton_Content {
+            get {
+                return ResourceManager.GetString("MassUpdateWindowSelectNoneButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mass update.
+        /// </summary>
+        public static string MassUpdateWindowTitle {
+            get {
+                return ResourceManager.GetString("MassUpdateWindowTitle", resourceCulture);
+            }
+        }
+
+        /// <summary>
+        ///   Looks up a localized string similar to Mass update.
+        /// </summary>
+        public static string MassUpdateWindowTitle_Content
+        {
+            get { return ResourceManager.GetString("MassUpdateWindowTitle_Content", resourceCulture); }
+        }
+
         ///   Looks up a localized string similar to An unknown error occurred while trying to show Chami&apos;s application window..
         /// </summary>
         public static string MainWindowInitError {
@@ -1635,6 +1772,15 @@ namespace ChamiUI.Localization {
         public static string NewTemplateWindowTitle_Title {
             get {
                 return ResourceManager.GetString("NewTemplateWindowTitle_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There are no environments to update!.
+        /// </summary>
+        public static string NoEnvironmentsToUpdateErrorMessage {
+            get {
+                return ResourceManager.GetString("NoEnvironmentsToUpdateErrorMessage", resourceCulture);
             }
         }
         
@@ -1912,6 +2058,15 @@ namespace ChamiUI.Localization {
         public static string SaveEnvironmentUnknownErrorMessage {
             get {
                 return ResourceManager.GetString("SaveEnvironmentUnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment to update.
+        /// </summary>
+        public static string SelectAllSelectorLabel_Content {
+            get {
+                return ResourceManager.GetString("SelectAllSelectorLabel_Content", resourceCulture);
             }
         }
         
@@ -2275,8 +2430,15 @@ namespace ChamiUI.Localization {
                 return ResourceManager.GetString("VariablesTabItem_Header", resourceCulture);
             }
         }
-        
+
         /// <summary>
+        ///   Looks up a localized string similar to Value.
+        /// </summary>
+        public static string VariableValueLabel_Content
+        {
+            get { return ResourceManager.GetString("VariableValueLabel_Content", resourceCulture); }
+        }
+
         ///   Looks up a localized string similar to Log level.
         /// </summary>
         public static string VerbosityLevelLabel_Content {
