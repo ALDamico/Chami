@@ -8,7 +8,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// <summary>
     /// Contains information about how the console should appear in the application.
     /// </summary>
-    public class ConsoleAppearanceViewModel : SettingCategoryViewModelBase
+    public class ConsoleAppearanceViewModel : GenericLabelViewModel
     {
         /// <summary>
         /// Constructs a new <see cref="ConsoleAppearanceViewModel"/> object, retrieves the list of installed fonts on

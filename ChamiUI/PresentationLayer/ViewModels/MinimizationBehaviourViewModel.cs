@@ -7,7 +7,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// <summary>
     /// Represents the settings that control how the main window behaves when it's minimized.
     /// </summary>
-    public class MinimizationBehaviourViewModel : SettingCategoryViewModelBase
+    public class MinimizationBehaviourViewModel : GenericLabelViewModel
     {
         /// <summary>
         /// Constructs a new <see cref="MinimizationBehaviourViewModel"/> and populates its list of available

@@ -845,4 +845,37 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="MainWindowInitError" xml:space="preserve">
     <value>Si è verificato un errore sconosciuto mentre Chami tentava di visualizzare la finestra dell'applicazione.</value>
   </data>
+  <data name="VerbosityLevelLabel_Content" xml:space="preserve">
+    <value>Livello di log</value>
+  </data>
+  <data name="LogLevelVerbose" xml:space="preserve">
+    <value>Verboso</value>
+  </data>
+  <data name="LogLevelVerboseDescription" xml:space="preserve">
+    <value>Scrivi tutto sul log.</value>
+  </data>
+  <data name="LogLevelDebugDescription" xml:space="preserve">
+    <value>Scrive informazioni utili per il debugging e la risoluzione dei problemi. Utile per i contributori al codice di Chami.</value>
+  </data>
+  <data name="LogLevelInformation" xml:space="preserve">
+    <value>Informazioni</value>
+  </data>
+  <data name="LogLevelInformationDescription" xml:space="preserve">
+    <value>Il livello di logging predefinito. È il livello di logging adatto alla maggior parte degli utenti.</value>
+  </data>
+  <data name="LogLevelWarning" xml:space="preserve">
+    <value>Avvisi</value>
+  </data>
+  <data name="LogLevelError" xml:space="preserve">
+    <value>Errori</value>
+  </data>
+  <data name="LogLevelErrorDescription" xml:space="preserve">
+    <value>Scrive nel logo esclusivamente gli eventi di errore. Per gli utenti che amano vivere pericolosamente.</value>
+  </data>
+  <data name="LogLevelFatal" xml:space="preserve">
+    <value>Errori fatali</value>
+  </data>
+  <data name="LogLevelFatalDescription" xml:space="preserve">
+    <value>Scrive nel log solo gli errori più gravi che impediscono l'esecuzione di Chami.</value>
+  </data>
 </root>

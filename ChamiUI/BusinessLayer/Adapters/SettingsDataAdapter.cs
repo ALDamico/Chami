@@ -70,6 +70,7 @@ namespace ChamiUI.BusinessLayer.Adapters
 
                 object propertyValue = null;
                 var targetTypeName = setting.Type;
+
                 try
                 {
                     propertyValue = GetBoxedConvertedObject(targetTypeName, setting.Value);
@@ -88,18 +89,26 @@ namespace ChamiUI.BusinessLayer.Adapters
                     }
                     catch (MissingMethodException)
                     {
-                        var converter = Activator.CreateInstance(nameof(ChamiUI), setting.Converter);
-                        if (converter != null)
+                        if (setting.Converter != null)
                         {
-                            var unwrappedConverter = converter.Unwrap();
-                            if (unwrappedConverter != null)
+                            var converter = Activator.CreateInstance(nameof(ChamiUI), setting.Converter);
+                            if (converter != null)
                             {
-                                var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
-                                if (methodInfo != null)
+                                var unwrappedConverter = converter.Unwrap();
+                                if (unwrappedConverter != null)
                                 {
-                                    propertyValue = methodInfo.Invoke(unwrappedConverter, new object[] { setting });
+                                    var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
+                                    if (methodInfo != null)
+                                    {
+                                        propertyValue = methodInfo.Invoke(unwrappedConverter, new object[] { setting });
+                                    }
                                 }
                             }
+                        }
+                        else
+                        {
+                            // The setting is an enum
+                            propertyValue = ConvertToEnumType(assemblyName, targetTypeName, setting);
                         }
                     }
                 }
@@ -118,6 +127,20 @@ namespace ChamiUI.BusinessLayer.Adapters
 
 
             return viewModel;
+        }
+
+        private static object ConvertToEnumType(string assemblyName, string targetTypeName, Setting setting)
+        {
+            object propertyValue = null;
+            var defaultValue = Activator.CreateInstance(assemblyName, targetTypeName);
+            if (defaultValue != null)
+            {
+                var unwrappedValue = defaultValue.Unwrap();
+                Type unwrappedValueType = unwrappedValue.GetType();
+                propertyValue = Enum.Parse(unwrappedValueType, setting.Value);
+            }
+
+            return propertyValue;
         }
 
         private object AttemptConversion(string targetTypeName, Setting setting)

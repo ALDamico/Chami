@@ -24,6 +24,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using Serilog.Events;
 
 namespace ChamiUI
 {
@@ -52,6 +53,29 @@ namespace ChamiUI
             }
         }
 
+        private ChamiLogger InitLogger(bool readSettings = false)
+        {
+            var chamiLogger = new ChamiLogger();
+            chamiLogger.AddFileSink("chami.log");
+
+            if (readSettings)
+            {
+                var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
+                var loggingSettings = settings.LoggingSettings;
+                
+                var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
+                if (loggingSettings.LoggingEnabled)
+                {
+                    minimumLogLevel = LogEventLevel.Fatal;
+                }
+
+                chamiLogger.SetMinumumLevel(minimumLogLevel);
+            }
+
+            return chamiLogger;
+
+        }
+
         private void InitCmdExecutorMessages()
         {
             CmdExecutorBase.StartingExecutionMessage = ChamiUIStrings.StartingExecutionMessage;
@@ -63,8 +87,7 @@ namespace ChamiUI
 
         private IServiceProvider CreateServices()
         {
-            var chamiLogger = new ChamiLogger();
-            chamiLogger.AddFileSink("chami.log");
+            var chamiLogger = InitLogger();
             Log.Logger = chamiLogger.GetLogger();
             var serviceCollection = new ServiceCollection()
                 .AddFluentMigratorCore()
@@ -74,7 +97,7 @@ namespace ChamiUI
                 .AddLogging(l => l.AddSerilog())
                 .AddSingleton<MainWindow>()
                 .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
-                .AddTransient(serviceProvider =>
+                .AddSingleton(serviceProvider =>
                 {
                     var connectionString = GetConnectionString();
                     return SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),

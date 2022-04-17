@@ -4,7 +4,7 @@ using ChamiUI.BusinessLayer.Adapters;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class SafeVariableViewModel : SettingCategoryViewModelBase
+    public class SafeVariableViewModel : GenericLabelViewModel
     {
         public SafeVariableViewModel()
         {

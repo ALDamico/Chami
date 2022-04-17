@@ -7,7 +7,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// <summary>
     /// Viewmodel for the <see cref="LanguageSelectorControl"/>
     /// </summary>
-    public class LanguageSelectorViewModel : SettingCategoryViewModelBase
+    public class LanguageSelectorViewModel : GenericLabelViewModel
     {
         /// <summary>
         /// Constructs a new <see cref="LanguageSelectorViewModel"/>

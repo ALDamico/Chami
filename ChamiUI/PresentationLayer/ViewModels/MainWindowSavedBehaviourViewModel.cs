@@ -11,7 +11,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// or the main window is hidden and shown again.
     /// </summary>
     [ExplicitSaveOnly]
-    public class MainWindowSavedBehaviourViewModel : SettingCategoryViewModelBase
+    public class MainWindowSavedBehaviourViewModel : GenericLabelViewModel
     {
 
         /// <summary>
