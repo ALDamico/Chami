@@ -763,6 +763,60 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The value of this variable in Windows doesn&apos;t match what Chami expects..
+        /// </summary>
+        public static string EnvironmentHealthMismatchedValueLongDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMismatchedValueLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mismatched value.
+        /// </summary>
+        public static string EnvironmentHealthMismatchedValueShortDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMismatchedValueShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chami couldn&apos;t find this variable among Windows environment variables..
+        /// </summary>
+        public static string EnvironmentHealthMissingValueLongDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMissingValueLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing value.
+        /// </summary>
+        public static string EnvironmentHealthMissingValueShortDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMissingValueShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This variable&apos;s value corresponds with the Chami environment..
+        /// </summary>
+        public static string EnvironmentHealthOkLongDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthOkLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string EnvironmentHealthOkShortDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthOkShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to (double click for details...).
         /// </summary>
         public static string EnvironmentHealthStatusBarItemDoubleClickHint_Text {
@@ -1391,6 +1445,15 @@ namespace ChamiUI.Localization {
         public static string ImportSelectAllButton_Content {
             get {
                 return ResourceManager.GetString("ImportSelectAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Converting to or from type {0} is not supported!.
+        /// </summary>
+        public static string InvalidConversionOperationMessage {
+            get {
+                return ResourceManager.GetString("InvalidConversionOperationMessage", resourceCulture);
             }
         }
         

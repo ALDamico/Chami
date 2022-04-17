@@ -911,4 +911,25 @@ Use a different name and try again.</value>
   <data name="EnvironmentHealthWindowListBoxHeader_Content" xml:space="preserve">
     <value>Variables</value>
   </data>
+  <data name="InvalidConversionOperationMessage" xml:space="preserve">
+    <value>Converting to or from type {0} is not supported!</value>
+  </data>
+  <data name="EnvironmentHealthOkShortDescription" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueShortDescription" xml:space="preserve">
+    <value>Mismatched value</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueShortDescription" xml:space="preserve">
+    <value>Missing value</value>
+  </data>
+  <data name="EnvironmentHealthOkLongDescription" xml:space="preserve">
+    <value>This variable's value corresponds with the Chami environment.</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueLongDescription" xml:space="preserve">
+    <value>The value of this variable in Windows doesn't match what Chami expects.</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueLongDescription" xml:space="preserve">
+    <value>Chami couldn't find this variable among Windows environment variables.</value>
+  </data>
 </root>

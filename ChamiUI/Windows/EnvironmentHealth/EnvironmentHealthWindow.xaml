@@ -6,45 +6,79 @@
         xmlns:local="clr-namespace:ChamiUI.Windows.EnvironmentHealth"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
         mc:Ignorable="d"
         Title="{lex:Loc Key=EnvironmentHealthWindowTitle}" Height="450" Width="600"
         d:DataContext="{d:DesignInstance viewModels:EnvironmentHealthViewModel}"
-        ResizeMode="NoResize"
-        >
+        ResizeMode="NoResize">
+    <Window.Resources>
+        <converters:EnvironmentVariableHealthTypeToDescriptionConverter x:Key="HealthTypeToDescriptionConverter" />
+    </Window.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" 
-               FontSize="28" x:Name="EnvironmentHealthWindowHeader" 
+
+        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+               FontSize="28" x:Name="EnvironmentHealthWindowHeader"
                FontWeight="DemiBold" HorizontalContentAlignment="Center"
-               Content="{lex:Loc}" ></Label>
-        <TextBlock Foreground="DimGray" 
-                   Grid.Row="1" 
-                   Grid.Column="0" 
+               Content="{lex:Loc}">
+        </Label>
+        <TextBlock Foreground="DimGray"
+                   Grid.Row="1"
+                   Grid.Column="0"
                    Grid.ColumnSpan="2"
-                   x:Name="EnvironmentHealthWindowCaption" 
-                   Text="{lex:Loc}"></TextBlock>
-        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Orientation="Horizontal">
+                   x:Name="EnvironmentHealthWindowCaption"
+                   Text="{lex:Loc}">
+        </TextBlock>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center"
+                    Orientation="Horizontal">
             <TextBlock FontWeight="DemiBold" Text="Score: "></TextBlock>
             <TextBlock Text="{Binding HealthIndexPercentage}"></TextBlock>
         </StackPanel>
         <Label Grid.Row="3" Grid.Column="0" x:Name="EnvironmentHealthWindowListBoxHeader" Content="{lex:Loc}"></Label>
-        <ListBox Grid.Row="4" Grid.Column="0" Margin="5" ItemsSource="{Binding HealthStatuses}" DisplayMemberPath="EnvironmentVariable.Name">
-        </ListBox>
-        
+        <ListView Grid.Row="4"
+                  Grid.Column="0"
+                  Grid.ColumnSpan="2"
+                  Margin="5"
+                  ItemsSource="{Binding HealthStatuses}"
+                  DisplayMemberPath="EnvironmentVariable.Name">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Variable name"
+                                        DisplayMemberBinding="{Binding EnvironmentVariable.Name}">
+                        </GridViewColumn>
+                        <GridViewColumn Header="Expected value"
+                                        DisplayMemberBinding="{Binding ExpectedValue}"/>
+                        <GridViewColumn Header="Actual value" 
+                                        DisplayMemberBinding="{Binding ActualValue}"/>
+                        <GridViewColumn Header="Issue" DisplayMemberBinding="{Binding IssueType, Converter={StaticResource HealthTypeToDescriptionConverter}, ConverterParameter=ShortDescription}"/>
+                        <GridViewColumn Header="Details">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Details"></Button>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
         <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button x:Name="EnvironmentHealthWindowCloseButton" Content="{lex:Loc}" Click="EnvironmentHealthWindowCloseButton_OnClick" ></Button>
+            <Button x:Name="EnvironmentHealthWindowCloseButton" Content="{lex:Loc}"
+                    Click="EnvironmentHealthWindowCloseButton_OnClick">
+            </Button>
         </StackPanel>
     </Grid>
 </Window>

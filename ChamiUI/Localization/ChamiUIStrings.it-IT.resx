@@ -911,4 +911,25 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="EnvironmentHealthWindowListBoxHeader_Content" xml:space="preserve">
     <value>Variabili</value>
   </data>
+  <data name="InvalidConversionOperationMessage" xml:space="preserve">
+    <value>La conversione da o verso il tipo {0} non è supportata!</value>
+  </data>
+  <data name="EnvironmentHealthOkShortDescription" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueShortDescription" xml:space="preserve">
+    <value>Valore non corrispondente</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueShortDescription" xml:space="preserve">
+    <value>Valore mancante</value>
+  </data>
+  <data name="EnvironmentHealthOkLongDescription" xml:space="preserve">
+    <value>Il valore della variabile corrisponde con quello dell'ambiente di Chami.</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueLongDescription" xml:space="preserve">
+    <value>Il valore di questa variabile in Windows non corrisponde a ciò che Chami si aspetta.</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueLongDescription" xml:space="preserve">
+    <value>Chami non ha trovato questa variabile tra le variabili di ambiente di Windows.</value>
+  </data>
 </root>
