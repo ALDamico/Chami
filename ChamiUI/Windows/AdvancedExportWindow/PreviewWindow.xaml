@@ -9,20 +9,44 @@
         mc:Ignorable="d"
         Title="PreviewWindow" Height="450" Width="800"
         ResizeMode="NoResize"
-        d:DataContext="{d:DesignInstance viewModels:AdvancedExportWindowViewModel}"
-        >
+        d:DataContext="{d:DesignInstance viewModels:AdvancedExportWindowViewModel}">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"></Setter>
+        </Style>
+    </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="Copy" x:Name="CopyCommandBinding" CanExecute="CopyCommandBinding_OnCanExecute"
+                        Executed="CopyCommandBinding_OnExecuted">
+        </CommandBinding>
+    </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
             <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
-        <ScrollViewer Grid.Row="0">
-            <TextBox VerticalScrollBarVisibility="Auto"  IsReadOnly="True" Text="{Binding Preview}" IsReadOnlyCaretVisible="True" x:Name="PreviewWindowTextBox"></TextBox>
-        </ScrollViewer>
-        
-        <DockPanel LastChildFill="False" Grid.Row="1" HorizontalAlignment="Right">
-            <Button DockPanel.Dock="Right" x:Name="PreviewWindowCloseButton" Content="{lex:Loc}" Click="PreviewWindowCloseButton_OnClick"></Button>
-            <Button x:Name="PreviewWindowCopyButton" Content="{lex:Loc}" Click="PreviewWindowCopyButton_OnClick"></Button>
+
+        <TextBox ScrollViewer.VerticalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto"
+                 IsReadOnly="True"
+                 Text="{Binding Preview}"
+                 IsReadOnlyCaretVisible="True"
+                 x:Name="PreviewWindowTextBox">
+        </TextBox>
+
+
+        <DockPanel LastChildFill="False"
+                   Grid.Row="1"
+                   HorizontalAlignment="Right"
+                   Margin="5">
+            <Button DockPanel.Dock="Right"
+                    x:Name="PreviewWindowCloseButton"
+                    Content="{lex:Loc}"
+                    Click="PreviewWindowCloseButton_OnClick">
+            </Button>
+            <Button x:Name="PreviewWindowCopyButton"
+                    Content="{lex:Loc}"
+                    Click="PreviewWindowCopyButton_OnClick">
+            </Button>
         </DockPanel>
     </Grid>
 </Window>
