@@ -939,4 +939,38 @@ Any unsaved changes will be lost.</value>
   <data name="LogLevelFatalDescription" xml:space="preserve">
     <value>Log only the most severe errors that prevent Chami for running.</value>
   </data>
+  <data name="AdvancedExportersMenuItem_Header" xml:space="preserve">
+    <value>Advanced export</value>
+  </data>
+  <data name="AdvancedExportWindowTitleLabel_Content" xml:space="preserve">
+    <value>Advanced export</value>
+  </data>
+  <data name="AdvancedExportWindowHelpLabel_Text" xml:space="preserve">
+    <value>Use this window to export an environment to a batch (*.cmd) or a PowerShell (*.ps1) script.
+This feature is highly experimental and you should check the resulting output before running it, since it could generate unsafe code.</value>
+  </data>
+  <data name="AdvancedExportWindowEnvironmentLabel_Content" xml:space="preserve">
+    <value>Environment</value>
+  </data>
+  <data name="AdvancedExportWindowFilenameLabel_Content" xml:space="preserve">
+    <value>Script path</value>
+  </data>
+  <data name="AdvancedExportWindowOutputTypeLabel_Content" xml:space="preserve">
+    <value>Output type</value>
+  </data>
+  <data name="AdvancedExportWindowIncludeRemarksLabel_Content" xml:space="preserve">
+    <value>Include remarks</value>
+  </data>
+  <data name="AdvancedExportWindowRemarksLabel_Content" xml:space="preserve">
+    <value>Remarks</value>
+  </data>
+  <data name="AdvancedExportWindowVariablesLabel_Content" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="AdvancedExportWindowVariableNameColumn" xml:space="preserve">
+    <value>Variable name</value>
+  </data>
+  <data name="AdvancedExportWindowIncludeColumn" xml:space="preserve">
+    <value>Include</value>
+  </data>
 </root>

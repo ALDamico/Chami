@@ -241,6 +241,10 @@
                           x:Name="ExportMenuItem"
                           Click="ExportMenuItem_Click" />
                 <Separator />
+                <MenuItem Header="{lex:Loc}" 
+                          x:Name="AdvancedExportersMenuItem" 
+                          Click="AdvancedExportersMenuItem_OnClick"></MenuItem>
+                <Separator />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="QuitApplicationMenuItem"
                           Click="QuitApplicationMenuItem_OnClick" />

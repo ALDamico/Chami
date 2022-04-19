@@ -160,6 +160,106 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced export.
+        /// </summary>
+        public static string AdvancedExportersMenuItem_Header {
+            get {
+                return ResourceManager.GetString("AdvancedExportersMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment.
+        /// </summary>
+        public static string AdvancedExportWindowEnvironmentLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowEnvironmentLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Script path.
+        /// </summary>
+        public static string AdvancedExportWindowFilenameLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowFilenameLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Use this window to export an environment to a batch (*.cmd) or a PowerShell (*.ps1) script.
+        ///This feature is highly experimental and you should check the resulting output before running it, since it could generate unsafe code..
+        /// </summary>
+        public static string AdvancedExportWindowHelpLabel_Text {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowHelpLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include.
+        /// </summary>
+        public static string AdvancedExportWindowIncludeColumn {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowIncludeColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Include remarks.
+        /// </summary>
+        public static string AdvancedExportWindowIncludeRemarksLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowIncludeRemarksLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output type.
+        /// </summary>
+        public static string AdvancedExportWindowOutputTypeLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowOutputTypeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Remarks.
+        /// </summary>
+        public static string AdvancedExportWindowRemarksLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowRemarksLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Advanced export.
+        /// </summary>
+        public static string AdvancedExportWindowTitleLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowTitleLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable name.
+        /// </summary>
+        public static string AdvancedExportWindowVariableNameColumn {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowVariableNameColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        public static string AdvancedExportWindowVariablesLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowVariablesLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorting.
         /// </summary>
         public static string AdvancedSortAndFilterOptionsExpander_Header {
@@ -395,10 +495,7 @@ namespace ChamiUI.Localization {
         
         /// <summary>
         ///   Looks up a localized string similar to Are you sure you want to close this window? 
-        ///A
-        ///
-        ///
-        ///ny unsaved changes will be lost..
+        ///Any unsaved changes will be lost..
         /// </summary>
         public static string ConfirmCloseWindowText {
             get {
@@ -1490,6 +1587,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred while trying to show Chami&apos;s application window..
+        /// </summary>
+        public static string MainWindowInitError {
+            get {
+                return ResourceManager.GetString("MainWindowInitError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Mass update.
         /// </summary>
         public static string MassUpdateMenuItem_Header {
@@ -1560,20 +1666,13 @@ namespace ChamiUI.Localization {
                 return ResourceManager.GetString("MassUpdateWindowTitle", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Mass update.
         /// </summary>
-        public static string MassUpdateWindowTitle_Content
-        {
-            get { return ResourceManager.GetString("MassUpdateWindowTitle_Content", resourceCulture); }
-        }
-
-        ///   Looks up a localized string similar to An unknown error occurred while trying to show Chami&apos;s application window..
-        /// </summary>
-        public static string MainWindowInitError {
+        public static string MassUpdateWindowTitle_Content {
             get {
-                return ResourceManager.GetString("MainWindowInitError", resourceCulture);
+                return ResourceManager.GetString("MassUpdateWindowTitle_Content", resourceCulture);
             }
         }
         
@@ -2430,15 +2529,17 @@ namespace ChamiUI.Localization {
                 return ResourceManager.GetString("VariablesTabItem_Header", resourceCulture);
             }
         }
-
+        
         /// <summary>
         ///   Looks up a localized string similar to Value.
         /// </summary>
-        public static string VariableValueLabel_Content
-        {
-            get { return ResourceManager.GetString("VariableValueLabel_Content", resourceCulture); }
+        public static string VariableValueLabel_Content {
+            get {
+                return ResourceManager.GetString("VariableValueLabel_Content", resourceCulture);
+            }
         }
-
+        
+        /// <summary>
         ///   Looks up a localized string similar to Log level.
         /// </summary>
         public static string VerbosityLevelLabel_Content {

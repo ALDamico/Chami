@@ -21,6 +21,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private bool? _isValid;
         private bool _markedForDeletion;
         private bool _isFolder;
+        private bool _markedForExporting;
+
+        public bool MarkedForExporting
+        {
+            get => _markedForExporting;
+            set
+            {
+                _markedForExporting = value;
+                OnPropertyChanged(nameof(MarkedForExporting));
+            }
+        }
 
         public bool IsFolder
         {

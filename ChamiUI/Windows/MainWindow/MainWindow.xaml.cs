@@ -825,5 +825,28 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.RefreshEnvironments();
         }
+
+        private void AdvancedExportersMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            var advancedExporterWindow = new AdvancedExportWindow.AdvancedExportWindow();
+
+            var newDataContext = new AdvancedExportWindowViewModel()
+            {
+                SelectedEnvironment = ViewModel.SelectedEnvironment
+            };
+
+           
+
+            var myDataContext = DataContext as MainWindowViewModel;
+            foreach (var element in ViewModel.Environments)
+            {
+                newDataContext.Environments.Add(element);
+            }
+
+            advancedExporterWindow.DataContext = newDataContext;
+            
+            advancedExporterWindow.Owner = this;
+            advancedExporterWindow.ShowDialog();
+        }
     }
 }

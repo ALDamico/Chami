@@ -58,6 +58,9 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var pInfo = viewModel.GetType().GetProperty(setting.PropertyName);
                 if (pInfo == null)
                 {
+                    #if DEBUG
+                    continue;
+                    #endif
                     throw new NullReferenceException(
                         $"The requested property was not found in type {viewModel.GetType()}");
                 }
