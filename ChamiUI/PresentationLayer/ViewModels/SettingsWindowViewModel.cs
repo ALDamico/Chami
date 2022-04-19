@@ -43,6 +43,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 SettingsCategoriesFactory.GetMinimizationBehaviourSettingCategory(Settings);
             SettingsCategories.Add(Settings.MinimizationBehaviour);
 
+            Settings.AdvancedExporterSettings = SettingsCategoriesFactory.GetAdvancedExporterSettingCategory(Settings);
+            SettingsCategories.Add(Settings.AdvancedExporterSettings);
+
             CurrentSection = SettingsCategories.FirstOrDefault();
         }
 

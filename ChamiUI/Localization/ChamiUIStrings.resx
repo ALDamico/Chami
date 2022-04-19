@@ -973,4 +973,28 @@ This feature is highly experimental and you should check the resulting output be
   <data name="AdvancedExportWindowIncludeColumn" xml:space="preserve">
     <value>Include</value>
   </data>
+  <data name="AdvancedExportWindowCloseButton_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="AdvancedExportWindowExecuteButton_Content" xml:space="preserve">
+    <value>Export</value>
+  </data>
+  <data name="AdvancedExportWindowSelectAllButton_Content" xml:space="preserve">
+    <value>Select all</value>
+  </data>
+  <data name="AdvancedExportWindowDeselectAllButton_Content" xml:space="preserve">
+    <value>Deselect all</value>
+  </data>
+  <data name="AdvancedExportWindowPreviewButton_Content" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="AdvancedExportWindowMaxLineLengthLabel" xml:space="preserve">
+    <value>Max line length</value>
+  </data>
+  <data name="AdvancedExporterCategory" xml:space="preserve">
+    <value>Advanced exporters</value>
+  </data>
+  <data name="AdvancedExporterCategoryDescription" xml:space="preserve">
+    <value>Manage the behaviour of Chami's advanced exporters.</value>
+  </data>
 </root>

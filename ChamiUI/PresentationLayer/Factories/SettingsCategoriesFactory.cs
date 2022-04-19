@@ -61,5 +61,15 @@ namespace ChamiUI.PresentationLayer.Factories
             minimizationBehaviour.IconPath = Enum.GetName(PackIconFontAwesomeKind.WindowMaximizeRegular);
             return minimizationBehaviour;
         }
+
+        public static AdvancedExporterSettingsViewModel GetAdvancedExporterSettingCategory(SettingsViewModel settings)
+        {
+            var advancedExporterSettings = settings.AdvancedExporterSettings;
+            advancedExporterSettings.DisplayName = ChamiUIStrings.AdvancedExporterCategory;
+            advancedExporterSettings.Description = ChamiUIStrings.AdvancedExporterCategoryDescription;
+            advancedExporterSettings.IconPath = Enum.GetName(PackIconFontAwesomeKind.FileExportSolid);
+
+            return advancedExporterSettings;
+        }
     }
 }

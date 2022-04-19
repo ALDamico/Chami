@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using ChamiUI.BusinessLayer.Exporters;
 using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -7,12 +8,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         public AdvancedExportWindowViewModel()
         {
+            LineMaxLength = 80;
             Environments = new ObservableCollection<EnvironmentViewModel>();
+            AvailableExporters = new ObservableCollection<AdvancedExporterViewModel>();
+            
+            //AvailableExporters.Add(new AdvancedExporterViewModel(){new EnvironmentBatchFileExporter()});
         }
         private string _scriptPath;
         private EnvironmentViewModel _selectedEnvironment;
         private bool _includeRemarks;
         private string _remarks;
+        private int _lineMaxLength;
+
+        public int LineMaxLength
+        {
+            get => _lineMaxLength;
+            set
+            {
+                _lineMaxLength = value;
+                OnPropertyChanged(nameof(LineMaxLength));
+            }
+        }
 
         public string Remarks
         {
@@ -60,15 +76,42 @@ namespace ChamiUI.PresentationLayer.ViewModels
         
         public ObservableCollection<EnvironmentViewModel> Environments { get; }
 
-        public void ClearMarkedVariables(EnvironmentViewModel viewModel)
+        public void ClearMarkedVariables(EnvironmentViewModel oldEnvironment, EnvironmentViewModel newEnvironment)
         {
-            if (viewModel != null)
+            if (oldEnvironment != null)
             {
-                foreach (var element in viewModel.EnvironmentVariables)
+                foreach (var element in oldEnvironment.EnvironmentVariables)
                 {
                     element.MarkedForExporting = false;
                 }
             }
+
+            if (newEnvironment == null)
+            {
+                return;
+            }
+
+            foreach (var element in newEnvironment.EnvironmentVariables)
+            {
+                element.MarkedForExporting = true;
+            }
         }
+
+        public void SetAllVariables(EnvironmentViewModel environment, bool targetValue)
+        {
+            if (environment == null)
+            {
+                return;
+            }
+
+            var environmentVariables = environment.EnvironmentVariables;
+
+            foreach (var environmentVariable in environmentVariables)
+            {
+                environmentVariable.MarkedForExporting = targetValue;
+            }
+        }
+        
+        public ObservableCollection<AdvancedExporterViewModel> AvailableExporters { get; }
     }
 }

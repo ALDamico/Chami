@@ -160,6 +160,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced exporters.
+        /// </summary>
+        public static string AdvancedExporterCategory {
+            get {
+                return ResourceManager.GetString("AdvancedExporterCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage the behaviour of Chami&apos;s advanced exporters..
+        /// </summary>
+        public static string AdvancedExporterCategoryDescription {
+            get {
+                return ResourceManager.GetString("AdvancedExporterCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advanced export.
         /// </summary>
         public static string AdvancedExportersMenuItem_Header {
@@ -169,11 +187,38 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string AdvancedExportWindowCloseButton_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowCloseButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Deselect all.
+        /// </summary>
+        public static string AdvancedExportWindowDeselectAllButton_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowDeselectAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Environment.
         /// </summary>
         public static string AdvancedExportWindowEnvironmentLabel_Content {
             get {
                 return ResourceManager.GetString("AdvancedExportWindowEnvironmentLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export.
+        /// </summary>
+        public static string AdvancedExportWindowExecuteButton_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowExecuteButton_Content", resourceCulture);
             }
         }
         
@@ -215,6 +260,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max line length.
+        /// </summary>
+        public static string AdvancedExportWindowMaxLineLengthLabel {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowMaxLineLengthLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output type.
         /// </summary>
         public static string AdvancedExportWindowOutputTypeLabel_Content {
@@ -224,11 +278,29 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Preview.
+        /// </summary>
+        public static string AdvancedExportWindowPreviewButton_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowPreviewButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remarks.
         /// </summary>
         public static string AdvancedExportWindowRemarksLabel_Content {
             get {
                 return ResourceManager.GetString("AdvancedExportWindowRemarksLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select all.
+        /// </summary>
+        public static string AdvancedExportWindowSelectAllButton_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowSelectAllButton_Content", resourceCulture);
             }
         }
         

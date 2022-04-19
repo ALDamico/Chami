@@ -967,4 +967,28 @@ Questa feature è altamente sperimentale e dovresti ispezionare il codice genera
   <data name="AdvancedExportWindowIncludeColumn" xml:space="preserve">
     <value>Includi</value>
   </data>
+  <data name="AdvancedExportWindowCloseButton_Content" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="AdvancedExportWindowExecuteButton_Content" xml:space="preserve">
+    <value>Esporta</value>
+  </data>
+  <data name="AdvancedExportWindowSelectAllButton_Content" xml:space="preserve">
+    <value>Seleziona tutte</value>
+  </data>
+  <data name="AdvancedExportWindowDeselectAllButton_Content" xml:space="preserve">
+    <value>Deseleziona tutte</value>
+  </data>
+  <data name="AdvancedExportWindowPreviewButton_Content" xml:space="preserve">
+    <value>Anteprima</value>
+  </data>
+  <data name="AdvancedExportWindowMaxLineLengthLabel" xml:space="preserve">
+    <value>Lunghezza max riga</value>
+  </data>
+  <data name="AdvancedExporterCategory" xml:space="preserve">
+    <value>Esportatori avanzati</value>
+  </data>
+  <data name="AdvancedExporterCategoryDescription" xml:space="preserve">
+    <value>Gestisce il comportamento degli esportatori avanzati di Chami.</value>
+  </data>
 </root>

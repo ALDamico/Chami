@@ -15,6 +15,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             LanguageSettings = new LanguageSelectorViewModel();
             MainWindowBehaviourSettings = new MainWindowSavedBehaviourViewModel();
             MinimizationBehaviour = new MinimizationBehaviourViewModel();
+            AdvancedExporterSettings = new AdvancedExporterSettingsViewModel();
         }
         /// <summary>
         /// Contains all the settings related to logging.
@@ -48,5 +49,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Contains the settings related to how the main window should react when the user clicks the minimize button.
         /// </summary>
         public MinimizationBehaviourViewModel MinimizationBehaviour { get; set; }
+        
+        public AdvancedExporterSettingsViewModel AdvancedExporterSettings { get; set; }
     }
 }
