@@ -2004,6 +2004,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string PreviewWindowCloseButton_Content {
+            get {
+                return ResourceManager.GetString("PreviewWindowCloseButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Copy.
+        /// </summary>
+        public static string PreviewWindowCopyButton_Content {
+            get {
+                return ResourceManager.GetString("PreviewWindowCopyButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process name.
         /// </summary>
         public static string ProcessNameColumn {

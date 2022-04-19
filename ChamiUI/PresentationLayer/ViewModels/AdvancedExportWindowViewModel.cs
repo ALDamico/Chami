@@ -1,3 +1,4 @@
+using System;
 using System.Collections.ObjectModel;
 using ChamiUI.BusinessLayer.Exporters;
 using NetOffice.ExcelApi;
@@ -19,6 +20,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private bool _includeRemarks;
         private string _remarks;
         private int _lineMaxLength;
+        private string _preview;
+
+        public string Preview
+        {
+            get => _preview;
+            set
+            {
+                _preview = value;
+                OnPropertyChanged(nameof(Preview));
+            }
+        }
 
         public int LineMaxLength
         {
@@ -113,5 +125,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
         
         public ObservableCollection<AdvancedExporterViewModel> AvailableExporters { get; }
+
+        public void GeneratePreview()
+        {
+            var exportInfo = new ScriptExportInfo()
+            {
+                Environment = SelectedEnvironment,
+                MaxLineLength = LineMaxLength,
+                Remarks = Remarks
+            };
+
+            var exporter = new EnvironmentBatchFileExporter(exportInfo);
+            Preview = exporter.GetPreview(Guid.NewGuid().ToString());
+        }
     }
 }

@@ -63,17 +63,20 @@ namespace ChamiUI.Windows.AdvancedExportWindow
         private void AdvancedExportWindowPreviewButton_OnClick(object sender, RoutedEventArgs e)
         {
             var vm = DataContext as AdvancedExportWindowViewModel;
-            var exportInfo = new ScriptExportInfo()
+
+            if (vm == null)
             {
-                Environment = vm.SelectedEnvironment,
-                MaxLineLength = vm.LineMaxLength,
-                Remarks = vm.Remarks
-            };
+                MessageBox.Show("Error generating preview!");
+                return;
+            }
+            
+            vm.GeneratePreview();
 
-            var exporter = new EnvironmentBatchFileExporter(exportInfo);
-            var preview = exporter.GetPreview("abcd");
-
-            MessageBox.Show(preview);
+            var previewWindow = new PreviewWindow();
+            previewWindow.Owner = this;
+            previewWindow.DataContext = vm;
+            
+            previewWindow.Show();
         }
     }
 }

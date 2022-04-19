@@ -18,7 +18,7 @@ namespace ChamiUI.BusinessLayer.Exporters
 
         public Task ExportAsync(string filename)
         {
-            var sw = GetStream(filename);
+            var sw = GetStream();
             var streamReader = new StreamReader(sw);
             File.WriteAllTextAsync(filename, streamReader.ReadToEnd());
             
@@ -59,14 +59,14 @@ namespace ChamiUI.BusinessLayer.Exporters
 
         public Task<string> GetPreviewAsync(string filename)
         {
-            var sw = GetStream(filename);
+            var sw = GetStream();
 
             sw.Seek(0, SeekOrigin.Begin);
             var streamReader = new StreamReader(sw);
             return streamReader.ReadToEndAsync();
         }
 
-        private Stream GetStream(string filename)
+        private Stream GetStream()
         {
             var stream = new MemoryStream();
             var sw = new StreamWriter(stream);
@@ -89,7 +89,7 @@ namespace ChamiUI.BusinessLayer.Exporters
                 
                 sw.WriteLine($"ECHO Setting {variableName} to {variableValue}");
                 
-                sw.WriteLine($"/C SETX \"{variableName}\" \"{variableValue}\"");
+                sw.WriteLine($"SETX \"{variableName}\" \"{variableValue}\"");
                 sw.WriteLine();
             }
             

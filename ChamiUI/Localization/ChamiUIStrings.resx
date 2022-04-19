@@ -997,4 +997,10 @@ This feature is highly experimental and you should check the resulting output be
   <data name="AdvancedExporterCategoryDescription" xml:space="preserve">
     <value>Manage the behaviour of Chami's advanced exporters.</value>
   </data>
+  <data name="PreviewWindowCloseButton_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="PreviewWindowCopyButton_Content" xml:space="preserve">
+    <value>Copy</value>
+  </data>
 </root>

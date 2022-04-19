@@ -991,4 +991,10 @@ Questa feature è altamente sperimentale e dovresti ispezionare il codice genera
   <data name="AdvancedExporterCategoryDescription" xml:space="preserve">
     <value>Gestisce il comportamento degli esportatori avanzati di Chami.</value>
   </data>
+  <data name="PreviewWindowCloseButton_Content" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="PreviewWindowCopyButton_Content" xml:space="preserve">
+    <value>Copia</value>
+  </data>
 </root>
