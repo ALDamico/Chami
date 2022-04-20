@@ -142,7 +142,8 @@
                                         <DataTemplate>
                                             <StackPanel HorizontalAlignment="Center">
                                                 <CheckBox HorizontalAlignment="Center"
-                                                          IsChecked="{Binding MarkedForExporting}">
+                                                          IsChecked="{Binding MarkedForExporting}"
+                                                          d:DataContext="{d:DesignInstance  viewModels:EnvironmentVariableViewModel}">
                                                 </CheckBox>
                                             </StackPanel>
                                         </DataTemplate>

@@ -1,11 +1,10 @@
 using System.Windows;
 using System.Windows.Controls;
-using ChamiUI.BusinessLayer.Exporters;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.AdvancedExportWindow
 {
-    public partial class AdvancedExportWindow : Window
+    public partial class AdvancedExportWindow
     {
         public AdvancedExportWindow()
         {
@@ -72,10 +71,12 @@ namespace ChamiUI.Windows.AdvancedExportWindow
             
             vm.GeneratePreview();
 
-            var previewWindow = new PreviewWindow();
-            previewWindow.Owner = this;
-            previewWindow.DataContext = vm;
-            
+            var previewWindow = new PreviewWindow
+            {
+                Owner = this,
+                DataContext = vm
+            };
+
             previewWindow.Show();
         }
     }

@@ -1,4 +1,3 @@
-using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using ChamiUI.BusinessLayer.Exporters;
@@ -12,24 +11,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             LineMaxLength = 80;
             Environments = new ObservableCollection<EnvironmentViewModel>();
-            AvailableExporters = new ObservableCollection<AdvancedExporterViewModel>();
-
-            AvailableExporters.Add(new AdvancedExporterViewModel()
+            AvailableExporters = new ObservableCollection<AdvancedExporterViewModel>
             {
-                AdvancedExporterFactory = (scriptEportInfo) =>
+                new AdvancedExporterViewModel()
                 {
-                    return new EnvironmentBatchFileExporter(scriptEportInfo);
+                    AdvancedExporterFactory = (scriptEportInfo) => new EnvironmentBatchFileExporter(scriptEportInfo),
+                    DisplayName = ChamiUIStrings.EnvironmentBatchFileExporterDisplayName,
+                    Description = ChamiUIStrings.EnvironmentBatchFileExporterDescription
                 },
-                DisplayName = ChamiUIStrings.EnvironmentBatchFileExporterDisplayName,
-                Description = ChamiUIStrings.EnvironmentBatchFileExporterDescription
-            });
-
-            AvailableExporters.Add(new AdvancedExporterViewModel()
-            {
-                AdvancedExporterFactory = scriptExportInfo => new EnvironmentPowerShellScriptExporter(scriptExportInfo),
-                DisplayName = ChamiUIStrings.EnvironmentPowerShellScriptExporterDisplayName,
-                Description = ChamiUIStrings.EnvironmentPowerShellScriptExporterDescription
-            });
+                new AdvancedExporterViewModel()
+                {
+                    AdvancedExporterFactory = scriptExportInfo => new EnvironmentPowerShellScriptExporter(scriptExportInfo),
+                    DisplayName = ChamiUIStrings.EnvironmentPowerShellScriptExporterDisplayName,
+                    Description = ChamiUIStrings.EnvironmentPowerShellScriptExporterDescription
+                }
+            };
 
             SelectedExporter = AvailableExporters.First();
         }
@@ -40,6 +36,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private string _remarks;
         private int _lineMaxLength;
         private string _preview;
+        private AdvancedExporterViewModel _selectedExporter;
 
         public string Preview
         {
@@ -100,10 +97,34 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(ScriptPath));
             }
         }
-
-
+        
         public ObservableCollection<EnvironmentViewModel> Environments { get; }
 
+        public ObservableCollection<AdvancedExporterViewModel> AvailableExporters { get; }
+
+        public AdvancedExporterViewModel SelectedExporter
+        {
+            get => _selectedExporter;
+            set
+            {
+                _selectedExporter = value;
+                OnPropertyChanged(nameof(SelectedExporter));
+            }
+        }
+
+        public void GeneratePreview()
+        {
+            var exportInfo = new ScriptExportInfo()
+            {
+                Environment = SelectedEnvironment,
+                MaxLineLength = LineMaxLength,
+                Remarks = Remarks
+            };
+
+            var exporter = SelectedExporter.AdvancedExporterFactory.Invoke(exportInfo);
+            Preview = exporter.GetPreview();
+        }
+        
         public void ClearMarkedVariables(EnvironmentViewModel oldEnvironment, EnvironmentViewModel newEnvironment)
         {
             if (oldEnvironment != null)
@@ -138,32 +159,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 environmentVariable.MarkedForExporting = targetValue;
             }
-        }
-
-        public ObservableCollection<AdvancedExporterViewModel> AvailableExporters { get; }
-        private AdvancedExporterViewModel _selectedExporter;
-
-        public AdvancedExporterViewModel SelectedExporter
-        {
-            get => _selectedExporter;
-            set
-            {
-                _selectedExporter = value;
-                OnPropertyChanged(nameof(SelectedExporter));
-            }
-        }
-
-        public void GeneratePreview()
-        {
-            var exportInfo = new ScriptExportInfo()
-            {
-                Environment = SelectedEnvironment,
-                MaxLineLength = LineMaxLength,
-                Remarks = Remarks
-            };
-
-            var exporter = SelectedExporter.AdvancedExporterFactory.Invoke(exportInfo);
-            Preview = exporter.GetPreview();
         }
     }
 }

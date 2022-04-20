@@ -23,7 +23,6 @@ using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using Serilog;
-using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
 {
