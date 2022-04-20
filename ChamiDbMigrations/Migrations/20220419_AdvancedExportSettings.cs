@@ -4,7 +4,7 @@ using FluentMigrator;
 
 namespace ChamiDbMigrations.Migrations
 {
-   // [Migration(20220419)]
+    [Migration(20220419)]
     public class AdvancedExportSettings : Migration
     {
         public override void Up()
@@ -13,12 +13,18 @@ namespace ChamiDbMigrations.Migrations
                 .Row(_maxLengthSetting)
                 .Row(_variableNameColumnWidth)
                 .Row(_isMarkedColumnWidth)
-                ;
+                .Row(_previewBackground)
+                .Row(_previewForeground);
         }
 
         public override void Down()
         {
-            Delete.FromTable(AnnotationUtils.GetTableName(typeof(Setting))).Row(_maxLengthSetting);
+            Delete.FromTable(AnnotationUtils.GetTableName(typeof(Setting)))
+                .Row(_maxLengthSetting)
+                .Row(_variableNameColumnWidth)
+                .Row(_isMarkedColumnWidth)
+                .Row(_previewBackground)
+                .Row(_previewForeground);
         }
 
         private static readonly Setting _maxLengthSetting = new Setting()
@@ -46,6 +52,28 @@ namespace ChamiDbMigrations.Migrations
             PropertyName = "AdvancedExporterSettings",
             Type = "double",
             Value = "250"
+        };
+
+        private static readonly Setting _previewForeground = new Setting()
+        {
+            SettingName = "PreviewForegroundColor",
+            ViewModelName = "ChamiUI.PresentationLayer.ViewModels.AdvancedExporterSettingsViewModel",
+            Type = "System.Windows.Media.SolidColorBrush",
+            Value = "#FF00FF00",
+            PropertyName = "AdvancedExporterSettings",
+            AssemblyName = "PresentationCore",
+            Converter = "ChamiUI.BusinessLayer.Converters.BrushConverter"
+        };
+
+        private static readonly Setting _previewBackground = new Setting()
+        {
+            SettingName = "PreviewBackgroundColor",
+            ViewModelName = "ChamiUI.PresentationLayer.ViewModels.AdvancedExporterSettingsViewModel",
+            Type = "System.Windows.Media.SolidColorBrush",
+            Value = "#FF000000",
+            PropertyName = "AdvancedExporterSettings",
+            AssemblyName = "PresentationCore",
+            Converter = "ChamiUI.BusinessLayer.Converters.BrushConverter"
         };
     }
 }

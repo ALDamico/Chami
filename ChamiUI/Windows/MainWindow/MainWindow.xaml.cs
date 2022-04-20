@@ -828,15 +828,15 @@ namespace ChamiUI.Windows.MainWindow
         private void AdvancedExportersMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             var advancedExporterWindow = new AdvancedExportWindow.AdvancedExportWindow();
+            var settings = SettingsUtils.GetAppSettings().AdvancedExporterSettings;
 
             var newDataContext = new AdvancedExportWindowViewModel()
             {
-                SelectedEnvironment = ViewModel.SelectedEnvironment
+                SelectedEnvironment = ViewModel.SelectedEnvironment,
+                PreviewForegroundColor = settings.PreviewForegroundColor,
+                PreviewBackgroundColor = settings.PreviewBackgroundColor
             };
-
-           
-
-            var myDataContext = DataContext as MainWindowViewModel;
+            
             foreach (var element in ViewModel.Environments)
             {
                 newDataContext.Environments.Add(element);

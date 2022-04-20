@@ -109,11 +109,11 @@ namespace ChamiUI.Windows.AdvancedExportWindow
                 return;
             }
             
-            var setting = (Application.Current as ChamiUI.App)?.Settings.AdvancedExporterSettings;
+            var setting = SettingsUtils.GetAppSettings().AdvancedExporterSettings;
 
             if (setting != null)
             {
-                setting.MaxLineLength = viewModel.LineMaxLength;
+                setting.SessionMaxLineLength = viewModel.LineMaxLength;
                 setting.VariableNameColumnWidth = AdvancedExportWindowVariablesGridView.Columns[0].Width;
                 setting.IsMarkedColumnWidth = AdvancedExportWindowVariablesGridView.Columns[1].Width;
             }

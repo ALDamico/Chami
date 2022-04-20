@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using System.Windows.Media;
 using System.Linq;
 using ChamiUI.BusinessLayer.Exporters;
 using ChamiUI.Localization;
@@ -44,6 +45,28 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private int _lineMaxLength;
         private string _preview;
         private AdvancedExporterViewModel _selectedExporter;
+        private Brush _previewBackgroundColor;
+        private Brush _previewForegroundColor;
+
+        public Brush PreviewForegroundColor
+        {
+            get => _previewForegroundColor;
+            set
+            {
+                _previewForegroundColor = value;
+                OnPropertyChanged(nameof(PreviewForegroundColor));
+            }
+        }
+
+        public Brush PreviewBackgroundColor
+        {
+            get => _previewBackgroundColor;
+            set
+            {
+                _previewBackgroundColor = value;
+                OnPropertyChanged(nameof(PreviewBackgroundColor));
+            }
+        }
 
         public string Preview
         {

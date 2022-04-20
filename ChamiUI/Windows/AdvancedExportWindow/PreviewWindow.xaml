@@ -30,6 +30,8 @@
                  IsReadOnly="True"
                  Text="{Binding Preview}"
                  IsReadOnlyCaretVisible="True"
+                 Background="{Binding PreviewBackgroundColor}"
+                 Foreground="{Binding PreviewForegroundColor}"
                  x:Name="PreviewWindowTextBox">
         </TextBox>
 

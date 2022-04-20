@@ -1,13 +1,38 @@
+using System.Windows.Media;
+using ChamiUI.BusinessLayer.Annotations;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class AdvancedExporterSettingsViewModel : GenericLabelViewModel
     {
-        
         private int _maxLineLength;
         private int? _sessionMaxLineLength;
         private double _variableNameColumnWidth;
         private double _isMarkedColumnWidth;
+        private Brush _previewBackgroundColor;
+        private Brush _previewForegroundColor;
 
+        public Brush PreviewForegroundColor
+        {
+            get => _previewForegroundColor;
+            set
+            {
+                _previewForegroundColor = value;
+                OnPropertyChanged(nameof(PreviewForegroundColor));
+            }
+        }
+
+        public Brush PreviewBackgroundColor
+        {
+            get => _previewBackgroundColor;
+            set
+            {
+                _previewBackgroundColor = value;
+                OnPropertyChanged(nameof(PreviewBackgroundColor));
+            }
+        }
+
+        [NonPersistentSetting]
         public int? SessionMaxLineLength
         {
             get => _sessionMaxLineLength;
