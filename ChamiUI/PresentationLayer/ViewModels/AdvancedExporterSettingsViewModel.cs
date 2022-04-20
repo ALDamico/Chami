@@ -1,16 +1,45 @@
+using System.Collections.ObjectModel;
 using System.Windows.Media;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class AdvancedExporterSettingsViewModel : GenericLabelViewModel
     {
+        public AdvancedExporterSettingsViewModel()
+        {
+            AvailableExporters = ExporterUtils.GetAvailableExporters();
+        }
+        public ObservableCollection<AdvancedExporterViewModel> AvailableExporters { get; }
         private int _maxLineLength;
         private int? _sessionMaxLineLength;
         private double _variableNameColumnWidth;
         private double _isMarkedColumnWidth;
         private Brush _previewBackgroundColor;
         private Brush _previewForegroundColor;
+        private string _defaultExporter;
+        private AdvancedExporterViewModel _selectedExporter;
+
+        public AdvancedExporterViewModel SelectedExporter
+        {
+            get => _selectedExporter;
+            set
+            {
+                _selectedExporter = value;
+                OnPropertyChanged(nameof(SelectedExporter));
+            }
+        }
+
+        public string DefaultExporter
+        {
+            get => _defaultExporter;
+            set
+            {
+                _defaultExporter = value;
+                OnPropertyChanged(nameof(DefaultExporter));
+            }
+        }
 
         public Brush PreviewForegroundColor
         {

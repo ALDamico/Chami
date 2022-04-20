@@ -1015,4 +1015,10 @@ This feature is highly experimental and you should check the resulting output be
   <data name="EnvironmentBatchFileExporterDescription" xml:space="preserve">
     <value>Generate a batch script</value>
   </data>
+  <data name="AdvncedExporterEditorDefaultExporterLabel_Content" xml:space="preserve">
+    <value>Default exporter</value>
+  </data>
+  <data name="AdvancedExporterEditorLineMaxLengthLabel_Content" xml:space="preserve">
+    <value>Max line length</value>
+  </data>
 </root>

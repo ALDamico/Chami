@@ -93,6 +93,11 @@
                             <controls:SafeVariableEditor/>
                         </DataTemplate>
                     </dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.AdvancedExportersDataTemplate>
+                        <DataTemplate>
+                            <controls:AdvancedExporterEditor/>
+                        </DataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.AdvancedExportersDataTemplate>
                 </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
 
 

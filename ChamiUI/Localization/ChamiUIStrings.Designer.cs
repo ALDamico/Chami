@@ -178,6 +178,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max line length.
+        /// </summary>
+        public static string AdvancedExporterEditorLineMaxLengthLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExporterEditorLineMaxLengthLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Advanced export.
         /// </summary>
         public static string AdvancedExportersMenuItem_Header {
@@ -346,6 +355,15 @@ namespace ChamiUI.Localization {
         public static string AdvancedSortAndFilterOptionsExpander_Tooltip {
             get {
                 return ResourceManager.GetString("AdvancedSortAndFilterOptionsExpander_Tooltip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default exporter.
+        /// </summary>
+        public static string AdvncedExporterEditorDefaultExporterLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvncedExporterEditorDefaultExporterLabel_Content", resourceCulture);
             }
         }
         

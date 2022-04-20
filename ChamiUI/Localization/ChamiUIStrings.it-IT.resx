@@ -1009,4 +1009,10 @@ Questa feature è altamente sperimentale e dovresti ispezionare il codice genera
   <data name="EnvironmentBatchFileExporterDescription" xml:space="preserve">
     <value>Genera uno script batch</value>
   </data>
+  <data name="AdvncedExporterEditorDefaultExporterLabel_Content" xml:space="preserve">
+    <value>Esportatore predefinito</value>
+  </data>
+  <data name="AdvancedExporterEditorLineMaxLengthLabel_Content" xml:space="preserve">
+    <value>Lunghezza max riga</value>
+  </data>
 </root>
