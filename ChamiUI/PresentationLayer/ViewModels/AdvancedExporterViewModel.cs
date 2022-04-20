@@ -1,30 +1,10 @@
+using System;
 using ChamiUI.BusinessLayer.Exporters;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class AdvancedExporterViewModel : ViewModelBase
+    public class AdvancedExporterViewModel : GenericLabelViewModel
     {
-        private string _name;
-        private IChamiExporter _backingExporter;
-
-        public IChamiExporter BackingExporter
-        {
-            get => _backingExporter;
-            set
-            {
-                _backingExporter = value;
-                OnPropertyChanged(nameof(BackingExporter));
-            }
-        }
-
-        public string Name
-        {
-            get => _name;
-            set
-            {
-                _name = value;
-                OnPropertyChanged(nameof(Name));
-            }
-        }
+        public Func<ScriptExportInfo, IPreviewableChamiExporter> AdvancedExporterFactory { get; set; }
     }
 }

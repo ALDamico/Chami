@@ -1,7 +1,8 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using ChamiUI.BusinessLayer.Exporters;
-using NetOffice.ExcelApi;
+using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -12,9 +13,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
             LineMaxLength = 80;
             Environments = new ObservableCollection<EnvironmentViewModel>();
             AvailableExporters = new ObservableCollection<AdvancedExporterViewModel>();
-            
-            //AvailableExporters.Add(new AdvancedExporterViewModel(){new EnvironmentBatchFileExporter()});
+
+            AvailableExporters.Add(new AdvancedExporterViewModel()
+            {
+                AdvancedExporterFactory = (scriptEportInfo) =>
+                {
+                    return new EnvironmentBatchFileExporter(scriptEportInfo);
+                },
+                DisplayName = ChamiUIStrings.EnvironmentBatchFileExporterDisplayName,
+                Description = ChamiUIStrings.EnvironmentBatchFileExporterDescription
+            });
+
+            AvailableExporters.Add(new AdvancedExporterViewModel()
+            {
+                AdvancedExporterFactory = scriptExportInfo => new EnvironmentPowerShellScriptExporter(scriptExportInfo),
+                DisplayName = ChamiUIStrings.EnvironmentPowerShellScriptExporterDisplayName,
+                Description = ChamiUIStrings.EnvironmentPowerShellScriptExporterDescription
+            });
+
+            SelectedExporter = AvailableExporters.First();
         }
+
         private string _scriptPath;
         private EnvironmentViewModel _selectedEnvironment;
         private bool _includeRemarks;
@@ -51,8 +70,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(Remarks));
             }
         }
-        
-        // TODO Implement IEnvironmentExportStrategy
 
         public bool IncludeRemarks
         {
@@ -84,8 +101,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        
-        
+
         public ObservableCollection<EnvironmentViewModel> Environments { get; }
 
         public void ClearMarkedVariables(EnvironmentViewModel oldEnvironment, EnvironmentViewModel newEnvironment)
@@ -123,8 +139,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 environmentVariable.MarkedForExporting = targetValue;
             }
         }
-        
+
         public ObservableCollection<AdvancedExporterViewModel> AvailableExporters { get; }
+        private AdvancedExporterViewModel _selectedExporter;
+
+        public AdvancedExporterViewModel SelectedExporter
+        {
+            get => _selectedExporter;
+            set
+            {
+                _selectedExporter = value;
+                OnPropertyChanged(nameof(SelectedExporter));
+            }
+        }
 
         public void GeneratePreview()
         {
@@ -135,8 +162,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Remarks = Remarks
             };
 
-            var exporter = new EnvironmentBatchFileExporter(exportInfo);
-            Preview = exporter.GetPreview(Guid.NewGuid().ToString());
+            var exporter = SelectedExporter.AdvancedExporterFactory.Invoke(exportInfo);
+            Preview = exporter.GetPreview();
         }
     }
 }

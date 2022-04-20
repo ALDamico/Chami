@@ -927,6 +927,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate a batch script.
+        /// </summary>
+        public static string EnvironmentBatchFileExporterDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentBatchFileExporterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Batch script exporter.
+        /// </summary>
+        public static string EnvironmentBatchFileExporterDisplayName {
+            get {
+                return ResourceManager.GetString("EnvironmentBatchFileExporterDisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} ({1} variables).
         /// </summary>
         public static string EnvironmentExportWindowViewModelDisplayedName {
@@ -950,6 +968,24 @@ namespace ChamiUI.Localization {
         public static string EnvironmentNameValidationErrorMessage {
             get {
                 return ResourceManager.GetString("EnvironmentNameValidationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generate a PowerShell script.
+        /// </summary>
+        public static string EnvironmentPowerShellScriptExporterDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentPowerShellScriptExporterDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PowerShell Script exporter.
+        /// </summary>
+        public static string EnvironmentPowerShellScriptExporterDisplayName {
+            get {
+                return ResourceManager.GetString("EnvironmentPowerShellScriptExporterDisplayName", resourceCulture);
             }
         }
         

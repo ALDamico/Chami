@@ -1003,4 +1003,16 @@ This feature is highly experimental and you should check the resulting output be
   <data name="PreviewWindowCopyButton_Content" xml:space="preserve">
     <value>Copy</value>
   </data>
+  <data name="EnvironmentPowerShellScriptExporterDisplayName" xml:space="preserve">
+    <value>PowerShell Script exporter</value>
+  </data>
+  <data name="EnvironmentPowerShellScriptExporterDescription" xml:space="preserve">
+    <value>Generate a PowerShell script</value>
+  </data>
+  <data name="EnvironmentBatchFileExporterDisplayName" xml:space="preserve">
+    <value>Batch script exporter</value>
+  </data>
+  <data name="EnvironmentBatchFileExporterDescription" xml:space="preserve">
+    <value>Generate a batch script</value>
+  </data>
 </root>

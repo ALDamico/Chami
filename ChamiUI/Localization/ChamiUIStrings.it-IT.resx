@@ -997,4 +997,16 @@ Questa feature è altamente sperimentale e dovresti ispezionare il codice genera
   <data name="PreviewWindowCopyButton_Content" xml:space="preserve">
     <value>Copia</value>
   </data>
+  <data name="EnvironmentPowerShellScriptExporterDisplayName" xml:space="preserve">
+    <value>Esportatore di script PowerShell</value>
+  </data>
+  <data name="EnvironmentPowerShellScriptExporterDescription" xml:space="preserve">
+    <value>Genera uno script PowerShell</value>
+  </data>
+  <data name="EnvironmentBatchFileExporterDisplayName" xml:space="preserve">
+    <value>Esportatore di script batch</value>
+  </data>
+  <data name="EnvironmentBatchFileExporterDescription" xml:space="preserve">
+    <value>Genera uno script batch</value>
+  </data>
 </root>
