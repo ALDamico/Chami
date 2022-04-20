@@ -11,7 +11,9 @@
         mc:Ignorable="d"
         Title="AdvancedExportWindow" Height="450" Width="600"
         d:DataContext="{d:DesignInstance viewModels:AdvancedExportWindowViewModel}"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        Closing="AdvancedExportWindow_OnClosing"
+        >
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="2, 2, 2, 2"></Setter>
@@ -128,7 +130,7 @@
                 <Label Grid.Row="8" Grid.Column="0" x:Name="AdvancedExportWindowVariablesLabel" Content="{lex:Loc}"></Label>
                 <ListView Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="3" ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}" >
                     <ListView.View>
-                        <GridView AllowsColumnReorder="False">
+                        <GridView AllowsColumnReorder="False" x:Name="AdvancedExportWindowVariablesGridView">
                             <GridView.Columns>
                                 <GridViewColumn Width="150"
                                                 x:Name="AdvancedExportWindowVariableNameColumn"

@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.Windows;
 using System.Windows.Controls;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.AdvancedExportWindow
@@ -9,6 +11,24 @@ namespace ChamiUI.Windows.AdvancedExportWindow
         public AdvancedExportWindow()
         {
             InitializeComponent();
+            
+            var settings = SettingsUtils.GetAppSettings();
+            
+            SetColumnWidthOrDefault(0, settings.AdvancedExporterSettings.VariableNameColumnWidth);
+            SetColumnWidthOrDefault(1, settings.AdvancedExporterSettings.IsMarkedColumnWidth);
+        }
+
+        private void SetColumnWidthOrDefault(int index, double value)
+        {
+            if (index >= AdvancedExportWindowVariablesGridView.Columns.Count)
+            {
+                return;
+            }
+            if (value == 0)
+            {
+                value = 250;
+            }
+            AdvancedExportWindowVariablesGridView.Columns[index].Width = value;
         }
 
         private void EnvironmentComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -78,6 +98,25 @@ namespace ChamiUI.Windows.AdvancedExportWindow
             };
 
             previewWindow.Show();
+        }
+
+        private void AdvancedExportWindow_OnClosing(object sender, CancelEventArgs e)
+        {
+            var viewModel = DataContext as AdvancedExportWindowViewModel;
+
+            if (viewModel == null)
+            {
+                return;
+            }
+            
+            var setting = (Application.Current as ChamiUI.App)?.Settings.AdvancedExporterSettings;
+
+            if (setting != null)
+            {
+                setting.MaxLineLength = viewModel.LineMaxLength;
+                setting.VariableNameColumnWidth = AdvancedExportWindowVariablesGridView.Columns[0].Width;
+                setting.IsMarkedColumnWidth = AdvancedExportWindowVariablesGridView.Columns[1].Width;
+            }
         }
     }
 }

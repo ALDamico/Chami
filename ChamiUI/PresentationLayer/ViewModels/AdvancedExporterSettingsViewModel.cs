@@ -2,9 +2,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class AdvancedExporterSettingsViewModel : GenericLabelViewModel
     {
+        
         private int _maxLineLength;
+        private int? _sessionMaxLineLength;
         private double _variableNameColumnWidth;
         private double _isMarkedColumnWidth;
+
+        public int? SessionMaxLineLength
+        {
+            get => _sessionMaxLineLength;
+            set
+            {
+                _sessionMaxLineLength = value;
+                OnPropertyChanged(nameof(SessionMaxLineLength));
+            }
+        }
 
         public double IsMarkedColumnWidth
         {

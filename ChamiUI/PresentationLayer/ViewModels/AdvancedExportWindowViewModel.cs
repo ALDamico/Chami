@@ -2,6 +2,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using ChamiUI.BusinessLayer.Exporters;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -9,7 +10,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         public AdvancedExportWindowViewModel()
         {
+            var settings = SettingsUtils.GetAppSettings().AdvancedExporterSettings;
             LineMaxLength = 80;
+            if (settings.SessionMaxLineLength.HasValue)
+            {
+                LineMaxLength = settings.SessionMaxLineLength.Value;
+            }
+
             Environments = new ObservableCollection<EnvironmentViewModel>();
             AvailableExporters = new ObservableCollection<AdvancedExporterViewModel>
             {
