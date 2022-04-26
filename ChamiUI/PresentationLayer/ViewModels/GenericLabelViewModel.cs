@@ -51,9 +51,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        [NonPersistentSetting]
+        public Brush BackgroundColor
+        {
+            get => _backgroundColor;
+            set
+            {
+                _backgroundColor = value;
+                OnPropertyChanged(nameof(BackgroundColor));
+            }
+        }
+
         private string _displayName;
         private string _description;
         private string _iconPath;
         private Brush _foregroundColor;
+        private Brush _backgroundColor;
     }
 }

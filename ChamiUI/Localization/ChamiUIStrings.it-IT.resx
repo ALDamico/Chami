@@ -1015,4 +1015,16 @@ Questa feature è altamente sperimentale e dovresti ispezionare il codice genera
   <data name="AdvancedExporterEditorLineMaxLengthLabel_Content" xml:space="preserve">
     <value>Lunghezza max riga</value>
   </data>
+  <data name="AdvancedExporterEditorFontStyleLabel_Content" xml:space="preserve">
+    <value>Carattere</value>
+  </data>
+  <data name="AdvancedExporterEditorFontSizeLabel_Content" xml:space="preserve">
+    <value>Dim carattere</value>
+  </data>
+  <data name="AdvancedExporterEditorForegroundColorLabel_Content" xml:space="preserve">
+    <value>Colore font</value>
+  </data>
+  <data name="AdvancedExporterEditorBackgroundColorLabel_Content" xml:space="preserve">
+    <value>Colore sfondo</value>
+  </data>
 </root>

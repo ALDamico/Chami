@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -16,21 +17,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public ConsoleAppearanceViewModel()
         {
-            FontFamilies = GetInstalledFonts();
+            FontFamilies = SettingsUtils.GetInstalledFonts();
             FontFamily = FontFamilies.FirstOrDefault(f => Regex.Match(f.Source, "segoe").Success);
             FontSize = 12.0;
             BackgroundColor = Brushes.Black;
             ForegroundColor = Brushes.White;
         }
 
-        /// <summary>
-        /// Retrieves all font families installed on this machine.
-        /// </summary>
-        /// <returns>An <see cref="ObservableCollection{T}"/> containing all installed fonts in the current machine.</returns>
-        private ObservableCollection<FontFamily> GetInstalledFonts()
-        {
-            return new ObservableCollection<FontFamily>(Fonts.GetFontFamilies("c:/windows/fonts"));
-        }
+        
 
         /// <summary>
         /// A list of all font families installed on this machine.

@@ -14,7 +14,9 @@ namespace ChamiDbMigrations.Migrations
                 .Row(_variableNameColumnWidth)
                 .Row(_isMarkedColumnWidth)
                 .Row(_previewBackground)
-                .Row(_previewForeground);
+                .Row(_previewForeground)
+                .Row(_previewFontStyle)
+                .Row(_previewFontSize);
         }
 
         public override void Down()
@@ -24,7 +26,9 @@ namespace ChamiDbMigrations.Migrations
                 .Row(_variableNameColumnWidth)
                 .Row(_isMarkedColumnWidth)
                 .Row(_previewBackground)
-                .Row(_previewForeground);
+                .Row(_previewForeground)
+                .Row(_previewFontStyle)
+                .Row(_previewFontSize);
         }
 
         private static readonly Setting _maxLengthSetting = new Setting()
@@ -74,6 +78,25 @@ namespace ChamiDbMigrations.Migrations
             PropertyName = "AdvancedExporterSettings",
             AssemblyName = "PresentationCore",
             Converter = "ChamiUI.BusinessLayer.Converters.BrushConverter"
+        };
+
+        private static readonly Setting _previewFontStyle = new Setting()
+        {
+            SettingName = "SelectedFont",
+            ViewModelName = "ChamiUI.PresentationLayer.ViewModels.AdvancedExporterSettingsViewModel",
+            Type = "System.Windows.Media.FontFamily",
+            Value = "file:///c:/windows/fonts#Courier New",
+            PropertyName = "AdvancedExporterSettings",
+            AssemblyName = "PresentationCore"
+        };
+        
+        private static readonly Setting _previewFontSize = new Setting()
+        {
+            SettingName = "IsMarkedColumnWidth",
+            ViewModelName = "ChamiUI.PresentationLayer.ViewModels.AdvancedExporterSettingsViewModel",
+            PropertyName = "AdvancedExporterSettings",
+            Type = "double",
+            Value = "14"
         };
     }
 }

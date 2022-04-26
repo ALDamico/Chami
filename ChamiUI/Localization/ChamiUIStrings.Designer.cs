@@ -178,6 +178,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bg Color.
+        /// </summary>
+        public static string AdvancedExporterEditorBackgroundColorLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExporterEditorBackgroundColorLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font size.
+        /// </summary>
+        public static string AdvancedExporterEditorFontSizeLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExporterEditorFontSizeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Font.
+        /// </summary>
+        public static string AdvancedExporterEditorFontStyleLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExporterEditorFontStyleLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fg color.
+        /// </summary>
+        public static string AdvancedExporterEditorForegroundColorLabel_Content {
+            get {
+                return ResourceManager.GetString("AdvancedExporterEditorForegroundColorLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max line length.
         /// </summary>
         public static string AdvancedExporterEditorLineMaxLengthLabel_Content {

@@ -1,5 +1,6 @@
 using System.Collections.ObjectModel;
 using System.Windows.Media;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Utils;
 
@@ -10,8 +11,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public AdvancedExporterSettingsViewModel()
         {
             AvailableExporters = ExporterUtils.GetAvailableExporters();
+            FontFamilies = SettingsUtils.GetInstalledFonts();
         }
         public ObservableCollection<AdvancedExporterViewModel> AvailableExporters { get; }
+        public ObservableCollection<FontFamily> FontFamilies { get; }
         private int _maxLineLength;
         private int? _sessionMaxLineLength;
         private double _variableNameColumnWidth;
@@ -20,6 +23,28 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private Brush _previewForegroundColor;
         private string _defaultExporter;
         private AdvancedExporterViewModel _selectedExporter;
+        private FontFamily _selectedFont;
+        private double _fontSize;
+
+        public double FontSize
+        {
+            get => _fontSize;
+            set
+            {
+                _fontSize = value;
+                OnPropertyChanged(nameof(FontSize));
+            }
+        }
+
+        public FontFamily SelectedFont
+        {
+            get => _selectedFont;
+            set
+            {
+                _selectedFont = value;
+                OnPropertyChanged(nameof(SelectedFont));
+            }
+        }
 
         public AdvancedExporterViewModel SelectedExporter
         {
@@ -100,6 +125,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _maxLineLength = value;
                 OnPropertyChanged(nameof(MaxLineLength));
             }
+        }
+
+        public void ChangeForegroundColor(Color newColor)
+        {
+            PreviewForegroundColor = new SolidColorBrush(newColor);
+        }
+
+        public void ChangeBackgroundColor(Color newColor)
+        {
+            PreviewBackgroundColor = new SolidColorBrush(newColor);
         }
     }
 }

@@ -1021,4 +1021,16 @@ This feature is highly experimental and you should check the resulting output be
   <data name="AdvancedExporterEditorLineMaxLengthLabel_Content" xml:space="preserve">
     <value>Max line length</value>
   </data>
+  <data name="AdvancedExporterEditorFontStyleLabel_Content" xml:space="preserve">
+    <value>Font</value>
+  </data>
+  <data name="AdvancedExporterEditorFontSizeLabel_Content" xml:space="preserve">
+    <value>Font size</value>
+  </data>
+  <data name="AdvancedExporterEditorForegroundColorLabel_Content" xml:space="preserve">
+    <value>Fg color</value>
+  </data>
+  <data name="AdvancedExporterEditorBackgroundColorLabel_Content" xml:space="preserve">
+    <value>Bg Color</value>
+  </data>
 </root>

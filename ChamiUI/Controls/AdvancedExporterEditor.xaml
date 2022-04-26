@@ -7,47 +7,101 @@
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
              xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance viewModels:AdvancedExporterSettingsViewModel}"
+             DataContextChanged="AdvancedExporterEditor_OnDataContextChanged"
              >
+    <UserControl.Resources>
+        <cnv:FontFamilyToNameConverter x:Key="FontFamilyToNameConverter" />
+    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        
-        <Label Grid.Row="0" 
-               Grid.Column="0" 
-               x:Name="AdvncedExporterEditorDefaultExporterLabel" 
-               Content="{lex:Loc}"></Label>
-        <ComboBox Grid.Row="0" 
-                  Grid.Column="1" 
-                  Grid.ColumnSpan="3" 
-                  ItemsSource="{Binding AvailableExporters}" 
-                  DisplayMemberPath="DisplayName">
+
+        <Label Grid.Row="0"
+               Grid.Column="0"
+               x:Name="AdvncedExporterEditorDefaultExporterLabel"
+               Content="{lex:Loc}">
+        </Label>
+        <ComboBox Grid.Row="0"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                  ItemsSource="{Binding AvailableExporters}">
             <ComboBox.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding DisplayName}" 
-                               ToolTip="{Binding Description}"></TextBlock>
+                    <TextBlock Text="{Binding DisplayName}"
+                               ToolTip="{Binding Description}">
+                    </TextBlock>
                 </DataTemplate>
             </ComboBox.ItemTemplate>
         </ComboBox>
-        <Label Grid.Row="1" 
+        <Label Grid.Row="1"
+               Grid.Column="0"
+               x:Name="AdvancedExporterEditorLineMaxLengthLabel"
+               Content="{lex:Loc}">
+        </Label>
+        <xctk:IntegerUpDown Grid.Row="1"
+                            Grid.Column="1"
+                            Grid.ColumnSpan="3"
+                            Minimum="50"
+                            Maximum="255"
+                            Text="{Binding MaxLineLength}" />
+        <Label Grid.Row="2" 
                Grid.Column="0" 
-               x:Name="AdvancedExporterEditorLineMaxLengthLabel" 
+               x:Name="AdvancedExporterEditorFontStyleLabel" 
                Content="{lex:Loc}"></Label>
-        <xctk:IntegerUpDown Grid.Row="1" 
-                            Grid.Column="1" 
-                            Grid.ColumnSpan="3" 
-                            Minimum="50" 
-                            Maximum="255" 
-                            Text="{Binding MaxLineLength}"/>
+        <ComboBox Grid.Row="2" 
+                  Grid.Column="1" 
+                  ItemsSource="{Binding FontFamilies}" 
+                  SelectedItem="{Binding SelectedFont}">
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel>
+                        <TextBlock
+                            Text="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}"
+                            FontFamily="{Binding}" />
+                    </StackPanel>
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+        <Label Grid.Row="2" 
+               Grid.Column="2" 
+               x:Name="AdvancedExporterEditorFontSizeLabel" 
+               Content="{lex:Loc}"></Label>
+        <xctk:IntegerUpDown Grid.Row="2" 
+                            Grid.Column="3" 
+                            Minimum="8" 
+                            Maximum="50" 
+                            Value="{Binding FontSize}"></xctk:IntegerUpDown>
+        <Label Grid.Row="3" 
+               Grid.Column="0" 
+               x:Name="AdvancedExporterEditorForegroundColorLabel" 
+               Content="{lex:Loc}"></Label>
+        <xctk:ColorPicker Grid.Row="3" 
+                          Grid.Column="1" 
+                          x:Name="AdvancedExporterEditorFgColorPicker" 
+                          SelectedColorChanged="AdvancedExporterEditorFgColorPicker_OnSelectedColorChanged"></xctk:ColorPicker>
+        <Label Grid.Row="3" 
+               Grid.Column="2" 
+               x:Name="AdvancedExporterEditorBackgroundColorLabel" 
+               Content="{lex:Loc}"></Label>
+        <xctk:ColorPicker Grid.Row="3" 
+                          Grid.Column="3" 
+                          x:Name="AdvancedExporterEditorBgColorPicker" 
+                          SelectedColorChanged="AdvancedExporterEditorBgColorPicker_OnSelectedColorChanged"></xctk:ColorPicker>
+        <TextBox Grid.Row="4"></TextBox>
     </Grid>
 </UserControl>
