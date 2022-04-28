@@ -1,12 +1,16 @@
-﻿namespace ChamiUI.PresentationLayer.ViewModels
+﻿using Chami.Db.Entities;
+
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class NewTemplateWindowViewModel : NewEnvironmentViewModelBase
     {
         public NewTemplateWindowViewModel()
         {
-            Environment = new EnvironmentViewModel();
+            Environment = new EnvironmentViewModel() {EnvironmentType = EnvironmentType.TemplateEnvironment};
         }
+
         private EnvironmentViewModel _environment;
+
         public EnvironmentViewModel Environment
         {
             get => _environment;
@@ -43,6 +47,7 @@
                 {
                     return false;
                 }
+
                 var validationResult = Validator.Validate(Environment);
                 if (validationResult.IsValid)
                 {
