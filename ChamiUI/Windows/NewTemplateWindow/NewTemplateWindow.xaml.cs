@@ -57,9 +57,6 @@ namespace ChamiUI.Windows.NewTemplateWindow
                 MessageBox.Show(message, caption, MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
-            _viewmodel.SaveTemplate();
-            EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(_viewmodel.Environment));
-            Close();
         }
 
         private void CancelButton_OnClick(object sender, RoutedEventArgs e)
