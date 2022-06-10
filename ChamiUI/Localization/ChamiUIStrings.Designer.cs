@@ -268,6 +268,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse....
+        /// </summary>
+        public static string AdvancedExportWindowFileInputBox_BrowseText {
+            get {
+                return ResourceManager.GetString("AdvancedExportWindowFileInputBox_BrowseText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Script path.
         /// </summary>
         public static string AdvancedExportWindowFilenameLabel_Content {
@@ -1204,6 +1213,15 @@ namespace ChamiUI.Localization {
         public static string ExportWindowCancelButton_Content {
             get {
                 return ResourceManager.GetString("ExportWindowCancelButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Browse....
+        /// </summary>
+        public static string ExportWindowFileInputBox_BrowseText {
+            get {
+                return ResourceManager.GetString("ExportWindowFileInputBox_BrowseText", resourceCulture);
             }
         }
         

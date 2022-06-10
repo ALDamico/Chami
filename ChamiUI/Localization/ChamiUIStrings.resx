@@ -1033,4 +1033,10 @@ This feature is highly experimental and you should check the resulting output be
   <data name="AdvancedExporterEditorBackgroundColorLabel_Content" xml:space="preserve">
     <value>Bg Color</value>
   </data>
+  <data name="ExportWindowFileInputBox_BrowseText" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
+  <data name="AdvancedExportWindowFileInputBox_BrowseText" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
 </root>

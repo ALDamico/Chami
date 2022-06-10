@@ -56,7 +56,10 @@
         </GroupBox>
         <controls:FileInputBox Grid.Row="2" 
                                Grid.Column="0" 
+                               x:Name="ExportWindowFileInputBox"
                                Filename="{Binding Filename, Mode=TwoWay}" 
+                               Filters="Excel Open XML File|*.xlsx|Json file|*.json"
+                               BrowseText="{lex:Loc}"
                                />
         <ListView Grid.Row="3" 
                   Grid.Column="0" 

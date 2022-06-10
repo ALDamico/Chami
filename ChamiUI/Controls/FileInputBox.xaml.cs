@@ -16,8 +16,15 @@ namespace ChamiUI.Controls
         public FileInputBox()
         {
             InitializeComponent();
+            if (string.IsNullOrEmpty(BrowseText))
+            {
+                BrowseText = DefaultBrowseText;
+            }
+
             FiletextBox.TextChanged += OnTextChanged;
         }
+
+        private const string DefaultBrowseText = "Browse";
 
         /// <summary>
         /// Handles the TextChanged event in the control.
@@ -38,12 +45,36 @@ namespace ChamiUI.Controls
             DependencyProperty.Register(nameof(Filename), typeof(string), typeof(FileInputBox));
 
         /// <summary>
+        /// Dependency property for the file filters for the Browse button
+        /// </summary>
+        public static readonly DependencyProperty FiltersProperty =
+            DependencyProperty.Register(nameof(Filters), typeof(string), typeof(FileInputBox));
+
+        public static readonly DependencyProperty BrowseTextProperty =
+            DependencyProperty.Register(nameof(BrowseText), typeof(string), typeof(FileInputBox));
+
+        /// <summary>
         /// The full path to the file to save.
         /// </summary>
         public string Filename
         {
             get => (string) GetValue(FilenameProperty);
-            set { SetValue(FilenameProperty, value); }
+            set => SetValue(FilenameProperty, value);
+        }
+
+        /// <summary>
+        /// The file filters for the dialog.
+        /// </summary>
+        public string Filters
+        {
+            get => (string) GetValue(FiltersProperty);
+            set => SetValue(FiltersProperty, value);
+        }
+
+        public string BrowseText
+        {
+            get => (string) GetValue(BrowseTextProperty);
+            set => SetValue(BrowseTextProperty, value);
         }
 
         /// <summary>
@@ -57,7 +88,11 @@ namespace ChamiUI.Controls
             saveFileDialog.OverwritePrompt = true;
             saveFileDialog.InitialDirectory = SpecialDirectories.MyDocuments;
             saveFileDialog.AddExtension = true;
-            saveFileDialog.Filter = "Excel Open XML File|*.xlsx|Json file|*.json";
+            if (!string.IsNullOrEmpty(Filters))
+            {
+                saveFileDialog.Filter = Filters;
+            }
+
             var shouldSave = saveFileDialog.ShowDialog();
             if (shouldSave.GetValueOrDefault())
             {

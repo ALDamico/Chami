@@ -7,7 +7,8 @@
              x:Name="ControlRoot"
              >
     <DockPanel>
-        <Button x:Name="BrowseButton" DockPanel.Dock="Right" Click="BrowseButton_OnClick" Content="Browse"></Button>
+        <Button x:Name="BrowseButton" DockPanel.Dock="Right" Click="BrowseButton_OnClick" Content="{Binding BrowseText, ElementName=ControlRoot}">
+        </Button>
         <TextBox x:Name="FiletextBox" 
                  Text="{Binding Filename, ElementName=ControlRoot, UpdateSourceTrigger=PropertyChanged}" 
                  MinWidth="{Binding ActualWidth, ElementName=BrowseButton}"

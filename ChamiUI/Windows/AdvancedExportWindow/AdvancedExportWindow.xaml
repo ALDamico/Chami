@@ -69,7 +69,10 @@
                 <controls:FileInputBox Grid.Row="2"
                                        Grid.Column="1"
                                        Grid.ColumnSpan="3"
-                                       Filename="{Binding ScriptPath}" />
+                                       x:Name="AdvancedExportWindowFileInputBox"
+                                       Filename="{Binding ScriptPath}" 
+                                       BrowseText="{lex:Loc}"
+                                       />
                 <Label Grid.Row="3"
                        Grid.Column="0"
                        x:Name="AdvancedExportWindowEnvironmentLabel"

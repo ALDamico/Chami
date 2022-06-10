@@ -1027,4 +1027,10 @@ Questa feature è altamente sperimentale e dovresti ispezionare il codice genera
   <data name="AdvancedExporterEditorBackgroundColorLabel_Content" xml:space="preserve">
     <value>Colore sfondo</value>
   </data>
+  <data name="ExportWindowFileInputBox_BrowseText" xml:space="preserve">
+    <value>Sfoglia...</value>
+  </data>
+  <data name="AdvancedExportWindowFileInputBox_BrowseText" xml:space="preserve">
+    <value>Sfoglia...</value>
+  </data>
 </root>
