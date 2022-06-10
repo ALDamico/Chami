@@ -47,7 +47,7 @@ namespace ChamiUI
             {
                 MigrateDatabase();
             }
-            catch (SQLiteException ex)
+            catch (Exception ex)
             {
                 Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
             }

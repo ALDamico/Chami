@@ -92,7 +92,7 @@ namespace ChamiDbMigrations.Migrations
         
         private static readonly Setting _previewFontSize = new Setting()
         {
-            SettingName = "IsMarkedColumnWidth",
+            SettingName = "PreviewFontSize",
             ViewModelName = "ChamiUI.PresentationLayer.ViewModels.AdvancedExporterSettingsViewModel",
             PropertyName = "AdvancedExporterSettings",
             Type = "double",

@@ -24,15 +24,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private string _defaultExporter;
         private AdvancedExporterViewModel _selectedExporter;
         private FontFamily _selectedFont;
-        private double _fontSize;
+        private double _previewFontSize;
 
-        public double FontSize
+        public double PreviewFontSize
         {
-            get => _fontSize;
+            get => _previewFontSize;
             set
             {
-                _fontSize = value;
-                OnPropertyChanged(nameof(FontSize));
+                _previewFontSize = value;
+                OnPropertyChanged(nameof(PreviewFontSize));
             }
         }
 

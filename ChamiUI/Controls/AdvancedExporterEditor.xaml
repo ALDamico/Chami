@@ -85,7 +85,7 @@
                             Grid.Column="3" 
                             Minimum="8" 
                             Maximum="50" 
-                            Value="{Binding FontSize}"></xctk:IntegerUpDown>
+                            Value="{Binding PreviewFontSize}"></xctk:IntegerUpDown>
         <Label Grid.Row="3" 
                Grid.Column="0" 
                x:Name="AdvancedExporterEditorForegroundColorLabel" 
