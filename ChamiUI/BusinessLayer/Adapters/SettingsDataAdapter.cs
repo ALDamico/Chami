@@ -61,14 +61,14 @@ namespace ChamiUI.BusinessLayer.Adapters
                     #if DEBUG
                     continue;
                     #endif
-                    throw new NullReferenceException(
+                    throw new InvalidOperationException(
                         $"The requested property was not found in type {viewModel.GetType()}");
                 }
 
                 var settingPInfo = pInfo.PropertyType.GetProperty(setting.SettingName);
                 if (settingPInfo == null)
                 {
-                    throw new NullReferenceException($"The requested property was not found in object {pInfo.Name}");
+                    throw new InvalidOperationException($"The requested property {setting.SettingName} was not found in object {pInfo.Name}");
                 }
 
                 object propertyValue = null;
