@@ -932,4 +932,26 @@ Use a different name and try again.</value>
   <data name="EnvironmentHealthMissingValueLongDescription" xml:space="preserve">
     <value>Chami couldn't find this variable among Windows environment variables.</value>
   </data>
+  
+  <data name="EnvironmentVariableNameHealthWindowColumn" xml:space="preserve">
+    <value>Variable name</value>
+  </data>
+  <data name="EnvironmentVariableValueHealthWindowColumn" xml:space="preserve">
+    <value>Actual value</value>
+  </data>
+  <data name="ExpectedValueHealthWindowColumn" xml:space="preserve">
+    <value>Expected value</value>
+  </data>
+  <data name="EnvironmentVariableStatusHealthWindowColumn" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="EnvironmentHealthCaptionOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMismatchedValue" xml:space="preserve">
+    <value>Mismatched value</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMissingVariable" xml:space="preserve">
+    <value>Variable not found</value>
+  </data>
 </root>

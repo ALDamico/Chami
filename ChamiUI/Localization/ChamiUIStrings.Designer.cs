@@ -718,6 +718,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mismatched value.
+        /// </summary>
+        public static string EnvironmentHealthCaptionMismatchedValue {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionMismatchedValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Badly degraded.
         /// </summary>
         public static string EnvironmentHealthCheckerMessageBadlyDegraded {
@@ -736,11 +745,29 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variable not found.
+        /// </summary>
+        public static string EnvironmentHealthCaptionMissingVariable {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionMissingVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string EnvironmentHealthCheckerMessageError {
             get {
                 return ResourceManager.GetString("EnvironmentHealthCheckerMessageError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string EnvironmentHealthCaptionOk {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionOk", resourceCulture);
             }
         }
         
@@ -753,14 +780,7 @@ namespace ChamiUI.Localization {
             }
         }
         
-        /// <summary>
-        ///   Looks up a localized string similar to Environment health details....
-        /// </summary>
-        public static string EnvironmentHealthMenuItem_Header {
-            get {
-                return ResourceManager.GetString("EnvironmentHealthMenuItem_Header", resourceCulture);
-            }
-        }
+       
         
         /// <summary>
         ///   Looks up a localized string similar to The value of this variable in Windows doesn&apos;t match what Chami expects..
@@ -771,6 +791,8 @@ namespace ChamiUI.Localization {
             }
         }
         
+        
+        
         /// <summary>
         ///   Looks up a localized string similar to Mismatched value.
         /// </summary>
@@ -780,6 +802,8 @@ namespace ChamiUI.Localization {
             }
         }
         
+        
+        
         /// <summary>
         ///   Looks up a localized string similar to Chami couldn&apos;t find this variable among Windows environment variables..
         /// </summary>
@@ -788,6 +812,7 @@ namespace ChamiUI.Localization {
                 return ResourceManager.GetString("EnvironmentHealthMissingValueLongDescription", resourceCulture);
             }
         }
+        
         
         /// <summary>
         ///   Looks up a localized string similar to Missing value.
@@ -804,6 +829,15 @@ namespace ChamiUI.Localization {
         public static string EnvironmentHealthOkLongDescription {
             get {
                 return ResourceManager.GetString("EnvironmentHealthOkLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment health details....
+        /// </summary>
+        public static string EnvironmentHealthMenuItem_Header {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMenuItem_Header", resourceCulture);
             }
         }
         
@@ -925,6 +959,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variable name.
+        /// </summary>
+        public static string EnvironmentVariableNameHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameHealthWindowColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The environment variable name contains invalid characters at positions {0}..
         /// </summary>
         public static string EnvironmentVariableNameInvalidCharactersErrorMessage {
@@ -980,6 +1023,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Issue.
+        /// </summary>
+        public static string EnvironmentVariableStatusHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableStatusHealthWindowColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual value.
+        /// </summary>
+        public static string EnvironmentVariableValueHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableValueHealthWindowColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Example text....
         /// </summary>
         public static string ExampleTextTextBox_Text {
@@ -1031,6 +1092,15 @@ namespace ChamiUI.Localization {
         public static string ExistingInstanceMessageBoxText {
             get {
                 return ResourceManager.GetString("ExistingInstanceMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected value.
+        /// </summary>
+        public static string ExpectedValueHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("ExpectedValueHealthWindowColumn", resourceCulture);
             }
         }
         

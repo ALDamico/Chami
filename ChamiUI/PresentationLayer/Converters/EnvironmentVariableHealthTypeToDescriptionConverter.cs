@@ -16,43 +16,42 @@ namespace ChamiUI.PresentationLayer.Converters
                 throw new NotSupportedException(message);
             }
 
-            if (value == null)
+            switch (value)
             {
-                return null;
-            }
-
-            if (value is EnvironmentVariableHealthType healthType)
-            {
-                if (parameter == "ShortDescription")
+                case null:
+                    return null;
+                case EnvironmentVariableHealthType healthType:
                 {
-                    switch (healthType)
+                    var parameterString = (string) parameter;
+
+                    return parameterString switch
                     {
-                        case EnvironmentVariableHealthType.Ok:
-                            return ChamiUIStrings.EnvironmentHealthOkShortDescription;
-                        case EnvironmentVariableHealthType.MismatchedValue:
-                            return ChamiUIStrings.EnvironmentHealthMismatchedValueShortDescription;
-                        case EnvironmentVariableHealthType.MissingVariable:
-                            return ChamiUIStrings.EnvironmentHealthMissingValueShortDescription;
-                    }
+                        "LongDescription" => healthType switch
+                        {
+                            EnvironmentVariableHealthType.Ok => ChamiUIStrings.EnvironmentHealthOkLongDescription,
+                            EnvironmentVariableHealthType.MismatchedValue => ChamiUIStrings
+                                .EnvironmentHealthMismatchedValueLongDescription,
+                            EnvironmentVariableHealthType.MissingVariable => ChamiUIStrings
+                                .EnvironmentHealthMissingValueLongDescription,
+                            _ => string.Empty
+                        },
+                        _ => healthType switch
+                        {
+                            EnvironmentVariableHealthType.Ok => ChamiUIStrings.EnvironmentHealthOkShortDescription,
+                            EnvironmentVariableHealthType.MismatchedValue => ChamiUIStrings
+                                .EnvironmentHealthMismatchedValueShortDescription,
+                            EnvironmentVariableHealthType.MissingVariable => ChamiUIStrings
+                                .EnvironmentHealthMissingValueShortDescription,
+                            _ => string.Empty
+                        }
+                    };
                 }
-                else if (parameter == "LongDescription")
+                default:
                 {
-                    switch (healthType)
-                    {
-                        case EnvironmentVariableHealthType.Ok:
-                            return ChamiUIStrings.EnvironmentHealthOkLongDescription;
-                        case EnvironmentVariableHealthType.MismatchedValue:
-                            return ChamiUIStrings.EnvironmentHealthMismatchedValueLongDescription;
-                        case EnvironmentVariableHealthType.MissingVariable:
-                            return ChamiUIStrings.EnvironmentHealthMissingValueLongDescription;
-                    }
+                    var message2 = string.Format(ChamiUIStrings.InvalidConversionOperationMessage, value.GetType());
+                    throw new NotSupportedException(message2);
                 }
-
-                return null;
             }
-
-            var message2 = string.Format(ChamiUIStrings.InvalidConversionOperationMessage, value.GetType());
-            throw new NotSupportedException(message2);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
@@ -62,20 +61,21 @@ namespace ChamiUI.PresentationLayer.Converters
                 var message = string.Format(ChamiUIStrings.InvalidConversionOperationMessage, targetType.Name);
                 throw new NotSupportedException(message);
             }
-            if (value is string str)
+
+            if (value is not string str) return null;
+            if (str == ChamiUIStrings.EnvironmentHealthOkShortDescription)
             {
-                if (value == ChamiUIStrings.EnvironmentHealthOkShortDescription)
-                {
-                    return EnvironmentVariableHealthType.Ok;
-                }
-                else if (value == ChamiUIStrings.EnvironmentHealthMismatchedValueShortDescription)
-                {
-                    return EnvironmentVariableHealthType.MismatchedValue;
-                }
-                else if (value == ChamiUIStrings.EnvironmentHealthMissingValueShortDescription)
-                {
-                    return EnvironmentVariableHealthType.MissingVariable;
-                }
+                return EnvironmentVariableHealthType.Ok;
+            }
+
+            if (str == ChamiUIStrings.EnvironmentHealthMismatchedValueShortDescription)
+            {
+                return EnvironmentVariableHealthType.MismatchedValue;
+            }
+
+            if (str == ChamiUIStrings.EnvironmentHealthMissingValueShortDescription)
+            {
+                return EnvironmentVariableHealthType.MissingVariable;
             }
 
             return null;

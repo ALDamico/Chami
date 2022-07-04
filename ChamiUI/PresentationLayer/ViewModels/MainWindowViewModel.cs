@@ -1027,7 +1027,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public bool IsEnvironmentHealthEnabled => ActiveEnvironment != null;
 
-        public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs)
+        public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs,
+            Window environmentHealthWindow = null)
         {
             if (EditingEnabled)
             {
@@ -1048,6 +1049,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
             
             EnvironmentHealth = healthViewModel;
+
+            if (environmentHealthWindow != null)
+            {
+                environmentHealthWindow.DataContext = healthViewModel;
+            }
         }
 
         public void HandleSettingsSaved(SettingsSavedEventArgs args)

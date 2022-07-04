@@ -932,4 +932,26 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="EnvironmentHealthMissingValueLongDescription" xml:space="preserve">
     <value>Chami non ha trovato questa variabile tra le variabili di ambiente di Windows.</value>
   </data>
+  
+  <data name="EnvironmentVariableNameHealthWindowColumn" xml:space="preserve">
+    <value>Nome variabile</value>
+  </data>
+  <data name="EnvironmentVariableValueHealthWindowColumn" xml:space="preserve">
+    <value>Valore effettivo</value>
+  </data>
+  <data name="ExpectedValueHealthWindowColumn" xml:space="preserve">
+    <value>Valore atteso</value>
+  </data>
+  <data name="EnvironmentVariableStatusHealthWindowColumn" xml:space="preserve">
+    <value>Problema</value>
+  </data>
+  <data name="EnvironmentHealthCaptionOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMismatchedValue" xml:space="preserve">
+    <value>Valore non corrispondente</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMissingVariable" xml:space="preserve">
+    <value>Valore non trovato</value>
+  </data>
 </root>

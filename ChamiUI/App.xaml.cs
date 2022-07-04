@@ -50,7 +50,9 @@ namespace ChamiUI
             try
             {
                 var connectionString = GetConnectionString();
-                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString), new WatchedApplicationDataAdapter(connectionString), new ApplicationLanguageDataAdapter(connectionString));
+                Settings = SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
+                    new WatchedApplicationDataAdapter(connectionString),
+                    new ApplicationLanguageDataAdapter(connectionString));
             }
             catch (SQLiteException)
             {
@@ -64,6 +66,7 @@ namespace ChamiUI
         {
             Settings = args.Settings;
             InitLocalization();
+            InitHealthChecker();
         }
 
         private void InitHealthChecker()
@@ -72,11 +75,21 @@ namespace ChamiUI
             {
                 MaxScore = 1.0,
                 MismatchPenalty = 0.25,
-                CheckInterval = Settings.HealthCheckSettings.Milliseconds
+                CheckInterval = Settings.HealthCheckSettings.TimeToCheck.TotalMilliseconds
             };
             _healthCheckerTimer = new DispatcherTimer();
             _healthCheckerTimer.Interval = TimeSpan.FromMilliseconds(HealthCheckerConfiguration.CheckInterval);
             _healthCheckerTimer.Tick += HealthCheckerTimerOnElapsed;
+            RestartTimer();
+        }
+
+        private void RestartTimer()
+        {
+            if (_healthCheckerTimer.IsEnabled)
+            {
+                _healthCheckerTimer.Stop();
+            }
+
             if (Settings.HealthCheckSettings.IsEnabled)
             {
                 _healthCheckerTimer.Start();
@@ -86,10 +99,7 @@ namespace ChamiUI
         private void HealthCheckerTimerOnElapsed(object sender, EventArgs e)
         {
             ExecuteHealthCheck();
-            if (Settings.HealthCheckSettings.IsEnabled)
-            {
-                _healthCheckerTimer.Start();
-            }
+            RestartTimer();
         }
 
         private void ExecuteHealthCheck()
@@ -140,7 +150,6 @@ namespace ChamiUI
                 // A unit test is running. Use its connection string instead
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
-
         }
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
@@ -190,9 +199,9 @@ namespace ChamiUI
             ((MainWindowViewModel) (mainWindow.DataContext)).EnvironmentChanged += OnEnvironmentChanged;
             mainWindow.ResumeState();
             MainWindow = mainWindow;
-            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
+            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
-            
+
             if (_taskbarIcon != null)
             {
                 if (MainWindow.DataContext is MainWindowViewModel viewModel)
@@ -203,8 +212,6 @@ namespace ChamiUI
                     }
                 }
             }
-
-            
             MainWindow.Show();
             if (Settings.HealthCheckSettings.IsEnabled)
             {

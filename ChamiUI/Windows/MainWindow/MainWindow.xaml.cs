@@ -802,7 +802,7 @@ namespace ChamiUI.Windows.MainWindow
 
         public void OnHealthChecked(object sender, HealthCheckedEventArgs e)
         {
-            ViewModel.HandleCheckedHealth(e);
+            ViewModel.HandleCheckedHealth(e, _healthWindow);
         }
 
         private void EnvironmentHealthStatusBarItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
