@@ -1,6 +1,10 @@
 using System;
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Media;
+using ChamiUI.BusinessLayer.Comparers;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.Localization;
 using Brush = System.Drawing.Brush;
@@ -12,8 +16,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public EnvironmentHealthViewModel()
         {
             HealthStatuses = new ObservableCollection<EnvironmentVariableHealthStatus>();
+            WindowColumns = new ObservableCollection<GridViewColumn>();
         }
         public ObservableCollection<EnvironmentVariableHealthStatus> HealthStatuses { get; }
+        public ObservableCollection<GridViewColumn> WindowColumns { get; }
         public double HealthIndex
         {
             get => _healthIndex;
@@ -95,5 +101,32 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private double _healthIndex;
+
+        public void InitWindowColumns(SettingsViewModel appSettings)
+        {
+            var section = appSettings.HealthCheckSettings;
+            WindowColumns.Clear();
+
+            var columns = section.ColumnInfos;
+            columns.Sort(new ColumnInfoViewModelComparer());
+
+            var columnConverter = new ColumnInfoConverter();
+
+            foreach (var column in columns)
+            {
+                if (!column.IsVisible)
+                {
+                    continue;
+                }
+
+                var viewModel = columnConverter.To(column);
+                
+                GridViewColumn gridViewColumn = new GridViewColumn();
+                gridViewColumn.DisplayMemberBinding = viewModel.Binding;
+                gridViewColumn.Width = viewModel.ColumnWidth;
+                gridViewColumn.Header = viewModel.Header;
+                WindowColumns.Add(gridViewColumn);
+            }
+        }
     }
 }

@@ -10,10 +10,11 @@
         mc:Ignorable="d"
         Title="{lex:Loc Key=EnvironmentHealthWindowTitle}" Height="450" Width="600"
         d:DataContext="{d:DesignInstance viewModels:EnvironmentHealthViewModel}"
+        DataContextChanged="EnvironmentHealthWindow_OnDataContextChanged"
         ResizeMode="NoResize">
     <Window.Resources>
-        <converters:EnvironmentVariableHealthTypeToDescriptionConverter x:Key="EnvironmentHealthTypeConverter" >
-             </converters:EnvironmentVariableHealthTypeToDescriptionConverter>
+        <converters:EnvironmentVariableHealthTypeToDescriptionConverter x:Key="EnvironmentHealthTypeConverter">
+        </converters:EnvironmentVariableHealthTypeToDescriptionConverter>
     </Window.Resources>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -44,14 +45,15 @@
             <TextBlock Text="{Binding HealthIndexPercentage}"></TextBlock>
         </StackPanel>
         <Label Grid.Row="3" Grid.Column="0" x:Name="EnvironmentHealthWindowListBoxHeader" Content="{lex:Loc}"></Label>
-        <ListView Grid.Row="4" Grid.Column="0" Margin="5" ItemsSource="{Binding HealthStatuses}" SelectionMode="Extended"
-        >
+        <ListView Grid.Row="4" x:Name="WindowListView" Grid.Column="0" Margin="5" ItemsSource="{Binding HealthStatuses}"
+                  SelectionMode="Extended">
             <ListView.View>
-                <GridView >
-                    
-                    
+                <GridView>
+
+<!--
                     <GridView.Columns>
-                        <GridViewColumn Width="{Binding ColumnWidth}" x:Name="EnvironmentVariableNameHealthWindowColumn" 
+                        <GridViewColumn Width="{Binding ColumnWidth}"
+                                        x:Name="EnvironmentVariableNameHealthWindowColumn"
                                         Header="{lex:Loc Key=EnvironmentVariableNameHealthWindowColumn}"
                                         DisplayMemberBinding="{Binding EnvironmentVariable.Name}">
                         </GridViewColumn>
@@ -59,14 +61,22 @@
                                         Header="{lex:Loc Key=ExpectedValueHealthWindowColumn}"
                                         DisplayMemberBinding="{Binding ExpectedValue}">
                         </GridViewColumn>
-                        <GridViewColumn x:Name="EnvironmentVariableValueHealthWindowColumn" 
-                                        Header="{lex:Loc Key=EnvironmentVariableValueHealthWindowColumn}" 
-                                        DisplayMemberBinding="{Binding ActualValue}"></GridViewColumn>
-                        <GridViewColumn x:Name="EnvironmentVariableStatusHealthWindowColumn" 
-                                        Header="{lex:Loc Key=EnvironmentVariableStatusHealthWindowColumn}" 
+                        <GridViewColumn x:Name="EnvironmentVariableValueHealthWindowColumn"
+                                        Header="{lex:Loc Key=EnvironmentVariableValueHealthWindowColumn}"
+                                        DisplayMemberBinding="{Binding ActualValue}">
+                        </GridViewColumn>
+                        <GridViewColumn x:Name="EnvironmentVariableStatusHealthWindowColumn"
+                                        Header="{lex:Loc Key=EnvironmentVariableStatusHealthWindowColumn}"
                                         DisplayMemberBinding="{Binding IssueType, 
-                                        Converter={StaticResource EnvironmentHealthTypeConverter}, ConverterParameter=ShortDescription}"></GridViewColumn>
-                    </GridView.Columns>
+                                        Converter={StaticResource EnvironmentHealthTypeConverter}, 
+                                        ConverterParameter=ShortDescription}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding}"></TextBlock>
+                                </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView.Columns>-->
                 </GridView>
             </ListView.View>
         </ListView>

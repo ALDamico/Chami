@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Dapper;
@@ -132,6 +133,97 @@ namespace Chami.Db.Repositories
                 return blackistedVariable;
             }
         }
+
+        public async Task<IEnumerable<ColumnInfo>> GetAllColumnInfos()
+        {
+            return await GetColumnInfoBySettingNameAsync(null);
+        }
+
+        public IEnumerable<ColumnInfo> GetColumnInfoBySettingName(string settingName)
+        {
+            return GetColumnInfoBySettingNameAsync(settingName).GetAwaiter().GetResult();
+        }
+
+        public async Task<IEnumerable<ColumnInfo>> GetColumnInfoBySettingNameAsync(string settingName)
+        {
+            StringBuilder sb = new StringBuilder();
+            object queryParam = null;
+
+            
+            const string sql = @"
+                SELECT Id, IsVisible, ColumnWidth, Binding, OrdinalPosition, Header, Converter, ConverterParameter, SettingName
+                FROM ColumnInfos
+                WHERE 1 = 1
+            ";
+            
+            sb.Append(sql);
+
+            if (settingName != null)
+            {
+                queryParam = new {settingName};
+                sb.Append("AND SettingName = ?");
+            }
+
+            using (var connection = GetConnection())
+            {
+                return await connection.QueryAsync<ColumnInfo>(sb.ToString(), queryParam);
+            }
+        }
+
+        public ColumnInfo UpdateColumnInfo(ColumnInfo columnInfo)
+        {
+            return UpdateColumnInfoAsync(columnInfo).GetAwaiter().GetResult();
+        } 
+
+        public async Task<ColumnInfo> UpdateColumnInfoAsync(ColumnInfo columnInfo)
+        {
+            var sql = @"
+                UPDATE ColumnInfos
+                SET SettingName = ?,
+                    IsVisible = ?,
+                    ColumnWidth = ?,
+                    Binding = ?,
+                    OrdinalPosition = ?,
+                    Header = ?,
+                    Converter = ?,
+                    ConverterParameter = ?
+                WHERE Id = ?
+";
+            var param = new
+            {
+                columnInfo.SettingName,
+                columnInfo.IsVisible,
+                columnInfo.ColumnWidth,
+                columnInfo.Binding,
+                columnInfo.OrdinalPosition,
+                columnInfo.Header,
+                columnInfo.Converter,
+                columnInfo.ConverterParameter
+            };
+
+            using var connection = GetConnection();
+            var transaction = await connection.BeginTransactionAsync();
+            await connection.ExecuteAsync(sql, param, transaction);
+            
+            var newColumnInfo = await GetColumnInfoByIdAsync(columnInfo.Id);
+
+            await transaction.CommitAsync();
+
+            return newColumnInfo;
+        }
+
+        public async Task<ColumnInfo> GetColumnInfoByIdAsync(int id)
+        {
+            var sql =
+                @"SELECT Id, IsVisible, ColumnWidth, Binding, OrdinalPosition, Header, Converter, ConverterParameter, SettingName
+                FROM ColumnInfos
+                WHERE Id = ?";
+
+            using var connection = GetConnection();
+
+            return await connection.QuerySingleAsync<ColumnInfo>(sql, new {id});
+        }
+
         public async Task<EnvironmentVariableBlacklist> UpdateBlacklistedVariableAsync(
             EnvironmentVariableBlacklist blacklistedVariable)
         {

@@ -1,9 +1,11 @@
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.PresentationLayer.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting;
 using System.Threading.Tasks;
@@ -79,14 +81,29 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var targetTypeName = setting.Type;
                 var propertyValue = AttemptConversion(targetTypeName, setting);
 
-                var settingSetMethod = settingPInfo.GetSetMethod();
-                if (settingSetMethod == null)
+                var prop = settingPInfo.GetValue(pInfo.GetValue(viewModel));
+
+                if (prop is IList<ColumnInfo> list)
                 {
-                    throw new InvalidOperationException(
-                        $"The requested property {settingPInfo.Name} has no publicly-accessible setter!");
+                    var columnInfos = _repository.GetColumnInfoBySettingName(setting.SettingName);
+                    foreach (var columnInfo in columnInfos)
+                    {
+                        list.Add(columnInfo);
+                    }
+                    
+                }
+                if (prop is not IList)
+                {
+                    var settingSetMethod = settingPInfo.GetSetMethod();
+                    if (settingSetMethod == null)
+                    {
+                        throw new InvalidOperationException(
+                            $"The requested property {settingPInfo.Name} has no publicly-accessible setter!");
+                    }
+
+                    settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] {propertyValue});
                 }
 
-                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] { propertyValue });
 
                 pInfo.SetValue(viewModel, pInfo.GetValue(viewModel));
             }
@@ -230,16 +247,24 @@ namespace ChamiUI.BusinessLayer.Adapters
                 // those are updated explicitly by a dedicated method
                 var isExplicitSaveOnlyAttribute =
                     propertyInfo.PropertyType.GetCustomAttribute<ExplicitSaveOnlyAttribute>();
-                if (isExplicitSaveOnlyAttribute is { IsExplicitSaveOnly: true })
+                if (isExplicitSaveOnlyAttribute is {IsExplicitSaveOnly: true})
                 {
                     continue;
+                }
+
+                if (propertyInfo.GetValue(settings) is IList<ColumnInfo> list)
+                {
+                    foreach (var columnInfo in list)
+                    {
+                        _repository.UpdateColumnInfo(columnInfo);
+                    }
                 }
 
                 var propertiesToSave = propertyInfo.PropertyType.GetProperties();
                 foreach (var property in propertiesToSave)
                 {
                     var isNonPersistent = property.GetCustomAttribute<NonPersistentSettingAttribute>();
-                    if (isNonPersistent is { IsNonPersistent: true })
+                    if (isNonPersistent is {IsNonPersistent: true})
                     {
                         continue;
                     }
@@ -285,10 +310,11 @@ namespace ChamiUI.BusinessLayer.Adapters
             _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.SortDescription),
                 sortDescriptionValue);
             _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.WindowState),
-                ((int)mainWinSettings.WindowState).ToString());
+                ((int) mainWinSettings.WindowState).ToString());
         }
 
-        public async Task<EnvironmentVariableBlacklistViewModel> SaveBlacklistedVariableAsync(EnvironmentVariableBlacklistViewModel variable)
+        public async Task<EnvironmentVariableBlacklistViewModel> SaveBlacklistedVariableAsync(
+            EnvironmentVariableBlacklistViewModel variable)
         {
             var converter = new EnvironmentVariableBlacklistConverter();
             var entity = converter.From(variable);
@@ -317,6 +343,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             {
                 output.Add(converter.To(task.Result));
             }
+
             return output;
         }
     }

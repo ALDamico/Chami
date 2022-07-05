@@ -1,12 +1,21 @@
 using System;
+using System.Collections.Generic;
+using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Annotations;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class HealthCheckSettingsViewModel : SettingCategoryViewModelBase
     {
+        public HealthCheckSettingsViewModel()
+        {
+            ColumnInfos = new List<ColumnInfo>();
+        }
         private bool _isEnabled;
         private TimeSpan _timeToCheck;
+        
+        public List<ColumnInfo> ColumnInfos { get; }
+
 
         public TimeSpan TimeToCheck
         {
