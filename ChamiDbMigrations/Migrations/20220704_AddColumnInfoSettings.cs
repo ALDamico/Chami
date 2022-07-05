@@ -68,7 +68,7 @@ namespace ChamiDbMigrations.Migrations
                 ColumnWidth = 450d,
                 Binding = "EnvironmentVariable.name",
                 OrdinalPosition = 0,
-                Header = "ChamiUIStrings.EnvironmentVariableNameHealthWindowColumn",
+                Header = "EnvironmentVariableNameHealthWindowColumn",
                 SettingName = "ColumnInfos"
             };
             list.Add(environmentVariableNameColumn);
@@ -80,7 +80,7 @@ namespace ChamiDbMigrations.Migrations
                 ColumnWidth = 450d,
                 Binding = "ExpectedValue",
                 OrdinalPosition = 1,
-                Header = "ChamiUIStrings.ExpectedValueHealthWindowColumn",
+                Header = "ExpectedValueHealthWindowColumn",
                 SettingName = "ColumnInfos"
             };
             list.Add(expectedValueColumn);
@@ -92,7 +92,7 @@ namespace ChamiDbMigrations.Migrations
                 ColumnWidth = 450d,
                 Binding = "ActualValue",
                 OrdinalPosition = 2,
-                Header = "ChamiUIStrings.EnvironmentVariableValueHealthWindowColumn",
+                Header = "EnvironmentVariableValueHealthWindowColumn",
                 SettingName = "ColumnInfos"
             };
             list.Add(actualValueColumn);
@@ -104,8 +104,8 @@ namespace ChamiDbMigrations.Migrations
                 Binding = "IssueType",
                 ColumnWidth = 200,
                 OrdinalPosition = 3,
-                Header = "ChamiUIStrings.EnvironmentVariableStatusHealthWindowColumn",
-                Converter = "EnvironmentHealthTypeConverter",
+                Header = "EnvironmentVariableStatusHealthWindowColumn",
+                Converter = "ChamiUI.PresentationLayer.Converters.EnvironmentHealthTypeConverter",
                 ConverterParameter = "ShortDescription",
                 SettingName = "ColumnInfos"
             };
