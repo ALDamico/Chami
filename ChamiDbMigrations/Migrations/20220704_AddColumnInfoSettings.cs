@@ -66,7 +66,7 @@ namespace ChamiDbMigrations.Migrations
                 Id = i,
                 IsVisible = true,
                 ColumnWidth = 450d,
-                Binding = "EnvironmentVariable.name",
+                Binding = "EnvironmentVariable.Name",
                 OrdinalPosition = 0,
                 Header = "EnvironmentVariableNameHealthWindowColumn",
                 SettingName = "ColumnInfos"
@@ -105,7 +105,7 @@ namespace ChamiDbMigrations.Migrations
                 ColumnWidth = 200,
                 OrdinalPosition = 3,
                 Header = "EnvironmentVariableStatusHealthWindowColumn",
-                Converter = "ChamiUI.PresentationLayer.Converters.EnvironmentHealthTypeConverter",
+                Converter = "ChamiUI.PresentationLayer.Converters.EnvironmentVariableHealthTypeToDescriptionConverter",
                 ConverterParameter = "ShortDescription",
                 SettingName = "ColumnInfos"
             };

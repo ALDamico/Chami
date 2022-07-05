@@ -1,9 +1,7 @@
 using System;
 using System.Windows.Data;
 using Chami.Db.Entities;
-using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
-using Newtonsoft.Json;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
@@ -34,7 +32,7 @@ namespace ChamiUI.BusinessLayer.Converters
                 var converterType = Type.GetType(entity.Converter);
                 if (converterType == null)
                 {
-                    throw new InvalidOperationException($"Converter type ${entity.Converter} not found!");
+                    throw new InvalidOperationException($"Converter type {entity.Converter} not found!");
                 }
                 binding.Converter = Activator.CreateInstance(converterType) as IValueConverter;
                 if (entity.ConverterParameter != null)
