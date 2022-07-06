@@ -933,4 +933,131 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="LogLevelFatalDescription" xml:space="preserve">
     <value>Scrive nel log solo gli errori più gravi che impediscono l'esecuzione di Chami.</value>
   </data>
+  <data name="NullHealthCheckStrategyExceptionMessage" xml:space="preserve">
+    <value>Strategia di controllo salute non valida.</value>
+  </data>
+  <data name="HealthCheckIsEnabledLabel_Content" xml:space="preserve">
+    <value>Abilita il controllo di qualità dell'ambiente</value>
+  </data>
+  <data name="HealthCheckCategory" xml:space="preserve">
+    <value>Qualità ambiente</value>
+  </data>
+  <data name="HealthCheckCategoryDescription" xml:space="preserve">
+    <value>Gestisci le impostazioni relative allo stato qualitativo dell'ambiente.</value>
+  </data>
+  <data name="HealthCheckGroupBox_Header" xml:space="preserve">
+    <value>Qualità ambiente</value>
+  </data>
+  <data name="HealthCheckTimeSpanUpDownLabel_Content" xml:space="preserve">
+    <value>Controlla ogni</value>
+  </data>
+  <data name="HealthCheckerTooltipOk" xml:space="preserve">
+    <value>L'ambiente non è stato modificato esternamente.</value>
+  </data>
+  <data name="HealthCheckerTooltipDegraded" xml:space="preserve">
+    <value>Alcune variabili sono state modificate esternamente. L'ambiente è degradato.</value>
+  </data>
+  <data name="HealthCheckerTooltipBadlyDegraded" xml:space="preserve">
+    <value>Parecchie variabili sono state modificate esternamente. L'ambiente è gravemente degradato.</value>
+  </data>
+  <data name="HealthCheckerTooltipError" xml:space="preserve">
+    <value>L'ambiente Windows è completamente differente dall'ambiente Chami. Le applicazioni potrebbero comportarsi in maniera inattesa.</value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemToolTipHeader_Text" xml:space="preserve">
+    <value>Stato di salute dell'ambiente</value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemScoreCaption_Text" xml:space="preserve">
+    <value>Punteggio: </value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemDoubleClickHint_Text" xml:space="preserve">
+    <value>(doppio clic per ulteriori dettagli...)</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageDegraded" xml:space="preserve">
+    <value>Degradato</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageBadlyDegraded" xml:space="preserve">
+    <value>Gravemente degradato</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageError" xml:space="preserve">
+    <value>Errore</value>
+  </data>
+  <data name="EnvironmentHealthWindowHeader_Content" xml:space="preserve">
+    <value>Stato di salute dell'ambiente</value>
+  </data>
+  <data name="EnvironmentHealthWindowCaption_Text" xml:space="preserve">
+    <value>Questa finestra mostra un riepilogo dello stato di salute attuale dell'ambiente.</value>
+  </data>
+  <data name="EnvironmentHealthWindowTitle" xml:space="preserve">
+    <value>Stato di salute dell'ambiente</value>
+  </data>
+  <data name="EnvironmentHealthWindowCloseButton_Content" xml:space="preserve">
+    <value>Chiudi</value>
+  </data>
+  <data name="EnvironmentHealthMenuItem_Header" xml:space="preserve">
+    <value>Dettagli stato di salute...</value>
+  </data>
+  <data name="EnvironmentHealthWindowListBoxHeader_Content" xml:space="preserve">
+    <value>Variabili</value>
+  </data>
+  <data name="InvalidConversionOperationMessage" xml:space="preserve">
+    <value>La conversione da o verso il tipo {0} non è supportata!</value>
+  </data>
+  <data name="EnvironmentHealthOkShortDescription" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueShortDescription" xml:space="preserve">
+    <value>Valore non corrispondente</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueShortDescription" xml:space="preserve">
+    <value>Valore mancante</value>
+  </data>
+  <data name="EnvironmentHealthOkLongDescription" xml:space="preserve">
+    <value>Il valore della variabile corrisponde con quello dell'ambiente di Chami.</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueLongDescription" xml:space="preserve">
+    <value>Il valore di questa variabile in Windows non corrisponde a ciò che Chami si aspetta.</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueLongDescription" xml:space="preserve">
+    <value>Chami non ha trovato questa variabile tra le variabili di ambiente di Windows.</value>
+  </data>
+  
+  <data name="EnvironmentVariableNameHealthWindowColumn" xml:space="preserve">
+    <value>Nome variabile</value>
+  </data>
+  <data name="EnvironmentVariableValueHealthWindowColumn" xml:space="preserve">
+    <value>Valore effettivo</value>
+  </data>
+  <data name="ExpectedValueHealthWindowColumn" xml:space="preserve">
+    <value>Valore atteso</value>
+  </data>
+  <data name="EnvironmentVariableStatusHealthWindowColumn" xml:space="preserve">
+    <value>Problema</value>
+  </data>
+  <data name="EnvironmentHealthCaptionOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMismatchedValue" xml:space="preserve">
+    <value>Valore non corrispondente</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMissingVariable" xml:space="preserve">
+    <value>Valore non trovato</value>
+  </data>
+  <data name="ColumnVisible" xml:space="preserve">
+    <value>Visibile</value>
+  </data>
+  <data name="ColumnHidden" xml:space="preserve">
+    <value>Nascosta</value>
+  </data>
+  <data name="MoveColumnDownButton_ToolTip" xml:space="preserve">
+    <value>Sposta giù</value>
+  </data>
+  <data name="ToggleVisibilityButton_ToolTip" xml:space="preserve">
+    <value>Mostra/nascondi</value>
+  </data>
+  <data name="MoveColumnUpButton_ToolTip" xml:space="preserve">
+    <value>Sposta su</value>
+  </data>
 </root>

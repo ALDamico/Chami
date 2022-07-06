@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Controls;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Controls;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 
@@ -42,6 +45,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings.MinimizationBehaviour =
                 SettingsCategoriesFactory.GetMinimizationBehaviourSettingCategory(Settings);
             SettingsCategories.Add(Settings.MinimizationBehaviour);
+            Settings.HealthCheckSettings = SettingsCategoriesFactory.GetHealthCheckSettingCategory(Settings);
+            SettingsCategories.Add(Settings.HealthCheckSettings);
 
             CurrentSection = SettingsCategories.FirstOrDefault();
         }
@@ -52,9 +57,29 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void SaveSettings()
         {
             _dataAdapter.SaveSettings(Settings);
+            var savedVariables = _dataAdapter.SaveBlacklistedVariableListAsync(Settings.SafeVariableSettings.ForbiddenVariables).GetAwaiter()
+                .GetResult();
+            
+            Settings.SafeVariableSettings.ForbiddenVariables.Clear();
+
+            foreach (var variable in savedVariables)
+            {
+                Settings.SafeVariableSettings.ForbiddenVariables.Add(variable);
+            }
             Settings.WatchedApplicationSettings
-                .WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(_watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
-                .WatchedApplications));
+                .WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(
+                _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
+                    .WatchedApplications));
+
+            var columnInfosToUpdate = Settings.HealthCheckSettings.ColumnInfoViewModels;
+            _dataAdapter.SaveColumnInfoAsync(columnInfosToUpdate).GetAwaiter().GetResult();
+            var converter = new ColumnInfoConverter();
+            Settings.HealthCheckSettings.ColumnInfos.Clear();
+
+            foreach (var columnInfoViewModel in columnInfosToUpdate)
+            {
+                Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfoViewModel));
+            }
         }
 
         private GenericLabelViewModel _currentSection;
@@ -66,13 +91,32 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 if (value != null)
                 {
-                    _currentSection = value;    
+                    _currentSection = value;
                 }
-                
+
                 OnPropertyChanged(nameof(CurrentSection));
             }
         }
+
         public ObservableCollection<GenericLabelViewModel> SettingsCategories { get; }
+
+        public async Task SaveForbiddenVariables()
+        {
+            var tasks = new List<Task<EnvironmentVariableBlacklistViewModel>>();
+            var output = new List<EnvironmentVariableBlacklistViewModel>();
+            foreach (var variable in Settings.SafeVariableSettings.ForbiddenVariables)
+            {
+                Task<EnvironmentVariableBlacklistViewModel> task = _dataAdapter.SaveBlacklistedVariableAsync(variable);
+                tasks.Add(task);
+                task.ContinueWith(async v =>
+                {
+                    var awaitedVariable = await v;
+                    output.Add(awaitedVariable);
+                });
+            }
+
+            await Task.WhenAll(tasks);
+        }
 
         private readonly SettingsDataAdapter _dataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;

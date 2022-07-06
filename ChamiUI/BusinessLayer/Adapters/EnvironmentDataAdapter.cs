@@ -27,7 +27,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             _repository = new EnvironmentRepository(connectionString);
         }
 
-        private EnvironmentRepository _repository;
+        private readonly EnvironmentRepository _repository;
 
         /// <summary>
         /// Saves a new template <see cref="EnvironmentViewModel"/> to the datastore.

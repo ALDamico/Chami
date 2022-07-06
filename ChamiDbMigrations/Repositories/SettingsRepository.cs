@@ -1,5 +1,9 @@
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Dapper;
 
@@ -69,5 +73,184 @@ namespace Chami.Db.Repositories
             return setting;
         }
 
+        public async Task<EnvironmentVariableBlacklist> UpsertBlacklistedVariableAsync(EnvironmentVariableBlacklist blacklistedVariable)
+        {
+            if (blacklistedVariable == null)
+            {
+                throw new InvalidOperationException("Attempting to persist null entity.");
+            }
+
+            if (blacklistedVariable.Id == 0)
+            {
+                return await InsertBlacklistedVariableAsync(blacklistedVariable);
+            }
+
+            return await UpdateBlacklistedVariableAsync(blacklistedVariable);
+        }
+        
+        public async Task<EnvironmentVariableBlacklist> InsertBlacklistedVariableAsync(
+            EnvironmentVariableBlacklist blackistedVariable)
+        {
+            if (blackistedVariable == null)
+            {
+                throw new InvalidOperationException("Attempting to persist null entity.");
+            }
+
+            if (blackistedVariable.Id > 0)
+            {
+                throw new NotSupportedException("Attempting to insert duplicate item in the database");
+            }
+
+            var queryString = @"
+                INSERT INTO EnvironmentVariableBlacklist (Name, InitialValue, IsWindowsDefault, IsEnabled, AddedOn)
+                VALUES (?, ?, ?, ?, ?)
+";
+            using (var connection = GetConnection())
+            {
+                var transaction = await connection.BeginTransactionAsync();
+                await connection.ExecuteAsync(queryString,
+                    new
+                    {
+                        blackistedVariable.Name,
+                        blackistedVariable.InitialValue,
+                        blackistedVariable.IsWindowsDefault,
+                        blackistedVariable.IsEnabled, 
+                        AddedOn = DateTime.Now
+                    });
+
+                var insertedId = await connection.QueryAsync<int>("SELECT last_insert_rowid()");
+                var list = insertedId.ToList();
+                if (list.Count == 1)
+                {
+                    blackistedVariable.Id = list.First();
+                    await transaction.CommitAsync();
+                }
+                else
+                {
+                    throw new DataException("An unknown error occurred when trying to save the entity!");
+                }
+
+                return blackistedVariable;
+            }
+        }
+
+        public async Task<IEnumerable<ColumnInfo>> GetAllColumnInfos()
+        {
+            return await GetColumnInfoBySettingNameAsync(null);
+        }
+
+        public IEnumerable<ColumnInfo> GetColumnInfoBySettingName(string settingName)
+        {
+            return GetColumnInfoBySettingNameAsync(settingName).GetAwaiter().GetResult();
+        }
+
+        public async Task<IEnumerable<ColumnInfo>> GetColumnInfoBySettingNameAsync(string settingName)
+        {
+            StringBuilder sb = new StringBuilder();
+            object queryParam = null;
+
+            
+            const string sql = @"
+                SELECT Id, IsVisible, ColumnWidth, Binding, OrdinalPosition, Header, Converter, ConverterParameter, SettingName
+                FROM ColumnInfos
+                WHERE 1 = 1
+            ";
+            
+            sb.Append(sql);
+
+            if (settingName != null)
+            {
+                queryParam = new {settingName};
+                sb.Append("AND SettingName = ?");
+            }
+
+            using (var connection = GetConnection())
+            {
+                return await connection.QueryAsync<ColumnInfo>(sb.ToString(), queryParam);
+            }
+        }
+
+        public ColumnInfo UpdateColumnInfo(ColumnInfo columnInfo)
+        {
+            return UpdateColumnInfoAsync(columnInfo).GetAwaiter().GetResult();
+        } 
+
+        public async Task<ColumnInfo> UpdateColumnInfoAsync(ColumnInfo columnInfo)
+        {
+            var sql = @"
+                UPDATE ColumnInfos
+                SET IsVisible = ?,
+                    ColumnWidth = ?,
+                    OrdinalPosition = ?
+                WHERE Id = ?
+";
+            var param = new
+            {
+                columnInfo.IsVisible,
+                columnInfo.ColumnWidth,
+                columnInfo.OrdinalPosition,
+                columnInfo.Id
+            };
+
+            using var connection = GetConnection();
+            var transaction = await connection.BeginTransactionAsync();
+            await connection.ExecuteAsync(sql, param, transaction);
+            
+            var newColumnInfo = await GetColumnInfoByIdAsync(columnInfo.Id);
+
+            await transaction.CommitAsync();
+
+            return newColumnInfo;
+        }
+
+        public async Task<ColumnInfo> GetColumnInfoByIdAsync(int id)
+        {
+            var sql =
+                @"SELECT Id, IsVisible, ColumnWidth, Binding, OrdinalPosition, Header, Converter, ConverterParameter, SettingName
+                FROM ColumnInfos
+                WHERE Id = ?";
+
+            using var connection = GetConnection();
+
+            return await connection.QuerySingleAsync<ColumnInfo>(sql, new {id});
+        }
+
+        public async Task<EnvironmentVariableBlacklist> UpdateBlacklistedVariableAsync(
+            EnvironmentVariableBlacklist blacklistedVariable)
+        {
+            if (blacklistedVariable == null)
+            {
+                throw new InvalidOperationException("Attempting to update null entity.");
+            }
+
+            if (blacklistedVariable.Id == 0)
+            {
+                throw new NotSupportedException("Attempting to update non-persisted entity");
+            }
+
+            var queryString = @"
+                UPDATE EnvironmentVariableBlacklist
+                SET Name = ?,
+                    InitialValue = ?,
+                    IsWindowsDefault = ?,
+                    IsEnabled = ?
+                WHERE Id = ?
+";
+            using (var connection = GetConnection())
+            {
+                var transaction = await connection.BeginTransactionAsync();
+                await connection.ExecuteAsync(queryString, new
+                {
+                    blacklistedVariable.Name, 
+                    blacklistedVariable.InitialValue,
+                    blacklistedVariable.IsWindowsDefault, 
+                    blacklistedVariable.IsEnabled,
+                    blacklistedVariable.Id
+                });
+
+                await transaction.CommitAsync();
+                return blacklistedVariable;
+            }
+        }
     }
 }

@@ -407,6 +407,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hidden.
+        /// </summary>
+        public static string ColumnHidden {
+            get {
+                return ResourceManager.GetString("ColumnHidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visible.
+        /// </summary>
+        public static string ColumnVisible {
+            get {
+                return ResourceManager.GetString("ColumnVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string ConsoleClearMenuItem {
@@ -767,6 +785,204 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Mismatched value.
+        /// </summary>
+        public static string EnvironmentHealthCaptionMismatchedValue {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionMismatchedValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable not found.
+        /// </summary>
+        public static string EnvironmentHealthCaptionMissingVariable {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionMissingVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string EnvironmentHealthCaptionOk {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Badly degraded.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageBadlyDegraded {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageBadlyDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Degraded.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageDegraded {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Error.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageError {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string EnvironmentHealthCheckerMessageOk {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCheckerMessageOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment health details....
+        /// </summary>
+        public static string EnvironmentHealthMenuItem_Header {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value of this variable in Windows doesn&apos;t match what Chami expects..
+        /// </summary>
+        public static string EnvironmentHealthMismatchedValueLongDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMismatchedValueLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Mismatched value.
+        /// </summary>
+        public static string EnvironmentHealthMismatchedValueShortDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMismatchedValueShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Chami couldn&apos;t find this variable among Windows environment variables..
+        /// </summary>
+        public static string EnvironmentHealthMissingValueLongDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMissingValueLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Missing value.
+        /// </summary>
+        public static string EnvironmentHealthMissingValueShortDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMissingValueShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This variable&apos;s value corresponds with the Chami environment..
+        /// </summary>
+        public static string EnvironmentHealthOkLongDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthOkLongDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string EnvironmentHealthOkShortDescription {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthOkShortDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to (double click for details...).
+        /// </summary>
+        public static string EnvironmentHealthStatusBarItemDoubleClickHint_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthStatusBarItemDoubleClickHint_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Score: .
+        /// </summary>
+        public static string EnvironmentHealthStatusBarItemScoreCaption_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthStatusBarItemScoreCaption_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Health.
+        /// </summary>
+        public static string EnvironmentHealthStatusBarItemToolTipHeader_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthStatusBarItemToolTipHeader_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This window shows a recap of the current health state of the environment..
+        /// </summary>
+        public static string EnvironmentHealthWindowCaption_Text {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowCaption_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Close.
+        /// </summary>
+        public static string EnvironmentHealthWindowCloseButton_Content {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowCloseButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Health.
+        /// </summary>
+        public static string EnvironmentHealthWindowHeader_Content {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowHeader_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variables.
+        /// </summary>
+        public static string EnvironmentHealthWindowListBoxHeader_Content {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowListBoxHeader_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Health.
+        /// </summary>
+        public static string EnvironmentHealthWindowTitle {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to In environment name.
         /// </summary>
         public static string EnvironmentNameFilterStrategyName {
@@ -799,6 +1015,15 @@ namespace ChamiUI.Localization {
         public static string EnvironmentsTabItem_Header {
             get {
                 return ResourceManager.GetString("EnvironmentsTabItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Variable name.
+        /// </summary>
+        public static string EnvironmentVariableNameHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableNameHealthWindowColumn", resourceCulture);
             }
         }
         
@@ -854,6 +1079,24 @@ namespace ChamiUI.Localization {
         public static string EnvironmentVariableNameNumberFirstCharacterErrorMessage {
             get {
                 return ResourceManager.GetString("EnvironmentVariableNameNumberFirstCharacterErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Issue.
+        /// </summary>
+        public static string EnvironmentVariableStatusHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableStatusHealthWindowColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Actual value.
+        /// </summary>
+        public static string EnvironmentVariableValueHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("EnvironmentVariableValueHealthWindowColumn", resourceCulture);
             }
         }
         
@@ -918,6 +1161,15 @@ namespace ChamiUI.Localization {
         public static string ExistingInstanceMessageBoxText {
             get {
                 return ResourceManager.GetString("ExistingInstanceMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expected value.
+        /// </summary>
+        public static string ExpectedValueHealthWindowColumn {
+            get {
+                return ResourceManager.GetString("ExpectedValueHealthWindowColumn", resourceCulture);
             }
         }
         
@@ -1183,6 +1435,87 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Environment health.
+        /// </summary>
+        public static string HealthCheckCategory {
+            get {
+                return ResourceManager.GetString("HealthCheckCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage settings related to the health state of the environment..
+        /// </summary>
+        public static string HealthCheckCategoryDescription {
+            get {
+                return ResourceManager.GetString("HealthCheckCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quite a few variables have been modified externally. The environment is badly degraded..
+        /// </summary>
+        public static string HealthCheckerTooltipBadlyDegraded {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipBadlyDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Some variables have been modified externally. The environment is degraded..
+        /// </summary>
+        public static string HealthCheckerTooltipDegraded {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipDegraded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Windows environment is completely unlike the Chami environment. Applications may not work as expected..
+        /// </summary>
+        public static string HealthCheckerTooltipError {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipError", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The environment has not been modified externally..
+        /// </summary>
+        public static string HealthCheckerTooltipOk {
+            get {
+                return ResourceManager.GetString("HealthCheckerTooltipOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment health.
+        /// </summary>
+        public static string HealthCheckGroupBox_Header {
+            get {
+                return ResourceManager.GetString("HealthCheckGroupBox_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable environment health check.
+        /// </summary>
+        public static string HealthCheckIsEnabledLabel_Content {
+            get {
+                return ResourceManager.GetString("HealthCheckIsEnabledLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check every.
+        /// </summary>
+        public static string HealthCheckTimeSpanUpDownLabel_Content {
+            get {
+                return ResourceManager.GetString("HealthCheckTimeSpanUpDownLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Deselect All.
         /// </summary>
         public static string ImportDeselectAllButton_Content {
@@ -1251,6 +1584,15 @@ namespace ChamiUI.Localization {
         public static string ImportSelectAllButton_Content {
             get {
                 return ResourceManager.GetString("ImportSelectAllButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Converting to or from type {0} is not supported!.
+        /// </summary>
+        public static string InvalidConversionOperationMessage {
+            get {
+                return ResourceManager.GetString("InvalidConversionOperationMessage", resourceCulture);
             }
         }
         
@@ -1623,6 +1965,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move down.
+        /// </summary>
+        public static string MoveColumnDownButton_ToolTip {
+            get {
+                return ResourceManager.GetString("MoveColumnDownButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move up.
+        /// </summary>
+        public static string MoveColumnUpButton_ToolTip {
+            get {
+                return ResourceManager.GetString("MoveColumnUpButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NewEnvironmentDataGridNameColumn {
@@ -1791,6 +2151,15 @@ namespace ChamiUI.Localization {
         public static string NopCommandMessage {
             get {
                 return ResourceManager.GetString("NopCommandMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid Health check strategy..
+        /// </summary>
+        public static string NullHealthCheckStrategyExceptionMessage {
+            get {
+                return ResourceManager.GetString("NullHealthCheckStrategyExceptionMessage", resourceCulture);
             }
         }
         
@@ -2337,6 +2706,15 @@ namespace ChamiUI.Localization {
         public static string TerminateMenuItem_Header {
             get {
                 return ResourceManager.GetString("TerminateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle visibility.
+        /// </summary>
+        public static string ToggleVisibilityButton_ToolTip {
+            get {
+                return ResourceManager.GetString("ToggleVisibilityButton_ToolTip", resourceCulture);
             }
         }
         

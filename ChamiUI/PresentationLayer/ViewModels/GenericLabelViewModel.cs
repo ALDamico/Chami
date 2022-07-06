@@ -9,6 +9,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     [ExplicitSaveOnly(false)]
     public abstract class GenericLabelViewModel : ViewModelBase
     {
+        [NonPersistentSetting]
         public string Description
         {
             get => _description;
@@ -19,7 +20,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-
+        [NonPersistentSetting]
         public string IconPath
         {
             get => _iconPath;
@@ -30,6 +31,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        [NonPersistentSetting]
         public string DisplayName
         {
             get => _displayName;

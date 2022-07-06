@@ -1,9 +1,14 @@
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.PresentationLayer.ViewModels;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.Remoting;
+using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Annotations;
@@ -58,69 +63,47 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var pInfo = viewModel.GetType().GetProperty(setting.PropertyName);
                 if (pInfo == null)
                 {
-                    throw new NullReferenceException(
+                    throw new InvalidDataException(
                         $"The requested property was not found in type {viewModel.GetType()}");
                 }
 
                 var settingPInfo = pInfo.PropertyType.GetProperty(setting.SettingName);
                 if (settingPInfo == null)
                 {
-                    throw new NullReferenceException($"The requested property was not found in object {pInfo.Name}");
+                    throw new InvalidDataException($"The requested property was not found in object {pInfo.Name}");
                 }
 
-                object propertyValue = null;
+                if (settingPInfo.GetCustomAttribute<NonPersistentSettingAttribute>() != null)
+                {
+                    continue;
+                }
+
                 var targetTypeName = setting.Type;
+                var propertyValue = AttemptConversion(targetTypeName, setting);
 
-                try
+                var prop = settingPInfo.GetValue(pInfo.GetValue(viewModel));
+
+                if (prop is IList<ColumnInfo> list)
                 {
-                    propertyValue = GetBoxedConvertedObject(targetTypeName, setting.Value);
-                }
-                catch (InvalidCastException)
-                {
-                    var assemblyName = setting.AssemblyName;
-                    try
+                    var columnInfos = _repository.GetColumnInfoBySettingName(setting.SettingName);
+                    foreach (var columnInfo in columnInfos)
                     {
-                        var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
-                            BindingFlags.Default, null, args: new object[] { setting.Value }, null, null);
-                        if (objectWrapper != null)
-                        {
-                            propertyValue = objectWrapper.Unwrap();
-                        }
+                        list.Add(columnInfo);
                     }
-                    catch (MissingMethodException)
-                    {
-                        if (setting.Converter != null)
-                        {
-                            var converter = Activator.CreateInstance(nameof(ChamiUI), setting.Converter);
-                            if (converter != null)
-                            {
-                                var unwrappedConverter = converter.Unwrap();
-                                if (unwrappedConverter != null)
-                                {
-                                    var methodInfo = unwrappedConverter.GetType().GetMethod("Convert");
-                                    if (methodInfo != null)
-                                    {
-                                        propertyValue = methodInfo.Invoke(unwrappedConverter, new object[] { setting });
-                                    }
-                                }
-                            }
-                        }
-                        else
-                        {
-                            // The setting is an enum
-                            propertyValue = ConvertToEnumType(assemblyName, targetTypeName, setting);
-                        }
-                    }
+                    
                 }
-
-                var settingSetMethod = settingPInfo.GetSetMethod();
-                if (settingSetMethod == null)
+                if (prop is not IList)
                 {
-                    throw new InvalidOperationException(
-                        $"The requested property {settingPInfo.Name} has no publicly-accessible setter!");
+                    var settingSetMethod = settingPInfo.GetSetMethod();
+                    if (settingSetMethod == null)
+                    {
+                        throw new InvalidOperationException(
+                            $"The requested property {settingPInfo.Name} has no publicly-accessible setter!");
+                    }
+
+                    settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] {propertyValue});
                 }
 
-                settingSetMethod.Invoke(pInfo.GetValue(viewModel), new[] { propertyValue });
 
                 pInfo.SetValue(viewModel, pInfo.GetValue(viewModel));
             }
@@ -278,16 +261,24 @@ namespace ChamiUI.BusinessLayer.Adapters
                 // those are updated explicitly by a dedicated method
                 var isExplicitSaveOnlyAttribute =
                     propertyInfo.PropertyType.GetCustomAttribute<ExplicitSaveOnlyAttribute>();
-                if (isExplicitSaveOnlyAttribute is { IsExplicitSaveOnly: true })
+                if (isExplicitSaveOnlyAttribute is {IsExplicitSaveOnly: true})
                 {
                     continue;
+                }
+
+                if (propertyInfo.GetValue(settings) is IList<ColumnInfo> list)
+                {
+                    foreach (var columnInfo in list)
+                    {
+                        _repository.UpdateColumnInfo(columnInfo);
+                    }
                 }
 
                 var propertiesToSave = propertyInfo.PropertyType.GetProperties();
                 foreach (var property in propertiesToSave)
                 {
                     var isNonPersistent = property.GetCustomAttribute<NonPersistentSettingAttribute>();
-                    if (isNonPersistent is { IsNonPersistent: true })
+                    if (isNonPersistent is {IsNonPersistent: true})
                     {
                         continue;
                     }
@@ -333,7 +324,54 @@ namespace ChamiUI.BusinessLayer.Adapters
             _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.SortDescription),
                 sortDescriptionValue);
             _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.WindowState),
-                ((int)mainWinSettings.WindowState).ToString());
+                ((int) mainWinSettings.WindowState).ToString());
+        }
+
+        public async Task<EnvironmentVariableBlacklistViewModel> SaveBlacklistedVariableAsync(
+            EnvironmentVariableBlacklistViewModel variable)
+        {
+            var converter = new EnvironmentVariableBlacklistConverter();
+            var entity = converter.From(variable);
+
+            await _repository.UpsertBlacklistedVariableAsync(entity);
+
+            return converter.To(entity);
+        }
+
+        public async Task<IEnumerable<EnvironmentVariableBlacklistViewModel>> SaveBlacklistedVariableListAsync(
+            IEnumerable<EnvironmentVariableBlacklistViewModel> variables)
+        {
+            var tasks = new List<Task<EnvironmentVariableBlacklist>>();
+            var output = new List<EnvironmentVariableBlacklistViewModel>();
+            var converter = new EnvironmentVariableBlacklistConverter();
+            foreach (var variable in variables)
+            {
+                var converted = converter.From(variable);
+                var task = _repository.UpsertBlacklistedVariableAsync(converted);
+                tasks.Add(task);
+            }
+
+            await Task.WhenAll(tasks);
+
+            foreach (var task in tasks)
+            {
+                output.Add(converter.To(task.Result));
+            }
+
+            return output;
+        }
+
+        public async Task SaveColumnInfoAsync(IEnumerable<ColumnInfoViewModel> columnInfoViewModels)
+        {
+            var tasks = new List<Task>();
+            var converter = new ColumnInfoConverter();
+            foreach (var columnInfoViewModel in columnInfoViewModels)
+            {
+                var columnInfo = converter.From(columnInfoViewModel);
+                tasks.Add(_repository.UpdateColumnInfoAsync(columnInfo));
+            }
+
+            await Task.WhenAll(tasks);
         }
     }
 }

@@ -939,4 +939,131 @@ Any unsaved changes will be lost.</value>
   <data name="LogLevelFatalDescription" xml:space="preserve">
     <value>Log only the most severe errors that prevent Chami for running.</value>
   </data>
+  <data name="NullHealthCheckStrategyExceptionMessage" xml:space="preserve">
+    <value>Invalid Health check strategy.</value>
+  </data>
+  <data name="HealthCheckIsEnabledLabel_Content" xml:space="preserve">
+    <value>Enable environment health check</value>
+  </data>
+  <data name="HealthCheckCategory" xml:space="preserve">
+    <value>Environment health</value>
+  </data>
+  <data name="HealthCheckCategoryDescription" xml:space="preserve">
+    <value>Manage settings related to the health state of the environment.</value>
+  </data>
+  <data name="HealthCheckGroupBox_Header" xml:space="preserve">
+    <value>Environment health</value>
+  </data>
+  <data name="HealthCheckTimeSpanUpDownLabel_Content" xml:space="preserve">
+    <value>Check every</value>
+  </data>
+  <data name="HealthCheckerTooltipOk" xml:space="preserve">
+    <value>The environment has not been modified externally.</value>
+  </data>
+  <data name="HealthCheckerTooltipDegraded" xml:space="preserve">
+    <value>Some variables have been modified externally. The environment is degraded.</value>
+  </data>
+  <data name="HealthCheckerTooltipBadlyDegraded" xml:space="preserve">
+    <value>Quite a few variables have been modified externally. The environment is badly degraded.</value>
+  </data>
+  <data name="HealthCheckerTooltipError" xml:space="preserve">
+    <value>The Windows environment is completely unlike the Chami environment. Applications may not work as expected.</value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemToolTipHeader_Text" xml:space="preserve">
+    <value>Environment Health</value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemScoreCaption_Text" xml:space="preserve">
+    <value>Score: </value>
+  </data>
+  <data name="EnvironmentHealthStatusBarItemDoubleClickHint_Text" xml:space="preserve">
+    <value>(double click for details...)</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageDegraded" xml:space="preserve">
+    <value>Degraded</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageBadlyDegraded" xml:space="preserve">
+    <value>Badly degraded</value>
+  </data>
+  <data name="EnvironmentHealthCheckerMessageError" xml:space="preserve">
+    <value>Error</value>
+  </data>
+  <data name="EnvironmentHealthWindowHeader_Content" xml:space="preserve">
+    <value>Environment Health</value>
+  </data>
+  <data name="EnvironmentHealthWindowCaption_Text" xml:space="preserve">
+    <value>This window shows a recap of the current health state of the environment.</value>
+  </data>
+  <data name="EnvironmentHealthWindowTitle" xml:space="preserve">
+    <value>Environment Health</value>
+  </data>
+  <data name="EnvironmentHealthWindowCloseButton_Content" xml:space="preserve">
+    <value>Close</value>
+  </data>
+  <data name="EnvironmentHealthMenuItem_Header" xml:space="preserve">
+    <value>Environment health details...</value>
+  </data>
+  <data name="EnvironmentHealthWindowListBoxHeader_Content" xml:space="preserve">
+    <value>Variables</value>
+  </data>
+  <data name="InvalidConversionOperationMessage" xml:space="preserve">
+    <value>Converting to or from type {0} is not supported!</value>
+  </data>
+  <data name="EnvironmentHealthOkShortDescription" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueShortDescription" xml:space="preserve">
+    <value>Mismatched value</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueShortDescription" xml:space="preserve">
+    <value>Missing value</value>
+  </data>
+  <data name="EnvironmentHealthOkLongDescription" xml:space="preserve">
+    <value>This variable's value corresponds with the Chami environment.</value>
+  </data>
+  <data name="EnvironmentHealthMismatchedValueLongDescription" xml:space="preserve">
+    <value>The value of this variable in Windows doesn't match what Chami expects.</value>
+  </data>
+  <data name="EnvironmentHealthMissingValueLongDescription" xml:space="preserve">
+    <value>Chami couldn't find this variable among Windows environment variables.</value>
+  </data>
+  
+  <data name="EnvironmentVariableNameHealthWindowColumn" xml:space="preserve">
+    <value>Variable name</value>
+  </data>
+  <data name="EnvironmentVariableValueHealthWindowColumn" xml:space="preserve">
+    <value>Actual value</value>
+  </data>
+  <data name="ExpectedValueHealthWindowColumn" xml:space="preserve">
+    <value>Expected value</value>
+  </data>
+  <data name="EnvironmentVariableStatusHealthWindowColumn" xml:space="preserve">
+    <value>Issue</value>
+  </data>
+  <data name="EnvironmentHealthCaptionOk" xml:space="preserve">
+    <value>Ok</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMismatchedValue" xml:space="preserve">
+    <value>Mismatched value</value>
+  </data>
+  <data name="EnvironmentHealthCaptionMissingVariable" xml:space="preserve">
+    <value>Variable not found</value>
+  </data>
+  <data name="ColumnVisible" xml:space="preserve">
+    <value>Visible</value>
+  </data>
+  <data name="ColumnHidden" xml:space="preserve">
+    <value>Hidden</value>
+  </data>
+  <data name="MoveColumnDownButton_ToolTip" xml:space="preserve">
+    <value>Move down</value>
+  </data>
+  <data name="ToggleVisibilityButton_ToolTip" xml:space="preserve">
+    <value>Toggle visibility</value>
+  </data>
+  <data name="MoveColumnUpButton_ToolTip" xml:space="preserve">
+    <value>Move up</value>
+  </data>
 </root>

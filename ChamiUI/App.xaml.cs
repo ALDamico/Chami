@@ -10,10 +10,13 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
+using ChamiUI.BusinessLayer.EnvironmentHealth;
+using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
@@ -25,6 +28,7 @@ using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
 using Serilog.Events;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI
 {
@@ -51,6 +55,8 @@ namespace ChamiUI
             {
                 Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
             }
+            
+            InitHealthChecker();
         }
 
         private ChamiLogger InitLogger(bool readSettings = false)
@@ -74,6 +80,47 @@ namespace ChamiUI
 
             return chamiLogger;
 
+        }
+        
+        private void InitHealthChecker()
+        {
+            HealthCheckerConfiguration = new EnvironmentHealthCheckerConfiguration()
+            {
+                MaxScore = 1.0,
+                MismatchPenalty = 0.25,
+                CheckInterval = Settings.HealthCheckSettings.TimeToCheck.TotalMilliseconds
+            };
+            _healthCheckerTimer = new DispatcherTimer();
+            _healthCheckerTimer.Interval = TimeSpan.FromMilliseconds(HealthCheckerConfiguration.CheckInterval);
+            _healthCheckerTimer.Tick += HealthCheckerTimerOnElapsed;
+            RestartTimer();
+        }
+
+        private void RestartTimer()
+        {
+            if (_healthCheckerTimer.IsEnabled)
+            {
+                _healthCheckerTimer.Stop();
+            }
+
+            if (Settings.HealthCheckSettings.IsEnabled)
+            {
+                _healthCheckerTimer.Start();
+            }
+        }
+
+        private void HealthCheckerTimerOnElapsed(object sender, EventArgs e)
+        {
+            ExecuteHealthCheck();
+            RestartTimer();
+        }
+
+        private void ExecuteHealthCheck()
+        {
+            var healthChecker =
+                new EnvironmentHealthChecker(HealthCheckerConfiguration, new DefaultHealthCheckerStrategy());
+            healthChecker.HealthChecked += (MainWindow as MainWindow).OnHealthChecked;
+            healthChecker.CheckEnvironment(_activeEnvironment);
         }
 
         private void InitCmdExecutorMessages()
@@ -187,6 +234,20 @@ namespace ChamiUI
             }
 
             MainWindow.Show();
+            if (Settings.HealthCheckSettings.IsEnabled)
+            {
+                ExecuteHealthCheck();
+            }
+            
+        }
+
+        private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs e)
+        {
+            _activeEnvironment = e.NewActiveEnvironment;
+            if (Settings.HealthCheckSettings.IsEnabled)
+            {
+                ExecuteHealthCheck();
+            }
         }
 
         private void HandleCommandLineArguments(StartupEventArgs e)
@@ -230,5 +291,9 @@ namespace ChamiUI
 
             Log.CloseAndFlush();
         }
+
+        public EnvironmentHealthCheckerConfiguration HealthCheckerConfiguration { get; set; }
+        private DispatcherTimer _healthCheckerTimer;
+        private EnvironmentViewModel _activeEnvironment;
     }
 }

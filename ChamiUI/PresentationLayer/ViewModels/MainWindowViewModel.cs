@@ -15,6 +15,7 @@ using System.Windows;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Commands;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
@@ -409,7 +410,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private void AddRemovalCommands(string? currentEnvironmentName, SafeVariableViewModel safeVariableSettings,
+        private void AddRemovalCommands(string currentEnvironmentName, SafeVariableViewModel safeVariableSettings,
             bool isSafetyEnabled, CmdExecutor cmdExecutor)
         {
             var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
@@ -461,6 +462,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _activeEnvironment = value;
                 OnPropertyChanged(nameof(ActiveEnvironment));
                 OnPropertyChanged(nameof(WindowTitle));
+                OnPropertyChanged(nameof(IsEnvironmentHealthEnabled));
             }
         }
 
@@ -684,6 +686,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = environment;
             OnPropertyChanged(nameof(Environments));
             OnPropertyChanged(nameof(SelectedEnvironment));
+            EnvironmentChanged?.Invoke(this, new EnvironmentChangedEventArgs(environment));
             DisableEditing();
         }
 
@@ -989,26 +992,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _settingsDataAdapter.SaveMainWindowState(Settings);
         }
 
-        public async Task<IEnumerable<EnvironmentVariableBlacklistViewModel>> SaveBlacklistedVariables(
-            IEnumerable<EnvironmentVariableBlacklistViewModel> blacklistedVariables)
-        {
-            var tasks = new List<Task<EnvironmentVariableBlacklistViewModel>>();
-            var output = new List<EnvironmentVariableBlacklistViewModel>();
-            foreach (var variable in blacklistedVariables)
-            {
-                Task<EnvironmentVariableBlacklistViewModel> task = _dataAdapter.SaveBlacklistedVariableAsync(variable);
-                tasks.Add(task);
-                task.ContinueWith(async v =>
-                {
-                    var awaitedVariable = await v;
-                    output.Add(awaitedVariable);
-                });
-            }
-
-            await Task.WhenAll(tasks);
-            return output;
-        }
-
         /// <summary>
         /// Opens the folder pointed by the <see cref="SelectedVariable"/>.
         /// </summary>
@@ -1064,6 +1047,81 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = environment;
             Environments.Add(environment);
             EnableEditing();
+        }
+
+        private EnvironmentHealthViewModel _environmentHealth;
+
+        public EnvironmentHealthViewModel EnvironmentHealth
+        {
+            get => _environmentHealth;
+            set
+            {
+                _environmentHealth = value;
+                OnPropertyChanged(nameof(EnvironmentHealth));
+            }
+        }
+
+        public bool IsEnvironmentHealthEnabled => ActiveEnvironment != null;
+
+        public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs,
+            Window environmentHealthWindow = null)
+        {
+            if (EditingEnabled)
+            {
+                return;
+            }
+            var healthViewModel = new EnvironmentHealthViewModel()
+            {
+                HealthIndex = healthCheckedEventArgs.Health
+            };
+
+            var healthStatusList = healthCheckedEventArgs.HealthStatusList;
+            if (healthStatusList != null)
+            {
+                foreach (var healthStatus in healthStatusList)
+                {
+                    healthViewModel.HealthStatuses.Add(healthStatus);
+                }
+            }
+            
+            EnvironmentHealth = healthViewModel;
+
+            if (environmentHealthWindow != null)
+            {
+                environmentHealthWindow.DataContext = healthViewModel;
+            }
+        }
+
+        public void HandleSettingsSaved(SettingsSavedEventArgs args)
+        {
+            Settings = args.Settings;
+        }
+
+        public async Task SaveEnvironmentHealthColumns(EnvironmentHealthViewModel closedWindowViewModel)
+        {
+            var columnInfos = closedWindowViewModel.ColumnInfoViewModels;
+
+            var dataAdapter = new SettingsDataAdapter(App.GetConnectionString());
+            var columnInfosToSave = new List<ColumnInfoViewModel>();
+            Settings.HealthCheckSettings.ColumnInfos.Clear();
+            var converter = new ColumnInfoConverter();
+
+            int i = 0;
+
+            foreach (var columnInfo in columnInfos)
+            {
+                var gridViewColumn = columnInfo.GridViewColumn;
+
+                if (gridViewColumn.Width.CompareTo(columnInfo.ColumnWidth) != 0)
+                {
+                    columnInfo.ColumnWidth = gridViewColumn.Width;
+                    columnInfosToSave.Add(columnInfo);
+                } 
+                
+                Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfo));
+            }
+            
+            await dataAdapter.SaveColumnInfoAsync(columnInfosToSave);
         }
     }
 }

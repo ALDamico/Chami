@@ -20,9 +20,12 @@ using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using Serilog;
+using ChamiUI.Windows.EnvironmentHealth;
 using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
@@ -147,8 +150,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (o.Message != null)
             {
-                var message = o.Message;
-                message = message.TrimStart('\n');
+                var message = o.Message.TrimStart('\n');
                 if (!o.Message.EndsWith("\n"))
                 {
                     message += "\n";
@@ -245,6 +247,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             var childWindow = new SettingsWindow.SettingsWindow(this);
             childWindow.SettingsSaved += OnSettingsSaved;
+            childWindow.SettingsSaved += ((App) Application.Current).OnSettingsSaved;
             childWindow.ShowDialog();
         }
 
@@ -825,5 +828,46 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.RefreshEnvironments();
         }
+
+        public void OnHealthChecked(object sender, HealthCheckedEventArgs e)
+        {
+            ViewModel.HandleCheckedHealth(e, _healthWindow);
+        }
+
+        private void EnvironmentHealthStatusBarItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ShowEnvironmentHealthWindow();
+        }
+
+        private void ShowEnvironmentHealthWindow()
+        {
+            if (_healthWindow != null)
+            {
+                _healthWindow.Focus();
+                return;
+            }
+            var window = new EnvironmentHealthWindow();
+            window.DataContext = ViewModel.EnvironmentHealth;
+           // window.Owner = this;
+            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            window.Closing += EnvironmentHealthWindowOnClosing;
+            _healthWindow = window;
+            window.Show();
+        }
+
+        private async void EnvironmentHealthWindowOnClosing(object sender, CancelEventArgs e)
+        {
+            var closedWindowViewModel = (_healthWindow.DataContext as EnvironmentHealthViewModel);
+            await ViewModel.SaveEnvironmentHealthColumns(closedWindowViewModel);
+            
+            _healthWindow = null;
+        }
+
+        private void EnvironmentHealthMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            ShowEnvironmentHealthWindow();
+        }
+
+        private EnvironmentHealthWindow _healthWindow;
     }
 }
