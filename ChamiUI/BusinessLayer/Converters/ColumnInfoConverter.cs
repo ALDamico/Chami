@@ -7,8 +7,6 @@ namespace ChamiUI.BusinessLayer.Converters
 {
     public class ColumnInfoConverter : IConverter<ColumnInfo, ColumnInfoViewModel>
     {
-        
-
         public ColumnInfo From(ColumnInfoViewModel model)
         {
             return new ColumnInfo
@@ -19,7 +17,8 @@ namespace ChamiUI.BusinessLayer.Converters
                 IsVisible = model.IsVisible,
                 OrdinalPosition = model.OrdinalPosition,
                 Converter = model.Converter,
-                ConverterParameter = model.ConverterParameter
+                ConverterParameter = model.ConverterParameter,
+                Id = model.Id
             };
         }
 
@@ -49,7 +48,8 @@ namespace ChamiUI.BusinessLayer.Converters
                 ColumnWidth = entity.ColumnWidth,
                 IsVisible = entity.IsVisible,
                 OrdinalPosition = entity.OrdinalPosition ?? default,
-                Converter = entity.Converter
+                Converter = entity.Converter,
+                Id = entity.Id
             };
         }
     }

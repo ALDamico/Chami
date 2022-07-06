@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 
@@ -69,6 +70,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 .WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(
                 _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
                     .WatchedApplications));
+
+            var columnInfosToUpdate = Settings.HealthCheckSettings.ColumnInfoViewModels;
+            _dataAdapter.SaveColumnInfoAsync(columnInfosToUpdate).GetAwaiter().GetResult();
+            var converter = new ColumnInfoConverter();
+            Settings.HealthCheckSettings.ColumnInfos.Clear();
+
+            foreach (var columnInfoViewModel in columnInfosToUpdate)
+            {
+                Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfoViewModel));
+            }
         }
 
         private SettingCategoryViewModelBase _currentSection;

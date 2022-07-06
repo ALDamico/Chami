@@ -346,5 +346,18 @@ namespace ChamiUI.BusinessLayer.Adapters
 
             return output;
         }
+
+        public async Task SaveColumnInfoAsync(IEnumerable<ColumnInfoViewModel> columnInfoViewModels)
+        {
+            var tasks = new List<Task>();
+            var converter = new ColumnInfoConverter();
+            foreach (var columnInfoViewModel in columnInfoViewModels)
+            {
+                var columnInfo = converter.From(columnInfoViewModel);
+                tasks.Add(_repository.UpdateColumnInfoAsync(columnInfo));
+            }
+
+            await Task.WhenAll(tasks);
+        }
     }
 }

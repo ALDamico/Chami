@@ -15,6 +15,7 @@ using System.Windows;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Commands;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
@@ -1059,6 +1060,33 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void HandleSettingsSaved(SettingsSavedEventArgs args)
         {
             Settings = args.Settings;
+        }
+
+        public async Task SaveEnvironmentHealthColumns(EnvironmentHealthViewModel closedWindowViewModel)
+        {
+            var columnInfos = closedWindowViewModel.ColumnInfoViewModels;
+
+            var dataAdapter = new SettingsDataAdapter(App.GetConnectionString());
+            var columnInfosToSave = new List<ColumnInfoViewModel>();
+            Settings.HealthCheckSettings.ColumnInfos.Clear();
+            var converter = new ColumnInfoConverter();
+
+            int i = 0;
+
+            foreach (var columnInfo in columnInfos)
+            {
+                var gridViewColumn = columnInfo.GridViewColumn;
+
+                if (gridViewColumn.Width.CompareTo(columnInfo.ColumnWidth) != 0)
+                {
+                    columnInfo.ColumnWidth = gridViewColumn.Width;
+                    columnInfosToSave.Add(columnInfo);
+                } 
+                
+                Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfo));
+            }
+            
+            await dataAdapter.SaveColumnInfoAsync(columnInfosToSave);
         }
     }
 }

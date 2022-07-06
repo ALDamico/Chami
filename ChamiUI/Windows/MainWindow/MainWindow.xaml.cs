@@ -20,6 +20,8 @@ using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.Windows.EnvironmentHealth;
@@ -826,8 +828,11 @@ namespace ChamiUI.Windows.MainWindow
             window.Show();
         }
 
-        private void EnvironmentHealthWindowOnClosing(object sender, CancelEventArgs e)
+        private async void EnvironmentHealthWindowOnClosing(object sender, CancelEventArgs e)
         {
+            var closedWindowViewModel = (_healthWindow.DataContext as EnvironmentHealthViewModel);
+            await ViewModel.SaveEnvironmentHealthColumns(closedWindowViewModel);
+            
             _healthWindow = null;
         }
 

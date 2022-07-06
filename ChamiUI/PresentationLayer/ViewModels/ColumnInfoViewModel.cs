@@ -1,3 +1,4 @@
+using System.Windows.Controls;
 using System.Windows.Data;
 using ChamiUI.Localization;
 
@@ -12,6 +13,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private string _headerKey;
         private string _converter;
         private string _converterParameter;
+
+        public int Id { get; set; }
+        public GridViewColumn GridViewColumn { get; set; }
 
         public string ConverterParameter
         {

@@ -179,26 +179,17 @@ namespace Chami.Db.Repositories
         {
             var sql = @"
                 UPDATE ColumnInfos
-                SET SettingName = ?,
-                    IsVisible = ?,
+                SET IsVisible = ?,
                     ColumnWidth = ?,
-                    Binding = ?,
-                    OrdinalPosition = ?,
-                    Header = ?,
-                    Converter = ?,
-                    ConverterParameter = ?
+                    OrdinalPosition = ?
                 WHERE Id = ?
 ";
             var param = new
             {
-                columnInfo.SettingName,
                 columnInfo.IsVisible,
                 columnInfo.ColumnWidth,
-                columnInfo.Binding,
                 columnInfo.OrdinalPosition,
-                columnInfo.Header,
-                columnInfo.Converter,
-                columnInfo.ConverterParameter
+                columnInfo.Id
             };
 
             using var connection = GetConnection();

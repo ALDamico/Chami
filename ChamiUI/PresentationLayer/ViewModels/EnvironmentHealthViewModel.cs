@@ -17,9 +17,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             HealthStatuses = new ObservableCollection<EnvironmentVariableHealthStatus>();
             WindowColumns = new ObservableCollection<GridViewColumn>();
+            ColumnInfoViewModels = new ObservableCollection<ColumnInfoViewModel>();
         }
         public ObservableCollection<EnvironmentVariableHealthStatus> HealthStatuses { get; }
         public ObservableCollection<GridViewColumn> WindowColumns { get; }
+        public ObservableCollection<ColumnInfoViewModel> ColumnInfoViewModels { get; }
         public double HealthIndex
         {
             get => _healthIndex;
@@ -125,6 +127,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 gridViewColumn.DisplayMemberBinding = viewModel.Binding;
                 gridViewColumn.Width = viewModel.ColumnWidth;
                 gridViewColumn.Header = viewModel.Header;
+
+                viewModel.GridViewColumn = gridViewColumn;
+                ColumnInfoViewModels.Add(viewModel);
                 WindowColumns.Add(gridViewColumn);
             }
         }

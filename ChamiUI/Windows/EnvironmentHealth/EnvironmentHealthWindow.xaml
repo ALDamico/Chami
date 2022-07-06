@@ -11,7 +11,7 @@
         Title="{lex:Loc Key=EnvironmentHealthWindowTitle}" Height="450" Width="600"
         d:DataContext="{d:DesignInstance viewModels:EnvironmentHealthViewModel}"
         DataContextChanged="EnvironmentHealthWindow_OnDataContextChanged"
-        ResizeMode="NoResize">
+        >
     <Window.Resources>
         <converters:EnvironmentVariableHealthTypeToDescriptionConverter x:Key="EnvironmentHealthTypeConverter">
         </converters:EnvironmentVariableHealthTypeToDescriptionConverter>

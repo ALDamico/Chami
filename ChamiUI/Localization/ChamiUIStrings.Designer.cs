@@ -376,6 +376,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hidden.
+        /// </summary>
+        public static string ColumnHidden {
+            get {
+                return ResourceManager.GetString("ColumnHidden", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Visible.
+        /// </summary>
+        public static string ColumnVisible {
+            get {
+                return ResourceManager.GetString("ColumnVisible", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string ConsoleClearMenuItem {
@@ -727,6 +745,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Variable not found.
+        /// </summary>
+        public static string EnvironmentHealthCaptionMissingVariable {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionMissingVariable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ok.
+        /// </summary>
+        public static string EnvironmentHealthCaptionOk {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthCaptionOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Badly degraded.
         /// </summary>
         public static string EnvironmentHealthCheckerMessageBadlyDegraded {
@@ -745,29 +781,11 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Variable not found.
-        /// </summary>
-        public static string EnvironmentHealthCaptionMissingVariable {
-            get {
-                return ResourceManager.GetString("EnvironmentHealthCaptionMissingVariable", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string EnvironmentHealthCheckerMessageError {
             get {
                 return ResourceManager.GetString("EnvironmentHealthCheckerMessageError", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ok.
-        /// </summary>
-        public static string EnvironmentHealthCaptionOk {
-            get {
-                return ResourceManager.GetString("EnvironmentHealthCaptionOk", resourceCulture);
             }
         }
         
@@ -780,7 +798,14 @@ namespace ChamiUI.Localization {
             }
         }
         
-       
+        /// <summary>
+        ///   Looks up a localized string similar to Environment health details....
+        /// </summary>
+        public static string EnvironmentHealthMenuItem_Header {
+            get {
+                return ResourceManager.GetString("EnvironmentHealthMenuItem_Header", resourceCulture);
+            }
+        }
         
         /// <summary>
         ///   Looks up a localized string similar to The value of this variable in Windows doesn&apos;t match what Chami expects..
@@ -791,8 +816,6 @@ namespace ChamiUI.Localization {
             }
         }
         
-        
-        
         /// <summary>
         ///   Looks up a localized string similar to Mismatched value.
         /// </summary>
@@ -802,8 +825,6 @@ namespace ChamiUI.Localization {
             }
         }
         
-        
-        
         /// <summary>
         ///   Looks up a localized string similar to Chami couldn&apos;t find this variable among Windows environment variables..
         /// </summary>
@@ -812,7 +833,6 @@ namespace ChamiUI.Localization {
                 return ResourceManager.GetString("EnvironmentHealthMissingValueLongDescription", resourceCulture);
             }
         }
-        
         
         /// <summary>
         ///   Looks up a localized string similar to Missing value.
@@ -829,15 +849,6 @@ namespace ChamiUI.Localization {
         public static string EnvironmentHealthOkLongDescription {
             get {
                 return ResourceManager.GetString("EnvironmentHealthOkLongDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Environment health details....
-        /// </summary>
-        public static string EnvironmentHealthMenuItem_Header {
-            get {
-                return ResourceManager.GetString("EnvironmentHealthMenuItem_Header", resourceCulture);
             }
         }
         
@@ -1700,6 +1711,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Move down.
+        /// </summary>
+        public static string MoveColumnDownButton_ToolTip {
+            get {
+                return ResourceManager.GetString("MoveColumnDownButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Move up.
+        /// </summary>
+        public static string MoveColumnUpButton_ToolTip {
+            get {
+                return ResourceManager.GetString("MoveColumnUpButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NewEnvironmentDataGridNameColumn {
@@ -2405,6 +2434,15 @@ namespace ChamiUI.Localization {
         public static string TerminateMenuItem_Header {
             get {
                 return ResourceManager.GetString("TerminateMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Toggle visibility.
+        /// </summary>
+        public static string ToggleVisibilityButton_ToolTip {
+            get {
+                return ResourceManager.GetString("ToggleVisibilityButton_ToolTip", resourceCulture);
             }
         }
         

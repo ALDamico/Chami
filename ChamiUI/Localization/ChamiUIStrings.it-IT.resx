@@ -954,4 +954,19 @@ Usa un nome diverso e riprova il salvataggio.</value>
   <data name="EnvironmentHealthCaptionMissingVariable" xml:space="preserve">
     <value>Valore non trovato</value>
   </data>
+  <data name="ColumnVisible" xml:space="preserve">
+    <value>Visibile</value>
+  </data>
+  <data name="ColumnHidden" xml:space="preserve">
+    <value>Nascosta</value>
+  </data>
+  <data name="MoveColumnDownButton_ToolTip" xml:space="preserve">
+    <value>Sposta giù</value>
+  </data>
+  <data name="ToggleVisibilityButton_ToolTip" xml:space="preserve">
+    <value>Mostra/nascondi</value>
+  </data>
+  <data name="MoveColumnUpButton_ToolTip" xml:space="preserve">
+    <value>Sposta su</value>
+  </data>
 </root>
