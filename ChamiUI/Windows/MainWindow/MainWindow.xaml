@@ -283,7 +283,7 @@
                 </MenuItem>
                 <Separator/>
                 <MenuItem Header="{lex:Loc}"
-                          x:Name="EnvironmentHealthMenuItem" Click="EnvironmentHealthMenuItem_OnClick"></MenuItem>
+                          x:Name="EnvironmentHealthMenuItem" IsEnabled="{Binding Settings.HealthCheckSettings.IsEnabled}" Click="EnvironmentHealthMenuItem_OnClick"></MenuItem>
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
                       x:Name="OptionsMenuItem">

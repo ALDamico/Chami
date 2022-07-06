@@ -841,9 +841,11 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void EnvironmentHealthWindowOnClosing(object sender, CancelEventArgs e)
         {
-            var closedWindowViewModel = (_healthWindow.DataContext as EnvironmentHealthViewModel);
-            await ViewModel.SaveEnvironmentHealthColumns(closedWindowViewModel);
-            
+            if (_healthWindow.DataContext is EnvironmentHealthViewModel closedWindowViewModel)
+            {
+                await ViewModel.SaveEnvironmentHealthColumns(closedWindowViewModel);
+            }
+
             _healthWindow = null;
         }
 
