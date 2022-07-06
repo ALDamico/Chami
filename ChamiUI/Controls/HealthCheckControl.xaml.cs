@@ -54,7 +54,7 @@ namespace ChamiUI.Controls
         private void ColumnInfoListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var viewModel = GetViewModel();
-            viewModel.UpdateSelection(e.AddedItems, e.RemovedItems);
+            viewModel?.UpdateSelection(e.AddedItems, e.RemovedItems);
         }
     }
 }

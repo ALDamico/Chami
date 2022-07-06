@@ -28,9 +28,11 @@ namespace ChamiUI.Windows.EnvironmentHealth
             {
                 viewModel.InitWindowColumns(SettingsUtils.GetAppSettings());
 
+                var gridView = GetWindowGridView();
+                gridView.Columns.Clear();
                 foreach (var column in viewModel.WindowColumns)
                 {
-                    var gridView = GetWindowGridView();
+                   
                     gridView.Columns.Add(column);
                 }
             }

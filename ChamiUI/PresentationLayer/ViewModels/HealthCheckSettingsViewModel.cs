@@ -9,7 +9,7 @@ using ChamiUI.BusinessLayer.Converters;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class HealthCheckSettingsViewModel : SettingCategoryViewModelBase
+    public class HealthCheckSettingsViewModel : GenericLabelViewModel
     {
         public HealthCheckSettingsViewModel()
         {
