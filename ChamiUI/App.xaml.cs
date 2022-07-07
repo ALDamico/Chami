@@ -230,6 +230,8 @@ namespace ChamiUI
                     {
                         viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
                     }
+
+                    viewModel.EnvironmentChanged += OnEnvironmentChanged;
                 }
             }
 
