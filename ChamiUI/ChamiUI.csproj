@@ -8,6 +8,10 @@
       <NoWarn>NU1701</NoWarn>
       <LangVersion>10</LangVersion>
     </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
   
 
     <ItemGroup>

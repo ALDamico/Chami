@@ -20,13 +20,10 @@ using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
-using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
-using Environment = System.Environment;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -90,11 +87,6 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ViewModel.IsChangeInProgress)
-            {
-                return;
-            }
-
             ViewModel.CanUserInterrupt = true;
             if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
             {

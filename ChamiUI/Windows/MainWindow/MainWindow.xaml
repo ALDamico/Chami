@@ -426,7 +426,7 @@
                         TextSearch.TextPath="Name"
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
-                        x:Name="TemplateEnvironmentsListbox"
+                        x:Name="EnvironmentsListbox"
                         SelectedItem="{Binding SelectedEnvironment}"
                         SelectionChanged="EnvironmentsListbox_OnSelectionChanged">
                         <ListBox.ItemContainerStyle>
@@ -450,7 +450,7 @@
                     <ListBox
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource TemplateEnvironmentsViewSource}}"
-                        x:Name="EnvironmentsListbox"
+                        x:Name="TemplateEnvironmentsListbox"
                         SelectedItem="{Binding SelectedEnvironment}"
                         SelectionChanged="EnvironmentsListbox_OnSelectionChanged">
                         <ListBox.ItemContainerStyle>
