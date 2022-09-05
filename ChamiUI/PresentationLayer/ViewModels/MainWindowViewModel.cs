@@ -686,7 +686,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SelectedEnvironment = environment;
             OnPropertyChanged(nameof(Environments));
             OnPropertyChanged(nameof(SelectedEnvironment));
-            EnvironmentChanged?.Invoke(this, new EnvironmentChangedEventArgs(environment));
             DisableEditing();
         }
 
