@@ -1060,4 +1060,7 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="MoveColumnUpButton_ToolTip" xml:space="preserve">
     <value>Sposta su</value>
   </data>
+  <data name="MassUpdateStrategyName_CreateOnly" xml:space="preserve">
+    <value>Crea variabile vuota</value>
+  </data>
 </root>

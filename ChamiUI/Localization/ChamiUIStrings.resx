@@ -1066,4 +1066,7 @@ Any unsaved changes will be lost.</value>
   <data name="MoveColumnUpButton_ToolTip" xml:space="preserve">
     <value>Move up</value>
   </data>
+  <data name="MassUpdateStrategyName_CreateOnly" xml:space="preserve">
+    <value>Create empty variable</value>
+  </data>
 </root>
