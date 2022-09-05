@@ -9,5 +9,6 @@ namespace ChamiUI.BusinessLayer.MassUpdateStrategies
         Task ExecuteUpdateAsync(EnvironmentDataAdapter dataAdapter);
         string VariableName { get; set; }
         string VariableValue { get; set; }
+        bool CreateMissing { get; set; }
     }
 }

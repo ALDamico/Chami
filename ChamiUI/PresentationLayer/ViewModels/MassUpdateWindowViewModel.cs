@@ -29,11 +29,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             UpdateStrategies.Add(updateAllStrategy);
 
             var updateSelectedStrategy = new MassUpdateStrategyViewModel()
-                { Name = ChamiUIStrings.MassUpdateStrategyName_UpdateSelected };
+                {Name = ChamiUIStrings.MassUpdateStrategyName_UpdateSelected};
             UpdateStrategies.Add(updateSelectedStrategy);
             SelectedUpdateStrategy = updateAllStrategy;
         }
-        
+
         private string _variableToUpdate;
         private string _newValue;
         private bool _createVariableIfNotExists;
@@ -91,7 +91,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     return false;
                 }
 
-                if (!SelectedUpdateStrategy.Equals(MassUpdateStrategyViewModel.DefaultUpdateStrategy) && SelectedEnvironments.Count == 0)
+                if (!SelectedUpdateStrategy.Equals(MassUpdateStrategyViewModel.DefaultUpdateStrategy) &&
+                    SelectedEnvironments.Count == 0)
                 {
                     return false;
                 }
@@ -99,7 +100,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 return true;
             }
         }
-        
+
         public ObservableCollection<string> KnownVariables { get; }
         public ObservableCollection<MassUpdateStrategyViewModel> UpdateStrategies { get; }
         public ObservableCollection<EnvironmentViewModel> Environments { get; }
@@ -108,14 +109,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public async Task LoadDataAsync()
         {
             var environmentDataTask = Task.Run(_environmentDataAdapter.GetEnvironments);
-            var  variableDataTask = _environmentDataAdapter.GetVariableNamesAsync();
+            var variableDataTask = _environmentDataAdapter.GetVariableNamesAsync();
 
             var tasks = new List<Task>();
             tasks.Add(environmentDataTask);
             tasks.Add(variableDataTask);
             await Task.WhenAll(tasks);
-            
-            
+
+
             foreach (var element in environmentDataTask.Result)
             {
                 Environments.Add(element);
@@ -138,7 +139,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironments.Add(addedItem);
             }
-            
+
             OnPropertyChanged(nameof(ExecuteButtonEnabled));
         }
 
@@ -172,8 +173,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public async Task ExecuteUpdate()
         {
-            var massUpdateStrategy = MassUpdateStrategyFactory.GetMassUpdateStrategyByViewModel(SelectedUpdateStrategy, VariableToUpdate, NewValue, SelectedEnvironments);
+            var massUpdateStrategy = MassUpdateStrategyFactory.GetMassUpdateStrategyByViewModel(SelectedUpdateStrategy,
+                VariableToUpdate, NewValue, SelectedEnvironments, CreateVariableIfNotExists);
             await massUpdateStrategy.ExecuteUpdateAsync(_environmentDataAdapter);
+            if (CreateVariableIfNotExists)
+            {
+                foreach (var environment in SelectedEnvironments)
+                {
+                    environment.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
+                        {Environment = environment, Name = VariableToUpdate, Value = NewValue});
+                    _environmentDataAdapter.SaveEnvironment(environment);
+                }
+            }
         }
     }
 }
