@@ -139,7 +139,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Determines if the clear filter button (the big red cross) is enabled or not.
         /// </summary>
-        public bool IsClearFilterButtonEnabled => FilterStrategy.SearchedText != null;
+        public bool IsClearFilterButtonEnabled =>  !string.IsNullOrEmpty(FilterStrategy.SearchedText);
 
         private string _filterText;
 
