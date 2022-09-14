@@ -1177,4 +1177,7 @@ Most people don't need to change these.</value>
   <data name="ExceptionWindowTitle" xml:space="preserve">
     <value>Unexpected error</value>
   </data>
+  <data name="RunApplicationMenuItem_Header" xml:space="preserve">
+    <value>Run application...</value>
+  </data>
 </root>

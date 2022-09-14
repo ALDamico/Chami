@@ -1063,6 +1063,9 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="MassUpdateStrategyName_CreateOnly" xml:space="preserve">
     <value>Crea variabile vuota</value>
   </data>
+  <data name="RunApplicationMenuItem_Header" xml:space="preserve">
+    <value>Esegui applicazione...</value>
+  </data>
   <data name="ConfirmMassUpdateWithEmptyValueMessageBoxCaption" xml:space="preserve">
     <value>Conferma aggiornamento</value>
   </data>
