@@ -45,6 +45,9 @@
         <KeyBinding Key="Delete"
                     Command="Delete">
         </KeyBinding>
+        <KeyBinding Key="R" 
+                    Modifiers="Control" 
+                    Command="{x:Static commandProvider:MainWindowCommandsProvider.RunApplicationCommand}"></KeyBinding>
     </Window.InputBindings>
     <Window.Resources>
 
@@ -85,6 +88,16 @@
             <MenuItem x:Name="DuplicateEnvironmentMenuItem" Header="{lex:Loc}"
                       IsEnabled="{Binding CanDuplicateEnvironment}"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.DuplicateEnvironmentCommand}">
+            </MenuItem>
+            <Separator />
+            <MenuItem x:Name="RunApplicationMenuItem" Header="{lex:Loc}" 
+                      IsEnabled="{Binding CanRunApplication}"
+                      Command="{x:Static commandProvider:MainWindowCommandsProvider.RunApplicationCommand}"
+                      InputGestureText="Ctrl+R"
+                      >
+                <MenuItem.Icon>
+                    <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/rocket-solid.svg" />
+                </MenuItem.Icon>
             </MenuItem>
             <Separator />
             <MenuItem Header="{lex:Loc}"
@@ -207,6 +220,11 @@
                         CanExecute="DeleteEnvironmentCommandBinding_OnCanExecute"
                         Executed="DeleteEnvironmentCommandBinding_OnExecuted">
         </CommandBinding>
+        <CommandBinding x:Name="RunApplicationCommandBinding"
+                        Command="{x:Static commandProvider:MainWindowCommandsProvider.RunApplicationCommand}"
+                        CanExecute="RunApplicationCommandBinding_OnCanExecute"
+                        Executed="RunApplicationCommandBinding_OnExecuted"
+                        ></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>

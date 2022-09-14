@@ -2345,6 +2345,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run application....
+        /// </summary>
+        public static string RunApplicationMenuItem_Header {
+            get {
+                return ResourceManager.GetString("RunApplicationMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Safety.
         /// </summary>
         public static string SafetyCategory {

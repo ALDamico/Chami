@@ -1069,4 +1069,7 @@ Any unsaved changes will be lost.</value>
   <data name="MassUpdateStrategyName_CreateOnly" xml:space="preserve">
     <value>Create empty variable</value>
   </data>
+  <data name="RunApplicationMenuItem_Header" xml:space="preserve">
+    <value>Run application...</value>
+  </data>
 </root>

@@ -847,5 +847,15 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private EnvironmentHealthWindow _healthWindow;
+
+        private void RunApplicationCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.CanRunApplication;
+        }
+
+        private void RunApplicationCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            
+        }
     }
 }
