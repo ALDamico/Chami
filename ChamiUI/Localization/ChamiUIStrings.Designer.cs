@@ -1302,6 +1302,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        public static string ExitRunApplicationButton_Content {
+            get {
+                return ResourceManager.GetString("ExitRunApplicationButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Expected value.
         /// </summary>
         public static string ExpectedValueHealthWindowColumn {
@@ -2563,6 +2572,15 @@ namespace ChamiUI.Localization {
         public static string RevertToOriginalEnvironmentNop {
             get {
                 return ResourceManager.GetString("RevertToOriginalEnvironmentNop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run.
+        /// </summary>
+        public static string RunApplicationButton_Content {
+            get {
+                return ResourceManager.GetString("RunApplicationButton_Content", resourceCulture);
             }
         }
         

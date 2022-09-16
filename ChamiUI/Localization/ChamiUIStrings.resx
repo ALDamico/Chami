@@ -1180,4 +1180,10 @@ Most people don't need to change these.</value>
   <data name="RunApplicationMenuItem_Header" xml:space="preserve">
     <value>Run application...</value>
   </data>
+  <data name="RunApplicationButton_Content" xml:space="preserve">
+    <value>Run</value>
+  </data>
+  <data name="ExitRunApplicationButton_Content" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
 </root>

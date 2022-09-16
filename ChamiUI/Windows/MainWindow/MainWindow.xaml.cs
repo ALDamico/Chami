@@ -26,6 +26,7 @@ using ChamiUI.PresentationLayer.ViewModels.State;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.Exceptions;
+using ChamiUI.Windows.RunApplication;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -787,7 +788,12 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private void RunApplicationCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {}
+        {
+            var runApplicationWindow = new RunApplicationWindow();
+            var selectedItems = EnvironmentsListbox.SelectedItems;
+            var container = EnvironmentsListbox.ContainerFromElement(EnvironmentsListbox.SelectedItem as DependencyObject);
+            runApplicationWindow.Show();
+        }
             
         
         private void IncreaseFontSizeCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
