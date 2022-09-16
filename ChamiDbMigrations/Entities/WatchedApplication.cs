@@ -22,5 +22,8 @@ namespace Chami.Db.Entities
         /// Specifies whether the user wishes to be notified about this application.
         /// </summary>
         public bool IsWatchEnabled { get; set; }
+        public byte[] ApplicationIcon { get; set; }
+        public bool ShowInRunApplicationMenu { get; set; }
+        public string Path { get; set; }
     }
 }

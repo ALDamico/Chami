@@ -744,7 +744,9 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="Assets\chameleon16x16.png" />
-      <Resource Include="Assets\chameleon16x16.png" />
+      <Content Include="Assets\chameleon16x16.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
       <None Remove="Assets\chameleon16x16.ico" />
       <Resource Include="Assets\chameleon16x16.ico" />
       <None Remove="Assets\Flags\ad.svg" />
@@ -1143,6 +1145,10 @@
       </Content>
       <None Remove="Assets\Svg\rocket-solid.svg" />
       <Resource Include="Assets\Svg\rocket-solid.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Svg\file-code-regular.svg" />
+      <Resource Include="Assets\Svg\file-code-regular.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>

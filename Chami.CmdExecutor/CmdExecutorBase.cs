@@ -86,5 +86,10 @@ namespace Chami.CmdExecutor
         }
         
         public IProgress<CmdExecutorProgress> Progress { get; set; }
+
+        public void ClearCommandQueue()
+        {
+            CommandQueue.Clear();
+        }
     }
 }

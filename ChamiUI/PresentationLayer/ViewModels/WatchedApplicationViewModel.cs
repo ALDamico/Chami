@@ -1,4 +1,7 @@
-﻿namespace ChamiUI.PresentationLayer.ViewModels
+﻿using System;
+using System.IO;
+
+namespace ChamiUI.PresentationLayer.ViewModels
 {
     /// <summary>
     /// Viewmodel for watched applications.
@@ -21,6 +24,42 @@
 
         private int _id;
         private bool _isWatchEnabled;
+        private bool _showInRunApplicationWindow;
+        private byte[] _icon;
+        private string _path;
+
+        public string Path
+        {
+            get => _path;
+            set
+            {
+                _path = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public byte[] Icon
+        {
+            get
+            {
+                return _icon ?? File.ReadAllBytes( Environment.CurrentDirectory + "/Assets/chameleon16x16.png");
+            }
+            set
+            {
+                _icon = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool ShowInRunApplicationWindow
+        {
+            get => _showInRunApplicationWindow;
+            set
+            {
+                _showInRunApplicationWindow = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// True if Chami is detecting this application is running.
