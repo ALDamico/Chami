@@ -1,5 +1,12 @@
+using System;
+using System.Diagnostics;
+using System.Threading;
+using System.Windows;
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Windows.Controls;
+using System.Windows.Documents;
+using ChamiUI.BusinessLayer;
+using ChamiUI.BusinessLayer.Commands;
 
 namespace ChamiUI.Controls
 {
@@ -43,6 +50,34 @@ namespace ChamiUI.Controls
                         e.Handled = true;
                     }
                 }
+            }
+        }
+
+        private void HyperLinkClickHandler(object sender, RoutedEventArgs e)
+        {
+            var destination = ((Hyperlink) e.OriginalSource).NavigateUri?.ToString();
+            if (destination != null)
+            {
+                var viewModel = GetDataContextAsWatchedApplicationViewModel();
+                try
+                {
+                    viewModel.RunApplication(destination);
+                }
+                catch (InvalidOperationException ex)
+                {
+                    MessageBox.Show("Il percorso specificato non corrisponde a un'applicazione valida", "Errore",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Si è verificato un errore durante l'avvio dell'applicazione", "Errore",
+                        MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Impossibile eseguire l'applicazione", "Informazione", MessageBoxButton.OK,
+                    MessageBoxImage.Information);
             }
         }
     }

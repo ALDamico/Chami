@@ -1,7 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System;
+using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.BusinessLayer.Commands;
 using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -17,8 +19,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public WatchedApplicationControlViewModel()
         {
             WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>();
+            _cmdExecutor = new CmdExecutor();
         }
         private bool _isDetectionEnabled;
+        private CmdExecutor _cmdExecutor;
+
+        public void RunApplication(string applicationPath)
+        {
+            _cmdExecutor.ClearCommandQueue();
+            _cmdExecutor.AddCommand(new RunApplicationCommand(applicationPath));
+            _cmdExecutor.Execute();
+        }
         
         /// <summary>
         /// True if Chami is tracking the detection of running applications, otherwise false.

@@ -6,14 +6,14 @@ namespace Chami.CmdExecutor.Commands.Common
 {
     public class OpenInExplorerCommand : ShellCommandBase
     {
-        private readonly string _path;
+        protected readonly string Path;
         public OpenInExplorerCommand(string path)
         {
-            _path = path;
+            Path = path;
         }
         public override void Execute()
         {
-            var process = PrepareProcess(_path);
+            var process = PrepareProcess(Path);
             process.StartInfo.CreateNoWindow = false;
             process.Start();
         }

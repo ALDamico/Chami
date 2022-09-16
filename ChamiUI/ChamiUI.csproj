@@ -744,7 +744,9 @@
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
       <None Remove="Assets\chameleon16x16.png" />
-      <Content Include="Assets\chameleon16x16.png" />
+      <Content Include="Assets\chameleon16x16.png">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
       <None Remove="Assets\chameleon16x16.ico" />
       <Resource Include="Assets\chameleon16x16.ico" />
       <None Remove="Assets\Flags\ad.svg" />
@@ -1147,6 +1149,10 @@
       </Resource>
       <None Remove="Assets\Svg\circle-exclamation-solid.svg" />
       <Resource Include="Assets\Svg\circle-exclamation-solid.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
+      <None Remove="Assets\Svg\file-code-regular.svg" />
+      <Resource Include="Assets\Svg\file-code-regular.svg">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Resource>
     </ItemGroup>

@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:vm="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
     xmlns:lex="http://wpflocalizeextension.codeplex.com"
+    xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
     d:DataContext="{d:DesignInstance vm:WatchedApplicationControlViewModel,
                                      IsDesignTimeCreatable=True}"
     d:DesignHeight="300"
@@ -26,6 +27,8 @@
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        
+        <converters:StringToUriConverter x:Key="StringToUriConverter"></converters:StringToUriConverter>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -69,7 +72,33 @@
                           RowStyle="{StaticResource ErrorStyle}"
                           >
                     <DataGrid.Columns>
-                        <DataGridTextColumn x:Name="ProcessNameColumn" Header="{lex:Loc Key=ProcessNameColumn}" Binding="{Binding Name}"></DataGridTextColumn>
+                        <DataGridTemplateColumn x:Name="ProcessNameColumn" 
+                                            Header="{lex:Loc Key=ProcessNameColumn}" 
+                                            >
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="{Binding Icon}" MaxHeight="16" MaxWidth="16"></Image>
+                                        <TextBlock Text="{Binding Name}"></TextBlock>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                            <DataGridTemplateColumn.CellEditingTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding Name}"></TextBox>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellEditingTemplate>
+                        </DataGridTemplateColumn>
+                        <DataGridHyperlinkColumn Header="Path" ContentBinding="{Binding Path}" 
+                                                 Binding="{Binding Path, Converter={StaticResource StringToUriConverter}}"
+                                                 
+                                                 >
+                            <DataGridHyperlinkColumn.ElementStyle>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <EventSetter Event="Hyperlink.Click" x:Name="HyperLinkClick" Handler="HyperLinkClickHandler"></EventSetter>
+                                </Style>
+                            </DataGridHyperlinkColumn.ElementStyle>
+                        </DataGridHyperlinkColumn>
                         <DataGridCheckBoxColumn x:Name="IsWatchEnabledColumn" Header="{lex:Loc Key=IsWatchEnabledColumn}" Binding="{Binding IsWatchEnabled}"></DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
