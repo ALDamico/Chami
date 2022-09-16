@@ -24,6 +24,7 @@ using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
+using ChamiUI.Windows.RunApplication;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -855,7 +856,10 @@ namespace ChamiUI.Windows.MainWindow
 
         private void RunApplicationCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            
+            var runApplicationWindow = new RunApplicationWindow();
+            var selectedItems = EnvironmentsListbox.SelectedItems;
+            var container = EnvironmentsListbox.ContainerFromElement(EnvironmentsListbox.SelectedItem as DependencyObject);
+            runApplicationWindow.Show();
         }
     }
 }

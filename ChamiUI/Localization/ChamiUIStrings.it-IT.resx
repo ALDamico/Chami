@@ -1066,4 +1066,10 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="RunApplicationMenuItem_Header" xml:space="preserve">
     <value>Esegui applicazione...</value>
   </data>
+  <data name="RunApplicationButton_Content" xml:space="preserve">
+    <value>Esegui</value>
+  </data>
+  <data name="ExitRunApplicationButton_Content" xml:space="preserve">
+    <value>Annulla</value>
+  </data>
 </root>
