@@ -39,7 +39,7 @@ public class StringToUriConverter : IValueConverter
 
     private object ConvertUriToString(Uri value, object parameter, CultureInfo cultureInfo)
     {
-        var uriValue = value as Uri;
+        var uriValue = value;
         if (uriValue == null)
         {
             return null;

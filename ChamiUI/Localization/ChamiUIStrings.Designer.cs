@@ -2218,6 +2218,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Path.
+        /// </summary>
+        public static string PathColumn {
+            get {
+                return ResourceManager.GetString("PathColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to launch this application..
+        /// </summary>
+        public static string PathColumn_ToolTip {
+            get {
+                return ResourceManager.GetString("PathColumn_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Process name.
         /// </summary>
         public static string ProcessNameColumn {
@@ -2359,6 +2377,24 @@ namespace ChamiUI.Localization {
         public static string RunApplicationButton_Content {
             get {
                 return ResourceManager.GetString("RunApplicationButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File not found!.
+        /// </summary>
+        public static string RunApplicationFileNotFoundErrorCaption {
+            get {
+                return ResourceManager.GetString("RunApplicationFileNotFoundErrorCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File {0} not found!.
+        /// </summary>
+        public static string RunApplicationFileNotFoundErrorMessage {
+            get {
+                return ResourceManager.GetString("RunApplicationFileNotFoundErrorMessage", resourceCulture);
             }
         }
         
@@ -2776,6 +2812,33 @@ namespace ChamiUI.Localization {
         public static string UnableToOpenAsFolderMessage {
             get {
                 return ResourceManager.GetString("UnableToOpenAsFolderMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unable to run the application..
+        /// </summary>
+        public static string UnableToRunApplicationMessage {
+            get {
+                return ResourceManager.GetString("UnableToRunApplicationMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error.
+        /// </summary>
+        public static string UnknownErrorWhenRunningApplicationErrorCaption {
+            get {
+                return ResourceManager.GetString("UnknownErrorWhenRunningApplicationErrorCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unknown error occurred when trying to launch the application {0}..
+        /// </summary>
+        public static string UnknownErrorWhenRunningApplicationErrorMessage {
+            get {
+                return ResourceManager.GetString("UnknownErrorWhenRunningApplicationErrorMessage", resourceCulture);
             }
         }
         

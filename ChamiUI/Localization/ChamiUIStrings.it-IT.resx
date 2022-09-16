@@ -1072,4 +1072,25 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="ExitRunApplicationButton_Content" xml:space="preserve">
     <value>Annulla</value>
   </data>
+  <data name="RunApplicationFileNotFoundErrorMessage" xml:space="preserve">
+    <value>Il file {0} non è stato trovato!</value>
+  </data>
+  <data name="RunApplicationFileNotFoundErrorCaption" xml:space="preserve">
+    <value>File non trovato!</value>
+  </data>
+  <data name="UnknownErrorWhenRunningApplicationErrorMessage" xml:space="preserve">
+    <value>Si è verificato un errore sconosciuto durante il tentativo di avviare l'applicazione {0}.</value>
+  </data>
+  <data name="UnknownErrorWhenRunningApplicationErrorCaption" xml:space="preserve">
+    <value>Errore sconosciuto</value>
+  </data>
+  <data name="PathColumn" xml:space="preserve">
+    <value>Percorso</value>
+  </data>
+  <data name="UnableToRunApplicationMessage" xml:space="preserve">
+    <value>Impossibile eseguire l'applicazione.</value>
+  </data>
+  <data name="PathColumn_ToolTip" xml:space="preserve">
+    <value>Fai clic per avviare questa applicazione.</value>
+  </data>
 </root>

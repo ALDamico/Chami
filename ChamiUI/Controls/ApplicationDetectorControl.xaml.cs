@@ -7,6 +7,8 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Commands;
+using ChamiUI.Localization;
+using Serilog;
 
 namespace ChamiUI.Controls
 {
@@ -34,7 +36,7 @@ namespace ChamiUI.Controls
         {
             if (e.Key == System.Windows.Input.Key.Delete)
             {
-                var datagrid = (DataGrid)sender;
+                var datagrid = (DataGrid) sender;
                 if (datagrid != null)
                 {
                     var selectedRows = datagrid.SelectedItems;
@@ -65,13 +67,18 @@ namespace ChamiUI.Controls
                 }
                 catch (InvalidOperationException ex)
                 {
-                    MessageBox.Show("Il percorso specificato non corrisponde a un'applicazione valida", "Errore",
+                    MessageBox.Show(string.Format(ChamiUIStrings.RunApplicationFileNotFoundErrorMessage, destination),
+                        ChamiUIStrings.RunApplicationFileNotFoundErrorCaption,
                         MessageBoxButton.OK, MessageBoxImage.Error);
+                    Log.Logger.Error(ex, "{Ex}", ex);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Si è verificato un errore durante l'avvio dell'applicazione", "Errore",
+                    MessageBox.Show(
+                        string.Format(ChamiUIStrings.UnknownErrorWhenRunningApplicationErrorMessage, destination),
+                        ChamiUIStrings.UnknownErrorWhenRunningApplicationErrorCaption,
                         MessageBoxButton.OK, MessageBoxImage.Error);
+                    Log.Logger.Error(ex, "{Ex}", ex);
                 }
             }
             else
