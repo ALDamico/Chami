@@ -1186,4 +1186,25 @@ Most people don't need to change these.</value>
   <data name="ExitRunApplicationButton_Content" xml:space="preserve">
     <value>Cancel</value>
   </data>
+  <data name="RunApplicationFileNotFoundErrorMessage" xml:space="preserve">
+    <value>File {0} not found!</value>
+  </data>
+  <data name="RunApplicationFileNotFoundErrorCaption" xml:space="preserve">
+    <value>File not found!</value>
+  </data>
+  <data name="UnknownErrorWhenRunningApplicationErrorMessage" xml:space="preserve">
+    <value>An unknown error occurred when trying to launch the application {0}.</value>
+  </data>
+  <data name="UnknownErrorWhenRunningApplicationErrorCaption" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="PathColumn" xml:space="preserve">
+    <value>Path</value>
+  </data>
+  <data name="UnableToRunApplicationMessage" xml:space="preserve">
+    <value>Unable to run the application.</value>
+  </data>
+  <data name="PathColumn_ToolTip" xml:space="preserve">
+    <value>Click to launch this application.</value>
+  </data>
 </root>

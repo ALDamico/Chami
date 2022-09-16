@@ -89,17 +89,25 @@
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridHyperlinkColumn Header="Path" ContentBinding="{Binding Path}" 
+                        <DataGridHyperlinkColumn Header="{lex:Loc Key=PathColumn}" 
+                                                 ContentBinding="{Binding Path}"
                                                  Binding="{Binding Path, Converter={StaticResource StringToUriConverter}}"
                                                  
                                                  >
                             <DataGridHyperlinkColumn.ElementStyle>
+                                <Trigger Property=""></Trigger>
                                 <Style TargetType="{x:Type TextBlock}">
+                                    
+                                    <Setter Property="ToolTip" Value="{lex:Loc Key=PathColumn_ToolTip}">
+                                        
+                                    </Setter>
                                     <EventSetter Event="Hyperlink.Click" x:Name="HyperLinkClick" Handler="HyperLinkClickHandler"></EventSetter>
                                 </Style>
                             </DataGridHyperlinkColumn.ElementStyle>
                         </DataGridHyperlinkColumn>
-                        <DataGridCheckBoxColumn x:Name="IsWatchEnabledColumn" Header="{lex:Loc Key=IsWatchEnabledColumn}" Binding="{Binding IsWatchEnabled}"></DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn x:Name="IsWatchEnabledColumn" 
+                                                Header="{lex:Loc Key=IsWatchEnabledColumn}" 
+                                                Binding="{Binding IsWatchEnabled}"></DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
                 <!--

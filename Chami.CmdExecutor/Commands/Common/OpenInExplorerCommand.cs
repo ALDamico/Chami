@@ -6,7 +6,7 @@ namespace Chami.CmdExecutor.Commands.Common
 {
     public class OpenInExplorerCommand : ShellCommandBase
     {
-        protected readonly string Path;
+        protected string Path;
         public OpenInExplorerCommand(string path)
         {
             Path = path;
@@ -14,7 +14,6 @@ namespace Chami.CmdExecutor.Commands.Common
         public override void Execute()
         {
             var process = PrepareProcess(Path);
-            process.StartInfo.CreateNoWindow = false;
             process.Start();
         }
 
@@ -28,7 +27,8 @@ namespace Chami.CmdExecutor.Commands.Common
             ProcessStartInfo processStartInfo = new ProcessStartInfo("explorer", arguments)
             {
                 RedirectStandardError = true,
-                RedirectStandardOutput = true
+                RedirectStandardOutput = true,
+                CreateNoWindow = false
             };
             Process process = new Process()
             {
