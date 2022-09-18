@@ -57,7 +57,7 @@ namespace ChamiUI.Controls
 
         private void HyperLinkClickHandler(object sender, RoutedEventArgs e)
         {
-            var destination = ((Hyperlink) e.OriginalSource).NavigateUri?.ToString();
+            var destination = ((Hyperlink) e.OriginalSource).NavigateUri?.ToString().Replace("file:///", "");
             if (destination != null)
             {
                 var viewModel = GetDataContextAsWatchedApplicationViewModel();

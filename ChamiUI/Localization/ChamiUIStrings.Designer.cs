@@ -254,6 +254,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Icon.
+        /// </summary>
+        public static string ApplicationIconColumn {
+            get {
+                return ResourceManager.GetString("ApplicationIconColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Chami has detected that the following applications are currently running:.
         /// </summary>
         public static string ApplicationsDetectedFirstParagraph_Text {
@@ -389,6 +398,12 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Browse....
+        /// </summary>
+        public static string ChangeIconButton_ToolTip {
+            get {
+                return ResourceManager.GetString("ChangeIconButton_ToolTip", resourceCulture);
+                }}
         ///   Looks up a localized string similar to Change step.
         /// </summary>
         public static string ChangeStepLabel_Content {

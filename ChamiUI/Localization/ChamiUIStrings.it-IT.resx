@@ -1093,6 +1093,12 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="PathColumn_ToolTip" xml:space="preserve">
     <value>Fai clic per avviare questa applicazione.</value>
   </data>
+  <data name="ApplicationIconColumn" xml:space="preserve">
+    <value>Icona</value>
+  </data>
+  <data name="ChangeIconButton_ToolTip" xml:space="preserve">
+    <value>Apri...</value>
+  </data>
   <data name="ConfirmMassUpdateWithEmptyValueMessageBoxCaption" xml:space="preserve">
     <value>Conferma aggiornamento</value>
   </data>

@@ -26,7 +26,7 @@ namespace Chami.Db.Repositories
         public IEnumerable<WatchedApplication> GetWatchedApplications()
         {
             var sql = @"
-                SELECT Id, Name, IsWatchEnabled
+                SELECT Id, Name, IsWatchEnabled, ApplicationIcon, ShowInRunApplicationMenu, Path
                 FROM WatchedApplications
 ";
             using (var connection = GetConnection())
@@ -43,7 +43,7 @@ namespace Chami.Db.Repositories
         public WatchedApplication GetWatchedApplicationById(int id)
         {
             var sql = @"
-                SELECT Id, Name, IsWatchEnabled
+                SELECT Id, Name, IsWatchEnabled, ApplicationIcon, ShowInRunApplicationMenu, Path
                 FROM WatchedApplications
                 WHERE Id = ?
 ";
@@ -60,7 +60,7 @@ namespace Chami.Db.Repositories
         public IEnumerable<WatchedApplication> GetActiveWatchedApplications()
         {
             var sql = @"
-                SELECT Id, Name, IsWatchEnabled
+                SELECT Id, Name, IsWatchEnabled, ApplicationIcon, ShowInRunApplicationMenu, Path
                 FROM WatchedApplications
                 WHERE IsWatchEnabled = 1
 ";
@@ -89,12 +89,17 @@ namespace Chami.Db.Repositories
             }
 
             var sql = @"
-                INSERT INTO WatchedApplications(Name, IsWatchEnabled)
+                INSERT INTO WatchedApplications(Name, IsWatchEnabled, ApplicationIcon, ShowInRunApplicationMenu, Path)
                 VALUES (?, ?)
 ";
             using (var connection = GetConnection())
             {
-                connection.Execute(sql, new {application.Name, application.IsWatchEnabled});
+                connection.Execute(sql,
+                    new
+                    {
+                        application.Name, application.IsWatchEnabled, application.ApplicationIcon,
+                        application.ShowInRunApplicationMenu, application.Path
+                    });
             }
 
             application = GetWatchedApplicationByName(application.Name);
@@ -123,12 +128,20 @@ namespace Chami.Db.Repositories
             var sql = @"
                 UPDATE WatchedApplications
                 SET Name = ?,
-                    IsWatchEnabled = ?
+                    IsWatchEnabled = ?,
+                    ApplicationIcon = ?,
+                    ShowInRunApplicationMenu = ?,
+                    Path = ?
                 WHERE Id = ?
 ";
             using (var connection = GetConnection())
             {
-                connection.Execute(sql, new {application.Name, application.IsWatchEnabled, application.Id});
+                connection.Execute(sql,
+                    new
+                    {
+                        application.Name, application.IsWatchEnabled, application.ApplicationIcon,
+                        application.ShowInRunApplicationMenu, application.Path, application.Id
+                    });
             }
 
             return application;
@@ -146,7 +159,7 @@ namespace Chami.Db.Repositories
 ";
             using (var connection = GetConnection())
             {
-                connection.Execute(sql, new { entity.Name });
+                connection.Execute(sql, new {entity.Name});
             }
         }
 
@@ -158,7 +171,7 @@ namespace Chami.Db.Repositories
         public WatchedApplication GetWatchedApplicationByName(string name)
         {
             var sql = @"
-                SELECT Id, Name, IsWatchEnabled
+                SELECT Id, Name, IsWatchEnabled, ApplicationIcon, ShowInRunApplicationMenu, Path
                 FROM WatchedApplications
                 WHERE Name = ?
 ";

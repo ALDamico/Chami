@@ -22,7 +22,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _cmdExecutor = new CmdExecutor();
         }
         private bool _isDetectionEnabled;
-        private CmdExecutor _cmdExecutor;
+        private readonly CmdExecutor _cmdExecutor;
+        private WatchedApplicationViewModel _selectedApplication;
 
         public void RunApplication(string applicationPath)
         {
@@ -104,6 +105,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _newApplicationName = value;
                 OnPropertyChanged(nameof(NewApplicationName));
+            }
+        }
+
+        public bool IsPathColumnToolTipVisible => !string.IsNullOrWhiteSpace(SelectedApplication?.Path);
+
+        public WatchedApplicationViewModel SelectedApplication
+        {
+            get => _selectedApplication;
+            set
+            {
+                _selectedApplication = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsPathColumnToolTipVisible));
             }
         }
     }

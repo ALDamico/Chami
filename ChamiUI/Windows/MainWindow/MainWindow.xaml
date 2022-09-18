@@ -560,6 +560,7 @@
                                     Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Text}" />
                         </Style>
                     </DataGrid.CellStyle>
+                    
                     <DataGrid.RowValidationRules>
                         <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue"
                             ValidatesOnTargetUpdated="True" />
