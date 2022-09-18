@@ -10,9 +10,12 @@ using System.Reflection;
 using System.Runtime.Remoting;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using System.Windows;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.BusinessLayer.Processes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
@@ -56,9 +59,9 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <returns>A <see cref="SettingsViewModel"/> object for use by the presentation layer.</returns>
         /// <exception cref="NullReferenceException">The method isn't able to find a property whose name corresponds to Setting.PropertyName, or inside this it cannot find a property named after Setting.SettingName.</exception>
         /// <exception cref="InvalidOperationException">The value conversion was successful, but the target property lacks a publicly-accessible setter.</exception>
-        public SettingsViewModel ToViewModel(IEnumerable<Setting> settings)
+        public SettingsViewModel ToViewModel(IEnumerable<Setting> settings, ProcessLauncherService processLauncherService)
         {
-            var viewModel = new SettingsViewModel();
+            var viewModel = new SettingsViewModel(processLauncherService);
             foreach (var setting in settings)
             {
                 var pInfo = viewModel.GetType().GetProperty(setting.PropertyName);
@@ -191,10 +194,10 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// Retrieves settings from the datastore and converts them to an instance of <see cref="SettingsViewModel"/>
         /// </summary>
         /// <returns>A <see cref="SettingsViewModel"/> containing all application settings.</returns>
-        public SettingsViewModel GetSettings()
+        public SettingsViewModel GetSettings(ProcessLauncherService processLauncherService)
         {
             var settingsList = _repository.GetSettings();
-            return ToViewModel(settingsList);
+            return ToViewModel(settingsList, processLauncherService);
         }
 
         /// <summary>

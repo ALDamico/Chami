@@ -19,6 +19,8 @@ namespace ChamiUI.BusinessLayer.Converters
             viewModel.Id = entity.Id;
             viewModel.Name = entity.Name;
             viewModel.IsWatchEnabled = entity.IsWatchEnabled;
+            viewModel.Icon = entity.ApplicationIcon;
+            viewModel.Path = entity.Path;
             return viewModel;
         }
 
@@ -34,7 +36,8 @@ namespace ChamiUI.BusinessLayer.Converters
             entity.IsWatchEnabled = model.IsWatchEnabled;
             entity.Id = model.Id;
             entity.Name = model.Name;
-
+            entity.Path = model.Path;
+            entity.ApplicationIcon = model.Icon;
             return entity;
         }
     }

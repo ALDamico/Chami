@@ -5,16 +5,17 @@ using System.Diagnostics;
 using System.Threading.Tasks;
 using System.Windows;
 using ChamiUI.BusinessLayer;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class DetectedApplicationsViewModel:ViewModelBase
     {
-        public DetectedApplicationsViewModel()
+        public DetectedApplicationsViewModel(RunningApplicationDetector runningApplicationDetector)
         {
             DetectedApplications = new ObservableCollection<WatchedApplicationViewModel>();
-            _detector = new RunningApplicationDetector(((App) Application.Current).Settings.WatchedApplicationSettings.WatchedApplications);
+            _detector = runningApplicationDetector;
         }
         private readonly RunningApplicationDetector _detector;
         public ObservableCollection<WatchedApplicationViewModel> DetectedApplications { get; }

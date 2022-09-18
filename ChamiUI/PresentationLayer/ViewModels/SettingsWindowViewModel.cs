@@ -8,8 +8,10 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.BusinessLayer.Processes;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
+using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -22,11 +24,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Constructs a new <see cref="SettingsWindowViewModel"/> object and initializes its <see cref="Settings"/>
         /// property and its data adapters.
         /// </summary>
-        public SettingsWindowViewModel()
+        public SettingsWindowViewModel(ProcessLauncherService processLauncherService)
         {
             var connectionString = App.GetConnectionString();
             _dataAdapter = new SettingsDataAdapter(connectionString);
             _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
+            var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
+            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
+                languageDataAdapter, processLauncherService);
             SettingsCategories = new ObservableCollection<GenericLabelViewModel>();
             Settings.ConsoleAppearanceSettings =
                 SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);

@@ -1,3 +1,5 @@
+using ChamiUI.BusinessLayer.Processes;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     /// <summary>
@@ -6,12 +8,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        public SettingsViewModel()
+        public SettingsViewModel(ProcessLauncherService processLauncherService)
         {
             LoggingSettings = new LoggingSettingsViewModel();
             SafeVariableSettings = new SafeVariableViewModel();
             ConsoleAppearanceSettings = new ConsoleAppearanceViewModel();
-            WatchedApplicationSettings = new WatchedApplicationControlViewModel();
+            WatchedApplicationSettings = new WatchedApplicationControlViewModel(processLauncherService);
             LanguageSettings = new LanguageSelectorViewModel();
             MainWindowBehaviourSettings = new MainWindowSavedBehaviourViewModel();
             MinimizationBehaviour = new MinimizationBehaviourViewModel();

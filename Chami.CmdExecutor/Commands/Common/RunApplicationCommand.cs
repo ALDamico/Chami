@@ -20,7 +20,10 @@ public class RunApplicationCommand : ShellCommandBase
 
         var process = PrepareProcess(null);
         process.Start();
+        Process = process;
     }
+    
+    public Process Process { get; private set; }
     
     public string Path { get; set; }
 

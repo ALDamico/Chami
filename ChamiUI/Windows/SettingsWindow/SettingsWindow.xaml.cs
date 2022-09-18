@@ -3,6 +3,8 @@ using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using ChamiUI.BusinessLayer.Processes;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.Windows.SettingsWindow
 {
@@ -10,11 +12,11 @@ namespace ChamiUI.Windows.SettingsWindow
     {
         private readonly SettingsWindowViewModel _settingsWindowViewModel;
 
-        public SettingsWindow(Window owner)
+        public SettingsWindow(Window owner, ProcessLauncherService processLauncherService)
         {
             InitializeComponent();
             Owner = owner;
-            _settingsWindowViewModel = new SettingsWindowViewModel();
+            _settingsWindowViewModel = new SettingsWindowViewModel(processLauncherService);
             DataContext = _settingsWindowViewModel;
             
         }

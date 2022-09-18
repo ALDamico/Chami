@@ -4,6 +4,7 @@ using System;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.BusinessLayer.Commands;
+using ChamiUI.BusinessLayer.Processes;
 using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -16,20 +17,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Constructs a new <see cref="WatchedApplicationControlViewModel"/>.
         /// </summary>
-        public WatchedApplicationControlViewModel()
+        public WatchedApplicationControlViewModel(ProcessLauncherService processLauncherService)
         {
             WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>();
-            _cmdExecutor = new CmdExecutor();
+            _processLauncherService = processLauncherService;
         }
         private bool _isDetectionEnabled;
-        private readonly CmdExecutor _cmdExecutor;
+        private ProcessLauncherService _processLauncherService;
         private WatchedApplicationViewModel _selectedApplication;
 
         public void RunApplication(string applicationPath)
         {
-            _cmdExecutor.ClearCommandQueue();
-            _cmdExecutor.AddCommand(new RunApplicationCommand(applicationPath));
-            _cmdExecutor.Execute();
+            _processLauncherService.RunApplication(applicationPath);
         }
         
         /// <summary>
