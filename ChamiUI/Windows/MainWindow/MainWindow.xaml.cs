@@ -238,7 +238,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var childWindow = new SettingsWindow.SettingsWindow(this);
+            var childWindow = AppUtils.GetSettingsWindow((App) Application.Current);
             childWindow.ShowDialog();
         }
 

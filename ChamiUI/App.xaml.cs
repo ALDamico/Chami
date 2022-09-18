@@ -15,6 +15,7 @@ using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
+using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.Localization;
@@ -27,8 +28,11 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.BusinessLayer.Processes;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.Windows.DetectedApplicationsWindow;
+using ChamiUI.Windows.SettingsWindow;
 
 namespace ChamiUI
 {
@@ -142,15 +146,39 @@ namespace ChamiUI
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations())
                 .AddLogging(l => l.AddSerilog())
+                .AddSingleton(sp => new ProcessLauncherService())
                 .AddSingleton<MainWindow>()
-                .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
+                .AddTransient(_ => new SettingsDataAdapter(GetConnectionString()))
                 .AddSingleton(serviceProvider =>
                 {
                     var connectionString = GetConnectionString();
                     return SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
                         new WatchedApplicationDataAdapter(connectionString),
-                        new ApplicationLanguageDataAdapter(connectionString));
-                });
+                        new ApplicationLanguageDataAdapter(connectionString), serviceProvider.GetRequiredService<ProcessLauncherService>());
+                })
+                .AddSingleton(sp =>
+                {
+                    var settingsViewModel = (SettingsViewModel)sp.GetService(typeof(SettingsViewModel));
+                    return new RunningApplicationDetector(settingsViewModel.WatchedApplicationSettings
+                        .WatchedApplications, sp.GetRequiredService<ProcessLauncherService>());
+                })
+                .AddTransient(sp =>
+                {
+                    var detector = sp.GetRequiredService<RunningApplicationDetector>();
+                    var window =  new DetectedApplicationsWindow(detector);
+                    window.Owner = Current.MainWindow;
+                    window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+                    return window;
+                })
+                .AddTransient(sp =>
+                {
+                    var processLauncher = sp.GetRequiredService<ProcessLauncherService>();
+                    return new SettingsWindow(MainWindow, processLauncher);
+                    
+                })
+                ;
+            
+            
 
             return serviceCollection.BuildServiceProvider();
         }

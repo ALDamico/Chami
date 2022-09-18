@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using System.IO;
+using ChamiUI.PresentationLayer.Enums;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -8,6 +10,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// </summary>
     public class WatchedApplicationViewModel : ViewModelBase
     {
+        public WatchedApplicationViewModel()
+        {
+            Environment = new EnvironmentViewModel();
+        }
         /// <summary>
         /// The ID used by the datastore.
         /// </summary>
@@ -22,11 +28,34 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        public EnvironmentViewModel Environment
+        {
+            get => _environment;
+            set
+            {
+                _environment = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        private EnvironmentViewModel _environment;
         private int _id;
         private bool _isWatchEnabled;
         private bool _showInRunApplicationWindow;
         private byte[] _icon;
         private string _path;
+        private VariableDetectionStatus _variablesDetectionStatus;
+
+        public VariableDetectionStatus VariableDetectionStatus
+        {
+            get => _variablesDetectionStatus;
+            set
+            {
+                _variablesDetectionStatus = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string Path
         {
@@ -42,7 +71,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             get
             {
-                return _icon ?? File.ReadAllBytes( Environment.CurrentDirectory + "/Assets/chameleon16x16.png");
+                return _icon ?? File.ReadAllBytes( System.Environment.CurrentDirectory + "/Assets/chameleon16x16.png");
             }
             set
             {

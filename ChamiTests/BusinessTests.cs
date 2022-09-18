@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows.Media;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
+using ChamiUI.BusinessLayer.Processes;
 using Xunit;
 
 namespace ChamiTests
@@ -24,7 +25,7 @@ namespace ChamiTests
         public void TestRealSettings()
         {
             var dataAdapter = new SettingsDataAdapter(connectionString);
-            var viewModel = dataAdapter.GetSettings();
+            var viewModel = dataAdapter.GetSettings(new ProcessLauncherService());
             Assert.NotNull(viewModel);
             Assert.Equal(12.0, viewModel.ConsoleAppearanceSettings.FontSize);
             // Comparison of colors fails if we don't cast to string
@@ -48,7 +49,7 @@ namespace ChamiTests
                 }
             };
             var dataAdapter = new SettingsDataAdapter(connectionString);
-            var viewModel = dataAdapter.ToViewModel(settings);
+            var viewModel = dataAdapter.ToViewModel(settings, new ProcessLauncherService());
             Assert.NotNull(viewModel);
             Assert.True(viewModel.LoggingSettings.LoggingEnabled);
         }

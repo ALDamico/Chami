@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using System.Windows;
+using ChamiUI.BusinessLayer;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using Serilog;
@@ -8,9 +9,9 @@ namespace ChamiUI.Windows.DetectedApplicationsWindow
 {
     public partial class DetectedApplicationsWindow
     {
-        public DetectedApplicationsWindow()
+        public DetectedApplicationsWindow(RunningApplicationDetector detector)
         {
-            _viewModel = new DetectedApplicationsViewModel();
+            _viewModel = new DetectedApplicationsViewModel(detector);
             DataContext = _viewModel;
             InitializeComponent();
         }
