@@ -18,16 +18,15 @@
             <Setter Property="Padding" Value="-2" />
             <Setter Property="Background" Value="White"></Setter>
             <Style.Triggers>
-                
                 <DataTrigger Binding="{Binding MarkedForDeletion}"
                              Value="True">
                     <Setter Property="Background" Value="OrangeRed">
-                                        
+
                     </Setter>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
-        
+
         <converters:StringToUriConverter x:Key="StringToUriConverter"></converters:StringToUriConverter>
     </UserControl.Resources>
     <Grid>
@@ -65,58 +64,67 @@
                     </CheckBox>
 
                 </StackPanel>
-                <DataGrid Grid.Row="2" Grid.Column="0" ItemsSource="{Binding WatchedApplications}" IsEnabled="{Binding ControlsEnabled}"
+                <DataGrid Grid.Row="2"
+                          Grid.Column="0"
+                          ItemsSource="{Binding WatchedApplications}"
+                          IsEnabled="{Binding ControlsEnabled}"
                           AutoGenerateColumns="False"
                           x:Name="WatchedApplicationsDataGrid"
                           PreviewKeyDown="WatchedApplicationsDataGrid_PreviewKeyDown"
-                          RowStyle="{StaticResource ErrorStyle}"
-                          >
+                          RowStyle="{StaticResource ErrorStyle}">
                     <DataGrid.Columns>
-                        <DataGridTemplateColumn x:Name="ProcessNameColumn" 
-                                            Header="{lex:Loc Key=ProcessNameColumn}" 
-                                            >
+                        <DataGridTemplateColumn x:Name="ApplicationIconColumn"
+                                                Header="{lex:Loc Key=ApplicationIconColumn}">
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="{Binding Icon}" MaxHeight="16" MaxWidth="16"></Image>
-                                        <TextBlock Text="{Binding Name}"></TextBlock>
-                                    </StackPanel>
+                                    <Image Source="{Binding Icon}"
+                                           MaxHeight="16"
+                                           MaxWidth="16">
+                                    </Image>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                             <DataGridTemplateColumn.CellEditingTemplate>
                                 <DataTemplate>
-                                    <TextBox Text="{Binding Name}"></TextBox>
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Right" ToolTip="{lex:Loc}" Content="..." MaxHeight="16" MaxWidth="16" x:Name="ChangeIconButton"></Button>
+                                        <Button DockPanel.Dock="Right"></Button>
+                                        <Image Source="{Binding Icon}"
+                                               MaxHeight="16"
+                                               MaxWidth="16">
+                                        </Image>
+                                        
+                                    </DockPanel>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellEditingTemplate>
                         </DataGridTemplateColumn>
-                        <DataGridHyperlinkColumn Header="{lex:Loc Key=PathColumn}" 
+                        <DataGridTextColumn x:Name="ProcessNameColumn"
+                                                Header="{lex:Loc Key=ProcessNameColumn}" 
+                                                Binding="{Binding Name}">
+                        </DataGridTextColumn>
+                        <DataGridHyperlinkColumn Header="{lex:Loc Key=PathColumn}"
                                                  ContentBinding="{Binding Path}"
-                                                 Binding="{Binding Path, Converter={StaticResource StringToUriConverter}}"
-                                                 
-                                                 >
+                                                 Binding="{Binding Path, Converter={StaticResource StringToUriConverter}}">
                             <DataGridHyperlinkColumn.ElementStyle>
-                                <Trigger Property=""></Trigger>
                                 <Style TargetType="{x:Type TextBlock}">
-                                    
-                                    <Setter Property="ToolTip" Value="{lex:Loc Key=PathColumn_ToolTip}">
-                                        
-                                    </Setter>
-                                    <EventSetter Event="Hyperlink.Click" x:Name="HyperLinkClick" Handler="HyperLinkClickHandler"></EventSetter>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsPathColumnToolTipVisible}">
+                                            <Setter Property="ToolTip" Value="{lex:Loc Key=PathColumn_ToolTip}"></Setter>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+
+
+                                    <EventSetter Event="Hyperlink.Click" x:Name="HyperLinkClick"
+                                                 Handler="HyperLinkClickHandler">
+                                    </EventSetter>
                                 </Style>
                             </DataGridHyperlinkColumn.ElementStyle>
                         </DataGridHyperlinkColumn>
-                        <DataGridCheckBoxColumn x:Name="IsWatchEnabledColumn" 
-                                                Header="{lex:Loc Key=IsWatchEnabledColumn}" 
-                                                Binding="{Binding IsWatchEnabled}"></DataGridCheckBoxColumn>
+                        <DataGridCheckBoxColumn x:Name="IsWatchEnabledColumn"
+                                                Header="{lex:Loc Key=IsWatchEnabledColumn}"
+                                                Binding="{Binding IsWatchEnabled}">
+                        </DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
-                <!--
-                <ListBox
-                    Grid.Row="2"
-                    Grid.Column="0"
-                    DisplayMemberPath="Name"
-                    IsEnabled="{Binding ControlsEnabled}"
-                    ItemsSource="{Binding WatchedApplications}" />-->
             </Grid>
         </GroupBox>
     </Grid>

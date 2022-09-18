@@ -1099,4 +1099,10 @@ Any unsaved changes will be lost.</value>
   <data name="PathColumn_ToolTip" xml:space="preserve">
     <value>Click to launch this application.</value>
   </data>
+  <data name="ApplicationIconColumn" xml:space="preserve">
+    <value>Icon</value>
+  </data>
+  <data name="ChangeIconButton_ToolTip" xml:space="preserve">
+    <value>Browse...</value>
+  </data>
 </root>

@@ -4,7 +4,7 @@ using FluentMigrator;
 
 namespace ChamiDbMigrations.Migrations
 {
-    [Migration(20220916)]
+    [Migration(2022091600001)]
     public class WatchedApplicationsIcon : Migration 
     {
         private static string _tableName =AnnotationUtils.GetTableName(typeof(WatchedApplication));

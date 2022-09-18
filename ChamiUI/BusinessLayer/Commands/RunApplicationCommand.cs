@@ -31,7 +31,7 @@ public class RunApplicationCommand : ShellCommandBase
 
     public RunApplicationCommand(string path)
     {
-        Path = path.Replace("file:///", "");
+        Path = path;
     }
 
     protected override Process PrepareProcess(string arguments)
