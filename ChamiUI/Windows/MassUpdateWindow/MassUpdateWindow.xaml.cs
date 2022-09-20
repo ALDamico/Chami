@@ -50,6 +50,17 @@ namespace ChamiUI.Windows.MassUpdateWindow
 
         private void ExecuteCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
+            if (_viewModel.ShouldShowWarningMessageBox())
+            {
+                var choice = MessageBox.Show(this, string.Format(ChamiUIStrings
+                        .ConfirmMassUpdateWithEmptyValueMessageBoxMessage, _viewModel.VariableToUpdate),
+                    ChamiUIStrings.ConfirmMassUpdateWithEmptyValueMessageBoxCaption, MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning, MessageBoxResult.No);
+                if (choice == MessageBoxResult.No)
+                {
+                    return;
+                }
+            }
             _viewModel.ExecuteUpdate().GetAwaiter().GetResult();
             OnMassUpdateExecuted(new MassUpdateEventArgs());
         }

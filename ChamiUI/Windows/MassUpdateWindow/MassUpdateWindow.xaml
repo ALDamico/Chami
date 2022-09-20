@@ -109,8 +109,8 @@
                  />
         
         <DockPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button MaxWidth="65" x:Name="ExecuteUpdateButton" Command="{x:Static local:MassUpdateWindow.ExecuteCommand}" Content="{lex:Loc}"></Button>
-            <Button MaxWidth="65" x:Name="CloseWindowButton" Command="Close" Content="{lex:Loc}"></Button>
+            <Button MaxWidth="65" Padding="2" Margin="2" x:Name="ExecuteUpdateButton" Command="{x:Static local:MassUpdateWindow.ExecuteCommand}" Content="{lex:Loc}"></Button>
+            <Button MaxWidth="65" Padding="2" Margin="2" x:Name="CloseWindowButton" Command="Close" Content="{lex:Loc}"></Button>
         </DockPanel>
     </Grid>
 </Window>

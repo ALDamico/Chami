@@ -1069,4 +1069,11 @@ Any unsaved changes will be lost.</value>
   <data name="MassUpdateStrategyName_CreateOnly" xml:space="preserve">
     <value>Create empty variable</value>
   </data>
+  <data name="ConfirmMassUpdateWithEmptyValueMessageBoxCaption" xml:space="preserve">
+    <value>Confirm update</value>
+  </data>
+  <data name="ConfirmMassUpdateWithEmptyValueMessageBoxMessage" xml:space="preserve">
+    <value>By proceeding, you will set all environment variables named "{0}" to an empty value.
+Are you sure this is what you want?</value>
+  </data>
 </root>

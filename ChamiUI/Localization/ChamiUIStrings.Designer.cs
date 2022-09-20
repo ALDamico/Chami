@@ -421,6 +421,25 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm update.
+        /// </summary>
+        public static string ConfirmMassUpdateWithEmptyValueMessageBoxCaption {
+            get {
+                return ResourceManager.GetString("ConfirmMassUpdateWithEmptyValueMessageBoxCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By proceeding, you will set all environment variables named &quot;{0}&quot; to an empty value.
+        ///Are you sure this is what you want?.
+        /// </summary>
+        public static string ConfirmMassUpdateWithEmptyValueMessageBoxMessage {
+            get {
+                return ResourceManager.GetString("ConfirmMassUpdateWithEmptyValueMessageBoxMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear.
         /// </summary>
         public static string ConsoleClearMenuItem {

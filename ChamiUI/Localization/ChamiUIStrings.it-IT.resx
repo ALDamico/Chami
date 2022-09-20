@@ -1063,4 +1063,11 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="MassUpdateStrategyName_CreateOnly" xml:space="preserve">
     <value>Crea variabile vuota</value>
   </data>
+  <data name="ConfirmMassUpdateWithEmptyValueMessageBoxCaption" xml:space="preserve">
+    <value>Conferma aggiornamento</value>
+  </data>
+  <data name="ConfirmMassUpdateWithEmptyValueMessageBoxMessage" xml:space="preserve">
+    <value>Se continui, imposterai tutte le variabili di ambiente chiamate "{0}" a un valore vuoto.
+Sei sicuro di voler procedere?</value>
+  </data>
 </root>
