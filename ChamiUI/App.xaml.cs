@@ -27,6 +27,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
 
@@ -204,10 +205,8 @@ namespace ChamiUI
             if (otherInstances.Length >= 1)
             {
                 var otherInstance = otherInstances[0];
-                var messageBoxText = string.Format(ChamiUIStrings.ExistingInstanceMessageBoxText, otherInstance.Id);
-                var messageBoxCaption = ChamiUIStrings.ExistingEnvironmentMessageBoxCaption;
-                MessageBox.Show(messageBoxText, messageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                Environment.Exit(0);
+                
+                User32Utils.FocusOtherWindowAndExit(otherInstance);
             }
 #endif
         }
