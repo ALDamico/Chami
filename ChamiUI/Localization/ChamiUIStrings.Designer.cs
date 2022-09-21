@@ -233,6 +233,18 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unforeseen program error occurred. 
+        ///Click the Ok button if you want to ignore the error and continue using Chami, but note that its stability and performance could have been compromised. 
+        ///Alternatively, you can close the application and restart the application.
+        ///Lastly, if you think this is a bug that needs fixing, feel free to open an issue on GitHub..
+        /// </summary>
+        public static string AnExceptionOccurredMessage_Text {
+            get {
+                return ResourceManager.GetString("AnExceptionOccurredMessage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Console.
         /// </summary>
         public static string AppearanceSettingsGroupbox_Header {

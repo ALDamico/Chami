@@ -1141,6 +1141,10 @@
       <Content Include="Data\README">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="Assets\Svg\circle-exclamation-solid.svg" />
+      <Resource Include="Assets\Svg\circle-exclamation-solid.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>

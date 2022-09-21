@@ -1070,6 +1070,12 @@ Tutte le modifiche non salvate andranno perse.</value>
     <value>Se continui, imposterai tutte le variabili di ambiente chiamate "{0}" a un valore vuoto.
 Sei sicuro di voler procedere?</value>
   </data>
+  <data name="AnExceptionOccurredMessage_Text" xml:space="preserve">
+    <value>Si è verificato un errore inatteso.
+Fai clic sul pulsante Ok se vuoi ignorare l'errore e continuare a usare Chami, ma le prestazioni e la stabilità potrebbero essere compromesse.
+In alternative, puoi chiudere l'applicazione e rilanciarla.
+Infine, se ritieni che questo sia un bug da risolvere, puoi aprire un issue su GitHub.</value>
+  </data>
   <data name="AdvancedAppearanceOptionsExpander_Header" xml:space="preserve">
     <value>Opzioni avanzate</value>
   </data>

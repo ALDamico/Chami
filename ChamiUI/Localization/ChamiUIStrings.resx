@@ -1076,6 +1076,12 @@ Any unsaved changes will be lost.</value>
     <value>By proceeding, you will set all environment variables named "{0}" to an empty value.
 Are you sure this is what you want?</value>
   </data>
+  <data name="AnExceptionOccurredMessage_Text" xml:space="preserve">
+    <value>An unforeseen program error occurred. 
+Click the Ok button if you want to ignore the error and continue using Chami, but note that its stability and performance could have been compromised. 
+Alternatively, you can close the application and restart the application.
+Lastly, if you think this is a bug that needs fixing, feel free to open an issue on GitHub.</value>
+  </data>
   <data name="AdvancedAppearanceOptionsExpander_Header" xml:space="preserve">
     <value>Advanced options</value>
   </data>
