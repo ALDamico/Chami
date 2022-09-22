@@ -159,6 +159,26 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced options.
+        /// </summary>
+        public static string AdvancedAppearanceOptionsExpander_Header {
+            get {
+                return ResourceManager.GetString("AdvancedAppearanceOptionsExpander_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show advanced appearance options for the console.
+        ///
+        ///Most people don&apos;t need to change these..
+        /// </summary>
+        public static string AdvancedAppearanceOptionsExpander_ToolTip {
+            get {
+                return ResourceManager.GetString("AdvancedAppearanceOptionsExpander_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorting.
         /// </summary>
         public static string AdvancedSortAndFilterOptionsExpander_Header {
@@ -751,6 +771,24 @@ namespace ChamiUI.Localization {
         public static string EditEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("EditEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable font resizing with Ctrl + Scroll Wheel.
+        /// </summary>
+        public static string EnableFontResizingWithGestureLabel_Content {
+            get {
+                return ResourceManager.GetString("EnableFontResizingWithGestureLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows you to change the font size of the console by holding Ctrl and moving the mouse scroll wheel up or down..
+        /// </summary>
+        public static string EnableFontResizingWithGestureLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("EnableFontResizingWithGestureLabel_ToolTip", resourceCulture);
             }
         }
         
@@ -1946,6 +1984,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max font size.
+        /// </summary>
+        public static string MaxFontSizeLabel_Content {
+            get {
+                return ResourceManager.GetString("MaxFontSizeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max font size.
+        /// </summary>
+        public static string MaxFontSizeLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("MaxFontSizeLabel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min font size.
+        /// </summary>
+        public static string MinFontSizeLabel_Content {
+            get {
+                return ResourceManager.GetString("MinFontSizeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min font size.
+        /// </summary>
+        public static string MinFontSizeLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("MinFontSizeLabel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When minimized:.
         /// </summary>
         public static string MinimizationBehaviourControlLabel_Content {
@@ -2453,6 +2527,24 @@ namespace ChamiUI.Localization {
         public static string SaveEnvironmentUnknownErrorMessage {
             get {
                 return ResourceManager.GetString("SaveEnvironmentUnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save font size changes on application exit.
+        /// </summary>
+        public static string SaveFontSizeOnApplicationExitLabel_Content {
+            get {
+                return ResourceManager.GetString("SaveFontSizeOnApplicationExitLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled, the application will save changes to the font size applied through the Ctrl + Scroll Wheel gesture on exit and restore it at the following start..
+        /// </summary>
+        public static string SaveFontSizeOnApplicationExitLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("SaveFontSizeOnApplicationExitLabel_ToolTip", resourceCulture);
             }
         }
         

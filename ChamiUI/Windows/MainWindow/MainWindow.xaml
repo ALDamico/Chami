@@ -16,6 +16,7 @@
         xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
+        xmlns:gestures="clr-namespace:ChamiUI.PresentationLayer.Gestures"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         WindowStartupLocation="Manual"
@@ -207,6 +208,15 @@
                         CanExecute="DeleteEnvironmentCommandBinding_OnCanExecute"
                         Executed="DeleteEnvironmentCommandBinding_OnExecuted">
         </CommandBinding>
+        <CommandBinding x:Name="IncreaseFontSizeCommandBinding" 
+                        Command="IncreaseFontSize" 
+                        CanExecute="IncreaseFontSizeCommandBinding_OnCanExecute" 
+                        Executed="IncreaseFontSizeCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="DecreaseFontSizeCommandBinding"
+                        Command="DecreaseFontSize"
+                        CanExecute="DecreaseFontSizeCommandBinding_OnCanExecute"
+                        Executed="DecreaseFontSizeCommandBinding_OnExecuted"
+                        ></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -590,7 +600,19 @@
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              TextWrapping="Wrap"
-                             IsReadOnly="True">
+                             IsReadOnly="False">
+                        <TextBox.InputBindings>
+                            <MouseBinding Command="IncreaseFontSize">
+                                <MouseBinding.Gesture>
+                                    <gestures:ModifierScrollDirectionGesture Modifiers="Control" ScrollDirection="Up"></gestures:ModifierScrollDirectionGesture>
+                                </MouseBinding.Gesture>
+                            </MouseBinding>
+                            <MouseBinding Command="DecreaseFontSize">
+                                <MouseBinding.Gesture>
+                                    <gestures:ModifierScrollDirectionGesture Modifiers="Control" ScrollDirection="Down"></gestures:ModifierScrollDirectionGesture>
+                                </MouseBinding.Gesture>
+                            </MouseBinding>
+                        </TextBox.InputBindings>
                         <TextBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem x:Name="ConsoleCopyMenuItem" Header="{lex:Loc}"

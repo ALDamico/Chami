@@ -114,5 +114,62 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             ForegroundColor = brush;
         }
+
+        private double? _minFontSize;
+
+        public double? MinFontSize
+        {
+            get => _minFontSize;
+            set
+            {
+                _minFontSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private double? _maxFontSize;
+
+        public double? MaxFontSize
+        {
+            get => _maxFontSize;
+            set
+            {
+                _maxFontSize = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public const double FontSizeChangeStep = 1.0;
+
+        private bool _saveFontSizeOnApplicationExit;
+
+        public bool SaveFontSizeOnApplicationExit
+        {
+            get => _saveFontSizeOnApplicationExit;
+            set
+            {
+                _saveFontSizeOnApplicationExit = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private bool _enableFontSizeResizingWithScrollWheel;
+
+        public bool EnableFontSizeResizingWithScrollWheel
+        {
+            get => _enableFontSizeResizingWithScrollWheel;
+            set
+            {
+                _enableFontSizeResizingWithScrollWheel = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSaveFontSizeCheckboxEnabled));
+                OnPropertyChanged(nameof(IsMinFontSizeBoxEnabled));
+                OnPropertyChanged(nameof(IsMaxFontSizeBoxEnabled));
+            }
+        }
+
+        public bool IsSaveFontSizeCheckboxEnabled => EnableFontSizeResizingWithScrollWheel;
+        public bool IsMinFontSizeBoxEnabled => EnableFontSizeResizingWithScrollWheel;
+        public bool IsMaxFontSizeBoxEnabled => EnableFontSizeResizingWithScrollWheel;
     }
 }
