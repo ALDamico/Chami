@@ -1076,6 +1076,38 @@ Any unsaved changes will be lost.</value>
     <value>By proceeding, you will set all environment variables named "{0}" to an empty value.
 Are you sure this is what you want?</value>
   </data>
+  <data name="AdvancedAppearanceOptionsExpander_Header" xml:space="preserve">
+    <value>Advanced options</value>
+  </data>
+  <data name="AdvancedAppearanceOptionsExpander_ToolTip" xml:space="preserve">
+    <value>Show advanced appearance options for the console.
+
+Most people don't need to change these.</value>
+  </data>
+  <data name="SaveFontSizeOnApplicationExitLabel_Content" xml:space="preserve">
+    <value>Save font size changes on application exit</value>
+  </data>
+  <data name="SaveFontSizeOnApplicationExitLabel_ToolTip" xml:space="preserve">
+    <value>If enabled, the application will save changes to the font size applied through the Ctrl + Scroll Wheel gesture on exit and restore it at the following start.</value>
+  </data>
+  <data name="EnableFontResizingWithGestureLabel_Content" xml:space="preserve">
+    <value>Enable font resizing with Ctrl + Scroll Wheel</value>
+  </data>
+  <data name="EnableFontResizingWithGestureLabel_ToolTip" xml:space="preserve">
+    <value>Allows you to change the font size of the console by holding Ctrl and moving the mouse scroll wheel up or down.</value>
+  </data>
+  <data name="MinFontSizeLabel_Content" xml:space="preserve">
+    <value>Min font size</value>
+  </data>
+  <data name="MinFontSizeLabel_ToolTip" xml:space="preserve">
+    <value>Min font size</value>
+  </data>
+  <data name="MaxFontSizeLabel_Content" xml:space="preserve">
+    <value>Max font size</value>
+  </data>
+  <data name="MaxFontSizeLabel_ToolTip" xml:space="preserve">
+    <value>Max font size</value>
+  </data>
   <data name="ResetEnvironmentToOriginalState" xml:space="preserve">
     <value>Resetting variables...</value>
   </data>

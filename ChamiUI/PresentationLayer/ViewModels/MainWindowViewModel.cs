@@ -101,7 +101,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Determines if the clear filter button (the big red cross) is enabled or not.
         /// </summary>
-        public bool IsClearFilterButtonEnabled =>  !string.IsNullOrEmpty(FilterStrategy.SearchedText);
+        public bool IsClearFilterButtonEnabled => !string.IsNullOrEmpty(FilterStrategy.SearchedText);
 
         private string _filterText;
 
@@ -263,12 +263,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     SelectedEnvironment = ActiveEnvironment;
                 }
+
                 Log.Logger.Information("Environment changed to {@Args}", args);
             }
             else
             {
                 ActiveEnvironment = null;
             }
+
             ChangeActiveEnvironment();
             EnvironmentChanged?.Invoke(this, args);
         }
@@ -941,6 +943,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 return;
             }
+
             var healthViewModel = new EnvironmentHealthViewModel()
             {
                 HealthIndex = healthCheckedEventArgs.Health
@@ -954,7 +957,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     healthViewModel.HealthStatuses.Add(healthStatus);
                 }
             }
-            
+
             EnvironmentHealth = healthViewModel;
 
             if (environmentHealthWindow != null)
@@ -985,14 +988,37 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     columnInfo.ColumnWidth = gridViewColumn.Width;
                     columnInfosToSave.Add(columnInfo);
-                } 
-                
+                }
+
                 Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfo));
             }
-            
+
             await dataAdapter.SaveColumnInfoAsync(columnInfosToSave);
         }
 
+        public bool CanIncreaseFontSize()
+        {
+            var maxFontSize = Settings.ConsoleAppearanceSettings.MaxFontSize;
+            var targetFontSize = Settings.ConsoleAppearanceSettings.FontSize +
+                                 ConsoleAppearanceViewModel.FontSizeChangeStep;
+            return Settings.ConsoleAppearanceSettings.EnableFontSizeResizingWithScrollWheel &&
+                   (maxFontSize == null || !(maxFontSize < targetFontSize));
+        }
+
+        public void IncreaseFontSize()
+        {
+            Settings.ConsoleAppearanceSettings.FontSize += ConsoleAppearanceViewModel.FontSizeChangeStep;
+        }
+
+        public bool CanDecreaseFontSize()
+        {
+            return Settings.ConsoleAppearanceSettings.EnableFontSizeResizingWithScrollWheel &&
+                   Settings.ConsoleAppearanceSettings.FontSize > Settings.ConsoleAppearanceSettings.MinFontSize;
+        }
+
+        public void DecreaseFontSize()
+        {
+            Settings.ConsoleAppearanceSettings.FontSize -= ConsoleAppearanceViewModel.FontSizeChangeStep;
         public async Task ApplyEnvironmentButtonClickAction(MainWindow mainWindow)
         {
             var buttonBehaviourTask = StateManager.CurrentState.ApplyButtonBehaviour(this, mainWindow);

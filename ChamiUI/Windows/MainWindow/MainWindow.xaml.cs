@@ -778,5 +778,25 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private EnvironmentHealthWindow _healthWindow;
+
+        private void IncreaseFontSizeCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.CanIncreaseFontSize();
+        }
+
+        private void IncreaseFontSizeCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewModel.IncreaseFontSize();
+        }
+
+        private void DecreaseFontSizeCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = ViewModel.CanDecreaseFontSize();
+        }
+
+        private void DecreaseFontSizeCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            ViewModel.DecreaseFontSize();
+        }
     }
 }

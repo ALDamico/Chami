@@ -30,6 +30,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -96,6 +97,63 @@
                                   AdvancedTabHeader="{lex:Loc}"
                                   StandardTabHeader="{lex:Loc}"
                                   x:Name="BackgroundColorPicker" />
+                <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" x:Name="AdvancedAppearanceOptionsExpander" Header="{lex:Loc}" ToolTip="{lex:Loc}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Row="0" 
+                               Grid.Column="0" 
+                               Grid.ColumnSpan="3"
+                               x:Name="EnableFontResizingWithGestureLabel" 
+                               Content="{lex:Loc}" 
+                               ToolTip="{lex:Loc}"></Label>
+                        <CheckBox Grid.Row="0" 
+                                  Grid.Column="1" 
+                                  IsChecked="{Binding EnableFontSizeResizingWithScrollWheel}"></CheckBox>
+                        <Label Grid.Row="1" 
+                               Grid.Column="0" 
+                               Grid.ColumnSpan="3"
+                               x:Name="SaveFontSizeOnApplicationExitLabel" 
+                               Content="{lex:Loc}" 
+                               ToolTip="{lex:Loc}"></Label>
+                        <CheckBox Grid.Row="1" 
+                                  Grid.Column="1" 
+                                  IsChecked="{Binding SaveFontSizeOnApplicationExit}" 
+                                  IsEnabled="{Binding IsSaveFontSizeCheckboxEnabled}"></CheckBox>
+                        <Label Grid.Row="2" 
+                               Grid.Column="0" 
+                               x:Name="MinFontSizeLabel"
+                               Content="{lex:Loc}"
+                               ToolTip="{lex:Loc}"
+                               ></Label>
+                        <xctk:DoubleUpDown 
+                            Grid.Row="2" 
+                            Grid.Column="1" 
+                            Value="{Binding MinFontSize}" 
+                            IsEnabled="{Binding IsMinFontSizeBoxEnabled}"></xctk:DoubleUpDown>
+                        <Label Grid.Row="2" 
+                               Grid.Column="2" 
+                               x:Name="MaxFontSizeLabel"
+                               Content="{lex:Loc}"
+                               ToolTip="{lex:Loc}"
+                        ></Label>
+                        <xctk:DoubleUpDown 
+                            Grid.Row="2" 
+                            Grid.Column="3" 
+                            Value="{Binding MaxFontSize}" 
+                            IsEnabled="{Binding IsMaxFontSizeBoxEnabled}"></xctk:DoubleUpDown>
+                    </Grid>
+                </Expander>
             </Grid>
         </GroupBox>
         <GroupBox Grid.Row="1"
