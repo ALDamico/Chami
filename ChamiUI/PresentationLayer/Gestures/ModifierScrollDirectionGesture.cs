@@ -5,13 +5,13 @@ namespace ChamiUI.PresentationLayer.Gestures;
 
 public class ModifierScrollDirectionGesture : MouseGesture
 {
-    public ModifierScrollDirectionGesture()
+    public ModifierScrollDirectionGesture() : base(MouseAction.WheelClick)
     {
     }
 
-    public ModifierScrollDirectionGesture(MouseAction mouseAction, ModifierKeys modifierKeys) : base(mouseAction,
-        modifierKeys)
+    public ModifierScrollDirectionGesture(ModifierKeys modifierKeys) : base(MouseAction.WheelClick, modifierKeys)
     {
+        Modifiers = modifierKeys;
     }
 
     public ScrollDirection ScrollDirection { get; set; }

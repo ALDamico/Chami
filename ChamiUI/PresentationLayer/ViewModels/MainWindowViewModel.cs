@@ -1150,5 +1150,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             Settings.ConsoleAppearanceSettings.FontSize -= ConsoleAppearanceViewModel.FontSizeChangeStep;
         }
+
+        public void SaveFontSize()
+        {
+            if (Settings.ConsoleAppearanceSettings.SaveFontSizeOnApplicationExit)
+            {
+                var valueToSave = Settings.ConsoleAppearanceSettings.FontSize;
+                _settingsDataAdapter.SaveFontSize(valueToSave);
+            }
+        }
     }
 }

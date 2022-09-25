@@ -645,6 +645,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             var sortDescription = GetCurrentSortDescriptionOrDefault();
             ViewModel.SaveWindowState(Width, Height, Left, Top, WindowState, sortDescription);
+            ViewModel.SaveFontSize();
         }
 
         private void OpenAsFolderMenuItem_OnClick(object sender, RoutedEventArgs e)
