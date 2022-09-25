@@ -118,7 +118,7 @@
                                Content="{lex:Loc}" 
                                ToolTip="{lex:Loc}"></Label>
                         <CheckBox Grid.Row="0" 
-                                  Grid.Column="1" 
+                                  Grid.Column="3" 
                                   IsChecked="{Binding EnableFontSizeResizingWithScrollWheel}"></CheckBox>
                         <Label Grid.Row="1" 
                                Grid.Column="0" 
@@ -159,13 +159,16 @@
         <GroupBox Grid.Row="1"
                   Grid.Column="0"
                   Header="Preview">
-            <TextBox Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
+            <RichTextBox Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
                      Foreground="{Binding ForegroundColor}"
                      IsReadOnly="True"
                      x:Name="ExampleTextTextBox"
-                     Text="{lex:Loc}"
+                     
                      FontFamily="{Binding FontFamily}"
-                     FontSize="{Binding FontSize}" />
+                     FontSize="{Binding FontSize}" >
+            </RichTextBox>
         </GroupBox>
     </Grid>
 </UserControl>
+
+<!--Text="{lex:Loc}"-->

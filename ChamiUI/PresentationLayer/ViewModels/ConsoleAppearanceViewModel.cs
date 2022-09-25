@@ -1,7 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Media;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -124,6 +126,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _minFontSize = value;
                 OnPropertyChanged();
+                MinMaxFontSizeChanged?.Invoke(this, new MinMaxFontSizeChangedEventArgs(MinFontSize, MaxFontSize));
             }
         }
 
@@ -136,6 +139,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _maxFontSize = value;
                 OnPropertyChanged();
+                MinMaxFontSizeChanged?.Invoke(this, new MinMaxFontSizeChangedEventArgs(MinFontSize, MaxFontSize));
             }
         }
 
@@ -171,5 +175,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public bool IsSaveFontSizeCheckboxEnabled => EnableFontSizeResizingWithScrollWheel;
         public bool IsMinFontSizeBoxEnabled => EnableFontSizeResizingWithScrollWheel;
         public bool IsMaxFontSizeBoxEnabled => EnableFontSizeResizingWithScrollWheel;
+
+        public event EventHandler<MinMaxFontSizeChangedEventArgs> MinMaxFontSizeChanged;
     }
 }

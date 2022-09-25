@@ -1026,5 +1026,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
             await buttonBehaviourTask;
             StateManager.ChangeState(new MainWindowReadyState());
         }
+
+        public void SaveFontSize()
+        {
+            if (Settings.ConsoleAppearanceSettings.SaveFontSizeOnApplicationExit)
+            {
+                var valueToSave = Settings.ConsoleAppearanceSettings.FontSize;
+                _settingsDataAdapter.SaveFontSize(valueToSave);
+            }
+        }
     }
 }
