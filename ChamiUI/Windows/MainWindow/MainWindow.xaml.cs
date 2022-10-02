@@ -95,7 +95,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             SystemSounds.Exclamation.Play();
             ConsoleTextBox.Text += ChamiUIStrings.OperationCanceledMessage;
-            ConsoleTextBox.Text += "Reverting back to previous environment.";
+            ConsoleTextBox.Text += ChamiUIStrings.OperationCanceledRevertMessage;
             ConsoleProgressBar.Foreground = System.Windows.Media.Brushes.Red;
         }
 

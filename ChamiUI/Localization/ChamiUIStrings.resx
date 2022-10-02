@@ -1088,4 +1088,13 @@ Are you sure this is what you want?</value>
   <data name="RenamingEnvironmentMessage" xml:space="preserve">
     <value>Renaming environment</value>
   </data>
+  <data name="UnknownProcessAlreadyExited" xml:space="preserve">
+    <value>The process has already exited.</value>
+  </data>
+  <data name="KnownProcessAlreadyExited" xml:space="preserve">
+    <value>The process {0} (PID {1}) has already exited.</value>
+  </data>
+  <data name="KnownProcessTerminated" xml:space="preserve">
+    <value>The process {0} (PID {1}) has been terminated.</value>
+  </data>
 </root>

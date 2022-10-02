@@ -1082,4 +1082,13 @@ Sei sicuro di voler procedere?</value>
   <data name="RenamingEnvironmentMessage" xml:space="preserve">
     <value>Cambio del nome dell'ambiente</value>
   </data>
+  <data name="UnknownProcessAlreadyExited" xml:space="preserve">
+    <value>Il processo è già terminato.</value>
+  </data>
+  <data name="KnownProcessAlreadyExited" xml:space="preserve">
+    <value>Il processo {0} (PID {1}) è già terminato.</value>
+  </data>
+  <data name="KnownProcessTerminated" xml:space="preserve">
+    <value>Il processo {0} (PID {1}) è stato terminato.</value>
+  </data>
 </root>

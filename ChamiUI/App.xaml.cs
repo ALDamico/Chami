@@ -125,6 +125,9 @@ namespace ChamiUI
         {
             CmdExecutorBase.StartingExecutionMessage = ChamiUIStrings.StartingExecutionMessage;
             CmdExecutorBase.CompletedExecutionMessage = ChamiUIStrings.ExecutionCompleteMessage;
+            CmdExecutorBase.UnknownProcessAlreadyExited = ChamiUIStrings.UnknownProcessAlreadyExited;
+            CmdExecutorBase.KnownProcessTerminated = ChamiUIStrings.KnownProcessTerminated;
+            CmdExecutorBase.KnownProcessAlreadyExited = ChamiUIStrings.KnownProcessAlreadyExited;
         }
 
         private readonly IServiceProvider _serviceProvider;

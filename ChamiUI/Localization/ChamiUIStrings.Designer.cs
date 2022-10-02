@@ -1658,6 +1658,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The process {0} (PID {1}) has already exited..
+        /// </summary>
+        public static string KnownProcessAlreadyExited {
+            get {
+                return ResourceManager.GetString("KnownProcessAlreadyExited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The process {0} (PID {1}) has been terminated..
+        /// </summary>
+        public static string KnownProcessTerminated {
+            get {
+                return ResourceManager.GetString("KnownProcessTerminated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string LanguageCategory {
@@ -2804,6 +2822,15 @@ namespace ChamiUI.Localization {
         public static string UnableToOpenAsFolderMessage {
             get {
                 return ResourceManager.GetString("UnableToOpenAsFolderMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The process has already exited..
+        /// </summary>
+        public static string UnknownProcessAlreadyExited {
+            get {
+                return ResourceManager.GetString("UnknownProcessAlreadyExited", resourceCulture);
             }
         }
         
