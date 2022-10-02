@@ -46,8 +46,6 @@ namespace Chami.CmdExecutor
                 StartInfo = processStartInfo
             };
             ProcessToExecute = process;
-            
-            
             return process;
         }
 
@@ -68,24 +66,40 @@ namespace Chami.CmdExecutor
             SubscribeToErrorReceived(callback);
             SubscribeToOutputReceived(callback);
         }
-        
+
         public Process ProcessToExecute { get; private set; }
-        public void TerminateProcess()
+
+        public void TerminateProcess(float percentage)
         {
-            if (ProcessToExecute == null || ProcessToExecute.HasExited)
+            string message;
+            if (ProcessToExecute == null)
             {
-                Progress?.Report(new CmdExecutorProgress(0f, $"Process {ProcessToExecute?.Id} has already exited"));
+                message = CmdExecutorBase.UnknownProcessAlreadyExited;
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
+                return;
+            }
+
+            if (ProcessToExecute.HasExited)
+            {
+                message = string.Format(CmdExecutorBase.KnownProcessAlreadyExited, ProcessToExecute.ProcessName,
+                    ProcessToExecute.Id);
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
                 return;
             }
 
             try
             {
                 ProcessToExecute.Kill();
-                Progress?.Report(new CmdExecutorProgress(0f, $"Process {ProcessToExecute?.Id} has been terminated"));
+                message = string.Format(CmdExecutorBase.KnownProcessTerminated, ProcessToExecute.ProcessName,
+                    ProcessToExecute.Id);
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
             }
             catch (InvalidOperationException)
             {
                 // The process has already exited
+                message = string.Format(CmdExecutorBase.KnownProcessAlreadyExited, ProcessToExecute.ProcessName,
+                    ProcessToExecute.Id);
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
             }
         }
     }

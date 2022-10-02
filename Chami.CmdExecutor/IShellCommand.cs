@@ -29,6 +29,6 @@ namespace Chami.CmdExecutor
         
         IProgress<CmdExecutorProgress> Progress { get; set; }
         Process ProcessToExecute {get;}
-        void TerminateProcess();
+        void TerminateProcess(float percentage);
     }
 }

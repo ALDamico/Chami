@@ -1658,6 +1658,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The process {0} (PID {1}) has already exited..
+        /// </summary>
+        public static string KnownProcessAlreadyExited {
+            get {
+                return ResourceManager.GetString("KnownProcessAlreadyExited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The process {0} (PID {1}) has been terminated..
+        /// </summary>
+        public static string KnownProcessTerminated {
+            get {
+                return ResourceManager.GetString("KnownProcessTerminated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Language.
         /// </summary>
         public static string LanguageCategory {
@@ -1681,6 +1699,15 @@ namespace ChamiUI.Localization {
         public static string LanguageSelectorLabel_Content {
             get {
                 return ResourceManager.GetString("LanguageSelectorLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Loading data....
+        /// </summary>
+        public static string LoadingDataMessage {
+            get {
+                return ResourceManager.GetString("LoadingDataMessage", resourceCulture);
             }
         }
         
@@ -2318,6 +2345,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renaming environment.
+        /// </summary>
+        public static string RenamingEnvironmentMessage {
+            get {
+                return ResourceManager.GetString("RenamingEnvironmentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string ResetEnvironmentMessageBoxCaption {
@@ -2462,6 +2498,15 @@ namespace ChamiUI.Localization {
         public static string SaveEnvironmentUnknownErrorMessage {
             get {
                 return ResourceManager.GetString("SaveEnvironmentUnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving data....
+        /// </summary>
+        public static string SavingDataMessage {
+            get {
+                return ResourceManager.GetString("SavingDataMessage", resourceCulture);
             }
         }
         
@@ -2777,6 +2822,15 @@ namespace ChamiUI.Localization {
         public static string UnableToOpenAsFolderMessage {
             get {
                 return ResourceManager.GetString("UnableToOpenAsFolderMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The process has already exited..
+        /// </summary>
+        public static string UnknownProcessAlreadyExited {
+            get {
+                return ResourceManager.GetString("UnknownProcessAlreadyExited", resourceCulture);
             }
         }
         

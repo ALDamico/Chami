@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using ChamiUI.Localization;
 using ChamiUI.Windows.MainWindow;
 
 namespace ChamiUI.PresentationLayer.ViewModels.State;
@@ -10,7 +11,7 @@ public class RenamingEnvironmentState : IMainWindowState
     public bool ExecuteButtonPlayEnabled => false;
     public string ExecuteButtonIcon => "/Assets/Svg/play_disabled.svg";
     public bool IsDatagridReadonly => true;
-    public string WindowStatusMessage => "Renaming environment"; // TODO
+    public string WindowStatusMessage => ChamiUIStrings.RenamingEnvironmentMessage;
     public bool CanDeleteEnvironment => false;
     public bool CanDuplicateEnvironment => false;
     public bool CanExecuteMassUpdate => false;

@@ -10,7 +10,7 @@ namespace ChamiUI.PresentationLayer.ViewModels.State;
 
 public class MainWindowReadyState : IMainWindowState
 {
-    public bool EditingEnabled => true;
+    public bool EditingEnabled => false;
     public bool IsChangeInProgress => false;
     public bool ExecuteButtonPlayEnabled => true;
     public string ExecuteButtonIcon => "/Assets/Svg/play.svg";
@@ -41,7 +41,7 @@ public class MainWindowReadyState : IMainWindowState
         }
         catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
         {
-            mainWindowViewModel.StateManager.ChangeState(new MainWindowRevertingEnvironmentState());
+            mainWindowViewModel.StateManager.ChangeState(new MainWindowRevertingEnvironmentState(previousEnvironment?.Name));
             Log.Logger.Information("{Message}", ex.Message);
             Log.Logger.Information("{StackTrace}", ex.StackTrace);
             mainWindow.PrintTaskCancelledMessageToConsole();

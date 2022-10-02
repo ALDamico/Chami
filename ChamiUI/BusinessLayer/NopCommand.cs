@@ -48,7 +48,7 @@ namespace ChamiUI.BusinessLayer
         public IProgress<CmdExecutorProgress> Progress { get; set; }
 
         public Process ProcessToExecute { get; }
-        public void TerminateProcess()
+        public void TerminateProcess(float percentage)
         {
             // No Process to terminate
         }
