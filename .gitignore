@@ -18,3 +18,4 @@ Installer/ChamiInstaller.zip
 *.db
 Inno Setup/Output/output.exe
 Inno Setup/Output
+.vs

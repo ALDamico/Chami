@@ -71,7 +71,8 @@
                   Grid.ColumnSpan="2"
                   VerticalAlignment="Center"
                   ToolTip="{lex:Loc Key=CreateVariableIfNotFoundLabel_ToolTip}"
-                  IsChecked="{Binding CreateVariableIfNotExists}"
+                  IsChecked="{Binding SelectedUpdateStrategy.CreateIfNotExists}"
+                  IsEnabled="{Binding SelectedUpdateStrategy.CreateIfNotExistsEnabled}"
                   x:Name="CreateVariableIfNotFoundLabel"
                   Content="{lex:Loc}"
         >
@@ -86,6 +87,8 @@
                   Grid.Column="1" 
                   ItemsSource="{Binding UpdateStrategies}" 
                   SelectedItem="{Binding SelectedUpdateStrategy}" 
+                  x:Name="StrategyComboBox"
+                  SelectionChanged="StrategyComboBox_OnSelectionChanged"
                   DisplayMemberPath="Name">
         </ComboBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
@@ -102,12 +105,12 @@
                  x:Name="EnvironmentsListBox"
                  SelectionChanged="EnvironmentsListBox_OnSelectionChanged"
                  SelectionMode="Multiple"
-                 IsEnabled="{Binding EnvironmentListBoxEnabled}"
+                 IsEnabled="{Binding SelectedUpdateStrategy.EnvironmentListBoxEnabled}"
                  />
         
         <DockPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button MaxWidth="65" x:Name="ExecuteUpdateButton" Command="{x:Static local:MassUpdateWindow.ExecuteCommand}" Content="{lex:Loc}"></Button>
-            <Button MaxWidth="65" x:Name="CloseWindowButton" Command="Close" Content="{lex:Loc}"></Button>
+            <Button MaxWidth="65" Padding="2" Margin="2" x:Name="ExecuteUpdateButton" Command="{x:Static local:MassUpdateWindow.ExecuteCommand}" Content="{lex:Loc}"></Button>
+            <Button MaxWidth="65" Padding="2" Margin="2" x:Name="CloseWindowButton" Command="Close" Content="{lex:Loc}"></Button>
         </DockPanel>
     </Grid>
 </Window>

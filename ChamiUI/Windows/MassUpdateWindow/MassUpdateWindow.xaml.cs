@@ -2,6 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChamiUI.BusinessLayer.MassUpdateStrategies;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -49,6 +50,17 @@ namespace ChamiUI.Windows.MassUpdateWindow
 
         private void ExecuteCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
+            if (_viewModel.ShouldShowWarningMessageBox())
+            {
+                var choice = MessageBox.Show(this, string.Format(ChamiUIStrings
+                        .ConfirmMassUpdateWithEmptyValueMessageBoxMessage, _viewModel.VariableToUpdate),
+                    ChamiUIStrings.ConfirmMassUpdateWithEmptyValueMessageBoxCaption, MessageBoxButton.YesNo,
+                    MessageBoxImage.Warning, MessageBoxResult.No);
+                if (choice == MessageBoxResult.No)
+                {
+                    return;
+                }
+            }
             _viewModel.ExecuteUpdate().GetAwaiter().GetResult();
             OnMassUpdateExecuted(new MassUpdateEventArgs());
         }
@@ -57,7 +69,7 @@ namespace ChamiUI.Windows.MassUpdateWindow
         {
             if (_viewModel != null)
             {
-                e.CanExecute = _viewModel.ExecuteButtonEnabled;    
+                e.CanExecute = _viewModel.ExecuteButtonEnabled;
             }
         }
 
@@ -70,12 +82,39 @@ namespace ChamiUI.Windows.MassUpdateWindow
         {
             _viewModel.DeselectAllEnvironments();
         }
-        
+
         public event EventHandler<MassUpdateEventArgs> MassUpdateExecuted;
 
         protected virtual void OnMassUpdateExecuted(MassUpdateEventArgs e)
         {
             MassUpdateExecuted?.Invoke(this, e);
+        }
+
+        private void StrategyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            MassUpdateStrategyViewModel oldValue = null;
+            MassUpdateStrategyViewModel newValue = null;
+
+            if (e.RemovedItems.Count > 0)
+            {
+                oldValue = e.RemovedItems[0] as MassUpdateStrategyViewModel;
+            }
+
+            if (e.AddedItems.Count > 0)
+            {
+                newValue = e.AddedItems[0] as MassUpdateStrategyViewModel;
+            }
+
+            if (oldValue != null && newValue != null)
+            {
+                if (!newValue.CreateIfNotExistsEnabled) return;
+                if (!oldValue.CreateIfNotExistsEnabled)
+                {
+                    return;
+                }
+
+                newValue.CreateIfNotExists = oldValue.CreateIfNotExists;
+            }
         }
     }
 }

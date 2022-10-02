@@ -24,6 +24,8 @@ using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.Utils;
+using ChamiUI.PresentationLayer.ViewModels.State;
+using ChamiUI.Windows.MainWindow;
 using Serilog;
 using IShellCommand = Chami.CmdExecutor.IShellCommand;
 
@@ -31,6 +33,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
+        private readonly MainWindowStateManager _stateManager;
+        public MainWindowStateManager StateManager => _stateManager;
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
@@ -44,52 +48,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _cancellationTokenSource.Cancel();
         }
 
-        private bool _editingEnabled;
-
-        /// <summary>
-        /// Determines if the user is in the process of editing an environment.
-        /// </summary>
-        public bool EditingEnabled
-        {
-            get => _editingEnabled;
-            private set
-            {
-                _editingEnabled = value;
-                OnPropertyChanged(nameof(EditingEnabled));
-                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
-                OnPropertyChanged(nameof(ExecuteButtonIcon));
-                OnPropertyChanged(nameof(IsDatagridReadonly));
-                OnPropertyChanged(nameof(WindowStatusMessage));
-                OnPropertyChanged(nameof(CanDeleteEnvironment));
-                OnPropertyChanged(nameof(CanDuplicateEnvironment));
-                OnPropertyChanged(nameof(CanExecuteMassUpdate));
-            }
-        }
-
-        public bool IsDatagridReadonly => !EditingEnabled;
-
         /// <summary>
         /// A list of available <see cref="FilterStrategies"/> for use by the filtering component.
         /// </summary>
         public ObservableCollection<IFilterStrategy> FilterStrategies { get; }
-
-        /// <summary>
-        /// Starts the editing process, which changes of the window behaves.
-        /// </summary>
-        public void EnableEditing()
-        {
-            EditingEnabled = true;
-        }
-
-        /// <summary>
-        /// Terminates the editing process.
-        /// </summary>
-        public void DisableEditing()
-        {
-            EditingEnabled = false;
-            // We're using the SelectedVariable property to tell the application that every edit has been completed and
-            // it's okay to try to save
-        }
 
         /// <summary>
         /// Change the filter strategy of the filtering component.
@@ -114,7 +76,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _filterStrategy = value;
-                OnPropertyChanged(nameof(FilterStrategy));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(FilterStrategyComboboxToolTip));
                 OnPropertyChanged(nameof(IsCaseSensitiveSearch));
             }
@@ -131,7 +93,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _settings = value;
-                OnPropertyChanged(nameof(Settings));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(MinimizationStrategy));
             }
         }
@@ -139,7 +101,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Determines if the clear filter button (the big red cross) is enabled or not.
         /// </summary>
-        public bool IsClearFilterButtonEnabled => FilterStrategy.SearchedText != null;
+        public bool IsClearFilterButtonEnabled =>  !string.IsNullOrEmpty(FilterStrategy.SearchedText);
 
         private string _filterText;
 
@@ -153,7 +115,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _filterText = value;
                 FilterStrategy.SearchedText = value;
-                OnPropertyChanged(nameof(FilterText));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(IsClearFilterButtonEnabled));
                 OnPropertyChanged(nameof(ClearFilterTextButtonIcon));
             }
@@ -168,10 +130,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _dataAdapter = new EnvironmentDataAdapter(connectionString);
             _settingsDataAdapter = new SettingsDataAdapter(connectionString);
+            _stateManager = new MainWindowStateManager();
+            _stateManager.ChangeState(new MainWindowLoadingDataState()); 
             Environments = GetEnvironments();
             Backups = GetBackupEnvironments();
             Templates = GetTemplateEnvironments();
-            EditingEnabled = false;
             if (Environments.Any())
             {
                 SelectedEnvironment = ActiveEnvironment ?? Environments.First();
@@ -183,7 +146,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             InitFilterStrategies();
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             _cancellationTokenSource = new CancellationTokenSource();
-            CanUserInterrupt = true;
+            StateManager.ChangeState(new MainWindowReadyState());
         }
 
         /// <summary>
@@ -208,7 +171,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _isDescendingSorting = value;
-                OnPropertyChanged(nameof(IsDescendingSorting));
+                OnPropertyChanged();
             }
         }
 
@@ -238,7 +201,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     OnPropertyChanged(nameof(FilterStrategy));
                 }
 
-                OnPropertyChanged(nameof(IsCaseSensitiveSearch));
+                OnPropertyChanged();
             }
         }
 
@@ -247,12 +210,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public event EventHandler<EnvironmentChangedEventArgs> EnvironmentChanged;
 
-        /// <summary>
-        /// Determines if the Apply button in the window is enabled (i.e., there's no editing and no environment
-        /// switching on progress.
-        /// </summary>
-        public bool ExecuteButtonPlayEnabled =>
-            !EditingEnabled && CanUserInterrupt && SelectedEnvironmentTypeTabIndex == 0;
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
 
@@ -267,18 +224,22 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 if (_selectedEnvironmentTypeTabIndex == TABITEM_NORMAL_ENV_IDX)
                 {
                     SelectedEnvironment = Environments.FirstOrDefault();
+                    StateManager.ChangeState(new MainWindowReadyState());
                 }
-                else if (_selectedEnvironmentTypeTabIndex == TABITEM_BACKUP_ENV_IDX)
+                else
                 {
-                    SelectedEnvironment = Backups.FirstOrDefault();
-                }
-                else if (_selectedEnvironmentTypeTabIndex == TABITEM_TEMPLATE_ENV_IDX)
-                {
-                    SelectedEnvironment = Templates.FirstOrDefault();
+                    if (_selectedEnvironmentTypeTabIndex == TABITEM_BACKUP_ENV_IDX)
+                    {
+                        SelectedEnvironment = Backups.FirstOrDefault();
+                    }
+                    else if (_selectedEnvironmentTypeTabIndex == TABITEM_TEMPLATE_ENV_IDX)
+                    {
+                        SelectedEnvironment = Templates.FirstOrDefault();
+                    }
+                    StateManager.ChangeState(new MainWindowNotRunnableState());
                 }
 
-                OnPropertyChanged(nameof(SelectedEnvironmentTypeTabIndex));
-                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
+                OnPropertyChanged();
             }
         }
 
@@ -323,20 +284,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private bool _isChangeInProgress;
-        public bool IsChangeInProgress => _isChangeInProgress;
-
-        private void SetIsChangeInProgress(bool value)
-        {
-            _isChangeInProgress = value;
-            OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
-            OnPropertyChanged(nameof(ExecuteButtonIcon));
-            OnPropertyChanged(nameof(WindowStatusMessage));
-            OnPropertyChanged(nameof(CanDeleteEnvironment));
-            OnPropertyChanged(nameof(CanDuplicateEnvironment));
-            OnPropertyChanged(nameof(CanExecuteMassUpdate));
-        }
-
         /// <summary>
         /// Determines if all the environment variables in the <see cref="SelectedEnvironment"/> passed validation.
         /// </summary>
@@ -359,7 +306,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="progress">Reports progress notification.</param>
         public async Task ChangeEnvironmentAsync(Action<CmdExecutorProgress> progress)
         {
-            SetIsChangeInProgress(true);
             var isSafetyEnabled = ((App) (Application.Current)).Settings.SafeVariableSettings.EnableSafeVars;
             var safeVariableSettings = ((App) (Application.Current)).Settings.SafeVariableSettings;
 
@@ -377,7 +323,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             AddVariableApplicationCommands(cmdExecutor, safeVariableSettings, isSafetyEnabled);
 
             await cmdExecutor.ExecuteAsync(cancellationToken);
-            SetIsChangeInProgress(false);
+            StateManager.ChangeState(new MainWindowReadyState());
         }
 
         private void AddVariableApplicationCommands(CmdExecutor cmdExecutor, SafeVariableViewModel safeVariableSettings,
@@ -457,10 +403,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public EnvironmentViewModel ActiveEnvironment
         {
             get => _activeEnvironment;
-            set
+            private set
             {
                 _activeEnvironment = value;
-                OnPropertyChanged(nameof(ActiveEnvironment));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(WindowTitle));
                 OnPropertyChanged(nameof(IsEnvironmentHealthEnabled));
             }
@@ -523,38 +469,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _selectedEnvironment = value;
-                OnPropertyChanged(nameof(SelectedEnvironment));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(SelectedVariable));
-                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
-                OnPropertyChanged(nameof(ExecuteButtonIcon));
-                OnPropertyChanged(nameof(CanDeleteEnvironment));
-                OnPropertyChanged(nameof(CanDuplicateEnvironment));
-            }
-        }
-
-        /// <summary>
-        /// The path to the icon to show in the Execute button.
-        /// If no environment is selected the play_disabled image is shown.
-        /// If <see cref="ExecuteButtonPlayEnabled"/> is true, the play image is shown.
-        /// Otherwise, the stop icon is shown.
-        /// </summary>
-        public string ExecuteButtonIcon
-        {
-            get
-            {
-                if ((SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled) ||
-                     !CanUserInterrupt) || SelectedEnvironmentTypeTabIndex != 0)
-                {
-                    return "/Assets/Svg/play_disabled.svg";
-                }
-
-                if (ExecuteButtonPlayEnabled && !_isChangeInProgress)
-                {
-                    return "/Assets/Svg/play.svg";
-                }
-
-
-                return "/Assets/Svg/stop.svg";
             }
         }
 
@@ -583,7 +499,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _selectedVariable = value;
-                OnPropertyChanged(nameof(SelectedVariable));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(SelectedEnvironment.EnvironmentVariables));
                 OnPropertyChanged(nameof(SelectedVariableIsFolder));
             }
@@ -682,12 +598,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public void SaveCurrentEnvironment()
         {
+            StateManager.ChangeState(new MainWindowSavingDataState());
             var environment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
             SelectedEnvironment = environment;
             OnPropertyChanged(nameof(Environments));
             OnPropertyChanged(nameof(SelectedEnvironment));
-            EnvironmentChanged?.Invoke(this, new EnvironmentChangedEventArgs(environment));
-            DisableEditing();
+            StateManager.ChangeState(new MainWindowReadyState());
         }
 
         /// <summary>
@@ -851,10 +767,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public void ResetCurrentEnvironmentFromDatasource()
         {
+            StateManager.ChangeState(new MainWindowLoadingDataState());
             if (SelectedEnvironment != null)
             {
                 SelectedEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
             }
+            StateManager.ChangeState(new MainWindowReadyState());
         }
 
         private void AddEnvironmentToCorrectCollection(EnvironmentViewModel environmentViewModel)
@@ -881,6 +799,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="progress">Reports progress.</param>
         public async Task RenameEnvironment(string argsNewName, Action<CmdExecutorProgress> progress)
         {
+            StateManager.ChangeState(new RenamingEnvironmentState());
             var environmentToSave = SelectedEnvironment;
             environmentToSave.Name = argsNewName;
             var newSelectedEnvironment = _dataAdapter.SaveEnvironment(environmentToSave);
@@ -893,12 +812,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (SelectedEnvironment.Equals(ActiveEnvironment))
             {
                 ActiveEnvironment = newSelectedEnvironment;
-                CanUserInterrupt = false;
                 await ChangeEnvironmentAsync(progress);
             }
 
             SelectedEnvironment.Name = argsNewName;
-            CanUserInterrupt = true;
+            StateManager.ChangeState(new MainWindowReadyState());
         }
 
         /// <summary>
@@ -942,20 +860,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             return output;
-        }
-
-        private bool _canUserInterrupt;
-
-        public bool CanUserInterrupt
-        {
-            get => _canUserInterrupt;
-            set
-            {
-                _canUserInterrupt = value;
-                OnPropertyChanged(nameof(CanUserInterrupt));
-                OnPropertyChanged(nameof(ExecuteButtonPlayEnabled));
-                OnPropertyChanged(nameof(ExecuteButtonIcon));
-            }
         }
 
         /// <summary>
@@ -1016,48 +920,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return SelectedEnvironment?.EnvironmentType != EnvironmentType.BackupEnvironment;
         }
 
-        public string WindowStatusMessage
-        {
-            get
-            {
-                if (IsChangeInProgress)
-                {
-                    return string.Format(ChamiUIStrings.WindowStatusMessageChangeInProgress, SelectedEnvironment.Name);
-                }
-
-                if (EditingEnabled)
-                {
-                    return ChamiUIStrings.WindowStatusMessageEditingMode;
-                }
-
-                return ChamiUIStrings.WindowStatusMessageReady;
-            }
-        }
-
-        public bool CanDeleteEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
-        
-        public bool CanDuplicateEnvironment => SelectedEnvironment != null && !IsChangeInProgress && !EditingEnabled;
-
-        public bool CanExecuteMassUpdate => !IsChangeInProgress && !EditingEnabled;
-
-        public void DuplicateCurrentEnvironment()
-        {
-            var environment = SelectedEnvironment.Clone();
-            environment.Name = $"{environment.Name} {ChamiUIStrings.IsEnvironmentCopy}";
-            SelectedEnvironment = environment;
-            Environments.Add(environment);
-            EnableEditing();
-        }
-
         private EnvironmentHealthViewModel _environmentHealth;
 
         public EnvironmentHealthViewModel EnvironmentHealth
         {
             get => _environmentHealth;
-            set
+            private set
             {
                 _environmentHealth = value;
-                OnPropertyChanged(nameof(EnvironmentHealth));
+                OnPropertyChanged();
             }
         }
 
@@ -1066,7 +937,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs,
             Window environmentHealthWindow = null)
         {
-            if (EditingEnabled)
+            if (StateManager.CurrentState.CanExecuteHealthCheck)
             {
                 return;
             }
@@ -1106,8 +977,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings.HealthCheckSettings.ColumnInfos.Clear();
             var converter = new ColumnInfoConverter();
 
-            int i = 0;
-
             foreach (var columnInfo in columnInfos)
             {
                 var gridViewColumn = columnInfo.GridViewColumn;
@@ -1122,6 +991,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
             
             await dataAdapter.SaveColumnInfoAsync(columnInfosToSave);
+        }
+
+        public async Task ApplyEnvironmentButtonClickAction(MainWindow mainWindow)
+        {
+            var buttonBehaviourTask = StateManager.CurrentState.ApplyButtonBehaviour(this, mainWindow);
+            StateManager.ChangeState(new MainWindowChangingEnvironmentState(SelectedEnvironment?.Name));
+            await buttonBehaviourTask;
+            StateManager.ChangeState(new MainWindowReadyState());
         }
     }
 }

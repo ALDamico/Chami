@@ -21,6 +21,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Environments = new ObservableCollection<EnvironmentViewModel>();
             SelectedEnvironments = new ObservableCollection<EnvironmentViewModel>();
             _environmentDataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
+            NewValue = "";
         }
 
         private void InitUpdateStrategies()
@@ -29,8 +30,21 @@ namespace ChamiUI.PresentationLayer.ViewModels
             UpdateStrategies.Add(updateAllStrategy);
 
             var updateSelectedStrategy = new MassUpdateStrategyViewModel()
-                {Name = ChamiUIStrings.MassUpdateStrategyName_UpdateSelected};
+            {
+                Name = ChamiUIStrings.MassUpdateStrategyName_UpdateSelected,
+                CreateIfNotExistsEnabled = true,
+                EnvironmentListBoxEnabled = true
+            };
+            
             UpdateStrategies.Add(updateSelectedStrategy);
+            var createOnlyStrategy = new MassUpdateStrategyViewModel()
+            {
+                Name = ChamiUIStrings.MassUpdateStrategyName_CreateOnly,
+                CreateIfNotExistsEnabled = false,
+                CreateIfNotExists = true,
+                EnvironmentListBoxEnabled = false
+            };
+            UpdateStrategies.Add(createOnlyStrategy);
             SelectedUpdateStrategy = updateAllStrategy;
         }
 
@@ -185,6 +199,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     _environmentDataAdapter.SaveEnvironment(environment);
                 }
             }
+        }
+
+        public bool ShouldShowWarningMessageBox()
+        {
+            return string.IsNullOrWhiteSpace(NewValue);
         }
     }
 }

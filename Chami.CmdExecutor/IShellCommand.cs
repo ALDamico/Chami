@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.CmdExecutor.Progress;
@@ -27,5 +28,7 @@ namespace Chami.CmdExecutor
         Task ExecuteAsync(float percentage, CancellationToken cancellationToken);
         
         IProgress<CmdExecutorProgress> Progress { get; set; }
+        Process ProcessToExecute {get;}
+        void TerminateProcess(float percentage);
     }
 }

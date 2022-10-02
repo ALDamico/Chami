@@ -8,11 +8,18 @@ namespace ChamiUI.BusinessLayer.Factories
 {
     public static class MassUpdateStrategyFactory
     {
-        public static IMassUpdateStrategy GetMassUpdateStrategyByViewModel(MassUpdateStrategyViewModel viewModel, string variableName, string variableValue, IEnumerable<EnvironmentViewModel> environments, bool createMissing)
+        public static IMassUpdateStrategy GetMassUpdateStrategyByViewModel(MassUpdateStrategyViewModel viewModel,
+            string variableName, string variableValue, IEnumerable<EnvironmentViewModel> environments,
+            bool createMissing)
         {
             if (viewModel.Name == ChamiUIStrings.MassUpdateStrategyName_UpdateAll)
             {
                 return new UpdateAllStrategy(variableName, variableValue, createMissing);
+            }
+
+            if (viewModel.Name == ChamiUIStrings.MassUpdateStrategyName_CreateOnly)
+            {
+                return new CreateOnlyStrategy(variableName, environments);
             }
 
             return new UpdateSelectedStrategy(variableName, variableValue, environments, createMissing);

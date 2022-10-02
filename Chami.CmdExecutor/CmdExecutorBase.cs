@@ -27,6 +27,9 @@ namespace Chami.CmdExecutor
         
         public static string StartingExecutionMessage { get; set; }
         public static string CompletedExecutionMessage { get; set; }
+        public static string UnknownProcessAlreadyExited { get; set; }
+        public static string KnownProcessAlreadyExited { get; set; }
+        public static string KnownProcessTerminated { get; set; }
 
         /// <summary>
         /// The sequence of commands to execute.
@@ -78,7 +81,15 @@ namespace Chami.CmdExecutor
                 var environmentVariable = CommandQueue.Dequeue();
                 currentIndex++;
                 float percentage = 100.0F * currentIndex / count;
-                await environmentVariable.ExecuteAsync(percentage, cancellationToken);
+                try
+                {
+                    await environmentVariable.ExecuteAsync(percentage, cancellationToken);
+                }
+                catch (OperationCanceledException)
+                {
+                    environmentVariable.TerminateProcess(percentage);
+                    throw;
+                }
             } while (CommandQueue.Count > 0);
 
 

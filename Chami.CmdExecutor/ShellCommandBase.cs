@@ -46,8 +46,6 @@ namespace Chami.CmdExecutor
                 StartInfo = processStartInfo
             };
             ProcessToExecute = process;
-            
-            
             return process;
         }
 
@@ -68,7 +66,41 @@ namespace Chami.CmdExecutor
             SubscribeToErrorReceived(callback);
             SubscribeToOutputReceived(callback);
         }
-        
-        protected Process ProcessToExecute { get; private set; }
+
+        public Process ProcessToExecute { get; private set; }
+
+        public void TerminateProcess(float percentage)
+        {
+            string message;
+            if (ProcessToExecute == null)
+            {
+                message = CmdExecutorBase.UnknownProcessAlreadyExited;
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
+                return;
+            }
+
+            if (ProcessToExecute.HasExited)
+            {
+                message = string.Format(CmdExecutorBase.KnownProcessAlreadyExited, ProcessToExecute.ProcessName,
+                    ProcessToExecute.Id);
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
+                return;
+            }
+
+            try
+            {
+                ProcessToExecute.Kill();
+                message = string.Format(CmdExecutorBase.KnownProcessTerminated, ProcessToExecute.ProcessName,
+                    ProcessToExecute.Id);
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
+            }
+            catch (InvalidOperationException)
+            {
+                // The process has already exited
+                message = string.Format(CmdExecutorBase.KnownProcessAlreadyExited, ProcessToExecute.ProcessName,
+                    ProcessToExecute.Id);
+                Progress?.Report(new CmdExecutorProgress(percentage, message));
+            }
+        }
     }
 }

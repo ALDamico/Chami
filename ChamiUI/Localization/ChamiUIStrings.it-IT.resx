@@ -1060,4 +1060,35 @@ Tutte le modifiche non salvate andranno perse.</value>
   <data name="MoveColumnUpButton_ToolTip" xml:space="preserve">
     <value>Sposta su</value>
   </data>
+  <data name="MassUpdateStrategyName_CreateOnly" xml:space="preserve">
+    <value>Crea variabile vuota</value>
+  </data>
+  <data name="ConfirmMassUpdateWithEmptyValueMessageBoxCaption" xml:space="preserve">
+    <value>Conferma aggiornamento</value>
+  </data>
+  <data name="ConfirmMassUpdateWithEmptyValueMessageBoxMessage" xml:space="preserve">
+    <value>Se continui, imposterai tutte le variabili di ambiente chiamate "{0}" a un valore vuoto.
+Sei sicuro di voler procedere?</value>
+  </data>
+  <data name="ResetEnvironmentToOriginalState" xml:space="preserve">
+    <value>Reimpostazione variabili...</value>
+  </data>
+  <data name="LoadingDataMessage" xml:space="preserve">
+    <value>Caricamento dati...</value>
+  </data>
+  <data name="SavingDataMessage" xml:space="preserve">
+    <value>Salvataggio dati in corso...</value>
+  </data>
+  <data name="RenamingEnvironmentMessage" xml:space="preserve">
+    <value>Cambio del nome dell'ambiente</value>
+  </data>
+  <data name="UnknownProcessAlreadyExited" xml:space="preserve">
+    <value>Il processo è già terminato.</value>
+  </data>
+  <data name="KnownProcessAlreadyExited" xml:space="preserve">
+    <value>Il processo {0} (PID {1}) è già terminato.</value>
+  </data>
+  <data name="KnownProcessTerminated" xml:space="preserve">
+    <value>Il processo {0} (PID {1}) è stato terminato.</value>
+  </data>
 </root>
