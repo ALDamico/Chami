@@ -1129,4 +1129,7 @@ Most people don't need to change these.</value>
   <data name="KnownProcessTerminated" xml:space="preserve">
     <value>The process {0} (PID {1}) has been terminated.</value>
   </data>
+  <data name="ChangeStepLabel_Content" xml:space="preserve">
+    <value>Change step</value>
+  </data>
 </root>

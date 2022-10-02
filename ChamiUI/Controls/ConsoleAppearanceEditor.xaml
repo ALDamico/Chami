@@ -125,7 +125,7 @@
 
                         <CheckBox Grid.Row="0"
                                   Grid.Column="0"
-                                  Grid.ColumnSpan="3"
+                                  Grid.ColumnSpan="6"
                                   IsChecked="{Binding EnableFontSizeResizingWithScrollWheel}">
                             <CheckBox.Content>
                                 <Label x:Name="EnableFontResizingWithGestureLabel" 
@@ -136,8 +136,8 @@
                         </CheckBox>
 
                         <CheckBox Grid.Row="1"
-                                  Grid.Column="3"
-                                  Grid.ColumnSpan="3"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="6"
                                   IsChecked="{Binding SaveFontSizeOnApplicationExit}"
                                   IsEnabled="{Binding IsSaveFontSizeCheckboxEnabled}">
                             <CheckBox.Content>
@@ -180,7 +180,7 @@
                         <xctk:DoubleUpDown
                             Grid.Row="2"
                             Grid.Column="5"
-                            Value="{Binding FontSizeStepChange}"
+                            Value="{Binding FontSizeStepChange, UpdateSourceTrigger=PropertyChanged}"
                             IsEnabled="{Binding IsChangeStepBoxEnabled}" 
                             Minimum="1"
                             Maximum="5">

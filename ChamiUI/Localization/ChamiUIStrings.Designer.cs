@@ -377,6 +377,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Change step.
+        /// </summary>
+        public static string ChangeStepLabel_Content {
+            get {
+                return ResourceManager.GetString("ChangeStepLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Clear filter.
         /// </summary>
         public static string ClearFilterButton_Tooltip {
@@ -2592,6 +2601,8 @@ namespace ChamiUI.Localization {
                 return ResourceManager.GetString("SaveFontSizeOnApplicationExitLabel_ToolTip", resourceCulture);
             }
         }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Saving data....
         /// </summary>
         public static string SavingDataMessage {

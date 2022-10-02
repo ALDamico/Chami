@@ -87,16 +87,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Contains all the settings available to the application.
         /// </summary>
-        public SettingsViewModel Settings
-        {
-            get => _settings;
-            set
-            {
-                _settings = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(MinimizationStrategy));
-            }
-        }
+        public SettingsViewModel Settings => (Application.Current as App)?.Settings;
 
         /// <summary>
         /// Determines if the clear filter button (the big red cross) is enabled or not.
@@ -139,8 +130,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironment = ActiveEnvironment ?? Environments.First();
             }
-
-            Settings = SettingsUtils.GetAppSettings();
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
@@ -966,11 +955,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public void HandleSettingsSaved(SettingsSavedEventArgs args)
-        {
-            Settings = args.Settings;
-        }
-
         public async Task SaveEnvironmentHealthColumns(EnvironmentHealthViewModel closedWindowViewModel)
         {
             var columnInfos = closedWindowViewModel.ColumnInfoViewModels;
@@ -1007,7 +991,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void IncreaseFontSize()
         {
-            Settings.ConsoleAppearanceSettings.FontSize += ConsoleAppearanceViewModel.DefaultFontSizeChangeStep;
+            Settings.ConsoleAppearanceSettings.FontSize += Settings.ConsoleAppearanceSettings.FontSizeStepChange;
         }
 
         public bool CanDecreaseFontSize()
@@ -1018,7 +1002,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void DecreaseFontSize()
         {
-            Settings.ConsoleAppearanceSettings.FontSize -= ConsoleAppearanceViewModel.FontSizeChangeStep;
+            Settings.ConsoleAppearanceSettings.FontSize -= Settings.ConsoleAppearanceSettings.FontSizeStepChange;
+        }
+
         public async Task ApplyEnvironmentButtonClickAction(MainWindow mainWindow)
         {
             var buttonBehaviourTask = StateManager.CurrentState.ApplyButtonBehaviour(this, mainWindow);

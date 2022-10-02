@@ -23,6 +23,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             FontSize = 12.0;
             BackgroundColor = Brushes.Black;
             ForegroundColor = Brushes.White;
+            FontSizeStepChange = DefaultFontSizeChangeStep;
         }
 
         /// <summary>
@@ -154,6 +155,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         public const double DefaultFontSizeChangeStep = 1.0;
+
+        
 
         private bool _saveFontSizeOnApplicationExit;
 
