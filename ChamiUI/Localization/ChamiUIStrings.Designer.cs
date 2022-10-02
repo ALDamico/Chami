@@ -2336,6 +2336,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Resetting variables....
+        /// </summary>
+        public static string ResetEnvironmentToOriginalState {
+            get {
+                return ResourceManager.GetString("ResetEnvironmentToOriginalState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Reset environment variables.
         /// </summary>
         public static string ResetVarsMenuItem_Header {

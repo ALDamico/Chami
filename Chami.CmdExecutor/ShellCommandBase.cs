@@ -69,6 +69,24 @@ namespace Chami.CmdExecutor
             SubscribeToOutputReceived(callback);
         }
         
-        protected Process ProcessToExecute { get; private set; }
+        public Process ProcessToExecute { get; private set; }
+        public void TerminateProcess()
+        {
+            if (ProcessToExecute == null || ProcessToExecute.HasExited)
+            {
+                Progress?.Report(new CmdExecutorProgress(0f, $"Process {ProcessToExecute?.Id} has already exited"));
+                return;
+            }
+
+            try
+            {
+                ProcessToExecute.Kill();
+                Progress?.Report(new CmdExecutorProgress(0f, $"Process {ProcessToExecute?.Id} has been terminated"));
+            }
+            catch (InvalidOperationException)
+            {
+                // The process has already exited
+            }
+        }
     }
 }

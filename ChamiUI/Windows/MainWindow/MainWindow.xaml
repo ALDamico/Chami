@@ -70,7 +70,6 @@
         <ContextMenu x:Key="EnvironmentListBoxContextMenu">
             <MenuItem Header="{lex:Loc}"
                       x:Name="EditEnvironmentMenuItem"
-                      IsEnabled="{Binding IsEditable}"
                       InputGestureText="Ctrl+E"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.EditEnvironmentCommand}">
                 <MenuItem.Icon>
@@ -83,7 +82,7 @@
                       InputGestureText="F2" />
 
             <MenuItem x:Name="DuplicateEnvironmentMenuItem" Header="{lex:Loc}"
-                      IsEnabled="{Binding CanDuplicateEnvironment}"
+                      IsEnabled="{Binding   StateManager.CurrentState.CanDuplicateEnvironment}"
                       Command="{x:Static commandProvider:MainWindowCommandsProvider.DuplicateEnvironmentCommand}">
             </MenuItem>
             <Separator />
@@ -427,8 +426,7 @@
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource EnvironmentsViewSource}}"
                         x:Name="EnvironmentsListbox"
-                        SelectedItem="{Binding SelectedEnvironment}"
-                        SelectionChanged="EnvironmentsListbox_OnSelectionChanged">
+                        SelectedItem="{Binding SelectedEnvironment}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="ContextMenu"
@@ -451,8 +449,7 @@
                         Margin="5,5,5,5"
                         ItemsSource="{Binding Source={StaticResource TemplateEnvironmentsViewSource}}"
                         x:Name="TemplateEnvironmentsListbox"
-                        SelectedItem="{Binding SelectedEnvironment}"
-                        SelectionChanged="EnvironmentsListbox_OnSelectionChanged">
+                        SelectedItem="{Binding SelectedEnvironment}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
                                 <Setter Property="ContextMenu"
@@ -472,7 +469,6 @@
                 </TabItem>
                 <TabItem x:Name="BackupEnvironmentsTabItem" Header="{lex:Loc}">
                     <ListBox Margin="5,5,5,5" SelectedItem="{Binding SelectedEnvironment}"
-                             SelectionChanged="EnvironmentsListbox_OnSelectionChanged"
                              ItemsSource="{Binding Source={StaticResource BackupEnvironmentsViewSource}}">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="ListBoxItem">
@@ -499,10 +495,10 @@
                     MaxHeight="22"
                     x:Name="ApplyEnvironmentButton"
                     Click="ApplyEnvironmentButton_OnClick"
-                    IsEnabled="{Binding ExecuteButtonPlayEnabled}">
+                    IsEnabled="{Binding StateManager.CurrentState.ExecuteButtonPlayEnabled}">
                 <svg:SvgViewbox MaxWidth="16"
                                 MaxHeight="16"
-                                Source="{Binding ExecuteButtonIcon}" />
+                                Source="{Binding StateManager.CurrentState.ExecuteButtonIcon}" />
             </Button>
 
         </Grid>
@@ -524,9 +520,9 @@
                 <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}, IsAsync=True}"
                           AutoGenerateColumns="False"
                           SelectionMode="Single"
-                          CanUserAddRows="{Binding EditingEnabled}"
-                          CanUserDeleteRows="{Binding EditingEnabled}"
-                          IsReadOnly="{Binding IsDatagridReadonly}"
+                          CanUserAddRows="{Binding StateManager.CurrentState.EditingEnabled}"
+                          CanUserDeleteRows="{Binding StateManager.CurrentState.EditingEnabled}"
+                          IsReadOnly="{Binding  StateManager.CurrentState.IsDatagridReadonly}"
                           SelectedItem="{Binding SelectedVariable}"
                           PreviewKeyDown="CurrentEnvironmentVariablesDataGrid_OnPreviewKeyDown"
                           RowStyle="{StaticResource ErrorStyle}"
@@ -569,7 +565,7 @@
                                                 Binding="{Binding MarkedForDeletion}"
                                                 IsReadOnly="True"
                                                 Width="*"
-                                                Visibility="{Binding DataContext.EditingEnabled, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference dummyElement}}">
+                                                Visibility="{Binding DataContext.StateManager.CurrentState.EditingEnabled, Converter={StaticResource BooleanToVisibilityConverter}, Source={x:Reference dummyElement}}">
                         </DataGridCheckBoxColumn>
                     </DataGrid.Columns>
                 </DataGrid>
@@ -655,7 +651,7 @@
             <Separator></Separator>
             <StatusBarItem x:Name="MainWindowStatusBarItem">
                 <StatusBarItem.Content>
-                    <TextBlock Text="{Binding WindowStatusMessage}"></TextBlock>
+                    <TextBlock Text="{Binding StateManager.CurrentState.WindowStatusMessage}"></TextBlock>
                 </StatusBarItem.Content>
             </StatusBarItem>
         </StatusBar>

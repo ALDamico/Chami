@@ -1076,4 +1076,7 @@ Any unsaved changes will be lost.</value>
     <value>By proceeding, you will set all environment variables named "{0}" to an empty value.
 Are you sure this is what you want?</value>
   </data>
+  <data name="ResetEnvironmentToOriginalState" xml:space="preserve">
+    <value>Resetting variables...</value>
+  </data>
 </root>
