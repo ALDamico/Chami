@@ -46,8 +46,6 @@ namespace ChamiUI
 #if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
 #endif
-            InitCmdExecutorMessages();
-
             try
             {
                 MigrateDatabase();
@@ -80,7 +78,6 @@ namespace ChamiUI
             }
 
             return chamiLogger;
-
         }
         
         private void InitHealthChecker()
@@ -214,6 +211,7 @@ namespace ChamiUI
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
             InitLocalization();
+            InitCmdExecutorMessages();
             DetectOtherInstance();
             var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.ResumeState();
@@ -239,7 +237,6 @@ namespace ChamiUI
             {
                 ExecuteHealthCheck();
             }
-            
         }
 
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs e)
