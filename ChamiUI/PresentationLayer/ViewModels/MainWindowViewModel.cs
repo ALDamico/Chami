@@ -87,21 +87,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Contains all the settings available to the application.
         /// </summary>
-        public SettingsViewModel Settings
-        {
-            get => _settings;
-            set
-            {
-                _settings = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(MinimizationStrategy));
-            }
-        }
+        public SettingsViewModel Settings => (Application.Current as App)?.Settings;
 
         /// <summary>
         /// Determines if the clear filter button (the big red cross) is enabled or not.
         /// </summary>
-        public bool IsClearFilterButtonEnabled =>  !string.IsNullOrEmpty(FilterStrategy.SearchedText);
+        public bool IsClearFilterButtonEnabled => !string.IsNullOrEmpty(FilterStrategy.SearchedText);
 
         private string _filterText;
 
@@ -139,8 +130,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironment = ActiveEnvironment ?? Environments.First();
             }
-
-            Settings = SettingsUtils.GetAppSettings();
 
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
@@ -263,12 +252,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     SelectedEnvironment = ActiveEnvironment;
                 }
+
                 Log.Logger.Information("Environment changed to {@Args}", args);
             }
             else
             {
                 ActiveEnvironment = null;
             }
+
             ChangeActiveEnvironment();
             EnvironmentChanged?.Invoke(this, args);
         }
@@ -941,6 +932,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 return;
             }
+
             var healthViewModel = new EnvironmentHealthViewModel()
             {
                 HealthIndex = healthCheckedEventArgs.Health
@@ -954,18 +946,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     healthViewModel.HealthStatuses.Add(healthStatus);
                 }
             }
-            
+
             EnvironmentHealth = healthViewModel;
 
             if (environmentHealthWindow != null)
             {
                 environmentHealthWindow.DataContext = healthViewModel;
             }
-        }
-
-        public void HandleSettingsSaved(SettingsSavedEventArgs args)
-        {
-            Settings = args.Settings;
         }
 
         public async Task SaveEnvironmentHealthColumns(EnvironmentHealthViewModel closedWindowViewModel)
@@ -985,12 +972,37 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     columnInfo.ColumnWidth = gridViewColumn.Width;
                     columnInfosToSave.Add(columnInfo);
-                } 
-                
+                }
+
                 Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfo));
             }
-            
+
             await dataAdapter.SaveColumnInfoAsync(columnInfosToSave);
+        }
+
+        public bool CanIncreaseFontSize()
+        {
+            var maxFontSize = Settings.ConsoleAppearanceSettings.MaxFontSize;
+            var targetFontSize = Settings.ConsoleAppearanceSettings.FontSize +
+                                 ConsoleAppearanceViewModel.DefaultFontSizeChangeStep;
+            return Settings.ConsoleAppearanceSettings.EnableFontSizeResizingWithScrollWheel &&
+                   (maxFontSize == null || !(maxFontSize < targetFontSize));
+        }
+
+        public void IncreaseFontSize()
+        {
+            Settings.ConsoleAppearanceSettings.FontSize += Settings.ConsoleAppearanceSettings.FontSizeStepChange;
+        }
+
+        public bool CanDecreaseFontSize()
+        {
+            return Settings.ConsoleAppearanceSettings.EnableFontSizeResizingWithScrollWheel &&
+                   Settings.ConsoleAppearanceSettings.FontSize > Settings.ConsoleAppearanceSettings.MinFontSize;
+        }
+
+        public void DecreaseFontSize()
+        {
+            Settings.ConsoleAppearanceSettings.FontSize -= Settings.ConsoleAppearanceSettings.FontSizeStepChange;
         }
 
         public async Task ApplyEnvironmentButtonClickAction(MainWindow mainWindow)
@@ -999,6 +1011,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             StateManager.ChangeState(new MainWindowChangingEnvironmentState(SelectedEnvironment?.Name));
             await buttonBehaviourTask;
             StateManager.ChangeState(new MainWindowReadyState());
+        }
+
+        public void SaveFontSize()
+        {
+            if (Settings.ConsoleAppearanceSettings.SaveFontSizeOnApplicationExit)
+            {
+                var valueToSave = Settings.ConsoleAppearanceSettings.FontSize;
+                _settingsDataAdapter.SaveFontSize(valueToSave);
+            }
         }
     }
 }

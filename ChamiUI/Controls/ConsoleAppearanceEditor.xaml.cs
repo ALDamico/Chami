@@ -1,6 +1,9 @@
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Windows;
+using System.Windows.Documents;
 using System.Windows.Media;
+using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.Controls
 {
@@ -15,26 +18,35 @@ namespace ChamiUI.Controls
         public ConsoleAppearanceEditor()
         {
             InitializeComponent();
+            
             //SetColors();
+        }
+
+        private void AddExampleParagraph(BlockCollection blockCollection, string text, double fontSize, FontFamily fontFamily)
+        {
+            var paragraph = new Paragraph(new Run(text));
+            paragraph.FontFamily = fontFamily;
+            paragraph.FontSize = fontSize;
+            blockCollection.Add(paragraph);
         }
 
         /// <summary>
         /// Sets the <see cref="BackgroundColorPicker"/> and <see cref="ForegroundColorPicker"/> colors when
         /// initializing the control.
         /// </summary>
-        private void SetColors()
+        private void SetColors(ConsoleAppearanceViewModel viewModel)
         {
-            if (GetDataContextAsConsoleAppearanceViewModel() == null)
+            if (viewModel == null)
             {
                 return;
             }
 
-            if (GetDataContextAsConsoleAppearanceViewModel().BackgroundColor is SolidColorBrush backgroundColorBrush)
+            if (viewModel.BackgroundColor is SolidColorBrush backgroundColorBrush)
             {
                 BackgroundColorPicker.SelectedColor = backgroundColorBrush.Color;
             }
 
-            if (GetDataContextAsConsoleAppearanceViewModel().ForegroundColor is SolidColorBrush foregroundColorBrush)
+            if (viewModel.ForegroundColor is SolidColorBrush foregroundColorBrush)
             {
                 ForegroundColorPicker.SelectedColor = foregroundColorBrush.Color;
             }
@@ -78,7 +90,44 @@ namespace ChamiUI.Controls
 
         private void ConsoleAppearanceEditor_OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            SetColors();
+            var viewModel = GetDataContextAsConsoleAppearanceViewModel();
+            if (viewModel == null)
+            {
+                return;
+            }
+            viewModel.MinMaxFontSizeChanged += ViewModelOnMinMaxFontSizeChanged;
+            SetColors(viewModel);
+            PopulateExampleTextBox(viewModel);
+        }
+
+        private void ViewModelOnMinMaxFontSizeChanged(object sender, MinMaxFontSizeChangedEventArgs e)
+        {
+            var viewModel = GetDataContextAsConsoleAppearanceViewModel();
+            if (viewModel == null)
+            {
+                return;
+            }
+            
+            PopulateExampleTextBox(viewModel);
+        }
+
+        private void PopulateExampleTextBox(ConsoleAppearanceViewModel viewModel)
+        {
+            ExampleTextTextBox.Document.Blocks.Clear();
+
+            AddExampleParagraph(ExampleTextTextBox.Document.Blocks, ChamiUIStrings.ExampleTextTextBox_Text, viewModel.FontSize,
+                viewModel.FontFamily);
+            if (viewModel.MinFontSize != null)
+            {
+                AddExampleParagraph(ExampleTextTextBox.Document.Blocks, ChamiUIStrings.ExampleTextTextBox_Text,
+                    viewModel.MinFontSize.Value, viewModel.FontFamily);
+            }
+
+            if (viewModel.MaxFontSize != null)
+            {
+                AddExampleParagraph(ExampleTextTextBox.Document.Blocks, ChamiUIStrings.ExampleTextTextBox_Text,
+                    viewModel.MaxFontSize.Value, viewModel.FontFamily);
+            }
         }
     }
 }

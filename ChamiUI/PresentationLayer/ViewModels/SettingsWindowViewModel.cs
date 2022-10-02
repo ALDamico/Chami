@@ -5,6 +5,7 @@ using ChamiUI.Controls;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.Localization;
@@ -26,9 +27,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var connectionString = App.GetConnectionString();
             _dataAdapter = new SettingsDataAdapter(connectionString);
             _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
-            var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
-            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
-                languageDataAdapter);
             SettingsCategories = new ObservableCollection<GenericLabelViewModel>();
             Settings.ConsoleAppearanceSettings =
                 SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);
@@ -121,19 +119,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private readonly SettingsDataAdapter _dataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
 
-        private SettingsViewModel _settingsViewModel;
-
         /// <summary>
         /// The entire application settings.
         /// </summary>
-        public SettingsViewModel Settings
-        {
-            get => _settingsViewModel;
-            set
-            {
-                _settingsViewModel = value;
-                OnPropertyChanged(nameof(Settings));
-            }
-        }
+        public SettingsViewModel Settings => (Application.Current as App)?.Settings;
     }
 }

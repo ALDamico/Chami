@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.Remoting;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
@@ -197,6 +198,24 @@ namespace ChamiUI.BusinessLayer.Adapters
         }
 
         /// <summary>
+        /// Private method that handles nullable value types.
+        /// </summary>
+        /// <param name="match">The <see cref="Match"/> object from a Regex</param>
+        /// <returns>The type name, if found, otherwise an empty <see cref="Match"/>.</returns>
+        private string NullableValueTypeMatcher(Match match)
+        {
+            if (match.Success)
+            {
+                if (match.Groups.Count > 1)
+                {
+                    return match.Groups[1].Value;
+                }
+            }
+
+            return Match.Empty.Value;
+        }
+
+        /// <summary>
         /// Tries to perform some basic conversions on the values retrieved from the datastore.
         /// </summary>
         /// <param name="typeName">Name of the target type</param>
@@ -206,6 +225,12 @@ namespace ChamiUI.BusinessLayer.Adapters
         private object GetBoxedConvertedObject(string typeName, string value)
         {
             object propertyValue = null;
+
+            if (typeName.ToLowerInvariant().StartsWith("nullable"))
+            {
+                typeName = Regex.Replace(typeName, @"nullable\<(\w+)\>", NullableValueTypeMatcher, RegexOptions.IgnoreCase);
+            }
+            
             switch (typeName)
             {
                 case "System.Boolean":
@@ -292,6 +317,8 @@ namespace ChamiUI.BusinessLayer.Adapters
                         valueString = propertyValue.ToString();
                     }
 
+                    valueString ??= "NULL";
+
                     _repository.UpdateSetting(propertyName, valueString);
                 }
             }
@@ -372,6 +399,11 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
 
             await Task.WhenAll(tasks);
+        }
+
+        public void SaveFontSize(double fontSize)
+        {
+            _repository.UpdateSetting(nameof(ConsoleAppearanceViewModel.FontSize), fontSize.ToString(CultureInfo.InvariantCulture));
         }
     }
 }
