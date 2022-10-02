@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.CmdExecutor;
@@ -19,6 +20,7 @@ namespace ChamiUI.BusinessLayer
         public NopCommand(string customMessage)
         {
             _customMessage = customMessage;
+            ProcessToExecute = null;
         }  
         
         /// <summary>
@@ -44,6 +46,12 @@ namespace ChamiUI.BusinessLayer
         /// Handles progress reporting.
         /// </summary>
         public IProgress<CmdExecutorProgress> Progress { get; set; }
+
+        public Process ProcessToExecute { get; }
+        public void TerminateProcess()
+        {
+            // No Process to terminate
+        }
 
         private string _customMessage;
 

@@ -78,7 +78,15 @@ namespace Chami.CmdExecutor
                 var environmentVariable = CommandQueue.Dequeue();
                 currentIndex++;
                 float percentage = 100.0F * currentIndex / count;
-                await environmentVariable.ExecuteAsync(percentage, cancellationToken);
+                try
+                {
+                    await environmentVariable.ExecuteAsync(percentage, cancellationToken);
+                }
+                catch (OperationCanceledException ex)
+                {
+                    environmentVariable.TerminateProcess();
+                    throw;
+                }
             } while (CommandQueue.Count > 0);
 
 

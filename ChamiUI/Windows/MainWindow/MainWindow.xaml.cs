@@ -22,6 +22,7 @@ using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
+using ChamiUI.PresentationLayer.ViewModels.State;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
 
@@ -76,7 +77,7 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        private void ResetProgressBar()
+        internal void ResetProgressBar()
         {
             //Avoids animating the progressbar when its value is reset to zero.
             ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, null);
@@ -87,40 +88,10 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.CanUserInterrupt = true;
-            if (ViewModel.ExecuteButtonPlayEnabled && !ViewModel.IsChangeInProgress)
-            {
-                ResetProgressBar();
-                FocusConsoleTab();
-                var previousEnvironment = ViewModel.ActiveEnvironment;
-                Action<CmdExecutorProgress> progress = HandleProgressReport;
-                try
-                {
-                    await ViewModel.ChangeEnvironmentAsync(progress);
-                    var watchedApplicationSettings = ViewModel.Settings.WatchedApplicationSettings;
-                    if (watchedApplicationSettings.IsDetectionEnabled)
-                    {
-                        ViewModel.DetectApplicationsAndShowWindow();
-                    }
-                }
-                catch (Exception ex) when (ex is TaskCanceledException or OperationCanceledException)
-                {
-                    Log.Logger.Information("{Message}", ex.Message);
-                    Log.Logger.Information("{StackTrace}", ex.StackTrace);
-                    PrintTaskCancelledMessageToConsole();
-                    ViewModel.SelectedEnvironment = previousEnvironment;
-                    ViewModel.CanUserInterrupt = false;
-                    await ViewModel.ChangeEnvironmentAsync(progress);
-                    ViewModel.CanUserInterrupt = true;
-                }
-            }
-            else
-            {
-                ViewModel.CancelActiveTask();
-            }
+            ViewModel.ApplyEnvironmentButtonClickAction(this);
         }
 
-        private void PrintTaskCancelledMessageToConsole()
+        internal void PrintTaskCancelledMessageToConsole()
         {
             SystemSounds.Exclamation.Play();
             ConsoleTextBox.Text += ChamiUIStrings.OperationCanceledMessage;
@@ -128,7 +99,7 @@ namespace ChamiUI.Windows.MainWindow
             ConsoleProgressBar.Foreground = System.Windows.Media.Brushes.Red;
         }
 
-        private void FocusConsoleTab(bool clearTextBox = true)
+        internal void FocusConsoleTab(bool clearTextBox = true)
         {
             if (clearTextBox)
             {
@@ -138,7 +109,7 @@ namespace ChamiUI.Windows.MainWindow
             TabControls.SelectedIndex = ConsoleTabIndex;
         }
 
-        private void HandleProgressReport(CmdExecutorProgress o)
+        internal void HandleProgressReport(CmdExecutorProgress o)
         {
             if (o.Message != null)
             {
@@ -192,23 +163,12 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        private void EditEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            ViewModel.EnableEditing();
-            FocusEnvironmentVariablesTab();
-        }
-
         private const int EnvironmentVariablesTabIndex = 0;
         private const int ConsoleTabIndex = 1;
 
         private void FocusEnvironmentVariablesTab()
         {
             TabControls.SelectedIndex = EnvironmentVariablesTabIndex;
-        }
-
-        private void EnvironmentsListbox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ViewModel.DisableEditing();
         }
 
         private void SaveCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -218,21 +178,12 @@ namespace ChamiUI.Windows.MainWindow
 
         private void NewEnvironmentCommandBinding_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = !ViewModel.EditingEnabled;
+            e.CanExecute = !ViewModel.StateManager.CurrentState.EditingEnabled;
         }
 
         private void SaveCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.SelectedEnvironment != null &&
-                ViewModel.EditingEnabled &&
-                ViewModel.AreSelectedEnvironmentVariablesValid())
-            {
-                e.CanExecute = true;
-            }
-            else
-            {
-                e.CanExecute = false;
-            }
+            e.CanExecute = ViewModel.StateManager.CurrentState.CanSave;
         }
 
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -346,7 +297,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (e.Key == Key.Delete)
             {
-                if (!ViewModel.EditingEnabled)
+                if (!ViewModel.StateManager.CurrentState.EditingEnabled)
                 {
                     return;
                 }
@@ -370,7 +321,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void UndoEditing_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ViewModel.EditingEnabled;
+            e.CanExecute = ViewModel.StateManager.CurrentState.EditingEnabled;
 
             e.Handled = true;
         }
@@ -378,7 +329,6 @@ namespace ChamiUI.Windows.MainWindow
         private void UndoEditing_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             ViewModel.ResetCurrentEnvironmentFromDatasource();
-            ViewModel.DisableEditing();
         }
 
         private void MainWindow_OnStateChanged(object sender, EventArgs e)
@@ -410,13 +360,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void RenameEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (!ViewModel.EditingEnabled && ViewModel.SelectedEnvironment != null)
-            {
-                e.CanExecute = true;
-                return;
-            }
-
-            e.CanExecute = false;
+            e.CanExecute = ViewModel.StateManager.CurrentState.EditingEnabled && ViewModel.SelectedEnvironment != null;
         }
 
         private async void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs args)
@@ -440,13 +384,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void FocusFilterTextboxCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (!ViewModel.EditingEnabled)
-            {
-                e.CanExecute = true;
-                return;
-            }
-
-            e.CanExecute = false;
+            e.CanExecute = ViewModel.StateManager.CurrentState.EditingEnabled;
         }
 
         private void FocusFilterTextboxCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -603,11 +541,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void ImportEnvironmentsCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
-            if (ViewModel.EditingEnabled)
-            {
-                e.CanExecute = false;
-            }
+            e.CanExecute = ViewModel.StateManager.CurrentState.CanImportData;
         }
 
         private void ImportEnvironmentsCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -624,7 +558,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void CreateTemplateCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = !ViewModel.EditingEnabled;
+            e.CanExecute = !ViewModel.StateManager.CurrentState.EditingEnabled;
         }
 
         private void CreateTemplateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -716,7 +650,7 @@ namespace ChamiUI.Windows.MainWindow
         private void DeleteEnvironmentVariableCommand_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = ViewModel.IsSelectedVariableDeletable();
-            if (!ViewModel.EditingEnabled)
+            if (!ViewModel.StateManager.CurrentState.EditingEnabled)
             {
                 e.CanExecute = false;
             }
@@ -734,21 +668,18 @@ namespace ChamiUI.Windows.MainWindow
 
         private void EditEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (!ViewModel.EditingEnabled)
-            {
-                e.CanExecute = true;
-            }
+            e.CanExecute = ViewModel.StateManager.CurrentState.IsEditable;
         }
 
         private void EditEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            ViewModel.EnableEditing();
+            ViewModel.StateManager.ChangeState(new MainWindowEditingState());
             FocusEnvironmentVariablesTab();
         }
 
         private void DeleteEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            if (ViewModel.CanDeleteEnvironment)
+            if (ViewModel.StateManager.CurrentState.CanDeleteEnvironment)
             {
                 e.CanExecute = true;
             }
@@ -779,7 +710,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void DuplicateEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ViewModel.CanDuplicateEnvironment;
+            e.CanExecute = ViewModel.StateManager.CurrentState.CanDuplicateEnvironment;
         }
 
         private void DuplicateEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
@@ -789,7 +720,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MassUpdateCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ViewModel.CanExecuteMassUpdate;
+            e.CanExecute = ViewModel.StateManager.CurrentState.CanExecuteMassUpdate;
         }
 
         private void MassUpdateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
