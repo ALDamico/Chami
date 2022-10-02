@@ -783,7 +783,9 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            new ExceptionWindow().Show();
+            int i = 42;
+            object o = (object) i;
+            bool b = (bool) o;
         }
         private void IncreaseFontSizeCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {

@@ -7,15 +7,54 @@
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         mc:Ignorable="d"
-        Title="ExceptionWindow" Height="450" Width="800">
-    <StackPanel Orientation="Vertical" Margin="10">
-        <DockPanel>
-            <svgc:SvgViewbox Margin="10" DockPanel.Dock="Left" Source="/ChamiUI;component/Assets/Svg/circle-exclamation-solid.svg" MaxHeight="96" MaxWidth="96"></svgc:SvgViewbox>
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <TextBlock x:Name="AnExceptionOccurredMessage" TextWrapping="Wrap" Text="{lex:Loc}"></TextBlock>    
-            </ScrollViewer>
-            
+        Title="ExceptionWindow" Height="450" Width="800"
+        x:Name="ControlRoot">
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <DockPanel Grid.Row="0">
+            <svgc:SvgViewbox Margin="10" DockPanel.Dock="Left"
+                             Source="/ChamiUI;component/Assets/Svg/circle-exclamation-solid.svg" MaxHeight="96"
+                             MaxWidth="96">
+            </svgc:SvgViewbox>
+
+            <TextBlock x:Name="AnExceptionOccurredMessage" TextWrapping="Wrap" Text="{lex:Loc}"></TextBlock>
+
+
         </DockPanel>
-        
-    </StackPanel>
+        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" MinHeight="250" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="ExceptionWindowNameLabel" Text="{lex:Loc}" Grid.Row="0" Grid.Column="0"></TextBlock>
+                <TextBlock Grid.Row="0" Grid.Column="1"
+                           Text="{Binding ExceptionType, ElementName=ControlRoot, Mode=OneTime}">
+                </TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="0" x:Name="ExceptionWindowMessageLabel" Text="{lex:Loc}"></TextBlock>
+                <TextBlock Grid.Row="1" Grid.Column="1"
+                           Text="{Binding Exception.Message, ElementName=ControlRoot, Mode=OneTime}">
+                </TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="0" x:Name="ExceptionWindowSourceLabel" Text="{lex:Loc}"></TextBlock>
+                <TextBlock Grid.Row="2" Grid.Column="1"
+                           Text="{Binding Exception.Source, ElementName=ControlRoot, Mode=OneTime}">
+                </TextBlock>
+                <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ExceptionWindowStackTraceLabel" Text="{lex:Loc}"></TextBlock>
+                <TextBox x:Name="StackTraceTextBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Padding="0" Margin="0"
+                         Text="{Binding Exception.StackTrace, ElementName=ControlRoot, Mode=OneTime}" MinLines="5" TextWrapping="Wrap">
+                </TextBox>
+            </Grid>
+        </ScrollViewer>
+    </Grid>
 </Window>

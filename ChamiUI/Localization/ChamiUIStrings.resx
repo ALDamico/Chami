@@ -1138,4 +1138,16 @@ Most people don't need to change these.</value>
   <data name="ChangeStepLabel_Content" xml:space="preserve">
     <value>Change step</value>
   </data>
+  <data name="ExceptionWindowNameLabel_Text" xml:space="preserve">
+    <value>Exception name:</value>
+  </data>
+  <data name="ExceptionWindowMessageLabel_Text" xml:space="preserve">
+    <value>Message:</value>
+  </data>
+  <data name="ExceptionWindowSourceLabel_Text" xml:space="preserve">
+    <value>Source:</value>
+  </data>
+  <data name="ExceptionWindowStackTraceLabel_Text" xml:space="preserve">
+    <value>Stack trace:</value>
+  </data>
 </root>

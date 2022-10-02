@@ -30,6 +30,7 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.Windows.Exceptions;
 
 namespace ChamiUI
 {
@@ -43,9 +44,7 @@ namespace ChamiUI
             _serviceProvider = CreateServices();
 
             InitializeComponent();
-#if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
-#endif
             try
             {
                 MigrateDatabase();
@@ -54,7 +53,7 @@ namespace ChamiUI
             {
                 Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
             }
-            
+
             InitHealthChecker();
         }
 
@@ -67,7 +66,7 @@ namespace ChamiUI
             {
                 var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
                 var loggingSettings = settings.LoggingSettings;
-                
+
                 var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
                 if (loggingSettings.LoggingEnabled)
                 {
@@ -79,7 +78,7 @@ namespace ChamiUI
 
             return chamiLogger;
         }
-        
+
         private void InitHealthChecker()
         {
             HealthCheckerConfiguration = new EnvironmentHealthCheckerConfiguration()
@@ -180,15 +179,23 @@ namespace ChamiUI
 
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
+            var exception = args.Exception;
+            new ExceptionWindow(exception).ShowDialog();
+            if (Settings.LoggingSettings.LoggingEnabled)
+            {
+                Log.Logger.Error("{Message}", exception.Message);
+                Log.Logger.Error("{Message}", args.Exception.StackTrace);
+            }
+#if !DEBUG
+            args.Handled = true; // TODO react to user choice
+#endif
+            /*
             var exceptionMessage = args.Exception.Message;
             args.Handled = true;
             MessageBox.Show(exceptionMessage, ChamiUIStrings.GenericExceptionMessageBoxCaption, MessageBoxButton.OK,
                 MessageBoxImage.Error);
-            if (Settings.LoggingSettings.LoggingEnabled)
-            {
-                Log.Logger.Error("{Message}", exceptionMessage);
-                Log.Logger.Error("{Message}", args.Exception.StackTrace);
-            }
+            
+            */
         }
 
 

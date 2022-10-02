@@ -1184,6 +1184,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        public static string ExceptionWindowMessageLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowMessageLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception name:.
+        /// </summary>
+        public static string ExceptionWindowNameLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowNameLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source:.
+        /// </summary>
+        public static string ExceptionWindowSourceLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowSourceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack trace:.
+        /// </summary>
+        public static string ExceptionWindowStackTraceLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowStackTraceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string ExecuteUpdateButton_Content {
