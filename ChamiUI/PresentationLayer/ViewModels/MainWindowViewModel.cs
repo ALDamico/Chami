@@ -996,7 +996,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public async Task ApplyEnvironmentButtonClickAction(MainWindow mainWindow)
         {
             var buttonBehaviourTask = StateManager.CurrentState.ApplyButtonBehaviour(this, mainWindow);
-            StateManager.ChangeState(new MainWindowChangingEnvironmentState());
+            StateManager.ChangeState(new MainWindowChangingEnvironmentState(SelectedEnvironment?.Name));
             await buttonBehaviourTask;
             StateManager.ChangeState(new MainWindowReadyState());
         }

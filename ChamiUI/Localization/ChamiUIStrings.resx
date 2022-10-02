@@ -1079,4 +1079,13 @@ Are you sure this is what you want?</value>
   <data name="ResetEnvironmentToOriginalState" xml:space="preserve">
     <value>Resetting variables...</value>
   </data>
+  <data name="LoadingDataMessage" xml:space="preserve">
+    <value>Loading data...</value>
+  </data>
+  <data name="SavingDataMessage" xml:space="preserve">
+    <value>Saving data...</value>
+  </data>
+  <data name="RenamingEnvironmentMessage" xml:space="preserve">
+    <value>Renaming environment</value>
+  </data>
 </root>

@@ -1073,4 +1073,13 @@ Sei sicuro di voler procedere?</value>
   <data name="ResetEnvironmentToOriginalState" xml:space="preserve">
     <value>Reimpostazione variabili...</value>
   </data>
+  <data name="LoadingDataMessage" xml:space="preserve">
+    <value>Caricamento dati...</value>
+  </data>
+  <data name="SavingDataMessage" xml:space="preserve">
+    <value>Salvataggio dati in corso...</value>
+  </data>
+  <data name="RenamingEnvironmentMessage" xml:space="preserve">
+    <value>Cambio del nome dell'ambiente</value>
+  </data>
 </root>

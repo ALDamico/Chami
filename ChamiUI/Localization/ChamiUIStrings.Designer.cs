@@ -1685,6 +1685,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Loading data....
+        /// </summary>
+        public static string LoadingDataMessage {
+            get {
+                return ResourceManager.GetString("LoadingDataMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Logging.
         /// </summary>
         public static string LoggingCategory {
@@ -2318,6 +2327,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renaming environment.
+        /// </summary>
+        public static string RenamingEnvironmentMessage {
+            get {
+                return ResourceManager.GetString("RenamingEnvironmentMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirm.
         /// </summary>
         public static string ResetEnvironmentMessageBoxCaption {
@@ -2462,6 +2480,15 @@ namespace ChamiUI.Localization {
         public static string SaveEnvironmentUnknownErrorMessage {
             get {
                 return ResourceManager.GetString("SaveEnvironmentUnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Saving data....
+        /// </summary>
+        public static string SavingDataMessage {
+            get {
+                return ResourceManager.GetString("SavingDataMessage", resourceCulture);
             }
         }
         
