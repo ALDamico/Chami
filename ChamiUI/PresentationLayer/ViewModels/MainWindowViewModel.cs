@@ -1000,14 +1000,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var maxFontSize = Settings.ConsoleAppearanceSettings.MaxFontSize;
             var targetFontSize = Settings.ConsoleAppearanceSettings.FontSize +
-                                 ConsoleAppearanceViewModel.FontSizeChangeStep;
+                                 ConsoleAppearanceViewModel.DefaultFontSizeChangeStep;
             return Settings.ConsoleAppearanceSettings.EnableFontSizeResizingWithScrollWheel &&
                    (maxFontSize == null || !(maxFontSize < targetFontSize));
         }
 
         public void IncreaseFontSize()
         {
-            Settings.ConsoleAppearanceSettings.FontSize += ConsoleAppearanceViewModel.FontSizeChangeStep;
+            Settings.ConsoleAppearanceSettings.FontSize += ConsoleAppearanceViewModel.DefaultFontSizeChangeStep;
         }
 
         public bool CanDecreaseFontSize()

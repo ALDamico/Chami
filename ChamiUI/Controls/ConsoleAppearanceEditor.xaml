@@ -8,6 +8,7 @@
              xmlns:cnv="clr-namespace:ChamiUI.BusinessLayer.Converters"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
              DataContextChanged="ConsoleAppearanceEditor_OnDataContextChanged"
              d:DataContext="{d:DesignInstance vm:ConsoleAppearanceViewModel, IsDesignTimeCreatable=True}"
              d:DesignHeight="200" d:DesignWidth="405">
@@ -41,21 +42,19 @@
                 <Label Grid.Row="0"
                        Grid.Column="0"
                        x:Name="FontLabel"
-                       Content="{lex:Loc}"
-                       >
+                       Content="{lex:Loc}">
                 </Label>
                 <ComboBox Grid.Row="0"
                           Grid.Column="1"
                           SelectedItem="{Binding FontFamily}"
                           ItemsSource="{Binding FontFamilies}"
-                          IsTextSearchEnabled="True"
-                >
+                          IsTextSearchEnabled="True">
                     <ComboBox.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
                                 <TextBlock
-                                           Text="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}"
-                                           FontFamily="{Binding}" />
+                                    Text="{Binding Path=Source, Converter={StaticResource FontFamilyToNameConverter}}"
+                                    FontFamily="{Binding}" />
                             </StackPanel>
                         </DataTemplate>
                     </ComboBox.ItemTemplate>
@@ -64,10 +63,20 @@
                        x:Name="FontSizeLabel"
                        Content="{lex:Loc}"
                        Grid.Column="2" />
-                <TextBox Grid.Row="0"
-                         Grid.Column="3"
-                         VerticalContentAlignment="Center"
-                         Text="{Binding FontSize}" />
+                <xctk:DoubleUpDown Grid.Row="0"
+                                   Grid.Column="3"
+                                   VerticalContentAlignment="Center"
+                                   Minimum="{Binding ActualMinFontSize}" 
+                                   Maximum="{Binding ActualMaxFontSize}">
+                    <xctk:DoubleUpDown.Value>
+                        <Binding Path="FontSize">
+                            <Binding.ValidationRules>
+                                <validators:FontSizeValidationRule  FontSizeType="Min"/>
+                                <validators:FontSizeValidationRule  FontSizeType="Max"/>
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </xctk:DoubleUpDown.Value>
+                </xctk:DoubleUpDown>
                 <Label Grid.Row="1"
                        Grid.Column="0"
                        Content="{lex:Loc}"
@@ -77,12 +86,11 @@
                                   Grid.Column="1"
                                   DisplayColorTooltip="True"
                                   x:Name="ForegroundColorPicker"
-                                  SelectedColorChanged="ForegroundColorPicker_OnSelectedColorChanged" 
+                                  SelectedColorChanged="ForegroundColorPicker_OnSelectedColorChanged"
                                   AvailableColorsHeader="{lex:Loc}"
                                   StandardColorsHeader="{lex:Loc}"
                                   AdvancedTabHeader="{lex:Loc}"
-                                  StandardTabHeader="{lex:Loc}"
-                                  />
+                                  StandardTabHeader="{lex:Loc}" />
                 <Label Grid.Row="1"
                        Grid.Column="2"
                        x:Name="BgColorLabel"
@@ -97,61 +105,86 @@
                                   AdvancedTabHeader="{lex:Loc}"
                                   StandardTabHeader="{lex:Loc}"
                                   x:Name="BackgroundColorPicker" />
-                <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" x:Name="AdvancedAppearanceOptionsExpander" Header="{lex:Loc}" ToolTip="{lex:Loc}">
+                <Expander Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4" x:Name="AdvancedAppearanceOptionsExpander"
+                          Header="{lex:Loc}" ToolTip="{lex:Loc}">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
                         </Grid.RowDefinitions>
-                        
+
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
-                        <Label Grid.Row="0" 
-                               Grid.Column="0" 
-                               Grid.ColumnSpan="3"
-                               x:Name="EnableFontResizingWithGestureLabel" 
-                               Content="{lex:Loc}" 
-                               ToolTip="{lex:Loc}"></Label>
-                        <CheckBox Grid.Row="0" 
-                                  Grid.Column="3" 
-                                  IsChecked="{Binding EnableFontSizeResizingWithScrollWheel}"></CheckBox>
-                        <Label Grid.Row="1" 
-                               Grid.Column="0" 
-                               Grid.ColumnSpan="3"
-                               x:Name="SaveFontSizeOnApplicationExitLabel" 
-                               Content="{lex:Loc}" 
-                               ToolTip="{lex:Loc}"></Label>
-                        <CheckBox Grid.Row="1" 
-                                  Grid.Column="1" 
-                                  IsChecked="{Binding SaveFontSizeOnApplicationExit}" 
-                                  IsEnabled="{Binding IsSaveFontSizeCheckboxEnabled}"></CheckBox>
-                        <Label Grid.Row="2" 
-                               Grid.Column="0" 
+
+                        <CheckBox Grid.Row="0"
+                                  Grid.Column="0"
+                                  Grid.ColumnSpan="3"
+                                  IsChecked="{Binding EnableFontSizeResizingWithScrollWheel}">
+                            <CheckBox.Content>
+                                <Label x:Name="EnableFontResizingWithGestureLabel" 
+                                       Content="{lex:Loc}"
+                                       ToolTip="{lex:Loc}">
+                                </Label>
+                            </CheckBox.Content>
+                        </CheckBox>
+
+                        <CheckBox Grid.Row="1"
+                                  Grid.Column="3"
+                                  Grid.ColumnSpan="3"
+                                  IsChecked="{Binding SaveFontSizeOnApplicationExit}"
+                                  IsEnabled="{Binding IsSaveFontSizeCheckboxEnabled}">
+                            <CheckBox.Content>
+                                <Label x:Name="SaveFontSizeOnApplicationExitLabel" 
+                                       Content="{lex:Loc}"
+                                       ToolTip="{lex:Loc}">
+                                </Label>
+                            </CheckBox.Content>
+                        </CheckBox>
+                        <Label Grid.Row="2"
+                               Grid.Column="0"
                                x:Name="MinFontSizeLabel"
                                Content="{lex:Loc}"
-                               ToolTip="{lex:Loc}"
-                               ></Label>
-                        <xctk:DoubleUpDown 
-                            Grid.Row="2" 
-                            Grid.Column="1" 
-                            Value="{Binding MinFontSize}" 
-                            IsEnabled="{Binding IsMinFontSizeBoxEnabled}"></xctk:DoubleUpDown>
-                        <Label Grid.Row="2" 
-                               Grid.Column="2" 
+                               ToolTip="{lex:Loc}">
+                        </Label>
+                        <xctk:DoubleUpDown
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            Value="{Binding MinFontSize}"
+                            IsEnabled="{Binding IsMinFontSizeBoxEnabled}">
+                        </xctk:DoubleUpDown>
+                        <Label Grid.Row="2"
+                               Grid.Column="2"
                                x:Name="MaxFontSizeLabel"
                                Content="{lex:Loc}"
-                               ToolTip="{lex:Loc}"
-                        ></Label>
-                        <xctk:DoubleUpDown 
-                            Grid.Row="2" 
-                            Grid.Column="3" 
-                            Value="{Binding MaxFontSize}" 
-                            IsEnabled="{Binding IsMaxFontSizeBoxEnabled}"></xctk:DoubleUpDown>
+                               ToolTip="{lex:Loc}">
+                        </Label>
+                        <xctk:DoubleUpDown
+                            Grid.Row="2"
+                            Grid.Column="3"
+                            Value="{Binding MaxFontSize}"
+                            IsEnabled="{Binding IsMaxFontSizeBoxEnabled}">
+                        </xctk:DoubleUpDown>
+                        <Label Grid.Row="2"
+                               Grid.Column="4"
+                               x:Name="ChangeStepLabel"
+                               Content="{lex:Loc}"
+                               ToolTip="{lex:Loc}">
+                        </Label>
+                        <xctk:DoubleUpDown
+                            Grid.Row="2"
+                            Grid.Column="5"
+                            Value="{Binding FontSizeStepChange}"
+                            IsEnabled="{Binding IsChangeStepBoxEnabled}" 
+                            Minimum="1"
+                            Maximum="5">
+                        </xctk:DoubleUpDown>
                     </Grid>
                 </Expander>
             </Grid>
@@ -160,12 +193,12 @@
                   Grid.Column="0"
                   Header="Preview">
             <RichTextBox Background="{Binding BackgroundColor, UpdateSourceTrigger=PropertyChanged}"
-                     Foreground="{Binding ForegroundColor}"
-                     IsReadOnly="True"
-                     x:Name="ExampleTextTextBox"
-                     
-                     FontFamily="{Binding FontFamily}"
-                     FontSize="{Binding FontSize}" >
+                         Foreground="{Binding ForegroundColor}"
+                         IsReadOnly="True"
+                         x:Name="ExampleTextTextBox"
+
+                         FontFamily="{Binding FontFamily}"
+                         FontSize="{Binding FontSize}">
             </RichTextBox>
         </GroupBox>
     </Grid>

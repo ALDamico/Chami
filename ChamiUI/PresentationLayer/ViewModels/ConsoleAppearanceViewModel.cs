@@ -126,6 +126,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _minFontSize = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ActualMinFontSize));
+                if (FontSize < value)
+                {
+                    FontSize = value.Value;
+                }
                 MinMaxFontSizeChanged?.Invoke(this, new MinMaxFontSizeChangedEventArgs(MinFontSize, MaxFontSize));
             }
         }
@@ -139,11 +144,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _maxFontSize = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ActualMaxFontSize));
+                if (FontSize > value)
+                {
+                    FontSize = value.Value;
+                }
                 MinMaxFontSizeChanged?.Invoke(this, new MinMaxFontSizeChangedEventArgs(MinFontSize, MaxFontSize));
             }
         }
 
-        public const double FontSizeChangeStep = 1.0;
+        public const double DefaultFontSizeChangeStep = 1.0;
 
         private bool _saveFontSizeOnApplicationExit;
 
@@ -169,13 +179,30 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(IsSaveFontSizeCheckboxEnabled));
                 OnPropertyChanged(nameof(IsMinFontSizeBoxEnabled));
                 OnPropertyChanged(nameof(IsMaxFontSizeBoxEnabled));
+                OnPropertyChanged(nameof(IsChangeStepBoxEnabled));
             }
         }
 
         public bool IsSaveFontSizeCheckboxEnabled => EnableFontSizeResizingWithScrollWheel;
         public bool IsMinFontSizeBoxEnabled => EnableFontSizeResizingWithScrollWheel;
         public bool IsMaxFontSizeBoxEnabled => EnableFontSizeResizingWithScrollWheel;
+        public bool IsChangeStepBoxEnabled => EnableFontSizeResizingWithScrollWheel;
 
         public event EventHandler<MinMaxFontSizeChangedEventArgs> MinMaxFontSizeChanged;
+        private double _fontSizeChangeStep;
+
+        public double FontSizeStepChange
+        {
+            get => _fontSizeChangeStep;
+            set
+            {
+                _fontSizeChangeStep = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public double ActualMaxFontSize => MaxFontSize ?? 80.0f;
+
+        public double ActualMinFontSize => MinFontSize ?? 10.0f;
     }
 }
