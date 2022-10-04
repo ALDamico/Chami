@@ -10,11 +10,13 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
+using ChamiUI.BusinessLayer.Commands;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.Localization;
@@ -180,11 +182,23 @@ namespace ChamiUI
         public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
             var exception = args.Exception;
-            new ExceptionWindow(exception).ShowDialog();
+            var exceptionWindow = new ExceptionWindow(exception);
+                exceptionWindow.ShowDialog();
             if (Settings.LoggingSettings.LoggingEnabled)
             {
                 Log.Logger.Error("{Message}", exception.Message);
                 Log.Logger.Error("{Message}", args.Exception.StackTrace);
+            }
+
+            if (exceptionWindow.IsApplicationTerminationRequested)
+            {
+                if (exceptionWindow.IsApplicationRestartRequested)
+                {
+                    IShellCommand restartCommand = new OpenInExplorerCommand(Assembly.GetExecutingAssembly().Location);
+                    restartCommand.Execute();
+                }
+
+                Environment.Exit(-1);
             }
 #if !DEBUG
             args.Handled = true; // TODO react to user choice

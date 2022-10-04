@@ -769,6 +769,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dismiss.
+        /// </summary>
+        public static string DismissButton_Content {
+            get {
+                return ResourceManager.GetString("DismissButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dismiss this warning and continue using the application..
+        /// </summary>
+        public static string DismissButton_ToolTip {
+            get {
+                return ResourceManager.GetString("DismissButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dotEnv files.
         /// </summary>
         public static string DotEnvFileDialogDescription {
@@ -2926,6 +2944,42 @@ namespace ChamiUI.Localization {
         public static string TerminateAllMenuItem_Header {
             get {
                 return ResourceManager.GetString("TerminateAllMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit and restart.
+        /// </summary>
+        public static string TerminateAndReopenApplicationButton_Header {
+            get {
+                return ResourceManager.GetString("TerminateAndReopenApplicationButton_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit the application and attempt to restart it in order to fix its behaviour..
+        /// </summary>
+        public static string TerminateAndReopenApplicationButton_ToolTip {
+            get {
+                return ResourceManager.GetString("TerminateAndReopenApplicationButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string TerminateApplicationButton_Content {
+            get {
+                return ResourceManager.GetString("TerminateApplicationButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit the application immediately..
+        /// </summary>
+        public static string TerminateApplicationButton_ToolTip {
+            get {
+                return ResourceManager.GetString("TerminateApplicationButton_ToolTip", resourceCulture);
             }
         }
         

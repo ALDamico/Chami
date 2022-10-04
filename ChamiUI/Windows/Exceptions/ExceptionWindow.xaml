@@ -6,13 +6,19 @@
         xmlns:local="clr-namespace:ChamiUI.Windows.Exceptions"
         xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="ExceptionWindow" Height="450" Width="800"
         x:Name="ControlRoot">
+    <Window.CommandBindings>
+        <CommandBinding x:Name="CloseCommandBinding" Command="Close" CanExecute="CloseCommandBinding_OnCanExecute" Executed="CloseCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="TerminateApplicationCommandBinding" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" CanExecute="TerminateApplicationCommand_OnCanExecute" Executed="TerminateApplicationCommandBinding_OnExecuted"></CommandBinding>
+    </Window.CommandBindings>
     <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
             <svgc:SvgViewbox Margin="10" DockPanel.Dock="Left"
@@ -56,5 +62,13 @@
                 </TextBox>
             </Grid>
         </ScrollViewer>
+        <DockPanel Grid.Row="2">
+            <Button x:Name="DismissButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" IsCancel="True" Command="Close" DockPanel.Dock="Right" MaxWidth="65"></Button>
+            <xctk:SplitButton x:Name="TerminateApplicationButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}">
+                <xctk:SplitButton.DropDownContent>
+                    <MenuItem x:Name="TerminateAndReopenApplicationButton" Header="{lex:Loc}" ToolTip="{lex:Loc}"></MenuItem>
+                </xctk:SplitButton.DropDownContent>
+            </xctk:SplitButton>
+        </DockPanel>
     </Grid>
 </Window>

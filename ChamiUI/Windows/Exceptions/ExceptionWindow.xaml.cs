@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Input;
+using Serilog;
 
 namespace ChamiUI.Windows.Exceptions;
 
@@ -20,4 +22,29 @@ public partial class ExceptionWindow : Window
     }
 
     public string ExceptionType => Exception?.GetType().Name;
+    public bool IsApplicationTerminationRequested { get; private set; }
+    public bool IsApplicationRestartRequested { get; private set; }
+
+    private void CloseCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+        e.CanExecute = true;
+    }
+
+    private void CloseCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+        Close();
+    }
+
+    public static RoutedCommand TerminateApplicationCommand = new RoutedCommand();
+
+    private void TerminateApplicationCommand_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+        e.CanExecute = true;
+    }
+
+    private void TerminateApplicationCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+        IsApplicationTerminationRequested = true;
+        Close();
+    }
 }
