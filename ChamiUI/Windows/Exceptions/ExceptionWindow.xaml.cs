@@ -45,6 +45,14 @@ public partial class ExceptionWindow : Window
     private void TerminateApplicationCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
     {
         IsApplicationTerminationRequested = true;
+
+        if (RestartRequestedParameter.Equals(e.Parameter))
+        {
+            IsApplicationRestartRequested = true;
+        }
+        
         Close();
     }
+
+    private const string RestartRequestedParameter = "restartRequested";
 }

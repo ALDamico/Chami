@@ -1,9 +1,8 @@
 ﻿using System.Diagnostics;
 using System.Threading;
 using System.Threading.Tasks;
-using Chami.CmdExecutor;
 
-namespace ChamiUI.BusinessLayer.Commands
+namespace Chami.CmdExecutor.Commands.Common
 {
     public class OpenInExplorerCommand : ShellCommandBase
     {

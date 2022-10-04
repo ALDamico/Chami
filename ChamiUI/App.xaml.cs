@@ -15,8 +15,8 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
+using Chami.CmdExecutor.Commands.Common;
 using ChamiDbMigrations.Migrations;
-using ChamiUI.BusinessLayer.Commands;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.Localization;
@@ -167,7 +167,7 @@ namespace ChamiUI
 
         public static string GetConnectionString()
         {
-            var chamiDirectory = Environment.CurrentDirectory;
+            var chamiDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             try
             {
                 return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
@@ -194,7 +194,8 @@ namespace ChamiUI
             {
                 if (exceptionWindow.IsApplicationRestartRequested)
                 {
-                    IShellCommand restartCommand = new OpenInExplorerCommand(Assembly.GetExecutingAssembly().Location);
+                    IShellCommand restartCommand =
+                        new OpenInExplorerCommand(Assembly.GetExecutingAssembly().Location.Replace(".dll", ".exe"));
                     restartCommand.Execute();
                 }
 

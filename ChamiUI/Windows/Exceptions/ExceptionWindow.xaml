@@ -66,7 +66,7 @@
             <Button x:Name="DismissButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" IsCancel="True" Command="Close" DockPanel.Dock="Right" MaxWidth="65"></Button>
             <xctk:SplitButton x:Name="TerminateApplicationButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}">
                 <xctk:SplitButton.DropDownContent>
-                    <MenuItem x:Name="TerminateAndReopenApplicationButton" Header="{lex:Loc}" ToolTip="{lex:Loc}"></MenuItem>
+                    <MenuItem x:Name="TerminateAndReopenApplicationButton" Header="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" CommandParameter="restartRequested"></MenuItem>
                 </xctk:SplitButton.DropDownContent>
             </xctk:SplitButton>
         </DockPanel>
