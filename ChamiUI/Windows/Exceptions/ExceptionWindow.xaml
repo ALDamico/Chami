@@ -8,14 +8,23 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="{lex:Loc Key=ExceptionWindowTitle}" Height="450" Width="800"
+        Title="{lex:Loc Key=ExceptionWindowTitle}"
         SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         x:Name="ControlRoot">
     <Window.CommandBindings>
-        <CommandBinding x:Name="CloseCommandBinding" Command="Close" CanExecute="CloseCommandBinding_OnCanExecute" Executed="CloseCommandBinding_OnExecuted"></CommandBinding>
-        <CommandBinding x:Name="TerminateApplicationCommandBinding" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" CanExecute="TerminateApplicationCommand_OnCanExecute" Executed="TerminateApplicationCommandBinding_OnExecuted"></CommandBinding>
-        <CommandBinding x:Name="WriteExceptionDetailsCommandBinding" Command="{x:Static local:ExceptionWindow.WriteExceptionDetailsCommand}" CanExecute="WriteExceptionDetailsCommandBinding_OnCanExecute" Executed="WriteExceptionDetailsCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="CloseCommandBinding" 
+                        Command="Close" 
+                        CanExecute="CloseCommandBinding_OnCanExecute" 
+                        Executed="CloseCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="TerminateApplicationCommandBinding" 
+                        Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" 
+                        CanExecute="TerminateApplicationCommand_OnCanExecute" 
+                        Executed="TerminateApplicationCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="WriteExceptionDetailsCommandBinding" 
+                        Command="{x:Static local:ExceptionWindow.WriteExceptionDetailsCommand}" 
+                        CanExecute="WriteExceptionDetailsCommandBinding_OnCanExecute" 
+                        Executed="WriteExceptionDetailsCommandBinding_OnExecuted"></CommandBinding>
     </Window.CommandBindings>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -24,55 +33,109 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <DockPanel Grid.Row="0">
-            <svgc:SvgViewbox Margin="10" DockPanel.Dock="Left"
-                             Source="/ChamiUI;component/Assets/Svg/circle-exclamation-solid.svg" MaxHeight="96"
+            <svgc:SvgViewbox Margin="10" 
+                             DockPanel.Dock="Left"
+                             Source="/ChamiUI;component/Assets/Svg/circle-exclamation-solid.svg" 
+                             MaxHeight="96"
                              MaxWidth="96">
             </svgc:SvgViewbox>
 
-            <TextBlock x:Name="AnExceptionOccurredMessage" TextWrapping="Wrap" Text="{lex:Loc}"></TextBlock>
-
-
+            <TextBlock x:Name="AnExceptionOccurredMessage" 
+                       TextWrapping="Wrap" 
+                       Text="{lex:Loc}"></TextBlock>
         </DockPanel>
-        <ScrollViewer VerticalScrollBarVisibility="Auto" Grid.Row="1">
+        <ScrollViewer VerticalScrollBarVisibility="Auto" 
+                      Grid.Row="1">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" MinHeight="250" />
+                    <RowDefinition Height="Auto" 
+                                   MinHeight="250" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <TextBlock x:Name="ExceptionWindowNameLabel" Text="{lex:Loc}" Grid.Row="0" Grid.Column="0"></TextBlock>
-                <TextBlock Grid.Row="0" Grid.Column="1"
-                           Text="{Binding ExceptionType, ElementName=ControlRoot, Mode=OneTime}">
-                </TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="0" x:Name="ExceptionWindowMessageLabel" Text="{lex:Loc}"></TextBlock>
-                <TextBlock Grid.Row="1" Grid.Column="1"
-                           Text="{Binding Exception.Message, ElementName=ControlRoot, Mode=OneTime}">
-                </TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="0" x:Name="ExceptionWindowSourceLabel" Text="{lex:Loc}"></TextBlock>
-                <TextBlock Grid.Row="2" Grid.Column="1"
-                           Text="{Binding Exception.Source, ElementName=ControlRoot, Mode=OneTime}">
-                </TextBlock>
-                <TextBlock Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" x:Name="ExceptionWindowStackTraceLabel" Text="{lex:Loc}"></TextBlock>
-                <TextBox x:Name="StackTraceTextBox" Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Padding="0" Margin="0"
-                         Text="{Binding Exception.StackTrace, ElementName=ControlRoot, Mode=OneTime}" MinLines="5" TextWrapping="Wrap">
-                </TextBox>
+                <TextBlock x:Name="ExceptionWindowNameLabel" 
+                           Text="{lex:Loc}" 
+                           Grid.Row="0" 
+                           Grid.Column="0"/>
+                <TextBlock Grid.Row="0" 
+                           Grid.Column="1"
+                           Text="{Binding ExceptionType, ElementName=ControlRoot, Mode=OneTime}"/>
+                <TextBlock Grid.Row="1" 
+                           Grid.Column="0" 
+                           x:Name="ExceptionWindowMessageLabel" 
+                           Text="{lex:Loc}"/>
+                <TextBlock Grid.Row="1" 
+                           Grid.Column="1"
+                           Text="{Binding Exception.Message, ElementName=ControlRoot, Mode=OneTime}"/>
+                <TextBlock Grid.Row="2" 
+                           Grid.Column="0" 
+                           x:Name="ExceptionWindowSourceLabel" 
+                           Text="{lex:Loc}"/>
+                <TextBlock Grid.Row="2" 
+                           Grid.Column="1"
+                           Text="{Binding Exception.Source, ElementName=ControlRoot, Mode=OneTime}"/>
+                <TextBlock Grid.Row="3" 
+                           Grid.Column="0" 
+                           Grid.ColumnSpan="2" 
+                           x:Name="ExceptionWindowStackTraceLabel" 
+                           Text="{lex:Loc}"/>
+                <TextBox x:Name="StackTraceTextBox" 
+                         Grid.Row="4" 
+                         Grid.Column="0" 
+                         Grid.ColumnSpan="2" 
+                         Padding="0" 
+                         Margin="0"
+                         IsReadOnly="True"
+                         IsReadOnlyCaretVisible="True"
+                         HorizontalScrollBarVisibility="Auto"
+                         VerticalScrollBarVisibility="Auto"
+                         Text="{Binding Exception.StackTrace, ElementName=ControlRoot, Mode=OneTime}" 
+                         MinLines="5" 
+                         TextWrapping="Wrap"/>
             </Grid>
         </ScrollViewer>
-        <DockPanel Grid.Row="2">
-            <Button x:Name="DismissButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" IsCancel="True" Command="Close" DockPanel.Dock="Right" MaxWidth="65"></Button>
-            <xctk:SplitButton x:Name="TerminateApplicationButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}">
+        <Grid Grid.Row="2" 
+              Margin="0, 2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Button Margin="2, 0" 
+                    Grid.Column="0" 
+                    x:Name="SaveExceptionDetailsButton" 
+                    Content="{lex:Loc}" 
+                    ToolTip="{lex:Loc}" 
+                    Command="{x:Static local:ExceptionWindow.WriteExceptionDetailsCommand}"/>
+            <xctk:SplitButton Margin="2, 0" 
+                              Grid.Column="2" 
+                              x:Name="TerminateApplicationButton" 
+                              Content="{lex:Loc}" 
+                              ToolTip="{lex:Loc}" 
+                              Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}">
                 <xctk:SplitButton.DropDownContent>
-                    <MenuItem x:Name="TerminateAndReopenApplicationButton" Header="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" CommandParameter="restartRequested" DockPanel.Dock="Right"></MenuItem>
+                    <MenuItem x:Name="TerminateAndReopenApplicationButton" 
+                              Header="{lex:Loc}" ToolTip="{lex:Loc}" 
+                              Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" 
+                              CommandParameter="restartRequested"/>
                 </xctk:SplitButton.DropDownContent>
             </xctk:SplitButton>
-            <Button x:Name="SaveExceptionDetailsButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.WriteExceptionDetailsCommand}" DockPanel.Dock="Left"></Button>
-        </DockPanel>
+            <Button Margin="2, 0" 
+                    Grid.Column="3" 
+                    x:Name="DismissButton" 
+                    Content="{lex:Loc}" 
+                    ToolTip="{lex:Loc}" 
+                    IsCancel="True" 
+                    Command="Close" 
+                    MaxWidth="65"/>
+        </Grid>
     </Grid>
 </Window>
