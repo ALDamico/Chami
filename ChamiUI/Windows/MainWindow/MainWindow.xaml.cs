@@ -780,13 +780,7 @@ namespace ChamiUI.Windows.MainWindow
         }
 
         private EnvironmentHealthWindow _healthWindow;
-
-        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            int i = 42;
-            object o = (object) i;
-            bool b = (bool) o;
-        }
+        
         private void IncreaseFontSizeCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = ViewModel.CanIncreaseFontSize();
