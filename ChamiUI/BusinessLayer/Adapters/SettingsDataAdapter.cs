@@ -405,5 +405,10 @@ namespace ChamiUI.BusinessLayer.Adapters
         {
             _repository.UpdateSetting(nameof(ConsoleAppearanceViewModel.FontSize), fontSize.ToString(CultureInfo.InvariantCulture));
         }
+
+        public List<Setting> GetSettingsList()
+        {
+            return _repository.GetSettings().ToList();
+        }
     }
 }

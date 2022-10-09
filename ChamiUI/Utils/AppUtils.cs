@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Reflection;
+using System.Windows;
 
 namespace ChamiUI.Utils
 {
@@ -18,6 +19,11 @@ namespace ChamiUI.Utils
         public static string GetApplicationFolder()
         {
             return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+        }
+
+        public static App GetChamiApp()
+        {
+            return Application.Current as App;
         }
     }
 }

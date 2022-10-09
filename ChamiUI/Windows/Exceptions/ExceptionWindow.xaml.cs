@@ -72,7 +72,9 @@ public partial class ExceptionWindow : Window
         var saveFileDialog = new SaveFileDialog();
         saveFileDialog.AddExtension = true;
         saveFileDialog.OverwritePrompt = true;
-        saveFileDialog.DefaultExt = "*.log";
+        saveFileDialog.Filter = "JSON|*.json";
+        saveFileDialog.DefaultExt = "*.json";
+        saveFileDialog.FileName = $"ExceptionDetails_{DateTime.Now:s}".Replace(':', ' ');
         var result = saveFileDialog.ShowDialog();
 
         if (result == true)

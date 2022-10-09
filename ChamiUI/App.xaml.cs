@@ -10,6 +10,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Reflection;
 using System.Timers;
 using System.Windows;
@@ -182,6 +183,7 @@ namespace ChamiUI
 
         private void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
+            SystemSounds.Exclamation.Play();
             var exception = args.Exception;
             var exceptionWindow = new ExceptionWindow(exception);
                 exceptionWindow.ShowDialog();
