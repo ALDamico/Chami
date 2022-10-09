@@ -168,7 +168,7 @@ namespace ChamiUI
 
         public static string GetConnectionString()
         {
-            var chamiDirectory = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            var chamiDirectory = AppUtils.GetApplicationFolder();
             try
             {
                 return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
@@ -195,7 +195,7 @@ namespace ChamiUI
             {
                 if (exceptionWindow.IsApplicationRestartRequested)
                 {
-                    IShellCommand restartCommand = new OpenInExplorerCommand(Assembly.GetEntryAssembly().Location);
+                    IShellCommand restartCommand = new OpenInExplorerCommand(AppUtils.GetApplicationExecutablePath());
                     restartCommand.Execute();
                 }
 
