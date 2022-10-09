@@ -1238,6 +1238,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unexpected error.
+        /// </summary>
+        public static string ExceptionWindowTitle {
+            get {
+                return ResourceManager.GetString("ExceptionWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string ExecuteUpdateButton_Content {

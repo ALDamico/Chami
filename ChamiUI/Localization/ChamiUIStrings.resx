@@ -1174,4 +1174,7 @@ Most people don't need to change these.</value>
   <data name="SaveExceptionDetailsButton_ToolTip" xml:space="preserve">
     <value>Export the details of this error if you want to forward them to the developer.</value>
   </data>
+  <data name="ExceptionWindowTitle" xml:space="preserve">
+    <value>Unexpected error</value>
+  </data>
 </root>

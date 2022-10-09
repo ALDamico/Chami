@@ -40,8 +40,8 @@ public partial class ExceptionWindow : Window
         Close();
     }
 
-    public static RoutedCommand TerminateApplicationCommand = new RoutedCommand();
-    public static RoutedCommand WriteExceptionDetailsCommand = new RoutedCommand();
+    public static readonly RoutedCommand TerminateApplicationCommand = new RoutedCommand();
+    public static readonly RoutedCommand WriteExceptionDetailsCommand = new RoutedCommand();
 
     private void TerminateApplicationCommand_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
     {

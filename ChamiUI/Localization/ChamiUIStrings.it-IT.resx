@@ -1167,4 +1167,7 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="SaveExceptionDetailsButton_ToolTip" xml:space="preserve">
     <value>Esporta i dettagli di questo errore se vuoi inviarli allo sviluppatore.</value>
   </data>
+  <data name="ExceptionWindowTitle" xml:space="preserve">
+    <value>Errore inatteso</value>
+  </data>
 </root>

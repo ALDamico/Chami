@@ -8,7 +8,9 @@
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="ExceptionWindow" Height="450" Width="800"
+        Title="{lex:Loc Key=ExceptionWindowTitle}" Height="450" Width="800"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
         x:Name="ControlRoot">
     <Window.CommandBindings>
         <CommandBinding x:Name="CloseCommandBinding" Command="Close" CanExecute="CloseCommandBinding_OnCanExecute" Executed="CloseCommandBinding_OnExecuted"></CommandBinding>
