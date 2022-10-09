@@ -1070,6 +1070,12 @@ Tutte le modifiche non salvate andranno perse.</value>
     <value>Se continui, imposterai tutte le variabili di ambiente chiamate "{0}" a un valore vuoto.
 Sei sicuro di voler procedere?</value>
   </data>
+  <data name="AnExceptionOccurredMessage_Text" xml:space="preserve">
+    <value>Si è verificato un errore inatteso.
+Fai clic sul pulsante Ok se vuoi ignorare l'errore e continuare a usare Chami, ma le prestazioni e la stabilità potrebbero essere compromesse.
+In alternative, puoi chiudere l'applicazione e rilanciarla.
+Infine, se ritieni che questo sia un bug da risolvere, puoi aprire un issue su GitHub.</value>
+  </data>
   <data name="AdvancedAppearanceOptionsExpander_Header" xml:space="preserve">
     <value>Opzioni avanzate</value>
   </data>
@@ -1124,5 +1130,44 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   </data>
   <data name="ChangeStepLabel_Content" xml:space="preserve">
     <value>Ridimensiona di</value>
+  </data>
+  <data name="ExceptionWindowNameLabel_Text" xml:space="preserve">
+    <value>Nome eccezione:</value>
+  </data>
+  <data name="ExceptionWindowMessageLabel_Text" xml:space="preserve">
+    <value>Messaggio</value>
+  </data>
+  <data name="ExceptionWindowSourceLabel_Text" xml:space="preserve">
+    <value>Origine:</value>
+  </data>
+  <data name="ExceptionWindowStackTraceLabel_Text" xml:space="preserve">
+    <value>Stack trace:</value>
+  </data>
+  <data name="DismissButton_Content" xml:space="preserve">
+    <value>Ignora</value>
+  </data>
+  <data name="DismissButton_ToolTip" xml:space="preserve">
+    <value>Ignora questo avviso e continua a usare l'applicazione.</value>
+  </data>
+  <data name="TerminateApplicationButton_Content" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="TerminateApplicationButton_ToolTip" xml:space="preserve">
+    <value>Esce immediatamente dall'applicazione.</value>
+  </data>
+  <data name="TerminateAndReopenApplicationButton_Header" xml:space="preserve">
+    <value>Esci e riavvia</value>
+  </data>
+  <data name="TerminateAndReopenApplicationButton_ToolTip" xml:space="preserve">
+    <value>Esci dall'applicazione e tenta di riavviarla per risolvere il problema.</value>
+  </data>
+  <data name="SaveExceptionDetailsButton_Content" xml:space="preserve">
+    <value>Esporta dettagli</value>
+  </data>
+  <data name="SaveExceptionDetailsButton_ToolTip" xml:space="preserve">
+    <value>Esporta i dettagli di questo errore se vuoi inviarli allo sviluppatore.</value>
+  </data>
+  <data name="ExceptionWindowTitle" xml:space="preserve">
+    <value>Errore inatteso</value>
   </data>
 </root>

@@ -25,6 +25,7 @@ using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
+using ChamiUI.Windows.Exceptions;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -780,6 +781,12 @@ namespace ChamiUI.Windows.MainWindow
 
         private EnvironmentHealthWindow _healthWindow;
 
+        private void MenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            int i = 42;
+            object o = (object) i;
+            bool b = (bool) o;
+        }
         private void IncreaseFontSizeCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = ViewModel.CanIncreaseFontSize();

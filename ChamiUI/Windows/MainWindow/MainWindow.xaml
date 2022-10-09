@@ -327,6 +327,7 @@
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
+            <MenuItem Header="Show Exception window" Click="MenuItem_OnClick"></MenuItem>
         </Menu>
         <StackPanel Grid.Row="1"
                     Grid.Column="0"

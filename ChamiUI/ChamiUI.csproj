@@ -1141,6 +1141,10 @@
       <Content Include="Data\README">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </Content>
+      <None Remove="Assets\Svg\circle-exclamation-solid.svg" />
+      <Resource Include="Assets\Svg\circle-exclamation-solid.svg">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Resource>
     </ItemGroup>
 
     <ItemGroup>
@@ -1174,6 +1178,10 @@
         <DependentUpon>ChamiUIStrings.resx</DependentUpon>
       </Compile>
       <Compile Remove="BusinessLayer\Utils\AppUtils.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="BusinessLayer\Commands" />
     </ItemGroup>
 
 </Project>

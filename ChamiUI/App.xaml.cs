@@ -10,10 +10,13 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Media;
+using System.Reflection;
 using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
+using Chami.CmdExecutor.Commands.Common;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
@@ -30,6 +33,8 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.Utils;
+using ChamiUI.Windows.Exceptions;
 
 namespace ChamiUI
 {
@@ -43,9 +48,7 @@ namespace ChamiUI
             _serviceProvider = CreateServices();
 
             InitializeComponent();
-#if !DEBUG
             DispatcherUnhandledException += ShowExceptionMessageBox;
-#endif
             try
             {
                 MigrateDatabase();
@@ -54,20 +57,20 @@ namespace ChamiUI
             {
                 Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
             }
-            
+
             InitHealthChecker();
         }
 
         private ChamiLogger InitLogger(bool readSettings = false)
         {
             var chamiLogger = new ChamiLogger();
-            chamiLogger.AddFileSink("chami.log");
+            chamiLogger.AddFileSink(AppUtils.GetLogFilePath());
 
             if (readSettings)
             {
                 var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
                 var loggingSettings = settings.LoggingSettings;
-                
+
                 var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
                 if (loggingSettings.LoggingEnabled)
                 {
@@ -79,7 +82,7 @@ namespace ChamiUI
 
             return chamiLogger;
         }
-        
+
         private void InitHealthChecker()
         {
             HealthCheckerConfiguration = new EnvironmentHealthCheckerConfiguration()
@@ -166,7 +169,7 @@ namespace ChamiUI
 
         public static string GetConnectionString()
         {
-            var chamiDirectory = Environment.CurrentDirectory;
+            var chamiDirectory = AppUtils.GetApplicationFolder();
             try
             {
                 return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
@@ -178,17 +181,31 @@ namespace ChamiUI
             }
         }
 
-        public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
+        private void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
-            var exceptionMessage = args.Exception.Message;
-            args.Handled = true;
-            MessageBox.Show(exceptionMessage, ChamiUIStrings.GenericExceptionMessageBoxCaption, MessageBoxButton.OK,
-                MessageBoxImage.Error);
+            SystemSounds.Exclamation.Play();
+            var exception = args.Exception;
+            var exceptionWindow = new ExceptionWindow(exception);
+                exceptionWindow.ShowDialog();
             if (Settings.LoggingSettings.LoggingEnabled)
             {
-                Log.Logger.Error("{Message}", exceptionMessage);
+                Log.Logger.Error("{Message}", exception.Message);
                 Log.Logger.Error("{Message}", args.Exception.StackTrace);
             }
+
+            if (exceptionWindow.IsApplicationTerminationRequested)
+            {
+                if (exceptionWindow.IsApplicationRestartRequested)
+                {
+                    IShellCommand restartCommand = new OpenInExplorerCommand(AppUtils.GetApplicationExecutablePath());
+                    restartCommand.Execute();
+                }
+
+                Environment.Exit(-1);
+            }
+#if !DEBUG
+            args.Handled = true; // TODO react to user choice
+#endif
         }
 
 
@@ -198,7 +215,7 @@ namespace ChamiUI
         {
             // We don't want this to happen when we're developing (An official release of Chami may be running)
 #if !DEBUG
-            var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly()?.Location);
+            var processName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()?.Location);
             var otherInstances = Process.GetProcessesByName(processName)
                 .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
             

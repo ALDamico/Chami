@@ -233,6 +233,18 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to An unforeseen program error occurred. 
+        ///Click the Ok button if you want to ignore the error and continue using Chami, but note that its stability and performance could have been compromised. 
+        ///Alternatively, you can close the application and restart the application.
+        ///Lastly, if you think this is a bug that needs fixing, feel free to open an issue on GitHub..
+        /// </summary>
+        public static string AnExceptionOccurredMessage_Text {
+            get {
+                return ResourceManager.GetString("AnExceptionOccurredMessage_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Console.
         /// </summary>
         public static string AppearanceSettingsGroupbox_Header {
@@ -757,6 +769,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dismiss.
+        /// </summary>
+        public static string DismissButton_Content {
+            get {
+                return ResourceManager.GetString("DismissButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dismiss this warning and continue using the application..
+        /// </summary>
+        public static string DismissButton_ToolTip {
+            get {
+                return ResourceManager.GetString("DismissButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dotEnv files.
         /// </summary>
         public static string DotEnvFileDialogDescription {
@@ -1168,6 +1198,51 @@ namespace ChamiUI.Localization {
         public static string ExampleTextTextBox_Text {
             get {
                 return ResourceManager.GetString("ExampleTextTextBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        public static string ExceptionWindowMessageLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowMessageLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception name:.
+        /// </summary>
+        public static string ExceptionWindowNameLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowNameLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source:.
+        /// </summary>
+        public static string ExceptionWindowSourceLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowSourceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack trace:.
+        /// </summary>
+        public static string ExceptionWindowStackTraceLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowStackTraceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error.
+        /// </summary>
+        public static string ExceptionWindowTitle {
+            get {
+                return ResourceManager.GetString("ExceptionWindowTitle", resourceCulture);
             }
         }
         
@@ -2585,6 +2660,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export details.
+        /// </summary>
+        public static string SaveExceptionDetailsButton_Content {
+            get {
+                return ResourceManager.GetString("SaveExceptionDetailsButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export the details of this error if you want to forward them to the developer..
+        /// </summary>
+        public static string SaveExceptionDetailsButton_ToolTip {
+            get {
+                return ResourceManager.GetString("SaveExceptionDetailsButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save font size changes on application exit.
         /// </summary>
         public static string SaveFontSizeOnApplicationExitLabel_Content {
@@ -2878,6 +2971,42 @@ namespace ChamiUI.Localization {
         public static string TerminateAllMenuItem_Header {
             get {
                 return ResourceManager.GetString("TerminateAllMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit and restart.
+        /// </summary>
+        public static string TerminateAndReopenApplicationButton_Header {
+            get {
+                return ResourceManager.GetString("TerminateAndReopenApplicationButton_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit the application and attempt to restart it in order to fix its behaviour..
+        /// </summary>
+        public static string TerminateAndReopenApplicationButton_ToolTip {
+            get {
+                return ResourceManager.GetString("TerminateAndReopenApplicationButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string TerminateApplicationButton_Content {
+            get {
+                return ResourceManager.GetString("TerminateApplicationButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit the application immediately..
+        /// </summary>
+        public static string TerminateApplicationButton_ToolTip {
+            get {
+                return ResourceManager.GetString("TerminateApplicationButton_ToolTip", resourceCulture);
             }
         }
         
