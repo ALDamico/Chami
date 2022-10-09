@@ -13,6 +13,7 @@
     <Window.CommandBindings>
         <CommandBinding x:Name="CloseCommandBinding" Command="Close" CanExecute="CloseCommandBinding_OnCanExecute" Executed="CloseCommandBinding_OnExecuted"></CommandBinding>
         <CommandBinding x:Name="TerminateApplicationCommandBinding" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" CanExecute="TerminateApplicationCommand_OnCanExecute" Executed="TerminateApplicationCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="WriteExceptionDetailsCommandBinding" Command="{x:Static local:ExceptionWindow.WriteExceptionDetailsCommand}" CanExecute="WriteExceptionDetailsCommandBinding_OnCanExecute" Executed="WriteExceptionDetailsCommandBinding_OnExecuted"></CommandBinding>
     </Window.CommandBindings>
     <Grid Margin="10">
         <Grid.RowDefinitions>
@@ -66,9 +67,10 @@
             <Button x:Name="DismissButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" IsCancel="True" Command="Close" DockPanel.Dock="Right" MaxWidth="65"></Button>
             <xctk:SplitButton x:Name="TerminateApplicationButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}">
                 <xctk:SplitButton.DropDownContent>
-                    <MenuItem x:Name="TerminateAndReopenApplicationButton" Header="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" CommandParameter="restartRequested"></MenuItem>
+                    <MenuItem x:Name="TerminateAndReopenApplicationButton" Header="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.TerminateApplicationCommand}" CommandParameter="restartRequested" DockPanel.Dock="Right"></MenuItem>
                 </xctk:SplitButton.DropDownContent>
             </xctk:SplitButton>
+            <Button x:Name="SaveExceptionDetailsButton" Content="{lex:Loc}" ToolTip="{lex:Loc}" Command="{x:Static local:ExceptionWindow.WriteExceptionDetailsCommand}" DockPanel.Dock="Left"></Button>
         </DockPanel>
     </Grid>
 </Window>

@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Input;
+using Chami.Db.Utils;
+using ChamiUI.BusinessLayer.Exceptions.Exporter;
+using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.Utils;
+using Microsoft.Win32;
 using Serilog;
 
 namespace ChamiUI.Windows.Exceptions;
@@ -36,6 +41,7 @@ public partial class ExceptionWindow : Window
     }
 
     public static RoutedCommand TerminateApplicationCommand = new RoutedCommand();
+    public static RoutedCommand WriteExceptionDetailsCommand = new RoutedCommand();
 
     private void TerminateApplicationCommand_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
@@ -55,4 +61,24 @@ public partial class ExceptionWindow : Window
     }
 
     private const string RestartRequestedParameter = "restartRequested";
+
+    private void WriteExceptionDetailsCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+        e.CanExecute = true;
+    }
+
+    private void WriteExceptionDetailsCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+    {
+        var saveFileDialog = new SaveFileDialog();
+        saveFileDialog.AddExtension = true;
+        saveFileDialog.OverwritePrompt = true;
+        saveFileDialog.DefaultExt = "*.log";
+        var result = saveFileDialog.ShowDialog();
+
+        if (result == true)
+        {
+            IExceptionExporter exporter = new ExceptionExporter(saveFileDialog.FileName);
+            exporter.Export(Exception, AppUtils.GetLogFilePath());
+        }
+    }
 }

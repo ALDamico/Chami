@@ -32,6 +32,7 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.Utils;
 using ChamiUI.Windows.Exceptions;
 
 namespace ChamiUI
@@ -62,7 +63,7 @@ namespace ChamiUI
         private ChamiLogger InitLogger(bool readSettings = false)
         {
             var chamiLogger = new ChamiLogger();
-            chamiLogger.AddFileSink("chami.log");
+            chamiLogger.AddFileSink(AppUtils.GetLogFilePath());
 
             if (readSettings)
             {
@@ -179,7 +180,7 @@ namespace ChamiUI
             }
         }
 
-        public void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
+        private void ShowExceptionMessageBox(object sender, DispatcherUnhandledExceptionEventArgs args)
         {
             var exception = args.Exception;
             var exceptionWindow = new ExceptionWindow(exception);
@@ -194,8 +195,7 @@ namespace ChamiUI
             {
                 if (exceptionWindow.IsApplicationRestartRequested)
                 {
-                    IShellCommand restartCommand =
-                        new OpenInExplorerCommand(Assembly.GetExecutingAssembly().Location.Replace(".dll", ".exe"));
+                    IShellCommand restartCommand = new OpenInExplorerCommand(Assembly.GetEntryAssembly().Location);
                     restartCommand.Execute();
                 }
 
@@ -204,13 +204,6 @@ namespace ChamiUI
 #if !DEBUG
             args.Handled = true; // TODO react to user choice
 #endif
-            /*
-            var exceptionMessage = args.Exception.Message;
-            args.Handled = true;
-            MessageBox.Show(exceptionMessage, ChamiUIStrings.GenericExceptionMessageBoxCaption, MessageBoxButton.OK,
-                MessageBoxImage.Error);
-            
-            */
         }
 
 
@@ -220,7 +213,7 @@ namespace ChamiUI
         {
             // We don't want this to happen when we're developing (An official release of Chami may be running)
 #if !DEBUG
-            var processName = Path.GetFileNameWithoutExtension(System.Reflection.Assembly.GetEntryAssembly()?.Location);
+            var processName = Path.GetFileNameWithoutExtension(Assembly.GetEntryAssembly()?.Location);
             var otherInstances = Process.GetProcessesByName(processName)
                 .Where(p => p.Id != Process.GetCurrentProcess().Id).ToArray();
             

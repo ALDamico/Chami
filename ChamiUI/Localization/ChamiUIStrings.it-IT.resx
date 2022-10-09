@@ -1161,4 +1161,10 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="TerminateAndReopenApplicationButton_ToolTip" xml:space="preserve">
     <value>Esci dall'applicazione e tenta di riavviarla per risolvere il problema.</value>
   </data>
+  <data name="SaveExceptionDetailsButton_Content" xml:space="preserve">
+    <value>Esporta dettagli</value>
+  </data>
+  <data name="SaveExceptionDetailsButton_ToolTip" xml:space="preserve">
+    <value>Esporta i dettagli di questo errore se vuoi inviarli allo sviluppatore.</value>
+  </data>
 </root>

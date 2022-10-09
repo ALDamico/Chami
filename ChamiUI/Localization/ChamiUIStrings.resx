@@ -1168,4 +1168,10 @@ Most people don't need to change these.</value>
   <data name="TerminateAndReopenApplicationButton_ToolTip" xml:space="preserve">
     <value>Quit the application and attempt to restart it in order to fix its behaviour.</value>
   </data>
+  <data name="SaveExceptionDetailsButton_Content" xml:space="preserve">
+    <value>Export details</value>
+  </data>
+  <data name="SaveExceptionDetailsButton_ToolTip" xml:space="preserve">
+    <value>Export the details of this error if you want to forward them to the developer.</value>
+  </data>
 </root>

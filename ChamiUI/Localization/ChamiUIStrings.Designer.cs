@@ -2651,6 +2651,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Export details.
+        /// </summary>
+        public static string SaveExceptionDetailsButton_Content {
+            get {
+                return ResourceManager.GetString("SaveExceptionDetailsButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export the details of this error if you want to forward them to the developer..
+        /// </summary>
+        public static string SaveExceptionDetailsButton_ToolTip {
+            get {
+                return ResourceManager.GetString("SaveExceptionDetailsButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save font size changes on application exit.
         /// </summary>
         public static string SaveFontSizeOnApplicationExitLabel_Content {
