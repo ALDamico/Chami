@@ -24,4 +24,6 @@ public class MainWindowNotRunnableState : IMainWindowState
     {
         await Task.CompletedTask;
     }
+
+    public bool CanRunApplication => false;
 }

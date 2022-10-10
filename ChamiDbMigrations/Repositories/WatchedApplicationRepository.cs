@@ -90,7 +90,7 @@ namespace Chami.Db.Repositories
 
             var sql = @"
                 INSERT INTO WatchedApplications(Name, IsWatchEnabled, ApplicationIcon, ShowInRunApplicationMenu, Path)
-                VALUES (?, ?)
+                VALUES (?, ?, ?, ?, ?)
 ";
             using (var connection = GetConnection())
             {

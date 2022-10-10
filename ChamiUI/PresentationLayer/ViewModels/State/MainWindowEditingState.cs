@@ -24,4 +24,6 @@ public class MainWindowEditingState : IMainWindowState
     {
         await Task.CompletedTask;
     }
+
+    public bool CanRunApplication => false;
 }

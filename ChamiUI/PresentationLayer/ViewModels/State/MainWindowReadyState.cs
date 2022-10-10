@@ -56,4 +56,6 @@ public class MainWindowReadyState : IMainWindowState
             }
         }
     }
+
+    public bool CanRunApplication => true;
 }

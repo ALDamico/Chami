@@ -467,32 +467,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         /// <summary>
-        /// The path to the icon to show in the Execute button.
-        /// If no environment is selected the play_disabled image is shown.
-        /// If <see cref="ExecuteButtonPlayEnabled"/> is true, the play image is shown.
-        /// Otherwise, the stop icon is shown.
-        /// </summary>
-        public string ExecuteButtonIcon
-        {
-            get
-            {
-                if ((SelectedEnvironment == null || (SelectedEnvironment != null && EditingEnabled) ||
-                     !CanUserInterrupt) || SelectedEnvironmentTypeTabIndex != 0)
-                {
-                    return "/Assets/Svg/play_disabled.svg";
-                }
-
-                if (ExecuteButtonPlayEnabled && !_isChangeInProgress)
-                {
-                    return "/Assets/Svg/play.svg";
-                }
-
-
-                return "/Assets/Svg/stop.svg";
-            }
-        }
-
-        /// <summary>
         /// The path to the image used in the clear filter button.
         /// </summary>
         public string ClearFilterTextButtonIcon

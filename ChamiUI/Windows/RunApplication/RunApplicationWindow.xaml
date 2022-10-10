@@ -10,7 +10,9 @@
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         MinWidth="200"
-        Title="RunApplicationWindow">
+        Title="{lex:Loc Key=RunApplicationWindowTitle}"
+        Closing="RunApplicationWindow_OnClosing"
+        >
     <Window.CommandBindings>
         <CommandBinding Command="Close" x:Name="CloseCommandBinding" CanExecute="CloseCommandBinding_OnCanExecute" Executed="CloseCommandBinding_OnExecuted"></CommandBinding>
     </Window.CommandBindings>

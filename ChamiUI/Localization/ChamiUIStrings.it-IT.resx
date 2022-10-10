@@ -1206,4 +1206,7 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="ExceptionWindowTitle" xml:space="preserve">
     <value>Errore inatteso</value>
   </data>
+  <data name="RunApplicationWindowTitle" xml:space="preserve">
+    <value>Esegui applicazione</value>
+  </data>
 </root>

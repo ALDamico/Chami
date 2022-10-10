@@ -784,14 +784,14 @@ namespace ChamiUI.Windows.MainWindow
 
         private void RunApplicationCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ViewModel.CanRunApplication;
+            e.CanExecute = ViewModel.StateManager.CurrentState.CanRunApplication;
         }
 
         private void RunApplicationCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            var runApplicationWindow = new RunApplicationWindow();
+            var runApplicationWindow = RunApplicationWindow.Instance;
             var selectedItems = EnvironmentsListbox.SelectedItems;
-            var container = EnvironmentsListbox.ContainerFromElement(EnvironmentsListbox.SelectedItem as DependencyObject);
+            //var container = EnvironmentsListbox.ContainerFromElement(EnvironmentsListbox.SelectedItem as DependencyObject);
             runApplicationWindow.Show();
         }
             

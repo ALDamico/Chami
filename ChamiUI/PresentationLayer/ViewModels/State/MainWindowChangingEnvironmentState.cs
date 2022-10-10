@@ -32,4 +32,6 @@ public class MainWindowChangingEnvironmentState : IMainWindowState
         mainWindowViewModel.CancelActiveTask();
         await Task.CompletedTask;
     }
+
+    public bool CanRunApplication => false;
 }

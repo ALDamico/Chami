@@ -34,4 +34,6 @@ public class MainWindowRevertingEnvironmentState : IMainWindowState
     {
         await Task.CompletedTask;
     }
+
+    public bool CanRunApplication => false;
 }

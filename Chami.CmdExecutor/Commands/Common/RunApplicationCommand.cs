@@ -7,48 +7,50 @@ using System.Threading.Tasks;
 using Chami.CmdExecutor;
 using Microsoft.VisualBasic;
 
-namespace ChamiUI.BusinessLayer.Commands;
-
-public class RunApplicationCommand : ShellCommandBase
+namespace ChamiUI.BusinessLayer.Commands
 {
-    public override void Execute()
+
+    public class RunApplicationCommand : ShellCommandBase
     {
-        if (!File.Exists(Path))
+        public override void Execute()
         {
-            throw new InvalidOperationException();
+            if (!File.Exists(Path))
+            {
+                throw new InvalidOperationException();
+            }
+
+            var process = PrepareProcess(null);
+            process.Start();
+            Process = process;
         }
 
-        var process = PrepareProcess(null);
-        process.Start();
-        Process = process;
-    }
-    
-    public Process Process { get; private set; }
-    
-    public string Path { get; set; }
+        public Process Process { get; private set; }
 
-    public override Task ExecuteAsync(float percentage, CancellationToken cancellationToken)
-    {
-        throw new System.NotSupportedException();
-    }
+        public string Path { get; set; }
 
-    public RunApplicationCommand(string path)
-    {
-        Path = path;
-    }
-
-    protected override Process PrepareProcess(string arguments)
-    {
-        ProcessStartInfo processStartInfo = new ProcessStartInfo(Path, arguments)
+        public override Task ExecuteAsync(float percentage, CancellationToken cancellationToken)
         {
-            RedirectStandardError = true,
-            RedirectStandardOutput = true,
-            CreateNoWindow = false
-        };
-        Process process = new Process()
+            throw new System.NotSupportedException();
+        }
+
+        public RunApplicationCommand(string path)
         {
-            StartInfo = processStartInfo
-        };
-        return process;
+            Path = path;
+        }
+
+        protected override Process PrepareProcess(string arguments)
+        {
+            ProcessStartInfo processStartInfo = new ProcessStartInfo(Path, arguments)
+            {
+                RedirectStandardError = true,
+                RedirectStandardOutput = true,
+                CreateNoWindow = false
+            };
+            Process process = new Process()
+            {
+                StartInfo = processStartInfo
+            };
+            return process;
+        }
     }
 }

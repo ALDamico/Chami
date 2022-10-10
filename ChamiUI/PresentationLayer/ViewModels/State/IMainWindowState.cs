@@ -36,4 +36,5 @@ public interface IMainWindowState
     bool CanImportData { get; }
     bool IsEditable { get; }
     Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow);
+    bool CanRunApplication { get; }
 }

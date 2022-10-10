@@ -25,4 +25,6 @@ public class MainWindowLoadingDataState : IMainWindowState
     {
         await Task.CompletedTask;
     }
+
+    public bool CanRunApplication => false;
 }

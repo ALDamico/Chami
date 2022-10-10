@@ -403,7 +403,10 @@ namespace ChamiUI.Localization {
         public static string ChangeIconButton_ToolTip {
             get {
                 return ResourceManager.GetString("ChangeIconButton_ToolTip", resourceCulture);
-                }}
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change step.
         /// </summary>
         public static string ChangeStepLabel_Content {
@@ -2645,6 +2648,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Run Application.
+        /// </summary>
+        public static string RunApplicationWindowTitle {
+            get {
+                return ResourceManager.GetString("RunApplicationWindowTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Safety.
         /// </summary>
         public static string SafetyCategory {
@@ -3134,12 +3146,6 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The process has already exited..
-        /// </summary>
-        public static string UnknownProcessAlreadyExited {
-            get {
-                return ResourceManager.GetString("UnknownProcessAlreadyExited", resourceCulture);
-                }}
         ///   Looks up a localized string similar to Unable to run the application..
         /// </summary>
         public static string UnableToRunApplicationMessage {
@@ -3163,6 +3169,15 @@ namespace ChamiUI.Localization {
         public static string UnknownErrorWhenRunningApplicationErrorMessage {
             get {
                 return ResourceManager.GetString("UnknownErrorWhenRunningApplicationErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The process has already exited..
+        /// </summary>
+        public static string UnknownProcessAlreadyExited {
+            get {
+                return ResourceManager.GetString("UnknownProcessAlreadyExited", resourceCulture);
             }
         }
         

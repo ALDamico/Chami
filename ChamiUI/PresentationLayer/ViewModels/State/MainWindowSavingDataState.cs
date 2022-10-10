@@ -24,4 +24,6 @@ public class MainWindowSavingDataState : IMainWindowState
     {
         await Task.CompletedTask;
     }
+
+    public bool CanRunApplication => false;
 }

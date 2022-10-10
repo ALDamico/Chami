@@ -11,6 +11,7 @@ using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Processes;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
+using ChamiUI.Utils;
 using NetOffice.ExcelApi;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -30,8 +31,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _dataAdapter = new SettingsDataAdapter(connectionString);
             _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
             var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
-            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
-                languageDataAdapter, processLauncherService);
             SettingsCategories = new ObservableCollection<GenericLabelViewModel>();
             Settings.ConsoleAppearanceSettings =
                 SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);
@@ -60,15 +59,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void SaveSettings()
         {
             _dataAdapter.SaveSettings(Settings);
-            var savedVariables = _dataAdapter.SaveBlacklistedVariableListAsync(Settings.SafeVariableSettings.ForbiddenVariables).GetAwaiter()
+            var savedVariables = _dataAdapter
+                .SaveBlacklistedVariableListAsync(Settings.SafeVariableSettings.ForbiddenVariables).GetAwaiter()
                 .GetResult();
-            
+
             Settings.SafeVariableSettings.ForbiddenVariables.Clear();
 
             foreach (var variable in savedVariables)
             {
                 Settings.SafeVariableSettings.ForbiddenVariables.Add(variable);
             }
+
             Settings.WatchedApplicationSettings
                 .WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>(
                 _watchedApplicationDataAdapter.SaveWatchedApplications(Settings.WatchedApplicationSettings
@@ -127,6 +128,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// The entire application settings.
         /// </summary>
-        public SettingsViewModel Settings => (Application.Current as App)?.Settings;
+        public SettingsViewModel Settings => AppUtils.GetChamiApp().Settings;
     }
 }
