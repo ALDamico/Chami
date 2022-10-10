@@ -28,6 +28,7 @@ using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Windows.MainWindow;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using AppUtils = ChamiUI.Utils.AppUtils;
 using IShellCommand = Chami.CmdExecutor.IShellCommand;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -39,7 +40,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
-        public IMinimizationStrategy MinimizationStrategy => _settings.MinimizationBehaviour.MinimizationStrategy;
+        public IMinimizationStrategy MinimizationStrategy => Settings.MinimizationBehaviour.MinimizationStrategy;
 
         /// <summary>
         /// Cancels the execution of the active <see cref="CmdExecutor"/> queue.
@@ -83,12 +84,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private SettingsViewModel _settings;
-
         /// <summary>
         /// Contains all the settings available to the application.
         /// </summary>
-        public SettingsViewModel Settings => (Application.Current as App)?.Settings;
+        public SettingsViewModel Settings => AppUtils.GetChamiApp()?.Settings;
 
         /// <summary>
         /// Determines if the clear filter button (the big red cross) is enabled or not.

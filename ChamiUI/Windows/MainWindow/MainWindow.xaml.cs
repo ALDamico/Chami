@@ -90,7 +90,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
-            ViewModel.ApplyEnvironmentButtonClickAction(this);
+            await ViewModel.ApplyEnvironmentButtonClickAction(this);
         }
 
         internal void PrintTaskCancelledMessageToConsole()

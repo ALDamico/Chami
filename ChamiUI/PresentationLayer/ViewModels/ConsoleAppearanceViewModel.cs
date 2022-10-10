@@ -85,21 +85,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private Brush _foregroundColor;
-        
-        /// <summary>
-        /// The foreground (i.e., text) color of the console.
-        /// </summary>
-        public Brush ForegroundColor
-        {
-            get => _foregroundColor;
-            set
-            {
-                _foregroundColor = value;
-                OnPropertyChanged(nameof(ForegroundColor));
-            }
-        }
-
         /// <summary>
         /// Sets the <see cref="BackgroundColor"/> property to a new value.
         /// </summary>
