@@ -1,6 +1,7 @@
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.RunApplication;
 
@@ -8,6 +9,7 @@ public partial class RunApplicationWindow : Window
 {
     private RunApplicationWindow()
     {
+        DataContext = new RunApplicationWindowViewModel();
         InitializeComponent();
     }
 

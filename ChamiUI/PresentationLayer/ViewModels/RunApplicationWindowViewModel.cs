@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using ChamiUI.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels;
 
@@ -6,7 +7,9 @@ public class RunApplicationWindowViewModel : ViewModelBase
 {
     public RunApplicationWindowViewModel()
     {
-        WatchedApplications = new ObservableCollection<WatchedApplicationViewModel>();
+        
     }
-    public ObservableCollection<WatchedApplicationViewModel> WatchedApplications { get; }
+
+    public ObservableCollection<WatchedApplicationViewModel> WatchedApplications =>
+        AppUtils.GetChamiApp().Settings.WatchedApplicationSettings.WatchedApplications;
 }

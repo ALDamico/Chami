@@ -25,5 +25,7 @@ namespace Chami.Db.Entities
         public byte[] ApplicationIcon { get; set; }
         public bool ShowInRunApplicationMenu { get; set; }
         public string Path { get; set; }
+        public int? IconHeight { get; set; }
+        public int? IconWidth { get; set; }
     }
 }

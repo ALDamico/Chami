@@ -68,6 +68,7 @@
                           Grid.Column="0"
                           ItemsSource="{Binding WatchedApplications}"
                           IsEnabled="{Binding ControlsEnabled}"
+                          SelectedItem="{Binding SelectedApplication}"
                           AutoGenerateColumns="False"
                           x:Name="WatchedApplicationsDataGrid"
                           PreviewKeyDown="WatchedApplicationsDataGrid_PreviewKeyDown"
@@ -86,7 +87,7 @@
                             <DataGridTemplateColumn.CellEditingTemplate>
                                 <DataTemplate>
                                     <DockPanel>
-                                        <Button DockPanel.Dock="Right" ToolTip="{lex:Loc}" Content="..." MaxHeight="16" MaxWidth="16" x:Name="ChangeIconButton"></Button>
+                                        <Button DockPanel.Dock="Right" ToolTip="{lex:Loc}" Content="..." MaxHeight="16" MaxWidth="16" x:Name="ChangeIconButton" Click="ChangeIconButton_OnClick"></Button>
                                         <Button DockPanel.Dock="Right"></Button>
                                         <Image Source="{Binding Icon}"
                                                MaxHeight="16"

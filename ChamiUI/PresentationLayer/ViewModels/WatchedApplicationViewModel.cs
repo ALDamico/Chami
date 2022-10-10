@@ -80,6 +80,30 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        private int? _iconHeight;
+
+        public int? IconHeight
+        {
+            get => _iconHeight;
+            set
+            {
+                _iconHeight = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private int? _iconWidth;
+
+        public int? IconWidth
+        {
+            get => _iconWidth;
+            set
+            {
+                _iconWidth = value;
+                OnPropertyChanged();
+            }
+        }
+
         public bool ShowInRunApplicationWindow
         {
             get => _showInRunApplicationWindow;

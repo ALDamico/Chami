@@ -5,12 +5,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows.RunApplication"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
+        xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
         mc:Ignorable="d"
         WindowStyle="ToolWindow"
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         MinWidth="200"
         Title="{lex:Loc Key=RunApplicationWindowTitle}"
+        d:DataContext="{d:DesignInstance viewModels:RunApplicationWindowViewModel}"
         Closing="RunApplicationWindow_OnClosing"
         >
     <Window.CommandBindings>
@@ -29,7 +31,15 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         
-        <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+        <ListBox Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" ItemsSource="{Binding WatchedApplications}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <Image MaxWidth="32" MaxHeight="32" Source="{Binding Icon}"></Image>
+                        <TextBlock  Text="{Binding Name}"></TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
             
         </ListBox>
         <Button MaxWidth="65" Grid.Row="1" Grid.Column="0" x:Name="RunApplicationButton" Content="{lex:Loc}"></Button>

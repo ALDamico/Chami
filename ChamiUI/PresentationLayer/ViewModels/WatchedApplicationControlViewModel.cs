@@ -1,6 +1,9 @@
 ﻿using System.Collections.ObjectModel;
 using System.Linq;
 using System;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.BusinessLayer.Commands;
@@ -118,6 +121,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsPathColumnToolTipVisible));
             }
+        }
+
+        public void ProcessIconPath(string iconPath)
+        {
+            using Bitmap bitmap = new Bitmap(iconPath);
+            SelectedApplication.IconWidth = bitmap.Width;
+            SelectedApplication.IconHeight = bitmap.Height;
+            using var ms = new MemoryStream();
+            bitmap.Save(ms, ImageFormat.Png);
+            SelectedApplication.Icon = ms.ToArray();
         }
     }
 }

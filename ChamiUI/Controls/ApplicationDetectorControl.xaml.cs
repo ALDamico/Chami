@@ -1,5 +1,8 @@
 using System;
 using System.Diagnostics;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Threading;
 using System.Windows;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -7,6 +10,7 @@ using System.Windows.Controls;
 using System.Windows.Documents;
 using ChamiUI.BusinessLayer;
 using ChamiUI.BusinessLayer.Commands;
+using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Localization;
 using Serilog;
 
@@ -85,6 +89,17 @@ namespace ChamiUI.Controls
             {
                 MessageBox.Show("Impossibile eseguire l'applicazione", "Informazione", MessageBoxButton.OK,
                     MessageBoxImage.Information);
+            }
+        }
+
+        private void ChangeIconButton_OnClick(object sender, RoutedEventArgs e)
+        {
+            var openFileDialog = OpenFileDialogFactory.GetOpenFileDialog("All supported files|*.bmp;*.png;*.ico|Bitmap|*.bmp|Portable Network Graphics|*.png|Icons|*.ico");
+            var result = openFileDialog.ShowDialog();
+
+            if (result != null && result.Value)
+            {
+                GetDataContextAsWatchedApplicationViewModel().ProcessIconPath(openFileDialog.FileName);
             }
         }
     }
