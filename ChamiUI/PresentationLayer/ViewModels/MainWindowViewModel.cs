@@ -629,7 +629,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         /// <param name="environment">The environment to check for.</param>
         /// <returns>True if the environment exists in the collection, otherwise null.</returns>
-        public bool CheckEnvironmentExists(EnvironmentViewModel environment)
+        public bool CheckEnvironmentExists(EnvironmentViewModel environment, bool silent = false)
         {
             var collection = Environments;
             if (environment.EnvironmentType == EnvironmentType.BackupEnvironment)
@@ -645,6 +645,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             if (collection.Any(e => e.Name == environment.Name))
             {
                 var eventArgs = new EnvironmentExistingEventArgs(environment.Name);
+                eventArgs.Silent = silent;
                 Log.Logger.Debug("EnvironmentExists event fired: {@Args}", eventArgs);
                 EnvironmentExists?.Invoke(this, eventArgs);
                 return true;

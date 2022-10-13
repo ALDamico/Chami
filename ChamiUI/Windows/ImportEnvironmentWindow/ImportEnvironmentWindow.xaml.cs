@@ -85,6 +85,8 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
                     
                     foreach (var environment in inserted)
                     {
+                        var args = new EnvironmentSavedEventArgs(environment);
+                        args.CheckEnvironmentExistence = false;
                         EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(environment));                        
                     }
                 }

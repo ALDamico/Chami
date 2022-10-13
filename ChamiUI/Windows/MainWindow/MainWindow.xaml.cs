@@ -55,7 +55,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
         {
-            if (e.Exists)
+            if (e.Exists && !e.Silent)
             {
                 MessageBox.Show(ChamiUIStrings.ExistingEnvironmentMessageBoxText,
                     ChamiUIStrings.ExistingEnvironmentMessageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Error);
@@ -146,7 +146,7 @@ namespace ChamiUI.Windows.MainWindow
             if (args != null)
             {
                 var environmentViewModel = args.EnvironmentViewModel;
-                if (!ViewModel.CheckEnvironmentExists(environmentViewModel))
+                if (!ViewModel.CheckEnvironmentExists(environmentViewModel, args.CheckEnvironmentExistence))
                 {
                     if (environmentViewModel.EnvironmentType == EnvironmentType.BackupEnvironment)
                     {

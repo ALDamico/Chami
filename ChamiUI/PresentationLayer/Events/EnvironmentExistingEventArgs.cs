@@ -24,6 +24,8 @@ namespace ChamiUI.PresentationLayer.Events
         {
             get => true;
         }
+        
+        public bool Silent { get; set; }
         public string Name { get; set; }
     }
 }

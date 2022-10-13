@@ -16,10 +16,13 @@ namespace ChamiUI.PresentationLayer.Events
         public EnvironmentSavedEventArgs(EnvironmentViewModel environmentViewModel)
         {
             EnvironmentViewModel = environmentViewModel;
+            CheckEnvironmentExistence = true;
         }
         /// <summary>
         /// The <see cref="EnvironmentViewModel"/> that is being saved.
         /// </summary>
         public EnvironmentViewModel EnvironmentViewModel { get; }
+        
+        public bool CheckEnvironmentExistence { get; set; }
     }
 }
