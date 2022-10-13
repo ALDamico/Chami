@@ -1170,4 +1170,10 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="ExceptionWindowTitle" xml:space="preserve">
     <value>Errore inatteso</value>
   </data>
+  <data name="OperationInProgressCantCloseWindowMessage" xml:space="preserve">
+    <value>Un'operazione in corso impedisce alla finestra di chiudersi. Attendere il completamento e riprovare.</value>
+  </data>
+  <data name="OperationInProgressCantCloseWindowCaption" xml:space="preserve">
+    <value>Impossibile chiudere la finestra</value>
+  </data>
 </root>

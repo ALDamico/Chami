@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Threading.Tasks;
 using ChamiUI.Windows.MainWindow;
 
@@ -30,10 +31,14 @@ public interface IMainWindowState
     /// switching on progress.
     /// </summary>
     bool CanExecuteMassUpdate { get; }
+
+    bool CanCloseWindow => !IsChangeInProgress;
     
     bool CanExecuteHealthCheck { get; }
     bool CanSave { get; }
     bool CanImportData { get; }
     bool IsEditable { get; }
     Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow);
+
+    Task CloseMainWindow(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow, CancelEventArgs cancelEventArgs);
 }

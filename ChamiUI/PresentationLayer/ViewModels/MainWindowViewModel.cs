@@ -38,7 +38,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
-        public IMinimizationStrategy MinimizationStrategy => _settings.MinimizationBehaviour.MinimizationStrategy;
+        public IMinimizationStrategy MinimizationStrategy => Settings.MinimizationBehaviour.MinimizationStrategy;
 
         /// <summary>
         /// Cancels the execution of the active <see cref="CmdExecutor"/> queue.
@@ -81,8 +81,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(IsCaseSensitiveSearch));
             }
         }
-
-        private SettingsViewModel _settings;
 
         /// <summary>
         /// Contains all the settings available to the application.

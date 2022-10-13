@@ -1177,4 +1177,10 @@ Most people don't need to change these.</value>
   <data name="ExceptionWindowTitle" xml:space="preserve">
     <value>Unexpected error</value>
   </data>
+  <data name="OperationInProgressCantCloseWindowMessage" xml:space="preserve">
+    <value>A pending operation is preventing the application window from closing. Wait for it to finish and try again.</value>
+  </data>
+  <data name="OperationInProgressCantCloseWindowCaption" xml:space="preserve">
+    <value>Can't close the window</value>
+  </data>
 </root>

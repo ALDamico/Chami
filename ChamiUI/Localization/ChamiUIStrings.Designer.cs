@@ -2404,6 +2404,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t close the window.
+        /// </summary>
+        public static string OperationInProgressCantCloseWindowCaption {
+            get {
+                return ResourceManager.GetString("OperationInProgressCantCloseWindowCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A pending operation is preventing the application window from closing. Wait for it to finish and try again..
+        /// </summary>
+        public static string OperationInProgressCantCloseWindowMessage {
+            get {
+                return ResourceManager.GetString("OperationInProgressCantCloseWindowMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Options.
         /// </summary>
         public static string OptionsMenuItem_Header {

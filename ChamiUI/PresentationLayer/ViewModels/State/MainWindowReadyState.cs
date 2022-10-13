@@ -1,8 +1,10 @@
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.CmdExecutor.Progress;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.Windows.MainWindow;
 using Serilog;
 
@@ -55,5 +57,10 @@ public class MainWindowReadyState : IMainWindowState
                 await mainWindowViewModel.ResetEnvironmentAsync(progress, CancellationToken.None);
             }
         }
+    }
+
+    public async Task CloseMainWindow(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow, CancelEventArgs cancelEventArgs)
+    {
+        await WindowUtils.CloseWindow(mainWindowViewModel, mainWindow);
     }
 }
