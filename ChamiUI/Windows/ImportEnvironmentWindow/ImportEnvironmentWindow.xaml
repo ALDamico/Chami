@@ -34,6 +34,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="5" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -140,7 +142,26 @@
                                     Binding="{Binding Value, NotifyOnSourceUpdated=True}" />
             </DataGrid.Columns>
         </DataGrid>
-        <StackPanel Grid.Row="3"
+        <GridSplitter Height="3" 
+                      Grid.Row="3" 
+                      Grid.Column="0" 
+                      Grid.ColumnSpan="3" 
+                      ResizeDirection="Rows" 
+                      ShowsPreview="True" 
+                      ResizeBehavior="PreviousAndNext" 
+                      HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Center" ></GridSplitter>
+        <ListView Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" ItemsSource="{Binding SelectedEnvironment.Messages}">
+            <ListView.View>
+                <GridView>
+                    <GridView.Columns>
+                        <GridViewColumn Header="Severity" DisplayMemberBinding="{Binding Severity}"></GridViewColumn>
+                        <GridViewColumn Header="Message" DisplayMemberBinding="{Binding Message}"></GridViewColumn>
+                    </GridView.Columns>
+                </GridView>
+            </ListView.View>
+        </ListView>
+        <StackPanel Grid.Row="5"
                     Grid.Column="0"
                     Grid.ColumnSpan="3"
                     HorizontalAlignment="Center"

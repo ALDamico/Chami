@@ -21,6 +21,8 @@ namespace ChamiUI.BusinessLayer.Converters
                 ShouldImport = true
             };
 
+            output.Exists = output.Id > 0;
+
             foreach (var variable in entity.EnvironmentVariables)
             {
                 output.EnvironmentVariables.Add(variable);

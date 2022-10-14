@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Input;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.BusinessLayer.Enums;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -38,6 +39,19 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
                 if (importViewModel != null)
                 {
                     importViewModel.ShouldImport = true;
+                    if (importViewModel.Id > 0)
+                    {
+                        importViewModel.Exists = true;
+                        importViewModel.Messages.Add(new GenericInfoViewModel(InformationSeverity.Information, "An environment with this name already exists"));
+                    }
+
+                    foreach (var variable in importViewModel.EnvironmentVariables)
+                    {
+                        if (variable.IsDuplicate)
+                        {
+                            importViewModel.Messages.Add(new GenericInfoViewModel(InformationSeverity.Information, variable.Name, "A variable with this name already exists"));
+                        }
+                    }
                     _viewModel.NewEnvironments.Add(importViewModel);
                 }
                

@@ -96,7 +96,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// The name of this environment.
         /// </summary>
-        public string Name
+        public virtual string Name
         {
             get => _name;
             set

@@ -831,8 +831,26 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     catch (JsonReaderException)
                     {
                         var viewModels = reader.ProcessMultiple();
+                        var lookup = Environments.ToLookup(k => k.Name);
                         foreach (var model in viewModels)
                         {
+                            var existingEnvironments = lookup[model.Name].ToArray();
+                            if (existingEnvironments.Length == 1)
+                            {
+                                var existingEnvironment = existingEnvironments[0];
+                                model.Id = existingEnvironment.Id;
+
+                                var variableLookup = existingEnvironment.EnvironmentVariables.ToLookup(k => k.Name);
+                                foreach (var variable in model.EnvironmentVariables)
+                                {
+                                    var existingVariable = variableLookup[variable.Name].FirstOrDefault();
+
+                                    if (existingVariable?.Value == variable.Name)
+                                    {
+                                        variable.IsDuplicate = true;
+                                    }
+                                }
+                            }
                             output.Add(model);
                         }
                     }

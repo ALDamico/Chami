@@ -21,6 +21,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private bool? _isValid;
         private bool _markedForDeletion;
         private bool _isFolder;
+        private bool _isDuplicate;
+
+        public bool IsDuplicate
+        {
+            get => _isDuplicate;
+            set
+            {
+                _isDuplicate = value;
+                OnPropertyChanged();
+            }
+        }
 
         public bool IsFolder
         {

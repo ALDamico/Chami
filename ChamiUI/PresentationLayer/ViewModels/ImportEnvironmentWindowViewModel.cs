@@ -24,19 +24,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public ObservableCollection<ImportEnvironmentViewModel> NewEnvironments { get; }
 
-        private EnvironmentViewModel _selectedEnvironment;
+        private ImportEnvironmentViewModel _selectedEnvironment;
 
         /// <summary>
         /// The currently-selected environment in the environment listview.
         /// </summary>
-        public EnvironmentViewModel SelectedEnvironment
+        public ImportEnvironmentViewModel SelectedEnvironment
         {
             get => _selectedEnvironment;
             set
             {
                 _selectedEnvironment = value;
-                OnPropertyChanged(nameof(SelectedEnvironment));
-                OnPropertyChanged(nameof(SelectedEnvironmentName));
+                OnPropertyChanged();
             }
         }
 
@@ -72,7 +71,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 SelectedEnvironment.Name = value;
-                OnPropertyChanged(nameof(SelectedEnvironmentName));
+                OnPropertyChanged();
+                if (NewEnvironments.All(e => e.Name != value))
+                {
+                    var infoMessage = SelectedEnvironment.Messages.FirstOrDefault(m => m.InformationType == "ENV");
+                    
+                }
             }
         }
 
