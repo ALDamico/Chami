@@ -63,24 +63,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         /// <summary>
-        /// The name of the selected environment.
-        /// </summary>
-        public string SelectedEnvironmentName
-        {
-            get => SelectedEnvironment?.Name;
-            set
-            {
-                SelectedEnvironment.Name = value;
-                OnPropertyChanged();
-                if (NewEnvironments.All(e => e.Name != value))
-                {
-                    var infoMessage = SelectedEnvironment.Messages.FirstOrDefault(m => m.InformationType == "ENV");
-                    
-                }
-            }
-        }
-
-        /// <summary>
         /// Converts all the viewmodels to save to <see cref="Environment"/> entities and saves them to the datastore.
         /// </summary>
         /// <returns></returns>

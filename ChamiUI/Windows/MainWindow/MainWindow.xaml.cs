@@ -48,10 +48,7 @@ namespace ChamiUI.Windows.MainWindow
             DataContext = ViewModel;
             InitializeComponent();
             Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
-            if (collectionViewSource != null)
-            {
-                collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
-            }
+            collectionViewSource?.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
 
             var validationRules = DatagridValidationRulesFactory.GetDatagridValidationRules(collectionViewSource);
             foreach (var validationRule in validationRules)

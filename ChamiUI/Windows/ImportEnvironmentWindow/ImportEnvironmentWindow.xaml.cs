@@ -6,8 +6,10 @@ using System.Windows;
 using System.Windows.Input;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Enums;
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.Windows.ImportEnvironmentWindow
@@ -19,7 +21,14 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
             Owner = owner;
             _viewModel = new ImportEnvironmentWindowViewModel();
             DataContext = _viewModel;
+            
             InitializeComponent();
+            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
+            var validationRules = DatagridValidationRulesFactory.GetDatagridValidationRules(collectionViewSource);
+            foreach (var validationRule in validationRules)
+            {
+                VariablesDatagrid.RowValidationRules.Add(validationRule);
+            }
         }
 
         private readonly ImportEnvironmentWindowViewModel _viewModel;
