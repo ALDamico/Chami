@@ -11,8 +11,12 @@ namespace ChamiUI.BusinessLayer.Validators
     /// <summary>
     /// Validates that there are no invalid characters in an environment variable name.
     /// </summary>
-    public class EnvironmentVariableNameValidCharactersValidationRule : ValidationRule
+    public class EnvironmentVariableNameValidCharactersValidationRule : AbstractChamiValidationRule
     {
+        public EnvironmentVariableNameValidCharactersValidationRule() : base(ValidationRuleTarget.Self)
+        {
+            
+        }
         /// <summary>
         /// Validates that there are no invalid characters in an environment variable name.
         /// If the validation fails, the error message contains the list of invalid character positions.
@@ -86,6 +90,10 @@ namespace ChamiUI.BusinessLayer.Validators
             }
 
             return errorMessage;
+        }
+
+        public EnvironmentVariableNameValidCharactersValidationRule(ValidationRuleTarget target) : base(target)
+        {
         }
     }
 }

@@ -7,8 +7,12 @@ namespace ChamiUI.BusinessLayer.Validators
     /// <summary>
     /// Validates that the Name property of an EntironmentVariableViewModel object is not null, empty, or only composed of whitespace characters.
     /// </summary>
-    public class EnvironmentVariableNameNotNullValidationRule:ValidationRule
+    public class EnvironmentVariableNameNotNullValidationRule : AbstractChamiValidationRule
     {
+        public EnvironmentVariableNameNotNullValidationRule() : base(ValidationRuleTarget.Self)
+        {
+        }
+
         /// <summary>
         /// Validates that the Name property of an EntironmentVariableViewModel object is not null, empty, or only composed of whitespace characters.
         /// </summary>
@@ -28,6 +32,7 @@ namespace ChamiUI.BusinessLayer.Validators
                         ChamiUIStrings.EnvironmentVariableNameNotNullErrorMessage);
                 }
             }
+
             return System.Windows.Controls.ValidationResult.ValidResult;
         }
     }

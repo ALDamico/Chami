@@ -8,8 +8,12 @@ namespace ChamiUI.BusinessLayer.Validators
     /// <summary>
     /// Validates that an environment variable name doesn't start with a number.
     /// </summary>
-    public class EnvironmentVariableNameNoNumberFirstCharacterValidationRule : ValidationRule
+    public class EnvironmentVariableNameNoNumberFirstCharacterValidationRule : AbstractChamiValidationRule
     {
+        public EnvironmentVariableNameNoNumberFirstCharacterValidationRule():base(ValidationRuleTarget.Self)
+        {
+            
+        }
         /// <summary>
         /// Validates that an environment variable name doesn't start with a number.
         /// </summary>

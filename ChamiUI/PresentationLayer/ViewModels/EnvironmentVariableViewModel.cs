@@ -1,18 +1,30 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Globalization;
 using System.Windows.Controls;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Validators;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     /// <summary>
     /// Viewmodel that represents a <see cref="EnvironmentVariable"/> in the Chami application.
     /// </summary>
-    public class EnvironmentVariableViewModel : ViewModelBase, ICloneable<EnvironmentVariableViewModel>
+    public class EnvironmentVariableViewModel : AbstractValidatableViewModel, ICloneable<EnvironmentVariableViewModel>
     {
+        static EnvironmentVariableViewModel()
+        {
+            AddValidationRule(typeof(EnvironmentVariableViewModel).GetProperty(nameof(Name)), new EnvironmentVariableNameValidCharactersValidationRule());
+            AddValidationRule(typeof(EnvironmentVariableViewModel).GetProperty(nameof(Name)), new EnvironmentVariableNameLengthValidationRule(){MaxLength = 2047});
+            AddValidationRule(typeof(EnvironmentVariableViewModel).GetProperty(nameof(Name)), new EnvironmentVariableNameNoNumberFirstCharacterValidationRule());
+        }
         public EnvironmentVariableViewModel()
         {
             _markedForDeletion = false;
             Value = "";
+            
+           
         }
 
         private string _name;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Enums;
@@ -144,6 +145,24 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
         private void ImportDeselectAllButton_OnClick(object sender, RoutedEventArgs e)
         {
             _viewModel.DeselectAllEnvironments();
+        }
+
+        private void VariablesDatagrid_OnRowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+            var row = sender as DataGridRow;
+            if (row == null)
+            {
+                return;
+            }
+        }
+
+        private void VariablesDatagrid_OnCellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        {
+            var datagridCell = sender as DataGridCell;
+            if (datagridCell == null)
+            {
+                return;
+            }
         }
     }
 }

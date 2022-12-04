@@ -7,7 +7,7 @@ namespace ChamiUI.BusinessLayer.Validators
     /// <summary>
     /// Validates the name of an environment.
     /// </summary>
-    public class EnvironmentNameValidationRule : ValidationRule
+    public class EnvironmentNameValidationRule : AbstractChamiValidationRule
     {
         /// <summary>
         /// Validates the name of an environment.
@@ -26,6 +26,10 @@ namespace ChamiUI.BusinessLayer.Validators
 
             return new System.Windows.Controls.ValidationResult(false,
                 ChamiUIStrings.EnvironmentNameValidationErrorMessage);
+        }
+
+        public EnvironmentNameValidationRule() : base(ValidationRuleTarget.Self)
+        {
         }
     }
 }

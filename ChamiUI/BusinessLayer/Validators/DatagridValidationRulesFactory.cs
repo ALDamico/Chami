@@ -29,4 +29,20 @@ public static class DatagridValidationRulesFactory
 
         return validationRules;
     }
+
+    public static List<ValidationRule> GetDatagridValidationRulesLite()
+    {
+        var validationRules = new List<ValidationRule>();
+
+        validationRules.Add(new ExceptionValidationRule()
+            {ValidationStep = ValidationStep.UpdatedValue, ValidatesOnTargetUpdated = true});
+        validationRules.Add(new EnvironmentVariableNameValidCharactersValidationRule()
+            {ValidationStep = ValidationStep.UpdatedValue, ValidatesOnTargetUpdated = true});
+        validationRules.Add(new EnvironmentVariableNameLengthValidationRule()
+            {ValidationStep = ValidationStep.UpdatedValue, ValidatesOnTargetUpdated = true, MaxLength = 2047});
+        validationRules.Add(new EnvironmentVariableNameNoNumberFirstCharacterValidationRule()
+            {ValidationStep = ValidationStep.UpdatedValue, ValidatesOnTargetUpdated = true});
+
+        return validationRules;
+    }
 }

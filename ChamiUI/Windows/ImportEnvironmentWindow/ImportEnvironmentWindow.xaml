@@ -122,7 +122,10 @@
                   Grid.ColumnSpan="2"
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}"
-                  RowStyle="{StaticResource ErrorStyle}">
+                  RowStyle="{StaticResource ErrorStyle}"
+                  RowEditEnding="VariablesDatagrid_OnRowEditEnding"
+                  CellEditEnding="VariablesDatagrid_OnCellEditEnding"
+                  >
            
 
             <DataGrid.Columns>

@@ -11,8 +11,12 @@ namespace ChamiUI.BusinessLayer.Validators
     /// Windows' default value of 2047.
     /// https://devblogs.microsoft.com/oldnewthing/20100203-00/?p=15083
     /// </summary>
-    public class EnvironmentVariableNameLengthValidationRule:ValidationRule
+    public class EnvironmentVariableNameLengthValidationRule:AbstractChamiValidationRule
     {
+        public EnvironmentVariableNameLengthValidationRule():base(ValidationRuleTarget.Self)
+        {
+            
+        }
         public int MaxLength { get; set; }
         public override System.Windows.Controls.ValidationResult Validate(object value, CultureInfo cultureInfo)
         {

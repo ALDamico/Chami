@@ -25,9 +25,8 @@ namespace ChamiUI.BusinessLayer.Converters
             var variableConverter = new EnvironmentVariableConverter();
             foreach (var variable in model.EnvironmentVariables)
             {
-                var variableEntityValidator = new EnvironmentVariableValidator();
-                var isValid = variableEntityValidator.Validate(variable);
-                if (isValid.IsValid)
+                var isValid = variable.Validate();
+                if (isValid.TrueForAll(v => v.IsValid))
                 {
                     var convertedVariable = variableConverter.From(variable);
                     environment.EnvironmentVariables.Add(convertedVariable);
