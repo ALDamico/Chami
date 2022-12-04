@@ -12,11 +12,13 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exceptions;
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
@@ -845,7 +847,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                                 {
                                     var existingVariable = variableLookup[variable.Name].FirstOrDefault();
 
-                                    if (existingVariable?.Value == variable.Name)
+                                    if (existingVariable?.Value == variable.Value)
                                     {
                                         variable.IsDuplicate = true;
                                     }

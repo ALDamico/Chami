@@ -108,7 +108,7 @@
                  Style="{StaticResource TextBoxInError}"
                  x:Name="EnvironmentNameTextbox">
             <TextBox.Text>
-                <Binding Path="SelectedEnvironmentName" UpdateSourceTrigger="PropertyChanged">
+                <Binding Path="SelectedEnvironment.Name" UpdateSourceTrigger="PropertyChanged">
                     <Binding.ValidationRules>
                         <validators:EnvironmentNameValidationRule />
                     </Binding.ValidationRules>

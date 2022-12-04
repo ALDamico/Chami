@@ -543,19 +543,7 @@
                                     Value="{Binding RelativeSource={RelativeSource Self}, Path=Content.Text}" />
                         </Style>
                     </DataGrid.CellStyle>
-                    <DataGrid.RowValidationRules>
-                        <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue"
-                            ValidatesOnTargetUpdated="True" />
-                        <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue"
-                            ValidatesOnTargetUpdated="True" />
-                        <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047"
-                            ValidationStep="UpdatedValue" ValidatesOnTargetUpdated="True" />
-                        <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule
-                            ValidationStep="UpdatedValue" ValidatesOnTargetUpdated="True" />
-                        <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
-                            ValidatesOnTargetUpdated="True"
-                            EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
-                    </DataGrid.RowValidationRules>
+                    
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="2*"
                                             Binding="{Binding Name, NotifyOnValidationError=True, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"

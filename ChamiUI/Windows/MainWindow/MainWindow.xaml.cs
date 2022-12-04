@@ -21,6 +21,7 @@ using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using Serilog;
@@ -50,6 +51,12 @@ namespace ChamiUI.Windows.MainWindow
             if (collectionViewSource != null)
             {
                 collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
+            }
+
+            var validationRules = DatagridValidationRulesFactory.GetDatagridValidationRules(collectionViewSource);
+            foreach (var validationRule in validationRules)
+            {
+                CurrentEnvironmentVariablesDataGrid.RowValidationRules.Add(validationRule);
             }
         }
 
