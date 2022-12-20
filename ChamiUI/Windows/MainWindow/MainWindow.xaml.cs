@@ -298,25 +298,29 @@ namespace ChamiUI.Windows.MainWindow
         {
             if (e.Key == Key.Delete)
             {
+                if (ViewModel.SelectedVariable.ChangeInProgress)
+                {
+                    return;
+                }
                 if (!ViewModel.StateManager.CurrentState.EditingEnabled)
                 {
                     return;
                 }
 
-                foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedCells)
+                foreach (EnvironmentVariableViewModel row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
                 {
-                    DeleteVariableInner(row.Item);
+                    ToggleDeletionInner(row);
 
                     e.Handled = true;
                 }
             }
         }
 
-        private void DeleteVariableInner(object row)
+        private void ToggleDeletionInner(object row)
         {
             if (row is EnvironmentVariableViewModel environmentVariableViewModel)
             {
-                ViewModel.DeleteVariable(environmentVariableViewModel);
+                ViewModel.ToggleVariableDeletion(environmentVariableViewModel);
             }
         }
 
@@ -660,7 +664,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             foreach (var row in CurrentEnvironmentVariablesDataGrid.SelectedItems)
             {
-                DeleteVariableInner(row);
+                ToggleDeletionInner(row);
 
                 e.Handled = true;
             }

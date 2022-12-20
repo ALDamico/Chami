@@ -685,6 +685,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             variableViewModel.MarkForDeletion();
         }
 
+        public void ToggleVariableDeletion(EnvironmentVariableViewModel variableViewModel)
+        {
+            variableViewModel.MarkedForDeletion = !variableViewModel.MarkedForDeletion;
+        }
+
         /// <summary>
         /// Removes all Chami environment variables from the current environment.
         /// </summary>

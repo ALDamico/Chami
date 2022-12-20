@@ -7,7 +7,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// <summary>
     /// Viewmodel that represents a <see cref="EnvironmentVariable"/> in the Chami application.
     /// </summary>
-    public class EnvironmentVariableViewModel : ViewModelBase, ICloneable<EnvironmentVariableViewModel>
+    public class EnvironmentVariableViewModel : EditableViewModelBase, ICloneable<EnvironmentVariableViewModel>
     {
         public EnvironmentVariableViewModel()
         {
