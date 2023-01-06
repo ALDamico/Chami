@@ -62,7 +62,7 @@ public partial class IconButton : UserControl
     public static readonly DependencyProperty IconProperty =
         DependencyProperty.Register(name: "Icon", typeof(PackIconFontAwesomeKind), typeof(IconButton), new PropertyMetadata(default(PackIconFontAwesomeKind), OnIconPropertyChanged));
 
-    public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("Command",
+    public static readonly DependencyProperty CommandProperty = DependencyProperty.Register("CommandName",
         typeof(IAsyncCommand), typeof(IconButton), new PropertyMetadata(null, OnCommandChanged));
 
     private static void OnCommandChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -148,5 +148,8 @@ public partial class IconButton : UserControl
         IconElement.Foreground = IconColor;
     }
 
-    
+    public SolidColorBrush GetActualForegroundColor()
+    {
+        return (SolidColorBrush) GetValue(IconColorProperty);
+    }
 }

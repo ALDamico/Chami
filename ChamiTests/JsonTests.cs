@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using ChamiUI.BusinessLayer;
 using System.IO;
+using System.Windows.Media;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
@@ -50,6 +51,33 @@ namespace ChamiTests
                 Assert.NotNull(readDocument.Name);
                 Assert.NotEmpty(readDocument.Name);
             }
+        }
+
+        [Fact]
+        public void TestBrushSerialization()
+        {
+            var brush = Brushes.Blue;
+            var converters = new List<JsonConverter<Brush>>();
+            converters.Add(new BrushJsonConverter());
+            var converted =
+                JsonConvert.SerializeObject((Brush)brush, Formatting.None, converters.ToArray());
+            
+            Assert.NotNull(converted);
+            Assert.Equal("#FF0000FF", converted);
+        }
+
+        [Fact]
+        public void TestBrushDeserialization()
+        {
+            var toolbarButtonViewModel = new ToolbarButtonViewModel();
+            toolbarButtonViewModel.ForegroundColor = Brushes.Blue;
+
+            var toolbarViewModel = new ToolBarViewModel();
+            toolbarViewModel.ToolbarButtonViewModels.Add(toolbarButtonViewModel);
+
+            var json = JsonConvert.SerializeObject(toolbarViewModel, Formatting.None,
+                new[] { new BrushJsonConverter() });
+            Assert.NotNull(json);
         }
     }
 }
