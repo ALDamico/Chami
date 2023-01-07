@@ -10,6 +10,7 @@ using System.Windows.Controls;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
+using ChamiUI.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -54,6 +55,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public void SaveSettings()
         {
+            AppUtils.GetChamiApp().SetApplicationLogLevel(Settings.LoggingSettings.MinimumLogLevel);
             _dataAdapter.SaveSettings(Settings);
             var savedVariables = _dataAdapter.SaveBlacklistedVariableListAsync(Settings.SafeVariableSettings.ForbiddenVariables).GetAwaiter()
                 .GetResult();

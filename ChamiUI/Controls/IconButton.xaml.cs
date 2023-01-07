@@ -76,7 +76,7 @@ public partial class IconButton : UserControl
     private void OnCommandChanged(DependencyPropertyChangedEventArgs e)
     {
         var command = (IAsyncCommand) e.NewValue;
-        this.ClickCommand = command;
+        ClickCommand = command;
         ButtonElement.Command = command;
     }
 

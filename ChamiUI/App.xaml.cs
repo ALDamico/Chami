@@ -48,7 +48,6 @@ namespace ChamiUI
         public App()
         {
             _serviceProvider = CreateServices();
-
             InitializeComponent();
             DispatcherUnhandledException += ShowExceptionMessageBox;
             try
@@ -68,19 +67,21 @@ namespace ChamiUI
             var chamiLogger = new ChamiLogger();
             chamiLogger.AddFileSink(AppUtils.GetLogFilePath());
 
+            var minimumLogLevel = LogEventLevel.Verbose;
             if (readSettings)
             {
                 var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
                 var loggingSettings = settings.LoggingSettings;
-
-                var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
-                if (loggingSettings.LoggingEnabled)
+                if (!loggingSettings.LoggingEnabled)
                 {
                     minimumLogLevel = LogEventLevel.Fatal;
                 }
-
-                chamiLogger.SetMinumumLevel(minimumLogLevel);
+                else
+                {
+                    minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;    
+                }
             }
+            chamiLogger.SetMinumumLevel(minimumLogLevel);
 
             return chamiLogger;
         }
@@ -144,6 +145,7 @@ namespace ChamiUI
             Log.Logger = chamiLogger.GetLogger();
             var serviceCollection = new ServiceCollection()
                 .ConfigureFluentMigrator(GetConnectionString(), new []{typeof(IApplicationMigration)})
+                .AddSingleton<ChamiLogger>(chamiLogger)
                 .AddLogging(l => l.AddSerilog())
                 .AddSingleton<MainWindow>()
                 .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
@@ -229,6 +231,7 @@ namespace ChamiUI
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
+            SetApplicationLogLevel(Settings.LoggingSettings.MinimumLogLevel);
             InitLocalization();
             InitCmdExecutorMessages();
             DetectOtherInstance();
@@ -256,6 +259,11 @@ namespace ChamiUI
             {
                 ExecuteHealthCheck();
             }
+        }
+
+        internal void SetApplicationLogLevel(LogEventLevel minimumLogLevel)
+        {
+            _serviceProvider.GetRequiredService<ChamiLogger>().SetMinumumLevel(minimumLogLevel);
         }
 
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs e)

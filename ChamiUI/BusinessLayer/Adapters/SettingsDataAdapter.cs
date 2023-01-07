@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.Utils;
+using Serilog;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
@@ -61,9 +63,11 @@ namespace ChamiUI.BusinessLayer.Adapters
             var viewModel = new SettingsViewModel();
             foreach (var setting in settings)
             {
+                Log.Logger.Debug("Processing setting {SettingName}", setting.SettingName);
                 var pInfo = viewModel.GetType().GetProperty(setting.PropertyName);
                 if (pInfo == null)
                 {
+                    Log.Logger.Fatal("The requested property was not found in type {ViewModelType}", viewModel.GetType());
                     throw new InvalidDataException(
                         $"The requested property was not found in type {viewModel.GetType()}");
                 }
@@ -71,6 +75,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var settingPInfo = pInfo.PropertyType.GetProperty(setting.SettingName);
                 if (settingPInfo == null)
                 {
+                    Log.Logger.Fatal("The requested property was not found in object {PropertyName}", pInfo.Name);
                     throw new InvalidDataException($"The requested property was not found in object {pInfo.Name}");
                 }
 
@@ -132,10 +137,12 @@ namespace ChamiUI.BusinessLayer.Adapters
             object propertyValue = null;
             try
             {
+                Log.Logger.Debug("Attempting to convert via unboxing");
                 propertyValue = GetBoxedConvertedObject(targetTypeName, setting.Value);
             }
             catch (InvalidCastException)
             {
+                Log.Logger.Debug("Unboxing conversion unsuccessful. Attempting to instantiate by constructor");
                 var assemblyName = setting.AssemblyName;
                 try
                 {
@@ -148,10 +155,12 @@ namespace ChamiUI.BusinessLayer.Adapters
                 }
                 catch (MissingMethodException)
                 {
+                    Log.Logger.Debug("Instantiation via constructor failed. Attempting to instantiate by converter");
                     propertyValue = ConvertViaUnwrapping(setting);
                 }
                 catch (TypeLoadException)
                 {
+                    Log.Logger.Debug("Instantiation via constructor failed. Attempting to instantiate by converter");
                     propertyValue = ConvertViaUnwrapping(setting);
                 }
             }
@@ -179,7 +188,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                Log.Logger.Error(ex, "Unexpected exception while trying to convert via Converter class");
             }
 
             return null;
