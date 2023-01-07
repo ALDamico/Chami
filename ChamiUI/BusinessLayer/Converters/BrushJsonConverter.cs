@@ -1,9 +1,6 @@
 using System;
-using System.Text.Json;
 using System.Windows.Media;
-using Chami.Db.Entities;
 using Newtonsoft.Json;
-using JsonSerializer = Newtonsoft.Json.JsonSerializer;
 
 namespace ChamiUI.BusinessLayer.Converters;
 

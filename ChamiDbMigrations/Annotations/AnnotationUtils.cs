@@ -32,5 +32,10 @@ namespace Chami.Db.Annotations
 
             throw new NotSupportedException($"The type {entityType.FullName} is not an IChamiEntity");
         }
+
+        public static string GetTableName<T>()
+        {
+            return GetTableName(typeof(T));
+        }
     }
 }

@@ -1182,7 +1182,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="BusinessLayer\Commands" />
+      <Folder Include="Configuration" />
     </ItemGroup>
 
 </Project>

@@ -11,7 +11,7 @@ namespace ChamiDbMigrations.Migrations
 
         public override void Down()
         {
-            Delete.Index("ix_name").OnTable("Environments").OnColumn("AddedOn");
+            Delete.Index("ix_date").OnTable("Environments").OnColumn("AddedOn");
         }
     }
 }

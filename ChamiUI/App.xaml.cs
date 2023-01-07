@@ -17,6 +17,7 @@ using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
 using Chami.CmdExecutor.Commands.Common;
+using Chami.Db.Migrations.Base;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
@@ -30,6 +31,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.Configuration;
 using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
@@ -141,10 +143,7 @@ namespace ChamiUI
             var chamiLogger = InitLogger();
             Log.Logger = chamiLogger.GetLogger();
             var serviceCollection = new ServiceCollection()
-                .AddFluentMigratorCore()
-                .ConfigureRunner(r =>
-                    r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
-                        .Migrations())
+                .ConfigureFluentMigrator(GetConnectionString(), new []{typeof(IApplicationMigration)})
                 .AddLogging(l => l.AddSerilog())
                 .AddSingleton<MainWindow>()
                 .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))

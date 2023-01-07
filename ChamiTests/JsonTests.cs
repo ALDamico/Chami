@@ -25,11 +25,13 @@ namespace ChamiTests
             environmentVariable2.Value = "Passw0rd!";
             environment.EnvironmentVariables.Add(environmentVariable);
             environment.EnvironmentVariables.Add(environmentVariable2);
-            var json = JsonConvert.SerializeObject(environment, Formatting.Indented, new EnvironmentViewModelJsonConverter());
+            var json = JsonConvert.SerializeObject(environment, Formatting.Indented,
+                new EnvironmentViewModelJsonConverter());
             File.WriteAllText(outputFile, json);
             FileInfo fileInfo = new FileInfo(outputFile);
             Assert.Equal(124, fileInfo.Length);
         }
+
         [Fact]
         public void TestReading()
         {
@@ -45,7 +47,8 @@ namespace ChamiTests
         {
             var inputFile = "D:/code/Chami/ChamiTests/InputFiles/chami-sample-multiple.json";
             var environmentJsonReader = new EnvironmentJsonReader(inputFile);
-            List<EnvironmentViewModel> readDocuments = environmentJsonReader.ProcessMultiple() as List<EnvironmentViewModel>;
+            List<EnvironmentViewModel> readDocuments =
+                environmentJsonReader.ProcessMultiple() as List<EnvironmentViewModel>;
             foreach (var readDocument in readDocuments)
             {
                 Assert.NotNull(readDocument.Name);
@@ -57,13 +60,10 @@ namespace ChamiTests
         public void TestBrushSerialization()
         {
             var brush = Brushes.Blue;
-            var converters = new List<JsonConverter<Brush>>();
-            converters.Add(new BrushJsonConverter());
-            var converted =
-                JsonConvert.SerializeObject((Brush)brush, Formatting.None, converters.ToArray());
-            
+            var converted = JsonConvert.SerializeObject(brush, Formatting.None, new BrushJsonConverter());
+
             Assert.NotNull(converted);
-            Assert.Equal("#FF0000FF", converted);
+            Assert.Equal("\"#FF0000FF\"", converted);
         }
 
         [Fact]
@@ -73,10 +73,12 @@ namespace ChamiTests
             toolbarButtonViewModel.ForegroundColor = Brushes.Blue;
 
             var toolbarViewModel = new ToolBarViewModel();
-            toolbarViewModel.ToolbarButtonViewModels.Add(toolbarButtonViewModel);
+            var buttons = new List<ToolbarButtonViewModel>();
+            buttons.Add(toolbarButtonViewModel);
+            
+            toolbarViewModel.ToolbarButtonViewModels.Add(buttons);
 
-            var json = JsonConvert.SerializeObject(toolbarViewModel, Formatting.None,
-                new[] { new BrushJsonConverter() });
+            var json = JsonConvert.SerializeObject(toolbarViewModel, Formatting.None, new BrushJsonConverter());
             Assert.NotNull(json);
         }
     }
