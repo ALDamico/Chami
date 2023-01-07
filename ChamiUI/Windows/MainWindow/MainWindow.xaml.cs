@@ -365,7 +365,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void RenameEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = ViewModel.StateManager.CurrentState.EditingEnabled && ViewModel.SelectedEnvironment != null;
+            e.CanExecute = ViewModel.StateManager.CurrentState.IsEditable && ViewModel.SelectedEnvironment != null;
         }
 
         private async void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs args)
