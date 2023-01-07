@@ -4,6 +4,7 @@ using Chami.Db.Entities;
 using Chami.Db.Migrations.Base;
 using Chami.Db.Repositories;
 using ChamiDbMigrations.Migrations;
+using ChamiTests.Fixtures;
 using ChamiUI.Configuration;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
@@ -12,23 +13,19 @@ using Environment = Chami.Db.Entities.Environment;
 
 namespace ChamiTests
 {
-    public class DbTests
+    public class DbTests : IClassFixture<DatabaseMigratorFixture>
     {
-        public DbTests()
+        public DbTests(DatabaseMigratorFixture databaseMigratorFixture)
         {
-            ServiceProvider serviceProvider = new ServiceCollection().ConfigureFluentMigrator(connectionString, typeof(ITestMigration)).BuildServiceProvider();
-
-            _migrationRunner = serviceProvider.GetRequiredService<IMigrationRunner>();
-            _migrationRunner.MigrateDown(0);
-            _migrationRunner.MigrateUp();
-
+            _databaseMigratorFixture = databaseMigratorFixture;
         }
+
+        private readonly DatabaseMigratorFixture _databaseMigratorFixture;
         private const string connectionString = "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
-        private readonly IMigrationRunner _migrationRunner;
         [Fact]
         public void GetNotExistingEnvironment()
         {
-            var repository = new EnvironmentRepository(connectionString);
+            var repository = _databaseMigratorFixture.EnvironmentRepository;
             var shouldBeNull = repository.GetEnvironmentById(-1);
             Assert.Null(shouldBeNull);
         }
@@ -36,7 +33,7 @@ namespace ChamiTests
         [Fact]
         public void InsertTest()
         {
-            var repository = new EnvironmentRepository(connectionString);
+            var repository = _databaseMigratorFixture.EnvironmentRepository;
             var env = repository.GetEnvironmentByName("Example");
             if (env != null)
             {
@@ -62,7 +59,6 @@ namespace ChamiTests
         public void GetExistingEnvironment()
         {
             var repository = new EnvironmentRepository(connectionString);
-            var environments = repository.GetEnvironments();
             var environment = repository.GetEnvironmentById(1);
             Assert.NotNull(environment);
             Assert.NotEmpty(environment.EnvironmentVariables);

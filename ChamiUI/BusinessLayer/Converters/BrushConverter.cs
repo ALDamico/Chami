@@ -18,13 +18,13 @@ namespace ChamiUI.BusinessLayer.Converters
         {
             if (entity.Type == "System.Windows.Media.SolidColorBrush")
             {
-                return Convert(entity.Value);
+                return ConvertString(entity.Value);
             }
 
             return null;
         }
 
-        public Brush Convert(string value)
+        public Brush ConvertString(string value)
         {
             // Converting a SolidColorBrush to string creates a string 9 characters long.
             // The first two characters are the alpha channel, which we aren't using.

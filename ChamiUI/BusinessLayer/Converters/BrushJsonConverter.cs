@@ -18,6 +18,6 @@ public class BrushJsonConverter : JsonConverter<Brush>
         JsonSerializer serializer)
     {
         var value = reader.Value;
-        return _brushConverter.Convert(value.ToString());
+        return _brushConverter.ConvertString(value.ToString());
     }
 }

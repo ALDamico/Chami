@@ -4,17 +4,23 @@ using System.Linq;
 using System.Windows.Media;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
+using ChamiTests.Fixtures;
 using Xunit;
 
 namespace ChamiTests
 {
-    public class BusinessTests
+    public class BusinessTests : IClassFixture<DatabaseMigratorFixture>
     {
+        public BusinessTests(DatabaseMigratorFixture databaseMigratorFixture)
+        {
+            _databaseMigratorFixture = databaseMigratorFixture;
+        }
         private static string connectionString = "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
+        private DatabaseMigratorFixture _databaseMigratorFixture;
         [Fact]
         public void TestEnvironmentDataAdapterInstantiation()
         {
-            var dataAdapter = new EnvironmentDataAdapter(connectionString);
+            var dataAdapter = _databaseMigratorFixture.EnvironmentDataAdapter;
             var environments = dataAdapter.GetEnvironments();
             Assert.NotNull(dataAdapter);
             Assert.NotNull(environments);
@@ -23,7 +29,7 @@ namespace ChamiTests
         [Fact]
         public void TestRealSettings()
         {
-            var dataAdapter = new SettingsDataAdapter(connectionString);
+            var dataAdapter = _databaseMigratorFixture.SettingsDataAdapter;
             var viewModel = dataAdapter.GetSettings();
             Assert.NotNull(viewModel);
             Assert.Equal(12.0, viewModel.ConsoleAppearanceSettings.FontSize);
@@ -47,7 +53,7 @@ namespace ChamiTests
                     PropertyName = "LoggingSettings"
                 }
             };
-            var dataAdapter = new SettingsDataAdapter(connectionString);
+            var dataAdapter = _databaseMigratorFixture.SettingsDataAdapter;
             var viewModel = dataAdapter.ToViewModel(settings);
             Assert.NotNull(viewModel);
             Assert.True(viewModel.LoggingSettings.LoggingEnabled);
@@ -56,7 +62,7 @@ namespace ChamiTests
         [Fact]
         public void TestBackup()
         {
-            var environmentRepository = new EnvironmentRepository(connectionString);
+            var environmentRepository = _databaseMigratorFixture.EnvironmentRepository;
             EnvironmentBackupper.Backup(environmentRepository);
 
             var backedUpEnvironment = environmentRepository.GetBackupEnvironments().FirstOrDefault();
