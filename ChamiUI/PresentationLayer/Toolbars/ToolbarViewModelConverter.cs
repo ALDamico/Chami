@@ -55,6 +55,10 @@ public class ToolbarViewModelConverter
             button.ToolTip = actualToolTip;
             button.Icon = buttonViewModel.Icon;
             button.IconColor = buttonViewModel.ForegroundColor;
+            button.IconPosition = buttonViewModel.Dock;
+            button.MaxHeight = buttonViewModel.MaxHeight;
+            button.MaxWidth = buttonViewModel.MaxWidth;
+            
 
             if (buttonViewModel.CommandName != null)
             {

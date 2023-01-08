@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media;
 using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
@@ -146,7 +147,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var fileToolbar = new ToolBarViewModel();
             fileToolbar.Name = "File";
             fileToolbar.IsVisible = true;
-            fileToolbar.ToolbarButtonViewModels.Add(new ToolbarButtonViewModel(){Caption = nameof(ChamiUIStrings.NewEnvironmentMenuItem_Header), Icon = PackIconFontAwesomeKind.PlusSolid, ForegroundColor = Brushes.Green});
+            fileToolbar.ToolbarButtonViewModels.Add(new ToolbarButtonViewModel(){Caption = nameof(ChamiUIStrings.NewEnvironmentMenuItem_Header), Icon = PackIconFontAwesomeKind.PlusSolid, ForegroundColor = Brushes.Green, Dock = Dock.Top, MaxHeight = 80, MaxWidth = 80});
             ToolbarManager.AddToolBar(fileToolbar);
         }
 

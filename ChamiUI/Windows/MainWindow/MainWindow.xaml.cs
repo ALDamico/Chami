@@ -44,12 +44,23 @@ namespace ChamiUI.Windows.MainWindow
 
             DataContext = ViewModel;
             InitializeComponent();
-            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
-            if (collectionViewSource != null)
-            {
-                collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
-            }
+            ShareViewModelAndResourcesWithChildControl(MainWindowFilterControl, ViewModel, Resources);
+            
             InitToolbars();
+        }
+
+        private void ShareViewModelAndResourcesWithChildControl(Control control, object dataContext = null,
+            ResourceDictionary resourceDictionary = null)
+        {
+            if (dataContext != null)
+            {
+                control.DataContext = dataContext;
+            }
+
+            if (resourceDictionary != null)
+            {
+                control.Resources = resourceDictionary;
+            }
         }
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
@@ -271,27 +282,9 @@ namespace ChamiUI.Windows.MainWindow
             Left = settings.XPosition;
             WindowState = settings.WindowState;
             Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
-            var sortDescription = ViewModel.Settings.MainWindowBehaviourSettings.SortDescription;
-            collectionViewSource.SortDescriptions.Add(sortDescription);
-            switch (sortDescription.PropertyName)
-            {
-                default:
-                    SortByIdRadioButton.IsChecked = true;
-                    break;
-                case "Name":
-                    SortByNameRadioButton.IsChecked = true;
-                    break;
-                case "AddedOn":
-                    SortByDateAddedRadioButton.IsChecked = true;
-                    break;
-            }
+            
 
-            if (sortDescription.PropertyName == "Id")
-            {
-                SortByIdRadioButton.IsChecked = true;
-            }
-
-            ViewModel.IsDescendingSorting = sortDescription.Direction == ListSortDirection.Descending;
+            
             ViewModel.FilterStrategy = ViewModel.FilterStrategies.FirstOrDefault(fs =>
                 fs.GetType().FullName == settings.SearchPath.GetType().FullName);
         }
@@ -398,132 +391,11 @@ namespace ChamiUI.Windows.MainWindow
         {
             e.CanExecute = ViewModel.StateManager.CurrentState.EditingEnabled;
         }
-
-        private void FocusFilterTextboxCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            FilterTextbox.Focus();
-        }
-
-        private void ChangeSorting(SortDescription sortDescription)
-        {
-            if (Resources["EnvironmentsViewSource"] is CollectionViewSource collectionViewSource)
-            {
-                collectionViewSource.SortDescriptions.Clear();
-                collectionViewSource.SortDescriptions.Add(sortDescription);
-                collectionViewSource.View.Refresh();
-            }
-        }
-
-        private void SortByNameMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            SortByNameRadioButton.IsChecked = true;
-            if (ViewModel.IsDescendingSorting)
-            {
-                ChangeSorting(SortDescriptionUtils.SortByNameDescending);
-                return;
-            }
-
-            ChangeSorting(SortDescriptionUtils.SortByNameAscending);
-        }
-
-        private void SortByIdMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            SortByIdRadioButton.IsChecked = true;
-            if (ViewModel.IsDescendingSorting)
-            {
-                ChangeSorting(SortDescriptionUtils.SortByIdDescending);
-                return;
-            }
-
-            ChangeSorting(SortDescriptionUtils.SortByIdAscending);
-        }
-
-        private void SortDescendingMenuItem_OnChecked(object sender, RoutedEventArgs e)
-        {
-            if (sender is MenuItem)
-            {
-                return;
-            }
-
-            ToggleSortDirection();
-        }
-
-        private void ToggleSortDirection()
-        {
-            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
-            if (collectionViewSource != null)
-            {
-                var sortDescription = SortDescriptionUtils.GetOppositeSorting(collectionViewSource.SortDescriptions[0]);
-                ChangeSorting(sortDescription);
-            }
-        }
-
-        private void SortByDateMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            SortByDateAddedRadioButton.IsChecked = true;
-            if (ViewModel.IsDescendingSorting)
-            {
-                ChangeSorting(SortDescriptionUtils.SortByDateAddedDescending);
-                return;
-            }
-
-            ChangeSorting(SortDescriptionUtils.SortByDateAddedAscending);
-        }
-
-        private void SortDescendingMenuItem_OnUnchecked(object sender, RoutedEventArgs e)
-        {
-            if (sender is MenuItem)
-            {
-                return;
-            }
-
-            ToggleSortDirection();
-        }
+       
 
         private void EnvironmentsViewSource_OnFilter(object sender, FilterEventArgs e)
         {
             ViewModel.FilterStrategy.OnFilter(sender, e);
-        }
-
-        private void FilterTextbox_OnTextChanged(object sender, TextChangedEventArgs e)
-        {
-            SubscribeToFilterEvent("EnvironmentsViewSource");
-            SubscribeToFilterEvent("BackupEnvironmentsViewSource");
-        }
-
-        private void SubscribeToFilterEvent(string viewSourceName)
-        {
-            Resources.TryGetCollectionViewSource(viewSourceName, out var collectionViewSource);
-            if (collectionViewSource != null)
-            {
-                collectionViewSource.Filter += ViewModel.FilterStrategy.OnFilter;
-            }
-        }
-
-        private void ClearFilterButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            ViewModel.FilterText = null;
-        }
-
-        private void CaseSensitivityCheckBox_OnChecked(object sender, RoutedEventArgs e)
-        {
-            RefreshEnvironmentViewSource();
-        }
-
-        private void RefreshEnvironmentViewSource()
-        {
-            Resources.TryGetCollectionViewSource("EnvironmentsViewSource", out var collectionViewSource);
-            if (collectionViewSource != null)
-            {
-                collectionViewSource.View.Refresh();
-            }
-        }
-
-        private void FilterStrategySelector_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var newStrategy = e.AddedItems[0] as IFilterStrategy;
-            ViewModel.ChangeFilterStrategy(newStrategy);
-            RefreshEnvironmentViewSource();
         }
 
         private void MainWindow_OnDrop(object sender, DragEventArgs e)
@@ -808,6 +680,36 @@ namespace ChamiUI.Windows.MainWindow
         private void DecreaseFontSizeCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             ViewModel.DecreaseFontSize();
+        }
+
+        private void SortByDateMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindowFilterControl.SortByDateMenuItem_OnClick(sender, e);
+        }
+
+        private void SortByIdMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindowFilterControl.SortByIdMenuItem_OnClick(sender, e);
+        }
+
+        private void FocusFilterTextboxCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
+        {
+            MainWindowFilterControl.FocusFilterTextboxCommandBinding_OnExecuted(sender, e);
+        }
+
+        private void SortDescendingMenuItem_OnChecked(object sender, RoutedEventArgs e)
+        {
+            MainWindowFilterControl.SortDescendingMenuItem_OnChecked(sender, e);
+        }
+
+        private void SortDescendingMenuItem_OnUnchecked(object sender, RoutedEventArgs e)
+        {
+            MainWindowFilterControl.SortDescendingMenuItem_OnUnchecked(sender, e);
+        }
+
+        private void SortByNameMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            MainWindowFilterControl.SortByNameMenuItem_OnClick(sender, e);
         }
     }
 }

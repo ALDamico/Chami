@@ -16,7 +16,7 @@
         <Button.Content>
             <DockPanel>
                 <iconPacks:PackIconFontAwesome x:Name="IconElement" HorizontalAlignment="Center"></iconPacks:PackIconFontAwesome>
-                <TextBlock x:Name="TextBlockElement"></TextBlock>
+                <TextBlock Margin="2" x:Name="TextBlockElement" TextAlignment="Center" TextWrapping="WrapWithOverflow"></TextBlock>
             </DockPanel>
         </Button.Content>
     </Button>

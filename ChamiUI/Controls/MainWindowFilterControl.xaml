@@ -1,0 +1,104 @@
+<UserControl x:Class="ChamiUI.Controls.MainWindowFilterControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:ChamiUI.Controls"
+             xmlns:lex="http://wpflocalizeextension.codeplex.com"
+             xmlns:svgc="http://sharpvectors.codeplex.com/svgc/"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d"
+             d:DesignHeight="300" d:DesignWidth="300">
+   
+    <StackPanel 
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal"
+                    VerticalAlignment="Top">
+            <Label Content="{lex:Loc}"
+                   x:Name="MainWindowFilterLabel" VerticalAlignment="Center" />
+            <svgc:SvgViewbox MaxHeight="16" Source="/ChamiUI;component/Assets/Svg/filter.svg" Margin="2, 0, 2, 0" />
+            <xctk:WatermarkTextBox MinWidth="120"
+                                   MaxWidth="120"
+                                   MaxHeight="24"
+                                   MaxLines="1"
+                                   VerticalContentAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   x:Name="FilterTextbox"
+                                   Watermark="{lex:Loc}"
+                                   TextChanged="FilterTextbox_OnTextChanged"
+                                   Text="{Binding FilterText, UpdateSourceTrigger=PropertyChanged}" />
+            <Button x:Name="ClearFilterButton"
+                    MaxHeight="24" Width="24"
+                    IsEnabled="{Binding IsClearFilterButtonEnabled}"
+                    Click="ClearFilterButton_OnClick"
+                    ToolTip="{lex:Loc}">
+                <svgc:SvgViewbox Source="{Binding ClearFilterTextButtonIcon}" />
+            </Button>
+            <Expander Header="{lex:Loc}"
+                      x:Name="AdvancedSortAndFilterOptionsExpander"
+                      ExpandDirection="Down"
+                      ToolTip="{lex:Loc}">
+                <StackPanel Orientation="Horizontal">
+                    <GroupBox Header="{lex:Loc}" x:Name="SortingGroupBox">
+                        <StackPanel>
+                            <RadioButton Content="{lex:Loc}" x:Name="SortByIdRadioButton"
+                                         Checked="SortByIdMenuItem_OnClick" />
+                            <RadioButton Content="{lex:Loc}" x:Name="SortByNameRadioButton"
+                                         Checked="SortByNameMenuItem_OnClick" />
+                            <RadioButton Content="{lex:Loc}" x:Name="SortByDateAddedRadioButton"
+                                         Checked="SortByDateMenuItem_OnClick" />
+                            <CheckBox Content="{lex:Loc}"
+                                      x:Name="DescendingSortingCheckBox"
+                                      IsChecked="{Binding IsDescendingSorting}"
+                                      Checked="SortDescendingMenuItem_OnChecked"
+                                      Unchecked="SortDescendingMenuItem_OnUnchecked" />
+                        </StackPanel>
+
+                    </GroupBox>
+                    <GroupBox Header="{lex:Loc}" x:Name="FilteringAdvancedOptionsGroupBox">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label Grid.Row="0" Grid.Column="0" x:Name="FilteringStrategyLabel" Content="{lex:Loc}" />
+                            <svgc:SvgViewbox MaxHeight="16" MaxWidth="16" Grid.Row="1" Grid.Column="0"
+                                            ToolTip="{lex:Loc}" x:Name="FilteringCaseSensitivityIcon"
+                                            Source="/ChamiUI;component/Assets/Svg/font.svg" />
+
+                            <!-- <Label Grid.Row="1" Grid.Column="0" x:Name="FilteringCaseSensitivityLabel"
+                                   Content="{lex:Loc}" />-->
+                            <ComboBox Grid.Row="0"
+                                      Grid.Column="1"
+                                      ItemsSource="{Binding FilterStrategies}" SelectedItem="{Binding FilterStrategy}"
+                                      x:Name="FilterStrategySelector"
+                                      SelectionChanged="FilterStrategySelector_OnSelectionChanged"
+                                      Width="150"
+                                      MaxWidth="150"
+                                      ToolTip="{Binding FilterStrategyComboboxToolTip}">
+                                <ComboBox.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Name}"
+                                                   ToolTip="{Binding Name}" />
+                                    </DataTemplate>
+                                </ComboBox.ItemTemplate>
+                            </ComboBox>
+                            <CheckBox Grid.Row="1" Grid.Column="1"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
+                                      x:Name="CaseSensitivityCheckBox"
+                                      Checked="CaseSensitivityCheckBox_OnChecked"
+                                      Unchecked="CaseSensitivityCheckBox_OnChecked"
+                                      IsChecked="{Binding IsCaseSensitiveSearch}" />
+                        </Grid>
+                    </GroupBox>
+                </StackPanel>
+
+            </Expander>
+        </StackPanel>
+</UserControl>

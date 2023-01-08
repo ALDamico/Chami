@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Drawing;
+using System.Windows.Controls;
 using System.Windows.Media;
 using AsyncAwaitBestPractices.MVVM;
 using MahApps.Metro.IconPacks;
@@ -13,6 +14,39 @@ public class ToolbarButtonViewModel : ViewModelBase
     private string _toolTip;
     private string _commandNameName;
     private SolidColorBrush _foregroundColor;
+    private Dock _dock;
+    private double _maxWidth;
+    private double _maxHeight;
+
+    public double MaxHeight
+    {
+        get => _maxHeight;
+        set
+        {
+            _maxHeight = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public double MaxWidth
+    {
+        get => _maxWidth;
+        set
+        {
+            _maxWidth = value;
+            OnPropertyChanged();
+        }
+    }
+
+    public Dock Dock
+    {
+        get => _dock;
+        set
+        {
+            _dock = value;
+            OnPropertyChanged();
+        }
+    }
 
     public string Caption
     {
