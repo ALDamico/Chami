@@ -1183,4 +1183,10 @@ Most people don't need to change these.</value>
   <data name="OperationInProgressCantCloseWindowCaption" xml:space="preserve">
     <value>Can't close the window</value>
   </data>
+  <data name="ToolbarCategory" xml:space="preserve">
+    <value>Toolbars</value>
+  </data>
+  <data name="ToolbarCategoryDescription" xml:space="preserve">
+    <value>Manage the application's toolbars.</value>
+  </data>
 </root>

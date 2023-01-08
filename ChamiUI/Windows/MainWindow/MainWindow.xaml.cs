@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -25,7 +24,6 @@ using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
-using ChamiUI.Windows.Exceptions;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -51,6 +49,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 collectionViewSource.SortDescriptions.Add(SortDescriptionUtils.SortByIdAscending);
             }
+            InitToolbars();
         }
 
         private void OnEnvironmentExists(object sender, EnvironmentExistingEventArgs e)
@@ -59,6 +58,14 @@ namespace ChamiUI.Windows.MainWindow
             {
                 MessageBox.Show(ChamiUIStrings.ExistingEnvironmentMessageBoxText,
                     ChamiUIStrings.ExistingEnvironmentMessageBoxCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        private void InitToolbars()
+        {
+            foreach (var toolbar in ViewModel.ToolbarManager.ToolBars)
+            {
+                MainWindowToolbarTray.ToolBars.Add(toolbar);
             }
         }
 

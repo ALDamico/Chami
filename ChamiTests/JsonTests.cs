@@ -73,10 +73,7 @@ namespace ChamiTests
             toolbarButtonViewModel.ForegroundColor = Brushes.Blue;
 
             var toolbarViewModel = new ToolBarViewModel();
-            var buttons = new List<ToolbarButtonViewModel>();
-            buttons.Add(toolbarButtonViewModel);
-            
-            toolbarViewModel.ToolbarButtonViewModels.Add(buttons);
+            toolbarViewModel.ToolbarButtonViewModels.Add(toolbarButtonViewModel);
 
             var json = JsonConvert.SerializeObject(toolbarViewModel, Formatting.None, new BrushJsonConverter());
             Assert.NotNull(json);

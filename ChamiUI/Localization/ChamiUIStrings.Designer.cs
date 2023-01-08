@@ -3047,6 +3047,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Toolbars.
+        /// </summary>
+        public static string ToolbarCategory {
+            get {
+                return ResourceManager.GetString("ToolbarCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage the application&apos;s toolbars..
+        /// </summary>
+        public static string ToolbarCategoryDescription {
+            get {
+                return ResourceManager.GetString("ToolbarCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error!.
         /// </summary>
         public static string UnableToInsertEnvironmentMessageBoxCaption {

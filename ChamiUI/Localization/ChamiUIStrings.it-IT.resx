@@ -1176,4 +1176,10 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="OperationInProgressCantCloseWindowCaption" xml:space="preserve">
     <value>Impossibile chiudere la finestra</value>
   </data>
+  <data name="ToolbarCategory" xml:space="preserve">
+    <value>Barre degli strumenti</value>
+  </data>
+  <data name="ToolbarCategoryDescription" xml:space="preserve">
+    <value>Gestisci le barre degli strumenti dell'applicazione.</value>
+  </data>
 </root>

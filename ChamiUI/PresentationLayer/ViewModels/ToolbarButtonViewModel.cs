@@ -1,3 +1,5 @@
+using System.Drawing;
+using System.Drawing;
 using System.Windows.Media;
 using AsyncAwaitBestPractices.MVVM;
 using MahApps.Metro.IconPacks;

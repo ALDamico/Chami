@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
@@ -21,11 +22,13 @@ using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
+using ChamiUI.PresentationLayer.Toolbars;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Windows.MainWindow;
+using MahApps.Metro.IconPacks;
 using Serilog;
 using IShellCommand = Chami.CmdExecutor.IShellCommand;
 
@@ -121,6 +124,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _settingsDataAdapter = new SettingsDataAdapter(connectionString);
             _stateManager = new MainWindowStateManager();
             _stateManager.ChangeState(new MainWindowLoadingDataState()); 
+            InitToolbarManager();
             Environments = GetEnvironments();
             Backups = GetBackupEnvironments();
             Templates = GetTemplateEnvironments();
@@ -134,6 +138,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             _cancellationTokenSource = new CancellationTokenSource();
             StateManager.ChangeState(new MainWindowReadyState());
+        }
+
+        private void InitToolbarManager()
+        {
+            ToolbarManager = new ToolbarManager(CultureInfo.GetCultureInfoByIetfLanguageTag(Settings.LanguageSettings.CurrentLanguage.Code));
+            var fileToolbar = new ToolBarViewModel();
+            fileToolbar.Name = "File";
+            fileToolbar.IsVisible = true;
+            fileToolbar.ToolbarButtonViewModels.Add(new ToolbarButtonViewModel(){Caption = nameof(ChamiUIStrings.NewEnvironmentMenuItem_Header), Icon = PackIconFontAwesomeKind.PlusSolid, ForegroundColor = Brushes.Green});
+            ToolbarManager.AddToolBar(fileToolbar);
         }
 
         /// <summary>
@@ -1024,5 +1038,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _settingsDataAdapter.SaveFontSize(valueToSave);
             }
         }
+        
+        public ToolbarManager ToolbarManager { get; set; }
     }
 }
