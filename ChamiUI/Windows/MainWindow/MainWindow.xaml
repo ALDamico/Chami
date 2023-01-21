@@ -303,6 +303,8 @@
                           x:Name="BackupEnvironmentMenuItem"
                           Click="BackupEnvironmentMenuItem_OnClick" />
                 <Separator />
+                <MenuItem Header="Export localization info" x:Name="ExportLocalizationMenuItem" Click="ExportLocalizationMenuItem_OnClick"></MenuItem>
+                <Separator />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="SettingsMenuItem"
                           Click="SettingsMenuItem_OnClick">

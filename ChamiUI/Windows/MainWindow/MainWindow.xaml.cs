@@ -802,5 +802,10 @@ namespace ChamiUI.Windows.MainWindow
         {
             ViewModel.DecreaseFontSize();
         }
+
+        private void ExportLocalizationMenuItem_OnClick(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
