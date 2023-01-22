@@ -1,17 +1,11 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Net;
 using System.Reflection;
 using System.Resources;
 using System.Threading.Tasks;
-using ChamiUI.Localization;
 using Localization.Xliff.OM;
 using Localization.Xliff.OM.Core;
-using Localization.Xliff.OM.Modules.FormatStyle;
-using Localization.Xliff.OM.Modules.Metadata;
-using Localization.Xliff.OM.Modules.Validation;
 using Localization.Xliff.OM.Serialization;
 using File = System.IO.File;
 
@@ -19,21 +13,31 @@ namespace ChamiUI.BusinessLayer.Exporters;
 
 public class XliffLocalizationExporter : LocalizationExporterBase
 {
-    public string Filename { get; set; }
+    
 
-    public bool CanExport()
+    private string _fileId;
+    private string _unitId;
+
+    public string FileId
+    {
+        get => _fileId ?? Assembly.GetExecutingAssembly().GetName().Name;
+        set => _fileId = value;
+    }
+    
+    public string UnitId
+    {
+        get => _unitId ?? Assembly.GetExecutingAssembly().GetName().Name;
+        set => _unitId = value;
+    }
+
+    public override bool CanExport()
     {
         if (string.IsNullOrWhiteSpace(Filename))
         {
             return false;
         }
 
-        if (_sourceType == null)
-        {
-            return false;
-        }
-
-        return true;
+        return base.CanExport();
     }
 
     private void SetSegmentContent(ResourceManager resourceManager, Segment segment, string propertyName,
@@ -66,8 +70,8 @@ public class XliffLocalizationExporter : LocalizationExporterBase
         xliffDocument.TargetLanguage = TargetCulture.Name;
         var properties = GetLocalizableProperties();
         var resourceManager = GetResourceManagerFromSourceType();
-        var file = new global::Localization.Xliff.OM.Core.File("Chami.Localization");
-        var unit = new Unit("chamiLocalization");
+        var file = new global::Localization.Xliff.OM.Core.File(FileId);
+        var unit = new Unit(UnitId);
         file.Containers.Add(unit);
         
         xliffDocument.Files.Add(file);
@@ -75,7 +79,7 @@ public class XliffLocalizationExporter : LocalizationExporterBase
         {
             var segment = new Segment();
 
-            SetSegmentContent(resourceManager, segment, propertyName, CultureInfo.GetCultureInfoByIetfLanguageTag("en-US"));
+            SetSegmentContent(resourceManager, segment, propertyName, SourceCulture);
             SetSegmentContent(resourceManager, segment, propertyName, TargetCulture, true);
 
             unit.Resources.Add(segment);
