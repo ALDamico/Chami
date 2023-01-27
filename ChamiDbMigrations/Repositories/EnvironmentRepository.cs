@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Data;
+using System.Data.SQLite;
 using System.Linq;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
@@ -37,7 +38,7 @@ namespace Chami.Db.Repositories
                 LEFT JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
                 WHERE e.EnvironmentId = ?
  ";
-            using (var connection = await GetConnectionAsync())
+            using (var connection = GetConnection())
             {
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
@@ -365,6 +366,7 @@ namespace Chami.Db.Repositories
                 SELECT *
                 FROM Environments
                 LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
+                LEFT JOIN Categories ON Categories.Id = Environments.CategoryId
                 WHERE EnvironmentType = ?
 ";
             using (var connection = GetConnection())
@@ -373,6 +375,7 @@ namespace Chami.Db.Repositories
                 connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
                 {
                     Environment env;
+                    
 
                     if (!dict.TryGetValue(e.EnvironmentId, out env))
                     {
@@ -654,7 +657,116 @@ namespace Chami.Db.Repositories
             await connection.ExecuteAsync(sql, new {variableValue, variableName, environmentIds});
 
         }
+
+        public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
+        {
+            var query = @"
+                SELECT Id, Name, BackgroundColor, Icon, Visibility
+                FROM Categories
+";
+            using var connection = GetConnection();
+            return await connection.QueryAsync<Category>(query);
+        }
+
+        public IEnumerable<Category> GetAllCategories()
+        {
+            return GetAllCategoriesAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> InsertCategoryAsync(Category category)
+        {
+            if (category.Id != 0)
+            {
+                throw new InvalidOperationException("Entity already persisted");
+            }
+
+            var query = @"
+                INSERT INTO Categories(Name, BackgroundColor, Icon, Visibility)
+                VALUES (?, ?, ?, ?)
+";
+            using var connection = GetConnection();
+            var transaction = await connection.BeginTransactionAsync();
+            var inserted = await connection.ExecuteAsync(query, category, transaction);
+
+            if (inserted == 0)
+            {
+                await transaction.RollbackAsync();
+                throw new SQLiteException("Entity not persisted");
+            }
+
+            var rowId = connection.LastInsertRowId;
+            category.Id = (int)rowId;
+
+            await transaction.CommitAsync();
+            return category;
+        }
+
+        public Category InsertCategory(Category category)
+        {
+            return InsertCategoryAsync(category).GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> UpdateCategoryAsync(Category category)
+        {
+            if (category.Id == 0)
+            {
+                throw new InvalidOperationException("Entity not persisted");
+            }
+            var query = @"
+                UPDATE Categories
+                SET Name = ?,
+                    BackgroundColor = ?,
+                    Icon = ?,
+                    Visibility = ?
+                WHERE Id = ?
+            ";
+
+            using var connection = GetConnection();
+            var result = await connection.ExecuteAsync(query, category);
+
+            if (result == 0)
+            {
+                throw new InvalidOperationException("No rows affected");
+            }
+
+            return category;
+        }
+
+        public Category UpdateCategory(Category category)
+        {
+            return UpdateCategoryAsync(category).GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> UpsertCategoryAsync(Category category)
+        {
+            if (category.Id != 0)
+            {
+                return await UpdateCategoryAsync(category);
+            }
+
+            return await InsertCategoryAsync(category);
+        }
+
+        public Category UpsertCategory(Category category)
+        {
+            return UpdateCategoryAsync(category).GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> GetCategoryByIdAsync(int id)
+        {
+            var query = @"
+                SELECT Id, Name, BackgroundColor, Icon, Visibility
+                FROM Categories 
+                WHERE Id = ?
+";
+            using var connection = GetConnection();
+
+            return await connection.QuerySingleOrDefaultAsync<Category>(query, id);
+        }
+
+        public Category GetCategoryById(int id)
+        {
+            return GetCategoryByIdAsync(id).GetAwaiter().GetResult();
+        }
     }
-    
-    
 }

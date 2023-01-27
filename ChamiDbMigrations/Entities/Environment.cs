@@ -42,5 +42,11 @@ namespace Chami.Db.Entities
         /// </summary>
         /// <seealso cref="EnvironmentType"/>
         public EnvironmentType EnvironmentType { get; set; }
+        /// <summary>
+        /// What category this environment belongs to
+        /// </summary>
+        public int CategoryId { get; set; }
+        
+        public Category Category { get; set; }
     }
 }
