@@ -3,7 +3,7 @@ using Chami.Db.Annotations;
 namespace Chami.Db.Entities
 {
     [TableName("Categories")]
-    public class Category
+    public class Category : IChamiEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

@@ -23,7 +23,6 @@ using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
-using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Windows.MainWindow;
 using Serilog;
@@ -318,10 +317,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private void AddVariableApplicationCommands(CmdExecutor cmdExecutor, SafeVariableViewModel safeVariableSettings,
             bool isSafetyEnabled)
         {
-            var newEnvironment = _dataAdapter.GetEnvironmentEntityById(SelectedEnvironment.Id);
-            cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand(
-                typeof(EnvironmentVariableApplicationCommand),
-                new EnvironmentVariable() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
+            var newEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
+            cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableApplicationCommand>(
+                new EnvironmentVariableViewModel() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
@@ -331,14 +329,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         v.Name == environmentVariable.Name) != null;
                 if (isCurrentVariableDisabled && isSafetyEnabled)
                 {
-                    newCommand =
-                        EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand), environmentVariable);
+                    newCommand = EnvironmentVariableCommandFactory.GetCommand<NopCommand>(environmentVariable);
                 }
                 else
                 {
-                    newCommand = EnvironmentVariableCommandFactory.GetCommand(
-                        typeof(EnvironmentVariableApplicationCommand),
-                        environmentVariable);
+                    newCommand = EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableApplicationCommand>(environmentVariable);
                 }
 
                 cmdExecutor.AddCommand(newCommand);
@@ -348,7 +343,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private void AddRemovalCommands(string currentEnvironmentName, SafeVariableViewModel safeVariableSettings,
             bool isSafetyEnabled, CmdExecutor cmdExecutor)
         {
-            var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
+            var currentOsEnvironment = _dataAdapter.GetEnvironmentByName(currentEnvironmentName);
             // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
             // corresponding entity
             if (currentOsEnvironment != null)
@@ -361,15 +356,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
                             v.Name == environmentVariable.Name) != null;
                     if (isCurrentVariableDisabled && isSafetyEnabled)
                     {
-                        newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand),
-                                environmentVariable);
+                        newCommand = EnvironmentVariableCommandFactory.GetCommand<NopCommand>(environmentVariable);
                     }
                     else
                     {
-                        newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
-                                environmentVariable);
+                        newCommand = EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(environmentVariable);
                     }
 
                     cmdExecutor.AddCommand(newCommand);
@@ -706,23 +697,20 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
             if (currentEnvironmentName != null)
             {
-                var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
+                var currentOsEnvironment = _dataAdapter.GetEnvironmentByName(currentEnvironmentName);
                 // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
                 // corresponding entity
                 if (currentOsEnvironment != null)
                 {
                     foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
                     {
-                        var newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
-                                environmentVariable);
+                        var newCommand = EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(environmentVariable);
                         cmdExecutor.AddCommand(newCommand);
                     }
 
-                    var chamiEnvVariable = new EnvironmentVariable() {Name = "_CHAMI_ENV"};
+                    var chamiEnvVariable = new EnvironmentVariableViewModel() {Name = "_CHAMI_ENV"};
                     var chamiEnvVarRemovalCommand =
-                        EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
-                            chamiEnvVariable);
+                        EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(chamiEnvVariable);
                     cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
                 }
             }

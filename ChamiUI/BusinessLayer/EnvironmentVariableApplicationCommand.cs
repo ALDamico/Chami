@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Chami.CmdExecutor;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -15,6 +17,12 @@ namespace ChamiUI.BusinessLayer
         public EnvironmentVariableApplicationCommand(EnvironmentVariable viewModel)
         {
             _environmentVariable = viewModel;
+        }
+
+        public EnvironmentVariableApplicationCommand(EnvironmentVariableViewModel viewModel)
+        {
+            var converter = new EnvironmentVariableConverter();
+            _environmentVariable = converter.From(viewModel);
         }
 
         private readonly EnvironmentVariable _environmentVariable;
