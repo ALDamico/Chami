@@ -17,7 +17,7 @@ public class CategoryConverter : CachedConverter<Category, CategoryViewModel>
             Id = entity.Id,
             DisplayName = entity.Name,
             IconPath = entity.Icon,
-            BackgroundColor = _brushConverter.Convert(entity.BackgroundColor),
+            //BackgroundColor = _brushConverter.Convert(entity.BackgroundColor),
             IsVisible = entity.Visibility
         };
         return viewModel;

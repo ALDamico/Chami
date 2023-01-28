@@ -46,7 +46,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        [NonPersistentSetting]
         public Brush ForegroundColor
         {
             get => _foregroundColor;
@@ -57,7 +56,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        [NonPersistentSetting]
         public Brush BackgroundColor
         {
             get => _backgroundColor;

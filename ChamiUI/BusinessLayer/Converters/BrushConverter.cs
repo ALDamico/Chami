@@ -18,13 +18,13 @@ namespace ChamiUI.BusinessLayer.Converters
         {
             if (entity.Type == "System.Windows.Media.SolidColorBrush")
             {
-                return Convert(entity.Value);
+                return ConvertFromStringValue(entity.Value);
             }
 
             return null;
         }
 
-        public Brush Convert(string value)
+        public Brush ConvertFromStringValue(string value)
         {
             // Converting a SolidColorBrush to string creates a string 9 characters long.
             // The first two characters are the alpha channel, which we aren't using.
@@ -39,7 +39,9 @@ namespace ChamiUI.BusinessLayer.Converters
             var red = System.Convert.FromHexString(redPart)[0];
             var blue = System.Convert.FromHexString(bluePart)[0];
             var green = System.Convert.FromHexString(greenPart)[0];
-            return new SolidColorBrush(Color.FromRgb(red, green, blue));
+            var solidColorBrush = new SolidColorBrush(Color.FromRgb(red, green, blue));
+            solidColorBrush. Freeze();
+            return solidColorBrush;
         }
     }
 }
