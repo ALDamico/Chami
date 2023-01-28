@@ -754,5 +754,19 @@ namespace Chami.Db.Repositories
         {
             return GetCategoryByIdAsync(id).GetAwaiter().GetResult();
         }
+
+        public async Task<bool> DeleteCategoryByIdAsync(int id)
+        {
+            var query = "DELETE FROM Categories WHERE Id = ?";
+            using var connection = GetConnection();
+
+            var rowsDeleted = await connection.ExecuteAsync(query, id);
+            return rowsDeleted > 0;
+        }
+
+        public bool DeleteCategoryById(int id)
+        {
+            return DeleteCategoryByIdAsync(id).GetAwaiter().GetResult();
+        }
     }
 }

@@ -1180,8 +1180,4 @@
       <Compile Remove="BusinessLayer\Utils\AppUtils.cs" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="BusinessLayer\Commands" />
-    </ItemGroup>
-
 </Project>

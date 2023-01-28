@@ -1,14 +1,10 @@
 using System.Collections.Generic;
 using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.BusinessLayer.Factories;
-using ChamiUI.Controls;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Factories;
 
 namespace ChamiUI.PresentationLayer.ViewModels

@@ -1,3 +1,4 @@
+using System.Data;
 using Chami.Db.Annotations;
 using Chami.Db.Entities;
 using FluentMigrator;
@@ -7,8 +8,8 @@ namespace ChamiDbMigrations.Migrations
     [Migration(202301270001)]
     public class Categories : Migration
     {
-        private string _categoryName = AnnotationUtils.GetTableName(typeof(Category));
-        private string _environmentsTableName = AnnotationUtils.GetTableName(typeof(Environment));
+        private readonly string _categoryName = AnnotationUtils.GetTableName(typeof(Category));
+        private readonly string _environmentsTableName = AnnotationUtils.GetTableName(typeof(Environment));
         public override void Up()
         {
             Create.Table(_categoryName)
@@ -19,13 +20,13 @@ namespace ChamiDbMigrations.Migrations
                 .WithColumn(nameof(Category.Visibility)).AsBoolean().Nullable();
 
             Alter.Table(_environmentsTableName).AddColumn(nameof(Environment.CategoryId)).AsInt32()
-                .ForeignKey(_categoryName, nameof(Category.Id));
+                .ForeignKey(_categoryName, nameof(Category.Id)).OnDelete(Rule.SetNull).Nullable();
         }
 
         public override void Down()
         {
-            Delete.Table(_categoryName);
             Delete.Column(nameof(Environment.CategoryId)).FromTable(_environmentsTableName);
+            Delete.Table(_categoryName);
         }
     }
 }

@@ -258,5 +258,15 @@ namespace ChamiUI.BusinessLayer.Adapters
         {
             return UpsertCategoryAsync(categoryViewModel).GetAwaiter().GetResult();
         }
+
+        public async Task<bool> DeleteCategoryAsync(CategoryViewModel categoryViewModel)
+        {
+            return await _repository.DeleteCategoryByIdAsync(categoryViewModel.Id.GetValueOrDefault());
+        }
+
+        public bool DeleteCategory(CategoryViewModel categoryViewModel)
+        {
+            return DeleteCategoryAsync(categoryViewModel).GetAwaiter().GetResult();
+        }
     }
 }

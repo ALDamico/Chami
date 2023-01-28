@@ -48,17 +48,6 @@ namespace ChamiUI
             _serviceProvider = CreateServices();
 
             InitializeComponent();
-            DispatcherUnhandledException += ShowExceptionMessageBox;
-            try
-            {
-                MigrateDatabase();
-            }
-            catch (SQLiteException ex)
-            {
-                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
-            }
-
-            InitHealthChecker();
         }
 
         private ChamiLogger InitLogger(bool readSettings = false)
@@ -230,7 +219,18 @@ namespace ChamiUI
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
+            DispatcherUnhandledException += ShowExceptionMessageBox;
+            try
+            {
+                MigrateDatabase();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
+            }
+
             InitLocalization();
+            InitHealthChecker();
             InitCmdExecutorMessages();
             DetectOtherInstance();
             var mainWindow = _serviceProvider.GetService<MainWindow>();

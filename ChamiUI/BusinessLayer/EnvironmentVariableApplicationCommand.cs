@@ -14,18 +14,12 @@ namespace ChamiUI.BusinessLayer
     /// </summary>
     public class EnvironmentVariableApplicationCommand : ShellCommandBase
     {
-        public EnvironmentVariableApplicationCommand(EnvironmentVariable viewModel)
+        public EnvironmentVariableApplicationCommand(EnvironmentVariableViewModel viewModel)
         {
             _environmentVariable = viewModel;
         }
 
-        public EnvironmentVariableApplicationCommand(EnvironmentVariableViewModel viewModel)
-        {
-            var converter = new EnvironmentVariableConverter();
-            _environmentVariable = converter.From(viewModel);
-        }
-
-        private readonly EnvironmentVariable _environmentVariable;
+        private readonly EnvironmentVariableViewModel _environmentVariable;
         /// <summary>
         /// Execute the shell command.
         /// </summary>

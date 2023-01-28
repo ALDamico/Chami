@@ -919,7 +919,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs,
             Window environmentHealthWindow = null)
         {
-            if (StateManager.CurrentState.CanExecuteHealthCheck)
+            if (!StateManager.CurrentState.CanExecuteHealthCheck)
             {
                 return;
             }
