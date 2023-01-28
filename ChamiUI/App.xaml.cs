@@ -1,7 +1,6 @@
 ﻿using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Logger;
 using ChamiUI.PresentationLayer.ViewModels;
-using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,7 +11,7 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Reflection;
-using System.Timers;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
@@ -33,8 +32,11 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.Utils;
 using ChamiUI.Windows.Exceptions;
+using ChamiUI.Windows.Splash;
+using SplashScreen = ChamiUI.Windows.Splash;
 
 namespace ChamiUI
 {
@@ -45,10 +47,16 @@ namespace ChamiUI
     {
         public App()
         {
+            _splashScreen = new SplashScreen.SplashScreen();
+            _splashScreen.Show();
+            _progress = new Progress<AppLoadProgress>(_splashScreen.OnMessageReceived);
+            
             _serviceProvider = CreateServices();
 
             InitializeComponent();
         }
+
+        private SplashScreen.SplashScreen _splashScreen;
 
         private ChamiLogger InitLogger(bool readSettings = false)
         {
@@ -127,15 +135,26 @@ namespace ChamiUI
 
         private IServiceProvider CreateServices()
         {
+            _progress.Report(new AppLoadProgress(){Message = "Initializing logger", Percentage = 0});
             var chamiLogger = InitLogger();
             Log.Logger = chamiLogger.GetLogger();
+            
+            _progress.Report(new AppLoadProgress(){Message = "Initializing database migrations", Percentage = 10});
             var serviceCollection = new ServiceCollection()
                 .AddFluentMigratorCore()
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations())
-                .AddLogging(l => l.AddSerilog())
-                .AddSingleton<MainWindow>()
+                .AddLogging(l => l.AddSerilog());
+                
+                _progress.Report(new AppLoadProgress(){Message = "Registering windows", Percentage = 50});
+                    
+                    serviceCollection
+                        .AddSingleton((sp) => new MainWindowViewModel(GetConnectionString()))
+                .AddSingleton<MainWindow>();
+                
+                    _progress.Report(new AppLoadProgress(){Message = "Registering settings module", Percentage = 60});
+                serviceCollection
                 .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
                 .AddSingleton(serviceProvider =>
                 {
@@ -219,20 +238,43 @@ namespace ChamiUI
 
         private void App_OnStartup(object sender, StartupEventArgs e)
         {
-            DispatcherUnhandledException += ShowExceptionMessageBox;
-            try
+            var loadTask = Task.Run(() =>
             {
-                MigrateDatabase();
-            }
-            catch (SQLiteException ex)
-            {
-                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
-            }
+                _progress.Report(new AppLoadProgress() {Message = "Registering exception handler", Percentage = 60});
+                DispatcherUnhandledException += ShowExceptionMessageBox;
+                try
+                {
+                    _progress.Report(new AppLoadProgress() {Message = "Migrating database", Percentage = 80});
+                    MigrateDatabase();
+                }
+                catch (SQLiteException ex)
+                {
+                    Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
+                }
 
-            InitLocalization();
-            InitHealthChecker();
-            InitCmdExecutorMessages();
-            DetectOtherInstance();
+                _progress.Report(new AppLoadProgress() {Message = "Initializing localization", Percentage = 81});
+                InitLocalization();
+                _progress.Report(new AppLoadProgress()
+                    {Message = "Initializing environment health check module", Percentage = 85});
+                
+                InitCmdExecutorMessages();
+                _progress.Report(new AppLoadProgress() {Message = "Detecting other Chami instances", Percentage = 90});
+                DetectOtherInstance();
+                
+                InitHealthChecker();
+
+
+            }).ContinueWith(async t =>
+            {
+                await t;
+                Dispatcher.Invoke(() => { ShowMainWindow(e); });
+            });
+            
+
+        }
+
+        private void ShowMainWindow(StartupEventArgs e)
+        {
             var mainWindow = _serviceProvider.GetService<MainWindow>();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
@@ -241,17 +283,16 @@ namespace ChamiUI
 
             if (_taskbarIcon != null)
             {
-                if (MainWindow.DataContext is MainWindowViewModel viewModel)
+                var viewModel = _serviceProvider.GetRequiredService<MainWindowViewModel>();
+                if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
                 {
-                    if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
-                    {
-                        viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
-                    }
-
-                    viewModel.EnvironmentChanged += OnEnvironmentChanged;
+                    viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
                 }
+
+                viewModel.EnvironmentChanged += OnEnvironmentChanged;
             }
 
+            _splashScreen.Close();
             MainWindow.Show();
             if (Settings.HealthCheckSettings.IsEnabled)
             {
@@ -313,5 +354,6 @@ namespace ChamiUI
         public EnvironmentHealthCheckerConfiguration HealthCheckerConfiguration { get; set; }
         private DispatcherTimer _healthCheckerTimer;
         private EnvironmentViewModel _activeEnvironment;
+        private IProgress<AppLoadProgress> _progress;
     }
 }
