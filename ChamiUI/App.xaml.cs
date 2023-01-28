@@ -17,6 +17,7 @@ using System.Windows.Threading;
 using Chami.CmdExecutor;
 using Chami.CmdExecutor.Commands.Common;
 using ChamiDbMigrations.Migrations;
+using ChamiUI.BusinessLayer.AppLoader;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.Localization;
@@ -49,38 +50,38 @@ namespace ChamiUI
         {
             _splashScreen = new SplashScreen.SplashScreen();
             _splashScreen.Show();
-            _progress = new Progress<AppLoadProgress>(_splashScreen.OnMessageReceived);
-            
-            _serviceProvider = CreateServices();
+            _appLoader = new AppLoader(_splashScreen.OnMessageReceived);
 
             InitializeComponent();
         }
 
         private SplashScreen.SplashScreen _splashScreen;
+        private AppLoader _appLoader;
 
-        private ChamiLogger InitLogger(bool readSettings = false)
+        private void InitLogger(IServiceCollection serviceCollection)
         {
             var chamiLogger = new ChamiLogger();
             chamiLogger.AddFileSink(AppUtils.GetLogFilePath());
 
-            if (readSettings)
-            {
-                var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
-                var loggingSettings = settings.LoggingSettings;
+            /* if (readSettings)
+             {
+                 var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
+                 var loggingSettings = settings.LoggingSettings;
+ 
+                 var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
+                 if (loggingSettings.LoggingEnabled)
+                 {
+                     minimumLogLevel = LogEventLevel.Fatal;
+                 }
+ 
+                 chamiLogger.SetMinumumLevel(minimumLogLevel);
+             }*/
 
-                var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
-                if (loggingSettings.LoggingEnabled)
-                {
-                    minimumLogLevel = LogEventLevel.Fatal;
-                }
-
-                chamiLogger.SetMinumumLevel(minimumLogLevel);
-            }
-
-            return chamiLogger;
+            Log.Logger = chamiLogger.GetLogger();
+            serviceCollection.AddLogging(l => l.AddSerilog());
         }
 
-        private void InitHealthChecker()
+        private void InitHealthChecker(IServiceProvider serviceProvider)
         {
             HealthCheckerConfiguration = new EnvironmentHealthCheckerConfiguration()
             {
@@ -121,7 +122,7 @@ namespace ChamiUI
             healthChecker.CheckEnvironment(_activeEnvironment);
         }
 
-        private void InitCmdExecutorMessages()
+        private void InitCmdExecutorMessages(IServiceCollection serviceCollection)
         {
             CmdExecutorBase.StartingExecutionMessage = ChamiUIStrings.StartingExecutionMessage;
             CmdExecutorBase.CompletedExecutionMessage = ChamiUIStrings.ExecutionCompleteMessage;
@@ -130,31 +131,27 @@ namespace ChamiUI
             CmdExecutorBase.KnownProcessAlreadyExited = ChamiUIStrings.KnownProcessAlreadyExited;
         }
 
-        private readonly IServiceProvider _serviceProvider;
+        private IServiceProvider _serviceProvider;
         public IServiceProvider ServiceProvider => _serviceProvider;
 
-        private IServiceProvider CreateServices()
+        private void ConfigureDatabase(IServiceCollection serviceCollection)
         {
-            _progress.Report(new AppLoadProgress(){Message = "Initializing logger", Percentage = 0});
-            var chamiLogger = InitLogger();
-            Log.Logger = chamiLogger.GetLogger();
-            
-            _progress.Report(new AppLoadProgress(){Message = "Initializing database migrations", Percentage = 10});
-            var serviceCollection = new ServiceCollection()
-                .AddFluentMigratorCore()
+            serviceCollection.AddFluentMigratorCore()
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
-                        .Migrations())
-                .AddLogging(l => l.AddSerilog());
-                
-                _progress.Report(new AppLoadProgress(){Message = "Registering windows", Percentage = 50});
-                    
-                    serviceCollection
-                        .AddSingleton((sp) => new MainWindowViewModel(GetConnectionString()))
+                        .Migrations());
+        }
+
+        private void RegisterWindows(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddSingleton((sp) => new MainWindowViewModel(GetConnectionString()))
                 .AddSingleton<MainWindow>();
-                
-                    _progress.Report(new AppLoadProgress(){Message = "Registering settings module", Percentage = 60});
-                serviceCollection
+        }
+
+        private void RegisterSettingsModule(IServiceCollection serviceCollection)
+        {
+            serviceCollection
                 .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
                 .AddSingleton(serviceProvider =>
                 {
@@ -163,14 +160,19 @@ namespace ChamiUI
                         new WatchedApplicationDataAdapter(connectionString),
                         new ApplicationLanguageDataAdapter(connectionString));
                 });
-
-            return serviceCollection.BuildServiceProvider();
         }
 
-        private void MigrateDatabase()
+        private void MigrateDatabase(IServiceCollection serviceCollection)
         {
-            var runner = _serviceProvider.GetRequiredService<IMigrationRunner>();
-            runner.MigrateUp();
+            try
+            {
+                var runner = _serviceProvider.GetRequiredService<IMigrationRunner>();
+                runner.MigrateUp();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
+            }
         }
 
         public SettingsViewModel Settings => _serviceProvider.GetRequiredService<SettingsViewModel>();
@@ -194,7 +196,7 @@ namespace ChamiUI
             SystemSounds.Exclamation.Play();
             var exception = args.Exception;
             var exceptionWindow = new ExceptionWindow(exception);
-                exceptionWindow.ShowDialog();
+            exceptionWindow.ShowDialog();
             if (Settings.LoggingSettings.LoggingEnabled)
             {
                 Log.Logger.Error("{Message}", exception.Message);
@@ -236,41 +238,44 @@ namespace ChamiUI
 #endif
         }
 
-        private void App_OnStartup(object sender, StartupEventArgs e)
+        private void RegisterExceptionHandler(IServiceCollection serviceCollection)
         {
+            DispatcherUnhandledException += ShowExceptionMessageBox;
+        }
+        
+
+        private async void App_OnStartup(object sender, StartupEventArgs e)
+        {
+            DetectOtherInstance();
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitLogger, "Initializing logger"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(ConfigureDatabase, "Configuring database connection"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterWindows, "Registering windows"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterSettingsModule, "Registering settings module"));
+            _appLoader.AddCommand(
+                new DefaultAppLoaderCommand(RegisterExceptionHandler, "Registering exception handler"));
+            _appLoader.AddCommand(new BuildServiceProviderLoaderCommand());
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(MigrateDatabase, "Migrating database"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitLocalization, "Initializing localization support"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitCmdExecutorMessages,
+                "Initializing CMD executor messages"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(DetectOtherInstance, "Detecting other instances"));
+
+            await _appLoader.ExecuteAsync();
             var loadTask = Task.Run(() =>
             {
-                _progress.Report(new AppLoadProgress() {Message = "Registering exception handler", Percentage = 60});
-                DispatcherUnhandledException += ShowExceptionMessageBox;
-                try
-                {
-                    _progress.Report(new AppLoadProgress() {Message = "Migrating database", Percentage = 80});
-                    MigrateDatabase();
-                }
-                catch (SQLiteException ex)
-                {
-                    Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
-                }
-
-                _progress.Report(new AppLoadProgress() {Message = "Initializing localization", Percentage = 81});
-                InitLocalization();
+                
                 _progress.Report(new AppLoadProgress()
                     {Message = "Initializing environment health check module", Percentage = 85});
-                
-                InitCmdExecutorMessages();
+
                 _progress.Report(new AppLoadProgress() {Message = "Detecting other Chami instances", Percentage = 90});
-                DetectOtherInstance();
                 
+
                 InitHealthChecker();
-
-
             }).ContinueWith(async t =>
             {
                 await t;
                 Dispatcher.Invoke(() => { ShowMainWindow(e); });
             });
-            
-
         }
 
         private void ShowMainWindow(StartupEventArgs e)
@@ -323,7 +328,7 @@ namespace ChamiUI
             }
         }
 
-        internal void InitLocalization()
+        internal void InitLocalization(IServiceCollection serviceCollection)
         {
             var localizationProvider = ResxLocalizationProvider.Instance;
             var dataAdapter = new ApplicationLanguageDataAdapter(GetConnectionString());
