@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.BusinessLayer.AppLoader;
 
 public interface IAppLoaderCommand
 {
-    Action<IServiceCollection> ActionToExecute { get; set; }
+    Func<IServiceCollection, Task> ActionToExecute { get; set; }
     string Message { get; set; }
 }

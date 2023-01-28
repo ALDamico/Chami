@@ -1,15 +1,16 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.BusinessLayer.AppLoader;
 
 public class DefaultAppLoaderCommand : IAppLoaderCommand
 {
-    public DefaultAppLoaderCommand(Action<IServiceCollection> actionToExecute, string message)
+    public DefaultAppLoaderCommand(Func<IServiceCollection, Task> actionToExecute, string message)
     {
         ActionToExecute = actionToExecute;
         Message = message;
     }
-    public Action<IServiceCollection> ActionToExecute { get; set; }
+    public Func<IServiceCollection, Task> ActionToExecute { get; set; }
     public string Message { get; set; }
 }
