@@ -12,7 +12,6 @@ public static class WindowUtils
 {
     public static async Task CloseWindow(MainWindowViewModel mainWindowViewModel, MainWindow window)
     {
-        window.Close();
         window.SaveState();
         Application.Current.Shutdown(0);
         await Task.CompletedTask;

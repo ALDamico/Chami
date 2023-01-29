@@ -11,9 +11,8 @@ namespace ChamiUI.Windows.ExportWindow
     /// </summary>
     public partial class ExportWindow 
     {
-        public ExportWindow(Window owner, ICollection<EnvironmentViewModel> environments)
+        public ExportWindow(ICollection<EnvironmentViewModel> environments)
         {
-            Owner = owner;
             _viewModel = new ExportWindowViewModel(environments);
             
             DataContext = _viewModel;

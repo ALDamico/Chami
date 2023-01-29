@@ -39,8 +39,12 @@ using ChamiUI.Windows.AboutBox;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.Exceptions;
+using ChamiUI.Windows.ExportWindow;
+using ChamiUI.Windows.ImportEnvironmentWindow;
 using ChamiUI.Windows.MassUpdateWindow;
 using ChamiUI.Windows.NewEnvironmentWindow;
+using ChamiUI.Windows.NewTemplateWindow;
+using ChamiUI.Windows.RenameEnvironmentWindow;
 using ChamiUI.Windows.SettingsWindow;
 using ChamiUI.Windows.Splash;
 using SplashScreen = ChamiUI.Windows.Splash;
@@ -167,6 +171,13 @@ namespace ChamiUI
                 .AddTransient<MassUpdateWindowViewModel>()
                 .AddTransient<NewEnvironmentViewModel>()
                 .AddTransient<DetectedApplicationsViewModel>()
+                .AddTransient<ImportEnvironmentWindowViewModel>()
+                .AddTransient<NewTemplateWindowViewModel>()
+                .AddTransient<RenameEnvironmentViewModel>(sp =>
+                {
+                    var initialName = sp.GetRequiredService<MainWindowViewModel>().SelectedEnvironment.Name;
+                    return new RenameEnvironmentViewModel(initialName);
+                })
                 ;
             return Task.CompletedTask;
         }
@@ -188,6 +199,10 @@ namespace ChamiUI
                     return window;
                 })
                 .AddTransient<EnvironmentHealthWindow>()
+                .AddTransient(sp => new ExportWindow(sp.GetRequiredService<MainWindowViewModel>().Environments))
+                .AddTransient<ImportEnvironmentWindow>()
+                .AddTransient<NewTemplateWindow>()
+                .AddTransient<RenameEnvironmentWindow>()
                 ;
             return Task.CompletedTask;
         }

@@ -13,10 +13,9 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
 {
     public partial class ImportEnvironmentWindow
     {
-        public ImportEnvironmentWindow(Window owner)
+        public ImportEnvironmentWindow(ImportEnvironmentWindowViewModel viewModel)
         {
-            Owner = owner;
-            _viewModel = new ImportEnvironmentWindowViewModel();
+            _viewModel = viewModel;
             DataContext = _viewModel;
             InitializeComponent();
         }

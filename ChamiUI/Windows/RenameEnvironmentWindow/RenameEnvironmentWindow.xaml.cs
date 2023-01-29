@@ -9,17 +9,10 @@ namespace ChamiUI.Windows.RenameEnvironmentWindow
     public partial class RenameEnvironmentWindow
     {
         private readonly RenameEnvironmentViewModel _viewModel;
-        public RenameEnvironmentWindow()
-        {
-            _viewModel = new RenameEnvironmentViewModel();
-            DataContext = _viewModel;
-            InitializeComponent();
-        }
 
-        public RenameEnvironmentWindow(Window owner, string initialName)
+        public RenameEnvironmentWindow(RenameEnvironmentViewModel viewModel)
         {
-            Owner = owner;
-            _viewModel = new RenameEnvironmentViewModel(initialName);
+            _viewModel = viewModel;
             DataContext = _viewModel;
             InitializeComponent();
         }
