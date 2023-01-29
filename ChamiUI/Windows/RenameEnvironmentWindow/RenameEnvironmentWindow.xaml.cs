@@ -41,11 +41,7 @@ namespace ChamiUI.Windows.RenameEnvironmentWindow
         private void DoRename_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.Handled = true;
-            e.CanExecute = false;
-            if (_viewModel.IsNameValid)
-            {
-                e.CanExecute = true;
-            }
+            e.CanExecute = _viewModel.IsNameValid;
         }
 
         private void DoRename_OnExecuted(object sender, ExecutedRoutedEventArgs e)
