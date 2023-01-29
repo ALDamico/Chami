@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Reflection;
 using System.Windows;
 
@@ -24,6 +25,11 @@ namespace ChamiUI.Utils
         public static App GetChamiApp()
         {
             return Application.Current as App;
+        }
+
+        public static IServiceProvider GetAppServiceProvider()
+        {
+            return GetChamiApp().ServiceProvider;
         }
     }
 }

@@ -2,7 +2,6 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ChamiUI.Windows.SettingsWindow
 {
@@ -10,11 +9,11 @@ namespace ChamiUI.Windows.SettingsWindow
     {
         private readonly SettingsWindowViewModel _settingsWindowViewModel;
 
-        public SettingsWindow(Window owner)
+        public SettingsWindow(SettingsWindowViewModel settingsViewModel)
         {
             InitializeComponent();
-            Owner = owner;
-            _settingsWindowViewModel = new SettingsWindowViewModel();
+            //Owner = owner;
+            _settingsWindowViewModel = settingsViewModel;
             DataContext = _settingsWindowViewModel;
             
         }

@@ -8,9 +8,9 @@ namespace ChamiUI.Windows.DetectedApplicationsWindow
 {
     public partial class DetectedApplicationsWindow
     {
-        public DetectedApplicationsWindow()
+        public DetectedApplicationsWindow(DetectedApplicationsViewModel viewModel)
         {
-            _viewModel = new DetectedApplicationsViewModel();
+            _viewModel = viewModel;
             DataContext = _viewModel;
             InitializeComponent();
         }

@@ -15,7 +15,7 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
 {
     public partial class NewEnvironmentWindow
     {
-        public NewEnvironmentWindow(Window owner) : this()
+        public NewEnvironmentWindow(Window owner, NewEnvironmentViewModelBase environmentViewModelBase) : this()
         {
             Owner = owner;
         }

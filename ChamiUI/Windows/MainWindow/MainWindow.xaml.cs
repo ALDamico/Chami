@@ -189,11 +189,12 @@ namespace ChamiUI.Windows.MainWindow
 
         private void SettingsMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            var childWindow = new SettingsWindow.SettingsWindow(this);
+            var childWindow = AppUtils.GetAppServiceProvider().GetRequiredService<SettingsWindow.SettingsWindow>();
+            childWindow.Owner = this;
             childWindow.ShowDialog();
         }
 
-      
+
         private void BackupEnvironmentMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             ViewModel.BackupEnvironment();
@@ -201,7 +202,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
-            new AboutBox.AboutBox(this).ShowDialog();
+            AppUtils.GetAppServiceProvider().GetService<AboutBox.AboutBox>().ShowDialog();
         }
 
         private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
@@ -216,16 +217,18 @@ namespace ChamiUI.Windows.MainWindow
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            CreateNewEnvironmentWindow(this);
+            CreateNewEnvironmentWindow();
         }
 
-        private void CreateNewEnvironmentWindow(Window owner, EnvironmentViewModel dataContext = null)
+        private void CreateNewEnvironmentWindow(EnvironmentViewModel dataContext = null)
         {
-            var childWindow = new NewEnvironmentWindow.NewEnvironmentWindow(owner);
+            var childWindow = AppUtils.GetAppServiceProvider()
+                .GetRequiredService<NewEnvironmentWindow.NewEnvironmentWindow>();
             if (dataContext != null)
             {
                 childWindow.SetEnvironment(dataContext);
             }
+
             childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
         }
@@ -302,6 +305,7 @@ namespace ChamiUI.Windows.MainWindow
                 {
                     return;
                 }
+
                 if (!ViewModel.StateManager.CurrentState.EditingEnabled)
                 {
                     return;
@@ -719,7 +723,7 @@ namespace ChamiUI.Windows.MainWindow
 
         private void DuplicateEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            CreateNewEnvironmentWindow(this, ViewModel.SelectedEnvironment.Clone());
+            CreateNewEnvironmentWindow(ViewModel.SelectedEnvironment.Clone());
         }
 
         private void MassUpdateCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -731,7 +735,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             var childWindow = AppUtils.GetChamiApp().ServiceProvider
                 .GetRequiredService<MassUpdateWindow.MassUpdateWindow>();
-            
+
             childWindow.MassUpdateExecuted += OnMassUpdateExecuted;
             childWindow.ShowDialog();
         }
@@ -743,7 +747,7 @@ namespace ChamiUI.Windows.MainWindow
 
         public void OnHealthChecked(object sender, HealthCheckedEventArgs e)
         {
-            ViewModel.HandleCheckedHealth(e, _healthWindow);
+            ViewModel.HandleCheckedHealth(e, AppUtils.GetAppServiceProvider().GetService<EnvironmentHealthWindow>());
         }
 
         private void EnvironmentHealthStatusBarItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -753,28 +757,22 @@ namespace ChamiUI.Windows.MainWindow
 
         private void ShowEnvironmentHealthWindow()
         {
-            if (_healthWindow != null)
-            {
-                _healthWindow.Focus();
-                return;
-            }
-            var window = new EnvironmentHealthWindow();
-            window.DataContext = ViewModel.EnvironmentHealth;
-           // window.Owner = this;
-            window.WindowStartupLocation = WindowStartupLocation.CenterOwner;
-            window.Closing += EnvironmentHealthWindowOnClosing;
-            _healthWindow = window;
-            window.Show();
+            var healthWindow = AppUtils.GetAppServiceProvider().GetService<EnvironmentHealthWindow>();
+
+            healthWindow.DataContext = ViewModel.EnvironmentHealth;
+            healthWindow.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            healthWindow.Closing += EnvironmentHealthWindowOnClosing;
+            healthWindow.Show();
+            healthWindow.Focus();
         }
 
         private async void EnvironmentHealthWindowOnClosing(object sender, CancelEventArgs e)
         {
-            if (_healthWindow.DataContext is EnvironmentHealthViewModel closedWindowViewModel)
+            var healthWindow = sender as EnvironmentHealthWindow;
+            if (healthWindow?.DataContext is EnvironmentHealthViewModel closedWindowViewModel)
             {
                 await ViewModel.SaveEnvironmentHealthColumns(closedWindowViewModel);
             }
-
-            _healthWindow = null;
         }
 
         private void EnvironmentHealthMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -782,8 +780,6 @@ namespace ChamiUI.Windows.MainWindow
             ShowEnvironmentHealthWindow();
         }
 
-        private EnvironmentHealthWindow _healthWindow;
-        
         private void IncreaseFontSizeCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = ViewModel.CanIncreaseFontSize();

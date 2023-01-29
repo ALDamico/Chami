@@ -24,7 +24,9 @@ using ChamiUI.PresentationLayer.Minimizing;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.ViewModels.State;
+using ChamiUI.Utils;
 using ChamiUI.Windows.MainWindow;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using IShellCommand = Chami.CmdExecutor.IShellCommand;
 
@@ -549,11 +551,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var detectedApplications = applicationDetector.Detect();
                 if (detectedApplications is {Count: > 0})
                 {
-                    var window = new DetectedApplicationsWindow
-                    {
-                        Owner = Application.Current.MainWindow,
-                        WindowStartupLocation = WindowStartupLocation.CenterOwner
-                    };
+                    var window = AppUtils.GetAppServiceProvider().GetService<DetectedApplicationsWindow>();
                     ApplicationsDetected += window.OnApplicationsDetected;
                     window.Show();
                     ApplicationsDetected?.Invoke(this, new ApplicationsDetectedEventArgs(detectedApplications));

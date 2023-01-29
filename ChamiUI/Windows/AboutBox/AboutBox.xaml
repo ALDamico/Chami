@@ -11,6 +11,7 @@
         Title="{lex:Loc}" Height="300" Width="350"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
+        ShowInTaskbar="False"
         >
     <Grid>
         <StackPanel Orientation="Vertical">

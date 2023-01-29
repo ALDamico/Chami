@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Net;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.Utils;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,7 +16,7 @@ public class ExceptionExporter : IExceptionExporter
     public string FileName { get; set; }
     public void Export(Exception exception, string logPath)
     {
-        var settingsDataAdapter = AppUtils.GetChamiApp().ServiceProvider.GetService<SettingsDataAdapter>();
+        var settingsDataAdapter = AppUtils.GetAppServiceProvider().GetService<SettingsDataAdapter>();
         var model = ExceptionExportModelFactory.GetExceptionExportModel(exception, logPath, settingsDataAdapter);
         
 

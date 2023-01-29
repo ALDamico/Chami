@@ -9,6 +9,7 @@
         mc:Ignorable="d"
         x:Name="DetectedApplicationsWindowTitle"
         Title="{lex:Loc}" Height="450" Width="800"
+        WindowStartupLocation="CenterOwner"
         d:DataContext="{d:DesignInstance viewModels:DetectedApplicationsViewModel, IsDesignTimeCreatable=True}">
     <Window.Resources>
         <ContextMenu x:Key="RowContextMenu">

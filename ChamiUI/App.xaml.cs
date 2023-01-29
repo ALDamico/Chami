@@ -35,8 +35,13 @@ using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.Utils;
+using ChamiUI.Windows.AboutBox;
+using ChamiUI.Windows.DetectedApplicationsWindow;
+using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.Exceptions;
 using ChamiUI.Windows.MassUpdateWindow;
+using ChamiUI.Windows.NewEnvironmentWindow;
+using ChamiUI.Windows.SettingsWindow;
 using ChamiUI.Windows.Splash;
 using SplashScreen = ChamiUI.Windows.Splash;
 
@@ -102,7 +107,7 @@ namespace ChamiUI
                     healthCheckerTimer.Tick += HealthCheckerTimerOnElapsed;
                     return healthCheckerTimer;
                 });
-            
+
             return Task.CompletedTask;
         }
 
@@ -142,6 +147,7 @@ namespace ChamiUI
             CmdExecutorBase.KnownProcessAlreadyExited = ChamiUIStrings.KnownProcessAlreadyExited;
             return Task.CompletedTask;
         }
+
         public IServiceProvider ServiceProvider { get; private set; }
 
         private Task ConfigureDatabase(IServiceCollection serviceCollection)
@@ -158,7 +164,10 @@ namespace ChamiUI
             serviceCollection
                 .AddSingleton((sp) => new MainWindowViewModel(GetConnectionString()))
                 .AddTransient(sp => new SettingsWindowViewModel())
-                .AddTransient<MassUpdateWindowViewModel>();
+                .AddTransient<MassUpdateWindowViewModel>()
+                .AddTransient<NewEnvironmentViewModel>()
+                .AddTransient<DetectedApplicationsViewModel>()
+                ;
             return Task.CompletedTask;
         }
 
@@ -166,15 +175,28 @@ namespace ChamiUI
         {
             serviceCollection
                 .AddSingleton<MainWindow>()
-                .AddTransient<MassUpdateWindow>();
+                .AddTransient<MassUpdateWindow>()
+                .AddTransient<SettingsWindow>()
+                .AddTransient(sp =>
+                    new NewEnvironmentWindow(sp.GetRequiredService<MainWindow>(),
+                        sp.GetService<NewEnvironmentViewModel>()))
+                .AddTransient(sp => new AboutBox(sp.GetRequiredService<MainWindow>()))
+                .AddTransient(sp =>
+                {
+                    var window = new DetectedApplicationsWindow(sp.GetRequiredService<DetectedApplicationsViewModel>());
+                    window.Owner = ServiceProvider.GetRequiredService<MainWindow>();
+                    return window;
+                })
+                .AddTransient<EnvironmentHealthWindow>()
+                ;
             return Task.CompletedTask;
         }
 
         private Task RegisterSettingsModule(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
-                .AddSingleton(serviceProvider =>
+                .AddTransient(_ => new SettingsDataAdapter(GetConnectionString()))
+                .AddSingleton(_ =>
                 {
                     var connectionString = GetConnectionString();
                     return SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
@@ -239,6 +261,8 @@ namespace ChamiUI
             }
 #if !DEBUG
             args.Handled = true; // TODO react to user choice
+#else
+            throw exception;
 #endif
         }
 
@@ -284,11 +308,12 @@ namespace ChamiUI
 #endif
             _appLoader.AddCommand(new DefaultAppLoaderCommand(InitHealthChecker, "Initializing health checker module"));
             _appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(MigrateDatabase, "Migrating database"));
-            _appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(InitLocalization, "Initializing localization support"));
+            _appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(InitLocalization,
+                "Initializing localization support"));
             _appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(InitCmdExecutorMessages,
                 "Initializing CMD executor messages"));
-            
-            ServiceProvider = await Task.Run(_appLoader.ExecuteAsync);
+
+            ServiceProvider = await _appLoader.ExecuteAsync();
             await _appLoader.ExecutePostBuildCommandsAsync();
             Dispatcher.Invoke(() => { ShowMainWindow(e); });
         }
@@ -298,7 +323,7 @@ namespace ChamiUI
             var mainWindow = ServiceProvider.GetService<MainWindow>();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
-            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
+            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
 
             if (_taskbarIcon != null)
