@@ -1183,4 +1183,10 @@ Most people don't need to change these.</value>
   <data name="OperationInProgressCantCloseWindowCaption" xml:space="preserve">
     <value>Can't close the window</value>
   </data>
+  <data name="CategoriesCategory" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="CategoriesCategoryDescription" xml:space="preserve">
+    <value>Manage environment tags.</value>
+  </data>
 </root>

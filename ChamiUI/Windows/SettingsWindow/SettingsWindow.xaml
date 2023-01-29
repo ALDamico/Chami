@@ -107,6 +107,12 @@
                                 <controls:HealthCheckControl />
                             </DataTemplate>
                         </dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
+                        
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.CategoriesDataTemplate>
+                            <DataTemplate>
+                                <!--TODO create control!-->
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.CategoriesDataTemplate>
                     </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
 
 

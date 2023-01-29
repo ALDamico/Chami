@@ -14,5 +14,7 @@ public class CategoryViewModel : GenericLabelViewModel
             OnPropertyChanged();
         }
     }
+    
+    public string Description { get; set; }
 
 }

@@ -1176,4 +1176,10 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="OperationInProgressCantCloseWindowCaption" xml:space="preserve">
     <value>Impossibile chiudere la finestra</value>
   </data>
+  <data name="CategoriesCategory" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="CategoriesCategoryDescription" xml:space="preserve">
+    <value>Gestisci i tag degli ambienti.</value>
+  </data>
 </root>

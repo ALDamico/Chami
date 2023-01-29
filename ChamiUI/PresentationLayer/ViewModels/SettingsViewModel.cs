@@ -50,5 +50,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public MinimizationBehaviourViewModel MinimizationBehaviour { get; set; }
         public HealthCheckSettingsViewModel HealthCheckSettings { get; set; }
+        public CategoriesSettingsViewModel CategoriesSettings { get; set; }
     }
 }

@@ -42,6 +42,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings.HealthCheckSettings = SettingsCategoriesFactory.GetHealthCheckSettingCategory(Settings);
             SettingsCategories.Add(Settings.HealthCheckSettings);
 
+            Settings.CategoriesSettings = SettingsCategoriesFactory.GetCategoriesSettingsViewModel(Settings);
+            SettingsCategories.Add(Settings.CategoriesSettings);
+
             CurrentSection = SettingsCategories.FirstOrDefault();
         }
 

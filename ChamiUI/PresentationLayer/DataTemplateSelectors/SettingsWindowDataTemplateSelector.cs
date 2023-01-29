@@ -13,6 +13,7 @@ namespace ChamiUI.PresentationLayer.DataTemplateSelectors
         public DataTemplate LanguagesDataTemplate { get; set; }
         public DataTemplate MinimizationBehaviourDataTemplate { get; set; }
         public DataTemplate HealthCheckDataTemplate { get; set; }
+        public DataTemplate CategoriesDataTemplate { get; set; }
         public override DataTemplate SelectTemplate(object item, DependencyObject container)
         {
             if (item is LoggingSettingsViewModel)
@@ -48,6 +49,11 @@ namespace ChamiUI.PresentationLayer.DataTemplateSelectors
             if (item is HealthCheckSettingsViewModel)
             {
                 return HealthCheckDataTemplate;
+            }
+
+            if (item is CategoriesSettingsViewModel)
+            {
+                return CategoriesDataTemplate;
             }
             
             return base.SelectTemplate(item, container);

@@ -362,6 +362,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string CategoriesCategory {
+            get {
+                return ResourceManager.GetString("CategoriesCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage environment tags..
+        /// </summary>
+        public static string CategoriesCategoryDescription {
+            get {
+                return ResourceManager.GetString("CategoriesCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About Chami....
         /// </summary>
         public static string ChamiAboutBox_Title {
