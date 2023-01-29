@@ -23,9 +23,11 @@ using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.ViewModels.State;
+using ChamiUI.Utils;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.Exceptions;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.Windows.MainWindow
 {
@@ -727,7 +729,8 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MassUpdateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            var childWindow = new MassUpdateWindow.MassUpdateWindow();
+            var childWindow = AppUtils.GetChamiApp().ServiceProvider
+                .GetRequiredService<MassUpdateWindow.MassUpdateWindow>();
             
             childWindow.MassUpdateExecuted += OnMassUpdateExecuted;
             childWindow.ShowDialog();

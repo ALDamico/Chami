@@ -36,6 +36,7 @@ using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.Utils;
 using ChamiUI.Windows.Exceptions;
+using ChamiUI.Windows.MassUpdateWindow;
 using ChamiUI.Windows.Splash;
 using SplashScreen = ChamiUI.Windows.Splash;
 
@@ -152,11 +153,20 @@ namespace ChamiUI
             return Task.CompletedTask;
         }
 
-        private Task RegisterWindows(IServiceCollection serviceCollection)
+        private Task RegisterViewModels(IServiceCollection serviceCollection)
         {
             serviceCollection
                 .AddSingleton((sp) => new MainWindowViewModel(GetConnectionString()))
-                .AddSingleton<MainWindow>();
+                .AddTransient(sp => new SettingsWindowViewModel())
+                .AddTransient<MassUpdateWindowViewModel>();
+            return Task.CompletedTask;
+        }
+
+        private Task RegisterWindows(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddSingleton<MainWindow>()
+                .AddTransient<MassUpdateWindow>();
             return Task.CompletedTask;
         }
 
@@ -264,6 +274,8 @@ namespace ChamiUI
             DetectOtherInstance();
             _appLoader.AddCommand(new DefaultAppLoaderCommand(InitLogger, "Initializing logger"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(ConfigureDatabase, "Configuring database connection"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterDataAdapters, "Registering data adapters"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterViewModels, "Registering viewmodels"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterWindows, "Registering windows"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterSettingsModule, "Registering settings module"));
 #if !DEBUG
@@ -271,16 +283,13 @@ namespace ChamiUI
                 new DefaultAppLoaderCommand(RegisterExceptionHandler, "Registering exception handler"));
 #endif
             _appLoader.AddCommand(new DefaultAppLoaderCommand(InitHealthChecker, "Initializing health checker module"));
-            //_appLoader.AddCommand(new BuildServiceProviderLoaderCommand());
-            _appLoader.AddCommand(new DefaultAppLoaderCommand(MigrateDatabase, "Migrating database"), true);
-            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitLocalization, "Initializing localization support"), true);
-            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitCmdExecutorMessages,
-                "Initializing CMD executor messages"), true);
+            _appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(MigrateDatabase, "Migrating database"));
+            _appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(InitLocalization, "Initializing localization support"));
+            _appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(InitCmdExecutorMessages,
+                "Initializing CMD executor messages"));
             
-            ServiceProvider = 
-
-            await Task.Run(_appLoader.ExecuteAsync);
-            await Task.Run(_appLoader.ExecutePostBuildCommandsAsync);
+            ServiceProvider = await Task.Run(_appLoader.ExecuteAsync);
+            await _appLoader.ExecutePostBuildCommandsAsync();
             Dispatcher.Invoke(() => { ShowMainWindow(e); });
         }
 
@@ -311,6 +320,15 @@ namespace ChamiUI
             }
         }
 
+        private Task RegisterDataAdapters(IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddTransient(_ => new EnvironmentDataAdapter(GetConnectionString()))
+                .AddTransient(sp => new SettingsDataAdapter(GetConnectionString()))
+                .AddTransient(_ => new WatchedApplicationDataAdapter(GetConnectionString()))
+                .AddTransient(_ => new ApplicationLanguageDataAdapter(GetConnectionString()));
+            return Task.CompletedTask;
+        }
+
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs e)
         {
             _activeEnvironment = e.NewActiveEnvironment;
@@ -337,7 +355,7 @@ namespace ChamiUI
         internal async Task InitLocalization(IServiceCollection serviceCollection)
         {
             var localizationProvider = ResxLocalizationProvider.Instance;
-            var dataAdapter = new ApplicationLanguageDataAdapter(GetConnectionString());
+            var dataAdapter = ServiceProvider.GetRequiredService<ApplicationLanguageDataAdapter>();
             var languages = await dataAdapter.GetAllAvailableCultureInfosAsync();
             localizationProvider.SearchCultures = new List<CultureInfo>();
             foreach (var cultureInfo in languages)

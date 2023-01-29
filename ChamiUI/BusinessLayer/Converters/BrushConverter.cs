@@ -26,6 +26,10 @@ namespace ChamiUI.BusinessLayer.Converters
 
         public Brush ConvertFromStringValue(string value)
         {
+            if (value == null || value.ToUpperInvariant() == "NULL")
+            {
+                return Brushes.Black;
+            }
             // Converting a SolidColorBrush to string creates a string 9 characters long.
             // The first two characters are the alpha channel, which we aren't using.
             var offset = 1;

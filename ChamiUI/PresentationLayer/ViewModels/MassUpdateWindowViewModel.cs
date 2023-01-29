@@ -13,14 +13,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class MassUpdateWindowViewModel : ViewModelBase
     {
-        public MassUpdateWindowViewModel()
+        public MassUpdateWindowViewModel(EnvironmentDataAdapter environmentDataAdapter)
         {
             KnownVariables = new ObservableCollection<string>();
             UpdateStrategies = new ObservableCollection<MassUpdateStrategyViewModel>();
             InitUpdateStrategies();
             Environments = new ObservableCollection<EnvironmentViewModel>();
             SelectedEnvironments = new ObservableCollection<EnvironmentViewModel>();
-            _environmentDataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
+            _environmentDataAdapter = environmentDataAdapter;
             NewValue = "";
         }
 

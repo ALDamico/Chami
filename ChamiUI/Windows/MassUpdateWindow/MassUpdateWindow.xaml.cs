@@ -2,6 +2,7 @@ using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.MassUpdateStrategies;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
@@ -11,10 +12,10 @@ namespace ChamiUI.Windows.MassUpdateWindow
 {
     public partial class MassUpdateWindow : Window
     {
-        public MassUpdateWindow()
+        public MassUpdateWindow(EnvironmentDataAdapter environmentDataAdapter)
         {
             InitializeComponent();
-            _viewModel = new MassUpdateWindowViewModel();
+            _viewModel = new MassUpdateWindowViewModel(environmentDataAdapter);
             DataContext = _viewModel;
         }
 
