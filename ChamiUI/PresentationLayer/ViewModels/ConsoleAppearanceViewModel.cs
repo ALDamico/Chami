@@ -70,38 +70,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private Brush _backgroundColor;
-        
         /// <summary>
-        /// The background color of the console.
-        /// </summary>
-        public Brush BackgroundColor
-        {
-            get => _backgroundColor;
-            set
-            {
-                _backgroundColor = value;
-                OnPropertyChanged(nameof(BackgroundColor));
-            }
-        }
-
-        private Brush _foregroundColor;
-        
-        /// <summary>
-        /// The foreground (i.e., text) color of the console.
-        /// </summary>
-        public Brush ForegroundColor
-        {
-            get => _foregroundColor;
-            set
-            {
-                _foregroundColor = value;
-                OnPropertyChanged(nameof(ForegroundColor));
-            }
-        }
-
-        /// <summary>
-        /// Sets the <see cref="BackgroundColor"/> property to a new value.
+        /// Sets the <see cref="GenericLabelViewModel.BackgroundColor"/> property to a new value.
         /// </summary>
         /// <param name="brush">The new color.</param>
         public void ChangeBackgroundColor(SolidColorBrush brush)
@@ -110,7 +80,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         /// <summary>
-        /// Sets the <see cref="ForegroundColor"/> property to a new value.
+        /// Sets the <see cref="GenericLabelViewModel.ForegroundColor"/> property to a new value.
         /// </summary>
         /// <param name="brush">The new color.</param>
         public void ChangeForegroundColor(SolidColorBrush brush)

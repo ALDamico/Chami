@@ -319,7 +319,7 @@ namespace ChamiUI.BusinessLayer.Adapters
 
                     valueString ??= "NULL";
 
-                    _repository.UpdateSetting(propertyName, valueString);
+                    _repository.UpdateSetting(propertyInfo.Name, propertyName, valueString);
                 }
             }
         }
@@ -332,25 +332,25 @@ namespace ChamiUI.BusinessLayer.Adapters
         public void SaveMainWindowState(SettingsViewModel settings)
         {
             var mainWinSettings = settings.MainWindowBehaviourSettings;
-            _repository.UpdateSetting("IsCaseSensitiveSearch",
+            _repository.UpdateSetting( nameof(MainWindowSavedBehaviourViewModel), "IsCaseSensitiveSearch",
                 mainWinSettings.IsCaseSensitiveSearch.ToString());
-            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.Height),
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.Height),
                 mainWinSettings.Height.ToString(CultureInfo.InvariantCulture));
-            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.Width),
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.Width),
                 mainWinSettings.Width.ToString(CultureInfo.InvariantCulture));
-            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.XPosition),
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.XPosition),
                 mainWinSettings.XPosition.ToString(CultureInfo.InvariantCulture));
-            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.YPosition),
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.YPosition),
                 mainWinSettings.YPosition.ToString(CultureInfo.InvariantCulture));
             var filterStrategyConverter = new FilterStrategyConverter();
             var filterStrategyValue = filterStrategyConverter.GetSettingValue(mainWinSettings.SearchPath);
-            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.SearchPath),
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.SearchPath),
                 filterStrategyValue);
             var sortDescriptionConverter = new SortDescriptionConverter();
             var sortDescriptionValue = sortDescriptionConverter.GetSettingValue(mainWinSettings.SortDescription);
-            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.SortDescription),
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.SortDescription),
                 sortDescriptionValue);
-            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel.WindowState),
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.WindowState),
                 ((int) mainWinSettings.WindowState).ToString());
         }
 
@@ -403,7 +403,7 @@ namespace ChamiUI.BusinessLayer.Adapters
 
         public void SaveFontSize(double fontSize)
         {
-            _repository.UpdateSetting(nameof(ConsoleAppearanceViewModel.FontSize), fontSize.ToString(CultureInfo.InvariantCulture));
+            _repository.UpdateSetting(nameof(ConsoleAppearanceViewModel), nameof(ConsoleAppearanceViewModel.FontSize), fontSize.ToString(CultureInfo.InvariantCulture));
         }
 
         public List<Setting> GetSettingsList()

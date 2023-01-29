@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Dapper;
 
@@ -24,12 +25,17 @@ namespace Chami.Db.Repositories
         /// <returns>An <see cref="IEnumerable{T}"/> with all the available <see cref="UiLanguage"/>s.</returns>
         public IEnumerable<UiLanguage> GetAllUiLanguages()
         {
+            return GetAllUiLanguagesAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<IEnumerable<UiLanguage>> GetAllUiLanguagesAsync()
+        {
             var queryString = @"
                 SELECT Code, Name, FlagPath
                 FROM UiLanguages
 ";
             using var connection = GetConnection();
-            var result = connection.Query<UiLanguage>(queryString);
+            var result = await connection.QueryAsync<UiLanguage>(queryString);
             return result;
         }
 

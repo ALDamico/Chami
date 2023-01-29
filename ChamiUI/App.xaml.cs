@@ -1,7 +1,6 @@
 ﻿using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Logger;
 using ChamiUI.PresentationLayer.ViewModels;
-using Serilog.Core;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -12,12 +11,13 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Reflection;
-using System.Timers;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using Chami.CmdExecutor;
 using Chami.CmdExecutor.Commands.Common;
 using ChamiDbMigrations.Migrations;
+using ChamiUI.BusinessLayer.AppLoader;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.Localization;
@@ -33,8 +33,11 @@ using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.Utils;
 using ChamiUI.Windows.Exceptions;
+using ChamiUI.Windows.Splash;
+using SplashScreen = ChamiUI.Windows.Splash;
 
 namespace ChamiUI
 {
@@ -45,56 +48,61 @@ namespace ChamiUI
     {
         public App()
         {
-            _serviceProvider = CreateServices();
+            _splashScreen = new SplashScreen.SplashScreen();
+            _splashScreen.Show();
+            _appLoader = new AppLoader(_splashScreen.OnMessageReceived);
 
             InitializeComponent();
-            DispatcherUnhandledException += ShowExceptionMessageBox;
-            try
-            {
-                MigrateDatabase();
-            }
-            catch (SQLiteException ex)
-            {
-                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
-            }
-
-            InitHealthChecker();
         }
 
-        private ChamiLogger InitLogger(bool readSettings = false)
+        private SplashScreen.SplashScreen _splashScreen;
+        private AppLoader _appLoader;
+
+        private Task InitLogger(IServiceCollection serviceCollection)
         {
             var chamiLogger = new ChamiLogger();
             chamiLogger.AddFileSink(AppUtils.GetLogFilePath());
+            chamiLogger.AddDebugSink();
 
-            if (readSettings)
-            {
-                var settings = _serviceProvider.GetRequiredService<SettingsViewModel>();
-                var loggingSettings = settings.LoggingSettings;
+            /* if (readSettings)
+             {
+                 var settings = ServiceProvider.GetRequiredService<SettingsViewModel>();
+                 var loggingSettings = settings.LoggingSettings;
+ 
+                 var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
+                 if (loggingSettings.LoggingEnabled)
+                 {
+                     minimumLogLevel = LogEventLevel.Fatal;
+                 }
+ 
+                 chamiLogger.SetMinumumLevel(minimumLogLevel);
+             }*/
 
-                var minimumLogLevel = loggingSettings.SelectedMinimumLogLevel?.BackingValue ?? LogEventLevel.Fatal;
-                if (loggingSettings.LoggingEnabled)
-                {
-                    minimumLogLevel = LogEventLevel.Fatal;
-                }
-
-                chamiLogger.SetMinumumLevel(minimumLogLevel);
-            }
-
-            return chamiLogger;
+            Log.Logger = chamiLogger.GetLogger();
+            serviceCollection.AddLogging(l => l.AddSerilog());
+            return Task.CompletedTask;
         }
 
-        private void InitHealthChecker()
+        private Task InitHealthChecker(IServiceCollection serviceCollection)
         {
-            HealthCheckerConfiguration = new EnvironmentHealthCheckerConfiguration()
-            {
-                MaxScore = 1.0,
-                MismatchPenalty = 0.25,
-                CheckInterval = Settings.HealthCheckSettings.TimeToCheck.TotalMilliseconds
-            };
-            _healthCheckerTimer = new DispatcherTimer();
-            _healthCheckerTimer.Interval = TimeSpan.FromMilliseconds(HealthCheckerConfiguration.CheckInterval);
-            _healthCheckerTimer.Tick += HealthCheckerTimerOnElapsed;
-            RestartTimer();
+            serviceCollection.AddSingleton((sp) =>
+                    new EnvironmentHealthCheckerConfiguration()
+                    {
+                        MaxScore = 1.0,
+                        MismatchPenalty = 0.25,
+                        CheckInterval = ServiceProvider.GetRequiredService<SettingsViewModel>().HealthCheckSettings
+                            .TimeToCheck.TotalMilliseconds
+                    })
+                .AddSingleton((sp) =>
+                {
+                    var healthCheckerTimer = new DispatcherTimer();
+                    healthCheckerTimer.Interval = TimeSpan.FromMilliseconds(ServiceProvider
+                        .GetRequiredService<EnvironmentHealthCheckerConfiguration>().CheckInterval);
+                    healthCheckerTimer.Tick += HealthCheckerTimerOnElapsed;
+                    return healthCheckerTimer;
+                });
+            
+            return Task.CompletedTask;
         }
 
         private void RestartTimer()
@@ -124,29 +132,37 @@ namespace ChamiUI
             healthChecker.CheckEnvironment(_activeEnvironment);
         }
 
-        private void InitCmdExecutorMessages()
+        private Task InitCmdExecutorMessages(IServiceCollection serviceCollection)
         {
             CmdExecutorBase.StartingExecutionMessage = ChamiUIStrings.StartingExecutionMessage;
             CmdExecutorBase.CompletedExecutionMessage = ChamiUIStrings.ExecutionCompleteMessage;
             CmdExecutorBase.UnknownProcessAlreadyExited = ChamiUIStrings.UnknownProcessAlreadyExited;
             CmdExecutorBase.KnownProcessTerminated = ChamiUIStrings.KnownProcessTerminated;
             CmdExecutorBase.KnownProcessAlreadyExited = ChamiUIStrings.KnownProcessAlreadyExited;
+            return Task.CompletedTask;
         }
+        public IServiceProvider ServiceProvider { get; private set; }
 
-        private readonly IServiceProvider _serviceProvider;
-        public IServiceProvider ServiceProvider => _serviceProvider;
-
-        private IServiceProvider CreateServices()
+        private Task ConfigureDatabase(IServiceCollection serviceCollection)
         {
-            var chamiLogger = InitLogger();
-            Log.Logger = chamiLogger.GetLogger();
-            var serviceCollection = new ServiceCollection()
-                .AddFluentMigratorCore()
+            serviceCollection.AddFluentMigratorCore()
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
-                        .Migrations())
-                .AddLogging(l => l.AddSerilog())
-                .AddSingleton<MainWindow>()
+                        .Migrations());
+            return Task.CompletedTask;
+        }
+
+        private Task RegisterWindows(IServiceCollection serviceCollection)
+        {
+            serviceCollection
+                .AddSingleton((sp) => new MainWindowViewModel(GetConnectionString()))
+                .AddSingleton<MainWindow>();
+            return Task.CompletedTask;
+        }
+
+        private Task RegisterSettingsModule(IServiceCollection serviceCollection)
+        {
+            serviceCollection
                 .AddTransient(serviceProvider => new SettingsDataAdapter(GetConnectionString()))
                 .AddSingleton(serviceProvider =>
                 {
@@ -155,17 +171,25 @@ namespace ChamiUI
                         new WatchedApplicationDataAdapter(connectionString),
                         new ApplicationLanguageDataAdapter(connectionString));
                 });
-
-            return serviceCollection.BuildServiceProvider();
+            return Task.CompletedTask;
         }
 
-        private void MigrateDatabase()
+        private Task MigrateDatabase(IServiceCollection serviceCollection)
         {
-            var runner = _serviceProvider.GetRequiredService<IMigrationRunner>();
-            runner.MigrateUp();
+            try
+            {
+                var runner = ServiceProvider.GetRequiredService<IMigrationRunner>();
+                runner.MigrateUp();
+            }
+            catch (SQLiteException ex)
+            {
+                Log.Logger.Fatal(ex, "Fatal error while trying to apply database migrations");
+            }
+
+            return Task.CompletedTask;
         }
 
-        public SettingsViewModel Settings => _serviceProvider.GetRequiredService<SettingsViewModel>();
+        public SettingsViewModel Settings => ServiceProvider.GetRequiredService<SettingsViewModel>();
 
         public static string GetConnectionString()
         {
@@ -186,8 +210,8 @@ namespace ChamiUI
             SystemSounds.Exclamation.Play();
             var exception = args.Exception;
             var exceptionWindow = new ExceptionWindow(exception);
-                exceptionWindow.ShowDialog();
-            if (Settings.LoggingSettings.LoggingEnabled)
+            exceptionWindow.ShowDialog();
+            if (Settings != null && Settings.LoggingSettings.LoggingEnabled)
             {
                 Log.Logger.Error("{Message}", exception.Message);
                 Log.Logger.Error("{Message}", args.Exception.StackTrace);
@@ -228,30 +252,58 @@ namespace ChamiUI
 #endif
         }
 
-        private void App_OnStartup(object sender, StartupEventArgs e)
+        private Task RegisterExceptionHandler(IServiceCollection serviceCollection)
         {
-            InitLocalization();
-            InitCmdExecutorMessages();
+            DispatcherUnhandledException += ShowExceptionMessageBox;
+            return Task.CompletedTask;
+        }
+
+
+        private async void App_OnStartup(object sender, StartupEventArgs e)
+        {
             DetectOtherInstance();
-            var mainWindow = _serviceProvider.GetService<MainWindow>();
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitLogger, "Initializing logger"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(ConfigureDatabase, "Configuring database connection"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterWindows, "Registering windows"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterSettingsModule, "Registering settings module"));
+#if !DEBUG
+            _appLoader.AddCommand(
+                new DefaultAppLoaderCommand(RegisterExceptionHandler, "Registering exception handler"));
+#endif
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitHealthChecker, "Initializing health checker module"));
+            //_appLoader.AddCommand(new BuildServiceProviderLoaderCommand());
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(MigrateDatabase, "Migrating database"), true);
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitLocalization, "Initializing localization support"), true);
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitCmdExecutorMessages,
+                "Initializing CMD executor messages"), true);
+            
+            ServiceProvider = 
+
+            await Task.Run(_appLoader.ExecuteAsync);
+            await Task.Run(_appLoader.ExecutePostBuildCommandsAsync);
+            Dispatcher.Invoke(() => { ShowMainWindow(e); });
+        }
+
+        private void ShowMainWindow(StartupEventArgs e)
+        {
+            var mainWindow = ServiceProvider.GetService<MainWindow>();
             mainWindow.ResumeState();
             MainWindow = mainWindow;
-            _taskbarIcon = (TaskbarIcon) FindResource("ChamiTaskbarIcon");
+            _taskbarIcon = (TaskbarIcon)FindResource("ChamiTaskbarIcon");
             HandleCommandLineArguments(e);
 
             if (_taskbarIcon != null)
             {
-                if (MainWindow.DataContext is MainWindowViewModel viewModel)
+                var viewModel = ServiceProvider.GetRequiredService<MainWindowViewModel>();
+                if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
                 {
-                    if (_taskbarIcon.DataContext is TaskbarBehaviourViewModel behaviourViewModel)
-                    {
-                        viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
-                    }
-
-                    viewModel.EnvironmentChanged += OnEnvironmentChanged;
+                    viewModel.EnvironmentChanged += behaviourViewModel.OnEnvironmentChanged;
                 }
+
+                viewModel.EnvironmentChanged += OnEnvironmentChanged;
             }
 
+            _splashScreen.Close();
             MainWindow.Show();
             if (Settings.HealthCheckSettings.IsEnabled)
             {
@@ -282,11 +334,11 @@ namespace ChamiUI
             }
         }
 
-        internal void InitLocalization()
+        internal async Task InitLocalization(IServiceCollection serviceCollection)
         {
             var localizationProvider = ResxLocalizationProvider.Instance;
             var dataAdapter = new ApplicationLanguageDataAdapter(GetConnectionString());
-            var languages = dataAdapter.GetAllAvailableCultureInfos();
+            var languages = await dataAdapter.GetAllAvailableCultureInfosAsync();
             localizationProvider.SearchCultures = new List<CultureInfo>();
             foreach (var cultureInfo in languages)
             {
@@ -310,8 +362,10 @@ namespace ChamiUI
             Log.CloseAndFlush();
         }
 
-        public EnvironmentHealthCheckerConfiguration HealthCheckerConfiguration { get; set; }
-        private DispatcherTimer _healthCheckerTimer;
+        public EnvironmentHealthCheckerConfiguration HealthCheckerConfiguration =>
+            ServiceProvider.GetRequiredService<EnvironmentHealthCheckerConfiguration>();
+
+        private DispatcherTimer _healthCheckerTimer => ServiceProvider.GetRequiredService<DispatcherTimer>();
         private EnvironmentViewModel _activeEnvironment;
     }
 }

@@ -37,11 +37,9 @@ namespace ChamiUI.Windows.MainWindow
         /// <summary>
         /// Constructs a new <see cref="MainWindow"/> and sets its DataContext, plus registering event handlers.
         /// </summary>
-        public MainWindow()
+        public MainWindow(MainWindowViewModel viewModel)
         {
-            var connectionString = App.GetConnectionString();
-
-            ViewModel = new MainWindowViewModel(connectionString);
+            ViewModel = viewModel;
             ViewModel.EnvironmentExists += OnEnvironmentExists;
 
             DataContext = ViewModel;

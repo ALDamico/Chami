@@ -37,22 +37,17 @@ namespace Chami.Db.Repositories
             return connection.Query<Setting>(queryString);
         }
 
-        /// <summary>
-        /// Updates the value of a <see cref="Setting"/>.
-        /// </summary>
-        /// <param name="settingName">The name of the <see cref="Setting"/> to update.</param>
-        /// <param name="settingValue">The new value for the <see cref="Setting"/> to update.</param>
-        /// <returns>Returns the setting with the requested name if it exists, otherwise null.</returns>
-        public Setting UpdateSetting(string settingName, string settingValue)
+        public Setting UpdateSetting(string propertyName, string settingName, string settingValue)
         {
             var queryString = @"
                 UPDATE Settings
-                SET Value = ?
-                WHERE SettingName = ?
+                SET Value = ? 
+                WHERE PropertyName = ?
+                AND SettingName = ?
 ";
             using var connection = GetConnection();
-            connection.Execute(queryString, new { settingValue, settingName });
-            var setting = GetSettings().FirstOrDefault(s => s.SettingName == settingName);
+            connection.Execute(queryString, new { settingValue, viewModelName = propertyName, propertyName = settingName });
+            var setting = GetSettings().FirstOrDefault(s => s.PropertyName == propertyName && s.SettingName == settingName);
             return setting;
         }
 

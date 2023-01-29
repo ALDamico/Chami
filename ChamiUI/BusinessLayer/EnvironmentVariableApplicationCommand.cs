@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using Chami.CmdExecutor;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer
 {
@@ -12,12 +14,12 @@ namespace ChamiUI.BusinessLayer
     /// </summary>
     public class EnvironmentVariableApplicationCommand : ShellCommandBase
     {
-        public EnvironmentVariableApplicationCommand(EnvironmentVariable viewModel)
+        public EnvironmentVariableApplicationCommand(EnvironmentVariableViewModel viewModel)
         {
             _environmentVariable = viewModel;
         }
 
-        private readonly EnvironmentVariable _environmentVariable;
+        private readonly EnvironmentVariableViewModel _environmentVariable;
         /// <summary>
         /// Execute the shell command.
         /// </summary>

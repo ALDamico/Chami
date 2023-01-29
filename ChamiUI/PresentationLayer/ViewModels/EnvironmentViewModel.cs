@@ -177,5 +177,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             return HashCode.Combine(Id, EnvironmentType);
         }
+
+        private GenericLabelViewModel _category;
+
+        public GenericLabelViewModel Category
+        {
+            get => _category;
+            set
+            {
+                _category = value;
+                OnPropertyChanged();
+            }
+        }
     }
 }

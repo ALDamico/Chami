@@ -2,6 +2,7 @@ using System;
 using System.Reflection;
 using Chami.CmdExecutor;
 using Chami.Db.Entities;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.BusinessLayer.Factories
 {
@@ -14,23 +15,21 @@ namespace ChamiUI.BusinessLayer.Factories
         /// Creates an appropriate <see cref="IShellCommand"/> based on the requested type.
         /// The <see cref="IShellCommand"/> must implement a public constructor that accepts a parameter of type <see cref="EnvironmentVariable"/>. 
         /// </summary>
-        /// <param name="targetType">The class implementing <see cref="IShellCommand"/> to instantiate.</param>
-        /// <param name="environmentVariable">The <see cref="EnvironmentVariable"/> object to apply the command to.</param>
         /// <returns>An <see cref="IShellCommand"/> that the <see cref="CmdExecutor"/> object can consume.</returns>
         /// <exception cref="MissingMethodException">The <see cref="IShellCommand"/></exception>
         /// <seealso cref="IShellCommand"/>
         /// <seealso cref="EnvironmentVariableApplicationCommand"/>
         /// <seealso cref="EnvironmentVariableRemovalCommand"/>
-        public static Chami.CmdExecutor.IShellCommand GetCommand(Type targetType, EnvironmentVariable environmentVariable)
+        public static IShellCommand GetCommand<T>(EnvironmentVariableViewModel input) 
         {
-            ConstructorInfo constructorInfo = targetType.GetConstructor(new[] { typeof(EnvironmentVariable) });
+            ConstructorInfo constructorInfo = typeof(T).GetConstructor(new[] { typeof(EnvironmentVariableViewModel) });
             if (constructorInfo == null)
             {
                 throw new MissingMethodException("Could not find a suitable constructor!");
             }
 
 
-            var obj = constructorInfo.Invoke(new object[] { environmentVariable });
+            var obj = constructorInfo.Invoke(new object[] { input });
             return obj as IShellCommand;
         }
     }

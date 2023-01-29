@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Data;
+using System.Data.SQLite;
 using System.Linq;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
@@ -35,9 +36,10 @@ namespace Chami.Db.Repositories
                 SELECT *
                 FROM Environments e
                 LEFT JOIN EnvironmentVariables ev on e.EnvironmentId = ev.EnvironmentId
+                LEFT JOIN Categories c ON c.Id = e.EnvironmentId
                 WHERE e.EnvironmentId = ?
  ";
-            using (var connection = await GetConnectionAsync())
+            using (var connection = GetConnection())
             {
                 var environmentDictionary = new Dictionary<int, Environment>();
                 try
@@ -138,7 +140,7 @@ namespace Chami.Db.Repositories
             {
                 var transaction = connection.BeginTransaction();
                 connection.Execute(queryString,
-                    new { environment.Name, environment.AddedOn, environment.EnvironmentType });
+                    new {environment.Name, environment.AddedOn, environment.EnvironmentType});
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId, IsFolder)
                 VALUES (?, ?, ?, ?, ?)
@@ -147,7 +149,7 @@ namespace Chami.Db.Repositories
                     SELECT * 
                     FROM Environments e
                     WHERE e.AddedOn = ?";
-                var results = connection.Query<Environment>(selectQuery, new { environment.AddedOn });
+                var results = connection.Query<Environment>(selectQuery, new {environment.AddedOn});
                 var result = results.FirstOrDefault();
                 if (result != null)
                 {
@@ -157,29 +159,25 @@ namespace Chami.Db.Repositories
                 var environmentVariables = new List<EnvironmentVariable>(environment.EnvironmentVariables);
                 environment.EnvironmentVariables.Clear();
 
-                foreach (var environmentVariable in environmentVariables)
+                foreach (var environmentVariable in environmentVariables.Where(environmentVariable => !environmentVariable.MarkedForDeletion))
                 {
-                    if (!environmentVariable.MarkedForDeletion)
-                    {
-                        environmentVariable.EnvironmentId = environment.EnvironmentId;
-                        connection.Execute(environmentVariableInsertQuery,
-                            new
-                            {
-                                environmentVariable.Name,
-                                environmentVariable.Value,
-                                environmentVariable.AddedOn,
-                                environmentVariable.EnvironmentId,
-                                environmentVariable.IsFolder
-                            });
-                        
-                        environment.EnvironmentVariables.Add(environmentVariable);
-                    }
+                    environmentVariable.EnvironmentId = environment.EnvironmentId;
+                    connection.Execute(environmentVariableInsertQuery,
+                        new
+                        {
+                            environmentVariable.Name,
+                            environmentVariable.Value,
+                            environmentVariable.AddedOn,
+                            environmentVariable.EnvironmentId,
+                            environmentVariable.IsFolder
+                        });
+
+                    environment.EnvironmentVariables.Add(environmentVariable);
                 }
 
                 transaction.Commit();
             }
-            
-            
+
 
             return environment;
         }
@@ -191,14 +189,14 @@ namespace Chami.Db.Repositories
         /// <param name="environment">The <see cref="Environment"/> to update.</param>
         /// <returns>The updated <see cref="Environment"/> entity.</returns>
         /// <exception cref="NotSupportedException">If the <see cref="Environment"/> is not yet persisted (i.e., its EnvironmentId is 0), a <see cref="NotSupportedException"/> is thrown.</exception>
-        public Environment UpdateEnvironment(Environment environment)
+        private Environment UpdateEnvironment(Environment environment)
         {
             if (environment.EnvironmentId == 0)
             {
                 throw new NotSupportedException("Attempting to update an entity that has not been persisted.");
             }
 
-            var updateQuery = @"
+            const string updateQuery = @"
                 UPDATE Environments
                 SET Name = ?
                 WHERE EnvironmentId = ?
@@ -262,7 +260,8 @@ namespace Chami.Db.Repositories
 
             UpdateEnvironment(environment);
 
-            var newVariables = environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0 && !v.MarkedForDeletion);
+            var newVariables =
+                environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0 && !v.MarkedForDeletion);
 
             foreach (var environmentVariable in newVariables)
             {
@@ -286,7 +285,7 @@ namespace Chami.Db.Repositories
         /// <param name="environmentVariable">The <see cref="EnvironmentVariable"/> to insert.</param>
         /// <param name="environmentId">The Id of the <see cref="Environment"/> to attach the new variable to.</param>
         /// <exception cref="InvalidOperationException">If the <see cref="EnvironmentVariable"/> object's Name or Value attributes is null, an <see cref="InvalidOperationException"/> is thrown to preserve the consistency of the datastore.</exception>
-        protected void InsertVariable(EnvironmentVariable environmentVariable, int environmentId)
+        private void InsertVariable(EnvironmentVariable environmentVariable, int environmentId)
         {
             if (environmentVariable == null)
             {
@@ -307,18 +306,16 @@ namespace Chami.Db.Repositories
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId, IsFolder)
                 VALUES (?, ?, ?, ?, ?)
 ";
-            using (var connection = GetConnection())
+            using var connection = GetConnection();
+            var updObj = new
             {
-                var updObj = new
-                {
-                    environmentVariable.Name,
-                    environmentVariable.Value,
-                    environmentVariable.AddedOn,
-                    environmentId,
-                    environmentVariable.IsFolder
-                };
-                connection.Execute(environmentVariableInsertQuery, updObj);
-            }
+                environmentVariable.Name,
+                environmentVariable.Value,
+                environmentVariable.AddedOn,
+                environmentId,
+                environmentVariable.IsFolder
+            };
+            connection.Execute(environmentVariableInsertQuery, updObj);
         }
 
         /// <summary>
@@ -338,9 +335,7 @@ namespace Chami.Db.Repositories
                 var dict = new Dictionary<int, Environment>();
                 connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
                 {
-                    Environment env;
-
-                    if (!dict.TryGetValue(e.EnvironmentId, out env))
+                    if (!dict.TryGetValue(e.EnvironmentId, out var env))
                     {
                         env = e;
                         dict[e.EnvironmentId] = e;
@@ -365,6 +360,7 @@ namespace Chami.Db.Repositories
                 SELECT *
                 FROM Environments
                 LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
+                LEFT JOIN Categories ON Categories.Id = Environments.CategoryId
                 WHERE EnvironmentType = ?
 ";
             using (var connection = GetConnection())
@@ -372,9 +368,7 @@ namespace Chami.Db.Repositories
                 var dict = new Dictionary<int, Environment>();
                 connection.Query<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
                 {
-                    Environment env;
-
-                    if (!dict.TryGetValue(e.EnvironmentId, out env))
+                    if (!dict.TryGetValue(e.EnvironmentId, out var env))
                     {
                         env = e;
                         dict[e.EnvironmentId] = e;
@@ -433,9 +427,7 @@ namespace Chami.Db.Repositories
                     var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
-                            Environment env;
-
-                            if (!environmentDictionary.TryGetValue(e.EnvironmentId, out env))
+                            if (!environmentDictionary.TryGetValue(e.EnvironmentId, out var env))
                             {
                                 env = e;
                                 environmentDictionary[e.EnvironmentId] = e;
@@ -538,13 +530,13 @@ namespace Chami.Db.Repositories
                         blackistedVariable.Name,
                         blackistedVariable.InitialValue,
                         blackistedVariable.IsWindowsDefault,
-                        blackistedVariable.IsEnabled, 
+                        blackistedVariable.IsEnabled,
                         AddedOn = DateTime.Now
                     });
 
                 var insertedId = await connection.QueryAsync<int>("SELECT last_insert_rowid()");
                 var list = insertedId.ToList();
-                if (list.Count() == 1)
+                if (list.Count == 1)
                 {
                     blackistedVariable.Id = list.First();
                     await transaction.CommitAsync();
@@ -585,11 +577,11 @@ namespace Chami.Db.Repositories
                 await connection.ExecuteAsync(queryString, new
                 {
                     // ReSharper disable once RedundantAnonymousTypePropertyName
-                    Name = blacklistedVariable.Name, 
+                    Name = blacklistedVariable.Name,
                     // ReSharper disable once RedundantAnonymousTypePropertyName
                     InitialValue = blacklistedVariable.InitialValue,
                     // ReSharper disable once RedundantAnonymousTypePropertyName
-                    IsWindowsDefault = blacklistedVariable.IsWindowsDefault, 
+                    IsWindowsDefault = blacklistedVariable.IsWindowsDefault,
                     // ReSharper disable once RedundantAnonymousTypePropertyName
                     IsEnabled = blacklistedVariable.IsEnabled,
                     // ReSharper disable once RedundantAnonymousTypePropertyName
@@ -630,31 +622,151 @@ namespace Chami.Db.Repositories
 
         public async Task UpdateVariableByNameAsync(string variableName, string variableValue)
         {
-            var sql = GetUpdateVariableByNameQuery();
+            var sql = GetUpdateVariableByNameQuery;
             var connection = GetConnection();
             await connection.ExecuteAsync(sql, new {variableValue, variableName});
         }
 
-        private string GetUpdateVariableByNameQuery()
+        private const string GetUpdateVariableByNameQuery = @"
+            UPDATE EnvironmentVariables
+            SET Value = ?
+            WHERE Name = ?
+        ";
+        
+        public async Task UpdateVariableByNameAndEnvironmentIdsAsync(string variableName, string variableValue,
+            ImmutableList<int> environmentIds)
         {
-            return @"
-                UPDATE EnvironmentVariables
-                SET Value = ?
-                WHERE Name = ?
-";
-        }
+            var sql = GetUpdateVariableByNameQuery + " AND EnvironmentId IN (?)";
 
-        public async Task UpdateVariableByNameAndEnvironmentIdsAsync(string variableName, string variableValue, ImmutableList<int> environmentIds)
-        {
-            var environmentIdString = string.Join(',', environmentIds);
-            var sql = GetUpdateVariableByNameQuery() + " AND EnvironmentId IN (?)";
-
-            using var connection = GetConnection();
+            await using var connection = GetConnection();
 
             await connection.ExecuteAsync(sql, new {variableValue, variableName, environmentIds});
+        }
 
+        public async Task<IEnumerable<Category>> GetAllCategoriesAsync()
+        {
+            var query = @"
+                SELECT Id, Name, BackgroundColor, Icon, Visibility
+                FROM Categories
+";
+            using var connection = GetConnection();
+            return await connection.QueryAsync<Category>(query);
+        }
+
+        public IEnumerable<Category> GetAllCategories()
+        {
+            return GetAllCategoriesAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> InsertCategoryAsync(Category category)
+        {
+            if (category.Id != 0)
+            {
+                throw new InvalidOperationException("Entity already persisted");
+            }
+
+            var query = @"
+                INSERT INTO Categories(Name, BackgroundColor, Icon, Visibility)
+                VALUES (?, ?, ?, ?)
+";
+            using var connection = GetConnection();
+            var transaction = await connection.BeginTransactionAsync();
+            var inserted = await connection.ExecuteAsync(query, category, transaction);
+
+            if (inserted == 0)
+            {
+                await transaction.RollbackAsync();
+                throw new SQLiteException("Entity not persisted");
+            }
+
+            var rowId = connection.LastInsertRowId;
+            category.Id = (int) rowId;
+
+            await transaction.CommitAsync();
+            return category;
+        }
+
+        public Category InsertCategory(Category category)
+        {
+            return InsertCategoryAsync(category).GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> UpdateCategoryAsync(Category category)
+        {
+            if (category.Id == 0)
+            {
+                throw new InvalidOperationException("Entity not persisted");
+            }
+
+            var query = @"
+                UPDATE Categories
+                SET Name = ?,
+                    BackgroundColor = ?,
+                    Icon = ?,
+                    Visibility = ?
+                WHERE Id = ?
+            ";
+
+            using var connection = GetConnection();
+            var result = await connection.ExecuteAsync(query, category);
+
+            if (result == 0)
+            {
+                throw new InvalidOperationException("No rows affected");
+            }
+
+            return category;
+        }
+
+        public Category UpdateCategory(Category category)
+        {
+            return UpdateCategoryAsync(category).GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> UpsertCategoryAsync(Category category)
+        {
+            if (category.Id != 0)
+            {
+                return await UpdateCategoryAsync(category);
+            }
+
+            return await InsertCategoryAsync(category);
+        }
+
+        public Category UpsertCategory(Category category)
+        {
+            return UpdateCategoryAsync(category).GetAwaiter().GetResult();
+        }
+
+        public async Task<Category> GetCategoryByIdAsync(int id)
+        {
+            var query = @"
+                SELECT Id, Name, BackgroundColor, Icon, Visibility
+                FROM Categories 
+                WHERE Id = ?
+";
+            using var connection = GetConnection();
+
+            return await connection.QuerySingleOrDefaultAsync<Category>(query, id);
+        }
+
+        public Category GetCategoryById(int id)
+        {
+            return GetCategoryByIdAsync(id).GetAwaiter().GetResult();
+        }
+
+        public async Task<bool> DeleteCategoryByIdAsync(int id)
+        {
+            var query = "DELETE FROM Categories WHERE Id = ?";
+            using var connection = GetConnection();
+
+            var rowsDeleted = await connection.ExecuteAsync(query, id);
+            return rowsDeleted > 0;
+        }
+
+        public bool DeleteCategoryById(int id)
+        {
+            return DeleteCategoryByIdAsync(id).GetAwaiter().GetResult();
         }
     }
-    
-    
 }

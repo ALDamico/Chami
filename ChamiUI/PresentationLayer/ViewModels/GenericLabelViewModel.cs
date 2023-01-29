@@ -9,6 +9,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
     [ExplicitSaveOnly(false)]
     public abstract class GenericLabelViewModel : ViewModelBase
     {
+        protected GenericLabelViewModel()
+        {
+            IsVisible = true;
+        }
         [NonPersistentSetting]
         public string Description
         {
@@ -42,7 +46,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        [NonPersistentSetting]
         public Brush ForegroundColor
         {
             get => _foregroundColor;
@@ -53,9 +56,32 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        public Brush BackgroundColor
+        {
+            get => _backgroundColor;
+            set
+            {
+                _backgroundColor = value;
+                OnPropertyChanged();
+            }
+        }
+
+        [NonPersistentSetting]
+        public bool IsVisible
+        {
+            get => _isVisible;
+            set
+            {
+                _isVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
         private string _displayName;
         private string _description;
         private string _iconPath;
         private Brush _foregroundColor;
+        private Brush _backgroundColor;
+        private bool _isVisible;
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Globalization;
+using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Converters;
@@ -41,8 +42,13 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <returns>A (possibly empty) list of <see cref="ApplicationLanguageViewModel"/> objects.</returns>
         public IEnumerable<ApplicationLanguageViewModel> GetAllApplicationLanguages()
         {
+            return GetAllApplicationLanguagesAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<IEnumerable<ApplicationLanguageViewModel>> GetAllApplicationLanguagesAsync()
+        {
             var converter = new ApplicationLanguageConverter();
-            var result = _repository.GetAllUiLanguages();
+            var result = await _repository.GetAllUiLanguagesAsync();
             var output = new List<ApplicationLanguageViewModel>();
             foreach (var uiLanguage in result)
             {
@@ -59,6 +65,20 @@ namespace ChamiUI.BusinessLayer.Adapters
         public IEnumerable<CultureInfo> GetAllAvailableCultureInfos()
         {
             var languages = GetAllApplicationLanguages();
+            var result = new List<CultureInfo>();
+
+            foreach (var language in languages)
+            {
+                CultureInfo ci = CultureInfo.CreateSpecificCulture(language.Code);
+                result.Add(ci);
+            }
+
+            return result;
+        }
+
+        public async Task<IEnumerable<CultureInfo>> GetAllAvailableCultureInfosAsync()
+        {
+            var languages = await GetAllApplicationLanguagesAsync();
             var result = new List<CultureInfo>();
 
             foreach (var language in languages)
