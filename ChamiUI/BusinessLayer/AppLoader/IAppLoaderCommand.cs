@@ -8,4 +8,5 @@ public interface IAppLoaderCommand
 {
     Func<IServiceCollection, Task> ActionToExecute { get; set; }
     string Message { get; set; }
+    string Name => ActionToExecute.Method.Name;
 }

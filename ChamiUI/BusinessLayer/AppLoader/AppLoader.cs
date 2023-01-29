@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using ChamiUI.PresentationLayer.Progress;
 using ChamiUI.Windows.EnvironmentHealth;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 namespace ChamiUI.BusinessLayer.AppLoader;
 
@@ -38,8 +39,12 @@ public class AppLoader
 
         _commands.Select((c, i) => new { Command = c, Percentage = (i + 1) * 100 / numberOfCommands }).ToList().ForEach(async c =>
         {
+            var when = DateTime.Now;
             _progress.Report(new AppLoadProgress() { Message = c.Command.Message, Percentage = c.Percentage });
             await c.Command.ActionToExecute(_serviceCollection);
+
+            var taken = (DateTime.Now - when).TotalMilliseconds;
+            Log.Information("Service {Name} registered in {TimeTaken} milliseconds", c.Command.Name, taken);
         });
         var serviceProvider = _serviceCollection.BuildServiceProvider();
         
@@ -54,10 +59,13 @@ public class AppLoader
         _postServiceProviderBuildCommands.Select((c, i) => new { Command = c, Percentage = (i + 1 + alreadyExecutedCommands) * 100 / numberOfCommands })
             .ToList().ForEach(async c =>
             {
+                var when = DateTime.Now;
                 _progress.Report(new AppLoadProgress() { Message = c.Command.Message, Percentage = c.Percentage });
                 var action = c.Command.ActionToExecute;
 
                 await action(_serviceCollection);
+                var taken = (DateTime.Now - when).TotalMilliseconds;
+                Log.Information("Service {Name} registered in {TimeTaken} milliseconds", c.Command.Name, taken);
             });
         
         return Task.CompletedTask;

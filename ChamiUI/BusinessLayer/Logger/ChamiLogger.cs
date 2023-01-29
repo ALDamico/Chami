@@ -45,6 +45,11 @@ namespace ChamiUI.BusinessLayer.Logger
             _loggerConfiguration.WriteTo.File(filename);
         }
 
+        public void AddDebugSink()
+        {
+            _loggerConfiguration.WriteTo.Debug();
+        }
+
         public void SetMinumumLevel(LogEventLevel minimumLevel)
         {
             _loggerConfiguration.MinimumLevel.ControlledBy(new LoggingLevelSwitch(minimumLevel));

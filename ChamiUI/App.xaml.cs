@@ -62,6 +62,7 @@ namespace ChamiUI
         {
             var chamiLogger = new ChamiLogger();
             chamiLogger.AddFileSink(AppUtils.GetLogFilePath());
+            chamiLogger.AddDebugSink();
 
             /* if (readSettings)
              {
