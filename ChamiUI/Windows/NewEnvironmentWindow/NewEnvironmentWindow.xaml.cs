@@ -15,14 +15,17 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
 {
     public partial class NewEnvironmentWindow
     {
-        public NewEnvironmentWindow(Window owner, NewEnvironmentViewModelBase environmentViewModelBase) : this()
+        public NewEnvironmentWindow(Window owner, NewEnvironmentViewModel environmentViewModelBase)
         {
             Owner = owner;
+            _viewModel = environmentViewModelBase;
+            DataContext = _viewModel;
+            InitializeComponent();
         }
 
         public NewEnvironmentWindow()
         {
-            _viewModel = new NewEnvironmentViewModel();
+            _viewModel = new NewEnvironmentViewModel(null);
             DataContext = _viewModel;
             InitializeComponent();
         }

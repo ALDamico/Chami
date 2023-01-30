@@ -18,11 +18,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Constructs a new <see cref="SettingsWindowViewModel"/> object and initializes its <see cref="Settings"/>
         /// property and its data adapters.
         /// </summary>
-        public SettingsWindowViewModel()
+        public SettingsWindowViewModel(SettingsDataAdapter settingsDataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter)
         {
-            var connectionString = App.GetConnectionString();
-            _dataAdapter = new SettingsDataAdapter(connectionString);
-            _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
+            _dataAdapter = settingsDataAdapter;
+            _watchedApplicationDataAdapter = watchedApplicationDataAdapter;
             SettingsCategories = new ObservableCollection<GenericLabelViewModel>();
             Settings.ConsoleAppearanceSettings =
                 SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);

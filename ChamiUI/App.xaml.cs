@@ -166,8 +166,8 @@ namespace ChamiUI
         private Task RegisterViewModels(IServiceCollection serviceCollection)
         {
             serviceCollection
-                .AddSingleton((sp) => new MainWindowViewModel(GetConnectionString()))
-                .AddTransient(sp => new SettingsWindowViewModel())
+                .AddSingleton<MainWindowViewModel>()
+                .AddTransient<SettingsWindowViewModel>()
                 .AddTransient<MassUpdateWindowViewModel>()
                 .AddTransient<NewEnvironmentViewModel>()
                 .AddTransient<DetectedApplicationsViewModel>()
@@ -211,12 +211,12 @@ namespace ChamiUI
         {
             serviceCollection
                 .AddTransient(_ => new SettingsDataAdapter(GetConnectionString()))
-                .AddSingleton(_ =>
+                .AddSingleton(sp =>
                 {
-                    var connectionString = GetConnectionString();
-                    return SettingsViewModelFactory.GetSettings(new SettingsDataAdapter(connectionString),
-                        new WatchedApplicationDataAdapter(connectionString),
-                        new ApplicationLanguageDataAdapter(connectionString));
+                    var settingsDataAdapter = sp.GetRequiredService<SettingsDataAdapter>();
+                    var watchedApplicationDataAdapter = sp.GetRequiredService<WatchedApplicationDataAdapter>();
+                    var applicationLanguageDataAdapter = sp.GetRequiredService<ApplicationLanguageDataAdapter>();
+                    return SettingsViewModelFactory.GetSettings(settingsDataAdapter, watchedApplicationDataAdapter, applicationLanguageDataAdapter);
                 });
             return Task.CompletedTask;
         }
@@ -362,8 +362,8 @@ namespace ChamiUI
 
         private Task RegisterDataAdapters(IServiceCollection serviceCollection)
         {
+            // The settings data adapter is registered in its own function
             serviceCollection.AddTransient(_ => new EnvironmentDataAdapter(GetConnectionString()))
-                .AddTransient(sp => new SettingsDataAdapter(GetConnectionString()))
                 .AddTransient(_ => new WatchedApplicationDataAdapter(GetConnectionString()))
                 .AddTransient(_ => new ApplicationLanguageDataAdapter(GetConnectionString()));
             return Task.CompletedTask;

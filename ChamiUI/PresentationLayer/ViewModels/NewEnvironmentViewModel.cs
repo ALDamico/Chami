@@ -1,4 +1,5 @@
 using System.Collections.ObjectModel;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Mementos;
 using ChamiUI.Windows.NewEnvironmentWindow;
 
@@ -13,7 +14,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Constructs a new <see cref="NewEnvironmentViewModel"/>
         /// </summary>
-        public NewEnvironmentViewModel()
+        public NewEnvironmentViewModel(EnvironmentDataAdapter environmentDataAdapter) : base(environmentDataAdapter)
         {
             Environment = new EnvironmentViewModel();
             TemplateEnvironments = new ObservableCollection<EnvironmentViewModel>();

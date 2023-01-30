@@ -11,10 +11,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Constructs a new <see cref="NewEnvironmentViewModelBase"/> object and initializes its <see cref="DataAdapter"/>
         /// </summary>
+        protected NewEnvironmentViewModelBase(EnvironmentDataAdapter environmentDataAdapter) : this()
+        {
+            DataAdapter = environmentDataAdapter;
+        }
+
         protected NewEnvironmentViewModelBase()
         {
             Validator = new EnvironmentViewModelValidator();
-            DataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
         }
 
         /// <summary>

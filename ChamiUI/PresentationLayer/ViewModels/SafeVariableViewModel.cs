@@ -6,10 +6,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class SafeVariableViewModel : GenericLabelViewModel
     {
-        public SafeVariableViewModel()
+        public SafeVariableViewModel(EnvironmentDataAdapter environmentDataAdapter)
         {
             ForbiddenVariables = new ObservableCollection<EnvironmentVariableBlacklistViewModel>();
-            _environmentDataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
+            _environmentDataAdapter = environmentDataAdapter;
         }
 
         public async Task LoadForbiddenVariables()

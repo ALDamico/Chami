@@ -1,3 +1,7 @@
+using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.Utils;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     /// <summary>
@@ -9,7 +13,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public SettingsViewModel()
         {
             LoggingSettings = new LoggingSettingsViewModel();
-            SafeVariableSettings = new SafeVariableViewModel();
+            SafeVariableSettings = new SafeVariableViewModel(AppUtils.GetAppServiceProvider().GetRequiredService<EnvironmentDataAdapter>());
             ConsoleAppearanceSettings = new ConsoleAppearanceViewModel();
             WatchedApplicationSettings = new WatchedApplicationControlViewModel();
             LanguageSettings = new LanguageSelectorViewModel();

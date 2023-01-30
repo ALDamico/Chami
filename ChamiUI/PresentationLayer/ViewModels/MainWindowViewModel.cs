@@ -115,11 +115,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Constructs a new <see cref="MainWindowViewModel"/> object and initializes its data adapter with the provided
         /// connection string.
         /// </summary>
-        /// <param name="connectionString">The connection string to the Chami datastore.</param>
-        public MainWindowViewModel(string connectionString)
+        /// <param name="environmentDataAdapter">An <see cref="EnvironmentDataAdapter"/> used to perform database operations on environments</param>
+        /// <param name="settingsDataAdapter">A <see cref="SettingsDataAdapter"/> used to manage application settings.</param>
+        public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter, SettingsDataAdapter settingsDataAdapter)
         {
-            _dataAdapter = new EnvironmentDataAdapter(connectionString);
-            _settingsDataAdapter = new SettingsDataAdapter(connectionString);
+            _dataAdapter = environmentDataAdapter;
+            _settingsDataAdapter = settingsDataAdapter;
             _stateManager = new MainWindowStateManager();
             _stateManager.ChangeState(new MainWindowLoadingDataState()); 
             Environments = GetEnvironments();
@@ -948,7 +949,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var columnInfos = closedWindowViewModel.ColumnInfoViewModels;
 
-            var dataAdapter = new SettingsDataAdapter(App.GetConnectionString());
+            var dataAdapter = AppUtils.GetAppServiceProvider().GetRequiredService<SettingsDataAdapter>();
             var columnInfosToSave = new List<ColumnInfoViewModel>();
             Settings.HealthCheckSettings.ColumnInfos.Clear();
             var converter = new ColumnInfoConverter();

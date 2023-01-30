@@ -1,10 +1,11 @@
 ﻿using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Adapters;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class NewTemplateWindowViewModel : NewEnvironmentViewModelBase
     {
-        public NewTemplateWindowViewModel()
+        public NewTemplateWindowViewModel(EnvironmentDataAdapter environmentDataAdapter) : base(environmentDataAdapter)
         {
             Environment = new EnvironmentViewModel() {EnvironmentType = EnvironmentType.TemplateEnvironment};
         }
