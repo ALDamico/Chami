@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.Utils;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.Windows.ExportWindow
 {
@@ -13,7 +16,7 @@ namespace ChamiUI.Windows.ExportWindow
     {
         public ExportWindow(ICollection<EnvironmentViewModel> environments)
         {
-            _viewModel = new ExportWindowViewModel(environments);
+            _viewModel = new ExportWindowViewModel(AppUtils.GetAppServiceProvider().GetRequiredService<EnvironmentDataAdapter>(), environments);
             
             DataContext = _viewModel;
             InitializeComponent();

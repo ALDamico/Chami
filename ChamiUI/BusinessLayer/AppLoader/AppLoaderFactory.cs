@@ -40,7 +40,7 @@ public static class AppLoaderFactory
     {
         serviceCollection.AddFluentMigratorCore()
             .ConfigureRunner(r =>
-                r.AddSQLite().WithGlobalConnectionString(App.GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
+                r.AddSQLite().WithGlobalConnectionString(AppUtils.GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                     .Migrations());
         return Task.CompletedTask;
     }
@@ -119,7 +119,7 @@ public static class AppLoaderFactory
     private static Task RegisterSettingsModule(IServiceCollection serviceCollection)
     {
         serviceCollection
-            .AddTransient(_ => new SettingsDataAdapter(App.GetConnectionString()))
+            .AddTransient(_ => new SettingsDataAdapter(AppUtils.GetConnectionString()))
             .AddSingleton(sp =>
             {
                 var settingsDataAdapter = sp.GetRequiredService<SettingsDataAdapter>();
@@ -166,9 +166,9 @@ public static class AppLoaderFactory
     private static Task RegisterDataAdapters(IServiceCollection serviceCollection)
     {
         // The settings data adapter is registered in its own function
-        serviceCollection.AddTransient(_ => new EnvironmentDataAdapter(App.GetConnectionString()))
-            .AddTransient(_ => new WatchedApplicationDataAdapter(App.GetConnectionString()))
-            .AddTransient(_ => new ApplicationLanguageDataAdapter(App.GetConnectionString()));
+        serviceCollection.AddTransient(_ => new EnvironmentDataAdapter(AppUtils.GetConnectionString()))
+            .AddTransient(_ => new WatchedApplicationDataAdapter(AppUtils.GetConnectionString()))
+            .AddTransient(_ => new ApplicationLanguageDataAdapter(AppUtils.GetConnectionString()));
         return Task.CompletedTask;
     }
 

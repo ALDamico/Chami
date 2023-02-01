@@ -2,8 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using Chami.Db.Entities;
-using Chami.Db.Repositories;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Exporters;
 
@@ -17,24 +16,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Constructs a new <see cref="ExportWindowViewModel"/> and sets its default values.
         /// </summary>
-        public ExportWindowViewModel()
+        private ExportWindowViewModel(EnvironmentDataAdapter environmentDataAdapter)
         {
             ExportAll = true;
             ExportSelected = false;
             Environments = new ObservableCollection<EnvironmentExportWindowViewModel>();
             SelectedEnvironments = new ObservableCollection<EnvironmentExportWindowViewModel>();
-            var connectionString = App.GetConnectionString();
-            _repository = new EnvironmentRepository(connectionString);
+            _dataAdapter = environmentDataAdapter;
         }
 
-        
 
         /// <summary>
         /// Constructs a new <see cref="ExportWindowViewModel"/> object and adds an initial set of environment
         /// variables.
         /// </summary>
+        /// <param name="environmentDataAdapter">The data adapter to extract data from.</param>
         /// <param name="environments">The starting environments for the window.</param>
-        public ExportWindowViewModel(ICollection<EnvironmentViewModel> environments) : this()
+        public ExportWindowViewModel(EnvironmentDataAdapter environmentDataAdapter,ICollection<EnvironmentViewModel> environments) : this(environmentDataAdapter)
         {
             var converter = new EnvironmentExportConverter();
             foreach (var environment in environments)
@@ -44,7 +42,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
         
-        private readonly EnvironmentRepository _repository;
+        private readonly EnvironmentDataAdapter _dataAdapter;
 
         /// <summary>
         /// The environments available for exporting.
@@ -60,7 +58,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _exportSelected = value;
-                OnPropertyChanged(nameof(ExportSelected));
+                OnPropertyChanged();
             }
         }
 
@@ -73,7 +71,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _exportAll = value;
-                OnPropertyChanged(nameof(ExportAll));
+                OnPropertyChanged();
             }
         }
 
@@ -82,17 +80,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public async Task ExportAsync()
         {
-            var environmentList = new List<Environment>();
+            var environmentList = new List<EnvironmentViewModel>();
             if (ExportAll)
             {
-                environmentList = _repository.GetEnvironments() as List<Environment>;
+                environmentList = _dataAdapter.GetEnvironments() as List<EnvironmentViewModel>;
             }
             else
             {
                 foreach (var environmentViewModel in SelectedEnvironments)
                 {
                     var environmentId = environmentViewModel.Environment.Id;
-                    var environment = _repository.GetEnvironmentById(environmentId);
+                    var environment = _dataAdapter.GetEnvironmentById(environmentId);
                     environmentList.Add(environment);
                 }
             }
@@ -150,7 +148,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _filename = value;
-                OnPropertyChanged(nameof(Filename));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(ExportButtonEnabled));
             }
         }

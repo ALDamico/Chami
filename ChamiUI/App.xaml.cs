@@ -40,21 +40,6 @@ namespace ChamiUI
 
         public SettingsViewModel Settings => ServiceProvider.GetRequiredService<SettingsViewModel>();
 
-        public static string GetConnectionString()
-        {
-            var chamiDirectory = AppUtils.GetApplicationFolder();
-            try
-            {
-                return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
-            }
-            catch (NullReferenceException)
-            {
-                // A unit test is running. Use its connection string instead
-                return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
-            }
-        }
-
-
         private TaskbarIcon _taskbarIcon;
 
         private void DetectOtherInstance()

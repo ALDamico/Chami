@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ChamiUI.PresentationLayer.ViewModels;
 using NetOffice.ExcelApi;
 using NetOffice.Exceptions;
 using Environment = Chami.Db.Entities.Environment;
@@ -19,28 +20,28 @@ namespace ChamiUI.BusinessLayer.Exporters
         /// </summary>
         public EnvironmentExcelExporter()
         {
-            _environments = new List<Environment>();
+            _environments = new List<EnvironmentViewModel>();
         }
 
         /// <summary>
         /// Constructs a new <see cref="EnvironmentExcelExporter"/> and initializes its list with the elements in the parameter.
         /// </summary>
         /// <param name="environments">The initial <see cref="Environment"/> entities to add to the list of entities to process.</param>
-        public EnvironmentExcelExporter(ICollection<Environment> environments)
+        public EnvironmentExcelExporter(ICollection<EnvironmentViewModel> environments)
         {
-            _environments = new List<Environment>(environments);
+            _environments = new List<EnvironmentViewModel>(environments);
         }
 
         /// <summary>
         /// Adds a new <see cref="Environment"/> entity to the list of elements to process.
         /// </summary>
         /// <param name="environment">An <see cref="Environment"/> entity to export in the spreadsheet.</param>
-        public void AddEnvironment(Environment environment)
+        public void AddEnvironment(EnvironmentViewModel environment)
         {
             _environments.Add(environment);
         }
 
-        private readonly List<Environment> _environments;
+        private readonly List<EnvironmentViewModel> _environments;
         private Application _excelApplication;
         private Workbook _workbook;
 
@@ -88,10 +89,10 @@ namespace ChamiUI.BusinessLayer.Exporters
                 int i = 2;
                 foreach (var environmentVariable in environment.EnvironmentVariables)
                 {
-                    cells[i, 1].Value = environment.EnvironmentId;
+                    cells[i, 1].Value = environment.Id;
                     cells[i, 2].Value = environment.Name;
                     cells[i, 3].Value = environment.AddedOn;
-                    cells[i, 4].Value = environmentVariable.EnvironmentVariableId;
+                    cells[i, 4].Value = environmentVariable.Id;
                     cells[i, 5].Value = environmentVariable.Name;
                     cells[i, 6].Value = environmentVariable.Value;
                     cells[i, 7].Value = environmentVariable.AddedOn;

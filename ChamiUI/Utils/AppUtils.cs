@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Windows;
@@ -30,6 +31,20 @@ namespace ChamiUI.Utils
         public static IServiceProvider GetAppServiceProvider()
         {
             return GetChamiApp().ServiceProvider;
+        }
+
+        public static string GetConnectionString()
+        {
+            var chamiDirectory = AppUtils.GetApplicationFolder();
+            try
+            {
+                return String.Format(ConfigurationManager.ConnectionStrings["Chami"].ConnectionString, chamiDirectory);
+            }
+            catch (NullReferenceException)
+            {
+                // A unit test is running. Use its connection string instead
+                return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
+            }
         }
     }
 }
