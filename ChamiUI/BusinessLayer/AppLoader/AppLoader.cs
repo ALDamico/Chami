@@ -47,9 +47,9 @@ public class AppLoader
                     var taken = (DateTime.Now - when).TotalMilliseconds;
                     Log.Information("Service {Name} registered in {TimeTaken} milliseconds", c.Command.Name, taken);
                 }));
-        var serviceProvider = _serviceCollection.BuildServiceProvider();
+        _serviceProvider = _serviceCollection.BuildServiceProvider();
 
-        return serviceProvider;
+        return _serviceProvider;
     }
 
     public async Task ExecutePostBuildCommandsAsync()
@@ -63,9 +63,9 @@ public class AppLoader
             {
                 var when = DateTime.Now;
                 _progress.Report(new AppLoadProgress() {Message = c.Command.Message, Percentage = c.Percentage});
-                var action = c.Command.ActionToExecute;
+                var action = c.Command.PostActionToExecute;
 
-                await action(_serviceCollection);
+                await action(_serviceProvider);
                 var taken = (DateTime.Now - when).TotalMilliseconds;
                 Log.Information("Service {Name} registered in {TimeTaken} milliseconds", c.Command.Name, taken);
             }));
@@ -75,4 +75,5 @@ public class AppLoader
     private readonly List<IAppLoaderCommand> _postServiceProviderBuildCommands;
     private readonly IProgress<AppLoadProgress> _progress;
     private readonly ServiceCollection _serviceCollection;
+    private ServiceProvider _serviceProvider;
 }

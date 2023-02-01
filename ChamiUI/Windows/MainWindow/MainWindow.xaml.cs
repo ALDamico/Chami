@@ -8,7 +8,6 @@ using System.IO;
 using System.Linq;
 using System.Media;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
@@ -26,7 +25,6 @@ using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Utils;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
-using ChamiUI.Windows.Exceptions;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.Windows.MainWindow

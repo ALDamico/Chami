@@ -28,6 +28,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private readonly MassUpdateService _massUpdateService;
+        private string _variableToUpdate;
+        private string _newValue;
+        private bool _createVariableIfNotExists;
+        private MassUpdateStrategyViewModel _selectedUpdateStrategy;
 
         private void InitUpdateStrategies()
         {
@@ -39,11 +43,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             SelectedUpdateStrategy = UpdateStrategies.FirstOrDefault();
         }
-
-        private string _variableToUpdate;
-        private string _newValue;
-        private bool _createVariableIfNotExists;
-        private MassUpdateStrategyViewModel _selectedUpdateStrategy;
 
         public string NewValue
         {
