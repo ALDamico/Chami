@@ -1,10 +1,6 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
-using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.BusinessLayer.MassUpdateStrategies;
-using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 
@@ -12,25 +8,25 @@ namespace ChamiUI.Windows.MassUpdateWindow
 {
     public partial class MassUpdateWindow : Window
     {
-        public MassUpdateWindow(EnvironmentDataAdapter environmentDataAdapter)
+        public MassUpdateWindow(MassUpdateWindowViewModel viewModel)
         {
             InitializeComponent();
-            _viewModel = new MassUpdateWindowViewModel(environmentDataAdapter);
+            _viewModel = viewModel;
             DataContext = _viewModel;
         }
 
-        private MassUpdateWindowViewModel _viewModel;
+        private readonly MassUpdateWindowViewModel _viewModel;
 
         private async void MassUpdateWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.LoadDataAsync();
         }
-
+/*
         private void EnvironmentsListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             _viewModel.HandleSelectionChanged(e.AddedItems, e.RemovedItems);
-        }
-
+        }*/
+/* TODO Move this to service
         private void CloseCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             var prompt = MessageBox.Show(ChamiUIStrings.ConfirmCloseWindowText,
@@ -42,12 +38,6 @@ namespace ChamiUI.Windows.MassUpdateWindow
             }
         }
 
-        private void CloseCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        public static readonly RoutedCommand ExecuteCommand = new RoutedCommand();
 
         private void ExecuteCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
@@ -65,14 +55,7 @@ namespace ChamiUI.Windows.MassUpdateWindow
             _viewModel.ExecuteUpdate().GetAwaiter().GetResult();
             OnMassUpdateExecuted(new MassUpdateEventArgs());
         }
-
-        private void ExecuteCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            if (_viewModel != null)
-            {
-                e.CanExecute = _viewModel.ExecuteButtonEnabled;
-            }
-        }
+*/
 
         private void MassUpdateWindowSelectAllButton_OnClick(object sender, RoutedEventArgs e)
         {

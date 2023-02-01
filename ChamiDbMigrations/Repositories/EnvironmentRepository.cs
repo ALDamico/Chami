@@ -386,6 +386,39 @@ namespace Chami.Db.Repositories
                 return dict.Values.ToList();
             }
         }
+        
+        private async Task<ICollection<Environment>> GetEnvironmentsByTypeAsync(EnvironmentType type)
+        {
+            var queryString = @"
+                SELECT *
+                FROM Environments
+                LEFT JOIN EnvironmentVariables ON Environments.EnvironmentId = EnvironmentVariables.EnvironmentId
+                LEFT JOIN Categories ON Categories.Id = Environments.CategoryId
+                WHERE EnvironmentType = ?
+";
+            using (var connection = GetConnection())
+            {
+                var dict = new Dictionary<int, Environment>();
+                connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
+                {
+                    if (!dict.TryGetValue(e.EnvironmentId, out var env))
+                    {
+                        env = e;
+                        dict[e.EnvironmentId] = e;
+                    }
+
+                    if (v != null)
+                    {
+                        v.Environment = e;
+                        dict[e.EnvironmentId].EnvironmentVariables.Add(v);
+                    }
+
+
+                    return env;
+                }, splitOn: "EnvironmentVariableId", param: new {type});
+                return dict.Values.ToList();
+            }
+        }
 
         /// <summary>
         /// Get all the environments marked as normal environments in the datastore.
@@ -403,6 +436,11 @@ namespace Chami.Db.Repositories
         public ICollection<Environment> GetEnvironments()
         {
             return GetEnvironmentsByType(EnvironmentType.NormalEnvironment);
+        }
+
+        public async Task<IEnumerable<Environment>> GetEnvironmentsAsync()
+        {
+            return await GetEnvironmentsByTypeAsync(EnvironmentType.NormalEnvironment);
         }
 
         /// <summary>

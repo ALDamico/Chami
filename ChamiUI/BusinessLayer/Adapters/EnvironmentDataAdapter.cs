@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.PresentationLayer.ViewModels;
@@ -74,6 +75,12 @@ namespace ChamiUI.BusinessLayer.Adapters
         {
             var models = _repository.GetEnvironments();
 
+            return models.Select(model => _environmentConverter.To(model)).ToList();
+        }
+
+        public async Task<IEnumerable<EnvironmentViewModel>> GetEnvironmentsAsync()
+        {
+            var models = await _repository.GetEnvironmentsAsync();
             return models.Select(model => _environmentConverter.To(model)).ToList();
         }
 

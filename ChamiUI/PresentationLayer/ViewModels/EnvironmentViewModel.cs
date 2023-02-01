@@ -21,6 +21,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private bool _isActive;
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Represents if this viewmodel is the currently active environment.

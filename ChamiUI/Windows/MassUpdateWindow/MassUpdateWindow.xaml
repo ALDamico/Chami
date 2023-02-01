@@ -16,19 +16,20 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="../../PresentationLayer/Resources/TitleLabelStyles.xaml"></ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            
+            <Style TargetType="ListBoxItem">
+                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"></Setter>
+            </Style>
+            
+          
+            
         </ResourceDictionary>
+        
     </Window.Resources>
     
-    <Window.CommandBindings>
-        <CommandBinding Command="Close" 
-                        x:Name="CloseCommandBinding" 
-                        Executed="CloseCommandBinding_OnExecuted" 
-                        CanExecute="CloseCommandBinding_OnCanExecute"></CommandBinding>
-        <CommandBinding Command="{x:Static local:MassUpdateWindow.ExecuteCommand}" x:Name="ExecuteCommandBinding" Executed="ExecuteCommandBinding_OnExecuted" CanExecute="ExecuteCommandBinding_OnCanExecute"></CommandBinding>
-    </Window.CommandBindings>
     <Window.InputBindings>
         <KeyBinding Command="Close" Key="Escape"></KeyBinding>
-        <KeyBinding Command="{x:Static local:MassUpdateWindow.ExecuteCommand}" Key="Enter" Modifiers="Control"></KeyBinding>
+        <KeyBinding Command="{Binding ExecuteMassUpdateCommand}" CommandParameter="{Binding Environments}" Key="Enter" Modifiers="Control"></KeyBinding>
     </Window.InputBindings>
     
     <Grid Margin="10">
@@ -103,13 +104,15 @@
                  ItemsSource="{Binding Environments}" 
                  DisplayMemberPath="DisplayName"
                  x:Name="EnvironmentsListBox"
-                 SelectionChanged="EnvironmentsListBox_OnSelectionChanged"
                  SelectionMode="Multiple"
+                 SelectedIndex="{Binding SelectedIndex}"
                  IsEnabled="{Binding SelectedUpdateStrategy.EnvironmentListBoxEnabled}"
-                 />
+                 >
+            
+        </ListBox>
         
         <DockPanel Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Right">
-            <Button MaxWidth="65" Padding="2" Margin="2" x:Name="ExecuteUpdateButton" Command="{x:Static local:MassUpdateWindow.ExecuteCommand}" Content="{lex:Loc}"></Button>
+            <Button MaxWidth="65" Padding="2" Margin="2" x:Name="ExecuteUpdateButton" Command="{Binding ExecuteMassUpdateCommand}" Content="{lex:Loc}"></Button>
             <Button MaxWidth="65" Padding="2" Margin="2" x:Name="CloseWindowButton" Command="Close" Content="{lex:Loc}"></Button>
         </DockPanel>
     </Grid>

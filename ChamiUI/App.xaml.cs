@@ -30,6 +30,7 @@ using Serilog;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 using ChamiUI.BusinessLayer.Factories;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Interop;
 using Serilog.Events;
 using ChamiUI.PresentationLayer.Events;
@@ -160,6 +161,12 @@ namespace ChamiUI
                 .ConfigureRunner(r =>
                     r.AddSQLite().WithGlobalConnectionString(GetConnectionString()).ScanIn(typeof(Initial).Assembly).For
                         .Migrations());
+            return Task.CompletedTask;
+        }
+
+        private Task RegisterServices(IServiceCollection serviceCollection)
+        {
+            serviceCollection.AddTransient<MassUpdateService>();
             return Task.CompletedTask;
         }
 
@@ -314,6 +321,7 @@ namespace ChamiUI
             _appLoader.AddCommand(new DefaultAppLoaderCommand(InitLogger, "Initializing logger"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(ConfigureDatabase, "Configuring database connection"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterDataAdapters, "Registering data adapters"));
+            _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterServices, "Registering services"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterViewModels, "Registering viewmodels"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterWindows, "Registering windows"));
             _appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterSettingsModule, "Registering settings module"));
