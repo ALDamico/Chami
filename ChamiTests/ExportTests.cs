@@ -3,6 +3,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Exporters;
+using ChamiUI.PresentationLayer.ViewModels;
 using Microsoft.VisualBasic.FileIO;
 using Xunit;
 using Environment = Chami.Db.Entities.Environment;
@@ -37,19 +38,19 @@ namespace ChamiTests
 
         private static void ConfigureExporter(EnvironmentExcelExporter exporter)
         {
-            var environment1 = new Environment() {Name = "Test", AddedOn = DateTime.Now, EnvironmentType = 0};
-            environment1.EnvironmentVariables.Add(new EnvironmentVariable()
+            var environment1 = new EnvironmentViewModel() {Name = "Test", AddedOn = DateTime.Now, EnvironmentType = 0};
+            environment1.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
                 {Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
-            environment1.EnvironmentVariables.Add(new EnvironmentVariable()
+            environment1.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
                 {Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
-            environment1.EnvironmentVariables.Add(new EnvironmentVariable()
+            environment1.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
                 {Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
-            var environment2 = new Environment() {Name = "Test2", AddedOn = DateTime.Now, EnvironmentType = 0};
-            environment2.EnvironmentVariables.Add(new EnvironmentVariable()
+            var environment2 = new EnvironmentViewModel() {Name = "Test2", AddedOn = DateTime.Now, EnvironmentType = 0};
+            environment2.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
                 {Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
-            environment2.EnvironmentVariables.Add(new EnvironmentVariable()
+            environment2.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
                 {Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
-            environment2.EnvironmentVariables.Add(new EnvironmentVariable()
+            environment2.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
                 {Name = "USER", Value = "MyValue", AddedOn = DateTime.Now, Environment = environment1});
             exporter.AddEnvironment(environment1);
             exporter.AddEnvironment(environment2);
