@@ -36,55 +36,6 @@ namespace ChamiUI
         private SplashScreen.SplashScreen _splashScreen;
         private AppLoader _appLoader;
 
-        private Task InitHealthChecker(IServiceCollection serviceCollection)
-        {
-            serviceCollection.AddSingleton((_) =>
-                    new EnvironmentHealthCheckerConfiguration()
-                    {
-                        MaxScore = 1.0,
-                        MismatchPenalty = 0.25,
-                        CheckInterval = ServiceProvider.GetRequiredService<SettingsViewModel>().HealthCheckSettings
-                            .TimeToCheck.TotalMilliseconds
-                    })
-                .AddSingleton((_) =>
-                {
-                    var healthCheckerTimer = new DispatcherTimer();
-                    healthCheckerTimer.Interval = TimeSpan.FromMilliseconds(ServiceProvider
-                        .GetRequiredService<EnvironmentHealthCheckerConfiguration>().CheckInterval);
-                    healthCheckerTimer.Tick += HealthCheckerTimerOnElapsed;
-                    return healthCheckerTimer;
-                });
-
-            return Task.CompletedTask;
-        }
-
-        private void RestartTimer()
-        {
-            if (_healthCheckerTimer.IsEnabled)
-            {
-                _healthCheckerTimer.Stop();
-            }
-
-            if (Settings.HealthCheckSettings.IsEnabled)
-            {
-                _healthCheckerTimer.Start();
-            }
-        }
-
-        private void HealthCheckerTimerOnElapsed(object sender, EventArgs e)
-        {
-            ExecuteHealthCheck();
-            RestartTimer();
-        }
-
-        private void ExecuteHealthCheck()
-        {
-            var healthChecker =
-                new EnvironmentHealthChecker(HealthCheckerConfiguration, new DefaultHealthCheckerStrategy());
-            healthChecker.HealthChecked += (MainWindow as MainWindow).OnHealthChecked;
-            healthChecker.CheckEnvironment(_activeEnvironment);
-        }
-
         public IServiceProvider ServiceProvider { get; private set; }
 
         public SettingsViewModel Settings => ServiceProvider.GetRequiredService<SettingsViewModel>();
@@ -127,8 +78,7 @@ namespace ChamiUI
         {
             DetectOtherInstance();
             AppLoaderFactory.InitAppLoader(_appLoader);
-            // TODO Refactor to move this out of here
-            _appLoader.AddCommand(new DefaultAppLoaderCommand(InitHealthChecker, "Initializing health checker module"));
+            
             ServiceProvider = await _appLoader.ExecuteAsync();
             await _appLoader.ExecutePostBuildCommandsAsync();
             Dispatcher.Invoke(() => { ShowMainWindow(e); });
@@ -155,19 +105,11 @@ namespace ChamiUI
 
             _splashScreen.Close();
             MainWindow.Show();
-            if (Settings.HealthCheckSettings.IsEnabled)
-            {
-                ExecuteHealthCheck();
-            }
         }
 
         private void OnEnvironmentChanged(object sender, EnvironmentChangedEventArgs e)
         {
             _activeEnvironment = e.NewActiveEnvironment;
-            if (Settings.HealthCheckSettings.IsEnabled)
-            {
-                ExecuteHealthCheck();
-            }
         }
 
         private void HandleCommandLineArguments(StartupEventArgs e)

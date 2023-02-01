@@ -16,6 +16,7 @@ using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
@@ -25,6 +26,7 @@ using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Utils;
+using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.MainWindow;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
@@ -111,13 +113,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        private readonly EnvironmentHealthChecker _healthChecker;
+
         /// <summary>
         /// Constructs a new <see cref="MainWindowViewModel"/> object and initializes its data adapter with the provided
         /// connection string.
         /// </summary>
         /// <param name="environmentDataAdapter">An <see cref="EnvironmentDataAdapter"/> used to perform database operations on environments</param>
         /// <param name="settingsDataAdapter">A <see cref="SettingsDataAdapter"/> used to manage application settings.</param>
-        public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter, SettingsDataAdapter settingsDataAdapter)
+        public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter, SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker)
         {
             _dataAdapter = environmentDataAdapter;
             _settingsDataAdapter = settingsDataAdapter;
@@ -136,6 +140,39 @@ namespace ChamiUI.PresentationLayer.ViewModels
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             _cancellationTokenSource = new CancellationTokenSource();
             StateManager.ChangeState(new MainWindowReadyState());
+            _healthChecker = healthChecker;
+            EnvironmentChanged += _healthChecker.OnEnvironmentChanged;
+            _healthChecker.HealthChecked += HandleCheckedHealth;
+        }
+
+        private void HandleCheckedHealth(object sender, HealthCheckedEventArgs healthCheckedEventArgs)
+        {
+            var environmentHealthWindow = AppUtils.GetAppServiceProvider().GetService<EnvironmentHealthWindow>();
+            if (!StateManager.CurrentState.CanExecuteHealthCheck)
+            {
+                return;
+            }
+
+            var healthViewModel = new EnvironmentHealthViewModel()
+            {
+                HealthIndex = healthCheckedEventArgs.Health
+            };
+
+            var healthStatusList = healthCheckedEventArgs.HealthStatusList;
+            if (healthStatusList != null)
+            {
+                foreach (var healthStatus in healthStatusList)
+                {
+                    healthViewModel.HealthStatuses.Add(healthStatus);
+                }
+            }
+
+            EnvironmentHealth = healthViewModel;
+
+            if (environmentHealthWindow != null)
+            {
+                environmentHealthWindow.DataContext = healthViewModel;
+            }
         }
 
         /// <summary>

@@ -749,7 +749,7 @@ namespace ChamiUI.Windows.MainWindow
 
         public void OnHealthChecked(object sender, HealthCheckedEventArgs e)
         {
-            ViewModel.HandleCheckedHealth(e, AppUtils.GetAppServiceProvider().GetService<EnvironmentHealthWindow>());
+            //ViewModel.HandleCheckedHealth(e, AppUtils.GetAppServiceProvider().GetService<EnvironmentHealthWindow>());
         }
 
         private void EnvironmentHealthStatusBarItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)

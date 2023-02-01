@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.PresentationLayer.Factories;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -18,10 +19,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Constructs a new <see cref="SettingsWindowViewModel"/> object and initializes its <see cref="Settings"/>
         /// property and its data adapters.
         /// </summary>
-        public SettingsWindowViewModel(SettingsDataAdapter settingsDataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter)
+        public SettingsWindowViewModel(SettingsDataAdapter settingsDataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter, EnvironmentHealthChecker healthChecker)
         {
             _dataAdapter = settingsDataAdapter;
             _watchedApplicationDataAdapter = watchedApplicationDataAdapter;
+            _healthChecker = healthChecker;
             SettingsCategories = new ObservableCollection<GenericLabelViewModel>();
             Settings.ConsoleAppearanceSettings =
                 SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);
@@ -46,6 +48,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
             CurrentSection = SettingsCategories.FirstOrDefault();
         }
+
+        private EnvironmentHealthChecker _healthChecker;
 
         /// <summary>
         /// Saves the changes to the settings to the datastore.
@@ -75,6 +79,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             foreach (var columnInfoViewModel in columnInfosToUpdate)
             {
                 Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfoViewModel));
+            }
+
+            if (!Settings.HealthCheckSettings.IsEnabled)
+            {
+                _healthChecker.DisableCheck();
             }
         }
 

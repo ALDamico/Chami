@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.EnvironmentHealth;
+using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.BusinessLayer.Factories;
 using ChamiUI.BusinessLayer.Logger;
@@ -104,7 +106,7 @@ public static class AppLoaderFactory
         return Task.CompletedTask;
     }
 
-    private static Task InitCmdExecutorMessages(IServiceCollection serviceCollection)
+    private static Task InitCmdExecutorMessages(IServiceProvider serviceCollection)
     {
         CmdExecutorBase.StartingExecutionMessage = ChamiUIStrings.StartingExecutionMessage;
         CmdExecutorBase.CompletedExecutionMessage = ChamiUIStrings.ExecutionCompleteMessage;
@@ -185,6 +187,7 @@ public static class AppLoaderFactory
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterViewModels, "Registering viewmodels"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterWindows, "Registering windows"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterSettingsModule, "Registering settings module"));
+        appLoader.AddCommand(new DefaultAppLoaderCommand(InitHealthChecker, "Initializing health checker module"));
 #if !DEBUG
         appLoader.AddCommand(
             new DefaultAppLoaderCommand(RegisterExceptionHandler, "Registering exception handler"));
@@ -195,5 +198,22 @@ public static class AppLoaderFactory
            "Initializing localization support"));
         appLoader.AddPostBuildCommand(new DefaultAppLoaderCommand(InitCmdExecutorMessages,
             "Initializing CMD executor messages"));
+    }
+
+    public static Task InitHealthChecker(IServiceCollection serviceCollection)
+    {
+        serviceCollection.AddSingleton((sp) =>
+                new EnvironmentHealthCheckerConfiguration()
+                {
+                    MaxScore = 1.0,
+                    MismatchPenalty = 0.25,
+                    CheckInterval = sp.GetRequiredService<SettingsViewModel>().HealthCheckSettings
+                        .TimeToCheck.TotalMilliseconds
+                })
+            .AddSingleton((sp) => new EnvironmentHealthChecker(
+                sp.GetService<EnvironmentHealthCheckerConfiguration>(), new DefaultHealthCheckerStrategy())
+            );
+
+        return Task.CompletedTask;
     }
 }
