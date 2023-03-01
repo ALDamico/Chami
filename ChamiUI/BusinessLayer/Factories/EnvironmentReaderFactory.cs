@@ -28,6 +28,10 @@ namespace ChamiUI.BusinessLayer.Factories
             {
                 return new EnvironmentJsonReader(filename);
             }
+            else if (extension.Equals(".properties", StringComparison.InvariantCultureIgnoreCase))
+            {
+                return new EnvironmentPropertiesFileReader(filename);
+            }
 
             throw new NotSupportedException(string.Format(ChamiUIStrings.EnvironmentReaderFactoryNotSupportedMessage, extension));
         }

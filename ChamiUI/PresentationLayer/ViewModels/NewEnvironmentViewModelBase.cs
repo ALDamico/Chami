@@ -1,4 +1,6 @@
-﻿using ChamiUI.BusinessLayer.Adapters;
+﻿using System.Collections.Generic;
+using System.Windows.Controls;
+using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Validators;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -15,6 +17,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             Validator = new EnvironmentViewModelValidator();
             DataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
+            ValidationRules = new List<ValidationRule>();
         }
 
         /// <summary>
@@ -31,5 +34,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Determines if the save button is enabled.
         /// </summary>
         public abstract bool IsSaveButtonEnabled { get; }
+        
+        public List<ValidationRule> ValidationRules { get; set; }
     }
 }

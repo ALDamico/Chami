@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.Localization;
@@ -19,6 +20,11 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
             _viewModel = new ImportEnvironmentWindowViewModel();
             DataContext = _viewModel;
             InitializeComponent();
+
+            foreach (var validationRule in _viewModel.ValidationRules)
+            {
+                VariablesDatagrid.RowValidationRules.Add(validationRule);
+            }
         }
 
         private readonly ImportEnvironmentWindowViewModel _viewModel;
@@ -119,6 +125,11 @@ namespace ChamiUI.Windows.ImportEnvironmentWindow
         private void ImportDeselectAllButton_OnClick(object sender, RoutedEventArgs e)
         {
             _viewModel.DeselectAllEnvironments();
+        }
+
+        public void AddValidationRule(ValidationRule validationRule)
+        {
+            VariablesDatagrid.RowValidationRules.Add(validationRule);
         }
     }
 }

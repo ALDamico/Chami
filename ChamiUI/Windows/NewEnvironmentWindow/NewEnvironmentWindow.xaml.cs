@@ -25,6 +25,10 @@ namespace ChamiUI.Windows.NewEnvironmentWindow
             _viewModel = new NewEnvironmentViewModel();
             DataContext = _viewModel;
             InitializeComponent();
+            foreach (var validationRule in _viewModel.ValidationRules)
+            {
+                VariablesDatagrid.RowValidationRules.Add(validationRule);
+            }
         }
         
         public void SetEnvironment(EnvironmentViewModel environmentViewModel)

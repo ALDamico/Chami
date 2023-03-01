@@ -1,5 +1,8 @@
 using System.Collections.ObjectModel;
+using System.Windows.Controls;
+using System.Windows.Data;
 using ChamiUI.BusinessLayer.Mementos;
+using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.Windows.NewEnvironmentWindow;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -17,7 +20,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             Environment = new EnvironmentViewModel();
             TemplateEnvironments = new ObservableCollection<EnvironmentViewModel>();
-            CurrentTemplate = new EnvironmentViewModel(){Name = "None"};
+            CurrentTemplate = new EnvironmentViewModel() {Name = "None"};
             TemplateEnvironments.Add(CurrentTemplate);
 
             var templates = DataAdapter.GetTemplateEnvironments();
@@ -27,6 +30,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             _caretaker = new EnvironmentCaretaker();
+
+            ValidationRules.Add(new EnvironmentVariableNameNotNullValidationRule()
+                {ValidationStep = ValidationStep.UpdatedValue});
+            ValidationRules.Add(new EnvironmentVariableNameValidCharactersValidationRule()
+                {ValidationStep = ValidationStep.UpdatedValue});
+            ValidationRules.Add(new EnvironmentVariableNameLengthValidationRule()
+                {MaxLength = 2047, ValidationStep = ValidationStep.UpdatedValue});
+            ValidationRules.Add(new EnvironmentVariableNameNoNumberFirstCharacterValidationRule()
+                {ValidationStep = ValidationStep.UpdatedValue});
+            var collectionViewSource = new CollectionViewSource();
+            collectionViewSource.Source = Environment.EnvironmentVariables;
+            ValidationRules.Add(new EnvironmentVariableNameUniqueValidationRule()
+                {ValidationStep = ValidationStep.CommittedValue, EnvironmentVariables = collectionViewSource});
         }
 
         private EnvironmentViewModel _environment;
@@ -40,7 +56,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Environment = DataAdapter.GetEnvironmentByName(EnvironmentName);
             return Environment;
         }
-        
+
 
         /// <summary>
         /// Converts the new <see cref="EnvironmentViewModel"/> to a <see cref="Environment"/> entity and saves it to
@@ -52,10 +68,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             return DataAdapter.InsertEnvironment(Environment);
         }
 
-        public ObservableCollection<EnvironmentViewModel> TemplateEnvironments
-        {
-            get;
-        }
+        public ObservableCollection<EnvironmentViewModel> TemplateEnvironments { get; }
 
         /// <summary>
         /// Determines if the save button is enabled.
@@ -124,7 +137,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 environment.Name = EnvironmentName;
                 foreach (var environmentVariable in CurrentTemplate.EnvironmentVariables)
                 {
-                    environment.EnvironmentVariables.Add(new EnvironmentVariableViewModel(){Name = environmentVariable.Name, Value = environmentVariable.Value, Environment = Environment});
+                    environment.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
+                    {
+                        Name = environmentVariable.Name, Value = environmentVariable.Value, Environment = Environment
+                    });
                 }
 
                 Environment = environment;

@@ -120,14 +120,6 @@
                   AutoGenerateColumns="False"
                   ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}"
                   RowStyle="{StaticResource ErrorStyle}">
-            <DataGrid.RowValidationRules>
-                <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
-                                                                        EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
-            </DataGrid.RowValidationRules>
 
             <DataGrid.Columns>
                 <DataGridTextColumn Width="100"

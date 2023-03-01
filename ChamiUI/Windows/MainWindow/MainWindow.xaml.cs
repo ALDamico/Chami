@@ -552,7 +552,7 @@ namespace ChamiUI.Windows.MainWindow
         private void ImportEnvironmentsCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
             string allowedExtensions =
-                $"{ChamiUIStrings.DotEnvFileDialogDescription}|*.env|{ChamiUIStrings.JsonFileDialogDescription}|*.json|{ChamiUIStrings.AllSupportedFilesFileDialogDescription}|*.env;*.json";
+                $"{ChamiUIStrings.DotEnvFileDialogDescription}|*.env|{ChamiUIStrings.JsonFileDialogDescription}|*.json|{ChamiUIStrings.AllSupportedFilesFileDialogDescription}|*.properties|Properties files|*.env;*.json;*.properties";
             var dialog = OpenFileDialogFactory.GetOpenFileDialog(allowedExtensions, true);
             var response = dialog.ShowDialog(this);
             if (response == true)

@@ -1,7 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows.Controls;
+using System.Windows.Data;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Validators;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -15,8 +18,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         public ImportEnvironmentWindowViewModel()
         {
+            ValidationRules = new List<ValidationRule>();
             NewEnvironments = new ObservableCollection<ImportEnvironmentViewModel>();
             UpdatePropertyChanged();
+            ValidationRules.Add(new EnvironmentVariableNameNotNullValidationRule()
+                {ValidationStep = ValidationStep.UpdatedValue});
+            ValidationRules.Add(new EnvironmentVariableNameLengthValidationRule()
+                {MaxLength = 2047, ValidationStep = ValidationStep.UpdatedValue});
+            ValidationRules.Add(new EnvironmentVariableNameNoNumberFirstCharacterValidationRule()
+                {ValidationStep = ValidationStep.UpdatedValue});
+            var collectionViewSource = new CollectionViewSource();
+            collectionViewSource.Source = SelectedEnvironment?.EnvironmentVariables;
+            ValidationRules.Add(new EnvironmentVariableNameUniqueValidationRule()
+                {ValidationStep = ValidationStep.CommittedValue, EnvironmentVariables = collectionViewSource});
         }
 
         /// <summary>
@@ -37,6 +51,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _selectedEnvironment = value;
                 OnPropertyChanged(nameof(SelectedEnvironment));
                 OnPropertyChanged(nameof(SelectedEnvironmentName));
+
+                (ValidationRules.FirstOrDefault(r => r is EnvironmentVariableNameUniqueValidationRule) as
+                        EnvironmentVariableNameUniqueValidationRule).EnvironmentVariables.Source =
+                    value.EnvironmentVariables;
             }
         }
 
@@ -51,6 +69,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     return false;
                 }
+
                 foreach (var environment in NewEnvironments)
                 {
                     if (!Validator.Validate(environment).IsValid)
@@ -97,8 +116,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void UpdatePropertyChanged()
         {
-           OnPropertyChanged(nameof(NewEnvironments));
-           OnPropertyChanged(nameof(IsSaveButtonEnabled));
+            OnPropertyChanged(nameof(NewEnvironments));
+            OnPropertyChanged(nameof(IsSaveButtonEnabled));
         }
 
         public void SelectAllEnvironments()
