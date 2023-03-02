@@ -1,5 +1,3 @@
-using System.Threading.Tasks;
-using System.Windows;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
 using Serilog;

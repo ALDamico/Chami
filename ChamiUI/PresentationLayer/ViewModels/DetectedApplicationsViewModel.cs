@@ -11,12 +11,13 @@ using Serilog;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
-    public class DetectedApplicationsViewModel:ViewModelBase
+    public class DetectedApplicationsViewModel : ViewModelBase
     {
         public DetectedApplicationsViewModel()
         {
             DetectedApplications = new ObservableCollection<WatchedApplicationViewModel>();
-            _detector = new RunningApplicationDetector(((App) Application.Current).Settings.WatchedApplicationSettings.WatchedApplications);
+            _detector = new RunningApplicationDetector(((App) Application.Current).Settings.WatchedApplicationSettings
+                .WatchedApplications);
             KillApplicationsCommand =
                 new AsyncCommand<IEnumerable<WatchedApplicationViewModel>>(ExecuteKillApplications);
             RefreshDetectionCommand = new AsyncCommand(ExecuteDetection);
@@ -28,7 +29,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             await Task.CompletedTask;
         }
 
-        private async Task ExecuteKillApplications(IEnumerable<WatchedApplicationViewModel> watchedApplicationViewModels)
+        private async Task ExecuteKillApplications(
+            IEnumerable<WatchedApplicationViewModel> watchedApplicationViewModels)
         {
             if (watchedApplicationViewModels == null)
             {
@@ -36,10 +38,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
             else
             {
-                var tasks = watchedApplicationViewModels.Select(watchedApplication => KillProcessByPid(watchedApplication.Pid)).ToList();
+                var tasks = watchedApplicationViewModels
+                    .Select(watchedApplication => KillProcessByPid(watchedApplication.Pid)).ToList();
 
                 await Task.WhenAll(tasks);
             }
+
             RefreshDetection();
         }
 
@@ -58,7 +62,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public void RefreshDetection()
+        private void RefreshDetection()
         {
             DetectedApplications.Clear();
             var newApplications = _detector.Detect();
@@ -66,6 +70,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 return;
             }
+
             foreach (var app in newApplications)
             {
                 DetectedApplications.Add(app);
@@ -78,6 +83,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 return;
             }
+
             var process = Process.GetProcessById(pid);
             try
             {
@@ -89,7 +95,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Log.Logger.Error(ex, "{ex}");
             }
         }
-        
+
         public IAsyncCommand<IEnumerable<WatchedApplicationViewModel>> KillApplicationsCommand { get; }
         public IAsyncCommand RefreshDetectionCommand { get; }
     }
