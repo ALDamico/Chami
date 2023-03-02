@@ -13,8 +13,8 @@
         d:DataContext="{d:DesignInstance viewModels:DetectedApplicationsViewModel, IsDesignTimeCreatable=True}">
     <Window.Resources>
         <ContextMenu x:Key="RowContextMenu">
-            <MenuItem Header="{lex:Loc}" x:Name="TerminateMenuItem" Click="TerminateMenuItem_OnClick"></MenuItem>
-            <MenuItem Header="{lex:Loc}" x:Name="TerminateAllMenuItem" Click="TerminateAllMenuItem_OnClick"></MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="TerminateMenuItem" Command="{Binding KillApplicationsCommand}"></MenuItem>
+            <MenuItem Header="{lex:Loc}" x:Name="TerminateAllMenuItem" Command="{Binding KillApplicationsCommand}" CommandParameter="{Binding DetectedApplications}"></MenuItem>
         </ContextMenu>
     </Window.Resources>
     <Grid>
@@ -29,7 +29,7 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0" Text="{lex:Loc}" TextWrapping="Wrap" x:Name="ApplicationsDetectedFirstParagraph" />
-        <Button Grid.Row="0" Grid.Column="1" x:Name="RefreshButton" Click="RefreshButton_OnClick">
+        <Button Grid.Row="0" Grid.Column="1" x:Name="RefreshButton" Command="{Binding RefreshDetectionCommand}">
             <Button.Content>
                 <StackPanel Orientation="Horizontal">
                     <svgc:SvgViewbox Source="/ChamiUI;component/Assets/Svg/sync.svg" MaxHeight="20"></svgc:SvgViewbox>
@@ -73,8 +73,8 @@
                     Grid.ColumnSpan="2" 
                     Orientation="Horizontal" 
                     HorizontalAlignment="Right">
-            <Button Content="{lex:Loc}" x:Name="TerminateAllButton" Margin="5, 0, 5, 0" Click="TerminateAllButton_OnClick"></Button>
-            <Button Content="{lex:Loc}" x:Name="CloseDetectedApplicationsWindowButton" Click="CloseDetectedApplicationsWindowButton_OnClick"></Button>
+            <Button Content="{lex:Loc}" x:Name="TerminateAllButton" Margin="5, 0, 5, 0" Command="{Binding KillApplicationsCommand}" CommandParameter="{Binding DetectedApplications}"></Button>
+            <Button Content="{lex:Loc}" x:Name="CloseDetectedApplicationsWindowButton" Command="{Binding KillApplicationsCommand}"></Button>
         </StackPanel>
     </Grid>
 </Window>

@@ -2,8 +2,10 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
 using ChamiUI.BusinessLayer;
 using Serilog;
 
@@ -15,7 +17,32 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             DetectedApplications = new ObservableCollection<WatchedApplicationViewModel>();
             _detector = new RunningApplicationDetector(((App) Application.Current).Settings.WatchedApplicationSettings.WatchedApplications);
+            KillApplicationsCommand =
+                new AsyncCommand<IEnumerable<WatchedApplicationViewModel>>(ExecuteKillApplications);
+            RefreshDetectionCommand = new AsyncCommand(ExecuteDetection);
         }
+
+        private async Task ExecuteDetection()
+        {
+            RefreshDetection();
+            await Task.CompletedTask;
+        }
+
+        private async Task ExecuteKillApplications(IEnumerable<WatchedApplicationViewModel> watchedApplicationViewModels)
+        {
+            if (watchedApplicationViewModels == null)
+            {
+                await KillProcessByPid(SelectedApplication.Pid);
+            }
+            else
+            {
+                var tasks = watchedApplicationViewModels.Select(watchedApplication => KillProcessByPid(watchedApplication.Pid)).ToList();
+
+                await Task.WhenAll(tasks);
+            }
+            RefreshDetection();
+        }
+
         private readonly RunningApplicationDetector _detector;
         public ObservableCollection<WatchedApplicationViewModel> DetectedApplications { get; }
 
@@ -27,7 +54,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _selectedApplication = value;
-                OnPropertyChanged(nameof(SelectedApplication));
+                OnPropertyChanged();
             }
         }
 
@@ -43,15 +70,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 DetectedApplications.Add(app);
             }
-        }
-
-        public async Task TerminateSelectedApplication()
-        {
-            var pid = SelectedApplication.Pid;
-
-            await KillProcessByPid(pid);
-            
-            
         }
 
         private async Task KillProcessByPid(int pid)
@@ -71,16 +89,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Log.Logger.Error(ex, "{ex}");
             }
         }
-
-        public async Task TerminateAll()
-        {
-            var tasks = new List<Task>();
-            foreach (var application in DetectedApplications)
-            {
-                tasks.Add(KillProcessByPid(application.Pid));
-            }
-
-            await Task.WhenAll(tasks);
-        }
+        
+        public IAsyncCommand<IEnumerable<WatchedApplicationViewModel>> KillApplicationsCommand { get; }
+        public IAsyncCommand RefreshDetectionCommand { get; }
     }
 }
