@@ -14,35 +14,10 @@ namespace ChamiUI.Windows.ExportWindow
     /// </summary>
     public partial class ExportWindow 
     {
-        public ExportWindow(ICollection<EnvironmentViewModel> environments)
+        public ExportWindow(ExportWindowViewModel viewModel)
         {
-            _viewModel = new ExportWindowViewModel(AppUtils.GetAppServiceProvider().GetRequiredService<EnvironmentDataAdapter>(), environments);
-            
-            DataContext = _viewModel;
+            DataContext = viewModel;
             InitializeComponent();
-            
-        }
-
-        private ExportWindowViewModel _viewModel;
-
-        private void CancelCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.CanExecute = true;
-        }
-
-        private void CancelCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void SelectedEnvironmentListView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            _viewModel.HandleSelectionChanged(sender, e);
-        }
-
-        private async void ExportDataButton_OnClick(object sender, RoutedEventArgs e)
-        {
-           await  _viewModel.ExportAsync();
         }
     }
 }

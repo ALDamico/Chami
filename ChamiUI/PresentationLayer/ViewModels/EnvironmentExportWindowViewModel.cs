@@ -8,6 +8,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
     public class EnvironmentExportWindowViewModel: ViewModelBase
     {
         private EnvironmentViewModel _environment;
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                Environment.IsSelected = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// The environment.
@@ -18,7 +30,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _environment = value;
-                OnPropertyChanged(nameof(Environment));
+                OnPropertyChanged();
                 OnPropertyChanged((nameof(NumVariables)));
                 OnPropertyChanged(nameof(DisplayedName));
             }
@@ -27,10 +39,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// The number of variables in the environment.
         /// </summary>
-        public int NumVariables
-        {
-            get => Environment.EnvironmentVariables.Count;
-        }
+        public int NumVariables => Environment.EnvironmentVariables.Count;
 
         /// <summary>
         /// The name to display in the listview for this environment.

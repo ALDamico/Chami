@@ -6,6 +6,7 @@ using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
@@ -67,6 +68,17 @@ namespace ChamiUI.BusinessLayer.Adapters
             return _environmentConverter.To(result);
         }
 
+        public async Task<EnvironmentViewModel> GetEnvironmentByIdAsync(int id)
+        {
+            var result = await _repository.GetEnvironmentByIdAsync(id);
+            if (result == null)
+            {
+                return null;
+            }
+
+            return _environmentConverter.To(result);
+        }
+
         /// <summary>
         /// Gets all the <see cref="EnvironmentViewModel"/>s marked as normal environments in the datastore.
         /// </summary>
@@ -78,9 +90,13 @@ namespace ChamiUI.BusinessLayer.Adapters
             return models.Select(model => _environmentConverter.To(model)).ToList();
         }
 
-        public async Task<IEnumerable<EnvironmentViewModel>> GetEnvironmentsAsync()
+        public async Task<IEnumerable<EnvironmentViewModel>> GetEnvironmentsAsync(CancellationToken cancellationToken)
         {
-            var models = await _repository.GetEnvironmentsAsync();
+            if (cancellationToken.IsCancellationRequested)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+            }
+            var models = await _repository.GetEnvironmentsAsync(cancellationToken);
             return models.Select(model => _environmentConverter.To(model)).ToList();
         }
 

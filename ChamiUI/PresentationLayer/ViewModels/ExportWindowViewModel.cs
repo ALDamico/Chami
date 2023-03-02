@@ -1,10 +1,13 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.BusinessLayer.Converters;
+using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
 using ChamiUI.BusinessLayer.Exporters;
+using ChamiUI.BusinessLayer.Services;
+using ChamiUI.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -16,33 +19,39 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Constructs a new <see cref="ExportWindowViewModel"/> and sets its default values.
         /// </summary>
-        private ExportWindowViewModel(EnvironmentDataAdapter environmentDataAdapter)
+        public ExportWindowViewModel(ExportService exportService)
         {
             ExportAll = true;
             ExportSelected = false;
             Environments = new ObservableCollection<EnvironmentExportWindowViewModel>();
-            SelectedEnvironments = new ObservableCollection<EnvironmentExportWindowViewModel>();
-            _dataAdapter = environmentDataAdapter;
+            ExportCommand = new AsyncCommand(async () => await ExportAsync(new CancellationToken()), CanExport);
+            CloseCommand = new AsyncCommand<Window>(ExecuteCloseWindow);
+            _exportService = exportService;
+            var task = _exportService.GetExportableEnvironments(new CancellationToken());
+            task.Await();
+
+            Environments = task.Result;
         }
 
+        private int _selectedIndex;
 
-        /// <summary>
-        /// Constructs a new <see cref="ExportWindowViewModel"/> object and adds an initial set of environment
-        /// variables.
-        /// </summary>
-        /// <param name="environmentDataAdapter">The data adapter to extract data from.</param>
-        /// <param name="environments">The starting environments for the window.</param>
-        public ExportWindowViewModel(EnvironmentDataAdapter environmentDataAdapter,ICollection<EnvironmentViewModel> environments) : this(environmentDataAdapter)
+        public int SelectedIndex
         {
-            var converter = new EnvironmentExportConverter();
-            foreach (var environment in environments)
+            get => _selectedIndex;
+            set
             {
-                var converted = converter.From(environment);
-                Environments.Add(converted);
+                _selectedIndex = value;
+                OnPropertyChanged();
+                ExportCommand.RaiseCanExecuteChanged();
             }
         }
-        
-        private readonly EnvironmentDataAdapter _dataAdapter;
+
+        private bool CanExport(object arg)
+        {
+            return ExportButtonEnabled && Environments.Any(e => e.Environment.IsSelected);
+        }
+
+        private readonly ExportService _exportService;
 
         /// <summary>
         /// The environments available for exporting.
@@ -74,25 +83,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged();
             }
         }
+        
+        public IAsyncCommand ExportCommand { get; }
 
         /// <summary>
         /// Perform the exporting asynchronously
         /// </summary>
-        public async Task ExportAsync()
+        private async Task ExportAsync(CancellationToken cancellationToken)
         {
-            var environmentList = new List<EnvironmentViewModel>();
+            List<EnvironmentViewModel> environmentList;
             if (ExportAll)
             {
-                environmentList = _dataAdapter.GetEnvironments() as List<EnvironmentViewModel>;
+                environmentList = await _exportService.GetEnvironmentsFromDataAdapter(cancellationToken);
             }
             else
             {
-                foreach (var environmentViewModel in SelectedEnvironments)
-                {
-                    var environmentId = environmentViewModel.Environment.Id;
-                    var environment = _dataAdapter.GetEnvironmentById(environmentId);
-                    environmentList.Add(environment);
-                }
+                var selectedIds = Environments.Where(e => e.Environment.IsSelected).Select(e => e.Environment.Id);
+                environmentList = await _exportService.GetEnvironmentsByIdsFromDataAdapter(selectedIds);
             }
 
             IChamiExporter exporter;
@@ -106,33 +113,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             await exporter.ExportAsync(Filename);
-        }
-
-        /// <summary>
-        /// The list of environments selected in the listview.
-        /// </summary>
-        public ObservableCollection<EnvironmentExportWindowViewModel> SelectedEnvironments { get; set; }
-
-        /// <summary>
-        /// Adds or removes environments from the <see cref="SelectedEnvironments"/> property when the user changes
-        /// its selection.
-        /// </summary>
-        /// <param name="sender">The object that initiated the event.</param>
-        /// <param name="e">Information about the changed selection.</param>
-        public void HandleSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            e.Handled = true;
-            var removedItems = e.RemovedItems;
-            foreach (var removedItem in removedItems)
-            {
-                SelectedEnvironments.Remove(removedItem as EnvironmentExportWindowViewModel);
-            }
-
-            var addedItems = e.AddedItems;
-            foreach (var addedItem in addedItems)
-            {
-                SelectedEnvironments.Add(addedItem as EnvironmentExportWindowViewModel);
-            }
         }
 
         private bool _exportSelected;
@@ -150,6 +130,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _filename = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(ExportButtonEnabled));
+                ExportCommand.RaiseCanExecuteChanged();
             }
         }
 

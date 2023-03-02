@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.BusinessLayer.Exceptions;
@@ -48,6 +49,7 @@ public static class AppLoaderFactory
     private static Task RegisterServices(IServiceCollection serviceCollection)
     {
         serviceCollection.AddTransient<MassUpdateService>();
+        serviceCollection.AddTransient<ExportService>();
         return Task.CompletedTask;
     }
 
@@ -60,6 +62,7 @@ public static class AppLoaderFactory
             .AddTransient<NewEnvironmentViewModel>()
             .AddTransient<DetectedApplicationsViewModel>()
             .AddTransient<ImportEnvironmentWindowViewModel>()
+            .AddTransient<ExportWindowViewModel>()
             .AddTransient<NewTemplateWindowViewModel>()
             .AddTransient(sp =>
             {
@@ -87,7 +90,7 @@ public static class AppLoaderFactory
                 return window;
             })
             .AddTransient<EnvironmentHealthWindow>()
-            .AddTransient(sp => new ExportWindow(sp.GetRequiredService<MainWindowViewModel>().Environments))
+            .AddTransient<ExportWindow>()
             .AddTransient<ImportEnvironmentWindow>()
             .AddTransient<NewTemplateWindow>()
             .AddTransient<RenameEnvironmentWindow>()
@@ -168,7 +171,8 @@ public static class AppLoaderFactory
         // The settings data adapter is registered in its own function
         serviceCollection.AddTransient(_ => new EnvironmentDataAdapter(AppUtils.GetConnectionString()))
             .AddTransient(_ => new WatchedApplicationDataAdapter(AppUtils.GetConnectionString()))
-            .AddTransient(_ => new ApplicationLanguageDataAdapter(AppUtils.GetConnectionString()));
+            .AddTransient(_ => new ApplicationLanguageDataAdapter(AppUtils.GetConnectionString()))
+            .AddTransient(_ => new EnvironmentExportConverter());
         return Task.CompletedTask;
     }
 

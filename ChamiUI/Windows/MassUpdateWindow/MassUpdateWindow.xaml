@@ -28,13 +28,9 @@
                 <Setter Property="MaxWidth" Value="65"/>
             </Style>
         </ResourceDictionary>
-        
     </Window.Resources>
-    
-   
-    
     <Window.InputBindings>
-        <KeyBinding Command="{Binding CloseWindowCommand}" 
+        <KeyBinding Command="{Binding CloseCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}" 
                     Key="Escape"></KeyBinding>
         <KeyBinding Command="{Binding ExecuteMassUpdateCommand}" 
@@ -147,7 +143,7 @@
                     Content="{lex:Loc}"></Button>
             <Button Style="{StaticResource DockedButtonStyle}" 
                     x:Name="CloseWindowButton" 
-                    Command="{Binding CloseWindowCommand}" 
+                    Command="{Binding CloseCommand}" 
                     CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}" 
                     Content="{lex:Loc}"></Button>
         </DockPanel>

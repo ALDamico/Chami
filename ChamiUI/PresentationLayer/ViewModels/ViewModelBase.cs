@@ -1,7 +1,9 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
 using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -27,6 +29,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public event EventHandler<MessageBoxTriggeredEventArgs> MessageBoxTriggered;
 
+        /// <summary>
+        /// Show a message box in a MVVM-friendly way. This method can be overridden in derived classes.
+        /// </summary>
+        /// <param name="messageBoxAction">What action to take when the message box is closed or otherwise dismissed.</param>
+        /// <param name="messageBoxText">The text to show inside the message box.</param>
+        /// <param name="messageBoxCaption">The text to show in the message box's title bar.</param>
+        /// <param name="messageBoxButton">What buttons to show in the message box.</param>
+        /// <param name="messageBoxImage">The icon to show inside the message box.</param>
+        /// <param name="defaultResult">The default result when the message box is dismissed.</param>
+        /// <param name="messageBoxOptions">Additional configuration options for the message box.</param>
         protected virtual void ShowMessageBox(Action<MessageBoxResult> messageBoxAction, string messageBoxText, string messageBoxCaption, MessageBoxButton messageBoxButton = MessageBoxButton.OK, MessageBoxImage messageBoxImage = MessageBoxImage.None, MessageBoxResult defaultResult = MessageBoxResult.None, MessageBoxOptions messageBoxOptions = MessageBoxOptions.None)
         {
             if (MessageBoxTriggered == null)
@@ -46,6 +58,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
             };
 
             MessageBoxTriggered?.Invoke(this, eventArgs);
+        }
+        
+        public IAsyncCommand<Window> CloseCommand { get; protected set; }
+        
+        protected async Task ExecuteCloseWindow(Window arg)
+        {
+            arg.Close();
+            await Task.CompletedTask;
         }
     }
 }

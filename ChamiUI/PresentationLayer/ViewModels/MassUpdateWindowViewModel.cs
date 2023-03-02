@@ -9,13 +9,20 @@ using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
+    /// <summary>
+    /// ViewModel for the mass update window.
+    /// </summary>
     public class MassUpdateWindowViewModel : ViewModelBase
     {
+        /// <summary>
+        /// Constructs a new <see cref="MassUpdateWindowViewModel"/> object
+        /// </summary>
+        /// <param name="massUpdateService"></param>
         public MassUpdateWindowViewModel(MassUpdateService massUpdateService)
         {
             _massUpdateService = massUpdateService;
-            ExecuteMassUpdateCommand = new AsyncCommand(ExecuteUpdate, CanExecute);
-            CloseWindowCommand = new AsyncCommand<Window>(ExecuteCloseWindow);
+            ExecuteMassUpdateCommand = new AsyncCommand(ExecuteUpdate, CanExecuteMassUpdate);
+            CloseCommand = new AsyncCommand<Window>(ExecuteCloseWindow);
             SelectAllCommand = new AsyncCommand(ExecuteSelectAll, CanExecuteSelectAll);
             DeselectAllCommand = new AsyncCommand(ExecuteDeselectAll, CanExecuteSelectAll);
             KnownVariables = new ObservableCollection<string>();
@@ -23,7 +30,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             InitUpdateStrategies();
             Environments = new ObservableCollection<EnvironmentViewModel>();
             NewValue = "";
-            
         }
 
         private async Task ExecuteDeselectAll()
@@ -43,11 +49,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             await Task.CompletedTask;
         }
 
-        private async Task ExecuteCloseWindow(Window arg)
-        {
-            arg.Close();
-            await Task.CompletedTask;
-        }
+        
 
         protected override void OnPropertyChanged(string propertyName = null)
         {
@@ -83,6 +85,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The update strategy to use when updating the selected environment(s).
+        /// </summary>
         public MassUpdateStrategyViewModel SelectedUpdateStrategy
         {
             get => _selectedUpdateStrategy;
@@ -105,6 +110,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The name of the variable to update.
+        /// </summary>
         public string VariableToUpdate
         {
             get => _variableToUpdate;
@@ -115,11 +123,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// A command that handles the mass update of environments.
+        /// </summary>
         public IAsyncCommand ExecuteMassUpdateCommand { get; }
-        public AsyncCommand<Window> CloseWindowCommand { get; }
+        
+        /// <summary>
+        /// A command to select all environments.
+        /// </summary>
         public IAsyncCommand SelectAllCommand { get; }
+        /// <summary>
+        /// A command to deselect all environments.
+        /// </summary>
         public IAsyncCommand DeselectAllCommand { get; }
 
+        /// <summary>
+        /// Executes the mass update asynchronously.
+        /// </summary>
         private async Task ExecuteUpdate()
         {
             if (ShouldShowWarningMessageBox())
@@ -142,7 +162,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
 
-        private bool CanExecute(object param)
+        /// <summary>
+        /// Determines whether the <see cref="ExecuteMassUpdateCommand"/> can be triggered or not.
+        /// </summary>
+        /// <param name="param">Not used.</param>
+        /// <returns>True if the mass update can take place, otherwise false.</returns>
+        private bool CanExecuteMassUpdate(object param)
         {
             if (string.IsNullOrWhiteSpace(VariableToUpdate))
             {

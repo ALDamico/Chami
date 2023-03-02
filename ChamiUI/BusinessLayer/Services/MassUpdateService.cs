@@ -42,9 +42,9 @@ public class MassUpdateService
         return updateStrategies;
     }
 
-    private async Task<IEnumerable<EnvironmentViewModel>> GetEnvironmentViewModelsAsync()
+    private async Task<IEnumerable<EnvironmentViewModel>> GetEnvironmentViewModelsAsync(CancellationToken cancellationToken)
     {
-        return await _environmentDataAdapter.GetEnvironmentsAsync();
+        return await _environmentDataAdapter.GetEnvironmentsAsync(cancellationToken);
     }
 
     private async Task<IEnumerable<string>> GetKnownVariables()
@@ -56,7 +56,7 @@ public class MassUpdateService
     {
         var tasks = new List<Task>();
         
-        tasks.Add(GetEnvironmentViewModelsAsync());
+        tasks.Add(GetEnvironmentViewModelsAsync(new CancellationToken()));
         tasks.Add(GetKnownVariables());
 
         return tasks;

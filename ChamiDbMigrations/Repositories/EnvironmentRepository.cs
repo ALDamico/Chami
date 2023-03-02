@@ -4,6 +4,7 @@ using System.Collections.Immutable;
 using System.Data;
 using System.Data.SQLite;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Dapper;
@@ -387,8 +388,10 @@ namespace Chami.Db.Repositories
             }
         }
         
-        private async Task<ICollection<Environment>> GetEnvironmentsByTypeAsync(EnvironmentType type)
+        private async Task<ICollection<Environment>> GetEnvironmentsByTypeAsync(EnvironmentType type,
+            CancellationToken cancellationToken)
         {
+            cancellationToken.ThrowIfCancellationRequested();
             var queryString = @"
                 SELECT *
                 FROM Environments
@@ -399,7 +402,7 @@ namespace Chami.Db.Repositories
             using (var connection = GetConnection())
             {
                 var dict = new Dictionary<int, Environment>();
-                connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
+                await connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString, (e, v) =>
                 {
                     if (!dict.TryGetValue(e.EnvironmentId, out var env))
                     {
@@ -438,9 +441,10 @@ namespace Chami.Db.Repositories
             return GetEnvironmentsByType(EnvironmentType.NormalEnvironment);
         }
 
-        public async Task<IEnumerable<Environment>> GetEnvironmentsAsync()
+        public async Task<IEnumerable<Environment>> GetEnvironmentsAsync(CancellationToken cancellationToken)
         {
-            return await GetEnvironmentsByTypeAsync(EnvironmentType.NormalEnvironment);
+            cancellationToken.ThrowIfCancellationRequested();
+            return await GetEnvironmentsByTypeAsync(EnvironmentType.NormalEnvironment, cancellationToken);
         }
 
         /// <summary>
