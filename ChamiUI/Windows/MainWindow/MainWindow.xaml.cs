@@ -735,21 +735,10 @@ namespace ChamiUI.Windows.MainWindow
 
         private void MassUpdateCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
         {
-            var childWindow = AppUtils.GetChamiApp().ServiceProvider
-                .GetRequiredService<MassUpdateWindow.MassUpdateWindow>();
-
-            childWindow.MassUpdateExecuted += OnMassUpdateExecuted;
+            var childWindow = AppUtils.GetChamiApp().ServiceProvider.GetRequiredService<MassUpdateWindow.MassUpdateWindow>();
+            
             childWindow.ShowDialog();
-        }
-
-        private void OnMassUpdateExecuted(object sender, MassUpdateEventArgs e)
-        {
             ViewModel.RefreshEnvironments();
-        }
-
-        public void OnHealthChecked(object sender, HealthCheckedEventArgs e)
-        {
-            //ViewModel.HandleCheckedHealth(e, AppUtils.GetAppServiceProvider().GetService<EnvironmentHealthWindow>());
         }
 
         private void EnvironmentHealthStatusBarItem_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -5,10 +5,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:ChamiUI.Windows.Splash"
         mc:Ignorable="d"
-        Title="SplashScreen" Height="300" Width="600" WindowStyle="None" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" AllowsTransparency="True">
-    <Window.Background>
-        <SolidColorBrush Color="White" Opacity="0"></SolidColorBrush>
-    </Window.Background>
+        Title="SplashScreen" 
+        Height="300" 
+        Width="450" 
+        WindowStyle="None" 
+        ResizeMode="NoResize" 
+        ShowInTaskbar="False" 
+        WindowStartupLocation="CenterScreen" 
+        AllowsTransparency="True">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -22,9 +26,25 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <Image Grid.Row="1" Grid.Column="1" Source="/ChamiUI;component/Assets/chameleon256x256.png"></Image>
-        <Label Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontSize="28" Foreground="Gray">Chami</Label>
-        <Label Foreground="White" x:Name="MessageLabel" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">Chami is starting</Label>
-        <ProgressBar Grid.Row="3" Grid.Column="0" Height="6" Grid.ColumnSpan="2" Minimum="0" Maximum="100" x:Name="ProgressBar"></ProgressBar>
+        <Image Margin="10" 
+               Grid.Row="1" 
+               Grid.Column="1"
+               Source="/ChamiUI;component/Assets/chameleon256x256.png"></Image>
+        <Label Grid.Row="0" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2" 
+               FontSize="28" 
+               Foreground="Gray">Chami</Label>
+        <Label Foreground="Black" 
+               x:Name="MessageLabel" 
+               Grid.Row="2" 
+               Grid.Column="0" 
+               Grid.ColumnSpan="2">Chami is starting</Label>
+        <ProgressBar Grid.Row="3"
+                     Grid.Column="0" 
+                     Height="6" 
+                     Grid.ColumnSpan="2" 
+                     Minimum="0" 
+                     Maximum="100" x:Name="ProgressBar"></ProgressBar>
     </Grid>
 </Window>

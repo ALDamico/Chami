@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Factories;
@@ -64,7 +65,8 @@ public class MassUpdateService
     public async Task ExecuteUpdate(MassUpdateStrategyViewModel selectedUpdateStrategy, 
         string variableName, 
         string newValue,
-        IEnumerable<EnvironmentViewModel> environments, bool createVariableIfNotExists
+        IEnumerable<EnvironmentViewModel> environments, 
+        bool createVariableIfNotExists
         )
     {
         var environmentsList = environments.ToList();

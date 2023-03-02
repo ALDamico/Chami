@@ -22,6 +22,7 @@ using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
 using ChamiUI.PresentationLayer.ViewModels.State;
@@ -38,6 +39,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         private readonly MainWindowStateManager _stateManager;
         public MainWindowStateManager StateManager => _stateManager;
+
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
@@ -121,12 +123,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         /// <param name="environmentDataAdapter">An <see cref="EnvironmentDataAdapter"/> used to perform database operations on environments</param>
         /// <param name="settingsDataAdapter">A <see cref="SettingsDataAdapter"/> used to manage application settings.</param>
-        public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter, SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker)
+        public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter,
+            SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker)
         {
             _dataAdapter = environmentDataAdapter;
             _settingsDataAdapter = settingsDataAdapter;
             _stateManager = new MainWindowStateManager();
-            _stateManager.ChangeState(new MainWindowLoadingDataState()); 
+            _stateManager.ChangeState(new MainWindowLoadingDataState());
             Environments = GetEnvironments();
             Backups = GetBackupEnvironments();
             Templates = GetTemplateEnvironments();
@@ -262,6 +265,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     {
                         SelectedEnvironment = Templates.FirstOrDefault();
                     }
+
                     StateManager.ChangeState(new MainWindowNotRunnableState());
                 }
 
@@ -373,7 +377,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 }
                 else
                 {
-                    newCommand = EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableApplicationCommand>(environmentVariable);
+                    newCommand =
+                        EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableApplicationCommand>(
+                            environmentVariable);
                 }
 
                 cmdExecutor.AddCommand(newCommand);
@@ -400,7 +406,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     }
                     else
                     {
-                        newCommand = EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(environmentVariable);
+                        newCommand =
+                            EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(
+                                environmentVariable);
                     }
 
                     cmdExecutor.AddCommand(newCommand);
@@ -531,6 +539,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void RefreshEnvironments()
         {
+            var selectedEnvironmentIndex = Environments.IndexOf(SelectedEnvironment);
+            var activeEnvironmentIndex = Environments.IndexOf(ActiveEnvironment);
             Environments.Clear();
             Backups.Clear();
             Templates.Clear();
@@ -553,6 +563,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 Templates.Add(environment);
             }
+
+            SelectedEnvironment = Environments.ElementAt(selectedEnvironmentIndex);
+            ActiveEnvironment = Environments.ElementAt(activeEnvironmentIndex);
         }
 
         private ObservableCollection<EnvironmentViewModel> GetEnvironments()
@@ -615,8 +628,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void SaveCurrentEnvironment()
         {
             StateManager.ChangeState(new MainWindowSavingDataState());
+
             var environment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            Environments.ReplaceInCollection(SelectedEnvironment, environment);
+            Templates.ReplaceInCollection(SelectedEnvironment, environment);
+            Backups.ReplaceInCollection(SelectedEnvironment, environment);
             SelectedEnvironment = environment;
+
             OnPropertyChanged(nameof(Environments));
             OnPropertyChanged(nameof(SelectedEnvironment));
             StateManager.ChangeState(new MainWindowReadyState());
@@ -740,13 +758,16 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
                     {
-                        var newCommand = EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(environmentVariable);
+                        var newCommand =
+                            EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(
+                                environmentVariable);
                         cmdExecutor.AddCommand(newCommand);
                     }
 
                     var chamiEnvVariable = new EnvironmentVariableViewModel() {Name = "_CHAMI_ENV"};
                     var chamiEnvVarRemovalCommand =
-                        EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(chamiEnvVariable);
+                        EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(
+                            chamiEnvVariable);
                     cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
                 }
             }
@@ -790,6 +811,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
             }
+
             StateManager.ChangeState(new MainWindowReadyState());
         }
 

@@ -1,12 +1,14 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using ChamiUI.PresentationLayer.Events;
 using ChamiUI.PresentationLayer.ViewModels;
+using ChamiUI.Windows.Abstract;
 
 namespace ChamiUI.Windows.MassUpdateWindow
 {
-    public partial class MassUpdateWindow : Window
+    public partial class MassUpdateWindow : ChamiWindow
     {
         public MassUpdateWindow(MassUpdateWindowViewModel viewModel)
         {
@@ -20,58 +22,6 @@ namespace ChamiUI.Windows.MassUpdateWindow
         private async void MassUpdateWindow_OnLoaded(object sender, RoutedEventArgs e)
         {
             await _viewModel.LoadDataAsync();
-        }
-/*
-        private void EnvironmentsListBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            _viewModel.HandleSelectionChanged(e.AddedItems, e.RemovedItems);
-        }*/
-/* TODO Move this to service
-        private void CloseCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            var prompt = MessageBox.Show(ChamiUIStrings.ConfirmCloseWindowText,
-                ChamiUIStrings.ConfirmCloseWindowCaption, MessageBoxButton.YesNo, MessageBoxImage.Question,
-                MessageBoxResult.No);
-            if (prompt == MessageBoxResult.Yes)
-            {
-                Close();
-            }
-        }
-
-
-        private void ExecuteCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            if (_viewModel.ShouldShowWarningMessageBox())
-            {
-                var choice = MessageBox.Show(this, string.Format(ChamiUIStrings
-                        .ConfirmMassUpdateWithEmptyValueMessageBoxMessage, _viewModel.VariableToUpdate),
-                    ChamiUIStrings.ConfirmMassUpdateWithEmptyValueMessageBoxCaption, MessageBoxButton.YesNo,
-                    MessageBoxImage.Warning, MessageBoxResult.No);
-                if (choice == MessageBoxResult.No)
-                {
-                    return;
-                }
-            }
-            _viewModel.ExecuteUpdate().GetAwaiter().GetResult();
-            OnMassUpdateExecuted(new MassUpdateEventArgs());
-        }
-*/
-
-        private void MassUpdateWindowSelectAllButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            _viewModel.SelectAllEnvironments();
-        }
-
-        private void MassUpdateWindowSelectNoneButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            _viewModel.DeselectAllEnvironments();
-        }
-
-        public event EventHandler<MassUpdateEventArgs> MassUpdateExecuted;
-
-        protected virtual void OnMassUpdateExecuted(MassUpdateEventArgs e)
-        {
-            MassUpdateExecuted?.Invoke(this, e);
         }
 
         private void StrategyComboBox_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
