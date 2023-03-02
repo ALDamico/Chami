@@ -105,7 +105,6 @@
                   ItemsSource="{Binding UpdateStrategies}" 
                   SelectedItem="{Binding SelectedUpdateStrategy}" 
                   x:Name="StrategyComboBox"
-                  SelectionChanged="StrategyComboBox_OnSelectionChanged"
                   DisplayMemberPath="Name">
         </ComboBox>
         <StackPanel Orientation="Horizontal" 

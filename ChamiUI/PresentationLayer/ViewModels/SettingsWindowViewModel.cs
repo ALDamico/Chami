@@ -113,14 +113,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 Task<EnvironmentVariableBlacklistViewModel> task = _dataAdapter.SaveBlacklistedVariableAsync(variable);
                 tasks.Add(task);
-                task.ContinueWith(async v =>
-                {
-                    var awaitedVariable = await v;
-                    output.Add(awaitedVariable);
-                });
+
+                await Task.WhenAll(tasks);
             }
 
-            await Task.WhenAll(tasks);
+            output.AddRange(tasks.Select(task => task.Result));
         }
 
         private readonly SettingsDataAdapter _dataAdapter;

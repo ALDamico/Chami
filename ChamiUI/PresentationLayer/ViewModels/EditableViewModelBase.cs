@@ -32,7 +32,7 @@ public abstract class EditableViewModelBase : ViewModelBase, IEditableObject, IC
         MementoObject = null;
     }
 
-    public object Clone()
+    public virtual object Clone()
     {
         var newObject = Activator.CreateInstance(GetType());
         var properties = newObject.GetType().GetProperties(BindingFlags.Public|BindingFlags.SetProperty);

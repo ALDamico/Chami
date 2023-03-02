@@ -13,7 +13,7 @@ namespace ChamiUI.BusinessLayer.Converters
             {
                 return EntityDictionary[identifier];
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException )
             {
                 
             }
@@ -32,7 +32,7 @@ namespace ChamiUI.BusinessLayer.Converters
             {
                 return ModelDictionary[identifier];
             }
-            catch (NullReferenceException e)
+            catch (NullReferenceException )
             {
                 
             }

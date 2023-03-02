@@ -3,7 +3,6 @@
 public class CategoryViewModel : GenericLabelViewModel
 {
     private int? _id;
-    private string _description;
 
     public int? Id
     {
@@ -14,7 +13,4 @@ public class CategoryViewModel : GenericLabelViewModel
             OnPropertyChanged();
         }
     }
-    
-    public string Description { get; set; }
-
 }

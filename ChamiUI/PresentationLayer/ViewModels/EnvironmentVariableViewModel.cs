@@ -121,7 +121,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public EnvironmentVariableViewModel Clone()
+        public override EnvironmentVariableViewModel Clone()
         {
             var clone = new EnvironmentVariableViewModel()
             {

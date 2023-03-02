@@ -88,6 +88,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             get => _selectedUpdateStrategy;
             set
             {
+                if (value.CreateIfNotExistsEnabled && SelectedUpdateStrategy is {CreateIfNotExistsEnabled: true})
+                {
+                    value.CreateIfNotExists = SelectedUpdateStrategy.CreateIfNotExists;
+                }
                 _selectedUpdateStrategy = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(EnvironmentListBoxEnabled));

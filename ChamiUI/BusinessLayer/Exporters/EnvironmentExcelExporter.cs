@@ -111,7 +111,7 @@ namespace ChamiUI.BusinessLayer.Exporters
         /// Column names are currently hard-coded.
         /// </summary>
         /// <param name="worksheet">The worksheet to write the header to.</param>
-        protected void PrintHeader(Worksheet worksheet)
+        private void PrintHeader(Worksheet worksheet)
         {
             var cells = worksheet.Cells;
             cells[1, 1].Value = "EnvironmentId";
