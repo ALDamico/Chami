@@ -15,6 +15,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// <seealso cref="INotifyPropertyChanged"/>
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
+        protected ViewModelBase()
+        {
+            CloseCommand = new AsyncCommand<Window>(ExecuteCloseWindow);
+        }
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
@@ -64,7 +68,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         
         protected async Task ExecuteCloseWindow(Window arg)
         {
-            arg.Close();
+            if (arg != null)
+            {
+                arg.Close();
+            }
+           
             await Task.CompletedTask;
         }
     }

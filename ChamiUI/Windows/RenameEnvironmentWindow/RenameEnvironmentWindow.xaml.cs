@@ -8,56 +8,11 @@ namespace ChamiUI.Windows.RenameEnvironmentWindow
 {
     public partial class RenameEnvironmentWindow
     {
-        private readonly RenameEnvironmentViewModel _viewModel;
 
         public RenameEnvironmentWindow(RenameEnvironmentViewModel viewModel)
         {
-            _viewModel = viewModel;
-            DataContext = _viewModel;
+            DataContext = viewModel;
             InitializeComponent();
-        }
-
-        public event EventHandler<EnvironmentRenamedEventArgs> EnvironmentRenamed;
-
-        protected virtual void OnEnvironmentRenamed(string newName)
-        {
-            EnvironmentRenamed?.Invoke(this, new EnvironmentRenamedEventArgs(newName));
-        }
-        private void OkButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            if (_viewModel.IsNameValid)
-            {
-                OnEnvironmentRenamed(_viewModel.Name);
-            }
-
-            Close();
-        }
-
-        private void CancelButton_OnClick(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void DoRename_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.Handled = true;
-            e.CanExecute = _viewModel.IsNameValid;
-        }
-
-        private void DoRename_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            OkButton_OnClick(sender, e);
-        }
-
-        private void CancelRename_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
-        {
-            e.Handled = true;
-            e.CanExecute = true;
-        }
-
-        private void CancelRename_OnExecuted(object sender, ExecutedRoutedEventArgs e)
-        {
-            Close();
         }
     }
 }

@@ -525,7 +525,7 @@
         <FrameworkElement x:Name="dummyElement" Visibility="Collapsed" />
         <TabControl Grid.Row="5"
                     Grid.Column="0"
-                    x:Name="TabControls">
+                    x:Name="TabControls" SelectedIndex="{Binding SelectedTabIndex}">
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
                 <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}, IsAsync=True}"
                           AutoGenerateColumns="False"

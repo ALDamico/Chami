@@ -2212,6 +2212,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This name is not valid..
+        /// </summary>
+        public static string NameInvalidToolTip {
+            get {
+                return ResourceManager.GetString("NameInvalidToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string NewEnvironmentDataGridNameColumn {

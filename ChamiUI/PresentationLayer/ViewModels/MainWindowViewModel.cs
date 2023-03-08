@@ -242,6 +242,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
 
+        private int _selectedTabIndex;
+
+        public int SelectedTabIndex
+        {
+            get => _selectedTabIndex;
+            set
+            {
+                _selectedTabIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int _selectedEnvironmentTypeTabIndex;
 
         public int SelectedEnvironmentTypeTabIndex
@@ -1069,6 +1081,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var valueToSave = Settings.ConsoleAppearanceSettings.FontSize;
                 _settingsDataAdapter.SaveFontSize(valueToSave);
             }
+        }
+
+        public void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs e)
+        {
+            SelectedTabIndex = 0;
+            RenameEnvironment(e.NewName, null);
         }
     }
 }

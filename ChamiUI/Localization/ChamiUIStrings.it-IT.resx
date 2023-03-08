@@ -1182,4 +1182,7 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="CategoriesCategoryDescription" xml:space="preserve">
     <value>Gestisci i tag degli ambienti.</value>
   </data>
+  <data name="NameInvalidToolTip" xml:space="preserve">
+    <value>Questo nome non è valido.</value>
+  </data>
 </root>

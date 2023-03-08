@@ -1189,4 +1189,7 @@ Most people don't need to change these.</value>
   <data name="CategoriesCategoryDescription" xml:space="preserve">
     <value>Manage environment tags.</value>
   </data>
+  <data name="NameInvalidToolTip" xml:space="preserve">
+    <value>This name is not valid.</value>
+  </data>
 </root>

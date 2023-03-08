@@ -381,7 +381,6 @@ namespace ChamiUI.Windows.MainWindow
         {
             var childWindow = AppUtils.GetAppServiceProvider()
                 .GetService<RenameEnvironmentWindow.RenameEnvironmentWindow>();
-            childWindow.EnvironmentRenamed += OnEnvironmentRenamed;
             childWindow.Owner = this;
             childWindow.ShowDialog();
         }

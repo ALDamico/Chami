@@ -50,6 +50,7 @@ public static class AppLoaderFactory
     {
         serviceCollection.AddTransient<MassUpdateService>();
         serviceCollection.AddTransient<ExportService>();
+        serviceCollection.AddTransient<RenameEnvironmentService>();
         return Task.CompletedTask;
     }
 
@@ -66,8 +67,16 @@ public static class AppLoaderFactory
             .AddTransient<NewTemplateWindowViewModel>()
             .AddTransient(sp =>
             {
-                var initialName = sp.GetRequiredService<MainWindowViewModel>().SelectedEnvironment.Name;
-                return new RenameEnvironmentViewModel(initialName);
+                var mainWindowViewModel = sp.GetRequiredService<MainWindowViewModel>();
+                var initialName = mainWindowViewModel.SelectedEnvironment.Name;
+                var renameService = sp.GetRequiredService<RenameEnvironmentService>();
+                var viewModel = new RenameEnvironmentViewModel(renameService)
+                {
+                    Name = initialName
+                };
+                renameService.EnvironmentRenamed += mainWindowViewModel.OnEnvironmentRenamed;
+
+                return viewModel;
             })
             ;
         return Task.CompletedTask;
