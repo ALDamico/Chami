@@ -12,6 +12,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media;
 using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
@@ -44,6 +45,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// How the window should behave when it's minimized.
         /// </summary>
         public IMinimizationStrategy MinimizationStrategy => Settings.MinimizationBehaviour.MinimizationStrategy;
+        public ProgressBarViewModel ProgressBarViewModel { get; }
 
         /// <summary>
         /// Cancels the execution of the active <see cref="CmdExecutor"/> queue.
@@ -146,6 +148,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
             _healthChecker = healthChecker;
             EnvironmentChanged += _healthChecker.OnEnvironmentChanged;
             _healthChecker.HealthChecked += HandleCheckedHealth;
+            ProgressBarViewModel = new ProgressBarViewModel()
+            {
+                Minimum = 0,
+                Maximum = 0,
+                Foregound = Brushes.Green,
+                Value = 0
+            };
         }
 
         private void HandleCheckedHealth(object sender, HealthCheckedEventArgs healthCheckedEventArgs)
@@ -747,6 +756,40 @@ namespace ChamiUI.PresentationLayer.ViewModels
             variableViewModel.MarkedForDeletion = !variableViewModel.MarkedForDeletion;
         }
 
+        public void HandleProgressReport(CmdExecutorProgress o)
+        {
+            if (o.Message != null)
+            {
+                var message = o.Message.TrimStart('\n');
+                if (!o.Message.EndsWith("\n"))
+                {
+                    message += "\n";
+                }
+
+                ConsoleMessages += message;
+            }
+
+            if (o.OutputStream != null)
+            {
+                StreamReader reader = new StreamReader(o.OutputStream);
+                ConsoleMessages += reader.ReadToEnd();
+            }
+
+            ProgressBarViewModel.Value = o.Percentage;
+        }
+
+        private string _consoleMessages;
+
+        public string ConsoleMessages
+        {
+            get => _consoleMessages;
+            set
+            {
+                _consoleMessages = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Removes all Chami environment variables from the current environment.
         /// </summary>
@@ -1086,7 +1129,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs e)
         {
             SelectedTabIndex = 0;
-            RenameEnvironment(e.NewName, null);
+            RenameEnvironment(e.NewName, HandleProgressReport);
         }
     }
 }

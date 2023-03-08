@@ -28,10 +28,12 @@ public class MainWindowReadyState : IMainWindowState
     public bool IsEditable => true;
     public async Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow)
     {
-        mainWindow.ResetProgressBar();
-        mainWindow.FocusConsoleTab();
+        mainWindowViewModel.ProgressBarViewModel.Reset();
+        mainWindowViewModel.SelectedTabIndex = 1;
+       // mainWindow.ResetProgressBar();
+      //  mainWindow.FocusConsoleTab();
         var previousEnvironment = mainWindowViewModel.ActiveEnvironment;
-        Action<CmdExecutorProgress> progress = mainWindow.HandleProgressReport;
+        Action<CmdExecutorProgress> progress = mainWindowViewModel.HandleProgressReport;
         try
         {
             await mainWindowViewModel.ChangeEnvironmentAsync(progress);

@@ -17,6 +17,8 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
         xmlns:gestures="clr-namespace:ChamiUI.PresentationLayer.Gestures"
+        xmlns:behaviours="clr-namespace:ChamiUI.PresentationLayer.Behaviours"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         WindowStartupLocation="Manual"
@@ -596,7 +598,10 @@
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              TextWrapping="Wrap"
-                             IsReadOnly="False">
+                             IsReadOnly="False"
+                             behaviours:TextBoxBehaviour.ScrollOnTextChanged="True"
+                             Text="{Binding ConsoleMessages}"
+                             >
                         <TextBox.InputBindings>
                             <MouseBinding Command="IncreaseFontSize">
                                 <MouseBinding.Gesture>
@@ -624,8 +629,15 @@
                                  x:Name="ConsoleProgressBar"
                                  MinHeight="16"
                                  MaxHeight="22"
-                                 Minimum="0"
-                                 Maximum="100" />
+                                 Minimum="{Binding ProgressBarViewModel.Minimum}"
+                                 Maximum="{Binding ProgressBarViewModel.Maximum}" 
+                                 Value="{Binding ProgressBarViewModel.Value}" 
+                                 Foreground="{Binding ProgressBarViewModel.Foregound}"
+                                 >
+                        <b:Interaction.Behaviors>
+                            <behaviours:ProgressBarAnimationBehavior></behaviours:ProgressBarAnimationBehavior>
+                        </b:Interaction.Behaviors>
+                    </ProgressBar>
                 </Grid>
             </TabItem>
         </TabControl>
