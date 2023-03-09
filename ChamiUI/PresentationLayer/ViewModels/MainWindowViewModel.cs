@@ -156,7 +156,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 Minimum = 0,
                 Maximum = 100,
-                Foreground = Brushes.Green,
+                Foreground = ResourceUtils.DefaultProgressBarColor,
                 Value = 0
             };
         }
@@ -166,7 +166,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SystemSounds.Exclamation.Play();
             ConsoleMessages += ChamiUIStrings.OperationCanceledMessage;
             ConsoleMessages += ChamiUIStrings.OperationCanceledRevertMessage;
-            ProgressBarViewModel.Foreground = System.Windows.Media.Brushes.Red;
+            ProgressBarViewModel.Foreground = ResourceUtils.ErrorProgressBarColor;
         }
 
         private void HandleCheckedHealth(object sender, HealthCheckedEventArgs healthCheckedEventArgs)

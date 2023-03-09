@@ -1,4 +1,5 @@
 using System.Windows.Media;
+using ChamiUI.PresentationLayer.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels;
 
@@ -52,6 +53,6 @@ public class ProgressBarViewModel : ViewModelBase
     public void Reset()
     {
         Value = 0;
-        Foreground = Brushes.Green;
+        Foreground = ResourceUtils.DefaultProgressBarColor;
     }
 }

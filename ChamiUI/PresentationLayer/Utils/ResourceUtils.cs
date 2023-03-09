@@ -13,6 +13,8 @@ namespace ChamiUI.PresentationLayer.Utils
         /// The default color for the progress bar in main window.
         /// </summary>
         public static Brush DefaultProgressBarColor => new SolidColorBrush(Color.FromArgb(0xFF, 0X06, 0xb0, 0x25));
+
+        public static Brush ErrorProgressBarColor => Brushes.Red;
         
         /// <summary>
         /// Helper function that tries to get the specified resource and, if successful, sets the output parameter.
