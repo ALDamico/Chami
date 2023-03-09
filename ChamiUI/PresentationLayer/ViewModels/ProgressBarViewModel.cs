@@ -39,7 +39,7 @@ public class ProgressBarViewModel : ViewModelBase
         }
     }
 
-    public Brush Foregound
+    public Brush Foreground
     {
         get => _foreground;
         set
@@ -52,6 +52,6 @@ public class ProgressBarViewModel : ViewModelBase
     public void Reset()
     {
         Value = 0;
-        Foregound = Brushes.Green;
+        Foreground = Brushes.Green;
     }
 }

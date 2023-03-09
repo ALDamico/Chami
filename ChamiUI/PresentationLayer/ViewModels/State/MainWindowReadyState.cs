@@ -4,6 +4,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using Chami.CmdExecutor.Progress;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Constants;
 using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.Windows.MainWindow;
 using Serilog;
@@ -29,7 +30,7 @@ public class MainWindowReadyState : IMainWindowState
     public async Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow)
     {
         mainWindowViewModel.ProgressBarViewModel.Reset();
-        mainWindowViewModel.SelectedTabIndex = 1;
+        mainWindowViewModel.SelectedTabIndex = MainWindowConstants.ConsoleTabItem;
        // mainWindow.ResetProgressBar();
       //  mainWindow.FocusConsoleTab();
         var previousEnvironment = mainWindowViewModel.ActiveEnvironment;
@@ -48,7 +49,7 @@ public class MainWindowReadyState : IMainWindowState
             mainWindowViewModel.StateManager.ChangeState(new MainWindowRevertingEnvironmentState(previousEnvironment?.Name));
             Log.Logger.Information("{Message}", ex.Message);
             Log.Logger.Information("{StackTrace}", ex.StackTrace);
-            mainWindow.PrintTaskCancelledMessageToConsole();
+            mainWindowViewModel.PrintTaskCancelledMessageToConsole();
             mainWindowViewModel.SelectedEnvironment = previousEnvironment;
             if (previousEnvironment != null)
             {

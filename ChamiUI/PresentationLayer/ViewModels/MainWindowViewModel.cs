@@ -9,10 +9,12 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
+using System.Windows.Threading;
 using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
@@ -20,6 +22,7 @@ using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Constants;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
@@ -125,6 +128,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// </summary>
         /// <param name="environmentDataAdapter">An <see cref="EnvironmentDataAdapter"/> used to perform database operations on environments</param>
         /// <param name="settingsDataAdapter">A <see cref="SettingsDataAdapter"/> used to manage application settings.</param>
+        /// <param name="healthChecker">The <see cref="EnvironmentHealthChecker"/> component tasked with checking environments' health.</param>
         public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter,
             SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker)
         {
@@ -151,10 +155,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             ProgressBarViewModel = new ProgressBarViewModel()
             {
                 Minimum = 0,
-                Maximum = 0,
-                Foregound = Brushes.Green,
+                Maximum = 100,
+                Foreground = Brushes.Green,
                 Value = 0
             };
+        }
+        
+        internal void PrintTaskCancelledMessageToConsole()
+        {
+            SystemSounds.Exclamation.Play();
+            ConsoleMessages += ChamiUIStrings.OperationCanceledMessage;
+            ConsoleMessages += ChamiUIStrings.OperationCanceledRevertMessage;
+            ProgressBarViewModel.Foreground = System.Windows.Media.Brushes.Red;
         }
 
         private void HandleCheckedHealth(object sender, HealthCheckedEventArgs healthCheckedEventArgs)
@@ -271,18 +283,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _selectedEnvironmentTypeTabIndex = value;
-                if (_selectedEnvironmentTypeTabIndex == TABITEM_NORMAL_ENV_IDX)
+                if (_selectedEnvironmentTypeTabIndex == MainWindowConstants.TabItemNormalEnvIdx)
                 {
                     SelectedEnvironment = Environments.FirstOrDefault();
                     StateManager.ChangeState(new MainWindowReadyState());
                 }
                 else
                 {
-                    if (_selectedEnvironmentTypeTabIndex == TABITEM_BACKUP_ENV_IDX)
+                    if (_selectedEnvironmentTypeTabIndex == MainWindowConstants.TabItemBackupEnvIdx)
                     {
                         SelectedEnvironment = Backups.FirstOrDefault();
                     }
-                    else if (_selectedEnvironmentTypeTabIndex == TABITEM_TEMPLATE_ENV_IDX)
+                    else if (_selectedEnvironmentTypeTabIndex == MainWindowConstants.TabItemTemplateEnvIdx)
                     {
                         SelectedEnvironment = Templates.FirstOrDefault();
                     }
@@ -293,10 +305,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged();
             }
         }
-
-        private const int TABITEM_NORMAL_ENV_IDX = 0;
-        private const int TABITEM_BACKUP_ENV_IDX = 2;
-        private const int TABITEM_TEMPLATE_ENV_IDX = 1;
 
         /// <summary>
         /// Reacts to the EnvironmentChanged event.
@@ -776,6 +784,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             ProgressBarViewModel.Value = o.Percentage;
+            //Dispatcher.CurrentDispatcher.Invoke(() => ProgressBarViewModel.Value = o.Percentage);
+
+            //OnPropertyChanged(nameof(ProgressBarViewModel));
         }
 
         private string _consoleMessages;
@@ -1128,7 +1139,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs e)
         {
-            SelectedTabIndex = 0;
+            SelectedTabIndex = MainWindowConstants.ConsoleTabItem;
             RenameEnvironment(e.NewName, HandleProgressReport);
         }
     }

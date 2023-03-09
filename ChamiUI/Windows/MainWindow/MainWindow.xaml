@@ -629,10 +629,11 @@
                                  x:Name="ConsoleProgressBar"
                                  MinHeight="16"
                                  MaxHeight="22"
-                                 Minimum="{Binding ProgressBarViewModel.Minimum}"
-                                 Maximum="{Binding ProgressBarViewModel.Maximum}" 
-                                 Value="{Binding ProgressBarViewModel.Value}" 
-                                 Foreground="{Binding ProgressBarViewModel.Foregound}"
+                                 DataContext="{Binding ProgressBarViewModel}"
+                                 Minimum="{Binding Minimum}"
+                                 Maximum="{Binding Maximum}" 
+                                 Value="{Binding Value}" 
+                                 Foreground="{Binding Foreground}"
                                  >
                         <b:Interaction.Behaviors>
                             <behaviours:ProgressBarAnimationBehavior></behaviours:ProgressBarAnimationBehavior>
