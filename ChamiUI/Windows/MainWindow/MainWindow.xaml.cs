@@ -6,7 +6,6 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
-using System.Media;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -23,6 +22,7 @@ using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Utils;
+using ChamiUI.Windows.Abstract;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +32,7 @@ namespace ChamiUI.Windows.MainWindow
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : ChamiWindow
     {
         /// <summary>
         /// Constructs a new <see cref="MainWindow"/> and sets its DataContext, plus registering event handlers.
@@ -188,11 +188,6 @@ namespace ChamiUI.Windows.MainWindow
         private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
         {
             ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
-        }
-
-        private void CopyEnvironmentVariableMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            Clipboard.SetText(ViewModel.SelectedVariable.Value);
         }
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)

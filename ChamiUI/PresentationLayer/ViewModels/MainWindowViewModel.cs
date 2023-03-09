@@ -592,7 +592,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
 
             SelectedEnvironment = Environments.ElementAt(selectedEnvironmentIndex);
-            ActiveEnvironment = Environments.ElementAt(activeEnvironmentIndex);
+            if (activeEnvironmentIndex >= 0)
+            {
+                ActiveEnvironment = Environments.ElementAt(activeEnvironmentIndex);
+            }
         }
 
         private ObservableCollection<EnvironmentViewModel> GetEnvironments()

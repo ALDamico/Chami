@@ -6,6 +6,7 @@ using System.Windows;
 using AsyncAwaitBestPractices.MVVM;
 using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Localization;
+using ChamiUI.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -30,6 +31,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             InitUpdateStrategies();
             Environments = new ObservableCollection<EnvironmentViewModel>();
             NewValue = "";
+            LoadDataAsync().Await();
         }
 
         private async Task ExecuteDeselectAll()
