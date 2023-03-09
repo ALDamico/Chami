@@ -62,7 +62,6 @@ namespace ChamiUI.Windows.MainWindow
 
         private MainWindowViewModel ViewModel { get; set; }
 
-
         private void QuitApplicationMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             Log.Logger.Debug("Attempt to quit application");
@@ -76,26 +75,9 @@ namespace ChamiUI.Windows.MainWindow
             }
         }
 
-        internal void ResetProgressBar()
-        {
-            //Avoids animating the progressbar when its value is reset to zero.
-            ConsoleProgressBar.BeginAnimation(RangeBase.ValueProperty, null);
-            ConsoleProgressBar.Value = 0.0;
-
-            ConsoleProgressBar.Foreground = ResourceUtils.DefaultProgressBarColor;
-        }
-
         private async void ApplyEnvironmentButton_OnClick(object sender, RoutedEventArgs e)
         {
             await ViewModel.ApplyEnvironmentButtonClickAction(this);
-        }
-
-        internal void PrintTaskCancelledMessageToConsole()
-        {
-            SystemSounds.Exclamation.Play();
-            ConsoleTextBox.Text += ChamiUIStrings.OperationCanceledMessage;
-            ConsoleTextBox.Text += ChamiUIStrings.OperationCanceledRevertMessage;
-            ConsoleProgressBar.Foreground = System.Windows.Media.Brushes.Red;
         }
 
         internal void FocusConsoleTab(bool clearTextBox = true)
@@ -369,12 +351,6 @@ namespace ChamiUI.Windows.MainWindow
         private void RenameEnvironmentCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = !ViewModel.StateManager.CurrentState.EditingEnabled && ViewModel.SelectedEnvironment != null;
-        }
-
-        private async void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs args)
-        {
-            FocusConsoleTab();
-            await ViewModel.RenameEnvironment(args.NewName, HandleProgressReport);
         }
 
         private void RenameEnvironmentCommandBinding_OnExecuted(object sender, ExecutedRoutedEventArgs e)
