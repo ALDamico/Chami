@@ -32,7 +32,7 @@ namespace ChamiTests
         [Fact]
         public void TestReading()
         {
-            var inputFile = "D:/code/Chami/ChamiTests/InputFiles/chami-sample.json";
+            var inputFile = "InputFiles/chami-sample.json";
             var environmentJsonReader = new EnvironmentJsonReader(inputFile);
             var readDocument = environmentJsonReader.Process();
             Assert.NotNull(readDocument.Name);
@@ -42,7 +42,7 @@ namespace ChamiTests
         [Fact]
         public void TestReadingMultiple()
         {
-            var inputFile = "D:/code/Chami/ChamiTests/InputFiles/chami-sample-multiple.json";
+            var inputFile = "InputFiles/chami-sample-multiple.json";
             var environmentJsonReader = new EnvironmentJsonReader(inputFile);
             List<EnvironmentViewModel> readDocuments = environmentJsonReader.ProcessMultiple() as List<EnvironmentViewModel>;
             foreach (var readDocument in readDocuments)
