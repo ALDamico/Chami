@@ -1,5 +1,3 @@
-using System.Windows;
-using System.Windows.Controls;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.Windows.Abstract;
 

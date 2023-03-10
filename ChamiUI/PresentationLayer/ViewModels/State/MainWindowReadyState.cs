@@ -31,8 +31,6 @@ public class MainWindowReadyState : IMainWindowState
     {
         mainWindowViewModel.ProgressBarViewModel.Reset();
         mainWindowViewModel.SelectedTabIndex = MainWindowConstants.ConsoleTabItem;
-       // mainWindow.ResetProgressBar();
-      //  mainWindow.FocusConsoleTab();
         var previousEnvironment = mainWindowViewModel.ActiveEnvironment;
         Action<CmdExecutorProgress> progress = mainWindowViewModel.HandleProgressReport;
         try
