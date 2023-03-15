@@ -72,7 +72,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 SelectedEnvironment.Name = value;
-                OnPropertyChanged(nameof(SelectedEnvironmentName));
+                OnPropertyChanged();
             }
         }
 
@@ -87,7 +87,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 if (environmentViewModel.ShouldImport)
                 {
-                    var environment = DataAdapter.SaveEnvironment(environmentViewModel);
+                    EnvironmentViewModel environment = null;//DataAdapter.SaveEnvironment(environmentViewModel);
                     environments.Add(environment);
                 }
             }

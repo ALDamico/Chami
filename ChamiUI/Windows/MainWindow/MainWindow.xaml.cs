@@ -22,7 +22,6 @@ using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Utils;
-using ChamiUI.Windows.Abstract;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
 using Microsoft.Extensions.DependencyInjection;
@@ -32,7 +31,7 @@ namespace ChamiUI.Windows.MainWindow
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : ChamiWindow
+    public partial class MainWindow
     {
         /// <summary>
         /// Constructs a new <see cref="MainWindow"/> and sets its DataContext, plus registering event handlers.
@@ -121,28 +120,7 @@ namespace ChamiUI.Windows.MainWindow
             ConsoleProgressBar.Value = o.Percentage;
         }
 
-        private void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
-        {
-            if (args != null)
-            {
-                var environmentViewModel = args.EnvironmentViewModel;
-                if (!ViewModel.CheckEnvironmentExists(environmentViewModel))
-                {
-                    if (environmentViewModel.EnvironmentType == EnvironmentType.BackupEnvironment)
-                    {
-                        ViewModel.Backups.Add(environmentViewModel);
-                    }
-                    else if (environmentViewModel.EnvironmentType == EnvironmentType.TemplateEnvironment)
-                    {
-                        ViewModel.Templates.Add(environmentViewModel);
-                    }
-                    else
-                    {
-                        ViewModel.Environments.Add(args.EnvironmentViewModel);
-                    }
-                }
-            }
-        }
+       
 
         private const int EnvironmentVariablesTabIndex = 0;
         private const int ConsoleTabIndex = 1;
@@ -204,8 +182,8 @@ namespace ChamiUI.Windows.MainWindow
                 childWindow.SetEnvironment(dataContext);
             }
 
-            childWindow.EnvironmentSaved += OnEnvironmentSaved;
             childWindow.ShowDialog();
+            ViewModel.RefreshEnvironments();
         }
 
         private async void ResetVarsMenuItem_OnClick(object sender, RoutedEventArgs e)
@@ -507,7 +485,7 @@ namespace ChamiUI.Windows.MainWindow
             {
                 var importWindow = AppUtils.GetAppServiceProvider()
                     .GetService<ImportEnvironmentWindow.ImportEnvironmentWindow>();
-                importWindow.EnvironmentSaved += OnEnvironmentSaved;
+                //importWindow.EnvironmentSaved += OnEnvironmentSaved;
                 importWindow.SetEnvironments(viewModels);
                 importWindow.ShowDialog();
             }
@@ -545,7 +523,7 @@ namespace ChamiUI.Windows.MainWindow
         {
             var newTemplateWindow = AppUtils.GetAppServiceProvider().GetService<NewTemplateWindow.NewTemplateWindow>();
             newTemplateWindow.Owner = this;
-            newTemplateWindow.EnvironmentSaved += OnEnvironmentSaved;
+            //newTemplateWindow.EnvironmentSaved += OnEnvironmentSaved;
             newTemplateWindow.ShowDialog();
         }
 

@@ -186,7 +186,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private IEnumerable<EnvironmentViewModel> SelectedEnvironments => Environments.Where(e => e.IsSelected);
 
-        public async Task LoadDataAsync()
+        private async Task LoadDataAsync()
         {
             var tasks = _massUpdateService.GetLoadDataTask();
             await Task.WhenAll(tasks);

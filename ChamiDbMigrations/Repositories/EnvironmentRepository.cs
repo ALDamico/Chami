@@ -237,6 +237,11 @@ namespace Chami.Db.Repositories
         /// <returns>The newly-inserted or updated <see cref="Environment"/></returns>
         public Environment UpsertEnvironment(Environment environment)
         {
+            return UpsertEnvironmentAsync(environment).GetAwaiter().GetResult();
+        }
+
+        public async Task<Environment> UpsertEnvironmentAsync(Environment environment)
+        {
             var environmentInDatabase = GetEnvironmentByName(environment.Name);
             if (environmentInDatabase != null)
             {
@@ -432,6 +437,11 @@ namespace Chami.Db.Repositories
             return GetEnvironmentsByType(EnvironmentType.TemplateEnvironment);
         }
 
+        public async Task<ICollection<Environment>> GetTemplateEnvironmentsAsync(CancellationToken cancellationToken = default)
+        {
+            return await GetEnvironmentsByTypeAsync(EnvironmentType.TemplateEnvironment, cancellationToken);
+        }
+
         /// <summary>
         /// Get all the environments marked as normal environments in the datastore.
         /// </summary>
@@ -454,6 +464,11 @@ namespace Chami.Db.Repositories
         /// <returns>An <see cref="Environment"/> with the specified name. If none is found, null.</returns>
         public Environment GetEnvironmentByName(string name)
         {
+            return GetEnvironmentByNameAsync(name).GetAwaiter().GetResult();
+        }
+
+        public async Task<Environment> GetEnvironmentByNameAsync(string name, CancellationToken cancellationToken = default)
+        {
             var queryString = @"
                 SELECT *
                 FROM Environments e
@@ -463,10 +478,11 @@ namespace Chami.Db.Repositories
             using (var connection = GetConnection())
             {
                 var environmentDictionary = new Dictionary<int, Environment>();
+                var transaction = await connection.BeginTransactionAsync(cancellationToken);
                 try
                 {
                     var param = new {name};
-                    var result = connection.Query<Environment, EnvironmentVariable, Environment>(queryString,
+                    var result = await connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString,
                         (e, v) =>
                         {
                             if (!environmentDictionary.TryGetValue(e.EnvironmentId, out var env))
@@ -489,6 +505,10 @@ namespace Chami.Db.Repositories
                 catch (InvalidOperationException)
                 {
                     return null;
+                }
+                finally
+                {
+                    await transaction.CommitAsync(cancellationToken);
                 }
             }
         }

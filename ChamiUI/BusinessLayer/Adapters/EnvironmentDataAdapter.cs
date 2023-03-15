@@ -164,8 +164,14 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <returns>The newly-inserted or updated <see cref="Environment"/>, converted to an <see cref="EnvironmentViewModel"/></returns>
         public EnvironmentViewModel SaveEnvironment(EnvironmentViewModel environment)
         {
+            return SaveEnvironmentAsync(environment).GetAwaiter().GetResult();
+        }
+
+        public async Task<EnvironmentViewModel> SaveEnvironmentAsync(EnvironmentViewModel environment, CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
             var entity = _environmentConverter.From(environment);
-            var inserted = _repository.UpsertEnvironment(entity);
+            var inserted = await _repository.UpsertEnvironmentAsync(entity);
             return _environmentConverter.To(inserted);
         }
 
@@ -187,6 +193,11 @@ namespace ChamiUI.BusinessLayer.Adapters
         }
 
         public ICollection<EnvironmentViewModel> GetTemplateEnvironments()
+        {
+            return GetTemplateEnvironmentsAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<ICollection<EnvironmentViewModel>> GetTemplateEnvironmentsAsync(CancellationToken cancellationToken = default)
         {
             var environments = _repository.GetTemplateEnvironments();
             

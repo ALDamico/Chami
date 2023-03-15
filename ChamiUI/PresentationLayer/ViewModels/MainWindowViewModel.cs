@@ -1138,10 +1138,29 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs e)
+        public async void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs e)
         {
             SelectedTabIndex = MainWindowConstants.ConsoleTabItem;
-            RenameEnvironment(e.NewName, HandleProgressReport);
+            await RenameEnvironment(e.NewName, HandleProgressReport);
+        }
+        
+        internal void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
+        {
+            if (args == null) return;
+            var environmentViewModel = args.EnvironmentViewModel;
+            if (CheckEnvironmentExists(environmentViewModel)) return;
+            switch (environmentViewModel.EnvironmentType)
+            {
+                case EnvironmentType.BackupEnvironment:
+                    Backups.Add(environmentViewModel);
+                    break;
+                case EnvironmentType.TemplateEnvironment:
+                    Templates.Add(environmentViewModel);
+                    break;
+                default:
+                    Environments.Add(args.EnvironmentViewModel);
+                    break;
+            }
         }
     }
 }

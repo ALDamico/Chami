@@ -4,7 +4,7 @@ namespace ChamiUI.Utils;
 
 public static class TaskExtensions
 {
-    public async static void Await(this Task task)
+    public static async void Await(this Task task)
     {
         await task;
     }

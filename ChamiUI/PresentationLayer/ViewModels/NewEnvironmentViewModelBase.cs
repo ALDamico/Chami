@@ -1,4 +1,7 @@
-﻿using ChamiUI.BusinessLayer.Adapters;
+﻿using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
+using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.BusinessLayer.Validators;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -11,10 +14,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Constructs a new <see cref="NewEnvironmentViewModelBase"/> object and initializes its <see cref="DataAdapter"/>
         /// </summary>
-        protected NewEnvironmentViewModelBase(EnvironmentDataAdapter environmentDataAdapter) : this()
+        protected NewEnvironmentViewModelBase(NewEnvironmentService newEnvironmentService) : this()
         {
-            DataAdapter = environmentDataAdapter;
+            _newEnvironmentService = newEnvironmentService;
         }
+
+        protected NewEnvironmentService _newEnvironmentService;
 
         protected NewEnvironmentViewModelBase()
         {
@@ -27,13 +32,39 @@ namespace ChamiUI.PresentationLayer.ViewModels
         protected EnvironmentViewModelValidator Validator { get; }
 
         /// <summary>
-        /// Allows saving the new environment.
-        /// </summary>
-        protected EnvironmentDataAdapter DataAdapter { get; }
-
-        /// <summary>
         /// Determines if the save button is enabled.
         /// </summary>
         public abstract bool IsSaveButtonEnabled { get; }
+        /// <summary>
+        /// The new environment to insert.
+        /// </summary>
+        public virtual EnvironmentViewModel Environment
+        {
+            get => _environment;
+            set
+            {
+                _environment = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSaveButtonEnabled));
+                OnPropertyChanged(nameof(EnvironmentName));
+            }
+        }
+        
+        /// <summary>
+        /// The name of the new environment.
+        /// </summary>
+        public string EnvironmentName
+        {
+            get => Environment.Name;
+            set
+            {
+                Environment.Name = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(IsSaveButtonEnabled));
+            }
+        }
+        private EnvironmentViewModel _environment;
+        
+        public IAsyncCommand<Window> SaveCommand { get; protected set; }
     }
 }
