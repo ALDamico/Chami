@@ -1,7 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.Linq;
+using System.Threading.Tasks;
+using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
 using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Services;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -13,11 +18,77 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <summary>
         /// Constructs a new <see cref="ImportEnvironmentWindowViewModel"/> object and initializes its properties.
         /// </summary>
-        public ImportEnvironmentWindowViewModel()
+        public ImportEnvironmentWindowViewModel(NewEnvironmentService newEnvironmentService) : base(newEnvironmentService)
         {
             NewEnvironments = new ObservableCollection<ImportEnvironmentViewModel>();
+            SelectAllCommand = new AsyncCommand(ExecuteSelectAll, CanExecuteSelectAll);
+            DeselectAllCommand = new AsyncCommand(ExecuteDeselectAll, CanExecuteDeselectAll);
+            SaveCommand = new AsyncCommand<Window>(ExecuteSave, CanExecuteSave);
+            NewEnvironments.CollectionChanged += NewEnvironmentsOnCollectionChanged;
             UpdatePropertyChanged();
         }
+
+        private void NewEnvironmentsOnCollectionChanged(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            OnPropertyChanged(nameof(IsSaveButtonEnabled));
+            SaveCommand.RaiseCanExecuteChanged();
+        }
+
+        protected override async Task ExecuteSave(Window arg)
+        {
+            SetBusyState(true, "Saving data...");
+            try
+            {
+                await _newEnvironmentService.SaveEnvironments(NewEnvironments);
+            }
+            finally
+            {
+                SetBusyState(false);
+            }
+           
+            await CloseCommand.ExecuteAsync(arg);
+        }
+
+        private bool CanExecuteDeselectAll(object arg)
+        {
+            return NewEnvironments.Any(e => e.ShouldImport);
+        }
+
+        private async Task ExecuteDeselectAll()
+        {
+            foreach (var environment in NewEnvironments)
+            {
+                environment.ShouldImport = false;
+            }
+
+            SelectAllCommand.RaiseCanExecuteChanged();
+            DeselectAllCommand.RaiseCanExecuteChanged();
+            SaveCommand.RaiseCanExecuteChanged();
+
+            await Task.CompletedTask;
+        }
+
+        private bool CanExecuteSelectAll(object arg)
+        {
+            return NewEnvironments.Any(e => e.ShouldImport == false);
+        }
+
+        private async Task ExecuteSelectAll()
+        {
+            foreach (var environment in NewEnvironments)
+            {
+                environment.ShouldImport = true;
+            }
+
+            DeselectAllCommand.RaiseCanExecuteChanged();
+            SelectAllCommand.RaiseCanExecuteChanged();
+            SaveCommand.RaiseCanExecuteChanged();
+
+            await Task.CompletedTask;
+        }
+
+        public IAsyncCommand SelectAllCommand { get; }
+        public IAsyncCommand DeselectAllCommand { get; }
 
         /// <summary>
         /// The list of new environments to import.
@@ -35,8 +106,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _selectedEnvironment = value;
-                OnPropertyChanged(nameof(SelectedEnvironment));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(SelectedEnvironmentName));
+                OnPropertyChanged(nameof(IsSaveButtonEnabled));
+                SaveCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -51,6 +124,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     return false;
                 }
+
                 foreach (var environment in NewEnvironments)
                 {
                     if (!Validator.Validate(environment).IsValid)
@@ -87,7 +161,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 if (environmentViewModel.ShouldImport)
                 {
-                    EnvironmentViewModel environment = null;//DataAdapter.SaveEnvironment(environmentViewModel);
+                    EnvironmentViewModel environment = null; //DataAdapter.SaveEnvironment(environmentViewModel);
                     environments.Add(environment);
                 }
             }
@@ -97,16 +171,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void UpdatePropertyChanged()
         {
-           OnPropertyChanged(nameof(NewEnvironments));
-           OnPropertyChanged(nameof(IsSaveButtonEnabled));
-        }
-
-        public void SelectAllEnvironments()
-        {
-            foreach (var environment in NewEnvironments)
-            {
-                environment.ShouldImport = true;
-            }
+            OnPropertyChanged(nameof(NewEnvironments));
+            OnPropertyChanged(nameof(IsSaveButtonEnabled));
+            SelectAllCommand.RaiseCanExecuteChanged();
+            DeselectAllCommand.RaiseCanExecuteChanged();
         }
 
         public void DeselectAllEnvironments()

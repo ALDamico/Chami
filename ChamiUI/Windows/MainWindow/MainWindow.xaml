@@ -599,7 +599,7 @@
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              TextWrapping="Wrap"
-                             IsReadOnly="False"
+                             IsReadOnly="True"
                              behaviours:TextBoxBehaviour.ScrollOnTextChanged="True"
                              Text="{Binding ConsoleMessages}"
                              >

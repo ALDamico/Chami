@@ -485,9 +485,9 @@ namespace ChamiUI.Windows.MainWindow
             {
                 var importWindow = AppUtils.GetAppServiceProvider()
                     .GetService<ImportEnvironmentWindow.ImportEnvironmentWindow>();
-                //importWindow.EnvironmentSaved += OnEnvironmentSaved;
                 importWindow.SetEnvironments(viewModels);
                 importWindow.ShowDialog();
+                ViewModel.RefreshEnvironments();
             }
             else
             {

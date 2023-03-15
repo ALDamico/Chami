@@ -11,13 +11,9 @@
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Title="{lex:Loc}" Height="450" Width="800"
-        Loaded="NewEnvironmentWindow_OnLoaded"
+        FocusManager.FocusedElement="{Binding ElementName=EnvironmentNameTextbox}"
         >
-    <Window.CommandBindings>
-        <CommandBinding Command="Delete" x:Name="DeleteCommandBinding" CanExecute="DeleteCommandBinding_OnCanExecute"></CommandBinding>
-    </Window.CommandBindings>
     <Window.Resources>
-        
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary
@@ -44,47 +40,53 @@
             <ColumnDefinition Width="3*" />
         </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="1" 
-              Grid.Column="0" 
-              Grid.RowSpan="2" 
+        <Grid Grid.Row="1"
+              Grid.Column="0"
+              Grid.RowSpan="2"
               Margin="5, 5, 5, 0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
-            
-            <Button Grid.Row="0" 
-                    Grid.Column="0" 
-                    Content="{lex:Loc}" 
-                    x:Name="ImportSelectAllButton" 
-                    Click="ImportSelectAllButton_OnClick"/>
-            <Button Grid.Row="0" 
-                    Grid.Column="2" 
-                    Content="{lex:Loc}" 
-                    x:Name="ImportDeselectAllButton" 
-                    Click="ImportDeselectAllButton_OnClick"/>
-            <ListView Grid.Row="1" 
-                      Grid.Column="0" 
+
+            <Button Grid.Row="0"
+                    Grid.Column="0"
+                    Content="{lex:Loc}"
+                    x:Name="ImportSelectAllButton"
+                    Command="{Binding SelectAllCommand}" />
+            <Button Grid.Row="0"
+                    Grid.Column="2"
+                    Content="{lex:Loc}"
+                    x:Name="ImportDeselectAllButton"
+                    Command="{Binding DeselectAllCommand}"/>
+            <ListBox Grid.Row="1"
+                      Grid.Column="0"
                       Grid.ColumnSpan="3"
                       ItemsSource="{Binding NewEnvironments}"
-                      SelectedItem="{Binding SelectedEnvironment}" >
-                <ListView.ItemTemplate>
+                      SelectedItem="{Binding SelectedEnvironment}">
+                <ListBox.ItemTemplate>
                     <DataTemplate>
+                        <DataTemplate.Resources>
+                            <Style TargetType="CheckBox">
+                                <Setter Property="IsChecked" Value="{Binding ShouldImport, Mode=TwoWay}"></Setter>
+                            </Style>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="IsSelected" Value="{Binding ShouldImport, Mode=OneWay}"></Setter>
+                            </Style>
+                        </DataTemplate.Resources>
                         <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="{Binding ShouldImport}" 
-                                      Checked="UpdateCheckedStatus" 
-                                      Unchecked="UpdateCheckedStatus"/>
-                            <TextBlock ToolTip="{Binding DisplayName}" 
+                            <CheckBox IsChecked="{Binding ShouldImport}"/>
+                            <TextBlock ToolTip="{Binding DisplayName}"
                                        Text="{Binding Name}" />
                         </StackPanel>
                     </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                </ListBox.ItemTemplate>
+            </ListBox>
         </Grid>
 
         <Label Grid.Row="0"
@@ -148,12 +150,14 @@
                     Margin="5, 0, 5, 0">
             <Button Content="{lex:Loc}"
                     x:Name="ImportEnvironmentWindowSaveButton"
-                    Click="ImportEnvironmentWindowSaveButton_OnClick"
+                    Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
                     IsEnabled="{Binding IsSaveButtonEnabled}"
                     Margin="5, 5,5,5" />
             <Button Content="{lex:Loc}"
                     x:Name="NewEnvironmentWindowCancelButton"
-                    Click="CancelButton_OnClick"
+                    Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
                     Margin="5, 5,5,5" />
         </StackPanel>
     </Grid>

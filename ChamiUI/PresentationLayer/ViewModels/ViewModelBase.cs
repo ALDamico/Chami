@@ -68,12 +68,38 @@ namespace ChamiUI.PresentationLayer.ViewModels
         
         protected async Task ExecuteCloseWindow(Window arg)
         {
-            if (arg != null)
-            {
-                arg.Close();
-            }
-           
+            arg?.Close();
+
             await Task.CompletedTask;
+        }
+
+        private bool _isBusy;
+        private string _busyMessage;
+
+        protected virtual void SetBusyState(bool isBusy, string message = null)
+        {
+            IsBusy = isBusy;
+            BusyMessage = message;
+        }
+
+        public string BusyMessage
+        {
+            get => _busyMessage;
+            set
+            {
+                _busyMessage = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public bool IsBusy
+        {
+            get => _isBusy;
+            set
+            {
+                _isBusy = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

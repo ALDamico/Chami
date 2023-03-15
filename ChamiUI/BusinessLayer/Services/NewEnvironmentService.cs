@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SQLite;
 using System.Threading;
@@ -31,6 +32,22 @@ public class NewEnvironmentService
         {
             await _environmentDataAdapter.SaveEnvironmentAsync(environment);
             EnvironmentSaved?.Invoke(this, new EnvironmentSavedEventArgs(environment));
+        }
+        catch (SQLiteException ex)
+        {
+            Log.Logger.Error("{Message}", ex.Message);
+            Log.Logger.Error("{StackTrace}", ex.StackTrace);
+        }
+    }
+
+    public async Task SaveEnvironments(IEnumerable<EnvironmentViewModel> viewModels)
+    {
+        try
+        {
+            foreach (var viewModel in viewModels)
+            {
+                await _environmentDataAdapter.SaveEnvironmentAsync(viewModel);
+            }
         }
         catch (SQLiteException ex)
         {
