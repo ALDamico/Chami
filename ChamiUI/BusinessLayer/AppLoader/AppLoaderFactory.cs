@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Chami.CmdExecutor;
 using ChamiDbMigrations.Migrations;
 using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.AppLoader.Factories;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
@@ -65,30 +66,12 @@ public static class AppLoaderFactory
             .AddTransient<DetectedApplicationsViewModel>()
             .AddTransient<ImportEnvironmentWindowViewModel>()
             .AddTransient<ExportWindowViewModel>()
-            .AddTransient(sp =>
-            {
-                var mainWindowViewModel = sp.GetRequiredService<MainWindowViewModel>();
-                var newEnvironmentService = sp.GetRequiredService<NewEnvironmentService>();
-                newEnvironmentService.EnvironmentSaved += mainWindowViewModel.OnEnvironmentSaved;
-                var templateWindowViewModel = new NewTemplateWindowViewModel(newEnvironmentService);
-                return templateWindowViewModel;
-            })
-            .AddTransient(sp =>
-            {
-                var mainWindowViewModel = sp.GetRequiredService<MainWindowViewModel>();
-                var initialName = mainWindowViewModel.SelectedEnvironment.Name;
-                var renameService = sp.GetRequiredService<RenameEnvironmentService>();
-                var viewModel = new RenameEnvironmentViewModel(renameService)
-                {
-                    Name = initialName
-                };
-                renameService.EnvironmentRenamed += mainWindowViewModel.OnEnvironmentRenamed;
-
-                return viewModel;
-            })
-            ;
+            .AddTransient<NewTemplateWindowViewModel>()
+            .AddTransient(RenameEnvironmentViewModelFactory.BuildRenameEnvironmentViewModel);
         return Task.CompletedTask;
     }
+
+    
 
     public static Task RegisterWindows(IServiceCollection serviceCollection)
     {
@@ -96,22 +79,14 @@ public static class AppLoaderFactory
             .AddSingleton<MainWindow>()
             .AddTransient<MassUpdateWindow>()
             .AddTransient<SettingsWindow>()
-            .AddTransient(sp =>
-                new NewEnvironmentWindow(sp.GetRequiredService<MainWindow>(),
-                    sp.GetService<NewEnvironmentViewModel>()))
-            .AddTransient(sp => new AboutBox(sp.GetRequiredService<MainWindow>()))
-            .AddTransient(sp =>
-            {
-                var window = new DetectedApplicationsWindow(sp.GetRequiredService<DetectedApplicationsViewModel>());
-                window.Owner = sp.GetRequiredService<MainWindow>();
-                return window;
-            })
+            .AddTransient(NewEnvironmentWindowFactory.BuildNewEnvironmentWindow)
+            .AddTransient(AboutBoxFactory.BuildAboutBox)
+            .AddTransient(DetectedApplicationsWindowFactory.BuildDetectedApplicationsWindow)
             .AddTransient<EnvironmentHealthWindow>()
             .AddTransient<ExportWindow>()
             .AddTransient<ImportEnvironmentWindow>()
             .AddTransient<NewTemplateWindow>()
-            .AddTransient<RenameEnvironmentWindow>()
-            ;
+            .AddTransient<RenameEnvironmentWindow>();
         return Task.CompletedTask;
     }
 
