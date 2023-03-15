@@ -22,17 +22,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             CurrentTemplate = TemplateEnvironments.FirstOrDefault();
         }
 
-
-        /// <summary>
-        /// Converts the new <see cref="EnvironmentViewModel"/> to an <see cref="Environment"/> entity and saves it to
-        /// the datastore.
-        /// </summary>
-        /// <returns>The newly-saved environment.</returns>
-        public EnvironmentViewModel SaveEnvironment()
-        {
-            return null; //return DataAdapter.InsertEnvironment(Environment);
-        }
-
         public ObservableCollection<EnvironmentViewModel> TemplateEnvironments => _newEnvironmentService.TemplateEnvironments;
 
         /// <summary>
@@ -58,7 +47,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 _previousTemplate = _currentTemplate;
                 _currentTemplate = value;
                 ChangeTemplate();
-                OnPropertyChanged(nameof(CurrentTemplate));
+                OnPropertyChanged();
             }
         }
 

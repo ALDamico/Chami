@@ -18,7 +18,6 @@ public class NewEnvironmentService
     public NewEnvironmentService(EnvironmentDataAdapter environmentDataAdapter)
     {
         _environmentDataAdapter = environmentDataAdapter;
-        _caretaker = new EnvironmentCaretaker();
         TemplateEnvironments = new ObservableCollection<EnvironmentViewModel>();
         BindingOperations.EnableCollectionSynchronization(TemplateEnvironments, new object());
         RetrieveEnvironmentTemplates().Await();
@@ -54,41 +53,4 @@ public class NewEnvironmentService
     public ObservableCollection<EnvironmentViewModel> TemplateEnvironments { get; }
 
     public event EventHandler<EnvironmentSavedEventArgs> EnvironmentSaved;
-    private readonly EnvironmentCaretaker _caretaker;
-
-    public EnvironmentViewModel ChangeTemplate(EnvironmentViewModel previousTemplate, EnvironmentViewModel currentTemplate, EnvironmentViewModel environment)
-    {
-        EnvironmentViewModel output;
-        _caretaker.SaveState(previousTemplate?.Name, environment);
-        var state = _caretaker.ResumeState(currentTemplate.Name);
-        if (state == null)
-        {
-            var environmentNew = new EnvironmentViewModel();
-            environmentNew.Name = currentTemplate?.Name;
-            foreach (var environmentVariable in currentTemplate.EnvironmentVariables)
-            {
-                environment.EnvironmentVariables.Add(new EnvironmentVariableViewModel()
-                {
-                    Name = environmentVariable.Name, 
-                    Value = environmentVariable.Value, 
-                    Environment = environment
-                });
-            }
-            
-            currentTemplate.EnvironmentVariables.Clear();
-            foreach (var variable in environment.EnvironmentVariables)
-            {
-                currentTemplate.EnvironmentVariables.Add(variable);
-            }
-           
-
-            output = environmentNew;
-        }
-        else
-        {
-            output = state;
-        }
-
-        return output;
-    }
 }

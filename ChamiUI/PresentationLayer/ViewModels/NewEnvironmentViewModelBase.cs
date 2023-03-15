@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Threading.Tasks;
+using System.Windows;
 using AsyncAwaitBestPractices.MVVM;
 using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Services;
@@ -17,6 +18,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         protected NewEnvironmentViewModelBase(NewEnvironmentService newEnvironmentService) : this()
         {
             _newEnvironmentService = newEnvironmentService;
+            SaveCommand = new AsyncCommand<Window>(ExecuteSave, CanExecuteSave);
+        }
+
+        protected virtual bool CanExecuteSave(object arg)
+        {
+            return IsSaveButtonEnabled;
+        }
+
+        protected virtual async Task ExecuteSave(Window arg)
+        {
+            await _newEnvironmentService.SaveEnvironment(Environment);
+            arg.Close();
         }
 
         protected NewEnvironmentService _newEnvironmentService;
@@ -61,6 +74,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Environment.Name = value;
                 OnPropertyChanged();
                 OnPropertyChanged(nameof(IsSaveButtonEnabled));
+                SaveCommand?.RaiseCanExecuteChanged();
             }
         }
         private EnvironmentViewModel _environment;

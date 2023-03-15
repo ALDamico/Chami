@@ -114,6 +114,7 @@
             <Button Content="{lex:Loc}"
                     x:Name="NewEnvironmentWindowSaveButton"
                     Command="{Binding SaveCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
                     IsEnabled="{Binding IsSaveButtonEnabled}"
                     Margin="5, 5,5,5" />
             <Button Content="{lex:Loc}"

@@ -16,12 +16,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SaveCommand = new AsyncCommand<Window>(ExecuteSave, CanExecuteSave);
         }
 
-        private bool CanExecuteSave(object arg)
-        {
-            return IsSaveButtonEnabled;
-        }
-
-        private async Task ExecuteSave(Window param)
+        protected override async Task ExecuteSave(Window param)
         {
             var closeWindow = true;
             try
