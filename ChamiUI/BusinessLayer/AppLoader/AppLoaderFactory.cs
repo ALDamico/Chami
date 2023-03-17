@@ -49,10 +49,12 @@ public static class AppLoaderFactory
 
     private static Task RegisterServices(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddTransient<RunningApplicationDetector>(RunningApplicationDetectorFactory.BuildRunningApplicationDetector);
         serviceCollection.AddTransient<MassUpdateService>();
         serviceCollection.AddTransient<ExportService>();
         serviceCollection.AddTransient<RenameEnvironmentService>();
         serviceCollection.AddTransient<NewEnvironmentService>();
+        serviceCollection.AddTransient<WatchedApplicationService>();
         return Task.CompletedTask;
     }
 
@@ -179,8 +181,8 @@ public static class AppLoaderFactory
         appLoader.AddCommand(new DefaultAppLoaderCommand(InitLogger, "Initializing logger"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(ConfigureDatabase, "Configuring database connection"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterDataAdapters, "Registering data adapters"));
-        appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterServices, "Registering services"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterViewModels, "Registering viewmodels"));
+        appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterServices, "Registering services"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterWindows, "Registering windows"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterSettingsModule, "Registering settings module"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(InitHealthChecker, "Initializing health checker module"));
