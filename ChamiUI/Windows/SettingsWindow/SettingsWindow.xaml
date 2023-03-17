@@ -99,7 +99,7 @@
                         </dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
                         <dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
                             <DataTemplate>
-                                <controls:SafeVariableEditor />
+                                <controls:SafeVariableEditor/>
                             </DataTemplate>
                         </dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
                         <dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
