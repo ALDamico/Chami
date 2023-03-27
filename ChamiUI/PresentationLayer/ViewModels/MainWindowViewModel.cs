@@ -19,6 +19,7 @@ using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.Exceptions;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Constants;
 using ChamiUI.PresentationLayer.Converters;
@@ -41,11 +42,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         private readonly MainWindowStateManager _stateManager;
         public MainWindowStateManager StateManager => _stateManager;
+        private readonly MinimizationService _minimizationService;
 
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
-        public IMinimizationStrategy MinimizationStrategy => Settings.MinimizationBehaviour.MinimizationStrategy;
+        public IMinimizationStrategy MinimizationStrategy => _minimizationService.MinimizationStrategy;
         public ProgressBarViewModel ProgressBarViewModel { get; }
 
         /// <summary>
@@ -128,12 +130,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="settingsDataAdapter">A <see cref="SettingsDataAdapter"/> used to manage application settings.</param>
         /// <param name="healthChecker">The <see cref="EnvironmentHealthChecker"/> component tasked with checking environments' health.</param>
         public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter,
-            SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker)
+            SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker, MinimizationService minimizationService)
         {
             _dataAdapter = environmentDataAdapter;
             _settingsDataAdapter = settingsDataAdapter;
             _stateManager = new MainWindowStateManager();
             _stateManager.ChangeState(new MainWindowLoadingDataState());
+            _minimizationService = minimizationService;
             Environments = GetEnvironments();
             Backups = GetBackupEnvironments();
             Templates = GetTemplateEnvironments();
@@ -591,7 +594,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Templates.Add(environment);
             }
 
-            SelectedEnvironment = Environments.ElementAt(selectedEnvironmentIndex);
+            if (selectedEnvironmentIndex >= 0)
+            {
+                SelectedEnvironment = Environments.ElementAt(selectedEnvironmentIndex);
+            }
             if (activeEnvironmentIndex >= 0)
             {
                 ActiveEnvironment = Environments.ElementAt(activeEnvironmentIndex);

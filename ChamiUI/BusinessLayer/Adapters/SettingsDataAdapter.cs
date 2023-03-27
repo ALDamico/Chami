@@ -13,6 +13,8 @@ using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.Utils;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ChamiUI.BusinessLayer.Adapters
 {
@@ -56,9 +58,9 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <returns>A <see cref="SettingsViewModel"/> object for use by the presentation layer.</returns>
         /// <exception cref="NullReferenceException">The method isn't able to find a property whose name corresponds to Setting.PropertyName, or inside this it cannot find a property named after Setting.SettingName.</exception>
         /// <exception cref="InvalidOperationException">The value conversion was successful, but the target property lacks a publicly-accessible setter.</exception>
-        public SettingsViewModel ToViewModel(IEnumerable<Setting> settings)
+        public SettingsViewModel ToViewModel(IEnumerable<Setting> settings, MinimizationBehaviourViewModel minimizationBehaviourViewModel)
         {
-            var viewModel = new SettingsViewModel();
+            var viewModel = new SettingsViewModel(minimizationBehaviourViewModel);
             foreach (var setting in settings)
             {
                 var pInfo = viewModel.GetType().GetProperty(setting.PropertyName);
@@ -194,7 +196,8 @@ namespace ChamiUI.BusinessLayer.Adapters
         public SettingsViewModel GetSettings()
         {
             var settingsList = _repository.GetSettings();
-            return ToViewModel(settingsList);
+            var minimizationBehaviourViewModel = AppUtils.GetAppServiceProvider().GetRequiredService<MinimizationBehaviourViewModel>();
+            return ToViewModel(settingsList, minimizationBehaviourViewModel);
         }
 
         /// <summary>
@@ -277,7 +280,7 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <param name="settings">The <see cref="SettingsViewModel"/> to convert and save.</param>
         public void SaveSettings(SettingsViewModel settings)
         {
-            var propertyInfos = settings.GetType().GetProperties();
+            var propertyInfos = settings.GetType().GetProperties(BindingFlags.DeclaredOnly|BindingFlags.Public);
             foreach (var propertyInfo in propertyInfos)
             {
                 // We don't want to save some settings every time, because they depend on something other than the 
@@ -302,7 +305,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var propertiesToSave = propertyInfo.PropertyType.GetProperties();
                 foreach (var property in propertiesToSave)
                 {
-                    var isNonPersistent = property.GetCustomAttribute<NonPersistentSettingAttribute>();
+                    var isNonPersistent = property.GetCustomAttribute<NonPersistentSettingAttribute>(true);
                     if (isNonPersistent is {IsNonPersistent: true})
                     {
                         continue;

@@ -17,14 +17,11 @@ using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.Utils;
-using ChamiUI.Windows.AboutBox;
-using ChamiUI.Windows.DetectedApplicationsWindow;
 using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.ExportWindow;
 using ChamiUI.Windows.ImportEnvironmentWindow;
 using ChamiUI.Windows.MainWindow;
 using ChamiUI.Windows.MassUpdateWindow;
-using ChamiUI.Windows.NewEnvironmentWindow;
 using ChamiUI.Windows.NewTemplateWindow;
 using ChamiUI.Windows.RenameEnvironmentWindow;
 using ChamiUI.Windows.SettingsWindow;
@@ -55,6 +52,7 @@ public static class AppLoaderFactory
         serviceCollection.AddTransient<RenameEnvironmentService>();
         serviceCollection.AddTransient<NewEnvironmentService>();
         serviceCollection.AddTransient<WatchedApplicationService>();
+        serviceCollection.AddTransient(MinimizationServiceFactory.BuildMinimizationService);
         return Task.CompletedTask;
     }
 
@@ -62,6 +60,7 @@ public static class AppLoaderFactory
     {
         serviceCollection
             .AddSingleton<MainWindowViewModel>()
+            .AddTransient<MinimizationBehaviourViewModel>()
             .AddTransient<SettingsWindowViewModel>()
             .AddTransient<MassUpdateWindowViewModel>()
             .AddTransient<NewEnvironmentViewModel>()
@@ -122,7 +121,8 @@ public static class AppLoaderFactory
                 var settingsDataAdapter = sp.GetRequiredService<SettingsDataAdapter>();
                 var watchedApplicationDataAdapter = sp.GetRequiredService<WatchedApplicationDataAdapter>();
                 var applicationLanguageDataAdapter = sp.GetRequiredService<ApplicationLanguageDataAdapter>();
-                return SettingsViewModelFactory.GetSettings(settingsDataAdapter, watchedApplicationDataAdapter, applicationLanguageDataAdapter);
+                var minimizationBehaviourViewModel = sp.GetRequiredService<MinimizationBehaviourViewModel>();
+                return SettingsViewModelFactory.GetSettings(settingsDataAdapter, watchedApplicationDataAdapter, applicationLanguageDataAdapter, minimizationBehaviourViewModel);
             });
         return Task.CompletedTask;
     }

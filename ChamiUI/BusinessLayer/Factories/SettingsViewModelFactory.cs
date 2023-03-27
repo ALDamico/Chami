@@ -17,7 +17,7 @@ namespace ChamiUI.BusinessLayer.Factories
         /// <param name="watchedApplicationDataAdapter">The <see cref="WatchedApplicationDataAdapter"/> to retrieve the <see cref="WatchedApplicationViewModel"/>s.</param>
         /// <param name="languageDataAdapter">The <see cref="ApplicationLanguageDataAdapter"/> to retrieve all <see cref="ApplicationLanguageViewModel"/>s.</param>
         /// <returns>A <see cref="SettingsViewModel"/> object.</returns>
-        public static SettingsViewModel GetSettings(SettingsDataAdapter dataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter, ApplicationLanguageDataAdapter languageDataAdapter)
+        public static SettingsViewModel GetSettings(SettingsDataAdapter dataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter, ApplicationLanguageDataAdapter languageDataAdapter, MinimizationBehaviourViewModel minimizationBehaviourViewModel)
         {
             var settings = dataAdapter.GetSettings();
             var watchedApplications = watchedApplicationDataAdapter.GetWatchedApplications();

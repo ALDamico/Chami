@@ -10,7 +10,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        public SettingsViewModel()
+        public SettingsViewModel(MinimizationBehaviourViewModel minimizationBehaviourViewModel)
         {
             LoggingSettings = new LoggingSettingsViewModel();
             SafeVariableSettings = new SafeVariableViewModel(AppUtils.GetAppServiceProvider().GetRequiredService<EnvironmentDataAdapter>());
@@ -18,7 +18,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             WatchedApplicationSettings = new WatchedApplicationControlViewModel();
             LanguageSettings = new LanguageSelectorViewModel();
             MainWindowBehaviourSettings = new MainWindowSavedBehaviourViewModel();
-            MinimizationBehaviour = new MinimizationBehaviourViewModel();
+            MinimizationBehaviour = minimizationBehaviourViewModel;
             HealthCheckSettings = new HealthCheckSettingsViewModel();
         }
         /// <summary>

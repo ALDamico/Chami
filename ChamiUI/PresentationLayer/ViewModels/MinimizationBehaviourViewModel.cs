@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.PresentationLayer.Minimizing;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -13,25 +14,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Constructs a new <see cref="MinimizationBehaviourViewModel"/> and populates its list of available
         /// strategies.
         /// </summary>
-        public MinimizationBehaviourViewModel()
+        public MinimizationBehaviourViewModel(MinimizationService minimizationService)
         {
-            AvailableStrategies = new ObservableCollection<IMinimizationStrategy>();
-            AvailableStrategies.Add(MinimizeToTaskbarStrategy.Instance);
-            AvailableStrategies.Add(MinimizeToTrayStrategy.Instance);
+            _minimizationService = minimizationService;
         }
 
-        private IMinimizationStrategy _minimizationStrategy;
+        private readonly MinimizationService _minimizationService;
 
         /// <summary>
         /// The action to perform when minimizing the window.
         /// </summary>
         public IMinimizationStrategy MinimizationStrategy
         {
-            get => _minimizationStrategy;
+            get => _minimizationService.MinimizationStrategy;
             set
             {
-                _minimizationStrategy = value;
-                OnPropertyChanged(nameof(MinimizationStrategy));
+                _minimizationService.MinimizationStrategy = value;
+                OnPropertyChanged();
             }
         }
 
@@ -39,6 +38,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// The list of available <see cref="IMinimizationStrategy"/>.
         /// </summary>
         [NonPersistentSetting]
-        public ObservableCollection<IMinimizationStrategy> AvailableStrategies { get; }
+        public ObservableCollection<IMinimizationStrategy> AvailableStrategies => _minimizationService.AvailableStrategies;
     }
 }

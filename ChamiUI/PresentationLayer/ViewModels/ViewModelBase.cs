@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using AsyncAwaitBestPractices.MVVM;
+using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Events;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -82,6 +83,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             BusyMessage = message;
         }
 
+        [NonPersistentSetting]
         public string BusyMessage
         {
             get => _busyMessage;
@@ -92,6 +94,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        [NonPersistentSetting]
         public bool IsBusy
         {
             get => _isBusy;
