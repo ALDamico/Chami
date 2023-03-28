@@ -1,4 +1,5 @@
 using ChamiUI.BusinessLayer.Adapters;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Utils;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -10,9 +11,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// </summary>
     public class SettingsViewModel : ViewModelBase
     {
-        public SettingsViewModel(MinimizationBehaviourViewModel minimizationBehaviourViewModel)
+        public SettingsViewModel(MinimizationBehaviourViewModel minimizationBehaviourViewModel, LoggingService loggingService)
         {
-            LoggingSettings = new LoggingSettingsViewModel();
+            LoggingSettings = new LoggingSettingsViewModel(loggingService);
             SafeVariableSettings = new SafeVariableViewModel(AppUtils.GetAppServiceProvider().GetRequiredService<EnvironmentDataAdapter>());
             ConsoleAppearanceSettings = new ConsoleAppearanceViewModel();
             WatchedApplicationSettings = new WatchedApplicationControlViewModel();

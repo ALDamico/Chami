@@ -13,6 +13,7 @@ using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Utils;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -58,9 +59,9 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <returns>A <see cref="SettingsViewModel"/> object for use by the presentation layer.</returns>
         /// <exception cref="NullReferenceException">The method isn't able to find a property whose name corresponds to Setting.PropertyName, or inside this it cannot find a property named after Setting.SettingName.</exception>
         /// <exception cref="InvalidOperationException">The value conversion was successful, but the target property lacks a publicly-accessible setter.</exception>
-        public SettingsViewModel ToViewModel(IEnumerable<Setting> settings, MinimizationBehaviourViewModel minimizationBehaviourViewModel)
+        public SettingsViewModel ToViewModel(IEnumerable<Setting> settings, MinimizationBehaviourViewModel minimizationBehaviourViewModel, LoggingService loggingService)
         {
-            var viewModel = new SettingsViewModel(minimizationBehaviourViewModel);
+            var viewModel = new SettingsViewModel(minimizationBehaviourViewModel, loggingService);
             foreach (var setting in settings)
             {
                 var pInfo = viewModel.GetType().GetProperty(setting.PropertyName);
@@ -93,8 +94,8 @@ namespace ChamiUI.BusinessLayer.Adapters
                     {
                         list.Add(columnInfo);
                     }
-                    
                 }
+
                 if (prop is not IList)
                 {
                     var settingSetMethod = settingPInfo.GetSetMethod();
@@ -141,12 +142,22 @@ namespace ChamiUI.BusinessLayer.Adapters
                 var assemblyName = setting.AssemblyName;
                 try
                 {
-                    var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
-                        BindingFlags.Default, null, args: new object[] {setting.Value}, null, null);
-                    if (objectWrapper != null)
+                    var fullyQualifiedName = $"{targetTypeName},{assemblyName}";
+                    var type = Type.GetType(fullyQualifiedName);
+                    if (type is {IsEnum: true})
                     {
-                        propertyValue = objectWrapper.Unwrap();
+                        propertyValue = TryParseEnum(type, setting.Value);
                     }
+                    else
+                    {
+                        var objectWrapper = Activator.CreateInstance(assemblyName, setting.Type, false,
+                            BindingFlags.Default, null, args: new object[] {setting.Value}, null, null);
+                        if (objectWrapper != null)
+                        {
+                            propertyValue = objectWrapper.Unwrap();
+                        }
+                    }
+                    
                 }
                 catch (MissingMethodException)
                 {
@@ -159,6 +170,12 @@ namespace ChamiUI.BusinessLayer.Adapters
             }
 
             return propertyValue;
+        }
+
+        private static object TryParseEnum(Type type, string settingValue)
+        {
+            Enum.TryParse(type, settingValue, true, out object parsed);
+            return parsed;
         }
 
         private static object ConvertViaUnwrapping(Setting setting)
@@ -197,7 +214,8 @@ namespace ChamiUI.BusinessLayer.Adapters
         {
             var settingsList = _repository.GetSettings();
             var minimizationBehaviourViewModel = AppUtils.GetAppServiceProvider().GetRequiredService<MinimizationBehaviourViewModel>();
-            return ToViewModel(settingsList, minimizationBehaviourViewModel);
+            var loggingService = AppUtils.GetAppServiceProvider().GetRequiredService<LoggingService>();
+            return ToViewModel(settingsList, minimizationBehaviourViewModel, loggingService);
         }
 
         /// <summary>
@@ -233,7 +251,7 @@ namespace ChamiUI.BusinessLayer.Adapters
             {
                 typeName = Regex.Replace(typeName, @"nullable\<(\w+)\>", NullableValueTypeMatcher, RegexOptions.IgnoreCase);
             }
-            
+
             switch (typeName)
             {
                 case "System.Boolean":
@@ -280,7 +298,7 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <param name="settings">The <see cref="SettingsViewModel"/> to convert and save.</param>
         public void SaveSettings(SettingsViewModel settings)
         {
-            var propertyInfos = settings.GetType().GetProperties(BindingFlags.DeclaredOnly|BindingFlags.Public);
+            var propertyInfos = settings.GetType().GetProperties(BindingFlags.DeclaredOnly|BindingFlags.Instance|BindingFlags.Public);
             foreach (var propertyInfo in propertyInfos)
             {
                 // We don't want to save some settings every time, because they depend on something other than the 
@@ -335,7 +353,7 @@ namespace ChamiUI.BusinessLayer.Adapters
         public void SaveMainWindowState(SettingsViewModel settings)
         {
             var mainWinSettings = settings.MainWindowBehaviourSettings;
-            _repository.UpdateSetting( nameof(MainWindowSavedBehaviourViewModel), "IsCaseSensitiveSearch",
+            _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), "IsCaseSensitiveSearch",
                 mainWinSettings.IsCaseSensitiveSearch.ToString());
             _repository.UpdateSetting(nameof(MainWindowSavedBehaviourViewModel), nameof(MainWindowSavedBehaviourViewModel.Height),
                 mainWinSettings.Height.ToString(CultureInfo.InvariantCulture));

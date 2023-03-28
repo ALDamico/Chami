@@ -57,6 +57,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void SaveSettings()
         {
             _dataAdapter.SaveSettings(Settings);
+            
             var savedVariables = _dataAdapter.SaveBlacklistedVariableListAsync(Settings.SafeVariableSettings.ForbiddenVariables).GetAwaiter()
                 .GetResult();
             

@@ -28,6 +28,7 @@ using ChamiUI.Windows.SettingsWindow;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using Serilog.Events;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 
@@ -99,6 +100,11 @@ public static class AppLoaderFactory
 
         Log.Logger = chamiLogger.GetLogger();
         serviceCollection.AddLogging(l => l.AddSerilog());
+        var loggingService = new LoggingService();
+        
+        loggingService.ChamiLogger = chamiLogger;
+        loggingService.SetMinimumLogLevel(LogEventLevel.Verbose);
+        serviceCollection.AddSingleton(loggingService);
         return Task.CompletedTask;
     }
 
@@ -122,7 +128,8 @@ public static class AppLoaderFactory
                 var watchedApplicationDataAdapter = sp.GetRequiredService<WatchedApplicationDataAdapter>();
                 var applicationLanguageDataAdapter = sp.GetRequiredService<ApplicationLanguageDataAdapter>();
                 var minimizationBehaviourViewModel = sp.GetRequiredService<MinimizationBehaviourViewModel>();
-                return SettingsViewModelFactory.GetSettings(settingsDataAdapter, watchedApplicationDataAdapter, applicationLanguageDataAdapter, minimizationBehaviourViewModel);
+                var loggingService = sp.GetRequiredService<LoggingService>();
+                return SettingsViewModelFactory.GetSettings(settingsDataAdapter, watchedApplicationDataAdapter, applicationLanguageDataAdapter, minimizationBehaviourViewModel, loggingService);
             });
         return Task.CompletedTask;
     }
