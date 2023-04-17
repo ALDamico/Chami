@@ -13,6 +13,7 @@ using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
 using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
@@ -160,8 +161,26 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Foreground = ResourceUtils.DefaultProgressBarColor,
                 Value = 0
             };
+
+            OpenWebsiteCommand = new AsyncCommand(OpenWebsiteExecute);
+            OpenGithubCommand = new AsyncCommand(OpenGithubExecute);
+            
         }
+
         
+
+        private async Task OpenGithubExecute()
+        {
+            ProcessUtils.OpenLinkInBrowser("https://github.com/ALDamico/Chami");
+            await Task.CompletedTask;
+        }
+
+        private async Task OpenWebsiteExecute()
+        {
+            ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
+            await Task.CompletedTask;
+        }
+
         internal void PrintTaskCancelledMessageToConsole()
         {
             SystemSounds.Exclamation.Play();
@@ -1013,20 +1032,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Opens the folder pointed by the <see cref="SelectedVariable"/>.
         /// </summary>
         /// <exception cref="ChamiFolderException">If the folder doesn't exist, an exception is thrown.</exception>
-        public void OpenFolder()
-        {
-            // We need to call the Replace method because explorer.exe doesn't treat / as a directory separator and opens the Documents folder instead.
-            var folderPath = System.Environment.ExpandEnvironmentVariables(SelectedVariable.Value).Replace("/", "\\");
-            if (Directory.Exists(folderPath))
-            {
-                var openInExplorerCommand = new OpenInExplorerCommand(folderPath);
-                openInExplorerCommand.Execute();
-            }
-            else
-            {
-                throw new ChamiFolderException(ChamiUIStrings.UnableToOpenAsFolderMessage);
-            }
-        }
+      
 
         public bool IsSelectedVariableDeletable()
         {
@@ -1168,5 +1174,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     break;
             }
         }
+
+        public IAsyncCommand OpenWebsiteCommand { get; }
+        public IAsyncCommand OpenGithubCommand { get; }
+        
     }
 }

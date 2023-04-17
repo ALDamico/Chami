@@ -6,6 +6,7 @@ using System.Windows;
 using AsyncAwaitBestPractices.MVVM;
 using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -48,7 +49,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             if (MessageBoxTriggered == null)
             {
-                return;
+                var window = AppUtils.GetMainWindow();
+                MessageBoxTriggered += window.ShowMessageBox;
             }
 
             var eventArgs = new MessageBoxTriggeredEventArgs

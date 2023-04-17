@@ -1192,4 +1192,7 @@ Most people don't need to change these.</value>
   <data name="NameInvalidToolTip" xml:space="preserve">
     <value>This name is not valid.</value>
   </data>
+  <data name="UnableToOpenAsFolderCaption" xml:space="preserve">
+    <value>Cannot open as folder</value>
+  </data>
 </root>

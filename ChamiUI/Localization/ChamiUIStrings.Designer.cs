@@ -3092,6 +3092,15 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot open as folder.
+        /// </summary>
+        public static string UnableToOpenAsFolderCaption {
+            get {
+                return ResourceManager.GetString("UnableToOpenAsFolderCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This variable is not a valid path!.
         /// </summary>
         public static string UnableToOpenAsFolderMessage {

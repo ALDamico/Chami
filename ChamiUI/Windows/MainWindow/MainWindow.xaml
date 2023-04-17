@@ -112,7 +112,7 @@
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
                       x:Name="OpenAsFolderMenuItem"
-                      Click="OpenAsFolderMenuItem_OnClick"
+                      Command="{Binding OpenAsFolderCommand}"
                       d:DataContext="{d:DesignInstance viewModels:EnvironmentVariableViewModel}"
                       IsEnabled="{Binding IsFolder}">
             </MenuItem>
@@ -321,10 +321,10 @@
                 <Separator />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="WebsiteMenuItem"
-                          Click="WebsiteMenuItem_Click" />
+                          Command="{Binding OpenWebsiteCommand}" />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="GithubLinkMenuItem"
-                          Click="GithubLinkMenuItem_OnClick">
+                          Command="{Binding OpenGithubCommand}">
                     <MenuItem.Icon>
                         <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/github.svg" />
                     </MenuItem.Icon>

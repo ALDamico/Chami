@@ -1185,4 +1185,7 @@ Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
   <data name="NameInvalidToolTip" xml:space="preserve">
     <value>Questo nome non è valido.</value>
   </data>
+  <data name="UnableToOpenAsFolderCaption" xml:space="preserve">
+    <value>Impossibile aprire la cartella</value>
+  </data>
 </root>

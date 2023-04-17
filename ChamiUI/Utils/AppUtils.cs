@@ -3,6 +3,7 @@ using System.Configuration;
 using System.IO;
 using System.Reflection;
 using System.Windows;
+using ChamiUI.Windows.Abstract;
 
 namespace ChamiUI.Utils
 {
@@ -10,7 +11,7 @@ namespace ChamiUI.Utils
     {
         public static string GetLogFilePath()
         {
-            return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/chami.log" ;
+            return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/chami.log";
         }
 
         public static string GetApplicationExecutablePath()
@@ -45,6 +46,11 @@ namespace ChamiUI.Utils
                 // A unit test is running. Use its connection string instead
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
+        }
+
+        public static ChamiWindow GetMainWindow()
+        {
+            return (ChamiWindow) Application.Current.MainWindow;
         }
     }
 }

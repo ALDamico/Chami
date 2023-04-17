@@ -1,6 +1,12 @@
 using System;
+using System.IO;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using AsyncAwaitBestPractices.MVVM;
+using Chami.CmdExecutor.Commands.Common;
 using Chami.Db.Entities;
+using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -13,6 +19,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             _markedForDeletion = false;
             Value = "";
+            OpenAsFolderCommand = new AsyncCommand(OpenAsFolderExecute, o => IsFolder);
         }
 
         private string _name;
@@ -21,6 +28,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private bool? _isValid;
         private bool _markedForDeletion;
         private bool _isFolder;
+        
+        private async Task OpenAsFolderExecute()
+        {
+            // We need to call the Replace method because explorer.exe doesn't treat / as a directory separator and opens the Documents folder instead.
+            var folderPath = System.Environment.ExpandEnvironmentVariables(Value).Replace("/", "\\");
+            if (Directory.Exists(folderPath))
+            {
+                var openInExplorerCommand = new OpenInExplorerCommand(folderPath);
+                openInExplorerCommand.Execute();
+            }
+            else
+            {
+                ShowMessageBox(null, ChamiUIStrings.UnableToOpenAsFolderMessage, ChamiUIStrings.UnableToOpenAsFolderCaption, MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
+            await Task.CompletedTask;
+        }
 
         public bool IsFolder
         {
@@ -138,5 +162,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             return Clone();
         }
+        
+        public IAsyncCommand OpenAsFolderCommand { get; }
     }
 }
