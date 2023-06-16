@@ -53,7 +53,7 @@ public static class AppLoaderFactory
         serviceCollection.AddTransient<RenameEnvironmentService>();
         serviceCollection.AddTransient<NewEnvironmentService>();
         serviceCollection.AddTransient<WatchedApplicationService>();
-        serviceCollection.AddTransient(MinimizationServiceFactory.BuildMinimizationService);
+        serviceCollection.AddSingleton(MinimizationServiceFactory.BuildMinimizationService);
         return Task.CompletedTask;
     }
 

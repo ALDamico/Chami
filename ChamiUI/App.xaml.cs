@@ -65,12 +65,6 @@ namespace ChamiUI
 
         private async void App_OnStartup(object sender, StartupEventArgs e)
         {
-            LocalizationExporter exporter = new LocalizationExporter();
-            exporter.Assembly = Assembly.GetExecutingAssembly();
-            exporter.Filename = "example.xliff";
-            exporter.DefaultDictionary = "ChamiUI.Localization.ChamiUIStrings";
-            exporter.LocalizationExporterStrategy = new GetTextLocalizationExporterStrategy();
-            exporter.Export(CultureInfo.GetCultureInfoByIetfLanguageTag("fr-FR"));
             DetectOtherInstance();
             AppLoaderFactory.InitAppLoader(_appLoader);
             
