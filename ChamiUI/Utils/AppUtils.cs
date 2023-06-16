@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.IO;
+using System.Linq;
 using System.Reflection;
 using System.Windows;
 
@@ -46,5 +47,44 @@ namespace ChamiUI.Utils
                 return "Data Source=|DataDirectory|InputFiles/chami.db;Version=3;";
             }
         }
+
+        public static string GetRuntimeInfo()
+        {
+            var entryAssembly = Assembly.GetEntryAssembly();
+            var applicationName = NotAvailableString;
+            var applicationVersion = NotAvailableString;
+            var clrVersion = Environment.Version.ToString();
+            var commandLine = Environment.CommandLine;
+            var processId = Environment.ProcessId.ToString();
+            var arguments = NoArguments;
+            // The first element in the command line arguments array is the application itself
+            if (Environment.GetCommandLineArgs().Length > 1)
+            {
+                arguments = string.Join(", ", Environment.GetCommandLineArgs().Skip(1));
+            }
+
+            if (entryAssembly != null) 
+            {
+                applicationName = entryAssembly.GetName().Name;
+                var assemblyVersion = entryAssembly.GetName().Version;
+                if (assemblyVersion != null)
+                {
+                    applicationVersion = assemblyVersion.ToString();    
+                }
+                
+            }
+
+            return $@"Application name: {applicationName}
+Application version: {applicationVersion}
+CLR information:
+CLR version: {clrVersion}
+Command line: {commandLine}
+Arguments: {arguments}
+Process ID: {processId}
+";
+        }
+        
+        public const string NotAvailableString = "N/A";
+        public const string NoArguments = "None";
     }
 }
