@@ -2,6 +2,7 @@
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.ObjectModel;
 using System.Linq;
+using ChamiUI.BusinessLayer.Services;
 
 namespace ChamiUI.BusinessLayer.Factories
 {
@@ -16,8 +17,11 @@ namespace ChamiUI.BusinessLayer.Factories
         /// <param name="dataAdapter">The <see cref="SettingsDataAdapter"/> to use to retrieve settings.</param>
         /// <param name="watchedApplicationDataAdapter">The <see cref="WatchedApplicationDataAdapter"/> to retrieve the <see cref="WatchedApplicationViewModel"/>s.</param>
         /// <param name="languageDataAdapter">The <see cref="ApplicationLanguageDataAdapter"/> to retrieve all <see cref="ApplicationLanguageViewModel"/>s.</param>
+        /// <param name="minimizationBehaviourViewModel"></param>
+        /// <param name="loggingService"></param>
         /// <returns>A <see cref="SettingsViewModel"/> object.</returns>
-        public static SettingsViewModel GetSettings(SettingsDataAdapter dataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter, ApplicationLanguageDataAdapter languageDataAdapter)
+        public static SettingsViewModel GetSettings(SettingsDataAdapter dataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter, ApplicationLanguageDataAdapter languageDataAdapter,
+            MinimizationBehaviourViewModel minimizationBehaviourViewModel, LoggingService loggingService)
         {
             var settings = dataAdapter.GetSettings();
             var watchedApplications = watchedApplicationDataAdapter.GetWatchedApplications();
@@ -28,6 +32,7 @@ namespace ChamiUI.BusinessLayer.Factories
             var applicationLanguageViewModels = availableLanguages.ToList();
             settings.LanguageSettings.AvailableLanguages = new ObservableCollection<ApplicationLanguageViewModel>(applicationLanguageViewModels);
             settings.LanguageSettings.CurrentLanguage = applicationLanguageViewModels?.FirstOrDefault(l => l.Code == currentLanguage.Code);
+            settings.LoggingSettings.MinimumLogLevel = loggingService.MinimumLogLevel;
             return settings;
         }
     }

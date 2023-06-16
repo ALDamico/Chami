@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Windows;
+using ChamiUI.Windows.Abstract;
 
 namespace ChamiUI.Utils
 {
@@ -11,7 +12,7 @@ namespace ChamiUI.Utils
     {
         public static string GetLogFilePath()
         {
-            return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/chami.log" ;
+            return Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "/chami.log";
         }
 
         public static string GetApplicationExecutablePath()
@@ -48,6 +49,10 @@ namespace ChamiUI.Utils
             }
         }
 
+        public static ChamiWindow GetMainWindow()
+        {
+            return (ChamiWindow) Application.Current.MainWindow;
+        }
         public static string GetRuntimeInfo()
         {
             var entryAssembly = Assembly.GetEntryAssembly();

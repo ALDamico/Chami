@@ -13,12 +13,14 @@ using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
 using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.Exceptions;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.Constants;
 using ChamiUI.PresentationLayer.Converters;
@@ -41,11 +43,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         private readonly MainWindowStateManager _stateManager;
         public MainWindowStateManager StateManager => _stateManager;
+        private readonly MinimizationService _minimizationService;
 
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
-        public IMinimizationStrategy MinimizationStrategy => Settings.MinimizationBehaviour.MinimizationStrategy;
+        public IMinimizationStrategy MinimizationStrategy => _minimizationService.MinimizationStrategy;
         public ProgressBarViewModel ProgressBarViewModel { get; }
 
         /// <summary>
@@ -128,12 +131,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// <param name="settingsDataAdapter">A <see cref="SettingsDataAdapter"/> used to manage application settings.</param>
         /// <param name="healthChecker">The <see cref="EnvironmentHealthChecker"/> component tasked with checking environments' health.</param>
         public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter,
-            SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker)
+            SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker, MinimizationService minimizationService)
         {
             _dataAdapter = environmentDataAdapter;
             _settingsDataAdapter = settingsDataAdapter;
             _stateManager = new MainWindowStateManager();
             _stateManager.ChangeState(new MainWindowLoadingDataState());
+            _minimizationService = minimizationService;
             Environments = GetEnvironments();
             Backups = GetBackupEnvironments();
             Templates = GetTemplateEnvironments();
@@ -157,8 +161,26 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Foreground = ResourceUtils.DefaultProgressBarColor,
                 Value = 0
             };
+
+            OpenWebsiteCommand = new AsyncCommand(OpenWebsiteExecute);
+            OpenGithubCommand = new AsyncCommand(OpenGithubExecute);
+            
         }
+
         
+
+        private async Task OpenGithubExecute()
+        {
+            ProcessUtils.OpenLinkInBrowser("https://github.com/ALDamico/Chami");
+            await Task.CompletedTask;
+        }
+
+        private async Task OpenWebsiteExecute()
+        {
+            ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
+            await Task.CompletedTask;
+        }
+
         internal void PrintTaskCancelledMessageToConsole()
         {
             SystemSounds.Exclamation.Play();
@@ -591,7 +613,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 Templates.Add(environment);
             }
 
-            SelectedEnvironment = Environments.ElementAt(selectedEnvironmentIndex);
+            if (selectedEnvironmentIndex >= 0)
+            {
+                SelectedEnvironment = Environments.ElementAt(selectedEnvironmentIndex);
+            }
             if (activeEnvironmentIndex >= 0)
             {
                 ActiveEnvironment = Environments.ElementAt(activeEnvironmentIndex);
@@ -1007,20 +1032,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Opens the folder pointed by the <see cref="SelectedVariable"/>.
         /// </summary>
         /// <exception cref="ChamiFolderException">If the folder doesn't exist, an exception is thrown.</exception>
-        public void OpenFolder()
-        {
-            // We need to call the Replace method because explorer.exe doesn't treat / as a directory separator and opens the Documents folder instead.
-            var folderPath = System.Environment.ExpandEnvironmentVariables(SelectedVariable.Value).Replace("/", "\\");
-            if (Directory.Exists(folderPath))
-            {
-                var openInExplorerCommand = new OpenInExplorerCommand(folderPath);
-                openInExplorerCommand.Execute();
-            }
-            else
-            {
-                throw new ChamiFolderException(ChamiUIStrings.UnableToOpenAsFolderMessage);
-            }
-        }
+      
 
         public bool IsSelectedVariableDeletable()
         {
@@ -1162,5 +1174,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     break;
             }
         }
+
+        public IAsyncCommand OpenWebsiteCommand { get; }
+        public IAsyncCommand OpenGithubCommand { get; }
+        
     }
 }

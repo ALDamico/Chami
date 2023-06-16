@@ -4,7 +4,7 @@ using ChamiUI.PresentationLayer.Minimizing;
 
 namespace ChamiUI.BusinessLayer.Converters
 {
-    public class MinimizationStrategyConverter
+    public class MinimizationStrategyConverter : ISettingConverter<IMinimizationStrategy>
     {
         public IMinimizationStrategy Convert(Setting setting)
         {

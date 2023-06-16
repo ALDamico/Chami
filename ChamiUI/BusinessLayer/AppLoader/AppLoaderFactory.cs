@@ -17,20 +17,18 @@ using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Localization;
 using ChamiUI.PresentationLayer.ViewModels;
 using ChamiUI.Utils;
-using ChamiUI.Windows.AboutBox;
-using ChamiUI.Windows.DetectedApplicationsWindow;
 using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.ExportWindow;
 using ChamiUI.Windows.ImportEnvironmentWindow;
 using ChamiUI.Windows.MainWindow;
 using ChamiUI.Windows.MassUpdateWindow;
-using ChamiUI.Windows.NewEnvironmentWindow;
 using ChamiUI.Windows.NewTemplateWindow;
 using ChamiUI.Windows.RenameEnvironmentWindow;
 using ChamiUI.Windows.SettingsWindow;
 using FluentMigrator.Runner;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using Serilog.Events;
 using WPFLocalizeExtension.Engine;
 using WPFLocalizeExtension.Providers;
 
@@ -49,10 +47,13 @@ public static class AppLoaderFactory
 
     private static Task RegisterServices(IServiceCollection serviceCollection)
     {
+        serviceCollection.AddTransient<RunningApplicationDetector>(RunningApplicationDetectorFactory.BuildRunningApplicationDetector);
         serviceCollection.AddTransient<MassUpdateService>();
         serviceCollection.AddTransient<ExportService>();
         serviceCollection.AddTransient<RenameEnvironmentService>();
         serviceCollection.AddTransient<NewEnvironmentService>();
+        serviceCollection.AddTransient<WatchedApplicationService>();
+        serviceCollection.AddTransient(MinimizationServiceFactory.BuildMinimizationService);
         return Task.CompletedTask;
     }
 
@@ -60,6 +61,7 @@ public static class AppLoaderFactory
     {
         serviceCollection
             .AddSingleton<MainWindowViewModel>()
+            .AddTransient<MinimizationBehaviourViewModel>()
             .AddTransient<SettingsWindowViewModel>()
             .AddTransient<MassUpdateWindowViewModel>()
             .AddTransient<NewEnvironmentViewModel>()
@@ -98,6 +100,11 @@ public static class AppLoaderFactory
 
         Log.Logger = chamiLogger.GetLogger();
         serviceCollection.AddLogging(l => l.AddSerilog());
+        var loggingService = new LoggingService();
+        
+        loggingService.ChamiLogger = chamiLogger;
+        loggingService.SetMinimumLogLevel(LogEventLevel.Verbose);
+        serviceCollection.AddSingleton(loggingService);
         return Task.CompletedTask;
     }
 
@@ -120,7 +127,9 @@ public static class AppLoaderFactory
                 var settingsDataAdapter = sp.GetRequiredService<SettingsDataAdapter>();
                 var watchedApplicationDataAdapter = sp.GetRequiredService<WatchedApplicationDataAdapter>();
                 var applicationLanguageDataAdapter = sp.GetRequiredService<ApplicationLanguageDataAdapter>();
-                return SettingsViewModelFactory.GetSettings(settingsDataAdapter, watchedApplicationDataAdapter, applicationLanguageDataAdapter);
+                var minimizationBehaviourViewModel = sp.GetRequiredService<MinimizationBehaviourViewModel>();
+                var loggingService = sp.GetRequiredService<LoggingService>();
+                return SettingsViewModelFactory.GetSettings(settingsDataAdapter, watchedApplicationDataAdapter, applicationLanguageDataAdapter, minimizationBehaviourViewModel, loggingService);
             });
         return Task.CompletedTask;
     }
@@ -179,8 +188,8 @@ public static class AppLoaderFactory
         appLoader.AddCommand(new DefaultAppLoaderCommand(InitLogger, "Initializing logger"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(ConfigureDatabase, "Configuring database connection"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterDataAdapters, "Registering data adapters"));
-        appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterServices, "Registering services"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterViewModels, "Registering viewmodels"));
+        appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterServices, "Registering services"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterWindows, "Registering windows"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(RegisterSettingsModule, "Registering settings module"));
         appLoader.AddCommand(new DefaultAppLoaderCommand(InitHealthChecker, "Initializing health checker module"));

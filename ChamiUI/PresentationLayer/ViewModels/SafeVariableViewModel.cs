@@ -39,17 +39,5 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 OnPropertyChanged(nameof(EnableSafeVars));
             }
         }
-
-        private bool _isBusy;
-
-        public bool IsBusy
-        {
-            get => _isBusy;
-            private set
-            {
-                _isBusy = value;
-                OnPropertyChanged(nameof(IsBusy));
-            }
-        }
     }
 }

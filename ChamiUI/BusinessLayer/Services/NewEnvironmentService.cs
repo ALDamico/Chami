@@ -45,7 +45,7 @@ public class NewEnvironmentService
         try
         {
             foreach (var viewModel in viewModels)
-            {
+            { 
                 await _environmentDataAdapter.SaveEnvironmentAsync(viewModel);
             }
         }

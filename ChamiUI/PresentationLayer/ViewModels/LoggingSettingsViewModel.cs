@@ -3,6 +3,7 @@ using System.Linq;
 using System.Security;
 using System.Windows.Media;
 using ChamiUI.BusinessLayer.Annotations;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Controls;
 using ChamiUI.Localization;
 using Serilog.Events;
@@ -14,91 +15,37 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// </summary>
     public class LoggingSettingsViewModel : GenericLabelViewModel
     {
-        public LoggingSettingsViewModel()
+        private readonly LoggingService _loggingService;
+        public LoggingSettingsViewModel(LoggingService loggingService)
         {
-            AvailableLogLevels = new ObservableCollection<LogLevelViewModel>();
-            // Verbose
-            AvailableLogLevels.Add(new LogLevelViewModel()
-            {
-                DisplayName = ChamiUIStrings.LogLevelVerbose,
-                Description = ChamiUIStrings.LogLevelVerboseDescription,
-                BackingValue = LogEventLevel.Verbose,
-                ForegroundColor = Brushes.Black
-            });
-            
-            // Debug
-            AvailableLogLevels.Add(new LogLevelViewModel()
-            {
-                DisplayName = ChamiUIStrings.LogLevelDebug,
-                Description = ChamiUIStrings.LogLevelDebugDescription,
-                BackingValue = LogEventLevel.Debug,
-                ForegroundColor = Brushes.DimGray
-            });
-            
-            // Information
-            AvailableLogLevels.Add(new LogLevelViewModel()
-            {
-                DisplayName = ChamiUIStrings.LogLevelInformation,
-                Description = ChamiUIStrings.LogLevelInformationDescription,
-                BackingValue = LogEventLevel.Information,
-                ForegroundColor = Brushes.Green
-            });
-            
-            //Warning
-            AvailableLogLevels.Add(new LogLevelViewModel()
-            {
-                DisplayName = ChamiUIStrings.LogLevelWarning,
-                Description = ChamiUIStrings.LogLevelWarningDescription,
-                BackingValue = LogEventLevel.Warning,
-                ForegroundColor = Brushes.Orange
-            });
-            
-            // Error
-            AvailableLogLevels.Add(new LogLevelViewModel()
-            {
-                DisplayName = ChamiUIStrings.LogLevelError,
-                Description = ChamiUIStrings.LogLevelErrorDescription,
-                BackingValue = LogEventLevel.Error,
-                ForegroundColor = Brushes.Red
-            });
-            
-            // Fatal
-            AvailableLogLevels.Add(new LogLevelViewModel()
-            {
-                DisplayName = ChamiUIStrings.LogLevelFatal,
-                Description = ChamiUIStrings.LogLevelFatalDescription,
-                BackingValue = LogEventLevel.Fatal,
-                ForegroundColor = Brushes.DarkRed
-            });
+            _loggingService = loggingService;
         }
         
-        private bool _loggingEnabled;
         private LogLevelViewModel _selectedMinimumLogLevel;
-        private LogEventLevel _minimumLogLevel;
 
         /// <summary>
         /// Determines if the Chami application will log error messages or not.
         /// </summary>
         public bool LoggingEnabled
         {
-            get => _loggingEnabled;
+            get => _loggingService.LoggingEnabled;
             set
             {
-                _loggingEnabled = value;
-                OnPropertyChanged(nameof(LoggingEnabled));
+                _loggingService.LoggingEnabled = value;
+                OnPropertyChanged();
             }
         }
 
         public LogEventLevel MinimumLogLevel
         {
-            get => _minimumLogLevel;
+            get => _loggingService.MinimumLogLevel;
             set
             {
-                _minimumLogLevel = value;
+                _loggingService.MinimumLogLevel = value;
 
-                SelectedMinimumLogLevel = AvailableLogLevels.FirstOrDefault(l => l.BackingValue == _minimumLogLevel);
+                SelectedMinimumLogLevel = AvailableLogLevels.FirstOrDefault(l => l.BackingValue == _loggingService.MinimumLogLevel);
                 
-                OnPropertyChanged(nameof(MinimumLogLevel));
+                OnPropertyChanged();
             }
         }
 
@@ -111,14 +58,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
                 if (value != null)
                 {
-                    _minimumLogLevel = value.BackingValue;
+                    _loggingService.MinimumLogLevel = value.BackingValue;
                 }
                 
-                OnPropertyChanged(nameof(SelectedMinimumLogLevel));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(MinimumLogLevel));
             }
         }
-        
-        public ObservableCollection<LogLevelViewModel> AvailableLogLevels { get; }
+
+        public ObservableCollection<LogLevelViewModel> AvailableLogLevels => _loggingService.AvailableLogLevels;
     }
 }

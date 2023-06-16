@@ -4,7 +4,9 @@ using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
 using System.Windows;
 using AsyncAwaitBestPractices.MVVM;
+using ChamiUI.BusinessLayer.Annotations;
 using ChamiUI.PresentationLayer.Events;
+using ChamiUI.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -47,7 +49,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             if (MessageBoxTriggered == null)
             {
-                return;
+                var window = AppUtils.GetMainWindow();
+                MessageBoxTriggered += window.ShowMessageBox;
             }
 
             var eventArgs = new MessageBoxTriggeredEventArgs
@@ -82,6 +85,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             BusyMessage = message;
         }
 
+        [NonPersistentSetting]
         public string BusyMessage
         {
             get => _busyMessage;
@@ -92,6 +96,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        [NonPersistentSetting]
         public bool IsBusy
         {
             get => _isBusy;

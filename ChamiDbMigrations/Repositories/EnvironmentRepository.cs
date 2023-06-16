@@ -40,33 +40,31 @@ namespace Chami.Db.Repositories
                 LEFT JOIN Categories c ON c.Id = e.EnvironmentId
                 WHERE e.EnvironmentId = ?
  ";
-            using (var connection = GetConnection())
+            await using var connection = GetConnection();
+            var environmentDictionary = new Dictionary<int, Environment>();
+            try
             {
-                var environmentDictionary = new Dictionary<int, Environment>();
-                try
-                {
-                    var param = new {id};
-                    var result = await connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString,
-                        (e, v) =>
+                var param = new {id};
+                var result = await connection.QueryAsync<Environment, EnvironmentVariable, Environment>(queryString,
+                    (e, v) =>
+                    {
+                        Environment env;
+
+                        if (!environmentDictionary.TryGetValue(e.EnvironmentId, out env))
                         {
-                            Environment env;
+                            env = e;
+                            environmentDictionary[e.EnvironmentId] = e;
+                        }
 
-                            if (!environmentDictionary.TryGetValue(e.EnvironmentId, out env))
-                            {
-                                env = e;
-                                environmentDictionary[e.EnvironmentId] = e;
-                            }
-
-                            v.Environment = e;
-                            environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
-                            return env;
-                        }, param, splitOn: "EnvironmentVariableId");
-                    return result.FirstOrDefault();
-                }
-                catch (InvalidOperationException)
-                {
-                    return null;
-                }
+                        v.Environment = e;
+                        environmentDictionary[e.EnvironmentId].EnvironmentVariables.Add(v);
+                        return env;
+                    }, param, splitOn: "EnvironmentVariableId");
+                return result.FirstOrDefault();
+            }
+            catch (InvalidOperationException)
+            {
+                return null;
             }
         }
 
@@ -118,13 +116,7 @@ namespace Chami.Db.Repositories
             }
         }
 
-        /// <summary>
-        /// Inserts an <see cref="Environment"/> object in the datastore and its associated <ses cref="EnvironmentVariable"/>s.
-        /// </summary>
-        /// <param name="environment">The <see cref="Environment"/> object to insert into the datastore.</param>
-        /// <returns>The newly-inserted environment, with its EnvironmentId set. If the parameter is null, returns null.</returns>
-        /// <exception cref="NotSupportedException">If the EnvironmentId is greater than 0 (i.e., if the <see cref="Environment"/> is already persisted to the datastore), a <see cref="NotSupportedException"/> is thrown.</exception>
-        public Environment InsertEnvironment(Environment environment)
+        public async Task<Environment> InsertEnvironmentAsync(Environment environment, CancellationToken cancellationToken = default)
         {
             if (environment == null)
             {
@@ -139,8 +131,8 @@ namespace Chami.Db.Repositories
             var queryString = @"INSERT INTO Environments(Name, AddedOn, EnvironmentType) VALUES (?, ?, ?)";
             using (var connection = GetConnection())
             {
-                var transaction = connection.BeginTransaction();
-                connection.Execute(queryString,
+                var transaction = await connection.BeginTransactionAsync(cancellationToken);
+                await connection.ExecuteAsync(queryString,
                     new {environment.Name, environment.AddedOn, environment.EnvironmentType});
                 var environmentVariableInsertQuery = @"
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId, IsFolder)
@@ -163,7 +155,7 @@ namespace Chami.Db.Repositories
                 foreach (var environmentVariable in environmentVariables.Where(environmentVariable => !environmentVariable.MarkedForDeletion))
                 {
                     environmentVariable.EnvironmentId = environment.EnvironmentId;
-                    connection.Execute(environmentVariableInsertQuery,
+                    await connection.ExecuteAsync(environmentVariableInsertQuery,
                         new
                         {
                             environmentVariable.Name,
@@ -176,11 +168,22 @@ namespace Chami.Db.Repositories
                     environment.EnvironmentVariables.Add(environmentVariable);
                 }
 
-                transaction.Commit();
+                await transaction.CommitAsync(cancellationToken);
             }
 
 
             return environment;
+        }
+
+        /// <summary>
+        /// Inserts an <see cref="Environment"/> object in the datastore and its associated <ses cref="EnvironmentVariable"/>s.
+        /// </summary>
+        /// <param name="environment">The <see cref="Environment"/> object to insert into the datastore.</param>
+        /// <returns>The newly-inserted environment, with its EnvironmentId set. If the parameter is null, returns null.</returns>
+        /// <exception cref="NotSupportedException">If the EnvironmentId is greater than 0 (i.e., if the <see cref="Environment"/> is already persisted to the datastore), a <see cref="NotSupportedException"/> is thrown.</exception>
+        public Environment InsertEnvironment(Environment environment)
+        {
+            return InsertEnvironmentAsync(environment).GetAwaiter().GetResult();
         }
 
 
@@ -192,42 +195,7 @@ namespace Chami.Db.Repositories
         /// <exception cref="NotSupportedException">If the <see cref="Environment"/> is not yet persisted (i.e., its EnvironmentId is 0), a <see cref="NotSupportedException"/> is thrown.</exception>
         private Environment UpdateEnvironment(Environment environment)
         {
-            if (environment.EnvironmentId == 0)
-            {
-                throw new NotSupportedException("Attempting to update an entity that has not been persisted.");
-            }
-
-            const string updateQuery = @"
-                UPDATE Environments
-                SET Name = ?
-                WHERE EnvironmentId = ?
-";
-            using (var connection = GetConnection())
-            {
-                connection.Execute(updateQuery, new {environment.Name, environment.EnvironmentId});
-                foreach (var environmentVariable in environment.EnvironmentVariables)
-                {
-                    var envVarUpdateQuery = @"
-                    UPDATE EnvironmentVariables 
-                    SET Name = ?,
-                        Value = ?,
-                        IsFolder = ?
-                    WHERE EnvironmentVariableId = ?
-";
-                    var updObj = new
-                    {
-                        environmentVariable.Name,
-                        environmentVariable.Value,
-                        environmentVariable.IsFolder,
-                        environmentVariable.EnvironmentVariableId
-                    };
-
-                    connection.Execute(envVarUpdateQuery, updObj);
-                }
-            }
-
-            var updatedEnvironment = GetEnvironmentById(environment.EnvironmentId);
-            return updatedEnvironment;
+            return UpdateEnvironmentAsync(environment).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -242,7 +210,7 @@ namespace Chami.Db.Repositories
 
         public async Task<Environment> UpsertEnvironmentAsync(Environment environment)
         {
-            var environmentInDatabase = GetEnvironmentByName(environment.Name);
+            var environmentInDatabase = await GetEnvironmentByNameAsync(environment.Name);
             if (environmentInDatabase != null)
             {
                 environment.EnvironmentId = environmentInDatabase.EnvironmentId;
@@ -261,37 +229,41 @@ namespace Chami.Db.Repositories
 
             if (environment.EnvironmentId == 0)
             {
-                return InsertEnvironment(environment);
+                return await InsertEnvironmentAsync(environment);
             }
 
-            UpdateEnvironment(environment);
+            await UpdateEnvironmentAsync(environment);
 
             var newVariables =
                 environment.EnvironmentVariables.Where(v => v.EnvironmentVariableId == 0 && !v.MarkedForDeletion);
 
             foreach (var environmentVariable in newVariables)
             {
-                InsertVariable(environmentVariable, environment.EnvironmentId);
+                await InsertVariableAsync(environmentVariable, environment.EnvironmentId);
             }
 
             foreach (var oldEnvironmentVariable in environment.EnvironmentVariables)
             {
                 if (oldEnvironmentVariable.MarkedForDeletion)
                 {
-                    DeleteVariableById(oldEnvironmentVariable.EnvironmentVariableId);
+                    await DeleteVariableByIdAsync(oldEnvironmentVariable.EnvironmentVariableId);
                 }
             }
 
-            return GetEnvironmentById(environment.EnvironmentId);
+            return await GetEnvironmentByIdAsync(environment.EnvironmentId);
         }
 
-        /// <summary>
-        /// Inserts a new <see cref="EnvironmentVariable"/> object in the datastore.
-        /// </summary>
-        /// <param name="environmentVariable">The <see cref="EnvironmentVariable"/> to insert.</param>
-        /// <param name="environmentId">The Id of the <see cref="Environment"/> to attach the new variable to.</param>
-        /// <exception cref="InvalidOperationException">If the <see cref="EnvironmentVariable"/> object's Name or Value attributes is null, an <see cref="InvalidOperationException"/> is thrown to preserve the consistency of the datastore.</exception>
-        private void InsertVariable(EnvironmentVariable environmentVariable, int environmentId)
+        private async Task DeleteVariableByIdAsync(int environmentVariableId)
+        {
+            var queryString = @"
+                DELETE FROM EnvironmentVariables
+                WHERE EnvironmentVariableId = ?
+";
+            await using var connection = GetConnection();
+            await connection.ExecuteAsync(queryString, new {environmentVariableId});
+        }
+
+        private async Task InsertVariableAsync(EnvironmentVariable environmentVariable, int environmentId)
         {
             if (environmentVariable == null)
             {
@@ -312,7 +284,7 @@ namespace Chami.Db.Repositories
                 INSERT INTO EnvironmentVariables(Name, Value, AddedOn, EnvironmentId, IsFolder)
                 VALUES (?, ?, ?, ?, ?)
 ";
-            using var connection = GetConnection();
+            await using var connection = GetConnection();
             var updObj = new
             {
                 environmentVariable.Name,
@@ -321,7 +293,58 @@ namespace Chami.Db.Repositories
                 environmentId,
                 environmentVariable.IsFolder
             };
-            connection.Execute(environmentVariableInsertQuery, updObj);
+            await connection.ExecuteAsync(environmentVariableInsertQuery, updObj);
+        }
+
+        private async Task<Environment> UpdateEnvironmentAsync(Environment environment)
+        {
+            if (environment.EnvironmentId == 0)
+            {
+                throw new NotSupportedException("Attempting to update an entity that has not been persisted.");
+            }
+
+            const string updateQuery = @"
+                UPDATE Environments
+                SET Name = ?
+                WHERE EnvironmentId = ?
+";
+            await using (var connection = GetConnection())
+            {
+                await connection.ExecuteAsync(updateQuery, new {environment.Name, environment.EnvironmentId});
+                foreach (var environmentVariable in environment.EnvironmentVariables)
+                {
+                    var envVarUpdateQuery = @"
+                    UPDATE EnvironmentVariables 
+                    SET Name = ?,
+                        Value = ?,
+                        IsFolder = ?
+                    WHERE EnvironmentVariableId = ?
+";
+                    var updObj = new
+                    {
+                        environmentVariable.Name,
+                        environmentVariable.Value,
+                        environmentVariable.IsFolder,
+                        environmentVariable.EnvironmentVariableId
+                    };
+
+                    await connection.ExecuteAsync(envVarUpdateQuery, updObj);
+                }
+            }
+
+            var updatedEnvironment = await GetEnvironmentByIdAsync(environment.EnvironmentId);
+            return updatedEnvironment;
+        }
+
+        /// <summary>
+        /// Inserts a new <see cref="EnvironmentVariable"/> object in the datastore.
+        /// </summary>
+        /// <param name="environmentVariable">The <see cref="EnvironmentVariable"/> to insert.</param>
+        /// <param name="environmentId">The Id of the <see cref="Environment"/> to attach the new variable to.</param>
+        /// <exception cref="InvalidOperationException">If the <see cref="EnvironmentVariable"/> object's Name or Value attributes is null, an <see cref="InvalidOperationException"/> is thrown to preserve the consistency of the datastore.</exception>
+        private void InsertVariable(EnvironmentVariable environmentVariable, int environmentId)
+        {
+            
         }
 
         /// <summary>
@@ -543,14 +566,7 @@ namespace Chami.Db.Repositories
         /// <param name="selectedVariableId">The id of the <see cref="EnvironmentVariable"/> to delete.</param>
         public void DeleteVariableById(int selectedVariableId)
         {
-            var queryString = @"
-                DELETE FROM EnvironmentVariables
-                WHERE EnvironmentVariableId = ?
-";
-            using (var connection = GetConnection())
-            {
-                connection.Execute(queryString, new {selectedVariableId});
-            }
+            DeleteVariableByIdAsync(selectedVariableId).GetAwaiter().GetResult();
         }
 
         public async Task<IEnumerable<EnvironmentVariableBlacklist>> GetBlacklistedVariablesAsync()

@@ -6,13 +6,13 @@
         xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
         xmlns:lex="http://wpflocalizeextension.codeplex.com"
         xmlns:viewModels="clr-namespace:ChamiUI.PresentationLayer.ViewModels"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         x:Name="ImportEnvironmentWindowTitle"
         d:DataContext="{d:DesignInstance viewModels:ImportEnvironmentWindowViewModel, IsDesignTimeCreatable=True}"
         WindowStartupLocation="CenterOwner"
         mc:Ignorable="d"
         Title="{lex:Loc}" Height="450" Width="800"
-        FocusManager.FocusedElement="{Binding ElementName=EnvironmentNameTextbox}"
-        >
+        FocusManager.FocusedElement="{Binding ElementName=EnvironmentNameTextbox}">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -26,139 +26,143 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
-    <Grid Margin="5, 5, 5, 5">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="3*" />
-        </Grid.ColumnDefinitions>
+    <xctk:BusyIndicator IsBusy="{Binding IsBusy}" BusyContent="{Binding BusyMessage}">
 
-        <Grid Grid.Row="1"
-              Grid.Column="0"
-              Grid.RowSpan="2"
-              Margin="5, 5, 5, 0">
+        <Grid Margin="5, 5, 5, 5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
+
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="2*" />
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Row="0"
-                    Grid.Column="0"
-                    Content="{lex:Loc}"
-                    x:Name="ImportSelectAllButton"
-                    Command="{Binding SelectAllCommand}" />
-            <Button Grid.Row="0"
-                    Grid.Column="2"
-                    Content="{lex:Loc}"
-                    x:Name="ImportDeselectAllButton"
-                    Command="{Binding DeselectAllCommand}"/>
-            <ListBox Grid.Row="1"
-                      Grid.Column="0"
-                      Grid.ColumnSpan="3"
-                      ItemsSource="{Binding NewEnvironments}"
-                      SelectedItem="{Binding SelectedEnvironment}">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <DataTemplate.Resources>
-                            <Style TargetType="CheckBox">
-                                <Setter Property="IsChecked" Value="{Binding ShouldImport, Mode=TwoWay}"></Setter>
-                            </Style>
-                            <Style TargetType="ListBoxItem">
-                                <Setter Property="IsSelected" Value="{Binding ShouldImport, Mode=OneWay}"></Setter>
-                            </Style>
-                        </DataTemplate.Resources>
-                        <StackPanel Orientation="Horizontal">
-                            <CheckBox IsChecked="{Binding ShouldImport}"/>
-                            <TextBlock ToolTip="{Binding DisplayName}"
-                                       Text="{Binding Name}" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            <Grid Grid.Row="1"
+                  Grid.Column="0"
+                  Grid.RowSpan="2"
+                  Margin="5, 5, 5, 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <Button Grid.Row="0"
+                        Grid.Column="0"
+                        Content="{lex:Loc}"
+                        x:Name="ImportSelectAllButton"
+                        Command="{Binding SelectAllCommand}" />
+                <Button Grid.Row="0"
+                        Grid.Column="2"
+                        Content="{lex:Loc}"
+                        x:Name="ImportDeselectAllButton"
+                        Command="{Binding DeselectAllCommand}" />
+                <ListBox Grid.Row="1"
+                         Grid.Column="0"
+                         Grid.ColumnSpan="3"
+                         ItemsSource="{Binding NewEnvironments}"
+                         SelectedItem="{Binding SelectedEnvironment}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <DataTemplate.Resources>
+                                <Style TargetType="CheckBox">
+                                    <Setter Property="IsChecked" Value="{Binding ShouldImport, Mode=TwoWay}"></Setter>
+                                </Style>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="IsSelected" Value="{Binding ShouldImport, Mode=OneWay}"></Setter>
+                                </Style>
+                            </DataTemplate.Resources>
+                            <StackPanel Orientation="Horizontal">
+                                <CheckBox IsChecked="{Binding ShouldImport}" />
+                                <TextBlock ToolTip="{Binding DisplayName}"
+                                           Text="{Binding Name}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+
+            <Label Grid.Row="0"
+                   Grid.Column="0"
+                   Grid.ColumnSpan="3"
+                   HorizontalContentAlignment="Center"
+                   FontWeight="DemiBold"
+                   FontSize="20"
+                   x:Name="ImportEnvironmentWindowHeaderTitle"
+                   Content="{lex:Loc}" />
+            <Label Grid.Row="1"
+                   Grid.Column="1"
+                   x:Name="NewEnvironmentFormNameLabel"
+                   Content="{lex:Loc}" />
+            <TextBox Grid.Row="1"
+                     Grid.Column="2"
+                     VerticalContentAlignment="Center"
+                     TabIndex="0"
+                     Style="{StaticResource TextBoxInError}"
+                     x:Name="EnvironmentNameTextbox">
+                <TextBox.Text>
+                    <Binding Path="SelectedEnvironmentName" UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validators:EnvironmentNameValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
+            <DataGrid Grid.Row="2"
+                      x:Name="VariablesDatagrid"
+                      Grid.Column="1"
+                      Grid.ColumnSpan="2"
+                      AutoGenerateColumns="False"
+                      ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}"
+                      RowStyle="{StaticResource ErrorStyle}">
+                <DataGrid.RowValidationRules>
+                    <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
+                    <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
+                    <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
+                    <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" />
+                    <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
+                                                                            EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
+                </DataGrid.RowValidationRules>
+
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="100"
+                                        x:Name="NewEnvironmentDataGridNameColumn"
+                                        Header="{lex:Loc Key=NewEnvironmentDataGridNameColumn}"
+                                        Binding="{Binding Name, ValidatesOnExceptions=True, NotifyOnSourceUpdated=True}" />
+                    <DataGridTextColumn Width="150"
+                                        x:Name="NewEnvironmentDataGridValueColumn"
+                                        Header="{lex:Loc Key=NewEnvironmentDataGridValueColumn}"
+                                        Binding="{Binding Value, NotifyOnSourceUpdated=True}" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="3"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="Center"
+                        Orientation="Horizontal"
+                        Margin="5, 0, 5, 0">
+                <Button Content="{lex:Loc}"
+                        x:Name="ImportEnvironmentWindowSaveButton"
+                        Command="{Binding SaveCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
+                        IsEnabled="{Binding IsSaveButtonEnabled}"
+                        Margin="5, 5,5,5" />
+                <Button Content="{lex:Loc}"
+                        x:Name="NewEnvironmentWindowCancelButton"
+                        Command="{Binding CloseCommand}"
+                        CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
+                        Margin="5, 5,5,5" />
+            </StackPanel>
         </Grid>
-
-        <Label Grid.Row="0"
-               Grid.Column="0"
-               Grid.ColumnSpan="3"
-               HorizontalContentAlignment="Center"
-               FontWeight="DemiBold"
-               FontSize="20"
-               x:Name="ImportEnvironmentWindowHeaderTitle"
-               Content="{lex:Loc}" />
-        <Label Grid.Row="1"
-               Grid.Column="1"
-               x:Name="NewEnvironmentFormNameLabel"
-               Content="{lex:Loc}" />
-        <TextBox Grid.Row="1"
-                 Grid.Column="2"
-                 VerticalContentAlignment="Center"
-                 TabIndex="0"
-                 Style="{StaticResource TextBoxInError}"
-                 x:Name="EnvironmentNameTextbox">
-            <TextBox.Text>
-                <Binding Path="SelectedEnvironmentName" UpdateSourceTrigger="PropertyChanged">
-                    <Binding.ValidationRules>
-                        <validators:EnvironmentNameValidationRule />
-                    </Binding.ValidationRules>
-                </Binding>
-            </TextBox.Text>
-        </TextBox>
-        <DataGrid Grid.Row="2"
-                  x:Name="VariablesDatagrid"
-                  Grid.Column="1"
-                  Grid.ColumnSpan="2"
-                  AutoGenerateColumns="False"
-                  ItemsSource="{Binding SelectedEnvironment.EnvironmentVariables}"
-                  RowStyle="{StaticResource ErrorStyle}">
-            <DataGrid.RowValidationRules>
-                <validators:EnvironmentVariableNameNotNullValidationRule ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameValidCharactersValidationRule ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameLengthValidationRule MaxLength="2047" ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameNoNumberFirstCharacterValidationRule ValidationStep="UpdatedValue" />
-                <validators:EnvironmentVariableNameUniqueValidationRule ValidationStep="CommittedValue"
-                                                                        EnvironmentVariables="{StaticResource EnvironmentVariablesViewSource}" />
-            </DataGrid.RowValidationRules>
-
-            <DataGrid.Columns>
-                <DataGridTextColumn Width="100"
-                                    x:Name="NewEnvironmentDataGridNameColumn"
-                                    Header="{lex:Loc Key=NewEnvironmentDataGridNameColumn}"
-                                    Binding="{Binding Name, ValidatesOnExceptions=True, NotifyOnSourceUpdated=True}" />
-                <DataGridTextColumn Width="150"
-                                    x:Name="NewEnvironmentDataGridValueColumn"
-                                    Header="{lex:Loc Key=NewEnvironmentDataGridValueColumn}"
-                                    Binding="{Binding Value, NotifyOnSourceUpdated=True}" />
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel Grid.Row="3"
-                    Grid.Column="0"
-                    Grid.ColumnSpan="3"
-                    HorizontalAlignment="Center"
-                    Orientation="Horizontal"
-                    Margin="5, 0, 5, 0">
-            <Button Content="{lex:Loc}"
-                    x:Name="ImportEnvironmentWindowSaveButton"
-                    Command="{Binding SaveCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
-                    IsEnabled="{Binding IsSaveButtonEnabled}"
-                    Margin="5, 5,5,5" />
-            <Button Content="{lex:Loc}"
-                    x:Name="NewEnvironmentWindowCancelButton"
-                    Command="{Binding CloseCommand}"
-                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
-                    Margin="5, 5,5,5" />
-        </StackPanel>
-    </Grid>
+    </xctk:BusyIndicator>
 </Window>

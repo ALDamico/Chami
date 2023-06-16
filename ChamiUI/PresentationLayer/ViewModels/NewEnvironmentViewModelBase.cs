@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using System.Windows;
 using AsyncAwaitBestPractices.MVVM;
-using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.BusinessLayer.Services;
 using ChamiUI.BusinessLayer.Validators;
 

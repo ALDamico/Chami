@@ -19,7 +19,7 @@ public abstract class ChamiWindow : Window
         }
     }
 
-    private void ShowMessageBox(object sender, MessageBoxTriggeredEventArgs e)
+    protected internal virtual void ShowMessageBox(object sender, MessageBoxTriggeredEventArgs e)
     {
         e.Show(this);
     }

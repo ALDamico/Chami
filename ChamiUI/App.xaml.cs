@@ -1,13 +1,17 @@
 ﻿using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Configuration;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 using ChamiUI.BusinessLayer.AppLoader;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
+using ChamiUI.BusinessLayer.Exporters;
+using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
 using Hardcodet.Wpf.TaskbarNotification;
@@ -61,6 +65,12 @@ namespace ChamiUI
 
         private async void App_OnStartup(object sender, StartupEventArgs e)
         {
+            LocalizationExporter exporter = new LocalizationExporter();
+            exporter.Assembly = Assembly.GetExecutingAssembly();
+            exporter.Filename = "example.xliff";
+            exporter.DefaultDictionary = "ChamiUI.Localization.ChamiUIStrings";
+            exporter.LocalizationExporterStrategy = new GetTextLocalizationExporterStrategy();
+            exporter.Export(CultureInfo.GetCultureInfoByIetfLanguageTag("fr-FR"));
             DetectOtherInstance();
             AppLoaderFactory.InitAppLoader(_appLoader);
             

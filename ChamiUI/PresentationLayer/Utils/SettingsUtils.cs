@@ -1,4 +1,7 @@
-﻿using ChamiUI.PresentationLayer.ViewModels;
+﻿using System;
+using Chami.Db.Entities;
+using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.PresentationLayer.ViewModels;
 
 namespace ChamiUI.PresentationLayer.Utils
 {
@@ -14,6 +17,11 @@ namespace ChamiUI.PresentationLayer.Utils
         public static SettingsViewModel GetAppSettings()
         {
             return (System.Windows.Application.Current as App)?.Settings;
+        }
+
+        public static ISettingConverter<T> GetConverter<T>(Setting setting)
+        {
+            return (ISettingConverter<T>) Activator.CreateInstance(null, setting.Converter)?.Unwrap();
         }
     }
 }

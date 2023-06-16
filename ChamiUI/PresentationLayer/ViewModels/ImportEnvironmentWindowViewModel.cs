@@ -7,6 +7,7 @@ using System.Windows;
 using AsyncAwaitBestPractices.MVVM;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Services;
+using ChamiUI.Utils;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -39,7 +40,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             SetBusyState(true, "Saving data...");
             try
             {
-                await _newEnvironmentService.SaveEnvironments(NewEnvironments);
+                await Task.Run(() => _newEnvironmentService.SaveEnvironments(NewEnvironments));
             }
             finally
             {

@@ -18,10 +18,10 @@ using ChamiUI.PresentationLayer.Utils;
 using System.Windows.Data;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
-using ChamiUI.BusinessLayer.Exceptions;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.ViewModels.State;
 using ChamiUI.Utils;
+using ChamiUI.Windows.Abstract;
 using Serilog;
 using ChamiUI.Windows.EnvironmentHealth;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace ChamiUI.Windows.MainWindow
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : ChamiWindow
     {
         /// <summary>
         /// Constructs a new <see cref="MainWindow"/> and sets its DataContext, plus registering event handlers.
@@ -161,11 +161,6 @@ namespace ChamiUI.Windows.MainWindow
         private void AboutMenuItem_OnClick(object sender, RoutedEventArgs e)
         {
             AppUtils.GetAppServiceProvider().GetService<AboutBox.AboutBox>().ShowDialog();
-        }
-
-        private void WebsiteMenuItem_Click(object sender, RoutedEventArgs e)
-        {
-            ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
         }
 
         private void NewEnvironmentCommandBinding_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -332,11 +327,6 @@ namespace ChamiUI.Windows.MainWindow
                 .GetService<RenameEnvironmentWindow.RenameEnvironmentWindow>();
             childWindow.Owner = this;
             childWindow.ShowDialog();
-        }
-
-        private void GithubLinkMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            ProcessUtils.OpenLinkInBrowser("https://github.com/ALDamico/Chami");
         }
 
         private void FocusFilterTextboxCommandBinding_OnCanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -537,18 +527,6 @@ namespace ChamiUI.Windows.MainWindow
             var sortDescription = GetCurrentSortDescriptionOrDefault();
             ViewModel.SaveWindowState(Width, Height, Left, Top, WindowState, sortDescription);
             ViewModel.SaveFontSize();
-        }
-
-        private void OpenAsFolderMenuItem_OnClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                ViewModel.OpenFolder();
-            }
-            catch (ChamiFolderException ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
         }
 
         private void ConsoleClearMenuItem_OnClick(object sender, RoutedEventArgs e)
