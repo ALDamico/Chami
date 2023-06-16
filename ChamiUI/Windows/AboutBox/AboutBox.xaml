@@ -8,7 +8,8 @@
         lex:ResxLocalizationProvider.DefaultDictionary="ChamiUIStrings"
         mc:Ignorable="d"
         x:Name="ChamiAboutBox"
-        Title="{lex:Loc}" Height="300" Width="350"
+        Title="{lex:Loc}" 
+        SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
@@ -27,6 +28,10 @@
                        Content="{lex:Loc}"></Label>
             </StackPanel>
             
+            <Separator/>
+            <Label x:Name="AboutBoxApplicationInfoLabel" Content="{lex:Loc}"></Label>
+            <TextBox IsReadOnly="True" IsReadOnlyCaretVisible="True" 
+                     x:Name="ApplicationInfoTextBlock"></TextBox>
             <Separator/>
             <Label x:Name="AboutBoxFirstLine" 
                    Content="{lex:Loc}"></Label>
