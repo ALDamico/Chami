@@ -1,7 +1,9 @@
 ﻿using ChamiUI.PresentationLayer.ViewModels;
 using System;
 using System.Configuration;
+using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -11,6 +13,7 @@ using ChamiUI.BusinessLayer.AppLoader;
 using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.EnvironmentHealth.Strategies;
 using ChamiUI.BusinessLayer.Exporters;
+using ChamiUI.Interop;
 using ChamiUI.Localization;
 using ChamiUI.Taskbar;
 using ChamiUI.Windows.MainWindow;
