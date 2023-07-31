@@ -30,6 +30,7 @@ public class MainWindowReadyState : IMainWindowState
     public async Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow)
     {
         mainWindowViewModel.ProgressBarViewModel.Reset();
+        mainWindowViewModel.ConsoleMessages = "";
         mainWindowViewModel.SelectedTabIndex = MainWindowConstants.ConsoleTabItem;
         var previousEnvironment = mainWindowViewModel.ActiveEnvironment;
         Action<CmdExecutorProgress> progress = mainWindowViewModel.HandleProgressReport;
