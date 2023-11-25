@@ -1,10 +1,12 @@
 using System;
+using System.Collections;
 using ChamiUI.BusinessLayer.Converters;
 using ChamiUI.BusinessLayer.Validators;
 using ChamiUI.PresentationLayer.ViewModels;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using Chami.Db.Repositories;
@@ -25,22 +27,28 @@ namespace ChamiUI.BusinessLayer.Adapters
         public EnvironmentDataAdapter(string connectionString)
         {
             _repository = new EnvironmentRepository(connectionString);
+            _environmentConverter = new EnvironmentConverter();
+            _environmentBlackListConverter = new EnvironmentVariableBlacklistConverter();
+            _categoryConverter = new CategoryConverter();
         }
 
         private readonly EnvironmentRepository _repository;
+        private readonly IConverter<Environment, EnvironmentViewModel> _environmentConverter;
+        private readonly IConverter<EnvironmentVariableBlacklist, EnvironmentVariableBlacklistViewModel>
+            _environmentBlackListConverter;
+        private readonly CachedConverter<Category, CategoryViewModel> _categoryConverter;
 
         /// <summary>
         /// Saves a new template <see cref="EnvironmentViewModel"/> to the datastore.
         /// </summary>
         public EnvironmentViewModel SaveTemplateEnvironment(EnvironmentViewModel environment)
         {
-            var converter = new EnvironmentConverter();
-            var entity = converter.From(environment);
+            var entity = _environmentConverter.From(environment);
             entity.EnvironmentType = EnvironmentType.TemplateEnvironment;
 
             _repository.InsertEnvironment(entity);
 
-            return converter.To(entity);
+            return _environmentConverter.To(entity);
         }
 
 
@@ -56,9 +64,19 @@ namespace ChamiUI.BusinessLayer.Adapters
             {
                 return null;
             }
+            
+            return _environmentConverter.To(result);
+        }
 
-            var converter = new EnvironmentConverter();
-            return converter.To(result);
+        public async Task<EnvironmentViewModel> GetEnvironmentByIdAsync(int id)
+        {
+            var result = await _repository.GetEnvironmentByIdAsync(id);
+            if (result == null)
+            {
+                return null;
+            }
+
+            return _environmentConverter.To(result);
         }
 
         /// <summary>
@@ -68,14 +86,18 @@ namespace ChamiUI.BusinessLayer.Adapters
         public ICollection<EnvironmentViewModel> GetEnvironments()
         {
             var models = _repository.GetEnvironments();
-            var output = new List<EnvironmentViewModel>();
-            var environmentConverter = new EnvironmentConverter();
-            foreach (var model in models)
-            {
-                output.Add(environmentConverter.To(model));
-            }
 
-            return output;
+            return models.Select(model => _environmentConverter.To(model)).ToList();
+        }
+
+        public async Task<IEnumerable<EnvironmentViewModel>> GetEnvironmentsAsync(CancellationToken cancellationToken)
+        {
+            if (cancellationToken.IsCancellationRequested)
+            {
+                cancellationToken.ThrowIfCancellationRequested();
+            }
+            var models = await _repository.GetEnvironmentsAsync(cancellationToken);
+            return models.Select(model => _environmentConverter.To(model)).ToList();
         }
 
         /// <summary>
@@ -91,27 +113,7 @@ namespace ChamiUI.BusinessLayer.Adapters
                 return null;
             }
 
-            return new EnvironmentConverter().To(environment);
-        }
-
-        /// <summary>
-        /// Gets the <see cref="Chami.Db.Entities.Environment"/> with the specified id.
-        /// </summary>
-        /// <param name="id">If a match is found, returns it. Otherwise, returns null.</param>
-        /// <returns>The <see cref="Chami.Db.Entities.Environment"/> with the specified id.</returns>
-        public Environment GetEnvironmentEntityById(int id)
-        {
-            return _repository.GetEnvironmentById(id);
-        }
-
-        /// <summary>
-        /// Gets the <see cref="Environment"/> with the specified name.
-        /// </summary>
-        /// <param name="name">The name of the <see cref="Environment"/> to retrieve.</param>
-        /// <returns>The <see cref="Environment"/> with the specified name, if found. Otherwise, null.</returns>
-        public Environment GetEnvironmentEntityByName(string name)
-        {
-            return _repository.GetEnvironmentByName(name);
+            return _environmentConverter.To(environment);
         }
 
         /// <summary>
@@ -125,10 +127,9 @@ namespace ChamiUI.BusinessLayer.Adapters
             var validationResult = validator.Validate(environmentViewModel);
             if (validationResult.IsValid)
             {
-                var converter = new EnvironmentConverter();
-                var converted = converter.From(environmentViewModel);
+                var converted = _environmentConverter.From(environmentViewModel);
                 var inserted = _repository.InsertEnvironment(converted);
-                return converter.To(inserted);
+                return _environmentConverter.To(inserted);
             }
 
             return null;
@@ -163,10 +164,15 @@ namespace ChamiUI.BusinessLayer.Adapters
         /// <returns>The newly-inserted or updated <see cref="Environment"/>, converted to an <see cref="EnvironmentViewModel"/></returns>
         public EnvironmentViewModel SaveEnvironment(EnvironmentViewModel environment)
         {
-            var converter = new EnvironmentConverter();
-            var entity = converter.From(environment);
-            var inserted = _repository.UpsertEnvironment(entity);
-            return converter.To(inserted);
+            return SaveEnvironmentAsync(environment).GetAwaiter().GetResult();
+        }
+
+        public async Task<EnvironmentViewModel> SaveEnvironmentAsync(EnvironmentViewModel environment, CancellationToken cancellationToken = default)
+        {
+            cancellationToken.ThrowIfCancellationRequested();
+            var entity = _environmentConverter.From(environment);
+            var inserted = await _repository.UpsertEnvironmentAsync(entity);
+            return _environmentConverter.To(inserted);
         }
 
         /// <summary>
@@ -188,13 +194,17 @@ namespace ChamiUI.BusinessLayer.Adapters
 
         public ICollection<EnvironmentViewModel> GetTemplateEnvironments()
         {
+            return GetTemplateEnvironmentsAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<ICollection<EnvironmentViewModel>> GetTemplateEnvironmentsAsync(CancellationToken cancellationToken = default)
+        {
             var environments = _repository.GetTemplateEnvironments();
             
             var output = new List<EnvironmentViewModel>();
-            var converter = new EnvironmentConverter();
             foreach (var environment in environments)
             {
-                output.Add(converter.To(environment));
+                output.Add(_environmentConverter.To(environment));
             }
 
             return output;
@@ -203,11 +213,10 @@ namespace ChamiUI.BusinessLayer.Adapters
         public IEnumerable<EnvironmentViewModel> GetBackupEnvironments()
         {
             var environments = _repository.GetBackupEnvironments();
-            var converter = new EnvironmentConverter();
             var output = new List<EnvironmentViewModel>();
             foreach (var environment in environments)
             {
-                output.Add(converter.To(environment));
+                output.Add(_environmentConverter.To(environment));
             }
 
             return output;
@@ -216,12 +225,11 @@ namespace ChamiUI.BusinessLayer.Adapters
         public async Task<ICollection<EnvironmentVariableBlacklistViewModel>> GetBlacklistedVariablesAsync()
         {
             var blacklistedVariables = await _repository.GetBlacklistedVariablesAsync();
-            var converter = new EnvironmentVariableBlacklistConverter();
             var outputList = new List<EnvironmentVariableBlacklistViewModel>();
 
             foreach (var blacklistedVariable in blacklistedVariables)
             {
-                var viewModel = converter.To(blacklistedVariable);
+                var viewModel = _environmentBlackListConverter.To(blacklistedVariable);
                 outputList.Add(viewModel);
             }
 
@@ -231,12 +239,11 @@ namespace ChamiUI.BusinessLayer.Adapters
         public async Task<EnvironmentVariableBlacklistViewModel> SaveBlacklistedVariableAsync(
             EnvironmentVariableBlacklistViewModel blacklistedVariable)
         {
-            var converter = new EnvironmentVariableBlacklistConverter();
-            var entity = converter.From(blacklistedVariable);
+            var entity = _environmentBlackListConverter.From(blacklistedVariable);
 
             await _repository.UpsertBlacklistedVariableAsync(entity);
 
-            return converter.To(entity);
+            return _environmentBlackListConverter.To(entity);
         }
 
         public async Task<IEnumerable<string>> GetVariableNamesAsync()
@@ -260,6 +267,40 @@ namespace ChamiUI.BusinessLayer.Adapters
             var environmentIds = environmentViewModels.Select(e => e.Id).ToImmutableList();
             
             await _repository.UpdateVariableByNameAndEnvironmentIdsAsync(variableName, variableValue, environmentIds);
+        }
+
+        public async Task<IEnumerable<CategoryViewModel>> GetAllCategoryViewModelsAsync()
+        {
+            var categories = await _repository.GetAllCategoriesAsync();
+
+            return categories.Select(c => _categoryConverter.To(c));
+        }
+
+        public IEnumerable<CategoryViewModel> GetAllCategoryViewModels()
+        {
+            return GetAllCategoryViewModelsAsync().GetAwaiter().GetResult();
+        }
+
+        public async Task<CategoryViewModel> UpsertCategoryAsync(CategoryViewModel categoryViewModel)
+        {
+            var entity = _categoryConverter.From(categoryViewModel);
+            var inserted = await _repository.InsertCategoryAsync(entity);
+            return _categoryConverter.To(inserted);
+        }
+
+        public CategoryViewModel UpsertCategory(CategoryViewModel categoryViewModel)
+        {
+            return UpsertCategoryAsync(categoryViewModel).GetAwaiter().GetResult();
+        }
+
+        public async Task<bool> DeleteCategoryAsync(CategoryViewModel categoryViewModel)
+        {
+            return await _repository.DeleteCategoryByIdAsync(categoryViewModel.Id.GetValueOrDefault());
+        }
+
+        public bool DeleteCategory(CategoryViewModel categoryViewModel)
+        {
+            return DeleteCategoryAsync(categoryViewModel).GetAwaiter().GetResult();
         }
     }
 }

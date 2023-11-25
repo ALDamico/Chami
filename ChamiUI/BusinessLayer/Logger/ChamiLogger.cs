@@ -18,6 +18,7 @@ namespace ChamiUI.BusinessLayer.Logger
         /// </summary>
         public ChamiLogger()
         {
+            _loggingLevelSwitch = new LoggingLevelSwitch(LogEventLevel.Verbose);
             _loggerConfiguration = new LoggerConfiguration();
             _loggerConfiguration.Destructure.ByTransforming<EnvironmentChangedEventArgs>(args =>
                 new
@@ -34,6 +35,7 @@ namespace ChamiUI.BusinessLayer.Logger
             );
 
             _loggerConfiguration.Destructure.ByTransforming<EnvironmentExistingEventArgs>(args => new {args.Name});
+            SetMinumumLevel(LogEventLevel.Verbose);
         }
 
         /// <summary>
@@ -45,9 +47,21 @@ namespace ChamiUI.BusinessLayer.Logger
             _loggerConfiguration.WriteTo.File(filename);
         }
 
-        public void SetMinumumLevel(LogEventLevel minimumLevel)
+        public void AddDebugSink()
         {
-            _loggerConfiguration.MinimumLevel.ControlledBy(new LoggingLevelSwitch(minimumLevel));
+            _loggerConfiguration.WriteTo.Debug();
+        }
+
+        private LoggingLevelSwitch _loggingLevelSwitch;
+
+        private void SetMinumumLevel(LogEventLevel minimumLevel)
+        {
+            _loggerConfiguration.MinimumLevel.ControlledBy(_loggingLevelSwitch);
+        }
+
+        public void ChangeMinimumLevel(LogEventLevel logEventLevel)
+        {
+            _loggingLevelSwitch.MinimumLevel = logEventLevel;
         }
 
         /// <summary>

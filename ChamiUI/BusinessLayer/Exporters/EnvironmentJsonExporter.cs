@@ -4,22 +4,23 @@ using System.Linq;
 using System.Threading.Tasks;
 using Chami.Db.Entities;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.PresentationLayer.ViewModels;
 using Newtonsoft.Json;
 
 namespace ChamiUI.BusinessLayer.Exporters
 {
     public class EnvironmentJsonExporter : IChamiExporter
     {
-        public EnvironmentJsonExporter(ICollection<Environment> environments):this()
+        public EnvironmentJsonExporter(ICollection<EnvironmentViewModel> environments):this()
         {
             _environments = environments.ToList();
         }
         public EnvironmentJsonExporter()
         {
-            _environments = new List<Environment>();
+            _environments = new List<EnvironmentViewModel>();
         }
 
-        private readonly List<Environment> _environments;
+        private readonly List<EnvironmentViewModel> _environments;
 
         public void Export(string filename)
         {

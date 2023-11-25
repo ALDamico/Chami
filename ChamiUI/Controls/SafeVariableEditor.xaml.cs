@@ -1,5 +1,6 @@
 using System.Windows;
 using ChamiUI.PresentationLayer.ViewModels;
+using ChamiUI.Utils;
 
 namespace ChamiUI.Controls
 {
@@ -11,16 +12,15 @@ namespace ChamiUI.Controls
         public SafeVariableEditor()
         {
             InitializeComponent();
+            DataContextChanged += OnDataContextChanged;
         }
 
-        private async void SafeVariableEditor_OnLoaded(object sender, RoutedEventArgs e)
+        private void OnDataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            await GetDataContextAsSafeVariableViewModel().LoadForbiddenVariables();
-        }
-
-        public SafeVariableViewModel GetDataContextAsSafeVariableViewModel()
-        {
-            return DataContext as SafeVariableViewModel;
+            if (e.NewValue is SafeVariableViewModel viewModel)
+            {
+                viewModel.LoadForbiddenVariables().Await();
+            }
         }
     }
 }
