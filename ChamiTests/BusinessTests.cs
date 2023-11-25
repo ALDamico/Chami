@@ -48,7 +48,7 @@ namespace ChamiTests
                 }
             };
             var dataAdapter = new SettingsDataAdapter(connectionString);
-            var viewModel = dataAdapter.ToViewModel(settings);
+            var viewModel = dataAdapter.ToViewModel(settings, null, null);
             Assert.NotNull(viewModel);
             Assert.True(viewModel.LoggingSettings.LoggingEnabled);
         }

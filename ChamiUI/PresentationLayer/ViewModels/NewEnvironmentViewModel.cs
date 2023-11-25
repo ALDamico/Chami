@@ -1,5 +1,7 @@
 using System.Collections.ObjectModel;
+using System.Linq;
 using ChamiUI.BusinessLayer.Mementos;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Windows.NewEnvironmentWindow;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -8,54 +10,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
     /// Viewmodel for the new environment window
     /// </summary>
     /// <seealso cref="NewEnvironmentWindow"/>
-    public class NewEnvironmentViewModel : NewEnvironmentViewModelBase
+    public sealed class NewEnvironmentViewModel : NewEnvironmentViewModelBase
     {
         /// <summary>
         /// Constructs a new <see cref="NewEnvironmentViewModel"/>
         /// </summary>
-        public NewEnvironmentViewModel()
+        public NewEnvironmentViewModel(NewEnvironmentService environmentService) : base(environmentService)
         {
             Environment = new EnvironmentViewModel();
-            TemplateEnvironments = new ObservableCollection<EnvironmentViewModel>();
-            CurrentTemplate = new EnvironmentViewModel(){Name = "None"};
-            TemplateEnvironments.Add(CurrentTemplate);
-
-            var templates = DataAdapter.GetTemplateEnvironments();
-            foreach (var template in templates)
-            {
-                TemplateEnvironments.Add(template);
-            }
-
             _caretaker = new EnvironmentCaretaker();
+            CurrentTemplate = TemplateEnvironments.FirstOrDefault();
         }
 
-        private EnvironmentViewModel _environment;
-
-        /// <summary>
-        /// Gets the newly-inserted environment and returns it.
-        /// </summary>
-        /// <returns>The newly-inserted <see cref="NewEnvironmentViewModel"/>.</returns>
-        public EnvironmentViewModel GetInsertedEnvironment()
-        {
-            Environment = DataAdapter.GetEnvironmentByName(EnvironmentName);
-            return Environment;
-        }
-        
-
-        /// <summary>
-        /// Converts the new <see cref="EnvironmentViewModel"/> to a <see cref="Environment"/> entity and saves it to
-        /// the datastore.
-        /// </summary>
-        /// <returns>The newly-saved environment.</returns>
-        public EnvironmentViewModel SaveEnvironment()
-        {
-            return DataAdapter.InsertEnvironment(Environment);
-        }
-
-        public ObservableCollection<EnvironmentViewModel> TemplateEnvironments
-        {
-            get;
-        }
+        public ObservableCollection<EnvironmentViewModel> TemplateEnvironments => _newEnvironmentService.TemplateEnvironments;
 
         /// <summary>
         /// Determines if the save button is enabled.
@@ -69,35 +36,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        /// <summary>
-        /// The name of the new environment.
-        /// </summary>
-        public string EnvironmentName
-        {
-            get => Environment.Name;
-            set
-            {
-                Environment.Name = value;
-                OnPropertyChanged(nameof(EnvironmentName));
-                OnPropertyChanged(nameof(IsSaveButtonEnabled));
-            }
-        }
-
-        /// <summary>
-        /// The new environment to insert.
-        /// </summary>
-        public EnvironmentViewModel Environment
-        {
-            get => _environment;
-            set
-            {
-                _environment = value;
-                OnPropertyChanged(nameof(Environment));
-                OnPropertyChanged(nameof(IsSaveButtonEnabled));
-                OnPropertyChanged(nameof(EnvironmentName));
-            }
-        }
-
         private EnvironmentViewModel _currentTemplate;
         private EnvironmentViewModel _previousTemplate;
 
@@ -108,7 +46,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _previousTemplate = _currentTemplate;
                 _currentTemplate = value;
-                OnPropertyChanged(nameof(CurrentTemplate));
+                ChangeTemplate();
+                OnPropertyChanged();
             }
         }
 
@@ -122,9 +61,22 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 var environment = new EnvironmentViewModel();
                 environment.Name = EnvironmentName;
+                foreach (var variable in Environment.EnvironmentVariables)
+                {
+                    environment.EnvironmentVariables.Add(variable);
+                }
                 foreach (var environmentVariable in CurrentTemplate.EnvironmentVariables)
                 {
-                    environment.EnvironmentVariables.Add(new EnvironmentVariableViewModel(){Name = environmentVariable.Name, Value = environmentVariable.Value, Environment = Environment});
+                    var variable = environment.EnvironmentVariables.FirstOrDefault(v => v.Name == environmentVariable.Name);
+                    if (variable != null)
+                    {
+                        variable.Value = environmentVariable.Value;
+                    }
+                    else
+                    {
+                        environment.EnvironmentVariables.Add(new EnvironmentVariableViewModel(){Name = environmentVariable.Name, Value = environmentVariable.Value, Environment = Environment});
+                    }
+                    
                 }
 
                 Environment = environment;

@@ -1,13 +1,11 @@
 using System.Collections.Generic;
 using ChamiUI.BusinessLayer.Adapters;
-using ChamiUI.BusinessLayer.Factories;
-using ChamiUI.Controls;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
-using System.Windows.Controls;
+using System.Windows;
 using ChamiUI.BusinessLayer.Converters;
-using ChamiUI.Localization;
+using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.PresentationLayer.Factories;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -21,14 +19,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Constructs a new <see cref="SettingsWindowViewModel"/> object and initializes its <see cref="Settings"/>
         /// property and its data adapters.
         /// </summary>
-        public SettingsWindowViewModel()
+        public SettingsWindowViewModel(SettingsDataAdapter settingsDataAdapter, WatchedApplicationDataAdapter watchedApplicationDataAdapter, EnvironmentHealthChecker healthChecker)
         {
-            var connectionString = App.GetConnectionString();
-            _dataAdapter = new SettingsDataAdapter(connectionString);
-            _watchedApplicationDataAdapter = new WatchedApplicationDataAdapter(connectionString);
-            var languageDataAdapter = new ApplicationLanguageDataAdapter(connectionString);
-            Settings = SettingsViewModelFactory.GetSettings(_dataAdapter, _watchedApplicationDataAdapter,
-                languageDataAdapter);
+            _dataAdapter = settingsDataAdapter;
+            _watchedApplicationDataAdapter = watchedApplicationDataAdapter;
+            _healthChecker = healthChecker;
             SettingsCategories = new ObservableCollection<GenericLabelViewModel>();
             Settings.ConsoleAppearanceSettings =
                 SettingsCategoriesFactory.GetConsoleAppearanceCategory(Settings);
@@ -48,8 +43,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
             Settings.HealthCheckSettings = SettingsCategoriesFactory.GetHealthCheckSettingCategory(Settings);
             SettingsCategories.Add(Settings.HealthCheckSettings);
 
+            Settings.CategoriesSettings = SettingsCategoriesFactory.GetCategoriesSettingsViewModel(Settings);
+            SettingsCategories.Add(Settings.CategoriesSettings);
+
             CurrentSection = SettingsCategories.FirstOrDefault();
         }
+
+        private EnvironmentHealthChecker _healthChecker;
 
         /// <summary>
         /// Saves the changes to the settings to the datastore.
@@ -57,6 +57,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void SaveSettings()
         {
             _dataAdapter.SaveSettings(Settings);
+            
             var savedVariables = _dataAdapter.SaveBlacklistedVariableListAsync(Settings.SafeVariableSettings.ForbiddenVariables).GetAwaiter()
                 .GetResult();
             
@@ -79,6 +80,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             foreach (var columnInfoViewModel in columnInfosToUpdate)
             {
                 Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfoViewModel));
+            }
+
+            if (!Settings.HealthCheckSettings.IsEnabled)
+            {
+                _healthChecker.DisableCheck();
             }
         }
 
@@ -108,32 +114,19 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 Task<EnvironmentVariableBlacklistViewModel> task = _dataAdapter.SaveBlacklistedVariableAsync(variable);
                 tasks.Add(task);
-                task.ContinueWith(async v =>
-                {
-                    var awaitedVariable = await v;
-                    output.Add(awaitedVariable);
-                });
+
+                await Task.WhenAll(tasks);
             }
 
-            await Task.WhenAll(tasks);
+            output.AddRange(tasks.Select(task => task.Result));
         }
 
         private readonly SettingsDataAdapter _dataAdapter;
         private readonly WatchedApplicationDataAdapter _watchedApplicationDataAdapter;
 
-        private SettingsViewModel _settingsViewModel;
-
         /// <summary>
         /// The entire application settings.
         /// </summary>
-        public SettingsViewModel Settings
-        {
-            get => _settingsViewModel;
-            set
-            {
-                _settingsViewModel = value;
-                OnPropertyChanged(nameof(Settings));
-            }
-        }
+        public SettingsViewModel Settings => (Application.Current as App)?.Settings;
     }
 }

@@ -31,85 +31,94 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <Label Grid.Row="0" Grid.Column="0">Categories</Label>
         <Separator Grid.Row="1" Grid.Column="0"></Separator>
-        
+
         <ListView
             x:Name="CategoriesTree"
             Grid.Row="2"
             Grid.Column="0"
             ItemsSource="{Binding SettingsCategories}"
             SelectedItem="{Binding CurrentSection}"
-            SelectionMode="Single"
-           >
+            SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <DockPanel ToolTip="{Binding Description}">
-                        <mah:PackIconFontAwesome Width="24" 
-                                                 Height="24" 
-                                                 Kind="{Binding IconPath}"></mah:PackIconFontAwesome>
-                        <TextBlock VerticalAlignment="Center" 
-                                   Margin="3, 0, 0, 0" 
-                                   Text="{Binding DisplayName}"></TextBlock>
+                        <mah:PackIconFontAwesome Width="24"
+                                                 Height="24"
+                                                 Kind="{Binding IconPath}">
+                        </mah:PackIconFontAwesome>
+                        <TextBlock VerticalAlignment="Center"
+                                   Margin="3, 0, 0, 0"
+                                   Text="{Binding DisplayName}">
+                        </TextBlock>
                     </DockPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <GridSplitter Grid.Row="2" Grid.Column="1" Width="2" 
-                      ResizeBehavior="PreviousAndNext" 
+        <GridSplitter Grid.Row="2" Grid.Column="1" Width="2"
+                      ResizeBehavior="PreviousAndNext"
                       ShowsPreview="True"
                       ResizeDirection="Columns">
         </GridSplitter>
-        <UserControl
-            x:Name="SectionViewport"
-            Grid.Row="2"
-            Grid.Column="2"
-            Content="{Binding CurrentSection}"
-            Margin="6"
-            >
-            <UserControl.ContentTemplateSelector>
-                <dataTemplateSelectors:SettingsWindowDataTemplateSelector>
-                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
-                        <DataTemplate>
-                            <controls:LanguageSelectorControl />
-                        </DataTemplate>
-                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
-                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
-                        <DataTemplate>
-                            <controls:LoggingSettingsEditor></controls:LoggingSettingsEditor>
-                        </DataTemplate>
-                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
-                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
-                        <DataTemplate>
-                            <controls:ConsoleAppearanceEditor />
-                        </DataTemplate>
-                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
-                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
-                        <DataTemplate>
-                            <controls:MinimizationBehaviourControl/>
-                        </DataTemplate>
-                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
-                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
-                        <DataTemplate>
-                            <controls:ApplicationDetectorControl/>
-                        </DataTemplate>
-                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
-                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
-                        <DataTemplate>
-                            <controls:SafeVariableEditor/>
-                        </DataTemplate>
-                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
-                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
-                        <DataTemplate>
-                            <controls:HealthCheckControl/>
-                        </DataTemplate>
-                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
-                </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
+        <ScrollViewer Grid.Row="2"
+                      Grid.Column="2"
+                      Margin="6"
+                      VerticalScrollBarVisibility="Auto">
+            <UserControl
+                x:Name="SectionViewport"
+
+                Content="{Binding CurrentSection}">
+                <UserControl.ContentTemplateSelector>
+                    <dataTemplateSelectors:SettingsWindowDataTemplateSelector>
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
+                            <DataTemplate>
+                                <controls:LanguageSelectorControl />
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LanguagesDataTemplate>
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
+                            <DataTemplate>
+                                <controls:LoggingSettingsEditor></controls:LoggingSettingsEditor>
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.LoggingDataTemplate>
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
+                            <DataTemplate>
+                                <controls:ConsoleAppearanceEditor />
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.ConsoleAppearanceDataTemplate>
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
+                            <DataTemplate>
+                                <controls:MinimizationBehaviourControl />
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.MinimizationBehaviourDataTemplate>
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
+                            <DataTemplate>
+                                <controls:ApplicationDetectorControl />
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.WatchedApplicationsDataTemplate>
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
+                            <DataTemplate>
+                                <controls:SafeVariableEditor/>
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.SafeVariableDataTemplate>
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
+                            <DataTemplate>
+                                <controls:HealthCheckControl />
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.HealthCheckDataTemplate>
+                        
+                        <dataTemplateSelectors:SettingsWindowDataTemplateSelector.CategoriesDataTemplate>
+                            <DataTemplate>
+                                <!--TODO create control!-->
+                            </DataTemplate>
+                        </dataTemplateSelectors:SettingsWindowDataTemplateSelector.CategoriesDataTemplate>
+                    </dataTemplateSelectors:SettingsWindowDataTemplateSelector>
 
 
-            </UserControl.ContentTemplateSelector>
-        </UserControl>
+                </UserControl.ContentTemplateSelector>
+            </UserControl>
+        </ScrollViewer>
         <StackPanel
             Grid.Row="3"
             Grid.Column="0"

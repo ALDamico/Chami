@@ -1070,6 +1070,43 @@ Tutte le modifiche non salvate andranno perse.</value>
     <value>Se continui, imposterai tutte le variabili di ambiente chiamate "{0}" a un valore vuoto.
 Sei sicuro di voler procedere?</value>
   </data>
+  <data name="AnExceptionOccurredMessage_Text" xml:space="preserve">
+    <value>Si è verificato un errore inatteso.
+Fai clic sul pulsante Ok se vuoi ignorare l'errore e continuare a usare Chami, ma le prestazioni e la stabilità potrebbero essere compromesse.
+In alternative, puoi chiudere l'applicazione e rilanciarla.
+Infine, se ritieni che questo sia un bug da risolvere, puoi aprire un issue su GitHub.</value>
+  </data>
+  <data name="AdvancedAppearanceOptionsExpander_Header" xml:space="preserve">
+    <value>Opzioni avanzate</value>
+  </data>
+  <data name="AdvancedAppearanceOptionsExpander_ToolTip" xml:space="preserve">
+    <value>Mostra le opzioni di visualizzazione avanzate per la console.
+Molti utenti non hanno bisogno di modificare queste impostazioni.</value>
+  </data>
+  <data name="SaveFontSizeOnApplicationExitLabel_Content" xml:space="preserve">
+    <value>Salva le modifiche alle dimensioni del carattere all'uscita</value>
+  </data>
+  <data name="SaveFontSizeOnApplicationExitLabel_ToolTip" xml:space="preserve">
+    <value>Se abilitato, l'applicazione salverà le modifiche alle dimensioni del carattere applicate con il gesto Ctrl + Rotellina del mouse all'uscita e le ripristinerà all'avvio successivo.</value>
+  </data>
+  <data name="EnableFontResizingWithGestureLabel_Content" xml:space="preserve">
+    <value>Abilita il ridimensionamento del carattere con Ctrl + Rotellina del mouse</value>
+  </data>
+  <data name="EnableFontResizingWithGestureLabel_ToolTip" xml:space="preserve">
+    <value>Consente di modificare la dimensione del carattere della console tenendo preuto Ctrl e scorrendo con la rotellina verso l'alto o verso il basso.</value>
+  </data>
+  <data name="MinFontSizeLabel_Content" xml:space="preserve">
+    <value>Dim. carattere min</value>
+  </data>
+  <data name="MinFontSizeLabel_ToolTip" xml:space="preserve">
+    <value>Dim. carattere min</value>
+  </data>
+  <data name="MaxFontSizeLabel_Content" xml:space="preserve">
+    <value>Dim. carattere max</value>
+  </data>
+  <data name="MaxFontSizeLabel_ToolTip" xml:space="preserve">
+    <value>Dim. carattere max</value>
+  </data>
   <data name="ResetEnvironmentToOriginalState" xml:space="preserve">
     <value>Reimpostazione variabili...</value>
   </data>
@@ -1090,5 +1127,65 @@ Sei sicuro di voler procedere?</value>
   </data>
   <data name="KnownProcessTerminated" xml:space="preserve">
     <value>Il processo {0} (PID {1}) è stato terminato.</value>
+  </data>
+  <data name="ChangeStepLabel_Content" xml:space="preserve">
+    <value>Ridimensiona di</value>
+  </data>
+  <data name="ExceptionWindowNameLabel_Text" xml:space="preserve">
+    <value>Nome eccezione:</value>
+  </data>
+  <data name="ExceptionWindowMessageLabel_Text" xml:space="preserve">
+    <value>Messaggio</value>
+  </data>
+  <data name="ExceptionWindowSourceLabel_Text" xml:space="preserve">
+    <value>Origine:</value>
+  </data>
+  <data name="ExceptionWindowStackTraceLabel_Text" xml:space="preserve">
+    <value>Stack trace:</value>
+  </data>
+  <data name="DismissButton_Content" xml:space="preserve">
+    <value>Ignora</value>
+  </data>
+  <data name="DismissButton_ToolTip" xml:space="preserve">
+    <value>Ignora questo avviso e continua a usare l'applicazione.</value>
+  </data>
+  <data name="TerminateApplicationButton_Content" xml:space="preserve">
+    <value>Esci</value>
+  </data>
+  <data name="TerminateApplicationButton_ToolTip" xml:space="preserve">
+    <value>Esce immediatamente dall'applicazione.</value>
+  </data>
+  <data name="TerminateAndReopenApplicationButton_Header" xml:space="preserve">
+    <value>Esci e riavvia</value>
+  </data>
+  <data name="TerminateAndReopenApplicationButton_ToolTip" xml:space="preserve">
+    <value>Esci dall'applicazione e tenta di riavviarla per risolvere il problema.</value>
+  </data>
+  <data name="SaveExceptionDetailsButton_Content" xml:space="preserve">
+    <value>Esporta dettagli</value>
+  </data>
+  <data name="SaveExceptionDetailsButton_ToolTip" xml:space="preserve">
+    <value>Esporta i dettagli di questo errore se vuoi inviarli allo sviluppatore.</value>
+  </data>
+  <data name="ExceptionWindowTitle" xml:space="preserve">
+    <value>Errore inatteso</value>
+  </data>
+  <data name="OperationInProgressCantCloseWindowMessage" xml:space="preserve">
+    <value>Un'operazione in corso impedisce alla finestra di chiudersi. Attendere il completamento e riprovare.</value>
+  </data>
+  <data name="OperationInProgressCantCloseWindowCaption" xml:space="preserve">
+    <value>Impossibile chiudere la finestra</value>
+  </data>
+  <data name="CategoriesCategory" xml:space="preserve">
+    <value>Categorie</value>
+  </data>
+  <data name="CategoriesCategoryDescription" xml:space="preserve">
+    <value>Gestisci i tag degli ambienti.</value>
+  </data>
+  <data name="NameInvalidToolTip" xml:space="preserve">
+    <value>Questo nome non è valido.</value>
+  </data>
+  <data name="UnableToOpenAsFolderCaption" xml:space="preserve">
+    <value>Impossibile aprire la cartella</value>
   </data>
 </root>

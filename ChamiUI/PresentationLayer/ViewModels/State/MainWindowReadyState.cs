@@ -1,8 +1,11 @@
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using Chami.CmdExecutor.Progress;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Constants;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.Windows.MainWindow;
 using Serilog;
 
@@ -26,10 +29,11 @@ public class MainWindowReadyState : IMainWindowState
     public bool IsEditable => true;
     public async Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow)
     {
-        mainWindow.ResetProgressBar();
-        mainWindow.FocusConsoleTab();
+        mainWindowViewModel.ProgressBarViewModel.Reset();
+        mainWindowViewModel.ConsoleMessages = "";
+        mainWindowViewModel.SelectedTabIndex = MainWindowConstants.ConsoleTabItem;
         var previousEnvironment = mainWindowViewModel.ActiveEnvironment;
-        Action<CmdExecutorProgress> progress = mainWindow.HandleProgressReport;
+        Action<CmdExecutorProgress> progress = mainWindowViewModel.HandleProgressReport;
         try
         {
             await mainWindowViewModel.ChangeEnvironmentAsync(progress);
@@ -44,7 +48,7 @@ public class MainWindowReadyState : IMainWindowState
             mainWindowViewModel.StateManager.ChangeState(new MainWindowRevertingEnvironmentState(previousEnvironment?.Name));
             Log.Logger.Information("{Message}", ex.Message);
             Log.Logger.Information("{StackTrace}", ex.StackTrace);
-            mainWindow.PrintTaskCancelledMessageToConsole();
+            mainWindowViewModel.PrintTaskCancelledMessageToConsole();
             mainWindowViewModel.SelectedEnvironment = previousEnvironment;
             if (previousEnvironment != null)
             {
@@ -55,5 +59,10 @@ public class MainWindowReadyState : IMainWindowState
                 await mainWindowViewModel.ResetEnvironmentAsync(progress, CancellationToken.None);
             }
         }
+    }
+
+    public async Task CloseMainWindow(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow, CancelEventArgs cancelEventArgs)
+    {
+        await WindowUtils.CloseWindow(mainWindowViewModel, mainWindow);
     }
 }

@@ -21,6 +21,17 @@ namespace ChamiUI.PresentationLayer.ViewModels
         }
 
         private bool _isActive;
+        private bool _isSelected;
+
+        public bool IsSelected
+        {
+            get => _isSelected;
+            set
+            {
+                _isSelected = value;
+                OnPropertyChanged();
+            }
+        }
 
         /// <summary>
         /// Represents if this viewmodel is the currently active environment.
@@ -176,6 +187,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public override int GetHashCode()
         {
             return HashCode.Combine(Id, EnvironmentType);
+        }
+
+        private GenericLabelViewModel _category;
+
+        public GenericLabelViewModel Category
+        {
+            get => _category;
+            set
+            {
+                _category = value;
+                OnPropertyChanged();
+            }
         }
     }
 }

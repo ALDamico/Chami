@@ -1,3 +1,4 @@
+using System;
 using System.Data.SQLite;
 using System.Threading.Tasks;
 
@@ -12,6 +13,7 @@ namespace Chami.Db.Repositories
         /// The connection string for the database to connect to.
         /// </summary>
         protected string ConnectionString { get; set; }
+
         /// <summary>
         /// Creates a new database connection and opens it.
         /// </summary>
@@ -28,9 +30,10 @@ namespace Chami.Db.Repositories
         /// Creates a new database connection asynchronously.
         /// </summary>
         /// <returns>The newly-created connection.</returns>
+        [Obsolete("This async overload is obsolete", true)]
         protected async Task<SQLiteConnection> GetConnectionAsync()
         {
-            return await new Task<SQLiteConnection>(() => new SQLiteConnection(ConnectionString));
+            throw new NotSupportedException("Not supported");
         }
     }
 }

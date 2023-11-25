@@ -159,6 +159,26 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Advanced options.
+        /// </summary>
+        public static string AdvancedAppearanceOptionsExpander_Header {
+            get {
+                return ResourceManager.GetString("AdvancedAppearanceOptionsExpander_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Show advanced appearance options for the console.
+        ///
+        ///Most people don&apos;t need to change these..
+        /// </summary>
+        public static string AdvancedAppearanceOptionsExpander_ToolTip {
+            get {
+                return ResourceManager.GetString("AdvancedAppearanceOptionsExpander_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorting.
         /// </summary>
         public static string AdvancedSortAndFilterOptionsExpander_Header {
@@ -209,6 +229,18 @@ namespace ChamiUI.Localization {
         public static string AllSupportedFilesFileDialogDescription {
             get {
                 return ResourceManager.GetString("AllSupportedFilesFileDialogDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unforeseen program error occurred. 
+        ///Click the Ok button if you want to ignore the error and continue using Chami, but note that its stability and performance could have been compromised. 
+        ///Alternatively, you can close the application and restart the application.
+        ///Lastly, if you think this is a bug that needs fixing, feel free to open an issue on GitHub..
+        /// </summary>
+        public static string AnExceptionOccurredMessage_Text {
+            get {
+                return ResourceManager.GetString("AnExceptionOccurredMessage_Text", resourceCulture);
             }
         }
         
@@ -330,6 +362,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Categories.
+        /// </summary>
+        public static string CategoriesCategory {
+            get {
+                return ResourceManager.GetString("CategoriesCategory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Manage environment tags..
+        /// </summary>
+        public static string CategoriesCategoryDescription {
+            get {
+                return ResourceManager.GetString("CategoriesCategoryDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to About Chami....
         /// </summary>
         public static string ChamiAboutBox_Title {
@@ -353,6 +403,15 @@ namespace ChamiUI.Localization {
         public static string ChamiFindWindow_Title {
             get {
                 return ResourceManager.GetString("ChamiFindWindow_Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Change step.
+        /// </summary>
+        public static string ChangeStepLabel_Content {
+            get {
+                return ResourceManager.GetString("ChangeStepLabel_Content", resourceCulture);
             }
         }
         
@@ -728,6 +787,24 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dismiss.
+        /// </summary>
+        public static string DismissButton_Content {
+            get {
+                return ResourceManager.GetString("DismissButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dismiss this warning and continue using the application..
+        /// </summary>
+        public static string DismissButton_ToolTip {
+            get {
+                return ResourceManager.GetString("DismissButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to dotEnv files.
         /// </summary>
         public static string DotEnvFileDialogDescription {
@@ -751,6 +828,24 @@ namespace ChamiUI.Localization {
         public static string EditEnvironmentMenuItem_Header {
             get {
                 return ResourceManager.GetString("EditEnvironmentMenuItem_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Enable font resizing with Ctrl + Scroll Wheel.
+        /// </summary>
+        public static string EnableFontResizingWithGestureLabel_Content {
+            get {
+                return ResourceManager.GetString("EnableFontResizingWithGestureLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Allows you to change the font size of the console by holding Ctrl and moving the mouse scroll wheel up or down..
+        /// </summary>
+        public static string EnableFontResizingWithGestureLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("EnableFontResizingWithGestureLabel_ToolTip", resourceCulture);
             }
         }
         
@@ -1121,6 +1216,51 @@ namespace ChamiUI.Localization {
         public static string ExampleTextTextBox_Text {
             get {
                 return ResourceManager.GetString("ExampleTextTextBox_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Message:.
+        /// </summary>
+        public static string ExceptionWindowMessageLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowMessageLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exception name:.
+        /// </summary>
+        public static string ExceptionWindowNameLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowNameLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Source:.
+        /// </summary>
+        public static string ExceptionWindowSourceLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowSourceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack trace:.
+        /// </summary>
+        public static string ExceptionWindowStackTraceLabel_Text {
+            get {
+                return ResourceManager.GetString("ExceptionWindowStackTraceLabel_Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error.
+        /// </summary>
+        public static string ExceptionWindowTitle {
+            get {
+                return ResourceManager.GetString("ExceptionWindowTitle", resourceCulture);
             }
         }
         
@@ -1973,6 +2113,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Max font size.
+        /// </summary>
+        public static string MaxFontSizeLabel_Content {
+            get {
+                return ResourceManager.GetString("MaxFontSizeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Max font size.
+        /// </summary>
+        public static string MaxFontSizeLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("MaxFontSizeLabel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min font size.
+        /// </summary>
+        public static string MinFontSizeLabel_Content {
+            get {
+                return ResourceManager.GetString("MinFontSizeLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Min font size.
+        /// </summary>
+        public static string MinFontSizeLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("MinFontSizeLabel_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to When minimized:.
         /// </summary>
         public static string MinimizationBehaviourControlLabel_Content {
@@ -2032,6 +2208,15 @@ namespace ChamiUI.Localization {
         public static string MoveColumnUpButton_ToolTip {
             get {
                 return ResourceManager.GetString("MoveColumnUpButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This name is not valid..
+        /// </summary>
+        public static string NameInvalidToolTip {
+            get {
+                return ResourceManager.GetString("NameInvalidToolTip", resourceCulture);
             }
         }
         
@@ -2242,6 +2427,24 @@ namespace ChamiUI.Localization {
         public static string OperationCanceledRevertMessage {
             get {
                 return ResourceManager.GetString("OperationCanceledRevertMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Can&apos;t close the window.
+        /// </summary>
+        public static string OperationInProgressCantCloseWindowCaption {
+            get {
+                return ResourceManager.GetString("OperationInProgressCantCloseWindowCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to A pending operation is preventing the application window from closing. Wait for it to finish and try again..
+        /// </summary>
+        public static string OperationInProgressCantCloseWindowMessage {
+            get {
+                return ResourceManager.GetString("OperationInProgressCantCloseWindowMessage", resourceCulture);
             }
         }
         
@@ -2498,6 +2701,42 @@ namespace ChamiUI.Localization {
         public static string SaveEnvironmentUnknownErrorMessage {
             get {
                 return ResourceManager.GetString("SaveEnvironmentUnknownErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export details.
+        /// </summary>
+        public static string SaveExceptionDetailsButton_Content {
+            get {
+                return ResourceManager.GetString("SaveExceptionDetailsButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Export the details of this error if you want to forward them to the developer..
+        /// </summary>
+        public static string SaveExceptionDetailsButton_ToolTip {
+            get {
+                return ResourceManager.GetString("SaveExceptionDetailsButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save font size changes on application exit.
+        /// </summary>
+        public static string SaveFontSizeOnApplicationExitLabel_Content {
+            get {
+                return ResourceManager.GetString("SaveFontSizeOnApplicationExitLabel_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If enabled, the application will save changes to the font size applied through the Ctrl + Scroll Wheel gesture on exit and restore it at the following start..
+        /// </summary>
+        public static string SaveFontSizeOnApplicationExitLabel_ToolTip {
+            get {
+                return ResourceManager.GetString("SaveFontSizeOnApplicationExitLabel_ToolTip", resourceCulture);
             }
         }
         
@@ -2781,6 +3020,42 @@ namespace ChamiUI.Localization {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Quit and restart.
+        /// </summary>
+        public static string TerminateAndReopenApplicationButton_Header {
+            get {
+                return ResourceManager.GetString("TerminateAndReopenApplicationButton_Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit the application and attempt to restart it in order to fix its behaviour..
+        /// </summary>
+        public static string TerminateAndReopenApplicationButton_ToolTip {
+            get {
+                return ResourceManager.GetString("TerminateAndReopenApplicationButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Quit.
+        /// </summary>
+        public static string TerminateApplicationButton_Content {
+            get {
+                return ResourceManager.GetString("TerminateApplicationButton_Content", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Exit the application immediately..
+        /// </summary>
+        public static string TerminateApplicationButton_ToolTip {
+            get {
+                return ResourceManager.GetString("TerminateApplicationButton_ToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Terminate.
         /// </summary>
         public static string TerminateMenuItem_Header {
@@ -2813,6 +3088,15 @@ namespace ChamiUI.Localization {
         public static string UnableToInsertEnvironmentMessageBoxText {
             get {
                 return ResourceManager.GetString("UnableToInsertEnvironmentMessageBoxText", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot open as folder.
+        /// </summary>
+        public static string UnableToOpenAsFolderCaption {
+            get {
+                return ResourceManager.GetString("UnableToOpenAsFolderCaption", resourceCulture);
             }
         }
         

@@ -1,5 +1,7 @@
+using System.ComponentModel;
 using System.Threading.Tasks;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.Windows.MainWindow;
 
 namespace ChamiUI.PresentationLayer.ViewModels.State;
@@ -23,5 +25,10 @@ public class MainWindowSavingDataState : IMainWindowState
     public async Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow)
     {
         await Task.CompletedTask;
+    }
+
+    public async Task CloseMainWindow(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow, CancelEventArgs cancelEventArgs)
+    {
+        await WindowUtils.PreventCloseWindow(mainWindowViewModel, mainWindow, cancelEventArgs);
     }
 }

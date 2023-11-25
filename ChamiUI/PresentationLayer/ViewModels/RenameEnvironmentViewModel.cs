@@ -1,4 +1,9 @@
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
+using AsyncAwaitBestPractices.MVVM;
+using ChamiUI.BusinessLayer.Services;
+using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
 {
@@ -8,21 +13,27 @@ namespace ChamiUI.PresentationLayer.ViewModels
     public class RenameEnvironmentViewModel : ViewModelBase
     {
         /// <summary>
-        /// Default constructor that does nothing.
+        /// Constructs a new <see cref="RenameEnvironmentViewModel"/> object
         /// </summary>
-        public RenameEnvironmentViewModel()
+        /// <param name="renameEnvironmentService">The underlying service to this viewmodel.</param>
+        public RenameEnvironmentViewModel(RenameEnvironmentService renameEnvironmentService) : base()
         {
-            
+            _renameEnvironmentService = renameEnvironmentService;
+            RenameCommand = new AsyncCommand<Window>(ExecuteRename, CanExecuteRename);
         }
 
-        /// <summary>
-        /// Constructs a new <see cref="RenameEnvironmentViewModel"/> object and sets its <see cref="Name"/> property.
-        /// </summary>
-        /// <param name="initialName"></param>
-        public RenameEnvironmentViewModel(string initialName)
+        private bool CanExecuteRename(object arg)
         {
-            Name = initialName;
+            return IsNameValid;
         }
+
+        private async Task ExecuteRename(Window arg)
+        {
+            await _renameEnvironmentService.RenameEnvironment(Name);
+            await CloseCommand.ExecuteAsync(arg);
+        }
+
+        private readonly RenameEnvironmentService _renameEnvironmentService;
         private string _name;
 
         /// <summary>
@@ -34,8 +45,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _name = value;
-                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged();
                 OnPropertyChanged(nameof(IsNameValid));
+                OnPropertyChanged(nameof(NameInvalidToolTip));
+                RenameCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        public string NameInvalidToolTip
+        {
+            get
+            {
+                if (!IsNameValid)
+                {
+                    return ChamiUIStrings.NameInvalidToolTip;
+                }
+
+                return null;
             }
         }
         
@@ -43,8 +69,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// True if the name is valid, otherwise false.
         /// </summary>
         public bool IsNameValid => !string.IsNullOrWhiteSpace(Name);
-        public static readonly RoutedCommand RenameEnvironmentCommand = new RoutedCommand();
-        public static readonly RoutedCommand CancelRenamingCommand = new RoutedCommand();
+        public IAsyncCommand<Window> RenameCommand { get; }
 
     }
 }

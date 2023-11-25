@@ -6,10 +6,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
 {
     public class SafeVariableViewModel : GenericLabelViewModel
     {
-        public SafeVariableViewModel()
+        public SafeVariableViewModel(EnvironmentDataAdapter environmentDataAdapter)
         {
             ForbiddenVariables = new ObservableCollection<EnvironmentVariableBlacklistViewModel>();
-            _environmentDataAdapter = new EnvironmentDataAdapter(App.GetConnectionString());
+            _environmentDataAdapter = environmentDataAdapter;
         }
 
         public async Task LoadForbiddenVariables()
@@ -37,18 +37,6 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 _enableSafeVars = value;
                 OnPropertyChanged(nameof(EnableSafeVars));
-            }
-        }
-
-        private bool _isBusy;
-
-        public bool IsBusy
-        {
-            get => _isBusy;
-            private set
-            {
-                _isBusy = value;
-                OnPropertyChanged(nameof(IsBusy));
             }
         }
     }

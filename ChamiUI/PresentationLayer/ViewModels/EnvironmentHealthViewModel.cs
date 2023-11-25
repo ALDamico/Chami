@@ -108,6 +108,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         {
             var section = appSettings.HealthCheckSettings;
             WindowColumns.Clear();
+            ColumnInfoViewModels.Clear();
 
             var columns = section.ColumnInfos;
             columns.Sort(new ColumnInfoViewModelComparer());

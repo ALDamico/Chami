@@ -1,6 +1,3 @@
-using System;
-using System.Threading.Tasks;
-using ChamiUI.BusinessLayer.Adapters;
 using ChamiUI.Localization;
 
 namespace ChamiUI.PresentationLayer.ViewModels
@@ -12,6 +9,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private bool _createIfNotExistsEnabled;
         private bool _environmentListBoxEnabled;
 
+        /// <summary>
+        /// Determines if the listbox containing the environments is enabled or not.
+        /// </summary>
         public bool EnvironmentListBoxEnabled
         {
             get => _environmentListBoxEnabled;
@@ -22,6 +22,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// Determines if the user can tick the "Create variable if not existing" checkbox.
+        /// </summary>
         public bool CreateIfNotExistsEnabled
         {
             get => _createIfNotExistsEnabled;
@@ -33,6 +36,10 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// If true, the application will create the selected variable(s) if they don't exist in the environments to
+        /// update.
+        /// </summary>
         public bool CreateIfNotExists
         {
             get => _createIfNotExists;
@@ -43,18 +50,24 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        /// <summary>
+        /// The name of the variable the user wishes to update.
+        /// </summary>
         public string Name
         {
             get => _name;
             set
             {
                 _name = value;
-                OnPropertyChanged(nameof(Name));
+                OnPropertyChanged();
             }
         }
 
         private static MassUpdateStrategyViewModel _defaultUpdateStrategy;
 
+        /// <summary>
+        /// The default strategy to use when updating the environments.
+        /// </summary>
         public static MassUpdateStrategyViewModel DefaultUpdateStrategy
         {
             get

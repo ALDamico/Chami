@@ -13,17 +13,15 @@
         mc:Ignorable="d"
         x:Name="ChamiExportWindow"
         Title="{lex:Loc}" Height="450" Width="400">
-    <Window.CommandBindings>
-        <CommandBinding x:Name="CancelCommandBinding"
-                        Command="Close"
-                        CanExecute="CancelCommandBinding_OnCanExecute"
-                        Executed="CancelCommandBinding_OnExecuted"
-                        >
-        </CommandBinding>
-    </Window.CommandBindings>
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}"></Setter>
+        </Style>
+    </Window.Resources>
     <Window.InputBindings>
         <KeyBinding Key="Escape" 
-                    Command="Close"></KeyBinding>
+                    Command="{Binding CloseCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"></KeyBinding>
     </Window.InputBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -62,8 +60,8 @@
                   Grid.Column="0" 
                   ItemsSource="{Binding Environments}" 
                   IsEnabled="{Binding ExportSelected}"
+                  SelectedIndex="{Binding SelectedIndex}"
                   x:Name="SelectedEnvironmentListView"
-                  SelectionChanged="SelectedEnvironmentListView_OnSelectionChanged"
                   >
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -83,12 +81,13 @@
                     MaxWidth="65" Margin="10, 0" 
                     Content="{lex:Loc}"
                     IsEnabled="{Binding ExportButtonEnabled}"
-                    Click="ExportDataButton_OnClick"
+                    Command="{Binding ExportCommand}"
                     />
             <Button x:Name="ExportWindowCancelButton"
                     MaxWidth="65" Margin="10, 0"
                     Content="{lex:Loc}" 
-                    Command="Close"/>
+                    Command="{Binding CloseCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"/>
         </StackPanel>
     </Grid>
 </Window>

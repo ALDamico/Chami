@@ -9,7 +9,6 @@
              mc:Ignorable="d"
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
-             Loaded="SafeVariableEditor_OnLoaded"
              >
     <Grid>
         <Grid.ColumnDefinitions>

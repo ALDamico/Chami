@@ -1,4 +1,4 @@
-﻿<Window x:Class="ChamiUI.Windows.MainWindow.MainWindow"
+﻿<abstract:ChamiWindow x:Class="ChamiUI.Windows.MainWindow.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -16,6 +16,10 @@
         xmlns:validators="clr-namespace:ChamiUI.BusinessLayer.Validators"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:converters="clr-namespace:ChamiUI.PresentationLayer.Converters"
+        xmlns:gestures="clr-namespace:ChamiUI.PresentationLayer.Gestures"
+        xmlns:behaviours="clr-namespace:ChamiUI.PresentationLayer.Behaviours"
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:abstract="clr-namespace:ChamiUI.Windows.Abstract"
         Title="{Binding WindowTitle}"
         Loaded="MainWindow_OnLoaded"
         WindowStartupLocation="Manual"
@@ -108,7 +112,7 @@
             </MenuItem>
             <MenuItem Header="{lex:Loc}"
                       x:Name="OpenAsFolderMenuItem"
-                      Click="OpenAsFolderMenuItem_OnClick"
+                      Command="{Binding OpenAsFolderCommand}"
                       d:DataContext="{d:DesignInstance viewModels:EnvironmentVariableViewModel}"
                       IsEnabled="{Binding IsFolder}">
             </MenuItem>
@@ -206,6 +210,15 @@
                         CanExecute="DeleteEnvironmentCommandBinding_OnCanExecute"
                         Executed="DeleteEnvironmentCommandBinding_OnExecuted">
         </CommandBinding>
+        <CommandBinding x:Name="IncreaseFontSizeCommandBinding" 
+                        Command="IncreaseFontSize" 
+                        CanExecute="IncreaseFontSizeCommandBinding_OnCanExecute" 
+                        Executed="IncreaseFontSizeCommandBinding_OnExecuted"></CommandBinding>
+        <CommandBinding x:Name="DecreaseFontSizeCommandBinding"
+                        Command="DecreaseFontSize"
+                        CanExecute="DecreaseFontSizeCommandBinding_OnCanExecute"
+                        Executed="DecreaseFontSizeCommandBinding_OnExecuted"
+                        ></CommandBinding>
     </Window.CommandBindings>
     <Grid>
         <Grid.RowDefinitions>
@@ -308,10 +321,10 @@
                 <Separator />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="WebsiteMenuItem"
-                          Click="WebsiteMenuItem_Click" />
+                          Command="{Binding OpenWebsiteCommand}" />
                 <MenuItem Header="{lex:Loc}"
                           x:Name="GithubLinkMenuItem"
-                          Click="GithubLinkMenuItem_OnClick">
+                          Command="{Binding OpenGithubCommand}">
                     <MenuItem.Icon>
                         <svg:SvgViewbox Source="/ChamiUI;component/Assets/Svg/github.svg" />
                     </MenuItem.Icon>
@@ -515,7 +528,7 @@
         <FrameworkElement x:Name="dummyElement" Visibility="Collapsed" />
         <TabControl Grid.Row="5"
                     Grid.Column="0"
-                    x:Name="TabControls">
+                    x:Name="TabControls" SelectedIndex="{Binding SelectedTabIndex}">
             <TabItem x:Name="VariablesTabItem" Header="{lex:Loc}">
                 <DataGrid ItemsSource="{Binding Source={StaticResource EnvironmentVariablesViewSource}, IsAsync=True}"
                           AutoGenerateColumns="False"
@@ -586,7 +599,22 @@
                              HorizontalScrollBarVisibility="Auto"
                              VerticalScrollBarVisibility="Visible"
                              TextWrapping="Wrap"
-                             IsReadOnly="True">
+                             IsReadOnly="True"
+                             behaviours:TextBoxBehaviour.ScrollOnTextChanged="True"
+                             Text="{Binding ConsoleMessages}"
+                             >
+                        <TextBox.InputBindings>
+                            <MouseBinding Command="IncreaseFontSize">
+                                <MouseBinding.Gesture>
+                                    <gestures:ModifierScrollDirectionGesture Modifiers="Control" ScrollDirection="Up"></gestures:ModifierScrollDirectionGesture>
+                                </MouseBinding.Gesture>
+                            </MouseBinding>
+                            <MouseBinding Command="DecreaseFontSize">
+                                <MouseBinding.Gesture>
+                                    <gestures:ModifierScrollDirectionGesture Modifiers="Control" ScrollDirection="Down"></gestures:ModifierScrollDirectionGesture>
+                                </MouseBinding.Gesture>
+                            </MouseBinding>
+                        </TextBox.InputBindings>
                         <TextBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem x:Name="ConsoleCopyMenuItem" Header="{lex:Loc}"
@@ -602,8 +630,16 @@
                                  x:Name="ConsoleProgressBar"
                                  MinHeight="16"
                                  MaxHeight="22"
-                                 Minimum="0"
-                                 Maximum="100" />
+                                 DataContext="{Binding ProgressBarViewModel}"
+                                 Minimum="{Binding Minimum}"
+                                 Maximum="{Binding Maximum}" 
+                                 Value="{Binding Value}" 
+                                 Foreground="{Binding Foreground}"
+                                 >
+                        <b:Interaction.Behaviors>
+                            <behaviours:ProgressBarAnimationBehavior></behaviours:ProgressBarAnimationBehavior>
+                        </b:Interaction.Behaviors>
+                    </ProgressBar>
                 </Grid>
             </TabItem>
         </TabControl>
@@ -656,4 +692,4 @@
             </StatusBarItem>
         </StatusBar>
     </Grid>
-</Window>
+</abstract:ChamiWindow>

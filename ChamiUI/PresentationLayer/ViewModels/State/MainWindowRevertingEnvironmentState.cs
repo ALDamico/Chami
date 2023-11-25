@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel;
 using System.Threading;
 using System.Threading.Tasks;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.Windows.MainWindow;
 using Serilog;
 
@@ -33,5 +35,10 @@ public class MainWindowRevertingEnvironmentState : IMainWindowState
     public async Task ApplyButtonBehaviour(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow)
     {
         await Task.CompletedTask;
+    }
+
+    public async Task CloseMainWindow(MainWindowViewModel mainWindowViewModel, MainWindow mainWindow, CancelEventArgs cancelEventArgs)
+    {
+        await WindowUtils.PreventCloseWindow(mainWindowViewModel, mainWindow, cancelEventArgs);
     }
 }

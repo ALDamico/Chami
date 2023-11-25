@@ -9,23 +9,31 @@ using System.ComponentModel;
 using System.Globalization;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+using AsyncAwaitBestPractices.MVVM;
+using Chami.CmdExecutor.Commands.Common;
 using Chami.CmdExecutor.Progress;
 using Chami.Db.Entities;
-using ChamiUI.BusinessLayer.Commands;
 using ChamiUI.BusinessLayer.Converters;
+using ChamiUI.BusinessLayer.EnvironmentHealth;
 using ChamiUI.BusinessLayer.Exceptions;
+using ChamiUI.BusinessLayer.Services;
 using ChamiUI.Localization;
+using ChamiUI.PresentationLayer.Constants;
 using ChamiUI.PresentationLayer.Converters;
 using ChamiUI.PresentationLayer.Filtering;
 using ChamiUI.PresentationLayer.Minimizing;
+using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.Windows.DetectedApplicationsWindow;
 using Newtonsoft.Json;
-using ChamiUI.PresentationLayer.Utils;
 using ChamiUI.PresentationLayer.ViewModels.State;
+using ChamiUI.Utils;
+using ChamiUI.Windows.EnvironmentHealth;
 using ChamiUI.Windows.MainWindow;
+using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using IShellCommand = Chami.CmdExecutor.IShellCommand;
 
@@ -35,10 +43,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
     {
         private readonly MainWindowStateManager _stateManager;
         public MainWindowStateManager StateManager => _stateManager;
+        private readonly MinimizationService _minimizationService;
+
         /// <summary>
         /// How the window should behave when it's minimized.
         /// </summary>
-        public IMinimizationStrategy MinimizationStrategy => _settings.MinimizationBehaviour.MinimizationStrategy;
+        public IMinimizationStrategy MinimizationStrategy => _minimizationService.MinimizationStrategy;
+        public ProgressBarViewModel ProgressBarViewModel { get; }
 
         /// <summary>
         /// Cancels the execution of the active <see cref="CmdExecutor"/> queue.
@@ -82,26 +93,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        private SettingsViewModel _settings;
-
         /// <summary>
         /// Contains all the settings available to the application.
         /// </summary>
-        public SettingsViewModel Settings
-        {
-            get => _settings;
-            set
-            {
-                _settings = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(MinimizationStrategy));
-            }
-        }
+        public SettingsViewModel Settings => (Application.Current as App)?.Settings;
 
         /// <summary>
         /// Determines if the clear filter button (the big red cross) is enabled or not.
         /// </summary>
-        public bool IsClearFilterButtonEnabled =>  !string.IsNullOrEmpty(FilterStrategy.SearchedText);
+        public bool IsClearFilterButtonEnabled => !string.IsNullOrEmpty(FilterStrategy.SearchedText);
 
         private string _filterText;
 
@@ -121,17 +121,23 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
+        private readonly EnvironmentHealthChecker _healthChecker;
+
         /// <summary>
         /// Constructs a new <see cref="MainWindowViewModel"/> object and initializes its data adapter with the provided
         /// connection string.
         /// </summary>
-        /// <param name="connectionString">The connection string to the Chami datastore.</param>
-        public MainWindowViewModel(string connectionString)
+        /// <param name="environmentDataAdapter">An <see cref="EnvironmentDataAdapter"/> used to perform database operations on environments</param>
+        /// <param name="settingsDataAdapter">A <see cref="SettingsDataAdapter"/> used to manage application settings.</param>
+        /// <param name="healthChecker">The <see cref="EnvironmentHealthChecker"/> component tasked with checking environments' health.</param>
+        public MainWindowViewModel(EnvironmentDataAdapter environmentDataAdapter,
+            SettingsDataAdapter settingsDataAdapter, EnvironmentHealthChecker healthChecker, MinimizationService minimizationService)
         {
-            _dataAdapter = new EnvironmentDataAdapter(connectionString);
-            _settingsDataAdapter = new SettingsDataAdapter(connectionString);
+            _dataAdapter = environmentDataAdapter;
+            _settingsDataAdapter = settingsDataAdapter;
             _stateManager = new MainWindowStateManager();
-            _stateManager.ChangeState(new MainWindowLoadingDataState()); 
+            _stateManager.ChangeState(new MainWindowLoadingDataState());
+            _minimizationService = minimizationService;
             Environments = GetEnvironments();
             Backups = GetBackupEnvironments();
             Templates = GetTemplateEnvironments();
@@ -140,13 +146,77 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 SelectedEnvironment = ActiveEnvironment ?? Environments.First();
             }
 
-            Settings = SettingsUtils.GetAppSettings();
-
             FilterStrategies = new ObservableCollection<IFilterStrategy>();
             InitFilterStrategies();
             IsCaseSensitiveSearch = Settings.MainWindowBehaviourSettings.IsCaseSensitiveSearch;
             _cancellationTokenSource = new CancellationTokenSource();
             StateManager.ChangeState(new MainWindowReadyState());
+            _healthChecker = healthChecker;
+            EnvironmentChanged += _healthChecker.OnEnvironmentChanged;
+            _healthChecker.HealthChecked += HandleCheckedHealth;
+            ProgressBarViewModel = new ProgressBarViewModel()
+            {
+                Minimum = 0,
+                Maximum = 100,
+                Foreground = ResourceUtils.DefaultProgressBarColor,
+                Value = 0
+            };
+
+            OpenWebsiteCommand = new AsyncCommand(OpenWebsiteExecute);
+            OpenGithubCommand = new AsyncCommand(OpenGithubExecute);
+            
+        }
+
+        
+
+        private async Task OpenGithubExecute()
+        {
+            ProcessUtils.OpenLinkInBrowser("https://github.com/ALDamico/Chami");
+            await Task.CompletedTask;
+        }
+
+        private async Task OpenWebsiteExecute()
+        {
+            ProcessUtils.OpenLinkInBrowser("www.lucianodamico.info");
+            await Task.CompletedTask;
+        }
+
+        internal void PrintTaskCancelledMessageToConsole()
+        {
+            SystemSounds.Exclamation.Play();
+            ConsoleMessages += ChamiUIStrings.OperationCanceledMessage;
+            ConsoleMessages += ChamiUIStrings.OperationCanceledRevertMessage;
+            ProgressBarViewModel.Foreground = ResourceUtils.ErrorProgressBarColor;
+        }
+
+        private void HandleCheckedHealth(object sender, HealthCheckedEventArgs healthCheckedEventArgs)
+        {
+            var environmentHealthWindow = AppUtils.GetAppServiceProvider().GetService<EnvironmentHealthWindow>();
+            if (!StateManager.CurrentState.CanExecuteHealthCheck)
+            {
+                return;
+            }
+
+            var healthViewModel = new EnvironmentHealthViewModel()
+            {
+                HealthIndex = healthCheckedEventArgs.Health
+            };
+
+            var healthStatusList = healthCheckedEventArgs.HealthStatusList;
+            if (healthStatusList != null)
+            {
+                foreach (var healthStatus in healthStatusList)
+                {
+                    healthViewModel.HealthStatuses.Add(healthStatus);
+                }
+            }
+
+            EnvironmentHealth = healthViewModel;
+
+            if (environmentHealthWindow != null)
+            {
+                environmentHealthWindow.DataContext = healthViewModel;
+            }
         }
 
         /// <summary>
@@ -213,6 +283,18 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         private readonly SettingsDataAdapter _settingsDataAdapter;
 
+        private int _selectedTabIndex;
+
+        public int SelectedTabIndex
+        {
+            get => _selectedTabIndex;
+            set
+            {
+                _selectedTabIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
         private int _selectedEnvironmentTypeTabIndex;
 
         public int SelectedEnvironmentTypeTabIndex
@@ -221,31 +303,28 @@ namespace ChamiUI.PresentationLayer.ViewModels
             set
             {
                 _selectedEnvironmentTypeTabIndex = value;
-                if (_selectedEnvironmentTypeTabIndex == TABITEM_NORMAL_ENV_IDX)
+                if (_selectedEnvironmentTypeTabIndex == MainWindowConstants.TabItemNormalEnvIdx)
                 {
                     SelectedEnvironment = Environments.FirstOrDefault();
                     StateManager.ChangeState(new MainWindowReadyState());
                 }
                 else
                 {
-                    if (_selectedEnvironmentTypeTabIndex == TABITEM_BACKUP_ENV_IDX)
+                    if (_selectedEnvironmentTypeTabIndex == MainWindowConstants.TabItemBackupEnvIdx)
                     {
                         SelectedEnvironment = Backups.FirstOrDefault();
                     }
-                    else if (_selectedEnvironmentTypeTabIndex == TABITEM_TEMPLATE_ENV_IDX)
+                    else if (_selectedEnvironmentTypeTabIndex == MainWindowConstants.TabItemTemplateEnvIdx)
                     {
                         SelectedEnvironment = Templates.FirstOrDefault();
                     }
+
                     StateManager.ChangeState(new MainWindowNotRunnableState());
                 }
 
                 OnPropertyChanged();
             }
         }
-
-        private const int TABITEM_NORMAL_ENV_IDX = 0;
-        private const int TABITEM_BACKUP_ENV_IDX = 2;
-        private const int TABITEM_TEMPLATE_ENV_IDX = 1;
 
         /// <summary>
         /// Reacts to the EnvironmentChanged event.
@@ -263,12 +342,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     SelectedEnvironment = ActiveEnvironment;
                 }
+
                 Log.Logger.Information("Environment changed to {@Args}", args);
             }
             else
             {
                 ActiveEnvironment = null;
             }
+
             ChangeActiveEnvironment();
             EnvironmentChanged?.Invoke(this, args);
         }
@@ -329,10 +410,9 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private void AddVariableApplicationCommands(CmdExecutor cmdExecutor, SafeVariableViewModel safeVariableSettings,
             bool isSafetyEnabled)
         {
-            var newEnvironment = _dataAdapter.GetEnvironmentEntityById(SelectedEnvironment.Id);
-            cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand(
-                typeof(EnvironmentVariableApplicationCommand),
-                new EnvironmentVariable() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
+            var newEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
+            cmdExecutor.AddCommand(EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableApplicationCommand>(
+                new EnvironmentVariableViewModel() {Name = "_CHAMI_ENV", Value = SelectedEnvironment.Name}));
 
             foreach (var environmentVariable in newEnvironment.EnvironmentVariables)
             {
@@ -342,14 +422,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
                         v.Name == environmentVariable.Name) != null;
                 if (isCurrentVariableDisabled && isSafetyEnabled)
                 {
-                    newCommand =
-                        EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand), environmentVariable);
+                    newCommand = EnvironmentVariableCommandFactory.GetCommand<NopCommand>(environmentVariable);
                 }
                 else
                 {
-                    newCommand = EnvironmentVariableCommandFactory.GetCommand(
-                        typeof(EnvironmentVariableApplicationCommand),
-                        environmentVariable);
+                    newCommand =
+                        EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableApplicationCommand>(
+                            environmentVariable);
                 }
 
                 cmdExecutor.AddCommand(newCommand);
@@ -359,7 +438,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         private void AddRemovalCommands(string currentEnvironmentName, SafeVariableViewModel safeVariableSettings,
             bool isSafetyEnabled, CmdExecutor cmdExecutor)
         {
-            var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
+            var currentOsEnvironment = _dataAdapter.GetEnvironmentByName(currentEnvironmentName);
             // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
             // corresponding entity
             if (currentOsEnvironment != null)
@@ -372,14 +451,12 @@ namespace ChamiUI.PresentationLayer.ViewModels
                             v.Name == environmentVariable.Name) != null;
                     if (isCurrentVariableDisabled && isSafetyEnabled)
                     {
-                        newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(NopCommand),
-                                environmentVariable);
+                        newCommand = EnvironmentVariableCommandFactory.GetCommand<NopCommand>(environmentVariable);
                     }
                     else
                     {
                         newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                            EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(
                                 environmentVariable);
                     }
 
@@ -511,6 +588,8 @@ namespace ChamiUI.PresentationLayer.ViewModels
 
         public void RefreshEnvironments()
         {
+            var selectedEnvironmentIndex = Environments.IndexOf(SelectedEnvironment);
+            var activeEnvironmentIndex = Environments.IndexOf(ActiveEnvironment);
             Environments.Clear();
             Backups.Clear();
             Templates.Clear();
@@ -532,6 +611,15 @@ namespace ChamiUI.PresentationLayer.ViewModels
             foreach (var environment in templates)
             {
                 Templates.Add(environment);
+            }
+
+            if (selectedEnvironmentIndex >= 0)
+            {
+                SelectedEnvironment = Environments.ElementAt(selectedEnvironmentIndex);
+            }
+            if (activeEnvironmentIndex >= 0)
+            {
+                ActiveEnvironment = Environments.ElementAt(activeEnvironmentIndex);
             }
         }
 
@@ -569,11 +657,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 var detectedApplications = applicationDetector.Detect();
                 if (detectedApplications is {Count: > 0})
                 {
-                    var window = new DetectedApplicationsWindow
-                    {
-                        Owner = Application.Current.MainWindow,
-                        WindowStartupLocation = WindowStartupLocation.CenterOwner
-                    };
+                    var window = AppUtils.GetAppServiceProvider().GetService<DetectedApplicationsWindow>();
                     ApplicationsDetected += window.OnApplicationsDetected;
                     window.Show();
                     ApplicationsDetected?.Invoke(this, new ApplicationsDetectedEventArgs(detectedApplications));
@@ -599,8 +683,13 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void SaveCurrentEnvironment()
         {
             StateManager.ChangeState(new MainWindowSavingDataState());
+
             var environment = _dataAdapter.SaveEnvironment(SelectedEnvironment);
+            Environments.ReplaceInCollection(SelectedEnvironment, environment);
+            Templates.ReplaceInCollection(SelectedEnvironment, environment);
+            Backups.ReplaceInCollection(SelectedEnvironment, environment);
             SelectedEnvironment = environment;
+
             OnPropertyChanged(nameof(Environments));
             OnPropertyChanged(nameof(SelectedEnvironment));
             StateManager.ChangeState(new MainWindowReadyState());
@@ -696,6 +785,48 @@ namespace ChamiUI.PresentationLayer.ViewModels
             variableViewModel.MarkForDeletion();
         }
 
+        public void ToggleVariableDeletion(EnvironmentVariableViewModel variableViewModel)
+        {
+            variableViewModel.MarkedForDeletion = !variableViewModel.MarkedForDeletion;
+        }
+
+        public void HandleProgressReport(CmdExecutorProgress o)
+        {
+            if (o.Message != null)
+            {
+                var message = o.Message.TrimStart('\n');
+                if (!o.Message.EndsWith("\n"))
+                {
+                    message += "\n";
+                }
+
+                ConsoleMessages += message;
+            }
+
+            if (o.OutputStream != null)
+            {
+                StreamReader reader = new StreamReader(o.OutputStream);
+                ConsoleMessages += reader.ReadToEnd();
+            }
+
+            ProgressBarViewModel.Value = o.Percentage;
+            //Dispatcher.CurrentDispatcher.Invoke(() => ProgressBarViewModel.Value = o.Percentage);
+
+            //OnPropertyChanged(nameof(ProgressBarViewModel));
+        }
+
+        private string _consoleMessages;
+
+        public string ConsoleMessages
+        {
+            get => _consoleMessages;
+            set
+            {
+                _consoleMessages = value;
+                OnPropertyChanged();
+            }
+        }
+
         /// <summary>
         /// Removes all Chami environment variables from the current environment.
         /// </summary>
@@ -712,7 +843,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             var currentEnvironmentName = detector.GetEnvironmentVariable("_CHAMI_ENV");
             if (currentEnvironmentName != null)
             {
-                var currentOsEnvironment = _dataAdapter.GetEnvironmentEntityByName(currentEnvironmentName);
+                var currentOsEnvironment = _dataAdapter.GetEnvironmentByName(currentEnvironmentName);
                 // currentOsEnvironment could be null in case there's a stray _CHAMI_ENV environment variable but no 
                 // corresponding entity
                 if (currentOsEnvironment != null)
@@ -720,14 +851,14 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     foreach (var environmentVariable in currentOsEnvironment.EnvironmentVariables)
                     {
                         var newCommand =
-                            EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                            EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(
                                 environmentVariable);
                         cmdExecutor.AddCommand(newCommand);
                     }
 
-                    var chamiEnvVariable = new EnvironmentVariable() {Name = "_CHAMI_ENV"};
+                    var chamiEnvVariable = new EnvironmentVariableViewModel() {Name = "_CHAMI_ENV"};
                     var chamiEnvVarRemovalCommand =
-                        EnvironmentVariableCommandFactory.GetCommand(typeof(EnvironmentVariableRemovalCommand),
+                        EnvironmentVariableCommandFactory.GetCommand<EnvironmentVariableRemovalCommand>(
                             chamiEnvVariable);
                     cmdExecutor.AddCommand(chamiEnvVarRemovalCommand);
                 }
@@ -772,6 +903,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
             {
                 SelectedEnvironment = _dataAdapter.GetEnvironmentById(SelectedEnvironment.Id);
             }
+
             StateManager.ChangeState(new MainWindowReadyState());
         }
 
@@ -900,20 +1032,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
         /// Opens the folder pointed by the <see cref="SelectedVariable"/>.
         /// </summary>
         /// <exception cref="ChamiFolderException">If the folder doesn't exist, an exception is thrown.</exception>
-        public void OpenFolder()
-        {
-            // We need to call the Replace method because explorer.exe doesn't treat / as a directory separator and opens the Documents folder instead.
-            var folderPath = System.Environment.ExpandEnvironmentVariables(SelectedVariable.Value).Replace("/", "\\");
-            if (Directory.Exists(folderPath))
-            {
-                var openInExplorerCommand = new OpenInExplorerCommand(folderPath);
-                openInExplorerCommand.Execute();
-            }
-            else
-            {
-                throw new ChamiFolderException(ChamiUIStrings.UnableToOpenAsFolderMessage);
-            }
-        }
+      
 
         public bool IsSelectedVariableDeletable()
         {
@@ -937,10 +1056,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
         public void HandleCheckedHealth(HealthCheckedEventArgs healthCheckedEventArgs,
             Window environmentHealthWindow = null)
         {
-            if (StateManager.CurrentState.CanExecuteHealthCheck)
+            if (!StateManager.CurrentState.CanExecuteHealthCheck)
             {
                 return;
             }
+
             var healthViewModel = new EnvironmentHealthViewModel()
             {
                 HealthIndex = healthCheckedEventArgs.Health
@@ -954,7 +1074,7 @@ namespace ChamiUI.PresentationLayer.ViewModels
                     healthViewModel.HealthStatuses.Add(healthStatus);
                 }
             }
-            
+
             EnvironmentHealth = healthViewModel;
 
             if (environmentHealthWindow != null)
@@ -963,16 +1083,11 @@ namespace ChamiUI.PresentationLayer.ViewModels
             }
         }
 
-        public void HandleSettingsSaved(SettingsSavedEventArgs args)
-        {
-            Settings = args.Settings;
-        }
-
         public async Task SaveEnvironmentHealthColumns(EnvironmentHealthViewModel closedWindowViewModel)
         {
             var columnInfos = closedWindowViewModel.ColumnInfoViewModels;
 
-            var dataAdapter = new SettingsDataAdapter(App.GetConnectionString());
+            var dataAdapter = AppUtils.GetAppServiceProvider().GetRequiredService<SettingsDataAdapter>();
             var columnInfosToSave = new List<ColumnInfoViewModel>();
             Settings.HealthCheckSettings.ColumnInfos.Clear();
             var converter = new ColumnInfoConverter();
@@ -985,12 +1100,37 @@ namespace ChamiUI.PresentationLayer.ViewModels
                 {
                     columnInfo.ColumnWidth = gridViewColumn.Width;
                     columnInfosToSave.Add(columnInfo);
-                } 
-                
+                }
+
                 Settings.HealthCheckSettings.ColumnInfos.Add(converter.From(columnInfo));
             }
-            
+
             await dataAdapter.SaveColumnInfoAsync(columnInfosToSave);
+        }
+
+        public bool CanIncreaseFontSize()
+        {
+            var maxFontSize = Settings.ConsoleAppearanceSettings.MaxFontSize;
+            var targetFontSize = Settings.ConsoleAppearanceSettings.FontSize +
+                                 ConsoleAppearanceViewModel.DefaultFontSizeChangeStep;
+            return Settings.ConsoleAppearanceSettings.EnableFontSizeResizingWithScrollWheel &&
+                   (maxFontSize == null || !(maxFontSize < targetFontSize));
+        }
+
+        public void IncreaseFontSize()
+        {
+            Settings.ConsoleAppearanceSettings.FontSize += Settings.ConsoleAppearanceSettings.FontSizeStepChange;
+        }
+
+        public bool CanDecreaseFontSize()
+        {
+            return Settings.ConsoleAppearanceSettings.EnableFontSizeResizingWithScrollWheel &&
+                   Settings.ConsoleAppearanceSettings.FontSize > Settings.ConsoleAppearanceSettings.MinFontSize;
+        }
+
+        public void DecreaseFontSize()
+        {
+            Settings.ConsoleAppearanceSettings.FontSize -= Settings.ConsoleAppearanceSettings.FontSizeStepChange;
         }
 
         public async Task ApplyEnvironmentButtonClickAction(MainWindow mainWindow)
@@ -1000,5 +1140,43 @@ namespace ChamiUI.PresentationLayer.ViewModels
             await buttonBehaviourTask;
             StateManager.ChangeState(new MainWindowReadyState());
         }
+
+        public void SaveFontSize()
+        {
+            if (Settings.ConsoleAppearanceSettings.SaveFontSizeOnApplicationExit)
+            {
+                var valueToSave = Settings.ConsoleAppearanceSettings.FontSize;
+                _settingsDataAdapter.SaveFontSize(valueToSave);
+            }
+        }
+
+        public async void OnEnvironmentRenamed(object sender, EnvironmentRenamedEventArgs e)
+        {
+            SelectedTabIndex = MainWindowConstants.ConsoleTabItem;
+            await RenameEnvironment(e.NewName, HandleProgressReport);
+        }
+        
+        internal void OnEnvironmentSaved(object sender, EnvironmentSavedEventArgs args)
+        {
+            if (args == null) return;
+            var environmentViewModel = args.EnvironmentViewModel;
+            if (CheckEnvironmentExists(environmentViewModel)) return;
+            switch (environmentViewModel.EnvironmentType)
+            {
+                case EnvironmentType.BackupEnvironment:
+                    Backups.Add(environmentViewModel);
+                    break;
+                case EnvironmentType.TemplateEnvironment:
+                    Templates.Add(environmentViewModel);
+                    break;
+                default:
+                    Environments.Add(args.EnvironmentViewModel);
+                    break;
+            }
+        }
+
+        public IAsyncCommand OpenWebsiteCommand { get; }
+        public IAsyncCommand OpenGithubCommand { get; }
+        
     }
 }

@@ -89,16 +89,17 @@ namespace Chami.CmdExecutor
 
             try
             {
-                ProcessToExecute.Kill();
                 message = string.Format(CmdExecutorBase.KnownProcessTerminated, ProcessToExecute.ProcessName,
                     ProcessToExecute.Id);
+                ProcessToExecute.Kill();
+                
                 Progress?.Report(new CmdExecutorProgress(percentage, message));
             }
             catch (InvalidOperationException)
             {
                 // The process has already exited
                 message = string.Format(CmdExecutorBase.KnownProcessAlreadyExited, ProcessToExecute.ProcessName,
-                    ProcessToExecute.Id);
+                    0);
                 Progress?.Report(new CmdExecutorProgress(percentage, message));
             }
         }

@@ -70,5 +70,14 @@ namespace ChamiUI.PresentationLayer.Factories
             healthCheckSettings.IconPath = Enum.GetName(PackIconFontAwesomeKind.UserNurseSolid);
             return healthCheckSettings;
         }
+        
+        public static CategoriesSettingsViewModel GetCategoriesSettingsViewModel(SettingsViewModel settings)
+        {
+            var categoriesSettings = new CategoriesSettingsViewModel();
+            categoriesSettings.DisplayName = ChamiUIStrings.CategoriesCategory;
+            categoriesSettings.Description = ChamiUIStrings.HealthCheckCategoryDescription;
+            categoriesSettings.IconPath = Enum.GetName(PackIconFontAwesomeKind.TagSolid);
+            return categoriesSettings;
+        }
     }
 }

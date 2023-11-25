@@ -16,20 +16,12 @@
         SizeToContent="WidthAndHeight"
         WindowStyle="ToolWindow"
         >
-    <Window.CommandBindings>
-        <CommandBinding Command="{x:Static vm:RenameEnvironmentViewModel.RenameEnvironmentCommand}" 
-                        x:Name="DoRename" 
-                        CanExecute="DoRename_OnCanExecute" 
-                        Executed="DoRename_OnExecuted"></CommandBinding>
-        <CommandBinding Command="{x:Static vm:RenameEnvironmentViewModel.CancelRenamingCommand}" 
-                        x:Name="CancelRename" 
-                        CanExecute="CancelRename_OnCanExecute" 
-                        Executed="CancelRename_OnExecuted"></CommandBinding>
-    </Window.CommandBindings>
     <Window.InputBindings>
-        <KeyBinding Command="{x:Static vm:RenameEnvironmentViewModel.RenameEnvironmentCommand}" 
+        <KeyBinding Command="{Binding RenameCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
                     Key="Enter"></KeyBinding>
-        <KeyBinding Command="{x:Static vm:RenameEnvironmentViewModel.CancelRenamingCommand}"
+        <KeyBinding Command="{Binding CloseCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
                     Key="Escape"></KeyBinding>
     </Window.InputBindings>
     <StackPanel Orientation="Horizontal">
@@ -41,12 +33,18 @@
                 Margin="2, 0"
                 Content="{lex:Loc}" 
                 x:Name="RenameEnvironmentOkButton" 
-                Click="OkButton_OnClick" 
-                IsEnabled="{Binding IsNameValid}"/>
+                Command="{Binding RenameCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
+                IsEnabled="{Binding IsNameValid}"
+                ToolTipService.ShowOnDisabled="True"
+                ToolTip="{Binding NameInvalidToolTip}"
+                />
         <Button MinWidth="64" 
                 Margin="2, 0"
                 Content="{lex:Loc}" 
-                x:Name="RenameWindowCancelButton" 
-                Click="CancelButton_OnClick"/>
+                x:Name="RenameWindowCancelButton"
+                Command="{Binding CloseCommand}"
+                CommandParameter="{Binding RelativeSource={RelativeSource  FindAncestor, AncestorType=Window}}"
+                />
     </StackPanel>
 </Window>
