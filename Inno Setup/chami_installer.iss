@@ -20,7 +20,7 @@ AppSupportURL={#MyAppURL}
 AppUpdatesURL={#MyAppURL}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
-LicenseFile=D:\code\Chami\LICENSE
+LicenseFile=C:\Users\aldam\Chami\LICENSE
 ; Uncomment the following line to run in non administrative install mode (install for current user only.)
 PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
@@ -37,8 +37,8 @@ Name: "italian"; MessagesFile: "compiler:Languages\Italian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\code\Chami\ChamiUI\bin\Release\net5.0-windows\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; 
-Source: "D:\code\Chami\ChamiUI\bin\Release\net5.0-windows\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: "chami.db,chami.log"
+Source: "C:\Users\aldam\Chami\ChamiUI\bin\Release\net7.0-windows\win-x64\{#MyAppExeName}"; DestDir: "{app}"; Flags: ignoreversion; 
+Source: "C:\Users\aldam\Chami\ChamiUI\bin\Release\net7.0-windows\win-x64\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs; Excludes: "chami.db,chami.log"
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Dirs]

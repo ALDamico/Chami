@@ -7,6 +7,13 @@
         <ApplicationIcon>Assets\chami.ico</ApplicationIcon>
       <NoWarn>NU1701</NoWarn>
       <LangVersion>10</LangVersion>
+      <PackageId>Chami</PackageId>
+      <Version>2.0.0</Version>
+      <Title>Chami</Title>
+      <Authors>Andrea Luciano Damico</Authors>
+      <Description>An application to manage and switch between sets of environment variables</Description>
+      <PackageProjectUrl>https://github.com/ALDamico/Chami</PackageProjectUrl>
+      <RepositoryUrl>https://github.com/ALDamico/Chami</RepositoryUrl>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
